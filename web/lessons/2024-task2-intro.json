@@ -1,0 +1,2748 @@
+{
+  "schemaVersion": 1,
+  "id": "2024-task2-intro",
+  "title": "2024 · Paqua Monna · 远航选段",
+  "audio": "audio/2024-task2-intro.mp3",
+  "duration": 122.6,
+  "source": {
+    "title": "HKDSE English Language 2024 Paper 3 Part A — Task 2",
+    "year": 2024,
+    "paper": "Paper 3 Part A",
+    "task": "Task 2 introductory extract (Questions 13–20)",
+    "notes": "来自你已有的 2024 真题：Part A PDF 第 5 页（印刷页 6）、Script PDF 第 1 页左半（P.5/15）、MS+CP PDF 第 8 页（印刷页 146）。本选段只练第 13–20 题，后续第 21–26 题不在录音内。原卷第 19、20 题的船形图已改成宽度、长度文字题；保留原题号。字幕按原稿校正，拼读中的连字符和空格统一显示；13 个词暂按整句定位。中文解析为教学说明，非官方译文。",
+    "audioOriginalRangeSeconds": {
+      "start": 1026.8,
+      "end": 1149.4
+    },
+    "timingMethod": "acoustic word alignment with source-script comparison; no interpolation",
+    "timingReview": "Verified source wording; machine-aligned word times are not fully human-audited. Missing/low-confidence times remain null."
+  },
+  "instructions": "Listen to a lecture from Professor Elsa Larssen, an expert in human migration, on a famous expedition. Complete the information in the spaces below. The first one has been provided as an example. You now have 30 seconds to study the task. At the end of the task, you will have one minute to tidy up your answers.",
+  "example": "Name of lecture series: Museum Experiences.",
+  "sentences": [
+    {
+      "id": "s001",
+      "speaker": "Prof. Larssen",
+      "text": "Hello, and welcome to today's ‘Museum Experiences’ lecture in which I'm going to talk about the Paqua Monna expedition.",
+      "start": 0.37,
+      "end": 7.23,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Hello,",
+          "start": 0.37,
+          "end": 0.89,
+          "timingStatus": "text-corrected",
+          "probability": 0.8820300102233887,
+          "id": "w0001"
+        },
+        {
+          "text": "and",
+          "start": 0.89,
+          "end": 1.19,
+          "timingStatus": "machine-aligned",
+          "probability": 0.6828189492225647,
+          "id": "w0002"
+        },
+        {
+          "text": "welcome",
+          "start": 1.19,
+          "end": 1.57,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9906533360481262,
+          "id": "w0003"
+        },
+        {
+          "text": "to",
+          "start": 1.57,
+          "end": 1.79,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9956786036491394,
+          "id": "w0004"
+        },
+        {
+          "text": "today's",
+          "start": 1.79,
+          "end": 2.27,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9895551800727844,
+          "id": "w0005"
+        },
+        {
+          "text": "‘Museum",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.34180429577827454,
+          "id": "w0006"
+        },
+        {
+          "text": "Experiences’",
+          "start": 2.57,
+          "end": 3.79,
+          "timingStatus": "text-corrected",
+          "probability": 0.8873720169067383,
+          "id": "w0007"
+        },
+        {
+          "text": "lecture",
+          "start": 3.79,
+          "end": 4.13,
+          "timingStatus": "text-corrected",
+          "probability": 0.9897232055664062,
+          "id": "w0008"
+        },
+        {
+          "text": "in",
+          "start": 4.73,
+          "end": 4.89,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9813172221183777,
+          "id": "w0009"
+        },
+        {
+          "text": "which",
+          "start": 4.89,
+          "end": 5.05,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9988510608673096,
+          "id": "w0010"
+        },
+        {
+          "text": "I'm",
+          "start": 5.05,
+          "end": 5.27,
+          "timingStatus": "machine-aligned",
+          "probability": 0.879664421081543,
+          "id": "w0011"
+        },
+        {
+          "text": "going",
+          "start": 5.27,
+          "end": 5.43,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970135688781738,
+          "id": "w0012"
+        },
+        {
+          "text": "to",
+          "start": 5.43,
+          "end": 5.63,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9947091341018677,
+          "id": "w0013"
+        },
+        {
+          "text": "talk",
+          "start": 5.63,
+          "end": 5.83,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9961814880371094,
+          "id": "w0014"
+        },
+        {
+          "text": "about",
+          "start": 5.83,
+          "end": 6.11,
+          "timingStatus": "machine-aligned",
+          "probability": 0.997730553150177,
+          "id": "w0015"
+        },
+        {
+          "text": "the",
+          "start": 6.11,
+          "end": 6.29,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9880635142326355,
+          "id": "w0016"
+        },
+        {
+          "text": "Paqua",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.006289669923717156,
+          "id": "w0017"
+        },
+        {
+          "text": "Monna",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.22965570021187887,
+          "id": "w0018"
+        },
+        {
+          "text": "expedition.",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.3596597909927368,
+          "id": "w0019"
+        }
+      ]
+    },
+    {
+      "id": "s002",
+      "speaker": "Prof. Larssen",
+      "text": "For those of you who are taking notes, let me spell that out for you.",
+      "start": 8.13,
+      "end": 11.67,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "For",
+          "start": 8.13,
+          "end": 8.35,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9912838935852051,
+          "id": "w0020"
+        },
+        {
+          "text": "those",
+          "start": 8.35,
+          "end": 8.53,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9988611936569214,
+          "id": "w0021"
+        },
+        {
+          "text": "of",
+          "start": 8.53,
+          "end": 8.73,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9930003881454468,
+          "id": "w0022"
+        },
+        {
+          "text": "you",
+          "start": 8.73,
+          "end": 8.89,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9990618824958801,
+          "id": "w0023"
+        },
+        {
+          "text": "who",
+          "start": 8.89,
+          "end": 9.07,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9738420248031616,
+          "id": "w0024"
+        },
+        {
+          "text": "are",
+          "start": 9.07,
+          "end": 9.15,
+          "timingStatus": "machine-aligned",
+          "probability": 0.997088611125946,
+          "id": "w0025"
+        },
+        {
+          "text": "taking",
+          "start": 9.15,
+          "end": 9.45,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9987842440605164,
+          "id": "w0026"
+        },
+        {
+          "text": "notes,",
+          "start": 9.45,
+          "end": 9.75,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9977377653121948,
+          "id": "w0027"
+        },
+        {
+          "text": "let",
+          "start": 10.17,
+          "end": 10.35,
+          "timingStatus": "machine-aligned",
+          "probability": 0.989523708820343,
+          "id": "w0028"
+        },
+        {
+          "text": "me",
+          "start": 10.35,
+          "end": 10.55,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998589813709259,
+          "id": "w0029"
+        },
+        {
+          "text": "spell",
+          "start": 10.55,
+          "end": 10.79,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9993820190429688,
+          "id": "w0030"
+        },
+        {
+          "text": "that",
+          "start": 10.79,
+          "end": 11.07,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9972352385520935,
+          "id": "w0031"
+        },
+        {
+          "text": "out",
+          "start": 11.07,
+          "end": 11.27,
+          "timingStatus": "machine-aligned",
+          "probability": 0.997421383857727,
+          "id": "w0032"
+        },
+        {
+          "text": "for",
+          "start": 11.27,
+          "end": 11.49,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9938679337501526,
+          "id": "w0033"
+        },
+        {
+          "text": "you.",
+          "start": 11.49,
+          "end": 11.67,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9991627931594849,
+          "id": "w0034"
+        }
+      ]
+    },
+    {
+      "id": "s003",
+      "speaker": "Prof. Larssen",
+      "text": "That's two words — P-a-q-u-a, and M-o-double-n-a.",
+      "start": 12.19,
+      "end": 18.73,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "That's",
+          "start": 12.19,
+          "end": 12.57,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9864838719367981,
+          "id": "w0035"
+        },
+        {
+          "text": "two",
+          "start": 12.57,
+          "end": 12.83,
+          "timingStatus": "machine-aligned",
+          "probability": 0.891168475151062,
+          "id": "w0036"
+        },
+        {
+          "text": "words",
+          "start": 12.83,
+          "end": 13.17,
+          "timingStatus": "text-corrected",
+          "probability": 0.9981830716133118,
+          "id": "w0037"
+        },
+        {
+          "text": "—",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": null,
+          "id": "w0038"
+        },
+        {
+          "text": "P-a-q-u-a,",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.01089558227249654,
+          "id": "w0039"
+        },
+        {
+          "text": "and",
+          "start": 15.09,
+          "end": 16.51,
+          "timingStatus": "machine-aligned",
+          "probability": 0.5508705377578735,
+          "id": "w0040"
+        },
+        {
+          "text": "M-o-double-n-a.",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.145254984498024,
+          "id": "w0041"
+        }
+      ]
+    },
+    {
+      "id": "s004",
+      "speaker": "Prof. Larssen",
+      "text": "This is a very interesting example of how one man set out to explore one of the great mysteries of human migration.",
+      "start": 19.61,
+      "end": 27.67,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "This",
+          "start": 19.61,
+          "end": 20.33,
+          "timingStatus": "machine-aligned",
+          "probability": 0.6775861382484436,
+          "id": "w0042"
+        },
+        {
+          "text": "is",
+          "start": 20.33,
+          "end": 20.47,
+          "timingStatus": "machine-aligned",
+          "probability": 0.991480827331543,
+          "id": "w0043"
+        },
+        {
+          "text": "a",
+          "start": 20.47,
+          "end": 20.59,
+          "timingStatus": "machine-aligned",
+          "probability": 0.985034167766571,
+          "id": "w0044"
+        },
+        {
+          "text": "very",
+          "start": 20.59,
+          "end": 20.93,
+          "timingStatus": "machine-aligned",
+          "probability": 0.994322657585144,
+          "id": "w0045"
+        },
+        {
+          "text": "interesting",
+          "start": 20.93,
+          "end": 21.39,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9951666593551636,
+          "id": "w0046"
+        },
+        {
+          "text": "example",
+          "start": 21.39,
+          "end": 22.05,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9929303526878357,
+          "id": "w0047"
+        },
+        {
+          "text": "of",
+          "start": 22.05,
+          "end": 22.41,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9904521703720093,
+          "id": "w0048"
+        },
+        {
+          "text": "how",
+          "start": 22.41,
+          "end": 22.55,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9960135221481323,
+          "id": "w0049"
+        },
+        {
+          "text": "one",
+          "start": 22.55,
+          "end": 22.83,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9807824492454529,
+          "id": "w0050"
+        },
+        {
+          "text": "man",
+          "start": 22.83,
+          "end": 23.21,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9943684935569763,
+          "id": "w0051"
+        },
+        {
+          "text": "set",
+          "start": 23.21,
+          "end": 23.67,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9675246477127075,
+          "id": "w0052"
+        },
+        {
+          "text": "out",
+          "start": 23.67,
+          "end": 23.91,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9908051490783691,
+          "id": "w0053"
+        },
+        {
+          "text": "to",
+          "start": 23.91,
+          "end": 24.19,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970421195030212,
+          "id": "w0054"
+        },
+        {
+          "text": "explore",
+          "start": 24.19,
+          "end": 24.61,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970446228981018,
+          "id": "w0055"
+        },
+        {
+          "text": "one",
+          "start": 24.61,
+          "end": 25.23,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9893882274627686,
+          "id": "w0056"
+        },
+        {
+          "text": "of",
+          "start": 25.23,
+          "end": 25.35,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9967838525772095,
+          "id": "w0057"
+        },
+        {
+          "text": "the",
+          "start": 25.35,
+          "end": 25.45,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9973559379577637,
+          "id": "w0058"
+        },
+        {
+          "text": "great",
+          "start": 25.45,
+          "end": 25.81,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9583768248558044,
+          "id": "w0059"
+        },
+        {
+          "text": "mysteries",
+          "start": 25.81,
+          "end": 26.25,
+          "timingStatus": "machine-aligned",
+          "probability": 0.994378387928009,
+          "id": "w0060"
+        },
+        {
+          "text": "of",
+          "start": 26.25,
+          "end": 26.85,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979222416877747,
+          "id": "w0061"
+        },
+        {
+          "text": "human",
+          "start": 26.85,
+          "end": 27.13,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9948261380195618,
+          "id": "w0062"
+        },
+        {
+          "text": "migration.",
+          "start": 27.13,
+          "end": 27.67,
+          "timingStatus": "text-corrected",
+          "probability": 0.9953230023384094,
+          "id": "w0063"
+        }
+      ]
+    },
+    {
+      "id": "s005",
+      "speaker": "Prof. Larssen",
+      "text": "That is, how Polynesia, a huge area of islands in the Pacific Ocean, came to be home to people with similar language and customs.",
+      "start": 28.65,
+      "end": 37.91,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "That",
+          "start": 28.65,
+          "end": 28.83,
+          "timingStatus": "text-corrected",
+          "probability": 0.8403429985046387,
+          "id": "w0064"
+        },
+        {
+          "text": "is,",
+          "start": 28.83,
+          "end": 29.01,
+          "timingStatus": "text-corrected",
+          "probability": 0.9964548349380493,
+          "id": "w0065"
+        },
+        {
+          "text": "how",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.4337800145149231,
+          "id": "w0066"
+        },
+        {
+          "text": "Polynesia,",
+          "start": 29.55,
+          "end": 30.31,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9557638466358185,
+          "id": "w0067"
+        },
+        {
+          "text": "a",
+          "start": 30.89,
+          "end": 30.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9925162196159363,
+          "id": "w0068"
+        },
+        {
+          "text": "huge",
+          "start": 30.99,
+          "end": 31.29,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9976999163627625,
+          "id": "w0069"
+        },
+        {
+          "text": "area",
+          "start": 31.29,
+          "end": 31.67,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9966048002243042,
+          "id": "w0070"
+        },
+        {
+          "text": "of",
+          "start": 31.67,
+          "end": 31.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9878638386726379,
+          "id": "w0071"
+        },
+        {
+          "text": "islands",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": null,
+          "id": "w0072"
+        },
+        {
+          "text": "in",
+          "start": 32.27,
+          "end": 32.69,
+          "timingStatus": "machine-aligned",
+          "probability": 0.971974790096283,
+          "id": "w0073"
+        },
+        {
+          "text": "the",
+          "start": 32.69,
+          "end": 32.83,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9963849782943726,
+          "id": "w0074"
+        },
+        {
+          "text": "Pacific",
+          "start": 32.83,
+          "end": 33.17,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9897848963737488,
+          "id": "w0075"
+        },
+        {
+          "text": "Ocean,",
+          "start": 33.17,
+          "end": 33.55,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9312226176261902,
+          "id": "w0076"
+        },
+        {
+          "text": "came",
+          "start": 34.17,
+          "end": 34.35,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968384504318237,
+          "id": "w0077"
+        },
+        {
+          "text": "to",
+          "start": 34.35,
+          "end": 34.63,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9992617964744568,
+          "id": "w0078"
+        },
+        {
+          "text": "be",
+          "start": 34.63,
+          "end": 34.77,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965497255325317,
+          "id": "w0079"
+        },
+        {
+          "text": "home",
+          "start": 34.77,
+          "end": 34.95,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9861634373664856,
+          "id": "w0080"
+        },
+        {
+          "text": "to",
+          "start": 34.95,
+          "end": 35.21,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9969319105148315,
+          "id": "w0081"
+        },
+        {
+          "text": "people",
+          "start": 35.21,
+          "end": 35.57,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9978526830673218,
+          "id": "w0082"
+        },
+        {
+          "text": "with",
+          "start": 35.57,
+          "end": 36.05,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9964362382888794,
+          "id": "w0083"
+        },
+        {
+          "text": "similar",
+          "start": 36.05,
+          "end": 36.43,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9980202913284302,
+          "id": "w0084"
+        },
+        {
+          "text": "language",
+          "start": 36.43,
+          "end": 37.11,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9958983063697815,
+          "id": "w0085"
+        },
+        {
+          "text": "and",
+          "start": 37.11,
+          "end": 37.51,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9961097836494446,
+          "id": "w0086"
+        },
+        {
+          "text": "customs.",
+          "start": 37.51,
+          "end": 37.91,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979263544082642,
+          "id": "w0087"
+        }
+      ]
+    },
+    {
+      "id": "s006",
+      "speaker": "Prof. Larssen",
+      "text": "At that time, most experts thought that people from Polynesia had originally come from Southeast Asia.",
+      "start": 39.51,
+      "end": 45.99,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "At",
+          "start": 39.51,
+          "end": 40.23,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9817638993263245,
+          "id": "w0088"
+        },
+        {
+          "text": "that",
+          "start": 40.23,
+          "end": 40.35,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9819382429122925,
+          "id": "w0089"
+        },
+        {
+          "text": "time,",
+          "start": 40.35,
+          "end": 40.71,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9994807839393616,
+          "id": "w0090"
+        },
+        {
+          "text": "most",
+          "start": 40.71,
+          "end": 41.27,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979179501533508,
+          "id": "w0091"
+        },
+        {
+          "text": "experts",
+          "start": 41.27,
+          "end": 41.83,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9956193566322327,
+          "id": "w0092"
+        },
+        {
+          "text": "thought",
+          "start": 41.83,
+          "end": 42.25,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9948358535766602,
+          "id": "w0093"
+        },
+        {
+          "text": "that",
+          "start": 42.25,
+          "end": 42.51,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9982603192329407,
+          "id": "w0094"
+        },
+        {
+          "text": "people",
+          "start": 42.51,
+          "end": 42.79,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9972321391105652,
+          "id": "w0095"
+        },
+        {
+          "text": "from",
+          "start": 42.79,
+          "end": 43.05,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9958168864250183,
+          "id": "w0096"
+        },
+        {
+          "text": "Polynesia",
+          "start": 43.05,
+          "end": 43.71,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9960152506828308,
+          "id": "w0097"
+        },
+        {
+          "text": "had",
+          "start": 43.71,
+          "end": 44.13,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9936782717704773,
+          "id": "w0098"
+        },
+        {
+          "text": "originally",
+          "start": 44.13,
+          "end": 44.63,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9936023354530334,
+          "id": "w0099"
+        },
+        {
+          "text": "come",
+          "start": 44.63,
+          "end": 44.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9962843656539917,
+          "id": "w0100"
+        },
+        {
+          "text": "from",
+          "start": 44.99,
+          "end": 45.27,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979885816574097,
+          "id": "w0101"
+        },
+        {
+          "text": "Southeast",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.4882033169269562,
+          "id": "w0102"
+        },
+        {
+          "text": "Asia.",
+          "start": 45.77,
+          "end": 45.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9927706122398376,
+          "id": "w0103"
+        }
+      ]
+    },
+    {
+      "id": "s007",
+      "speaker": "Prof. Larssen",
+      "text": "However, one Danish explorer who wasn't convinced by this idea decided to take action.",
+      "start": 46.81,
+      "end": 53.59,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "However,",
+          "start": 46.81,
+          "end": 47.21,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9854736328125,
+          "id": "w0104"
+        },
+        {
+          "text": "one",
+          "start": 47.91,
+          "end": 48.19,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9699021577835083,
+          "id": "w0105"
+        },
+        {
+          "text": "Danish",
+          "start": 48.19,
+          "end": 48.55,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9895169138908386,
+          "id": "w0106"
+        },
+        {
+          "text": "explorer",
+          "start": 48.55,
+          "end": 49.17,
+          "timingStatus": "text-corrected",
+          "probability": 0.9832736253738403,
+          "id": "w0107"
+        },
+        {
+          "text": "who",
+          "start": 49.67,
+          "end": 49.73,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9953096508979797,
+          "id": "w0108"
+        },
+        {
+          "text": "wasn't",
+          "start": 49.73,
+          "end": 50.19,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9569607079029083,
+          "id": "w0109"
+        },
+        {
+          "text": "convinced",
+          "start": 50.19,
+          "end": 50.57,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9926375150680542,
+          "id": "w0110"
+        },
+        {
+          "text": "by",
+          "start": 50.57,
+          "end": 51.11,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9726786017417908,
+          "id": "w0111"
+        },
+        {
+          "text": "this",
+          "start": 51.11,
+          "end": 51.27,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9819896221160889,
+          "id": "w0112"
+        },
+        {
+          "text": "idea",
+          "start": 51.27,
+          "end": 51.63,
+          "timingStatus": "text-corrected",
+          "probability": 0.9974028468132019,
+          "id": "w0113"
+        },
+        {
+          "text": "decided",
+          "start": 52.09,
+          "end": 52.51,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9869371056556702,
+          "id": "w0114"
+        },
+        {
+          "text": "to",
+          "start": 52.51,
+          "end": 52.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9984489679336548,
+          "id": "w0115"
+        },
+        {
+          "text": "take",
+          "start": 52.99,
+          "end": 53.21,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971702694892883,
+          "id": "w0116"
+        },
+        {
+          "text": "action.",
+          "start": 53.21,
+          "end": 53.59,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9981739521026611,
+          "id": "w0117"
+        }
+      ]
+    },
+    {
+      "id": "s008",
+      "speaker": "Prof. Larssen",
+      "text": "His name was Lars Jenson and it's his story I want to talk about today.",
+      "start": 54.35,
+      "end": 59.59,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "His",
+          "start": 54.35,
+          "end": 54.55,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9721941947937012,
+          "id": "w0118"
+        },
+        {
+          "text": "name",
+          "start": 54.55,
+          "end": 54.91,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9973329305648804,
+          "id": "w0119"
+        },
+        {
+          "text": "was",
+          "start": 54.91,
+          "end": 55.25,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9912949204444885,
+          "id": "w0120"
+        },
+        {
+          "text": "Lars",
+          "start": 55.25,
+          "end": 55.63,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9238659739494324,
+          "id": "w0121"
+        },
+        {
+          "text": "Jenson",
+          "start": 55.63,
+          "end": 56.11,
+          "timingStatus": "text-corrected",
+          "probability": 0.8890010118484497,
+          "id": "w0122"
+        },
+        {
+          "text": "and",
+          "start": 56.67,
+          "end": 56.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9964536428451538,
+          "id": "w0123"
+        },
+        {
+          "text": "it's",
+          "start": 56.99,
+          "end": 57.21,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9233386218547821,
+          "id": "w0124"
+        },
+        {
+          "text": "his",
+          "start": 57.21,
+          "end": 57.49,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9911651015281677,
+          "id": "w0125"
+        },
+        {
+          "text": "story",
+          "start": 57.49,
+          "end": 58.01,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9933803081512451,
+          "id": "w0126"
+        },
+        {
+          "text": "I",
+          "start": 58.01,
+          "end": 58.39,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9600521326065063,
+          "id": "w0127"
+        },
+        {
+          "text": "want",
+          "start": 58.39,
+          "end": 58.57,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9824052453041077,
+          "id": "w0128"
+        },
+        {
+          "text": "to",
+          "start": 58.57,
+          "end": 58.73,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9972459077835083,
+          "id": "w0129"
+        },
+        {
+          "text": "talk",
+          "start": 58.73,
+          "end": 58.93,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9976296424865723,
+          "id": "w0130"
+        },
+        {
+          "text": "about",
+          "start": 58.93,
+          "end": 59.21,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9961846470832825,
+          "id": "w0131"
+        },
+        {
+          "text": "today.",
+          "start": 59.21,
+          "end": 59.59,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9906705617904663,
+          "id": "w0132"
+        }
+      ]
+    },
+    {
+      "id": "s009",
+      "speaker": "Prof. Larssen",
+      "text": "Jenson was sure that the Polynesian islands were settled by people travelling from South America.",
+      "start": 60.71,
+      "end": 66.43,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Jenson",
+          "start": 60.71,
+          "end": 61.43,
+          "timingStatus": "text-corrected",
+          "probability": 0.975143313407898,
+          "id": "w0133"
+        },
+        {
+          "text": "was",
+          "start": 61.43,
+          "end": 61.75,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971306920051575,
+          "id": "w0134"
+        },
+        {
+          "text": "sure",
+          "start": 61.75,
+          "end": 62.11,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9926855564117432,
+          "id": "w0135"
+        },
+        {
+          "text": "that",
+          "start": 62.11,
+          "end": 62.45,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9809853434562683,
+          "id": "w0136"
+        },
+        {
+          "text": "the",
+          "start": 62.45,
+          "end": 62.55,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9899824261665344,
+          "id": "w0137"
+        },
+        {
+          "text": "Polynesian",
+          "start": 62.55,
+          "end": 63.19,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9809777537981669,
+          "id": "w0138"
+        },
+        {
+          "text": "islands",
+          "start": 63.19,
+          "end": 63.51,
+          "timingStatus": "machine-aligned",
+          "probability": 0.5689594745635986,
+          "id": "w0139"
+        },
+        {
+          "text": "were",
+          "start": 63.51,
+          "end": 63.97,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9941283464431763,
+          "id": "w0140"
+        },
+        {
+          "text": "settled",
+          "start": 63.97,
+          "end": 64.29,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979149699211121,
+          "id": "w0141"
+        },
+        {
+          "text": "by",
+          "start": 64.29,
+          "end": 64.59,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998245120048523,
+          "id": "w0142"
+        },
+        {
+          "text": "people",
+          "start": 64.59,
+          "end": 64.89,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9906467199325562,
+          "id": "w0143"
+        },
+        {
+          "text": "travelling",
+          "start": 64.89,
+          "end": 65.35,
+          "timingStatus": "text-corrected",
+          "probability": 0.561882495880127,
+          "id": "w0144"
+        },
+        {
+          "text": "from",
+          "start": 65.35,
+          "end": 65.77,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9982979893684387,
+          "id": "w0145"
+        },
+        {
+          "text": "South",
+          "start": 65.77,
+          "end": 66.03,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9928178787231445,
+          "id": "w0146"
+        },
+        {
+          "text": "America.",
+          "start": 66.03,
+          "end": 66.43,
+          "timingStatus": "text-corrected",
+          "probability": 0.9982380867004395,
+          "id": "w0147"
+        }
+      ]
+    },
+    {
+      "id": "s010",
+      "speaker": "Prof. Larssen",
+      "text": "And his theory was that people from South America travelled to Polynesia in boats and sailed from South America across the Pacific Ocean to Polynesia.",
+      "start": 67.05,
+      "end": 77.33,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "And",
+          "start": 67.05,
+          "end": 67.37,
+          "timingStatus": "text-corrected",
+          "probability": 0.9979682564735413,
+          "id": "w0148"
+        },
+        {
+          "text": "his",
+          "start": 67.37,
+          "end": 67.63,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9946832060813904,
+          "id": "w0149"
+        },
+        {
+          "text": "theory",
+          "start": 67.63,
+          "end": 68.11,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971917271614075,
+          "id": "w0150"
+        },
+        {
+          "text": "was",
+          "start": 68.11,
+          "end": 68.51,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9975913763046265,
+          "id": "w0151"
+        },
+        {
+          "text": "that",
+          "start": 68.51,
+          "end": 68.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8977174162864685,
+          "id": "w0152"
+        },
+        {
+          "text": "people",
+          "start": 68.99,
+          "end": 69.23,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9909747242927551,
+          "id": "w0153"
+        },
+        {
+          "text": "from",
+          "start": 69.23,
+          "end": 69.59,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9949475526809692,
+          "id": "w0154"
+        },
+        {
+          "text": "South",
+          "start": 69.59,
+          "end": 69.81,
+          "timingStatus": "machine-aligned",
+          "probability": 0.992566704750061,
+          "id": "w0155"
+        },
+        {
+          "text": "America",
+          "start": 69.81,
+          "end": 70.31,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968538880348206,
+          "id": "w0156"
+        },
+        {
+          "text": "travelled",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": null,
+          "id": "w0157"
+        },
+        {
+          "text": "to",
+          "start": 70.77,
+          "end": 71.13,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9982909560203552,
+          "id": "w0158"
+        },
+        {
+          "text": "Polynesia",
+          "start": 71.13,
+          "end": 71.75,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8454101979732513,
+          "id": "w0159"
+        },
+        {
+          "text": "in",
+          "start": 71.75,
+          "end": 72.33,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8906506299972534,
+          "id": "w0160"
+        },
+        {
+          "text": "boats",
+          "start": 72.33,
+          "end": 72.67,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9638291597366333,
+          "id": "w0161"
+        },
+        {
+          "text": "and",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.13644716143608093,
+          "id": "w0162"
+        },
+        {
+          "text": "sailed",
+          "start": 73.41,
+          "end": 73.73,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9781215190887451,
+          "id": "w0163"
+        },
+        {
+          "text": "from",
+          "start": 73.73,
+          "end": 73.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9954903721809387,
+          "id": "w0164"
+        },
+        {
+          "text": "South",
+          "start": 73.99,
+          "end": 74.19,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9778149724006653,
+          "id": "w0165"
+        },
+        {
+          "text": "America",
+          "start": 74.19,
+          "end": 74.57,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9978522062301636,
+          "id": "w0166"
+        },
+        {
+          "text": "across",
+          "start": 74.57,
+          "end": 75.13,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9775862693786621,
+          "id": "w0167"
+        },
+        {
+          "text": "the",
+          "start": 75.13,
+          "end": 75.45,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9953212141990662,
+          "id": "w0168"
+        },
+        {
+          "text": "Pacific",
+          "start": 75.45,
+          "end": 75.81,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9961252808570862,
+          "id": "w0169"
+        },
+        {
+          "text": "Ocean",
+          "start": 75.81,
+          "end": 76.17,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9778768420219421,
+          "id": "w0170"
+        },
+        {
+          "text": "to",
+          "start": 76.17,
+          "end": 76.69,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9779720306396484,
+          "id": "w0171"
+        },
+        {
+          "text": "Polynesia.",
+          "start": 76.69,
+          "end": 77.33,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8305424153804779,
+          "id": "w0172"
+        }
+      ]
+    },
+    {
+      "id": "s011",
+      "speaker": "Prof. Larssen",
+      "text": "So, he decided to build a wooden boat and prove his theory by sailing the boat from South America himself.",
+      "start": 78.09,
+      "end": 85.87,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "So,",
+          "start": 78.09,
+          "end": 78.43,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9800941348075867,
+          "id": "w0173"
+        },
+        {
+          "text": "he",
+          "start": 78.93,
+          "end": 79.15,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9966604709625244,
+          "id": "w0174"
+        },
+        {
+          "text": "decided",
+          "start": 79.15,
+          "end": 79.53,
+          "timingStatus": "machine-aligned",
+          "probability": 0.996606707572937,
+          "id": "w0175"
+        },
+        {
+          "text": "to",
+          "start": 79.53,
+          "end": 80.17,
+          "timingStatus": "machine-aligned",
+          "probability": 0.997317373752594,
+          "id": "w0176"
+        },
+        {
+          "text": "build",
+          "start": 80.17,
+          "end": 80.45,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9892054796218872,
+          "id": "w0177"
+        },
+        {
+          "text": "a",
+          "start": 80.45,
+          "end": 80.71,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998382568359375,
+          "id": "w0178"
+        },
+        {
+          "text": "wooden",
+          "start": 80.71,
+          "end": 80.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9960289001464844,
+          "id": "w0179"
+        },
+        {
+          "text": "boat",
+          "start": 80.99,
+          "end": 81.35,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9987965822219849,
+          "id": "w0180"
+        },
+        {
+          "text": "and",
+          "start": 81.35,
+          "end": 81.93,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9385519027709961,
+          "id": "w0181"
+        },
+        {
+          "text": "prove",
+          "start": 81.93,
+          "end": 82.27,
+          "timingStatus": "machine-aligned",
+          "probability": 0.99400395154953,
+          "id": "w0182"
+        },
+        {
+          "text": "his",
+          "start": 82.27,
+          "end": 82.55,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9982346296310425,
+          "id": "w0183"
+        },
+        {
+          "text": "theory",
+          "start": 82.55,
+          "end": 82.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.997565746307373,
+          "id": "w0184"
+        },
+        {
+          "text": "by",
+          "start": 82.99,
+          "end": 83.47,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9808068871498108,
+          "id": "w0185"
+        },
+        {
+          "text": "sailing",
+          "start": 83.47,
+          "end": 83.85,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9959028363227844,
+          "id": "w0186"
+        },
+        {
+          "text": "the",
+          "start": 83.85,
+          "end": 84.11,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9960571527481079,
+          "id": "w0187"
+        },
+        {
+          "text": "boat",
+          "start": 84.11,
+          "end": 84.33,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9995874762535095,
+          "id": "w0188"
+        },
+        {
+          "text": "from",
+          "start": 84.33,
+          "end": 84.61,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9983068704605103,
+          "id": "w0189"
+        },
+        {
+          "text": "South",
+          "start": 84.61,
+          "end": 84.83,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968247413635254,
+          "id": "w0190"
+        },
+        {
+          "text": "America",
+          "start": 84.83,
+          "end": 85.37,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998668909072876,
+          "id": "w0191"
+        },
+        {
+          "text": "himself.",
+          "start": 85.37,
+          "end": 85.87,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9517669081687927,
+          "id": "w0192"
+        }
+      ]
+    },
+    {
+      "id": "s012",
+      "speaker": "Prof. Larssen",
+      "text": "He set about the task by thinking carefully about the materials he needed to build his boat and planning the route he'd take.",
+      "start": 87.59,
+      "end": 95.21,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "He",
+          "start": 87.59,
+          "end": 87.99,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9910923838615417,
+          "id": "w0193"
+        },
+        {
+          "text": "set",
+          "start": 87.99,
+          "end": 88.17,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8384427428245544,
+          "id": "w0194"
+        },
+        {
+          "text": "about",
+          "start": 88.17,
+          "end": 88.49,
+          "timingStatus": "machine-aligned",
+          "probability": 0.993002712726593,
+          "id": "w0195"
+        },
+        {
+          "text": "the",
+          "start": 88.49,
+          "end": 88.71,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9964228272438049,
+          "id": "w0196"
+        },
+        {
+          "text": "task",
+          "start": 88.71,
+          "end": 88.93,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9986166954040527,
+          "id": "w0197"
+        },
+        {
+          "text": "by",
+          "start": 88.93,
+          "end": 89.43,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9903391003608704,
+          "id": "w0198"
+        },
+        {
+          "text": "thinking",
+          "start": 89.43,
+          "end": 89.75,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989950060844421,
+          "id": "w0199"
+        },
+        {
+          "text": "carefully",
+          "start": 89.75,
+          "end": 90.39,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9985040426254272,
+          "id": "w0200"
+        },
+        {
+          "text": "about",
+          "start": 90.39,
+          "end": 90.87,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9976040720939636,
+          "id": "w0201"
+        },
+        {
+          "text": "the",
+          "start": 90.87,
+          "end": 91.05,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989120960235596,
+          "id": "w0202"
+        },
+        {
+          "text": "materials",
+          "start": 91.05,
+          "end": 91.65,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9951830506324768,
+          "id": "w0203"
+        },
+        {
+          "text": "he",
+          "start": 91.65,
+          "end": 91.97,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9947070479393005,
+          "id": "w0204"
+        },
+        {
+          "text": "needed",
+          "start": 91.97,
+          "end": 92.21,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9994519352912903,
+          "id": "w0205"
+        },
+        {
+          "text": "to",
+          "start": 92.21,
+          "end": 92.43,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9992380142211914,
+          "id": "w0206"
+        },
+        {
+          "text": "build",
+          "start": 92.43,
+          "end": 92.63,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9963529109954834,
+          "id": "w0207"
+        },
+        {
+          "text": "his",
+          "start": 92.63,
+          "end": 92.83,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9941896200180054,
+          "id": "w0208"
+        },
+        {
+          "text": "boat",
+          "start": 92.83,
+          "end": 93.09,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9997267127037048,
+          "id": "w0209"
+        },
+        {
+          "text": "and",
+          "start": 93.09,
+          "end": 93.67,
+          "timingStatus": "machine-aligned",
+          "probability": 0.91380375623703,
+          "id": "w0210"
+        },
+        {
+          "text": "planning",
+          "start": 93.67,
+          "end": 93.93,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9847859740257263,
+          "id": "w0211"
+        },
+        {
+          "text": "the",
+          "start": 93.93,
+          "end": 94.33,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9991201758384705,
+          "id": "w0212"
+        },
+        {
+          "text": "route",
+          "start": 94.33,
+          "end": 94.63,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9808833003044128,
+          "id": "w0213"
+        },
+        {
+          "text": "he'd",
+          "start": 94.63,
+          "end": 95.01,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8423695862293243,
+          "id": "w0214"
+        },
+        {
+          "text": "take.",
+          "start": 95.01,
+          "end": 95.21,
+          "timingStatus": "machine-aligned",
+          "probability": 0.997814416885376,
+          "id": "w0215"
+        }
+      ]
+    },
+    {
+      "id": "s013",
+      "speaker": "Prof. Larssen",
+      "text": "He also had to think about how many people he'd need on his team.",
+      "start": 95.81,
+      "end": 99.85,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "He",
+          "start": 95.81,
+          "end": 96.27,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9964808821678162,
+          "id": "w0216"
+        },
+        {
+          "text": "also",
+          "start": 96.27,
+          "end": 96.51,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9987173080444336,
+          "id": "w0217"
+        },
+        {
+          "text": "had",
+          "start": 96.51,
+          "end": 96.93,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998094379901886,
+          "id": "w0218"
+        },
+        {
+          "text": "to",
+          "start": 96.93,
+          "end": 97.07,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9993820190429688,
+          "id": "w0219"
+        },
+        {
+          "text": "think",
+          "start": 97.07,
+          "end": 97.25,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9991239905357361,
+          "id": "w0220"
+        },
+        {
+          "text": "about",
+          "start": 97.25,
+          "end": 97.47,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9919147491455078,
+          "id": "w0221"
+        },
+        {
+          "text": "how",
+          "start": 97.47,
+          "end": 97.85,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9981984496116638,
+          "id": "w0222"
+        },
+        {
+          "text": "many",
+          "start": 97.85,
+          "end": 98.11,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989328980445862,
+          "id": "w0223"
+        },
+        {
+          "text": "people",
+          "start": 98.11,
+          "end": 98.65,
+          "timingStatus": "machine-aligned",
+          "probability": 0.997879147529602,
+          "id": "w0224"
+        },
+        {
+          "text": "he'd",
+          "start": 98.65,
+          "end": 99.05,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9922566711902618,
+          "id": "w0225"
+        },
+        {
+          "text": "need",
+          "start": 99.05,
+          "end": 99.19,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9963564872741699,
+          "id": "w0226"
+        },
+        {
+          "text": "on",
+          "start": 99.19,
+          "end": 99.43,
+          "timingStatus": "machine-aligned",
+          "probability": 0.996323823928833,
+          "id": "w0227"
+        },
+        {
+          "text": "his",
+          "start": 99.43,
+          "end": 99.61,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9975835084915161,
+          "id": "w0228"
+        },
+        {
+          "text": "team.",
+          "start": 99.61,
+          "end": 99.85,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989938139915466,
+          "id": "w0229"
+        }
+      ]
+    },
+    {
+      "id": "s014",
+      "speaker": "Prof. Larssen",
+      "text": "He realised that his boat needed to be light and strong.",
+      "start": 100.65,
+      "end": 104.21,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "He",
+          "start": 100.65,
+          "end": 100.87,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9905152320861816,
+          "id": "w0230"
+        },
+        {
+          "text": "realised",
+          "start": 100.87,
+          "end": 101.19,
+          "timingStatus": "text-corrected",
+          "probability": 0.7914878129959106,
+          "id": "w0231"
+        },
+        {
+          "text": "that",
+          "start": 101.19,
+          "end": 101.81,
+          "timingStatus": "machine-aligned",
+          "probability": 0.988373339176178,
+          "id": "w0232"
+        },
+        {
+          "text": "his",
+          "start": 101.81,
+          "end": 101.97,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9942736029624939,
+          "id": "w0233"
+        },
+        {
+          "text": "boat",
+          "start": 101.97,
+          "end": 102.25,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9991582632064819,
+          "id": "w0234"
+        },
+        {
+          "text": "needed",
+          "start": 102.25,
+          "end": 102.65,
+          "timingStatus": "machine-aligned",
+          "probability": 0.992693305015564,
+          "id": "w0235"
+        },
+        {
+          "text": "to",
+          "start": 102.65,
+          "end": 102.95,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9973099231719971,
+          "id": "w0236"
+        },
+        {
+          "text": "be",
+          "start": 102.95,
+          "end": 103.09,
+          "timingStatus": "machine-aligned",
+          "probability": 0.995692789554596,
+          "id": "w0237"
+        },
+        {
+          "text": "light",
+          "start": 103.09,
+          "end": 103.43,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9712136387825012,
+          "id": "w0238"
+        },
+        {
+          "text": "and",
+          "start": 103.43,
+          "end": 103.77,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971518516540527,
+          "id": "w0239"
+        },
+        {
+          "text": "strong.",
+          "start": 103.77,
+          "end": 104.21,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9975329637527466,
+          "id": "w0240"
+        }
+      ]
+    },
+    {
+      "id": "s015",
+      "speaker": "Prof. Larssen",
+      "text": "So, he used a native South American wood which was known for its lightness and strength.",
+      "start": 105.05,
+      "end": 110.57,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "So,",
+          "start": 105.05,
+          "end": 105.39,
+          "timingStatus": "machine-aligned",
+          "probability": 0.978058934211731,
+          "id": "w0241"
+        },
+        {
+          "text": "he",
+          "start": 105.67,
+          "end": 105.77,
+          "timingStatus": "machine-aligned",
+          "probability": 0.997602641582489,
+          "id": "w0242"
+        },
+        {
+          "text": "used",
+          "start": 105.77,
+          "end": 106.05,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9982923865318298,
+          "id": "w0243"
+        },
+        {
+          "text": "a",
+          "start": 106.05,
+          "end": 106.25,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9793943762779236,
+          "id": "w0244"
+        },
+        {
+          "text": "native",
+          "start": 106.25,
+          "end": 106.61,
+          "timingStatus": "machine-aligned",
+          "probability": 0.7993643879890442,
+          "id": "w0245"
+        },
+        {
+          "text": "South",
+          "start": 106.61,
+          "end": 106.89,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8990020751953125,
+          "id": "w0246"
+        },
+        {
+          "text": "American",
+          "start": 106.89,
+          "end": 107.37,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9883734583854675,
+          "id": "w0247"
+        },
+        {
+          "text": "wood",
+          "start": 107.37,
+          "end": 107.71,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9253024458885193,
+          "id": "w0248"
+        },
+        {
+          "text": "which",
+          "start": 107.71,
+          "end": 108.35,
+          "timingStatus": "machine-aligned",
+          "probability": 0.5245686769485474,
+          "id": "w0249"
+        },
+        {
+          "text": "was",
+          "start": 108.35,
+          "end": 108.53,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9972792267799377,
+          "id": "w0250"
+        },
+        {
+          "text": "known",
+          "start": 108.53,
+          "end": 108.81,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970313310623169,
+          "id": "w0251"
+        },
+        {
+          "text": "for",
+          "start": 108.81,
+          "end": 109.09,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965858459472656,
+          "id": "w0252"
+        },
+        {
+          "text": "its",
+          "start": 109.09,
+          "end": 109.25,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9385259747505188,
+          "id": "w0253"
+        },
+        {
+          "text": "lightness",
+          "start": 109.25,
+          "end": 109.87,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9282772839069366,
+          "id": "w0254"
+        },
+        {
+          "text": "and",
+          "start": 109.87,
+          "end": 110.19,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9957278966903687,
+          "id": "w0255"
+        },
+        {
+          "text": "strength.",
+          "start": 110.19,
+          "end": 110.57,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989597797393799,
+          "id": "w0256"
+        }
+      ]
+    },
+    {
+      "id": "s016",
+      "speaker": "Prof. Larssen",
+      "text": "His wooden boat measured fourteen metres long and five metres wide, that's fourteen in length by five in width, and it had a big sail to catch the wind.",
+      "start": 111.47,
+      "end": 122.29,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "His",
+          "start": 111.47,
+          "end": 112.11,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9693929553031921,
+          "id": "w0257"
+        },
+        {
+          "text": "wooden",
+          "start": 112.11,
+          "end": 112.35,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9946141839027405,
+          "id": "w0258"
+        },
+        {
+          "text": "boat",
+          "start": 112.35,
+          "end": 112.75,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9946807026863098,
+          "id": "w0259"
+        },
+        {
+          "text": "measured",
+          "start": 112.75,
+          "end": 113.07,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9675511121749878,
+          "id": "w0260"
+        },
+        {
+          "text": "fourteen",
+          "start": 113.07,
+          "end": 113.83,
+          "timingStatus": "text-corrected",
+          "probability": 0.8776206374168396,
+          "id": "w0261"
+        },
+        {
+          "text": "metres",
+          "start": 113.83,
+          "end": 114.09,
+          "timingStatus": "text-corrected",
+          "probability": 0.5072004199028015,
+          "id": "w0262"
+        },
+        {
+          "text": "long",
+          "start": 114.09,
+          "end": 114.45,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9933520555496216,
+          "id": "w0263"
+        },
+        {
+          "text": "and",
+          "start": 114.45,
+          "end": 115.03,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9513728022575378,
+          "id": "w0264"
+        },
+        {
+          "text": "five",
+          "start": 115.03,
+          "end": 115.33,
+          "timingStatus": "text-corrected",
+          "probability": 0.8436175584793091,
+          "id": "w0265"
+        },
+        {
+          "text": "metres",
+          "start": 115.33,
+          "end": 115.69,
+          "timingStatus": "text-corrected",
+          "probability": 0.9053115844726562,
+          "id": "w0266"
+        },
+        {
+          "text": "wide,",
+          "start": 115.69,
+          "end": 116.09,
+          "timingStatus": "text-corrected",
+          "probability": 0.9986734390258789,
+          "id": "w0267"
+        },
+        {
+          "text": "that's",
+          "start": 116.87,
+          "end": 117.03,
+          "timingStatus": "text-corrected",
+          "probability": 0.9499120116233826,
+          "id": "w0268"
+        },
+        {
+          "text": "fourteen",
+          "start": 117.03,
+          "end": 117.33,
+          "timingStatus": "text-corrected",
+          "probability": 0.9460339546203613,
+          "id": "w0269"
+        },
+        {
+          "text": "in",
+          "start": 117.33,
+          "end": 117.71,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9661652445793152,
+          "id": "w0270"
+        },
+        {
+          "text": "length",
+          "start": 117.71,
+          "end": 117.93,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9802532196044922,
+          "id": "w0271"
+        },
+        {
+          "text": "by",
+          "start": 117.93,
+          "end": 118.51,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8992648720741272,
+          "id": "w0272"
+        },
+        {
+          "text": "five",
+          "start": 118.51,
+          "end": 119.01,
+          "timingStatus": "text-corrected",
+          "probability": 0.9064378142356873,
+          "id": "w0273"
+        },
+        {
+          "text": "in",
+          "start": 119.01,
+          "end": 119.23,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9844701290130615,
+          "id": "w0274"
+        },
+        {
+          "text": "width,",
+          "start": 119.23,
+          "end": 119.61,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9969074130058289,
+          "id": "w0275"
+        },
+        {
+          "text": "and",
+          "start": 120.21,
+          "end": 120.33,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9940351843833923,
+          "id": "w0276"
+        },
+        {
+          "text": "it",
+          "start": 120.33,
+          "end": 120.45,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9848766326904297,
+          "id": "w0277"
+        },
+        {
+          "text": "had",
+          "start": 120.45,
+          "end": 120.59,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9963595271110535,
+          "id": "w0278"
+        },
+        {
+          "text": "a",
+          "start": 120.59,
+          "end": 120.69,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9679306745529175,
+          "id": "w0279"
+        },
+        {
+          "text": "big",
+          "start": 120.69,
+          "end": 120.91,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9975374937057495,
+          "id": "w0280"
+        },
+        {
+          "text": "sail",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.1373150646686554,
+          "id": "w0281"
+        },
+        {
+          "text": "to",
+          "start": 121.33,
+          "end": 121.65,
+          "timingStatus": "machine-aligned",
+          "probability": 0.995073139667511,
+          "id": "w0282"
+        },
+        {
+          "text": "catch",
+          "start": 121.65,
+          "end": 121.83,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9974563717842102,
+          "id": "w0283"
+        },
+        {
+          "text": "the",
+          "start": 121.83,
+          "end": 122.13,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971542358398438,
+          "id": "w0284"
+        },
+        {
+          "text": "wind.",
+          "start": 122.13,
+          "end": 122.29,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968507885932922,
+          "id": "w0285"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q13",
+      "number": 13,
+      "prompt": "Topic of the lecture: The ___ Expedition.",
+      "answers": [
+        "Paqua Monna"
+      ],
+      "evidence": [
+        {
+          "start": 12.04,
+          "end": 18.93,
+          "wordIds": [
+            "w0035",
+            "w0036",
+            "w0037",
+            "w0038",
+            "w0039",
+            "w0040",
+            "w0041"
+          ]
+        }
+      ],
+      "explanation": "留意逐字母拼读：Paqua Monna，第二个词中间是 double n。两个词都要写出。"
+    },
+    {
+      "id": "q14",
+      "number": 14,
+      "prompt": "People in Polynesia share similar — item 1: ___",
+      "answers": [
+        "languages",
+        "language",
+        "customs"
+      ],
+      "evidence": [
+        {
+          "start": 35.9,
+          "end": 38.11,
+          "wordIds": [
+            "w0084",
+            "w0085",
+            "w0086",
+            "w0087"
+          ]
+        }
+      ],
+      "explanation": "这里问共同之处：语言和习俗。第 14、15 题可互换顺序，同一个项目只算一次；录音说 language，评分参考写 languages。",
+      "sharedPool": "polynesia-similarities",
+      "answerCategories": [
+        {
+          "id": "language",
+          "answers": [
+            "languages",
+            "language"
+          ]
+        },
+        {
+          "id": "customs",
+          "answers": [
+            "customs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q15",
+      "number": 15,
+      "prompt": "People in Polynesia share similar — item 2: ___",
+      "answers": [
+        "languages",
+        "language",
+        "customs"
+      ],
+      "evidence": [
+        {
+          "start": 35.9,
+          "end": 38.11,
+          "wordIds": [
+            "w0084",
+            "w0085",
+            "w0086",
+            "w0087"
+          ]
+        }
+      ],
+      "explanation": "这里问共同之处：语言和习俗。第 14、15 题可互换顺序，同一个项目只算一次；录音说 language，评分参考写 languages。",
+      "sharedPool": "polynesia-similarities",
+      "answerCategories": [
+        {
+          "id": "language",
+          "answers": [
+            "languages",
+            "language"
+          ]
+        },
+        {
+          "id": "customs",
+          "answers": [
+            "customs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q16",
+      "number": 16,
+      "prompt": "The route of Jenson's expedition: ___",
+      "answers": [
+        "C",
+        "From South America to Polynesia",
+        "C. From South America to Polynesia"
+      ],
+      "evidence": [
+        {
+          "start": 68.84,
+          "end": 72.87,
+          "wordIds": [
+            "w0153",
+            "w0154",
+            "w0155",
+            "w0156",
+            "w0157",
+            "w0158",
+            "w0159",
+            "w0160",
+            "w0161"
+          ]
+        }
+      ],
+      "explanation": "先听到 Southeast Asia 是当时多数专家的观点；题目问 Jenson 的远航路线，要抓住 from South America 和 to Polynesia。",
+      "options": [
+        "A. From Polynesia to Southeast Asia",
+        "B. From Polynesia to South America",
+        "C. From South America to Polynesia",
+        "D. From South America to Southeast Asia"
+      ]
+    },
+    {
+      "id": "q17",
+      "number": 17,
+      "prompt": "Qualities of the wood Jenson used for his boat — item 1: ___",
+      "answers": [
+        "light",
+        "strong"
+      ],
+      "evidence": [
+        {
+          "start": 102.1,
+          "end": 104.41,
+          "wordIds": [
+            "w0235",
+            "w0236",
+            "w0237",
+            "w0238",
+            "w0239",
+            "w0240"
+          ]
+        }
+      ],
+      "explanation": "木材要轻而且结实。第 17、18 题可互换顺序，两项不能重复；后面的 lightness 和 strength 是同一信息的名词表达。",
+      "sharedPool": "wood-qualities",
+      "answerCategories": [
+        {
+          "id": "light",
+          "answers": [
+            "light"
+          ]
+        },
+        {
+          "id": "strong",
+          "answers": [
+            "strong"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q18",
+      "number": 18,
+      "prompt": "Qualities of the wood Jenson used for his boat — item 2: ___",
+      "answers": [
+        "light",
+        "strong"
+      ],
+      "evidence": [
+        {
+          "start": 102.1,
+          "end": 104.41,
+          "wordIds": [
+            "w0235",
+            "w0236",
+            "w0237",
+            "w0238",
+            "w0239",
+            "w0240"
+          ]
+        }
+      ],
+      "explanation": "木材要轻而且结实。第 17、18 题可互换顺序，两项不能重复；后面的 lightness 和 strength 是同一信息的名词表达。",
+      "sharedPool": "wood-qualities",
+      "answerCategories": [
+        {
+          "id": "light",
+          "answers": [
+            "light"
+          ]
+        },
+        {
+          "id": "strong",
+          "answers": [
+            "strong"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q19",
+      "number": 19,
+      "prompt": "Jenson's boat — width: ___ metres.",
+      "answers": [
+        "5",
+        "five"
+      ],
+      "evidence": [
+        {
+          "start": 112.92,
+          "end": 119.81,
+          "wordIds": [
+            "w0261",
+            "w0262",
+            "w0263",
+            "w0264",
+            "w0265",
+            "w0266",
+            "w0267",
+            "w0268",
+            "w0269",
+            "w0270",
+            "w0271",
+            "w0272",
+            "w0273",
+            "w0274",
+            "w0275"
+          ]
+        }
+      ],
+      "explanation": "原卷图示第 19 题是宽度。不要按数字出现顺序填：长 fourteen，宽 five。",
+      "originalPresentation": "Boat diagram: width arrow"
+    },
+    {
+      "id": "q20",
+      "number": 20,
+      "prompt": "Jenson's boat — length: ___ metres.",
+      "answers": [
+        "14",
+        "fourteen"
+      ],
+      "evidence": [
+        {
+          "start": 112.92,
+          "end": 119.81,
+          "wordIds": [
+            "w0261",
+            "w0262",
+            "w0263",
+            "w0264",
+            "w0265",
+            "w0266",
+            "w0267",
+            "w0268",
+            "w0269",
+            "w0270",
+            "w0271",
+            "w0272",
+            "w0273",
+            "w0274",
+            "w0275"
+          ]
+        }
+      ],
+      "explanation": "原卷图示第 20 题是长度。long / length 对应十四米，wide / width 对应五米。",
+      "originalPresentation": "Boat diagram: length arrow"
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content"
+    />
+    <meta name="theme-color" content="#f7f2e8" />
+    <meta name="description" content="用自己的音频逐句精听，对照题目找出卡点，再关掉字幕重新听。" />
+    <title>English30 · 英文训练台</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./shell.css" />
+    <link rel="stylesheet" href="./training.css" />
+    <link rel="stylesheet" href="./reading.css" />
+    <link rel="stylesheet" href="./papers.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#questions">跳到答题区</a>
+    <div id="app-shell" class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="#library" aria-label="English30 我的原卷">
+          <svg class="brand-symbol" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M6 13v6M11 8v16M16 4v24M21 10v12M26 13v6" />
+          </svg>
+          <span>English<span class="brand-number">30</span><small>英文训练台</small></span>
+        </a>
+        <div class="lesson-picker">
+          <label for="lesson-select">练习材料</label>
+          <select id="lesson-select" aria-label="选择练习材料">
+            <option value="">正在载入…</option>
+          </select>
+        </div>
+        <details class="import-menu">
+          <summary>导入与说明 <span aria-hidden="true">＋</span></summary>
+          <div class="import-content">
+            <p class="detail-heading">带上自己的材料</p>
+            <label class="file-button" for="import-package"
+              ><span>导入练习包</span><small>JSON · 字幕、题目与时间轴</small></label
+            >
+            <input id="import-package" class="file-input" type="file" accept=".json,application/json" />
+            <label class="file-button" for="import-audio"
+              ><span>载入本地音频</span><small>MP3、M4A、WAV 等</small></label
+            >
+            <input
+              id="import-audio"
+              class="file-input"
+              type="file"
+              accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac,.flac"
+            />
+            <p class="detail-note">音频应与当前练习包匹配。只有音频时，不会自动生成字幕或题目。</p>
+            <button id="save-material" type="button" class="button-secondary" disabled>
+              保存这份本地材料
+            </button>
+            <label class="file-button" for="import-record"
+              ><span>恢复听力纪录</span><small>导出的单条学习纪录 JSON</small></label
+            >
+            <input id="import-record" class="file-input" type="file" accept=".json,application/json" />
+            <div class="detail-divider"></div>
+            <p class="detail-heading">先听，再打开提示</p>
+            <ol class="brief-steps">
+              <li>首听：看题目，听原音，独立作答。</li>
+              <li>复盘：提交后看字幕，标记卡词，重听证据。</li>
+              <li>复测：关掉字幕，恢复原速，再听一次。</li>
+            </ol>
+            <p class="detail-note">这次是练习，不据此换算 DSE 等级。先用短材料，听清比听多更重要。</p>
+          </div>
+        </details>
+      </header>
+
+      <nav class="main-navigation phase-switch" aria-label="训练模块">
+        <button type="button" data-view="library" aria-pressed="true">我的原卷</button>
+        <button type="button" data-view="listening" aria-pressed="false">听力练习</button>
+        <button type="button" data-view="reading" aria-pressed="false">阅读练习</button>
+        <button type="button" data-view="writing" aria-pressed="false">写句与复习</button>
+        <button type="button" data-view="today" aria-pressed="false">训练计划</button>
+      </nav>
+      <div id="listening-modes" class="listening-modes" hidden>
+        <div class="phase-switch" role="group" aria-label="听力材料类型">
+          <button type="button" data-listening-mode="papers" aria-pressed="true">Past Paper 原卷</button>
+          <button type="button" data-listening-mode="practice" aria-pressed="false">分段精练</button>
+        </div>
+        <p id="listening-mode-note">按年份、Part 和 Task 选择原卷，直接听原音、看题页。</p>
+      </div>
+      <main id="training-host" class="training-host" hidden></main>
+      <main id="reading-host" class="reading-host" hidden></main>
+      <main id="paper-host" class="paper-host" hidden></main>
+
+      <main id="listening-panel" class="workspace">
+        <section class="session-heading" aria-labelledby="lesson-title">
+          <div class="session-title">
+            <h1 id="lesson-title">准备你的第一段精听</h1>
+            <p id="lesson-meta" class="lesson-meta">正在载入练习材料…</p>
+          </div>
+          <div class="phase-switch" role="group" aria-label="练习阶段">
+            <button id="phase-first" disabled type="button" aria-pressed="true">
+              <span class="phase-number">01</span>首听
+            </button>
+            <button id="phase-review" disabled type="button" aria-pressed="false">
+              <span class="phase-number">02</span>复盘
+            </button>
+            <button id="phase-retest" disabled type="button" aria-pressed="false">
+              <span class="phase-number">03</span>复测
+            </button>
+          </div>
+        </section>
+
+        <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">
+          先读右侧题目，准备好后开始播放。
+        </div>
+
+        <div class="study-grid">
+          <section class="transcript-panel panel" aria-labelledby="transcript-heading">
+            <div class="panel-header">
+              <h2 id="transcript-heading"><span id="mode-label">首听作答</span></h2>
+              <button id="follow-toggle" disabled class="button-quiet" type="button" aria-pressed="true">
+                跟随播放
+              </button>
+            </div>
+            <div id="transcript" class="transcript" tabindex="0" aria-label="音频字幕">
+              <div class="empty-state">
+                <span class="empty-symbol" aria-hidden="true">◌</span>
+                <h3>先让耳朵走一遍</h3>
+                <p>提交答案后，这里会显示逐句字幕。<br />没听清时，按下方「刚才没听清」留下标记。</p>
+              </div>
+            </div>
+            <div id="review-help" class="review-help">
+              <span class="legend"><i class="legend-playing"></i>正在播放</span
+              ><span class="legend"><i class="legend-heard"></i>听不出</span
+              ><span class="legend"><i class="legend-unknown"></i>不认识</span
+              ><span class="legend"><i class="legend-evidence"></i>答案证据</span>
+            </div>
+            <details id="subtitle-adjustment" class="subtitle-adjustment" hidden>
+              <summary>调整字幕同步</summary>
+              <label for="subtitle-offset">整体延后（秒）</label>
+              <input id="subtitle-offset" type="number" min="-5" max="5" step="0.1" value="0" />
+              <button id="apply-subtitle-offset" class="button-quiet" type="button">应用并听本句</button>
+              <button id="reset-subtitle-offset" class="button-text" type="button">还原</button>
+              <p class="fine-print">
+                正数让字幕延后，负数提前；只调整同步，不改变原稿或补造单词时间。点击保存才会保留。
+              </p>
+            </details>
+          </section>
+
+          <aside class="answer-column" aria-label="题目与卡词">
+            <section id="word-inspector" class="word-inspector panel" aria-labelledby="word-text" hidden>
+              <div class="inspector-topline">
+                <span class="inspector-label">词语复习</span
+                ><button id="play-word" class="button-quiet" type="button">听原句</button>
+              </div>
+              <h2 id="word-text" class="word-title" lang="en">—</h2>
+              <p id="word-context" class="word-context" lang="en"></p>
+              <p id="word-meaning" class="word-meaning"></p>
+              <div class="word-actions">
+                <button id="mark-heard" class="mark-button heard-button" type="button" aria-pressed="false">
+                  认识，但听不出</button
+                ><button
+                  id="mark-unknown"
+                  class="mark-button unknown-button"
+                  type="button"
+                  aria-pressed="false"
+                >
+                  不认识这个词
+                </button>
+              </div>
+              <button id="clear-mark" class="button-text" type="button">清除标记</button>
+            </section>
+            <section class="question-panel panel" aria-labelledby="question-heading">
+              <div class="panel-header">
+                <h2 id="question-heading">题目</h2>
+                <span class="quiet-label">原速 · 独立作答</span>
+              </div>
+              <div id="questions" class="questions"><p class="empty-copy">题目即将显示在这里。</p></div>
+              <div class="question-actions">
+                <button id="submit-answers" disabled class="button-primary" type="button">
+                  提交答案，开始复盘 <span aria-hidden="true">→</span>
+                </button>
+                <p class="fine-print">提交后才显示答案和原音证据。</p>
+              </div>
+            </section>
+          </aside>
+        </div>
+
+        <details class="review-drawer">
+          <summary>
+            <span><span class="drawer-icon" aria-hidden="true">↺</span> 本次复习标记</span
+            ><span class="summary-note">把时间留给卡住的地方</span
+            ><span class="details-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="review-drawer-content">
+            <div id="marks-list" class="marks-list">
+              <p class="empty-copy">还没有标记。播放时可记下没听清的位置，复盘时可点词标记。</p>
+            </div>
+            <div class="record-actions">
+              <p class="fine-print">点击保存才会留下正式学习纪录；导出可备份到自己的文件。</p>
+              <div>
+                <button id="save-record" disabled class="button-secondary" type="button">
+                  保存本次学习纪录</button
+                ><button id="export-record" disabled class="button-quiet" type="button">导出记录</button>
+              </div>
+            </div>
+          </div>
+        </details>
+      </main>
+
+      <footer class="player" aria-label="音频播放控制">
+        <div class="player-inner">
+          <div class="player-top">
+            <div class="transport">
+              <button
+                id="prev-sentence"
+                disabled
+                class="transport-button"
+                type="button"
+                aria-label="上一句"
+                title="上一句"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M18 5l-9 7 9 7z" /></svg></button
+              ><button
+                id="play-pause"
+                disabled
+                class="play-button"
+                type="button"
+                aria-label="播放"
+                title="播放"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z" /></svg></button
+              ><button
+                id="next-sentence"
+                disabled
+                class="transport-button"
+                type="button"
+                aria-label="下一句"
+                title="下一句"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M6 5l9 7-9 7z" /></svg>
+              </button>
+            </div>
+            <div class="seek-group">
+              <span id="time-current" class="time">0:00</span
+              ><label class="sr-only" for="seek">播放进度</label
+              ><input
+                id="seek"
+                disabled
+                type="range"
+                min="0"
+                max="100"
+                step="0.01"
+                value="0"
+                aria-label="播放进度"
+              /><span id="time-total" class="time">0:00</span>
+            </div>
+            <div class="rate-control">
+              <label for="playback-rate">速度</label
+              ><select id="playback-rate" disabled aria-label="播放速度">
+                <option value="0.75">0.75×</option>
+                <option value="0.85">0.85×</option>
+                <option value="1" selected>1.0×</option>
+              </select>
+            </div>
+            <button id="mark-moment" disabled class="moment-button" type="button">
+              <span aria-hidden="true">＋</span>刚才没听清
+            </button>
+          </div>
+          <div class="player-bottom">
+            <div class="loop-controls" role="group" aria-label="片段循环">
+              <button id="repeat-sentence" disabled class="button-quiet" type="button">重播这句</button
+              ><span class="control-divider" aria-hidden="true"></span
+              ><button
+                id="loop-start"
+                disabled
+                class="loop-button"
+                type="button"
+                title="将当前播放位置设为循环起点"
+              >
+                设 A 点</button
+              ><button
+                id="loop-end"
+                disabled
+                class="loop-button"
+                type="button"
+                title="将当前播放位置设为循环终点"
+              >
+                设 B 点</button
+              ><button id="loop-toggle" disabled class="loop-button" type="button" aria-pressed="false">
+                AB 循环</button
+              ><span id="loop-label" class="loop-label">未设置循环</span>
+            </div>
+            <p class="player-note">听清一个词，再放回整句话。</p>
+          </div>
+        </div>
+      </footer>
+      <audio id="audio" preload="metadata" playsinline></audio>
+    </div>
+    <script type="module" src="./app.mjs"></script>
+    <script type="module" src="./app-shell.mjs"></script>
+    <script type="module" src="./ui-motion.mjs"></script>
+  </body>
+</html>

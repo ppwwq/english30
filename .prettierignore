@@ -1,0 +1,7 @@
+node_modules/
+.wrangler/
+web/lessons/
+web/papers/sessions/
+assets-manifest.json
+package-lock.json
+tests/artifacts/

@@ -1,0 +1,30 @@
+{
+  "name": "english30-listening",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "test:player": "node tests/seek-playback.browser.mjs && node tests/evidence-playback.browser.mjs --no-range --extended && node tests/player-controls.browser.mjs && node tests/subtitle-touch.browser.mjs && node tests/player-loading.browser.mjs && node tests/review-follow.browser.mjs",
+    "start": "node server.mjs",
+    "prepare": "husky",
+    "check": "node --check web/app.mjs && node --check web/app-shell.mjs && node --check web/core.mjs && node --check web/ui-motion.mjs && node --check web/training.mjs && node --check web/training-core.mjs && node --check web/reading.mjs && node --check web/listening-library.mjs && node --check web/papers.mjs && node --check web/paper-player.mjs && node --check web/paper-core.mjs && node --check cloudflare/worker.mjs && node --check scripts/download-assets.mjs",
+    "test:papers": "node tests/papers.browser.mjs",
+    "test:platform": "node tests/platform.browser.mjs && node tests/state-guards.browser.mjs && node tests/reading.browser.mjs && node tests/training.browser.mjs",
+    "check:cloudflare": "node --check cloudflare/worker.mjs && npx --yes wrangler@4.129.0 deploy --dry-run",
+    "deploy:cloudflare": "npx --yes wrangler@4.129.0 deploy",
+    "assets:download": "node scripts/download-assets.mjs",
+    "test:pastpaper": "node tests/listening-pastpaper.browser.mjs"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.10.1"
+  },
+  "description": "HKDSE listening, past-paper transcripts, reading and writing practice for iPad and desktop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ppwwq/english30.git"
+  },
+  "homepage": "https://english30-listening.philipwwq.workers.dev"
+}

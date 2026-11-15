@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "title": "2025 · Sea Friends · 语境词义",
+  "sources": [
+    {
+      "id": "2025-paper3-a-task1",
+      "title": "HKDSE 2025 English Language Paper 3 Part A — Task 1",
+      "year": 2025,
+      "paper": "Paper 3 Part A",
+      "task": "Task 1 · Q1–13",
+      "notes": "依据已核对的官方逐字稿；中文词义为人工教学说明，非官方译文。"
+    }
+  ],
+  "entries": [
+    {
+      "lemma": "mission",
+      "meaning": "本段指正在努力完成的目标：了解香港人如何变得更健康、更活跃。",
+      "collocation": "our mission",
+      "example": "Today, we're continuing our mission to find out what people in Hong Kong are doing to become fitter and more active.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s002",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 2 句（s002）。",
+      "forms": ["mission"],
+      "wordIds": ["w0007"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "founder",
+      "meaning": "创办人；这里指创立 Sea Friends 的 Ricky。",
+      "collocation": "the founder of Sea Friends",
+      "example": "We sure are and we've got with us Ricky Harrison, the founder of Sea Friends, a charity which provides swimming lessons and organises swimming events here in Hong Kong.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s003",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 3 句（s003）。",
+      "forms": ["founder"],
+      "wordIds": ["w0035"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "charity",
+      "meaning": "慈善机构；这里是提供游泳课程和活动的 Sea Friends。",
+      "collocation": "a charity which provides swimming lessons",
+      "example": "We sure are and we've got with us Ricky Harrison, the founder of Sea Friends, a charity which provides swimming lessons and organises swimming events here in Hong Kong.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s003",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 3 句（s003）。",
+      "forms": ["charity"],
+      "wordIds": ["w0040"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "provide",
+      "meaning": "提供课程或服务。这里说明机构具体帮助大家做什么。",
+      "collocation": "provides swimming lessons",
+      "example": "We sure are and we've got with us Ricky Harrison, the founder of Sea Friends, a charity which provides swimming lessons and organises swimming events here in Hong Kong.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s003",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 3 句（s003）。",
+      "forms": ["provides"],
+      "wordIds": ["w0042"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "organise",
+      "meaning": "组织、举办活动；此处说举办游泳活动。",
+      "collocation": "organises swimming events",
+      "example": "We sure are and we've got with us Ricky Harrison, the founder of Sea Friends, a charity which provides swimming lessons and organises swimming events here in Hong Kong.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s003",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 3 句（s003）。",
+      "forms": ["organises"],
+      "wordIds": ["w0046"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "regular",
+      "meaning": "有规律、定期的；不是只上一两次课。",
+      "collocation": "with regular lessons",
+      "example": "Well, with regular lessons, most people manage it in a few months.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s013",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 13 句（s013）。",
+      "forms": ["regular"],
+      "wordIds": ["w0114"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "manage",
+      "meaning": "成功做到；这里指在几个月内学会游泳。",
+      "collocation": "most people manage it",
+      "example": "Well, with regular lessons, most people manage it in a few months.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s013",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 13 句（s013）。",
+      "forms": ["manage"],
+      "wordIds": ["w0118"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "at the moment",
+      "meaning": "目前、现在；提示接下来是在说现阶段的成员。",
+      "collocation": "At the moment",
+      "example": "At the moment, most of our members are high school students.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s021",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 21 句（s021）。",
+      "forms": ["At the moment"],
+      "wordIds": ["w0161", "w0162", "w0163"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "take part",
+      "meaning": "参加活动；这里说很多家长也参与。",
+      "collocation": "parents taking part",
+      "example": "We have a lot of parents taking part.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s023",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 23 句（s023）。",
+      "forms": ["taking part"],
+      "wordIds": ["w0182", "w0183"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "tend to",
+      "meaning": "通常会、往往；这里说学生通常在周日有空。",
+      "collocation": "tend to be free",
+      "example": "We meet on Sundays because that's when the students tend to be free.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s025",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 25 句（s025）。",
+      "forms": ["tend to"],
+      "wordIds": ["w0201", "w0202"],
+      "lessonIds": ["2025-task1-intro", "2025-task1"]
+    },
+    {
+      "lemma": "award",
+      "meaning": "奖项或奖励；接下来具体说明是一个紫色徽章。",
+      "collocation": "my first award",
+      "example": "OK, well... I started swimming when I was four, with my older sister, and I remember getting my first award.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s029",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 29 句（s029）。",
+      "forms": ["award"],
+      "wordIds": ["w0243"],
+      "lessonIds": ["2025-task1"]
+    },
+    {
+      "lemma": "proud",
+      "meaning": "自豪；Ricky 为自己第一次获得徽章感到自豪。",
+      "collocation": "I was so proud",
+      "example": "It was a purple badge, and I was so proud.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s030",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 30 句（s030）。",
+      "forms": ["proud"],
+      "wordIds": ["w0253"],
+      "lessonIds": ["2025-task1"]
+    },
+    {
+      "lemma": "coach",
+      "meaning": "教练；这里指教 Ricky 游泳的人。",
+      "collocation": "my swimming coach",
+      "example": "Because of my swimming coach.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s034",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 34 句（s034）。",
+      "forms": ["coach"],
+      "wordIds": ["w0270"],
+      "lessonIds": ["2025-task1"]
+    },
+    {
+      "lemma": "pleasant",
+      "meaning": "令人愉快的；这里说被教练大声责骂不会是愉快的经历。",
+      "collocation": "that can't have been pleasant",
+      "example": "Hmm... that can't have been pleasant.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s036",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 36 句（s036）。",
+      "forms": ["pleasant"],
+      "wordIds": ["w0288"],
+      "lessonIds": ["2025-task1"]
+    },
+    {
+      "lemma": "take up",
+      "meaning": "开始从事某项活动；took up swimming again 表示重新开始游泳。",
+      "collocation": "took up swimming again",
+      "example": "But you took up swimming again later.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s037",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 37 句（s037）。",
+      "forms": ["took up"],
+      "wordIds": ["w0291", "w0292"],
+      "lessonIds": ["2025-task1"]
+    },
+    {
+      "lemma": "on the horizon",
+      "meaning": "即将到来、在计划中的；主持人在问未来计划。",
+      "collocation": "Anything on the horizon",
+      "example": "Anything on the horizon?",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s044",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 44 句（s044）。",
+      "forms": ["on the horizon"],
+      "wordIds": ["w0380", "w0381", "w0382"],
+      "lessonIds": ["2025-task1"]
+    },
+    {
+      "lemma": "precise",
+      "meaning": "准确、精确的；用来更正前面估计的 250 个岛，实际说的是 263 个。",
+      "collocation": "to be precise",
+      "example": "263 islands to be precise.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s052",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 52 句（s052）。",
+      "forms": ["precise"],
+      "wordIds": ["w0433"],
+      "lessonIds": ["2025-task1"]
+    },
+    {
+      "lemma": "group effort",
+      "meaning": "大家共同努力完成的事情；团队可以分别选择不同岛屿。",
+      "collocation": "it's a group effort",
+      "example": "It's going to take a while, but it's a group effort and teams can choose which island they want to do.",
+      "sourceId": "2025-paper3-a-task1",
+      "sentenceId": "s054",
+      "sourceNote": "人工教学释义，非官方译文；依据你提供的 2025 Paper 3 Part A Task 1 第 54 句（s054）。",
+      "forms": ["group effort"],
+      "wordIds": ["w0462", "w0463"],
+      "lessonIds": ["2025-task1"]
+    }
+  ]
+}

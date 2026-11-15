@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "tasks": [
+    {
+      "id": "integrated-2025-b1-t6",
+      "title": "Invitation email",
+      "year": 2025,
+      "part": "B1",
+      "taskNumber": 6,
+      "minutes": 25,
+      "targetWords": 120,
+      "source": "2025 P3 B1 Task 6，QAB 第 2 页；Data File 第 2、4、7、8 页；官方录音 Part B / Track 8；2025 MS 第 149–151 页。",
+      "prompt": "Write an email to invite a guest speaker to the Asian Games Week Opening Event using information from the B1 Data File and your own notes. Write around 120 words.",
+      "situation": "You are Nico Lin. You are president of the Healthy Living Club and have been asked to help organise the Asian Games Week and Wellness Month at your school.",
+      "taskBrief": "Mr John Duncan asks you to invite a professional athlete to the Opening Event. Be persuasive and polite. Include the date, time and venue; the speech topic; what will happen after the speech; why this sport was chosen; and the payment offered.",
+      "audio": {
+        "src": "./audio/integrated-2025.mp3",
+        "label": "2025 Part B 教师会议 · 原录音",
+        "note": "这段录音同时谈到 Asian Games Week 和 Wellness Month。只摘取与你的 Task 6 有关的信息，留意改口。"
+      },
+      "sources": [
+        {
+          "id": "df4",
+          "label": "DF4 · 任务邮件",
+          "paragraphs": [
+            "To: Nico Lin. From: Mr John Duncan. Sent: April 5 2025, 09:02 AM. Subject: Ballater High School Asian Games Week – Things to do.",
+            "Invitation email to guest speaker",
+            "Please write an email to invite a guest speaker to the Opening Event of the Asian Games Week. This will be a professional athlete, so try to be persuasive but make sure you’re polite. Include the following information: the date, time and venue of the Opening Event; what the topic of the speech should be; what will happen after the speech; why this sport was chosen; what we can offer as payment.",
+            "You can look at the email Ms Henley sent to me and the student sport survey results, as well as your notes from the recording of our meeting with the principal."
+          ],
+          "note": "本页仅摘取原 DF4 与 Task 6 有关的段落。"
+        },
+        {
+          "id": "df7",
+          "label": "DF7 · Ms Henley 的邮件",
+          "paragraphs": [
+            "To: Mr John Duncan. From: Ms Melissa Henley. Sent: March 24 2025, 10:12 AM. Subject: About the Asian Games Week Opening Event.",
+            "Hi John,",
+            "I’m launching the survey tomorrow to find out which sport our students are most interested in. The poll includes five sports which may one day be included in the Asian Games, and I’ve already found athletes from each one we could invite to be our guest speaker:",
+            "Trail Running: Wong Lai Man\nSumo: Fung Ha Lam\nUltimate Frisbee: Frank Brown\nParachuting: Lillian Fung\nFloorball: Adriana Smith",
+            "We’ll get the results of the survey on the 3rd of April. Tell Nico to invite the athlete from the sport with the most votes. The survey includes space for comments from the students as well. Nico can include some of these as examples to show the students’ interest in the winning sport.",
+            "Dr Chan tells me we have a budget of $1000 as payment to the guest speaker. Finally, we decided it will take place during lesson seven, so from 2pm to 3:15pm.",
+            "Thanks,\nMelissa"
+          ]
+        },
+        {
+          "id": "df8",
+          "label": "DF8 · 学生调查原页",
+          "image": "./content/integrated-survey.webp",
+          "imageAlt": "2025 B1 Data File 第 8 页：学生运动调查柱状图与六条学生评论。可点开原页放大。",
+          "paragraphs": [],
+          "note": "按图表选择运动，再从学生评论取支持邀请的理由。票数不必写进邮件。"
+        }
+      ],
+      "sourceFields": [
+        {
+          "id": "guest",
+          "label": "受邀者与活动",
+          "sources": ["df4", "df7", "df8"],
+          "answer": "Invite Frank Brown to be the guest speaker at the Asian Games Week Opening Event.",
+          "why": "DF8 最高票是 Ultimate Frisbee，再到 DF7 对应 Frank Brown；DF4 指明邀请目的。"
+        },
+        {
+          "id": "date",
+          "label": "日期与地点",
+          "sources": ["audio"],
+          "answer": "13 October; the Main Hall.",
+          "why": "录音先提 6 October，因假期改为 13 October；sports ground 也被 Main Hall 取代。"
+        },
+        {
+          "id": "time",
+          "label": "时间",
+          "sources": ["df7"],
+          "answer": "2:00 pm–3:15 pm.",
+          "why": "DF7 最后一段提供 lesson seven 的确切时间。"
+        },
+        {
+          "id": "topic",
+          "label": "演讲题目",
+          "sources": ["audio"],
+          "answer": "Why ultimate frisbee should be added to the Asian Games.",
+          "why": "从第三人称 their sport 改成对嘉宾说的 your sport，或直接写 ultimate frisbee。"
+        },
+        {
+          "id": "after",
+          "label": "演讲之后的活动",
+          "sources": ["audio"],
+          "answer": "A discussion about ultimate frisbee, with questions from students.",
+          "why": "讨论和学生提问是两个信息点，不能只写 there will be an activity。"
+        },
+        {
+          "id": "reasons",
+          "label": "选择该运动的理由",
+          "sources": ["df8"],
+          "answer": "It received the most votes; students find it fun to play and exciting to watch.",
+          "why": "图表与两条评论合并；别把对其他运动的评论搬过来。"
+        },
+        {
+          "id": "payment",
+          "label": "酬金",
+          "sources": ["df7"],
+          "answer": "An offer of $1000.",
+          "why": "把教师邮件 we have a budget 改为邀请信 we can offer you。"
+        }
+      ],
+      "languageChecks": [
+        {
+          "id": "reader",
+          "label": "读者／目的",
+          "text": "受邀运动员是读者；邮件清楚提出邀请，并有合适称呼、主题、结尾。"
+        },
+        {
+          "id": "person",
+          "label": "人称",
+          "text": "以 Nico Lin 写信；对嘉宾用 you / your，学校用 we / our，不照搬 Tell Nico / their sport。"
+        },
+        {
+          "id": "tense",
+          "label": "时态",
+          "text": "将来的活动用 will / would；调查已经完成，用过去时表达结果。"
+        },
+        {
+          "id": "tone",
+          "label": "语气",
+          "text": "礼貌且有说服力；说明学生兴趣，避免命令语气。"
+        },
+        {
+          "id": "form",
+          "label": "准确表达",
+          "text": "检查主谓一致、单复数、介词、拼写；保留自己的句子。"
+        }
+      ],
+      "transcriptExtracts": [
+        {
+          "label": "日期改口 · 官方逐字稿节选",
+          "text": "John: We are currently considering the 6th or the 13th of October.\nDavid: Shall we go with the 6th?\nMelissa: Wait: um, isn’t the 7th a public holiday?\nDavid: Let me check… Oh yes, you’re right. Let’s start the Asian Games Week on the 13th of October, then."
+        },
+        {
+          "label": "场地 · 官方逐字稿节选",
+          "text": "Melissa: …I did think about holding it in the sports ground.\nMelissa: To be safe, though… we’d better hold it in the Main Hall. We never know what the skies will bring.\nDavid: I agree. Hold it in the Main Hall. Better safe than sorry."
+        },
+        {
+          "label": "演讲与问答 · 官方逐字稿节选",
+          "text": "David: They could talk about why they think their sport should be added to the Asian Games.\nJohn: How about holding a discussion about the sport after the guest speaker has finished their speech?\nDavid: Make sure there is some time given to students to ask questions to make it really interactive."
+        }
+      ],
+      "feedbackNote": "这里只做来源与语言清单自核，不自动给 DSE 分数。原题共 19 分，评分还涉及任务完成、语言及语气，不能用勾选数代替官方评分。"
+    }
+  ]
+}

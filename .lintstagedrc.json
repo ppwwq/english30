@@ -1,0 +1,1 @@
+{ "*.{mjs,js,html,css,json,md}": "prettier --write --ignore-unknown" }

@@ -1,0 +1,6158 @@
+{
+  "schemaVersion": 1,
+  "id": "2025-task1",
+  "title": "2025 HKDSE · Sea Friends",
+  "audio": "audio/task1.mp3",
+  "source": {
+    "title": "HKDSE English Language 2025 Paper 3 Part A — Task 1",
+    "year": 2025,
+    "paper": "Paper 3 Part A",
+    "task": "Task 1 (13 marks)",
+    "notes": "来自你已有的 2025 真题录音、题目、逐字稿和评分参考。本练习截取完整 Task 1 访谈，未包含整卷广播说明与音乐；练习中的复听和字幕与正式考试一次播放的安排不同。题目见 Part A 第 4–5 页，逐字稿见 PDF 第 2 页，评分参考见 PDF 第 6 页。 字幕已对照原稿校正；24 个词暂只按整句定位。",
+    "audioOriginalRangeSeconds": {
+      "start": 4086.0,
+      "end": 4314.0
+    },
+    "timingMethod": "acoustic word alignment with source-script comparison",
+    "timingReview": "Source wording verified against tapescript; unresolved word times remain null."
+  },
+  "instructions": "Stella Poon and Adrian Timpson host a podcast about health and fitness in Hong Kong. They are now talking with a guest, Ricky Harrison, who is the founder of a charity called Sea Friends. Listen to the interview and complete the information in the spaces below. The first one has been provided as an example. You now have 30 seconds to study the task. At the end of the task, you will have one minute to tidy up your answers.",
+  "example": "When Ricky started Sea Friends: 10 years ago.",
+  "questions": [
+    {
+      "id": "q1",
+      "number": 1,
+      "prompt": "The number of people who have learned to swim with Sea Friends: ___",
+      "answers": [
+        "7,000",
+        "7000",
+        "about 7,000",
+        "about 7000",
+        "seven thousand",
+        "about seven thousand"
+      ],
+      "explanation": "这里问已学会游泳的人数。Ricky 说 About 7,000 so far，要把千位数字听准。",
+      "evidence": [
+        {
+          "start": 38.84,
+          "end": 40.74,
+          "wordIds": [
+            "w0091",
+            "w0092",
+            "w0093",
+            "w0094"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "number": 2,
+      "prompt": "How long it takes to learn how to swim with Sea Friends: ___",
+      "answers": [
+        "a few months",
+        "20 hours",
+        "twenty hours",
+        "about 20 hours",
+        "about twenty hours"
+      ],
+      "explanation": "评分参考接受 a few months 或 20 hours。Stella 误听成 a few hours，Adrian 随即纠正：No, he said 20 hours。要跟到纠正后的信息。",
+      "evidence": [
+        {
+          "start": 47.46,
+          "end": 55.6,
+          "wordIds": [
+            "w0112",
+            "w0113",
+            "w0114",
+            "w0115",
+            "w0116",
+            "w0117",
+            "w0118",
+            "w0119",
+            "w0120",
+            "w0121",
+            "w0122",
+            "w0123",
+            "w0124",
+            "w0125",
+            "w0126",
+            "w0127",
+            "w0128",
+            "w0129",
+            "w0130",
+            "w0131",
+            "w0132",
+            "w0133",
+            "w0134"
+          ]
+        },
+        {
+          "start": 58.46,
+          "end": 62.14,
+          "wordIds": [
+            "w0140",
+            "w0141",
+            "w0142",
+            "w0143",
+            "w0144",
+            "w0145",
+            "w0146",
+            "w0147",
+            "w0148"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "number": 3,
+      "prompt": "Who Sea Friends mainly helps: ___ and ___（填写两个群体）",
+      "answers": [
+        "high school students and their parents",
+        "high school students and parents",
+        "their parents and high school students"
+      ],
+      "explanation": "这题有两个空，要同时保留 high school students 和 their parents。只写学生或只写家长都少了一个信息点。",
+      "requiredGroups": [
+        [
+          "high school students"
+        ],
+        [
+          "their parents",
+          "parents"
+        ]
+      ],
+      "evidence": [
+        {
+          "start": 68.74,
+          "end": 76.02,
+          "wordIds": [
+            "w0161",
+            "w0162",
+            "w0163",
+            "w0164",
+            "w0165",
+            "w0166",
+            "w0167",
+            "w0168",
+            "w0169",
+            "w0170",
+            "w0171",
+            "w0172",
+            "w0173",
+            "w0174",
+            "w0175",
+            "w0176",
+            "w0177",
+            "w0178",
+            "w0179",
+            "w0180",
+            "w0181",
+            "w0182",
+            "w0183"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "number": 4,
+      "prompt": "When Sea Friends meets: ___",
+      "answers": [
+        "on Sundays",
+        "Sundays",
+        "every Sunday"
+      ],
+      "explanation": "录音直接说 We meet on Sundays。原句说明这是学生和家长较有空的时间。",
+      "evidence": [
+        {
+          "start": 79.78,
+          "end": 80.88,
+          "wordIds": [
+            "w0192",
+            "w0193",
+            "w0194",
+            "w0195"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "number": 5,
+      "prompt": "Ricky first went swimming with his ___.",
+      "answers": [
+        "older sister"
+      ],
+      "explanation": "题目问第一次跟谁游泳，答案是 older sister。四岁、紫色徽章、七岁停止游泳是附近的信息，不是这个空所问的内容。",
+      "evidence": [
+        {
+          "start": 93.44,
+          "end": 96.86,
+          "wordIds": [
+            "w0226",
+            "w0227",
+            "w0228",
+            "w0229",
+            "w0230",
+            "w0231",
+            "w0232",
+            "w0233",
+            "w0234",
+            "w0235",
+            "w0236"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "number": 6,
+      "prompt": "He stopped swimming because his coach ___.",
+      "answers": [
+        "was always shouting at him",
+        "was always shouting at Ricky",
+        "always shouted at him",
+        "always shouted at Ricky"
+      ],
+      "explanation": "原因是教练总对他大喊。Ricky 在录音里说 at me；填到题目的第三人称句子时要改成 at him 或 at Ricky。",
+      "evidence": [
+        {
+          "start": 112.2,
+          "end": 113.76,
+          "wordIds": [
+            "w0277",
+            "w0278",
+            "w0279",
+            "w0280",
+            "w0281",
+            "w0282"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "number": 7,
+      "prompt": "He started swimming again because he wanted to ___.",
+      "answers": [
+        "teach his own kids to swim",
+        "teach his own kids how to swim",
+        "teach his own kids",
+        "teach his own children to swim",
+        "teach his own children how to swim"
+      ],
+      "explanation": "他说成为父亲后，想教自己的孩子游泳。题目已经有 wanted to，空内从 teach 开始；my own kids 改为 his own kids。",
+      "evidence": [
+        {
+          "start": 126.1,
+          "end": 128.08,
+          "wordIds": [
+            "w0310",
+            "w0311",
+            "w0312",
+            "w0313",
+            "w0314",
+            "w0315",
+            "w0316",
+            "w0317",
+            "w0318"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "number": 8,
+      "prompt": "His new coach was his ___.",
+      "answers": [
+        "old school friend",
+        "school friend"
+      ],
+      "explanation": "要听新教练的身份。He was an old school friend, actually，指以前的同学；不是之前对他大喊的教练。",
+      "evidence": [
+        {
+          "start": 143.26,
+          "end": 145.14,
+          "wordIds": [
+            "w0362",
+            "w0363",
+            "w0364",
+            "w0365",
+            "w0366",
+            "w0367",
+            "w0368"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "number": 9,
+      "prompt": "Next year's Sea Friends event — Name of event: ___",
+      "answers": [
+        "Grand Island Project"
+      ],
+      "explanation": "这里填活动名称 Grand Island Project。可以先记音，再用复听核对专名拼写。",
+      "evidence": [
+        {
+          "start": 151.38,
+          "end": 154.88,
+          "wordIds": [
+            "w0387",
+            "w0388",
+            "w0389",
+            "w0390",
+            "w0391",
+            "w0392",
+            "w0393",
+            "w0394"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "number": 10,
+      "prompt": "Next year's Sea Friends event — Details of event: ___",
+      "answers": [
+        "to swim around every island in Hong Kong",
+        "swim around every island in Hong Kong",
+        "swimming around every island in Hong Kong"
+      ],
+      "explanation": "要交代做什么和范围：swim around every island in Hong Kong。保留 around、every island 和 Hong Kong；只填岛屿数量或活动名称不够。",
+      "evidence": [
+        {
+          "start": 159.54,
+          "end": 162.52,
+          "wordIds": [
+            "w0407",
+            "w0408",
+            "w0409",
+            "w0410",
+            "w0411",
+            "w0412",
+            "w0413",
+            "w0414",
+            "w0415",
+            "w0416"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "number": 11,
+      "prompt": "Three reasons why Ricky recommends joining Sea Friends — reason 1: ___",
+      "answers": [
+        "it's free",
+        "it is free",
+        "free",
+        "members don't need to pay",
+        "members do not need to pay",
+        "members don't need to pay anything",
+        "members do not need to pay anything",
+        "swimming's the best kind of exercise",
+        "swimming is the best kind of exercise",
+        "the best kind of exercise",
+        "there's nothing better than swimming",
+        "there is nothing better than swimming",
+        "nothing better than swimming",
+        "you meet many people",
+        "you meet different people",
+        "you meet many different people",
+        "meet many people",
+        "meet different people",
+        "meet many different people",
+        "you make friends",
+        "make friends"
+      ],
+      "explanation": "第 11–13 题可以任意顺序填写三个不同理由：免费；游泳是最好的运动；认识不同的人或交朋友。同一个理由重复填写只计一次。",
+      "sharedPool": "join-reasons",
+      "answerCategories": [
+        {
+          "id": "free",
+          "answers": [
+            "it's free",
+            "it is free",
+            "free",
+            "members don't need to pay",
+            "members do not need to pay",
+            "members don't need to pay anything",
+            "members do not need to pay anything"
+          ]
+        },
+        {
+          "id": "exercise",
+          "answers": [
+            "swimming's the best kind of exercise",
+            "swimming is the best kind of exercise",
+            "the best kind of exercise",
+            "there's nothing better than swimming",
+            "there is nothing better than swimming",
+            "nothing better than swimming"
+          ]
+        },
+        {
+          "id": "friends",
+          "answers": [
+            "you meet many people",
+            "you meet different people",
+            "you meet many different people",
+            "meet many people",
+            "meet different people",
+            "meet many different people",
+            "you make friends",
+            "make friends"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "start": 197.8,
+          "end": 216.44,
+          "wordIds": [
+            "w0506",
+            "w0507",
+            "w0508",
+            "w0509",
+            "w0510",
+            "w0511",
+            "w0512",
+            "w0513",
+            "w0514",
+            "w0515",
+            "w0516",
+            "w0517",
+            "w0518",
+            "w0519",
+            "w0520",
+            "w0521",
+            "w0522",
+            "w0523",
+            "w0524",
+            "w0525",
+            "w0526",
+            "w0527",
+            "w0528",
+            "w0529",
+            "w0530",
+            "w0531",
+            "w0532",
+            "w0533",
+            "w0534",
+            "w0535",
+            "w0536",
+            "w0537",
+            "w0538",
+            "w0539",
+            "w0540",
+            "w0541",
+            "w0542",
+            "w0543",
+            "w0544",
+            "w0545",
+            "w0546",
+            "w0547",
+            "w0548",
+            "w0549",
+            "w0550",
+            "w0551",
+            "w0552",
+            "w0553",
+            "w0554",
+            "w0555"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "number": 12,
+      "prompt": "Three reasons why Ricky recommends joining Sea Friends — reason 2: ___",
+      "answers": [
+        "it's free",
+        "it is free",
+        "free",
+        "members don't need to pay",
+        "members do not need to pay",
+        "members don't need to pay anything",
+        "members do not need to pay anything",
+        "swimming's the best kind of exercise",
+        "swimming is the best kind of exercise",
+        "the best kind of exercise",
+        "there's nothing better than swimming",
+        "there is nothing better than swimming",
+        "nothing better than swimming",
+        "you meet many people",
+        "you meet different people",
+        "you meet many different people",
+        "meet many people",
+        "meet different people",
+        "meet many different people",
+        "you make friends",
+        "make friends"
+      ],
+      "explanation": "第 11–13 题可以任意顺序填写三个不同理由：免费；游泳是最好的运动；认识不同的人或交朋友。同一个理由重复填写只计一次。",
+      "sharedPool": "join-reasons",
+      "answerCategories": [
+        {
+          "id": "free",
+          "answers": [
+            "it's free",
+            "it is free",
+            "free",
+            "members don't need to pay",
+            "members do not need to pay",
+            "members don't need to pay anything",
+            "members do not need to pay anything"
+          ]
+        },
+        {
+          "id": "exercise",
+          "answers": [
+            "swimming's the best kind of exercise",
+            "swimming is the best kind of exercise",
+            "the best kind of exercise",
+            "there's nothing better than swimming",
+            "there is nothing better than swimming",
+            "nothing better than swimming"
+          ]
+        },
+        {
+          "id": "friends",
+          "answers": [
+            "you meet many people",
+            "you meet different people",
+            "you meet many different people",
+            "meet many people",
+            "meet different people",
+            "meet many different people",
+            "you make friends",
+            "make friends"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "start": 197.8,
+          "end": 216.44,
+          "wordIds": [
+            "w0506",
+            "w0507",
+            "w0508",
+            "w0509",
+            "w0510",
+            "w0511",
+            "w0512",
+            "w0513",
+            "w0514",
+            "w0515",
+            "w0516",
+            "w0517",
+            "w0518",
+            "w0519",
+            "w0520",
+            "w0521",
+            "w0522",
+            "w0523",
+            "w0524",
+            "w0525",
+            "w0526",
+            "w0527",
+            "w0528",
+            "w0529",
+            "w0530",
+            "w0531",
+            "w0532",
+            "w0533",
+            "w0534",
+            "w0535",
+            "w0536",
+            "w0537",
+            "w0538",
+            "w0539",
+            "w0540",
+            "w0541",
+            "w0542",
+            "w0543",
+            "w0544",
+            "w0545",
+            "w0546",
+            "w0547",
+            "w0548",
+            "w0549",
+            "w0550",
+            "w0551",
+            "w0552",
+            "w0553",
+            "w0554",
+            "w0555"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q13",
+      "number": 13,
+      "prompt": "Three reasons why Ricky recommends joining Sea Friends — reason 3: ___",
+      "answers": [
+        "it's free",
+        "it is free",
+        "free",
+        "members don't need to pay",
+        "members do not need to pay",
+        "members don't need to pay anything",
+        "members do not need to pay anything",
+        "swimming's the best kind of exercise",
+        "swimming is the best kind of exercise",
+        "the best kind of exercise",
+        "there's nothing better than swimming",
+        "there is nothing better than swimming",
+        "nothing better than swimming",
+        "you meet many people",
+        "you meet different people",
+        "you meet many different people",
+        "meet many people",
+        "meet different people",
+        "meet many different people",
+        "you make friends",
+        "make friends"
+      ],
+      "explanation": "第 11–13 题可以任意顺序填写三个不同理由：免费；游泳是最好的运动；认识不同的人或交朋友。同一个理由重复填写只计一次。",
+      "sharedPool": "join-reasons",
+      "answerCategories": [
+        {
+          "id": "free",
+          "answers": [
+            "it's free",
+            "it is free",
+            "free",
+            "members don't need to pay",
+            "members do not need to pay",
+            "members don't need to pay anything",
+            "members do not need to pay anything"
+          ]
+        },
+        {
+          "id": "exercise",
+          "answers": [
+            "swimming's the best kind of exercise",
+            "swimming is the best kind of exercise",
+            "the best kind of exercise",
+            "there's nothing better than swimming",
+            "there is nothing better than swimming",
+            "nothing better than swimming"
+          ]
+        },
+        {
+          "id": "friends",
+          "answers": [
+            "you meet many people",
+            "you meet different people",
+            "you meet many different people",
+            "meet many people",
+            "meet different people",
+            "meet many different people",
+            "you make friends",
+            "make friends"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "start": 197.8,
+          "end": 216.44,
+          "wordIds": [
+            "w0506",
+            "w0507",
+            "w0508",
+            "w0509",
+            "w0510",
+            "w0511",
+            "w0512",
+            "w0513",
+            "w0514",
+            "w0515",
+            "w0516",
+            "w0517",
+            "w0518",
+            "w0519",
+            "w0520",
+            "w0521",
+            "w0522",
+            "w0523",
+            "w0524",
+            "w0525",
+            "w0526",
+            "w0527",
+            "w0528",
+            "w0529",
+            "w0530",
+            "w0531",
+            "w0532",
+            "w0533",
+            "w0534",
+            "w0535",
+            "w0536",
+            "w0537",
+            "w0538",
+            "w0539",
+            "w0540",
+            "w0541",
+            "w0542",
+            "w0543",
+            "w0544",
+            "w0545",
+            "w0546",
+            "w0547",
+            "w0548",
+            "w0549",
+            "w0550",
+            "w0551",
+            "w0552",
+            "w0553",
+            "w0554",
+            "w0555"
+          ]
+        }
+      ]
+    }
+  ],
+  "duration": 228.0,
+  "intro": "听 Stella、Adrian 访问 Sea Friends 创办人 Ricky，完成第 1–13 题。首听提交后再开启字幕与答案证据。",
+  "sentences": [
+    {
+      "id": "s001",
+      "sourceTurnId": "t01",
+      "speaker": "Stella",
+      "text": "Hello, everyone.",
+      "start": 1.78,
+      "end": 2.28,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Hello,",
+          "start": 1.78,
+          "end": 1.9,
+          "timingStatus": "text-corrected",
+          "probability": 0.7980870604515076,
+          "id": "w0001"
+        },
+        {
+          "text": "everyone.",
+          "start": 1.9,
+          "end": 2.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.7279338240623474,
+          "id": "w0002"
+        }
+      ]
+    },
+    {
+      "id": "s002",
+      "sourceTurnId": "t01",
+      "speaker": "Stella",
+      "text": "Today, we're continuing our mission to find out what people in Hong Kong are doing to become fitter and more active.",
+      "start": 2.94,
+      "end": 9.22,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Today,",
+          "start": 2.94,
+          "end": 3.24,
+          "timingStatus": "text-corrected",
+          "probability": 0.9898770451545715,
+          "id": "w0003"
+        },
+        {
+          "text": "we're",
+          "start": 3.24,
+          "end": 3.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.7136150896549225,
+          "id": "w0004"
+        },
+        {
+          "text": "continuing",
+          "start": 3.6,
+          "end": 4.0,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9920765161514282,
+          "id": "w0005"
+        },
+        {
+          "text": "our",
+          "start": 4.0,
+          "end": 4.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9949933886528015,
+          "id": "w0006"
+        },
+        {
+          "text": "mission",
+          "start": 4.46,
+          "end": 4.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.995972216129303,
+          "id": "w0007"
+        },
+        {
+          "text": "to",
+          "start": 4.84,
+          "end": 5.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9458618760108948,
+          "id": "w0008"
+        },
+        {
+          "text": "find",
+          "start": 5.12,
+          "end": 5.34,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9909500479698181,
+          "id": "w0009"
+        },
+        {
+          "text": "out",
+          "start": 5.34,
+          "end": 5.5,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9950137734413147,
+          "id": "w0010"
+        },
+        {
+          "text": "what",
+          "start": 5.5,
+          "end": 5.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9957643747329712,
+          "id": "w0011"
+        },
+        {
+          "text": "people",
+          "start": 5.66,
+          "end": 5.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8261324763298035,
+          "id": "w0012"
+        },
+        {
+          "text": "in",
+          "start": 5.9,
+          "end": 6.24,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9889505505561829,
+          "id": "w0013"
+        },
+        {
+          "text": "Hong",
+          "start": 6.24,
+          "end": 6.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9941074848175049,
+          "id": "w0014"
+        },
+        {
+          "text": "Kong",
+          "start": 6.36,
+          "end": 6.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9954557418823242,
+          "id": "w0015"
+        },
+        {
+          "text": "are",
+          "start": 6.6,
+          "end": 6.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9973721504211426,
+          "id": "w0016"
+        },
+        {
+          "text": "doing",
+          "start": 6.8,
+          "end": 7.18,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9987335801124573,
+          "id": "w0017"
+        },
+        {
+          "text": "to",
+          "start": 7.18,
+          "end": 7.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9775248765945435,
+          "id": "w0018"
+        },
+        {
+          "text": "become",
+          "start": 7.44,
+          "end": 7.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9967864751815796,
+          "id": "w0019"
+        },
+        {
+          "text": "fitter",
+          "start": 7.7,
+          "end": 8.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.978267103433609,
+          "id": "w0020"
+        },
+        {
+          "text": "and",
+          "start": 8.12,
+          "end": 8.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.988737940788269,
+          "id": "w0021"
+        },
+        {
+          "text": "more",
+          "start": 8.46,
+          "end": 8.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9985925555229187,
+          "id": "w0022"
+        },
+        {
+          "text": "active.",
+          "start": 8.76,
+          "end": 9.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998656153678894,
+          "id": "w0023"
+        }
+      ]
+    },
+    {
+      "id": "s003",
+      "sourceTurnId": "t02",
+      "speaker": "Adrian",
+      "text": "We sure are and we've got with us Ricky Harrison, the founder of Sea Friends, a charity which provides swimming lessons and organises swimming events here in Hong Kong.",
+      "start": 9.88,
+      "end": 22.34,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "We",
+          "start": 9.88,
+          "end": 10.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9632551074028015,
+          "id": "w0024"
+        },
+        {
+          "text": "sure",
+          "start": 10.14,
+          "end": 10.4,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9969223141670227,
+          "id": "w0025"
+        },
+        {
+          "text": "are",
+          "start": 10.4,
+          "end": 10.84,
+          "timingStatus": "text-corrected",
+          "probability": 0.9988186955451965,
+          "id": "w0026"
+        },
+        {
+          "text": "and",
+          "start": 11.54,
+          "end": 11.6,
+          "timingStatus": "text-corrected",
+          "probability": 0.9628936052322388,
+          "id": "w0027"
+        },
+        {
+          "text": "we've",
+          "start": 11.6,
+          "end": 11.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9865310192108154,
+          "id": "w0028"
+        },
+        {
+          "text": "got",
+          "start": 11.84,
+          "end": 12.0,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9948804378509521,
+          "id": "w0029"
+        },
+        {
+          "text": "with",
+          "start": 12.0,
+          "end": 12.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9945774078369141,
+          "id": "w0030"
+        },
+        {
+          "text": "us",
+          "start": 12.28,
+          "end": 12.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.993171215057373,
+          "id": "w0031"
+        },
+        {
+          "text": "Ricky",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.47948262095451355,
+          "id": "w0032"
+        },
+        {
+          "text": "Harrison,",
+          "start": 12.84,
+          "end": 13.32,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8560144901275635,
+          "id": "w0033"
+        },
+        {
+          "text": "the",
+          "start": 14.04,
+          "end": 14.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9924168586730957,
+          "id": "w0034"
+        },
+        {
+          "text": "founder",
+          "start": 14.12,
+          "end": 14.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.960680365562439,
+          "id": "w0035"
+        },
+        {
+          "text": "of",
+          "start": 14.46,
+          "end": 14.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9983463287353516,
+          "id": "w0036"
+        },
+        {
+          "text": "Sea",
+          "start": 14.78,
+          "end": 15.08,
+          "timingStatus": "machine-aligned",
+          "probability": 0.6704183220863342,
+          "id": "w0037"
+        },
+        {
+          "text": "Friends,",
+          "start": 15.08,
+          "end": 15.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8970175981521606,
+          "id": "w0038"
+        },
+        {
+          "text": "a",
+          "start": 16.08,
+          "end": 16.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9881899356842041,
+          "id": "w0039"
+        },
+        {
+          "text": "charity",
+          "start": 16.46,
+          "end": 16.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9988467693328857,
+          "id": "w0040"
+        },
+        {
+          "text": "which",
+          "start": 16.8,
+          "end": 17.24,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9792280197143555,
+          "id": "w0041"
+        },
+        {
+          "text": "provides",
+          "start": 17.24,
+          "end": 17.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9846898317337036,
+          "id": "w0042"
+        },
+        {
+          "text": "swimming",
+          "start": 17.6,
+          "end": 18.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9949594736099243,
+          "id": "w0043"
+        },
+        {
+          "text": "lessons",
+          "start": 18.12,
+          "end": 18.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9995996356010437,
+          "id": "w0044"
+        },
+        {
+          "text": "and",
+          "start": 18.56,
+          "end": 19.34,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9669099450111389,
+          "id": "w0045"
+        },
+        {
+          "text": "organises",
+          "start": 19.34,
+          "end": 20.0,
+          "timingStatus": "text-corrected",
+          "probability": 0.8262476027011871,
+          "id": "w0046"
+        },
+        {
+          "text": "swimming",
+          "start": 20.0,
+          "end": 20.38,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9959379434585571,
+          "id": "w0047"
+        },
+        {
+          "text": "events",
+          "start": 20.38,
+          "end": 20.86,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9993267059326172,
+          "id": "w0048"
+        },
+        {
+          "text": "here",
+          "start": 20.86,
+          "end": 21.58,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9732455611228943,
+          "id": "w0049"
+        },
+        {
+          "text": "in",
+          "start": 21.58,
+          "end": 21.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9988214373588562,
+          "id": "w0050"
+        },
+        {
+          "text": "Hong",
+          "start": 21.78,
+          "end": 21.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.999643087387085,
+          "id": "w0051"
+        },
+        {
+          "text": "Kong.",
+          "start": 21.96,
+          "end": 22.34,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9997052550315857,
+          "id": "w0052"
+        }
+      ]
+    },
+    {
+      "id": "s004",
+      "sourceTurnId": "t02",
+      "speaker": "Adrian",
+      "text": "Ricky, can you tell us about that?",
+      "start": 22.84,
+      "end": 25.42,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Ricky,",
+          "start": 22.84,
+          "end": 23.5,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9812430739402771,
+          "id": "w0053"
+        },
+        {
+          "text": "can",
+          "start": 24.04,
+          "end": 24.3,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9923976063728333,
+          "id": "w0054"
+        },
+        {
+          "text": "you",
+          "start": 24.3,
+          "end": 24.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9994646906852722,
+          "id": "w0055"
+        },
+        {
+          "text": "tell",
+          "start": 24.44,
+          "end": 24.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9986479878425598,
+          "id": "w0056"
+        },
+        {
+          "text": "us",
+          "start": 24.7,
+          "end": 24.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9995450377464294,
+          "id": "w0057"
+        },
+        {
+          "text": "about",
+          "start": 24.84,
+          "end": 25.1,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9991087317466736,
+          "id": "w0058"
+        },
+        {
+          "text": "that?",
+          "start": 25.1,
+          "end": 25.42,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9995735287666321,
+          "id": "w0059"
+        }
+      ]
+    },
+    {
+      "id": "s005",
+      "sourceTurnId": "t02",
+      "speaker": "Adrian",
+      "text": "When did you start Sea Friends?",
+      "start": 26.06,
+      "end": 27.88,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "When",
+          "start": 26.06,
+          "end": 26.38,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9794273376464844,
+          "id": "w0060"
+        },
+        {
+          "text": "did",
+          "start": 26.38,
+          "end": 26.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9990266561508179,
+          "id": "w0061"
+        },
+        {
+          "text": "you",
+          "start": 26.52,
+          "end": 26.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.999372661113739,
+          "id": "w0062"
+        },
+        {
+          "text": "start",
+          "start": 26.7,
+          "end": 27.02,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9975314140319824,
+          "id": "w0063"
+        },
+        {
+          "text": "Sea",
+          "start": 27.02,
+          "end": 27.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9438842535018921,
+          "id": "w0064"
+        },
+        {
+          "text": "Friends?",
+          "start": 27.56,
+          "end": 27.88,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9893417358398438,
+          "id": "w0065"
+        }
+      ]
+    },
+    {
+      "id": "s006",
+      "sourceTurnId": "t03",
+      "speaker": "Ricky",
+      "text": "Well, that was in the summer of 2015, so ten years ago.",
+      "start": 27.88,
+      "end": 32.92,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Well,",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.26650863885879517,
+          "id": "w0066"
+        },
+        {
+          "text": "that",
+          "start": 29.48,
+          "end": 29.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9795804619789124,
+          "id": "w0067"
+        },
+        {
+          "text": "was",
+          "start": 29.72,
+          "end": 29.88,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9953697323799133,
+          "id": "w0068"
+        },
+        {
+          "text": "in",
+          "start": 29.88,
+          "end": 30.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9779641628265381,
+          "id": "w0069"
+        },
+        {
+          "text": "the",
+          "start": 30.06,
+          "end": 30.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9877822995185852,
+          "id": "w0070"
+        },
+        {
+          "text": "summer",
+          "start": 30.16,
+          "end": 30.42,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9648252129554749,
+          "id": "w0071"
+        },
+        {
+          "text": "of",
+          "start": 30.42,
+          "end": 30.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9913860559463501,
+          "id": "w0072"
+        },
+        {
+          "text": "2015,",
+          "start": 30.6,
+          "end": 31.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9950881600379944,
+          "id": "w0073"
+        },
+        {
+          "text": "so",
+          "start": 31.72,
+          "end": 32.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9730966687202454,
+          "id": "w0074"
+        },
+        {
+          "text": "ten",
+          "start": 32.06,
+          "end": 32.36,
+          "timingStatus": "text-corrected",
+          "probability": 0.6648193001747131,
+          "id": "w0075"
+        },
+        {
+          "text": "years",
+          "start": 32.36,
+          "end": 32.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9911790490150452,
+          "id": "w0076"
+        },
+        {
+          "text": "ago.",
+          "start": 32.6,
+          "end": 32.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9841737747192383,
+          "id": "w0077"
+        }
+      ]
+    },
+    {
+      "id": "s007",
+      "sourceTurnId": "t04",
+      "speaker": "Stella",
+      "text": "Ten years already!",
+      "start": 33.26,
+      "end": 34.56,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Ten",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.13079199194908142,
+          "id": "w0078"
+        },
+        {
+          "text": "years",
+          "start": 33.78,
+          "end": 34.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970453381538391,
+          "id": "w0079"
+        },
+        {
+          "text": "already!",
+          "start": 34.16,
+          "end": 34.56,
+          "timingStatus": "text-corrected",
+          "probability": 0.9728180170059204,
+          "id": "w0080"
+        }
+      ]
+    },
+    {
+      "id": "s008",
+      "sourceTurnId": "t04",
+      "speaker": "Stella",
+      "text": "And how many people have learned to swim with you?",
+      "start": 35.28,
+      "end": 38.18,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "And",
+          "start": 35.28,
+          "end": 35.66,
+          "timingStatus": "text-corrected",
+          "probability": 0.9851123690605164,
+          "id": "w0081"
+        },
+        {
+          "text": "how",
+          "start": 35.66,
+          "end": 36.02,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9865307211875916,
+          "id": "w0082"
+        },
+        {
+          "text": "many",
+          "start": 36.02,
+          "end": 36.18,
+          "timingStatus": "machine-aligned",
+          "probability": 0.999045193195343,
+          "id": "w0083"
+        },
+        {
+          "text": "people",
+          "start": 36.18,
+          "end": 36.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9941973686218262,
+          "id": "w0084"
+        },
+        {
+          "text": "have",
+          "start": 36.72,
+          "end": 36.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9924456477165222,
+          "id": "w0085"
+        },
+        {
+          "text": "learned",
+          "start": 36.98,
+          "end": 37.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9353399872779846,
+          "id": "w0086"
+        },
+        {
+          "text": "to",
+          "start": 37.22,
+          "end": 37.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9921608567237854,
+          "id": "w0087"
+        },
+        {
+          "text": "swim",
+          "start": 37.52,
+          "end": 37.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998873770236969,
+          "id": "w0088"
+        },
+        {
+          "text": "with",
+          "start": 37.76,
+          "end": 38.0,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9986504912376404,
+          "id": "w0089"
+        },
+        {
+          "text": "you?",
+          "start": 38.0,
+          "end": 38.18,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9991984963417053,
+          "id": "w0090"
+        }
+      ]
+    },
+    {
+      "id": "s009",
+      "sourceTurnId": "t05",
+      "speaker": "Ricky",
+      "text": "About 7,000 so far.",
+      "start": 38.84,
+      "end": 40.74,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "About",
+          "start": 38.84,
+          "end": 39.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9597082138061523,
+          "id": "w0091"
+        },
+        {
+          "text": "7,000",
+          "start": 39.12,
+          "end": 40.1,
+          "timingStatus": "text-corrected",
+          "probability": 0.6232391595840454,
+          "id": "w0092"
+        },
+        {
+          "text": "so",
+          "start": 40.1,
+          "end": 40.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.7444664239883423,
+          "id": "w0093"
+        },
+        {
+          "text": "far.",
+          "start": 40.46,
+          "end": 40.74,
+          "timingStatus": "text-corrected",
+          "probability": 0.9984586238861084,
+          "id": "w0094"
+        }
+      ]
+    },
+    {
+      "id": "s010",
+      "sourceTurnId": "t06",
+      "speaker": "Stella",
+      "text": "7,000!",
+      "start": 41.04,
+      "end": 42.06,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "7,000!",
+          "start": 41.04,
+          "end": 42.06,
+          "timingStatus": "text-corrected",
+          "probability": 0.852213978767395,
+          "id": "w0095"
+        }
+      ]
+    },
+    {
+      "id": "s011",
+      "sourceTurnId": "t06",
+      "speaker": "Stella",
+      "text": "That's amazing.",
+      "start": 42.44,
+      "end": 42.92,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "That's",
+          "start": 42.44,
+          "end": 42.64,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9874763488769531,
+          "id": "w0096"
+        },
+        {
+          "text": "amazing.",
+          "start": 42.64,
+          "end": 42.92,
+          "timingStatus": "text-corrected",
+          "probability": 0.9915140271186829,
+          "id": "w0097"
+        }
+      ]
+    },
+    {
+      "id": "s012",
+      "sourceTurnId": "t06",
+      "speaker": "Stella",
+      "text": "How long does it take for someone to learn how to swim with you?",
+      "start": 43.86,
+      "end": 47.04,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "How",
+          "start": 43.86,
+          "end": 44.02,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9969695210456848,
+          "id": "w0098"
+        },
+        {
+          "text": "long",
+          "start": 44.02,
+          "end": 44.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9996390342712402,
+          "id": "w0099"
+        },
+        {
+          "text": "does",
+          "start": 44.28,
+          "end": 44.54,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965847730636597,
+          "id": "w0100"
+        },
+        {
+          "text": "it",
+          "start": 44.54,
+          "end": 44.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9966306090354919,
+          "id": "w0101"
+        },
+        {
+          "text": "take",
+          "start": 44.66,
+          "end": 44.88,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971852898597717,
+          "id": "w0102"
+        },
+        {
+          "text": "for",
+          "start": 44.88,
+          "end": 45.1,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9958821535110474,
+          "id": "w0103"
+        },
+        {
+          "text": "someone",
+          "start": 45.1,
+          "end": 45.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9966704249382019,
+          "id": "w0104"
+        },
+        {
+          "text": "to",
+          "start": 45.46,
+          "end": 45.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9983043670654297,
+          "id": "w0105"
+        },
+        {
+          "text": "learn",
+          "start": 45.7,
+          "end": 45.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9964458346366882,
+          "id": "w0106"
+        },
+        {
+          "text": "how",
+          "start": 45.9,
+          "end": 46.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9658191800117493,
+          "id": "w0107"
+        },
+        {
+          "text": "to",
+          "start": 46.12,
+          "end": 46.32,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9993962049484253,
+          "id": "w0108"
+        },
+        {
+          "text": "swim",
+          "start": 46.32,
+          "end": 46.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979254007339478,
+          "id": "w0109"
+        },
+        {
+          "text": "with",
+          "start": 46.56,
+          "end": 46.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989932179450989,
+          "id": "w0110"
+        },
+        {
+          "text": "you?",
+          "start": 46.82,
+          "end": 47.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9994472861289978,
+          "id": "w0111"
+        }
+      ]
+    },
+    {
+      "id": "s013",
+      "sourceTurnId": "t07",
+      "speaker": "Ricky",
+      "text": "Well, with regular lessons, most people manage it in a few months.",
+      "start": 47.46,
+      "end": 51.66,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Well,",
+          "start": 47.46,
+          "end": 47.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9854588508605957,
+          "id": "w0112"
+        },
+        {
+          "text": "with",
+          "start": 48.3,
+          "end": 48.54,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9981202483177185,
+          "id": "w0113"
+        },
+        {
+          "text": "regular",
+          "start": 48.54,
+          "end": 48.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9940953254699707,
+          "id": "w0114"
+        },
+        {
+          "text": "lessons,",
+          "start": 48.9,
+          "end": 49.42,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9973032474517822,
+          "id": "w0115"
+        },
+        {
+          "text": "most",
+          "start": 49.88,
+          "end": 50.02,
+          "timingStatus": "machine-aligned",
+          "probability": 0.99739670753479,
+          "id": "w0116"
+        },
+        {
+          "text": "people",
+          "start": 50.02,
+          "end": 50.38,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9995054006576538,
+          "id": "w0117"
+        },
+        {
+          "text": "manage",
+          "start": 50.38,
+          "end": 50.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9598999619483948,
+          "id": "w0118"
+        },
+        {
+          "text": "it",
+          "start": 50.68,
+          "end": 50.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9981854557991028,
+          "id": "w0119"
+        },
+        {
+          "text": "in",
+          "start": 50.9,
+          "end": 51.08,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9935967922210693,
+          "id": "w0120"
+        },
+        {
+          "text": "a",
+          "start": 51.08,
+          "end": 51.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965671300888062,
+          "id": "w0121"
+        },
+        {
+          "text": "few",
+          "start": 51.16,
+          "end": 51.34,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9994895458221436,
+          "id": "w0122"
+        },
+        {
+          "text": "months.",
+          "start": 51.34,
+          "end": 51.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989957213401794,
+          "id": "w0123"
+        }
+      ]
+    },
+    {
+      "id": "s014",
+      "sourceTurnId": "t07",
+      "speaker": "Ricky",
+      "text": "I'd guess that most of our learners need about 20 hours.",
+      "start": 52.44,
+      "end": 55.6,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "I'd",
+          "start": 52.44,
+          "end": 52.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9196550250053406,
+          "id": "w0124"
+        },
+        {
+          "text": "guess",
+          "start": 52.76,
+          "end": 52.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9830343723297119,
+          "id": "w0125"
+        },
+        {
+          "text": "that",
+          "start": 52.9,
+          "end": 53.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9806657433509827,
+          "id": "w0126"
+        },
+        {
+          "text": "most",
+          "start": 53.16,
+          "end": 53.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979695677757263,
+          "id": "w0127"
+        },
+        {
+          "text": "of",
+          "start": 53.36,
+          "end": 53.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965876340866089,
+          "id": "w0128"
+        },
+        {
+          "text": "our",
+          "start": 53.56,
+          "end": 53.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9972385168075562,
+          "id": "w0129"
+        },
+        {
+          "text": "learners",
+          "start": 53.66,
+          "end": 53.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9953632354736328,
+          "id": "w0130"
+        },
+        {
+          "text": "need",
+          "start": 53.9,
+          "end": 54.26,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9953911304473877,
+          "id": "w0131"
+        },
+        {
+          "text": "about",
+          "start": 54.26,
+          "end": 54.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9858019948005676,
+          "id": "w0132"
+        },
+        {
+          "text": "20",
+          "start": 54.66,
+          "end": 55.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8825782537460327,
+          "id": "w0133"
+        },
+        {
+          "text": "hours.",
+          "start": 55.14,
+          "end": 55.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9922135472297668,
+          "id": "w0134"
+        }
+      ]
+    },
+    {
+      "id": "s015",
+      "sourceTurnId": "t08",
+      "speaker": "Stella",
+      "text": "Wow.",
+      "start": 55.6,
+      "end": 56.22,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Wow.",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.36421406269073486,
+          "id": "w0135"
+        }
+      ]
+    },
+    {
+      "id": "s016",
+      "sourceTurnId": "t08",
+      "speaker": "Stella",
+      "text": "Only a few hours?",
+      "start": 56.56,
+      "end": 57.7,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Only",
+          "start": 56.56,
+          "end": 56.84,
+          "timingStatus": "text-corrected",
+          "probability": 0.9815034866333008,
+          "id": "w0136"
+        },
+        {
+          "text": "a",
+          "start": 56.84,
+          "end": 57.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.991763710975647,
+          "id": "w0137"
+        },
+        {
+          "text": "few",
+          "start": 57.04,
+          "end": 57.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9921294450759888,
+          "id": "w0138"
+        },
+        {
+          "text": "hours?",
+          "start": 57.36,
+          "end": 57.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9908902049064636,
+          "id": "w0139"
+        }
+      ]
+    },
+    {
+      "id": "s017",
+      "sourceTurnId": "t09",
+      "speaker": "Adrian",
+      "text": "No, he said 20 hours.",
+      "start": 58.46,
+      "end": 60.54,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "No,",
+          "start": 58.46,
+          "end": 58.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8045769929885864,
+          "id": "w0140"
+        },
+        {
+          "text": "he",
+          "start": 59.06,
+          "end": 59.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9819564819335938,
+          "id": "w0141"
+        },
+        {
+          "text": "said",
+          "start": 59.14,
+          "end": 59.4,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9882535934448242,
+          "id": "w0142"
+        },
+        {
+          "text": "20",
+          "start": 59.4,
+          "end": 60.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.7329775094985962,
+          "id": "w0143"
+        },
+        {
+          "text": "hours.",
+          "start": 60.06,
+          "end": 60.54,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9786251187324524,
+          "id": "w0144"
+        }
+      ]
+    },
+    {
+      "id": "s018",
+      "sourceTurnId": "t09",
+      "speaker": "Adrian",
+      "text": "That's a few months.",
+      "start": 61.22,
+      "end": 62.14,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "That's",
+          "start": 61.22,
+          "end": 61.4,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9845107197761536,
+          "id": "w0145"
+        },
+        {
+          "text": "a",
+          "start": 61.4,
+          "end": 61.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968923926353455,
+          "id": "w0146"
+        },
+        {
+          "text": "few",
+          "start": 61.48,
+          "end": 61.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9981196522712708,
+          "id": "w0147"
+        },
+        {
+          "text": "months.",
+          "start": 61.76,
+          "end": 62.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9961503744125366,
+          "id": "w0148"
+        }
+      ]
+    },
+    {
+      "id": "s019",
+      "sourceTurnId": "t09",
+      "speaker": "Adrian",
+      "text": "But, Ricky, who are these learner swimmers?",
+      "start": 63.16,
+      "end": 65.8,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "But,",
+          "start": 63.16,
+          "end": 63.32,
+          "timingStatus": "text-corrected",
+          "probability": 0.9749698042869568,
+          "id": "w0149"
+        },
+        {
+          "text": "Ricky,",
+          "start": 63.32,
+          "end": 63.54,
+          "timingStatus": "machine-aligned",
+          "probability": 0.5089600086212158,
+          "id": "w0150"
+        },
+        {
+          "text": "who",
+          "start": 64.08,
+          "end": 64.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9930970072746277,
+          "id": "w0151"
+        },
+        {
+          "text": "are",
+          "start": 64.52,
+          "end": 64.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9571600556373596,
+          "id": "w0152"
+        },
+        {
+          "text": "these",
+          "start": 64.62,
+          "end": 64.88,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9840946793556213,
+          "id": "w0153"
+        },
+        {
+          "text": "learner",
+          "start": 64.88,
+          "end": 65.42,
+          "timingStatus": "machine-aligned",
+          "probability": 0.780223548412323,
+          "id": "w0154"
+        },
+        {
+          "text": "swimmers?",
+          "start": 65.42,
+          "end": 65.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9156987369060516,
+          "id": "w0155"
+        }
+      ]
+    },
+    {
+      "id": "s020",
+      "sourceTurnId": "t09",
+      "speaker": "Adrian",
+      "text": "Who does Sea Friends help?",
+      "start": 66.6,
+      "end": 68.1,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Who",
+          "start": 66.6,
+          "end": 66.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9923980832099915,
+          "id": "w0156"
+        },
+        {
+          "text": "does",
+          "start": 66.72,
+          "end": 66.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9868087768554688,
+          "id": "w0157"
+        },
+        {
+          "text": "Sea",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.3115863800048828,
+          "id": "w0158"
+        },
+        {
+          "text": "Friends",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.47348059713840485,
+          "id": "w0159"
+        },
+        {
+          "text": "help?",
+          "start": 67.58,
+          "end": 68.1,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9828616380691528,
+          "id": "w0160"
+        }
+      ]
+    },
+    {
+      "id": "s021",
+      "sourceTurnId": "t10",
+      "speaker": "Ricky",
+      "text": "At the moment, most of our members are high school students.",
+      "start": 68.74,
+      "end": 72.22,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "At",
+          "start": 68.74,
+          "end": 69.24,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9816853404045105,
+          "id": "w0161"
+        },
+        {
+          "text": "the",
+          "start": 69.24,
+          "end": 69.38,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968582391738892,
+          "id": "w0162"
+        },
+        {
+          "text": "moment,",
+          "start": 69.38,
+          "end": 69.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9994010925292969,
+          "id": "w0163"
+        },
+        {
+          "text": "most",
+          "start": 70.0,
+          "end": 70.3,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9975159168243408,
+          "id": "w0164"
+        },
+        {
+          "text": "of",
+          "start": 70.3,
+          "end": 70.5,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9963352680206299,
+          "id": "w0165"
+        },
+        {
+          "text": "our",
+          "start": 70.5,
+          "end": 70.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9960825443267822,
+          "id": "w0166"
+        },
+        {
+          "text": "members",
+          "start": 70.6,
+          "end": 70.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9927117824554443,
+          "id": "w0167"
+        },
+        {
+          "text": "are",
+          "start": 70.92,
+          "end": 71.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968129992485046,
+          "id": "w0168"
+        },
+        {
+          "text": "high",
+          "start": 71.14,
+          "end": 71.38,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9815970659255981,
+          "id": "w0169"
+        },
+        {
+          "text": "school",
+          "start": 71.38,
+          "end": 71.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9696822762489319,
+          "id": "w0170"
+        },
+        {
+          "text": "students.",
+          "start": 71.62,
+          "end": 72.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.996911883354187,
+          "id": "w0171"
+        }
+      ]
+    },
+    {
+      "id": "s022",
+      "sourceTurnId": "t10",
+      "speaker": "Ricky",
+      "text": "Oh, and their parents.",
+      "start": 72.62,
+      "end": 73.82,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Oh,",
+          "start": 72.62,
+          "end": 72.94,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9344871640205383,
+          "id": "w0172"
+        },
+        {
+          "text": "and",
+          "start": 73.16,
+          "end": 73.3,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970234036445618,
+          "id": "w0173"
+        },
+        {
+          "text": "their",
+          "start": 73.3,
+          "end": 73.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9198649525642395,
+          "id": "w0174"
+        },
+        {
+          "text": "parents.",
+          "start": 73.48,
+          "end": 73.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9990171194076538,
+          "id": "w0175"
+        }
+      ]
+    },
+    {
+      "id": "s023",
+      "sourceTurnId": "t10",
+      "speaker": "Ricky",
+      "text": "We have a lot of parents taking part.",
+      "start": 74.26,
+      "end": 76.02,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "We",
+          "start": 74.26,
+          "end": 74.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970893263816833,
+          "id": "w0176"
+        },
+        {
+          "text": "have",
+          "start": 74.44,
+          "end": 74.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9988538026809692,
+          "id": "w0177"
+        },
+        {
+          "text": "a",
+          "start": 74.56,
+          "end": 74.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965510368347168,
+          "id": "w0178"
+        },
+        {
+          "text": "lot",
+          "start": 74.66,
+          "end": 74.88,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9984405636787415,
+          "id": "w0179"
+        },
+        {
+          "text": "of",
+          "start": 74.88,
+          "end": 74.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970917701721191,
+          "id": "w0180"
+        },
+        {
+          "text": "parents",
+          "start": 74.98,
+          "end": 75.34,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9974844455718994,
+          "id": "w0181"
+        },
+        {
+          "text": "taking",
+          "start": 75.34,
+          "end": 75.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9930192828178406,
+          "id": "w0182"
+        },
+        {
+          "text": "part.",
+          "start": 75.66,
+          "end": 76.02,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971484541893005,
+          "id": "w0183"
+        }
+      ]
+    },
+    {
+      "id": "s024",
+      "sourceTurnId": "t11",
+      "speaker": "Adrian",
+      "text": "And when do the Sea Friends members meet?",
+      "start": 76.72,
+      "end": 79.18,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "And",
+          "start": 76.72,
+          "end": 76.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9551056623458862,
+          "id": "w0184"
+        },
+        {
+          "text": "when",
+          "start": 76.92,
+          "end": 77.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9878173470497131,
+          "id": "w0185"
+        },
+        {
+          "text": "do",
+          "start": 77.12,
+          "end": 77.32,
+          "timingStatus": "machine-aligned",
+          "probability": 0.996366024017334,
+          "id": "w0186"
+        },
+        {
+          "text": "the",
+          "start": 77.32,
+          "end": 77.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9668184518814087,
+          "id": "w0187"
+        },
+        {
+          "text": "Sea",
+          "start": 77.48,
+          "end": 77.7,
+          "timingStatus": "text-corrected",
+          "probability": 0.9937816262245178,
+          "id": "w0188"
+        },
+        {
+          "text": "Friends",
+          "start": 77.7,
+          "end": 78.14,
+          "timingStatus": "text-corrected",
+          "probability": 0.9302027523517609,
+          "id": "w0189"
+        },
+        {
+          "text": "members",
+          "start": 78.14,
+          "end": 78.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.96967613697052,
+          "id": "w0190"
+        },
+        {
+          "text": "meet?",
+          "start": 78.68,
+          "end": 79.18,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9974488615989685,
+          "id": "w0191"
+        }
+      ]
+    },
+    {
+      "id": "s025",
+      "sourceTurnId": "t12",
+      "speaker": "Ricky",
+      "text": "We meet on Sundays because that's when the students tend to be free.",
+      "start": 79.78,
+      "end": 83.7,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "We",
+          "start": 79.78,
+          "end": 80.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9975086450576782,
+          "id": "w0192"
+        },
+        {
+          "text": "meet",
+          "start": 80.06,
+          "end": 80.26,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9939748644828796,
+          "id": "w0193"
+        },
+        {
+          "text": "on",
+          "start": 80.26,
+          "end": 80.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.99808669090271,
+          "id": "w0194"
+        },
+        {
+          "text": "Sundays",
+          "start": 80.52,
+          "end": 80.88,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9911932349205017,
+          "id": "w0195"
+        },
+        {
+          "text": "because",
+          "start": 80.88,
+          "end": 81.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.6532835960388184,
+          "id": "w0196"
+        },
+        {
+          "text": "that's",
+          "start": 81.52,
+          "end": 81.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.995214194059372,
+          "id": "w0197"
+        },
+        {
+          "text": "when",
+          "start": 81.98,
+          "end": 82.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9958102703094482,
+          "id": "w0198"
+        },
+        {
+          "text": "the",
+          "start": 82.12,
+          "end": 82.26,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9928995370864868,
+          "id": "w0199"
+        },
+        {
+          "text": "students",
+          "start": 82.26,
+          "end": 82.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9964619278907776,
+          "id": "w0200"
+        },
+        {
+          "text": "tend",
+          "start": 82.68,
+          "end": 83.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9953271150588989,
+          "id": "w0201"
+        },
+        {
+          "text": "to",
+          "start": 83.04,
+          "end": 83.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9984344840049744,
+          "id": "w0202"
+        },
+        {
+          "text": "be",
+          "start": 83.28,
+          "end": 83.38,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989147186279297,
+          "id": "w0203"
+        },
+        {
+          "text": "free.",
+          "start": 83.38,
+          "end": 83.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9987987279891968,
+          "id": "w0204"
+        }
+      ]
+    },
+    {
+      "id": "s026",
+      "sourceTurnId": "t13",
+      "speaker": "Adrian",
+      "text": "And the parents, of course.",
+      "start": 83.7,
+      "end": 85.76,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "And",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.08185523003339767,
+          "id": "w0205"
+        },
+        {
+          "text": "the",
+          "start": 84.56,
+          "end": 84.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9130445718765259,
+          "id": "w0206"
+        },
+        {
+          "text": "parents,",
+          "start": 84.72,
+          "end": 85.18,
+          "timingStatus": "machine-aligned",
+          "probability": 0.973747730255127,
+          "id": "w0207"
+        },
+        {
+          "text": "of",
+          "start": 85.18,
+          "end": 85.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9955553412437439,
+          "id": "w0208"
+        },
+        {
+          "text": "course.",
+          "start": 85.56,
+          "end": 85.76,
+          "timingStatus": "text-corrected",
+          "probability": 0.9964941143989563,
+          "id": "w0209"
+        }
+      ]
+    },
+    {
+      "id": "s027",
+      "sourceTurnId": "t14",
+      "speaker": "Ricky",
+      "text": "Sure, the parents too.",
+      "start": 86.24,
+      "end": 87.66,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Sure,",
+          "start": 86.24,
+          "end": 86.58,
+          "timingStatus": "text-corrected",
+          "probability": 0.9845943450927734,
+          "id": "w0210"
+        },
+        {
+          "text": "the",
+          "start": 86.9,
+          "end": 86.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.990648090839386,
+          "id": "w0211"
+        },
+        {
+          "text": "parents",
+          "start": 86.98,
+          "end": 87.28,
+          "timingStatus": "text-corrected",
+          "probability": 0.9946335554122925,
+          "id": "w0212"
+        },
+        {
+          "text": "too.",
+          "start": 87.54,
+          "end": 87.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965646862983704,
+          "id": "w0213"
+        }
+      ]
+    },
+    {
+      "id": "s028",
+      "sourceTurnId": "t15",
+      "speaker": "Stella",
+      "text": "Ricky, tell us a bit about yourself as a swimmer.",
+      "start": 88.14,
+      "end": 91.42,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Ricky,",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.3568934500217438,
+          "id": "w0214"
+        },
+        {
+          "text": "tell",
+          "start": 88.98,
+          "end": 89.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9839343428611755,
+          "id": "w0215"
+        },
+        {
+          "text": "us",
+          "start": 89.2,
+          "end": 89.42,
+          "timingStatus": "machine-aligned",
+          "probability": 0.996971607208252,
+          "id": "w0216"
+        },
+        {
+          "text": "a",
+          "start": 89.42,
+          "end": 89.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.995078444480896,
+          "id": "w0217"
+        },
+        {
+          "text": "bit",
+          "start": 89.52,
+          "end": 89.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.782244086265564,
+          "id": "w0218"
+        },
+        {
+          "text": "about",
+          "start": 89.7,
+          "end": 90.02,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9977317452430725,
+          "id": "w0219"
+        },
+        {
+          "text": "yourself",
+          "start": 90.02,
+          "end": 90.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9911618232727051,
+          "id": "w0220"
+        },
+        {
+          "text": "as",
+          "start": 90.36,
+          "end": 90.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9469847679138184,
+          "id": "w0221"
+        },
+        {
+          "text": "a",
+          "start": 90.92,
+          "end": 91.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9928374886512756,
+          "id": "w0222"
+        },
+        {
+          "text": "swimmer.",
+          "start": 91.04,
+          "end": 91.42,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9714454412460327,
+          "id": "w0223"
+        }
+      ]
+    },
+    {
+      "id": "s029",
+      "sourceTurnId": "t16",
+      "speaker": "Ricky",
+      "text": "OK, well... I started swimming when I was four, with my older sister, and I remember getting my first award.",
+      "start": 91.9,
+      "end": 99.44,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "OK,",
+          "start": 91.9,
+          "end": 92.54,
+          "timingStatus": "text-corrected",
+          "probability": 0.8105021119117737,
+          "id": "w0224"
+        },
+        {
+          "text": "well...",
+          "start": 92.58,
+          "end": 93.02,
+          "timingStatus": "text-corrected",
+          "probability": 0.9961068034172058,
+          "id": "w0225"
+        },
+        {
+          "text": "I",
+          "start": 93.44,
+          "end": 93.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979311227798462,
+          "id": "w0226"
+        },
+        {
+          "text": "started",
+          "start": 93.76,
+          "end": 94.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970669150352478,
+          "id": "w0227"
+        },
+        {
+          "text": "swimming",
+          "start": 94.16,
+          "end": 94.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9957530498504639,
+          "id": "w0228"
+        },
+        {
+          "text": "when",
+          "start": 94.46,
+          "end": 94.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9937582015991211,
+          "id": "w0229"
+        },
+        {
+          "text": "I",
+          "start": 94.78,
+          "end": 94.94,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9981302618980408,
+          "id": "w0230"
+        },
+        {
+          "text": "was",
+          "start": 94.94,
+          "end": 95.08,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9991723299026489,
+          "id": "w0231"
+        },
+        {
+          "text": "four,",
+          "start": 95.08,
+          "end": 95.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8613399863243103,
+          "id": "w0232"
+        },
+        {
+          "text": "with",
+          "start": 95.8,
+          "end": 96.0,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9973379969596863,
+          "id": "w0233"
+        },
+        {
+          "text": "my",
+          "start": 96.0,
+          "end": 96.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9986081719398499,
+          "id": "w0234"
+        },
+        {
+          "text": "older",
+          "start": 96.2,
+          "end": 96.4,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965394735336304,
+          "id": "w0235"
+        },
+        {
+          "text": "sister,",
+          "start": 96.4,
+          "end": 96.86,
+          "timingStatus": "text-corrected",
+          "probability": 0.9995087385177612,
+          "id": "w0236"
+        },
+        {
+          "text": "and",
+          "start": 97.38,
+          "end": 97.74,
+          "timingStatus": "text-corrected",
+          "probability": 0.9736844301223755,
+          "id": "w0237"
+        },
+        {
+          "text": "I",
+          "start": 97.74,
+          "end": 97.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9894562363624573,
+          "id": "w0238"
+        },
+        {
+          "text": "remember",
+          "start": 97.84,
+          "end": 98.02,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9539884328842163,
+          "id": "w0239"
+        },
+        {
+          "text": "getting",
+          "start": 98.02,
+          "end": 98.5,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971390962600708,
+          "id": "w0240"
+        },
+        {
+          "text": "my",
+          "start": 98.5,
+          "end": 98.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979987740516663,
+          "id": "w0241"
+        },
+        {
+          "text": "first",
+          "start": 98.76,
+          "end": 99.1,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9977670907974243,
+          "id": "w0242"
+        },
+        {
+          "text": "award.",
+          "start": 99.1,
+          "end": 99.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9930416345596313,
+          "id": "w0243"
+        }
+      ]
+    },
+    {
+      "id": "s030",
+      "sourceTurnId": "t16",
+      "speaker": "Ricky",
+      "text": "It was a purple badge, and I was so proud.",
+      "start": 100.16,
+      "end": 102.92,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "It",
+          "start": 100.16,
+          "end": 100.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.997393012046814,
+          "id": "w0244"
+        },
+        {
+          "text": "was",
+          "start": 100.28,
+          "end": 100.42,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9996347427368164,
+          "id": "w0245"
+        },
+        {
+          "text": "a",
+          "start": 100.42,
+          "end": 100.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9983766078948975,
+          "id": "w0246"
+        },
+        {
+          "text": "purple",
+          "start": 100.56,
+          "end": 100.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.957443118095398,
+          "id": "w0247"
+        },
+        {
+          "text": "badge,",
+          "start": 100.8,
+          "end": 101.3,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9974755644798279,
+          "id": "w0248"
+        },
+        {
+          "text": "and",
+          "start": 101.3,
+          "end": 101.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9963961243629456,
+          "id": "w0249"
+        },
+        {
+          "text": "I",
+          "start": 101.9,
+          "end": 102.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9990228414535522,
+          "id": "w0250"
+        },
+        {
+          "text": "was",
+          "start": 102.04,
+          "end": 102.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9988811612129211,
+          "id": "w0251"
+        },
+        {
+          "text": "so",
+          "start": 102.14,
+          "end": 102.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9972540736198425,
+          "id": "w0252"
+        },
+        {
+          "text": "proud.",
+          "start": 102.46,
+          "end": 102.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9997619986534119,
+          "id": "w0253"
+        }
+      ]
+    },
+    {
+      "id": "s031",
+      "sourceTurnId": "t16",
+      "speaker": "Ricky",
+      "text": "But when I was seven, I stopped swimming.",
+      "start": 103.48,
+      "end": 105.78,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "But",
+          "start": 103.48,
+          "end": 103.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9969428181648254,
+          "id": "w0254"
+        },
+        {
+          "text": "when",
+          "start": 103.7,
+          "end": 103.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9765720963478088,
+          "id": "w0255"
+        },
+        {
+          "text": "I",
+          "start": 103.84,
+          "end": 103.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9992282390594482,
+          "id": "w0256"
+        },
+        {
+          "text": "was",
+          "start": 103.98,
+          "end": 104.08,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9985087513923645,
+          "id": "w0257"
+        },
+        {
+          "text": "seven,",
+          "start": 104.08,
+          "end": 104.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9853197932243347,
+          "id": "w0258"
+        },
+        {
+          "text": "I",
+          "start": 104.96,
+          "end": 105.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9995529055595398,
+          "id": "w0259"
+        },
+        {
+          "text": "stopped",
+          "start": 105.12,
+          "end": 105.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9874774217605591,
+          "id": "w0260"
+        },
+        {
+          "text": "swimming.",
+          "start": 105.36,
+          "end": 105.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9974326491355896,
+          "id": "w0261"
+        }
+      ]
+    },
+    {
+      "id": "s032",
+      "sourceTurnId": "t17",
+      "speaker": "Adrian",
+      "text": "Oh?",
+      "start": 106.48,
+      "end": 106.6,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Oh?",
+          "start": 106.48,
+          "end": 106.6,
+          "timingStatus": "text-corrected",
+          "probability": 0.8082650303840637,
+          "id": "w0262"
+        }
+      ]
+    },
+    {
+      "id": "s033",
+      "sourceTurnId": "t17",
+      "speaker": "Adrian",
+      "text": "Why was that?",
+      "start": 107.0,
+      "end": 107.78,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Why",
+          "start": 107.0,
+          "end": 107.34,
+          "timingStatus": "text-corrected",
+          "probability": 0.9966263771057129,
+          "id": "w0263"
+        },
+        {
+          "text": "was",
+          "start": 107.34,
+          "end": 107.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9980440139770508,
+          "id": "w0264"
+        },
+        {
+          "text": "that?",
+          "start": 107.52,
+          "end": 107.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971666932106018,
+          "id": "w0265"
+        }
+      ]
+    },
+    {
+      "id": "s034",
+      "sourceTurnId": "t18",
+      "speaker": "Ricky",
+      "text": "Because of my swimming coach.",
+      "start": 108.42,
+      "end": 109.8,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Because",
+          "start": 108.42,
+          "end": 108.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965773224830627,
+          "id": "w0266"
+        },
+        {
+          "text": "of",
+          "start": 108.84,
+          "end": 109.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.996590256690979,
+          "id": "w0267"
+        },
+        {
+          "text": "my",
+          "start": 109.06,
+          "end": 109.18,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9990578293800354,
+          "id": "w0268"
+        },
+        {
+          "text": "swimming",
+          "start": 109.18,
+          "end": 109.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9956306219100952,
+          "id": "w0269"
+        },
+        {
+          "text": "coach.",
+          "start": 109.48,
+          "end": 109.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8519739508628845,
+          "id": "w0270"
+        }
+      ]
+    },
+    {
+      "id": "s035",
+      "sourceTurnId": "t18",
+      "speaker": "Ricky",
+      "text": "She was a good swimmer, but she was always shouting at me.",
+      "start": 109.8,
+      "end": 113.76,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "She",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.006721923127770424,
+          "id": "w0271"
+        },
+        {
+          "text": "was",
+          "start": 110.1,
+          "end": 110.86,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8208789825439453,
+          "id": "w0272"
+        },
+        {
+          "text": "a",
+          "start": 110.86,
+          "end": 110.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.805221676826477,
+          "id": "w0273"
+        },
+        {
+          "text": "good",
+          "start": 110.98,
+          "end": 111.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9827934503555298,
+          "id": "w0274"
+        },
+        {
+          "text": "swimmer,",
+          "start": 111.16,
+          "end": 111.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9906167089939117,
+          "id": "w0275"
+        },
+        {
+          "text": "but",
+          "start": 112.0,
+          "end": 112.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9906871914863586,
+          "id": "w0276"
+        },
+        {
+          "text": "she",
+          "start": 112.2,
+          "end": 112.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.993410050868988,
+          "id": "w0277"
+        },
+        {
+          "text": "was",
+          "start": 112.36,
+          "end": 112.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9975355863571167,
+          "id": "w0278"
+        },
+        {
+          "text": "always",
+          "start": 112.48,
+          "end": 112.94,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971891045570374,
+          "id": "w0279"
+        },
+        {
+          "text": "shouting",
+          "start": 112.94,
+          "end": 113.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9914116859436035,
+          "id": "w0280"
+        },
+        {
+          "text": "at",
+          "start": 113.28,
+          "end": 113.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.995448648929596,
+          "id": "w0281"
+        },
+        {
+          "text": "me.",
+          "start": 113.62,
+          "end": 113.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9985901713371277,
+          "id": "w0282"
+        }
+      ]
+    },
+    {
+      "id": "s036",
+      "sourceTurnId": "t19",
+      "speaker": "Adrian",
+      "text": "Hmm... that can't have been pleasant.",
+      "start": 114.16,
+      "end": 116.34,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Hmm...",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.4970742464065552,
+          "id": "w0283"
+        },
+        {
+          "text": "that",
+          "start": 114.96,
+          "end": 115.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9832659959793091,
+          "id": "w0284"
+        },
+        {
+          "text": "can't",
+          "start": 115.16,
+          "end": 115.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8261563181877136,
+          "id": "w0285"
+        },
+        {
+          "text": "have",
+          "start": 115.72,
+          "end": 115.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.993316650390625,
+          "id": "w0286"
+        },
+        {
+          "text": "been",
+          "start": 115.82,
+          "end": 115.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.999326229095459,
+          "id": "w0287"
+        },
+        {
+          "text": "pleasant.",
+          "start": 115.96,
+          "end": 116.34,
+          "timingStatus": "text-corrected",
+          "probability": 0.9986473917961121,
+          "id": "w0288"
+        }
+      ]
+    },
+    {
+      "id": "s037",
+      "sourceTurnId": "t19",
+      "speaker": "Adrian",
+      "text": "But you took up swimming again later.",
+      "start": 117.08,
+      "end": 119.24,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "But",
+          "start": 117.08,
+          "end": 117.38,
+          "timingStatus": "text-corrected",
+          "probability": 0.9891539216041565,
+          "id": "w0289"
+        },
+        {
+          "text": "you",
+          "start": 117.38,
+          "end": 117.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9654384851455688,
+          "id": "w0290"
+        },
+        {
+          "text": "took",
+          "start": 117.56,
+          "end": 117.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9888775944709778,
+          "id": "w0291"
+        },
+        {
+          "text": "up",
+          "start": 117.8,
+          "end": 118.0,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9432218670845032,
+          "id": "w0292"
+        },
+        {
+          "text": "swimming",
+          "start": 118.0,
+          "end": 118.32,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9862418174743652,
+          "id": "w0293"
+        },
+        {
+          "text": "again",
+          "start": 118.32,
+          "end": 118.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9992357492446899,
+          "id": "w0294"
+        },
+        {
+          "text": "later.",
+          "start": 118.72,
+          "end": 119.24,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9872846007347107,
+          "id": "w0295"
+        }
+      ]
+    },
+    {
+      "id": "s038",
+      "sourceTurnId": "t19",
+      "speaker": "Adrian",
+      "text": "Why did you decide to start swimming again?",
+      "start": 119.86,
+      "end": 122.72,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Why",
+          "start": 119.86,
+          "end": 120.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.985903799533844,
+          "id": "w0296"
+        },
+        {
+          "text": "did",
+          "start": 120.44,
+          "end": 120.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9978322386741638,
+          "id": "w0297"
+        },
+        {
+          "text": "you",
+          "start": 120.62,
+          "end": 120.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9979549646377563,
+          "id": "w0298"
+        },
+        {
+          "text": "decide",
+          "start": 120.78,
+          "end": 121.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9962819218635559,
+          "id": "w0299"
+        },
+        {
+          "text": "to",
+          "start": 121.22,
+          "end": 121.5,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989420771598816,
+          "id": "w0300"
+        },
+        {
+          "text": "start",
+          "start": 121.5,
+          "end": 121.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9953911304473877,
+          "id": "w0301"
+        },
+        {
+          "text": "swimming",
+          "start": 121.78,
+          "end": 122.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9972854852676392,
+          "id": "w0302"
+        },
+        {
+          "text": "again?",
+          "start": 122.12,
+          "end": 122.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9981768131256104,
+          "id": "w0303"
+        }
+      ]
+    },
+    {
+      "id": "s039",
+      "sourceTurnId": "t20",
+      "speaker": "Ricky",
+      "text": "Simple: I became a dad and I wanted to teach my own kids to swim.",
+      "start": 123.32,
+      "end": 128.08,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Simple:",
+          "start": 123.32,
+          "end": 123.76,
+          "timingStatus": "text-corrected",
+          "probability": 0.9850143790245056,
+          "id": "w0304"
+        },
+        {
+          "text": "I",
+          "start": 124.44,
+          "end": 124.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998489260673523,
+          "id": "w0305"
+        },
+        {
+          "text": "became",
+          "start": 124.68,
+          "end": 124.88,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965923428535461,
+          "id": "w0306"
+        },
+        {
+          "text": "a",
+          "start": 124.88,
+          "end": 125.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998634397983551,
+          "id": "w0307"
+        },
+        {
+          "text": "dad",
+          "start": 125.14,
+          "end": 125.38,
+          "timingStatus": "text-corrected",
+          "probability": 0.9592142701148987,
+          "id": "w0308"
+        },
+        {
+          "text": "and",
+          "start": 125.4,
+          "end": 126.1,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9976866245269775,
+          "id": "w0309"
+        },
+        {
+          "text": "I",
+          "start": 126.1,
+          "end": 126.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9929936528205872,
+          "id": "w0310"
+        },
+        {
+          "text": "wanted",
+          "start": 126.22,
+          "end": 126.42,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9826034903526306,
+          "id": "w0311"
+        },
+        {
+          "text": "to",
+          "start": 126.42,
+          "end": 126.64,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9959327578544617,
+          "id": "w0312"
+        },
+        {
+          "text": "teach",
+          "start": 126.64,
+          "end": 126.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9995725750923157,
+          "id": "w0313"
+        },
+        {
+          "text": "my",
+          "start": 126.84,
+          "end": 127.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9987724423408508,
+          "id": "w0314"
+        },
+        {
+          "text": "own",
+          "start": 127.06,
+          "end": 127.3,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9592707753181458,
+          "id": "w0315"
+        },
+        {
+          "text": "kids",
+          "start": 127.3,
+          "end": 127.58,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9961244463920593,
+          "id": "w0316"
+        },
+        {
+          "text": "to",
+          "start": 127.58,
+          "end": 127.86,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970571994781494,
+          "id": "w0317"
+        },
+        {
+          "text": "swim.",
+          "start": 127.86,
+          "end": 128.08,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9992750287055969,
+          "id": "w0318"
+        }
+      ]
+    },
+    {
+      "id": "s040",
+      "sourceTurnId": "t21",
+      "speaker": "Adrian",
+      "text": "Ah, swimming together as a family is great, isn't it?",
+      "start": 128.66,
+      "end": 132.7,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Ah,",
+          "start": 128.66,
+          "end": 129.0,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8698886632919312,
+          "id": "w0319"
+        },
+        {
+          "text": "swimming",
+          "start": 129.4,
+          "end": 129.88,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9967707395553589,
+          "id": "w0320"
+        },
+        {
+          "text": "together",
+          "start": 129.88,
+          "end": 130.38,
+          "timingStatus": "machine-aligned",
+          "probability": 0.996383547782898,
+          "id": "w0321"
+        },
+        {
+          "text": "as",
+          "start": 130.38,
+          "end": 130.74,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8190141916275024,
+          "id": "w0322"
+        },
+        {
+          "text": "a",
+          "start": 130.74,
+          "end": 130.86,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9934199452400208,
+          "id": "w0323"
+        },
+        {
+          "text": "family",
+          "start": 130.86,
+          "end": 131.32,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998580813407898,
+          "id": "w0324"
+        },
+        {
+          "text": "is",
+          "start": 131.32,
+          "end": 131.64,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9921811819076538,
+          "id": "w0325"
+        },
+        {
+          "text": "great,",
+          "start": 131.64,
+          "end": 131.94,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9984618425369263,
+          "id": "w0326"
+        },
+        {
+          "text": "isn't",
+          "start": 132.26,
+          "end": 132.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9990048408508301,
+          "id": "w0327"
+        },
+        {
+          "text": "it?",
+          "start": 132.52,
+          "end": 132.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9969279170036316,
+          "id": "w0328"
+        }
+      ]
+    },
+    {
+      "id": "s041",
+      "sourceTurnId": "t22",
+      "speaker": "Ricky",
+      "text": "It really is, but then I thought if I was going to be a teacher, I should get better at swimming myself so I looked for a new coach, and I found one.",
+      "start": 133.04,
+      "end": 142.86,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "It",
+          "start": 133.04,
+          "end": 133.4,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9870816469192505,
+          "id": "w0329"
+        },
+        {
+          "text": "really",
+          "start": 133.4,
+          "end": 133.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9980921149253845,
+          "id": "w0330"
+        },
+        {
+          "text": "is,",
+          "start": 133.62,
+          "end": 134.02,
+          "timingStatus": "text-corrected",
+          "probability": 0.9992689490318298,
+          "id": "w0331"
+        },
+        {
+          "text": "but",
+          "start": 134.54,
+          "end": 134.8,
+          "timingStatus": "text-corrected",
+          "probability": 0.9969542026519775,
+          "id": "w0332"
+        },
+        {
+          "text": "then",
+          "start": 134.8,
+          "end": 134.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9866434335708618,
+          "id": "w0333"
+        },
+        {
+          "text": "I",
+          "start": 134.96,
+          "end": 135.1,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9717812538146973,
+          "id": "w0334"
+        },
+        {
+          "text": "thought",
+          "start": 135.1,
+          "end": 135.32,
+          "timingStatus": "text-corrected",
+          "probability": 0.9981235861778259,
+          "id": "w0335"
+        },
+        {
+          "text": "if",
+          "start": 135.66,
+          "end": 135.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8819450736045837,
+          "id": "w0336"
+        },
+        {
+          "text": "I",
+          "start": 135.98,
+          "end": 136.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9985167384147644,
+          "id": "w0337"
+        },
+        {
+          "text": "was",
+          "start": 136.16,
+          "end": 136.3,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9978423118591309,
+          "id": "w0338"
+        },
+        {
+          "text": "going",
+          "start": 136.3,
+          "end": 136.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9945662021636963,
+          "id": "w0339"
+        },
+        {
+          "text": "to",
+          "start": 136.48,
+          "end": 136.64,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970863461494446,
+          "id": "w0340"
+        },
+        {
+          "text": "be",
+          "start": 136.64,
+          "end": 136.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9988076686859131,
+          "id": "w0341"
+        },
+        {
+          "text": "a",
+          "start": 136.76,
+          "end": 136.86,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970690608024597,
+          "id": "w0342"
+        },
+        {
+          "text": "teacher,",
+          "start": 136.86,
+          "end": 137.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9993510842323303,
+          "id": "w0343"
+        },
+        {
+          "text": "I",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.11756791174411774,
+          "id": "w0344"
+        },
+        {
+          "text": "should",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.03548433631658554,
+          "id": "w0345"
+        },
+        {
+          "text": "get",
+          "start": 138.06,
+          "end": 138.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9287174940109253,
+          "id": "w0346"
+        },
+        {
+          "text": "better",
+          "start": 138.22,
+          "end": 138.58,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9889736771583557,
+          "id": "w0347"
+        },
+        {
+          "text": "at",
+          "start": 138.58,
+          "end": 138.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9895490407943726,
+          "id": "w0348"
+        },
+        {
+          "text": "swimming",
+          "start": 138.78,
+          "end": 139.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9869264960289001,
+          "id": "w0349"
+        },
+        {
+          "text": "myself",
+          "start": 139.04,
+          "end": 139.48,
+          "timingStatus": "text-corrected",
+          "probability": 0.9834507703781128,
+          "id": "w0350"
+        },
+        {
+          "text": "so",
+          "start": 140.26,
+          "end": 140.54,
+          "timingStatus": "text-corrected",
+          "probability": 0.962130069732666,
+          "id": "w0351"
+        },
+        {
+          "text": "I",
+          "start": 140.54,
+          "end": 140.64,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8787403106689453,
+          "id": "w0352"
+        },
+        {
+          "text": "looked",
+          "start": 140.64,
+          "end": 140.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.970130205154419,
+          "id": "w0353"
+        },
+        {
+          "text": "for",
+          "start": 140.78,
+          "end": 141.02,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9983698725700378,
+          "id": "w0354"
+        },
+        {
+          "text": "a",
+          "start": 141.02,
+          "end": 141.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965381622314453,
+          "id": "w0355"
+        },
+        {
+          "text": "new",
+          "start": 141.14,
+          "end": 141.26,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9957759976387024,
+          "id": "w0356"
+        },
+        {
+          "text": "coach,",
+          "start": 141.26,
+          "end": 141.52,
+          "timingStatus": "text-corrected",
+          "probability": 0.9913079142570496,
+          "id": "w0357"
+        },
+        {
+          "text": "and",
+          "start": 141.52,
+          "end": 142.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.5293516516685486,
+          "id": "w0358"
+        },
+        {
+          "text": "I",
+          "start": 142.22,
+          "end": 142.34,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9842462539672852,
+          "id": "w0359"
+        },
+        {
+          "text": "found",
+          "start": 142.34,
+          "end": 142.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9983721375465393,
+          "id": "w0360"
+        },
+        {
+          "text": "one.",
+          "start": 142.6,
+          "end": 142.86,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9975264668464661,
+          "id": "w0361"
+        }
+      ]
+    },
+    {
+      "id": "s042",
+      "sourceTurnId": "t22",
+      "speaker": "Ricky",
+      "text": "He was an old school friend, actually.",
+      "start": 143.26,
+      "end": 145.14,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "He",
+          "start": 143.26,
+          "end": 143.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9909703731536865,
+          "id": "w0362"
+        },
+        {
+          "text": "was",
+          "start": 143.56,
+          "end": 143.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9984301924705505,
+          "id": "w0363"
+        },
+        {
+          "text": "an",
+          "start": 143.66,
+          "end": 143.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9913318157196045,
+          "id": "w0364"
+        },
+        {
+          "text": "old",
+          "start": 143.8,
+          "end": 143.94,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9978615641593933,
+          "id": "w0365"
+        },
+        {
+          "text": "school",
+          "start": 143.94,
+          "end": 144.2,
+          "timingStatus": "text-corrected",
+          "probability": 0.61372971534729,
+          "id": "w0366"
+        },
+        {
+          "text": "friend,",
+          "start": 144.2,
+          "end": 144.64,
+          "timingStatus": "text-corrected",
+          "probability": 0.9923102855682373,
+          "id": "w0367"
+        },
+        {
+          "text": "actually.",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.47004958987236023,
+          "id": "w0368"
+        }
+      ]
+    },
+    {
+      "id": "s043",
+      "sourceTurnId": "t23",
+      "speaker": "Stella",
+      "text": "What has Sea Friends got planned for the future, Ricky?",
+      "start": 145.14,
+      "end": 148.24,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "What",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.08288925886154175,
+          "id": "w0369"
+        },
+        {
+          "text": "has",
+          "start": 146.04,
+          "end": 146.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9004708528518677,
+          "id": "w0370"
+        },
+        {
+          "text": "Sea",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.1341935396194458,
+          "id": "w0371"
+        },
+        {
+          "text": "Friends",
+          "start": 146.42,
+          "end": 146.68,
+          "timingStatus": "text-corrected",
+          "probability": 0.9427422285079956,
+          "id": "w0372"
+        },
+        {
+          "text": "got",
+          "start": 146.68,
+          "end": 146.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9709485173225403,
+          "id": "w0373"
+        },
+        {
+          "text": "planned",
+          "start": 146.9,
+          "end": 147.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9909810423851013,
+          "id": "w0374"
+        },
+        {
+          "text": "for",
+          "start": 147.16,
+          "end": 147.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9983112812042236,
+          "id": "w0375"
+        },
+        {
+          "text": "the",
+          "start": 147.48,
+          "end": 147.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9965068697929382,
+          "id": "w0376"
+        },
+        {
+          "text": "future,",
+          "start": 147.6,
+          "end": 147.9,
+          "timingStatus": "text-corrected",
+          "probability": 0.9948742985725403,
+          "id": "w0377"
+        },
+        {
+          "text": "Ricky?",
+          "start": 147.9,
+          "end": 148.24,
+          "timingStatus": "text-corrected",
+          "probability": 0.6800625920295715,
+          "id": "w0378"
+        }
+      ]
+    },
+    {
+      "id": "s044",
+      "sourceTurnId": "t23",
+      "speaker": "Stella",
+      "text": "Anything on the horizon?",
+      "start": 148.24,
+      "end": 149.82,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Anything",
+          "start": 148.24,
+          "end": 148.98,
+          "timingStatus": "text-corrected",
+          "probability": 0.528986930847168,
+          "id": "w0379"
+        },
+        {
+          "text": "on",
+          "start": 148.98,
+          "end": 149.3,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9740771055221558,
+          "id": "w0380"
+        },
+        {
+          "text": "the",
+          "start": 149.3,
+          "end": 149.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971115589141846,
+          "id": "w0381"
+        },
+        {
+          "text": "horizon?",
+          "start": 149.44,
+          "end": 149.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.993427038192749,
+          "id": "w0382"
+        }
+      ]
+    },
+    {
+      "id": "s045",
+      "sourceTurnId": "t24",
+      "speaker": "Ricky",
+      "text": "I'm glad you asked.",
+      "start": 150.4,
+      "end": 151.38,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "I'm",
+          "start": 150.4,
+          "end": 150.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9846077561378479,
+          "id": "w0383"
+        },
+        {
+          "text": "glad",
+          "start": 150.62,
+          "end": 150.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9985612034797668,
+          "id": "w0384"
+        },
+        {
+          "text": "you",
+          "start": 150.84,
+          "end": 151.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9921783208847046,
+          "id": "w0385"
+        },
+        {
+          "text": "asked.",
+          "start": 151.06,
+          "end": 151.38,
+          "timingStatus": "text-corrected",
+          "probability": 0.9963108897209167,
+          "id": "w0386"
+        }
+      ]
+    },
+    {
+      "id": "s046",
+      "sourceTurnId": "t24",
+      "speaker": "Ricky",
+      "text": "Next year we're starting the Grand Island Project.",
+      "start": 151.38,
+      "end": 154.88,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Next",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.4332680404186249,
+          "id": "w0387"
+        },
+        {
+          "text": "year",
+          "start": 152.06,
+          "end": 152.52,
+          "timingStatus": "text-corrected",
+          "probability": 0.9837329983711243,
+          "id": "w0388"
+        },
+        {
+          "text": "we're",
+          "start": 152.82,
+          "end": 153.06,
+          "timingStatus": "text-corrected",
+          "probability": 0.9942559003829956,
+          "id": "w0389"
+        },
+        {
+          "text": "starting",
+          "start": 153.06,
+          "end": 153.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9963613152503967,
+          "id": "w0390"
+        },
+        {
+          "text": "the",
+          "start": 153.28,
+          "end": 153.58,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9949422478675842,
+          "id": "w0391"
+        },
+        {
+          "text": "Grand",
+          "start": 153.58,
+          "end": 153.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8116855025291443,
+          "id": "w0392"
+        },
+        {
+          "text": "Island",
+          "start": 153.8,
+          "end": 154.38,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9873837828636169,
+          "id": "w0393"
+        },
+        {
+          "text": "Project.",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.49294373393058777,
+          "id": "w0394"
+        }
+      ]
+    },
+    {
+      "id": "s047",
+      "sourceTurnId": "t24",
+      "speaker": "Ricky",
+      "text": "We're all really excited about it.",
+      "start": 155.24,
+      "end": 157.02,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "We're",
+          "start": 155.24,
+          "end": 155.5,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9969159662723541,
+          "id": "w0395"
+        },
+        {
+          "text": "all",
+          "start": 155.5,
+          "end": 155.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9945517182350159,
+          "id": "w0396"
+        },
+        {
+          "text": "really",
+          "start": 155.62,
+          "end": 155.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9954774975776672,
+          "id": "w0397"
+        },
+        {
+          "text": "excited",
+          "start": 155.98,
+          "end": 156.4,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9984412789344788,
+          "id": "w0398"
+        },
+        {
+          "text": "about",
+          "start": 156.4,
+          "end": 156.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.994205892086029,
+          "id": "w0399"
+        },
+        {
+          "text": "it.",
+          "start": 156.82,
+          "end": 157.02,
+          "timingStatus": "text-corrected",
+          "probability": 0.9949092268943787,
+          "id": "w0400"
+        }
+      ]
+    },
+    {
+      "id": "s048",
+      "sourceTurnId": "t25",
+      "speaker": "Stella",
+      "text": "And what's the Grand Island Project?",
+      "start": 157.02,
+      "end": 158.86,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "And",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.27877408266067505,
+          "id": "w0401"
+        },
+        {
+          "text": "what's",
+          "start": 157.5,
+          "end": 157.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9933337569236755,
+          "id": "w0402"
+        },
+        {
+          "text": "the",
+          "start": 157.8,
+          "end": 157.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.99611496925354,
+          "id": "w0403"
+        },
+        {
+          "text": "Grand",
+          "start": 157.9,
+          "end": 158.08,
+          "timingStatus": "machine-aligned",
+          "probability": 0.6686484217643738,
+          "id": "w0404"
+        },
+        {
+          "text": "Island",
+          "start": 158.08,
+          "end": 158.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9954187870025635,
+          "id": "w0405"
+        },
+        {
+          "text": "Project?",
+          "start": 158.52,
+          "end": 158.86,
+          "timingStatus": "text-corrected",
+          "probability": 0.7671515941619873,
+          "id": "w0406"
+        }
+      ]
+    },
+    {
+      "id": "s049",
+      "sourceTurnId": "t26",
+      "speaker": "Ricky",
+      "text": "We're going to swim around every island in Hong Kong.",
+      "start": 159.54,
+      "end": 162.52,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "We're",
+          "start": 159.54,
+          "end": 159.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9809940755367279,
+          "id": "w0407"
+        },
+        {
+          "text": "going",
+          "start": 159.72,
+          "end": 159.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9993519186973572,
+          "id": "w0408"
+        },
+        {
+          "text": "to",
+          "start": 159.92,
+          "end": 160.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9997817873954773,
+          "id": "w0409"
+        },
+        {
+          "text": "swim",
+          "start": 160.06,
+          "end": 160.24,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9945008754730225,
+          "id": "w0410"
+        },
+        {
+          "text": "around",
+          "start": 160.24,
+          "end": 160.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9990860223770142,
+          "id": "w0411"
+        },
+        {
+          "text": "every",
+          "start": 160.56,
+          "end": 160.86,
+          "timingStatus": "machine-aligned",
+          "probability": 0.981489360332489,
+          "id": "w0412"
+        },
+        {
+          "text": "island",
+          "start": 160.86,
+          "end": 161.38,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8148549795150757,
+          "id": "w0413"
+        },
+        {
+          "text": "in",
+          "start": 161.38,
+          "end": 161.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9899798631668091,
+          "id": "w0414"
+        },
+        {
+          "text": "Hong",
+          "start": 161.92,
+          "end": 162.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9883047342300415,
+          "id": "w0415"
+        },
+        {
+          "text": "Kong.",
+          "start": 162.12,
+          "end": 162.52,
+          "timingStatus": "text-corrected",
+          "probability": 0.99649977684021,
+          "id": "w0416"
+        }
+      ]
+    },
+    {
+      "id": "s050",
+      "sourceTurnId": "t27",
+      "speaker": "Adrian",
+      "text": "That must be 250 islands.",
+      "start": 162.52,
+      "end": 165.62,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "That",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.0528145469725132,
+          "id": "w0417"
+        },
+        {
+          "text": "must",
+          "start": 163.24,
+          "end": 163.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9345151782035828,
+          "id": "w0418"
+        },
+        {
+          "text": "be",
+          "start": 163.52,
+          "end": 163.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9945706725120544,
+          "id": "w0419"
+        },
+        {
+          "text": "250",
+          "start": 163.8,
+          "end": 164.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9222398400306702,
+          "id": "w0420"
+        },
+        {
+          "text": "islands.",
+          "start": 164.2,
+          "end": 165.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9689512252807617,
+          "id": "w0421"
+        }
+      ]
+    },
+    {
+      "id": "s051",
+      "sourceTurnId": "t27",
+      "speaker": "Adrian",
+      "text": "How are you going to manage that?",
+      "start": 166.4,
+      "end": 168.08,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "How",
+          "start": 166.4,
+          "end": 166.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.985458254814148,
+          "id": "w0422"
+        },
+        {
+          "text": "are",
+          "start": 166.68,
+          "end": 166.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9807721376419067,
+          "id": "w0423"
+        },
+        {
+          "text": "you",
+          "start": 166.82,
+          "end": 166.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9934834837913513,
+          "id": "w0424"
+        },
+        {
+          "text": "going",
+          "start": 166.9,
+          "end": 167.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9932859539985657,
+          "id": "w0425"
+        },
+        {
+          "text": "to",
+          "start": 167.14,
+          "end": 167.34,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9982738494873047,
+          "id": "w0426"
+        },
+        {
+          "text": "manage",
+          "start": 167.34,
+          "end": 167.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9946579337120056,
+          "id": "w0427"
+        },
+        {
+          "text": "that?",
+          "start": 167.66,
+          "end": 168.08,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9874196648597717,
+          "id": "w0428"
+        }
+      ]
+    },
+    {
+      "id": "s052",
+      "sourceTurnId": "t28",
+      "speaker": "Ricky",
+      "text": "263 islands to be precise.",
+      "start": 169.32,
+      "end": 171.26,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "263",
+          "start": 169.32,
+          "end": 169.88,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9305232763290405,
+          "id": "w0429"
+        },
+        {
+          "text": "islands",
+          "start": 169.88,
+          "end": 170.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9576984643936157,
+          "id": "w0430"
+        },
+        {
+          "text": "to",
+          "start": 170.44,
+          "end": 170.74,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8454168438911438,
+          "id": "w0431"
+        },
+        {
+          "text": "be",
+          "start": 170.74,
+          "end": 170.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9987449645996094,
+          "id": "w0432"
+        },
+        {
+          "text": "precise.",
+          "start": 170.9,
+          "end": 171.26,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9977514147758484,
+          "id": "w0433"
+        }
+      ]
+    },
+    {
+      "id": "s053",
+      "sourceTurnId": "t28",
+      "speaker": "Ricky",
+      "text": "We're not doing all the islands at once, but we will eventually swim around every island in Hong Kong.",
+      "start": 172.2,
+      "end": 177.86,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "We're",
+          "start": 172.2,
+          "end": 172.32,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9595505893230438,
+          "id": "w0434"
+        },
+        {
+          "text": "not",
+          "start": 172.32,
+          "end": 172.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.999113142490387,
+          "id": "w0435"
+        },
+        {
+          "text": "doing",
+          "start": 172.46,
+          "end": 172.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9960569143295288,
+          "id": "w0436"
+        },
+        {
+          "text": "all",
+          "start": 172.72,
+          "end": 172.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9972266554832458,
+          "id": "w0437"
+        },
+        {
+          "text": "the",
+          "start": 172.98,
+          "end": 173.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9795153737068176,
+          "id": "w0438"
+        },
+        {
+          "text": "islands",
+          "start": 173.14,
+          "end": 173.4,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9942458271980286,
+          "id": "w0439"
+        },
+        {
+          "text": "at",
+          "start": 173.4,
+          "end": 173.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9951162338256836,
+          "id": "w0440"
+        },
+        {
+          "text": "once,",
+          "start": 173.62,
+          "end": 173.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9997476935386658,
+          "id": "w0441"
+        },
+        {
+          "text": "but",
+          "start": 173.82,
+          "end": 174.54,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9914689064025879,
+          "id": "w0442"
+        },
+        {
+          "text": "we",
+          "start": 174.54,
+          "end": 174.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9963521957397461,
+          "id": "w0443"
+        },
+        {
+          "text": "will",
+          "start": 174.68,
+          "end": 174.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9874342083930969,
+          "id": "w0444"
+        },
+        {
+          "text": "eventually",
+          "start": 174.98,
+          "end": 175.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9974879026412964,
+          "id": "w0445"
+        },
+        {
+          "text": "swim",
+          "start": 175.44,
+          "end": 175.94,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9934114813804626,
+          "id": "w0446"
+        },
+        {
+          "text": "around",
+          "start": 175.94,
+          "end": 176.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9976179003715515,
+          "id": "w0447"
+        },
+        {
+          "text": "every",
+          "start": 176.36,
+          "end": 176.64,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9942765831947327,
+          "id": "w0448"
+        },
+        {
+          "text": "island",
+          "start": 176.64,
+          "end": 177.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9792838096618652,
+          "id": "w0449"
+        },
+        {
+          "text": "in",
+          "start": 177.2,
+          "end": 177.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9945775270462036,
+          "id": "w0450"
+        },
+        {
+          "text": "Hong",
+          "start": 177.36,
+          "end": 177.5,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9958103895187378,
+          "id": "w0451"
+        },
+        {
+          "text": "Kong.",
+          "start": 177.5,
+          "end": 177.86,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9973413348197937,
+          "id": "w0452"
+        }
+      ]
+    },
+    {
+      "id": "s054",
+      "sourceTurnId": "t28",
+      "speaker": "Ricky",
+      "text": "It's going to take a while, but it's a group effort and teams can choose which island they want to do.",
+      "start": 178.38,
+      "end": 184.16,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "It's",
+          "start": 178.38,
+          "end": 178.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.993826687335968,
+          "id": "w0453"
+        },
+        {
+          "text": "going",
+          "start": 178.56,
+          "end": 178.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9982362985610962,
+          "id": "w0454"
+        },
+        {
+          "text": "to",
+          "start": 178.78,
+          "end": 178.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9981706142425537,
+          "id": "w0455"
+        },
+        {
+          "text": "take",
+          "start": 178.96,
+          "end": 179.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9990944862365723,
+          "id": "w0456"
+        },
+        {
+          "text": "a",
+          "start": 179.16,
+          "end": 179.3,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9313840270042419,
+          "id": "w0457"
+        },
+        {
+          "text": "while,",
+          "start": 179.3,
+          "end": 179.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.999053418636322,
+          "id": "w0458"
+        },
+        {
+          "text": "but",
+          "start": 179.56,
+          "end": 180.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9969006776809692,
+          "id": "w0459"
+        },
+        {
+          "text": "it's",
+          "start": 180.28,
+          "end": 180.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9953087866306305,
+          "id": "w0460"
+        },
+        {
+          "text": "a",
+          "start": 180.46,
+          "end": 180.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9977055191993713,
+          "id": "w0461"
+        },
+        {
+          "text": "group",
+          "start": 180.52,
+          "end": 180.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9957083463668823,
+          "id": "w0462"
+        },
+        {
+          "text": "effort",
+          "start": 180.76,
+          "end": 181.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9994925260543823,
+          "id": "w0463"
+        },
+        {
+          "text": "and",
+          "start": 181.04,
+          "end": 181.56,
+          "timingStatus": "machine-aligned",
+          "probability": 0.6054877638816833,
+          "id": "w0464"
+        },
+        {
+          "text": "teams",
+          "start": 181.56,
+          "end": 181.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9929559230804443,
+          "id": "w0465"
+        },
+        {
+          "text": "can",
+          "start": 181.84,
+          "end": 182.14,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9986599683761597,
+          "id": "w0466"
+        },
+        {
+          "text": "choose",
+          "start": 182.14,
+          "end": 182.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9971146583557129,
+          "id": "w0467"
+        },
+        {
+          "text": "which",
+          "start": 182.48,
+          "end": 182.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9967089891433716,
+          "id": "w0468"
+        },
+        {
+          "text": "island",
+          "start": 182.92,
+          "end": 183.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9898001551628113,
+          "id": "w0469"
+        },
+        {
+          "text": "they",
+          "start": 183.36,
+          "end": 183.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9980999827384949,
+          "id": "w0470"
+        },
+        {
+          "text": "want",
+          "start": 183.6,
+          "end": 183.78,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9990177154541016,
+          "id": "w0471"
+        },
+        {
+          "text": "to",
+          "start": 183.78,
+          "end": 183.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998971700668335,
+          "id": "w0472"
+        },
+        {
+          "text": "do.",
+          "start": 183.98,
+          "end": 184.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9976603984832764,
+          "id": "w0473"
+        }
+      ]
+    },
+    {
+      "id": "s055",
+      "sourceTurnId": "t29",
+      "speaker": "Adrian",
+      "text": "Sounds \"Grand\" indeed.",
+      "start": 184.66,
+      "end": 185.96,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Sounds",
+          "start": 184.66,
+          "end": 185.0,
+          "timingStatus": "machine-aligned",
+          "probability": 0.970258891582489,
+          "id": "w0474"
+        },
+        {
+          "text": "\"Grand\"",
+          "start": 185.0,
+          "end": 185.58,
+          "timingStatus": "text-corrected",
+          "probability": 0.9696748852729797,
+          "id": "w0475"
+        },
+        {
+          "text": "indeed.",
+          "start": 185.58,
+          "end": 185.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.7270796895027161,
+          "id": "w0476"
+        }
+      ]
+    },
+    {
+      "id": "s056",
+      "sourceTurnId": "t29",
+      "speaker": "Adrian",
+      "text": "Good luck with it.",
+      "start": 186.96,
+      "end": 187.72,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Good",
+          "start": 186.96,
+          "end": 187.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9966670870780945,
+          "id": "w0477"
+        },
+        {
+          "text": "luck",
+          "start": 187.04,
+          "end": 187.32,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9997058510780334,
+          "id": "w0478"
+        },
+        {
+          "text": "with",
+          "start": 187.32,
+          "end": 187.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9976772665977478,
+          "id": "w0479"
+        },
+        {
+          "text": "it.",
+          "start": 187.52,
+          "end": 187.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9759402871131897,
+          "id": "w0480"
+        }
+      ]
+    },
+    {
+      "id": "s057",
+      "sourceTurnId": "t30",
+      "speaker": "Stella",
+      "text": "Ricky, you told us before we recorded that Sea Friends is opening up for anyone to join.",
+      "start": 187.72,
+      "end": 194.06,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Ricky,",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.2318165861070156,
+          "id": "w0481"
+        },
+        {
+          "text": "you",
+          "start": 189.0,
+          "end": 189.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9547423720359802,
+          "id": "w0482"
+        },
+        {
+          "text": "told",
+          "start": 189.12,
+          "end": 189.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9596158862113953,
+          "id": "w0483"
+        },
+        {
+          "text": "us",
+          "start": 189.46,
+          "end": 189.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9939965009689331,
+          "id": "w0484"
+        },
+        {
+          "text": "before",
+          "start": 189.62,
+          "end": 189.94,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9800123572349548,
+          "id": "w0485"
+        },
+        {
+          "text": "we",
+          "start": 189.94,
+          "end": 190.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9174439907073975,
+          "id": "w0486"
+        },
+        {
+          "text": "recorded",
+          "start": 190.22,
+          "end": 190.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9226487278938293,
+          "id": "w0487"
+        },
+        {
+          "text": "that",
+          "start": 190.7,
+          "end": 191.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9329296946525574,
+          "id": "w0488"
+        },
+        {
+          "text": "Sea",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.1534545123577118,
+          "id": "w0489"
+        },
+        {
+          "text": "Friends",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.45292237401008606,
+          "id": "w0490"
+        },
+        {
+          "text": "is",
+          "start": 191.9,
+          "end": 192.16,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9828694462776184,
+          "id": "w0491"
+        },
+        {
+          "text": "opening",
+          "start": 192.16,
+          "end": 192.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9620978236198425,
+          "id": "w0492"
+        },
+        {
+          "text": "up",
+          "start": 192.6,
+          "end": 192.94,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9703613519668579,
+          "id": "w0493"
+        },
+        {
+          "text": "for",
+          "start": 192.94,
+          "end": 193.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9924560785293579,
+          "id": "w0494"
+        },
+        {
+          "text": "anyone",
+          "start": 193.12,
+          "end": 193.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9631475806236267,
+          "id": "w0495"
+        },
+        {
+          "text": "to",
+          "start": 193.44,
+          "end": 193.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9930427074432373,
+          "id": "w0496"
+        },
+        {
+          "text": "join.",
+          "start": 193.82,
+          "end": 194.06,
+          "timingStatus": "text-corrected",
+          "probability": 0.9991833567619324,
+          "id": "w0497"
+        }
+      ]
+    },
+    {
+      "id": "s058",
+      "sourceTurnId": "t30",
+      "speaker": "Stella",
+      "text": "So, why should our listeners join Sea Friends?",
+      "start": 194.64,
+      "end": 197.26,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "So,",
+          "start": 194.64,
+          "end": 194.96,
+          "timingStatus": "text-corrected",
+          "probability": 0.9546867609024048,
+          "id": "w0498"
+        },
+        {
+          "text": "why",
+          "start": 194.96,
+          "end": 195.54,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9494603872299194,
+          "id": "w0499"
+        },
+        {
+          "text": "should",
+          "start": 195.54,
+          "end": 195.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9962918758392334,
+          "id": "w0500"
+        },
+        {
+          "text": "our",
+          "start": 195.76,
+          "end": 195.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9816633462905884,
+          "id": "w0501"
+        },
+        {
+          "text": "listeners",
+          "start": 195.9,
+          "end": 196.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9955169558525085,
+          "id": "w0502"
+        },
+        {
+          "text": "join",
+          "start": 196.2,
+          "end": 196.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9961066842079163,
+          "id": "w0503"
+        },
+        {
+          "text": "Sea",
+          "start": 196.68,
+          "end": 196.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9861313104629517,
+          "id": "w0504"
+        },
+        {
+          "text": "Friends?",
+          "start": 196.92,
+          "end": 197.26,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9617878794670105,
+          "id": "w0505"
+        }
+      ]
+    },
+    {
+      "id": "s059",
+      "sourceTurnId": "t31",
+      "speaker": "Ricky",
+      "text": "Well, it's free for one thing.",
+      "start": 197.8,
+      "end": 200.22,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Well,",
+          "start": 197.8,
+          "end": 198.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.835058867931366,
+          "id": "w0506"
+        },
+        {
+          "text": "it's",
+          "start": 198.7,
+          "end": 198.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9671831727027893,
+          "id": "w0507"
+        },
+        {
+          "text": "free",
+          "start": 198.98,
+          "end": 199.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.911322295665741,
+          "id": "w0508"
+        },
+        {
+          "text": "for",
+          "start": 199.28,
+          "end": 199.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8771550059318542,
+          "id": "w0509"
+        },
+        {
+          "text": "one",
+          "start": 199.76,
+          "end": 199.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9902036190032959,
+          "id": "w0510"
+        },
+        {
+          "text": "thing.",
+          "start": 199.96,
+          "end": 200.22,
+          "timingStatus": "text-corrected",
+          "probability": 0.995895504951477,
+          "id": "w0511"
+        }
+      ]
+    },
+    {
+      "id": "s060",
+      "sourceTurnId": "t31",
+      "speaker": "Ricky",
+      "text": "Members don't need to pay anything.",
+      "start": 200.7,
+      "end": 202.4,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Members",
+          "start": 200.7,
+          "end": 201.1,
+          "timingStatus": "text-corrected",
+          "probability": 0.9186877608299255,
+          "id": "w0512"
+        },
+        {
+          "text": "don't",
+          "start": 201.1,
+          "end": 201.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9950152337551117,
+          "id": "w0513"
+        },
+        {
+          "text": "need",
+          "start": 201.46,
+          "end": 201.6,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9961037635803223,
+          "id": "w0514"
+        },
+        {
+          "text": "to",
+          "start": 201.6,
+          "end": 201.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.996956467628479,
+          "id": "w0515"
+        },
+        {
+          "text": "pay",
+          "start": 201.76,
+          "end": 201.98,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968796968460083,
+          "id": "w0516"
+        },
+        {
+          "text": "anything.",
+          "start": 201.98,
+          "end": 202.4,
+          "timingStatus": "text-corrected",
+          "probability": 0.9951935410499573,
+          "id": "w0517"
+        }
+      ]
+    },
+    {
+      "id": "s061",
+      "sourceTurnId": "t31",
+      "speaker": "Ricky",
+      "text": "And there's nothing better than swimming.",
+      "start": 203.08,
+      "end": 204.72,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "And",
+          "start": 203.08,
+          "end": 203.38,
+          "timingStatus": "text-corrected",
+          "probability": 0.9940915703773499,
+          "id": "w0518"
+        },
+        {
+          "text": "there's",
+          "start": 203.38,
+          "end": 203.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9797551035881042,
+          "id": "w0519"
+        },
+        {
+          "text": "nothing",
+          "start": 203.62,
+          "end": 203.94,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9978960752487183,
+          "id": "w0520"
+        },
+        {
+          "text": "better",
+          "start": 203.94,
+          "end": 204.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9987326264381409,
+          "id": "w0521"
+        },
+        {
+          "text": "than",
+          "start": 204.22,
+          "end": 204.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.990156888961792,
+          "id": "w0522"
+        },
+        {
+          "text": "swimming.",
+          "start": 204.48,
+          "end": 204.72,
+          "timingStatus": "machine-aligned",
+          "probability": 0.990006685256958,
+          "id": "w0523"
+        }
+      ]
+    },
+    {
+      "id": "s062",
+      "sourceTurnId": "t31",
+      "speaker": "Ricky",
+      "text": "Swimming is the best kind of exercise.",
+      "start": 205.42,
+      "end": 207.44,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Swimming",
+          "start": 205.42,
+          "end": 205.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9877104461193085,
+          "id": "w0524"
+        },
+        {
+          "text": "is",
+          "start": 205.84,
+          "end": 206.22,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9978764057159424,
+          "id": "w0525"
+        },
+        {
+          "text": "the",
+          "start": 206.22,
+          "end": 206.4,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9966657757759094,
+          "id": "w0526"
+        },
+        {
+          "text": "best",
+          "start": 206.4,
+          "end": 206.68,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9956763386726379,
+          "id": "w0527"
+        },
+        {
+          "text": "kind",
+          "start": 206.68,
+          "end": 207.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9898138642311096,
+          "id": "w0528"
+        },
+        {
+          "text": "of",
+          "start": 207.04,
+          "end": 207.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.99814772605896,
+          "id": "w0529"
+        },
+        {
+          "text": "exercise.",
+          "start": 207.2,
+          "end": 207.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9988999366760254,
+          "id": "w0530"
+        }
+      ]
+    },
+    {
+      "id": "s063",
+      "sourceTurnId": "t31",
+      "speaker": "Ricky",
+      "text": "I tell this to everybody.",
+      "start": 208.22,
+      "end": 209.46,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "I",
+          "start": 208.22,
+          "end": 208.3,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9977462887763977,
+          "id": "w0531"
+        },
+        {
+          "text": "tell",
+          "start": 208.3,
+          "end": 208.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9953306913375854,
+          "id": "w0532"
+        },
+        {
+          "text": "this",
+          "start": 208.52,
+          "end": 208.74,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9962737560272217,
+          "id": "w0533"
+        },
+        {
+          "text": "to",
+          "start": 208.74,
+          "end": 208.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989728927612305,
+          "id": "w0534"
+        },
+        {
+          "text": "everybody.",
+          "start": 208.92,
+          "end": 209.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.980469286441803,
+          "id": "w0535"
+        }
+      ]
+    },
+    {
+      "id": "s064",
+      "sourceTurnId": "t31",
+      "speaker": "Ricky",
+      "text": "Another reason to join is you meet so many different people.",
+      "start": 210.14,
+      "end": 213.36,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Another",
+          "start": 210.14,
+          "end": 210.34,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968715310096741,
+          "id": "w0536"
+        },
+        {
+          "text": "reason",
+          "start": 210.34,
+          "end": 210.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989181756973267,
+          "id": "w0537"
+        },
+        {
+          "text": "to",
+          "start": 210.7,
+          "end": 211.0,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9956892132759094,
+          "id": "w0538"
+        },
+        {
+          "text": "join",
+          "start": 211.0,
+          "end": 211.28,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9989468455314636,
+          "id": "w0539"
+        },
+        {
+          "text": "is",
+          "start": 211.28,
+          "end": 211.74,
+          "timingStatus": "machine-aligned",
+          "probability": 0.8437722325325012,
+          "id": "w0540"
+        },
+        {
+          "text": "you",
+          "start": 211.74,
+          "end": 211.9,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9534628391265869,
+          "id": "w0541"
+        },
+        {
+          "text": "meet",
+          "start": 211.9,
+          "end": 212.08,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9964503049850464,
+          "id": "w0542"
+        },
+        {
+          "text": "so",
+          "start": 212.08,
+          "end": 212.46,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9966000914573669,
+          "id": "w0543"
+        },
+        {
+          "text": "many",
+          "start": 212.46,
+          "end": 212.66,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9996726512908936,
+          "id": "w0544"
+        },
+        {
+          "text": "different",
+          "start": 212.66,
+          "end": 212.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9921212196350098,
+          "id": "w0545"
+        },
+        {
+          "text": "people.",
+          "start": 212.96,
+          "end": 213.36,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9993754029273987,
+          "id": "w0546"
+        }
+      ]
+    },
+    {
+      "id": "s065",
+      "sourceTurnId": "t31",
+      "speaker": "Ricky",
+      "text": "That's my favourite part: all the friends you make.",
+      "start": 213.82,
+      "end": 216.44,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "That's",
+          "start": 213.82,
+          "end": 214.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9955457150936127,
+          "id": "w0547"
+        },
+        {
+          "text": "my",
+          "start": 214.2,
+          "end": 214.34,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9978731870651245,
+          "id": "w0548"
+        },
+        {
+          "text": "favourite",
+          "start": 214.34,
+          "end": 214.66,
+          "timingStatus": "text-corrected",
+          "probability": 0.8668240904808044,
+          "id": "w0549"
+        },
+        {
+          "text": "part:",
+          "start": 214.66,
+          "end": 214.98,
+          "timingStatus": "text-corrected",
+          "probability": 0.9995076656341553,
+          "id": "w0550"
+        },
+        {
+          "text": "all",
+          "start": 215.46,
+          "end": 215.7,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9774544835090637,
+          "id": "w0551"
+        },
+        {
+          "text": "the",
+          "start": 215.7,
+          "end": 215.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9944303631782532,
+          "id": "w0552"
+        },
+        {
+          "text": "friends",
+          "start": 215.84,
+          "end": 216.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9947521686553955,
+          "id": "w0553"
+        },
+        {
+          "text": "you",
+          "start": 216.06,
+          "end": 216.26,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9937781095504761,
+          "id": "w0554"
+        },
+        {
+          "text": "make.",
+          "start": 216.26,
+          "end": 216.44,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9970366954803467,
+          "id": "w0555"
+        }
+      ]
+    },
+    {
+      "id": "s066",
+      "sourceTurnId": "t32",
+      "speaker": "Stella",
+      "text": "You heard it here first, listeners.",
+      "start": 216.44,
+      "end": 218.58,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "You",
+          "start": 216.44,
+          "end": 217.06,
+          "timingStatus": "machine-aligned",
+          "probability": 0.5487722754478455,
+          "id": "w0556"
+        },
+        {
+          "text": "heard",
+          "start": 217.06,
+          "end": 217.32,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9625592827796936,
+          "id": "w0557"
+        },
+        {
+          "text": "it",
+          "start": 217.32,
+          "end": 217.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9876613616943359,
+          "id": "w0558"
+        },
+        {
+          "text": "here",
+          "start": 217.52,
+          "end": 217.76,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9109664559364319,
+          "id": "w0559"
+        },
+        {
+          "text": "first,",
+          "start": 217.76,
+          "end": 218.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9722315073013306,
+          "id": "w0560"
+        },
+        {
+          "text": "listeners.",
+          "start": 218.42,
+          "end": 218.58,
+          "timingStatus": "machine-aligned",
+          "probability": 0.6748749017715454,
+          "id": "w0561"
+        }
+      ]
+    },
+    {
+      "id": "s067",
+      "sourceTurnId": "t32",
+      "speaker": "Stella",
+      "text": "If you want to meet people and get the best kind of exercise, join Sea Friends.",
+      "start": 219.42,
+      "end": 223.96,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "If",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.9891102910041809,
+          "id": "w0562"
+        },
+        {
+          "text": "you",
+          "start": 219.42,
+          "end": 219.58,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9988497495651245,
+          "id": "w0563"
+        },
+        {
+          "text": "want",
+          "start": 219.58,
+          "end": 219.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9944063425064087,
+          "id": "w0564"
+        },
+        {
+          "text": "to",
+          "start": 219.82,
+          "end": 220.02,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9902245402336121,
+          "id": "w0565"
+        },
+        {
+          "text": "meet",
+          "start": 220.02,
+          "end": 220.2,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9968345761299133,
+          "id": "w0566"
+        },
+        {
+          "text": "people",
+          "start": 220.2,
+          "end": 220.62,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9935192465782166,
+          "id": "w0567"
+        },
+        {
+          "text": "and",
+          "start": 220.62,
+          "end": 220.92,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9329878687858582,
+          "id": "w0568"
+        },
+        {
+          "text": "get",
+          "start": 220.92,
+          "end": 221.1,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9863617420196533,
+          "id": "w0569"
+        },
+        {
+          "text": "the",
+          "start": 221.1,
+          "end": 221.24,
+          "timingStatus": "machine-aligned",
+          "probability": 0.996905505657196,
+          "id": "w0570"
+        },
+        {
+          "text": "best",
+          "start": 221.24,
+          "end": 221.52,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9858781099319458,
+          "id": "w0571"
+        },
+        {
+          "text": "kind",
+          "start": 221.52,
+          "end": 221.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9886003136634827,
+          "id": "w0572"
+        },
+        {
+          "text": "of",
+          "start": 221.96,
+          "end": 222.12,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9957801103591919,
+          "id": "w0573"
+        },
+        {
+          "text": "exercise,",
+          "start": 222.12,
+          "end": 222.82,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9951519966125488,
+          "id": "w0574"
+        },
+        {
+          "text": "join",
+          "start": 223.22,
+          "end": 223.4,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9904360175132751,
+          "id": "w0575"
+        },
+        {
+          "text": "Sea",
+          "start": null,
+          "end": null,
+          "timingStatus": "segment-only",
+          "probability": 0.35102221369743347,
+          "id": "w0576"
+        },
+        {
+          "text": "Friends.",
+          "start": 223.66,
+          "end": 223.96,
+          "timingStatus": "machine-aligned",
+          "probability": 0.7751141786575317,
+          "id": "w0577"
+        }
+      ]
+    },
+    {
+      "id": "s068",
+      "sourceTurnId": "t32",
+      "speaker": "Stella",
+      "text": "Thanks for joining us, Ricky.",
+      "start": 224.68,
+      "end": 225.84,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "Thanks",
+          "start": 224.68,
+          "end": 224.86,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9942100048065186,
+          "id": "w0578"
+        },
+        {
+          "text": "for",
+          "start": 224.86,
+          "end": 225.04,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9991416931152344,
+          "id": "w0579"
+        },
+        {
+          "text": "joining",
+          "start": 225.04,
+          "end": 225.26,
+          "timingStatus": "machine-aligned",
+          "probability": 0.993952214717865,
+          "id": "w0580"
+        },
+        {
+          "text": "us,",
+          "start": 225.26,
+          "end": 225.58,
+          "timingStatus": "machine-aligned",
+          "probability": 0.998909592628479,
+          "id": "w0581"
+        },
+        {
+          "text": "Ricky.",
+          "start": 225.6,
+          "end": 225.84,
+          "timingStatus": "machine-aligned",
+          "probability": 0.6557884216308594,
+          "id": "w0582"
+        }
+      ]
+    },
+    {
+      "id": "s069",
+      "sourceTurnId": "t33",
+      "speaker": "Ricky",
+      "text": "You're welcome.",
+      "start": 226.24,
+      "end": 226.8,
+      "timingStatus": "acoustically-bounded",
+      "words": [
+        {
+          "text": "You're",
+          "start": 226.24,
+          "end": 226.48,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9634971022605896,
+          "id": "w0583"
+        },
+        {
+          "text": "welcome.",
+          "start": 226.48,
+          "end": 226.8,
+          "timingStatus": "machine-aligned",
+          "probability": 0.9981750249862671,
+          "id": "w0584"
+        }
+      ]
+    }
+  ]
+}

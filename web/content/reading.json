@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 1,
+  "sets": [
+    {
+      "id": "reading-2025-a",
+      "title": "Celebrity Gossip",
+      "part": "A",
+      "minutes": 10,
+      "scope": "Text 1 第 1–3 段；原题 1、3、4、5(i)、7(i)/(iv)。短题组，不是整卷模拟。",
+      "source": "2025 P1 · A-RP-2；A QAB 第 1–2 页；2025 MS 第 139 页。原卷题号保留。句块划分、同义桥与中文解释由训练台编写。",
+      "paragraphs": [
+        {
+          "id": "a1",
+          "label": "[1]",
+          "segments": [
+            {
+              "id": "a1s1",
+              "text": "It’s 2023 and Joe Jonas has filed for divorce from Sophie Turner after four years of marriage."
+            },
+            {
+              "id": "a1s2",
+              "text": "Other personalities, including Taylor Swift and Joe Alwyn, Ariana Grande and Dalton Gomez, as well as Hugh Jackman and Deborra Lee all split up."
+            },
+            {
+              "id": "a1s3",
+              "text": "In fact, so many high-profile pairs have called it quits that some people have deemed 2023 ‘The Year of Celebrity Breakups.’"
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "label": "[2]",
+          "segments": [
+            {
+              "id": "a2s1",
+              "text": "Logically speaking, we shouldn’t be interested in this kind of scandalous speculation, this celebrity gossip."
+            },
+            {
+              "id": "a2s2",
+              "text": "The inner lives of celebrities have next to nothing to do with us, after all: we’re unlikely ever to meet them, and their romantic relationships have no bearing on how our own lives unravel, down here in the ‘real’ world."
+            },
+            {
+              "id": "a2s3",
+              "text": "‘And yet we are interested, even if we’re reluctant to admit it,’ says Dr. Alice Leppert, a media and communications professor who focuses on stardom and celebrity culture."
+            }
+          ]
+        },
+        {
+          "id": "a3",
+          "label": "[3]",
+          "segments": [
+            {
+              "id": "a3s1",
+              "text": "These public figures represent a lot of our highest goals, declares clinical psychologist and breakup coach Dr. Andrea Liner."
+            },
+            {
+              "id": "a3s2",
+              "text": "They tend to be attractive, wealthy, and considered successful, which many people assume makes them invulnerable to a lot of life’s problems."
+            },
+            {
+              "id": "a3s3",
+              "text": "‘So, when we find out that beautiful, gorgeous, wealthy celebrities are getting cheated on or divorcing or breaking up, it kind of humanizes them and can be validating for us to see that they have problems, too,’ she says."
+            },
+            {
+              "id": "a3s4",
+              "text": "‘But it can also confuse us because we think that they shouldn’t be having problems like that if they’ve achieved these levels of success."
+            },
+            {
+              "id": "a3s5",
+              "text": "Part of the problem is that celebrities may often perform an image or identity that doesn’t always align with their authentic selves,’ she adds."
+            },
+            {
+              "id": "a3s6",
+              "text": "Their marital problems can come as a shock if all the public saw was a happy family."
+            },
+            {
+              "id": "a3s7",
+              "text": "Liner says that’s especially true because celebrities share so much of their lives online, creating an ‘almost artificial sense of intimacy’ that obscures what’s happening behind the scenes."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "a-q1",
+          "number": "1",
+          "prompt": "According to paragraph 1, Joe Jonas…",
+          "type": "choice",
+          "answers": ["A"],
+          "evidenceSets": [["a1s1"]],
+          "explanation": "filed for divorce 表示已提出离婚申请，支持 A 的离婚意向。其余选项不能由本段推出。",
+          "bridge": ["intends to divorce ↔ has filed for divorce"],
+          "options": [
+            "A. intends to divorce his wife.",
+            "B. dislikes celebrity breakups.",
+            "C. has many high-profile friends.",
+            "D. loves following celebrity gossip."
+          ],
+          "skill": "事实定位"
+        },
+        {
+          "id": "a-q3",
+          "number": "3",
+          "prompt": "Find TWO phrases used in paragraph 1 to refer to ‘Breakups’ (line 4).",
+          "type": "multi",
+          "answers": [],
+          "evidenceSets": [
+            ["a1s1", "a1s2"],
+            ["a1s1", "a1s3"],
+            ["a1s2", "a1s3"]
+          ],
+          "explanation": "从三种说法选两种不同的：split up、(has) (filed for) divorce、(have) (called it) quits。两次写同一个意思只覆盖一项。",
+          "bridge": ["breakups ↔ split up / file for divorce / call it quits"],
+          "answerGroups": [
+            ["split up"],
+            ["divorce", "filed for divorce", "has filed for divorce"],
+            ["quits", "called it quits", "have called it quits"]
+          ],
+          "required": 2,
+          "skill": "多要点／同义"
+        },
+        {
+          "id": "a-q4",
+          "number": "4",
+          "prompt": "Who or what is the writer referring to when they use the phrase “down here in the ‘real’ world” (line 7)?",
+          "type": "text",
+          "answers": [
+            "the lives of ordinary people",
+            "the life of ordinary people",
+            "the lives of common people",
+            "the lives of normal people",
+            "ordinary people",
+            "normal people"
+          ],
+          "evidenceSets": [["a2s2"]],
+          "explanation": "这里的 us / our 与 celebrities 相对，指普通人的生活。不是让你描述一个地理地点。合理改写请按参考要点自核。",
+          "bridge": ["our own lives ↔ the lives of ordinary people"],
+          "skill": "指代"
+        },
+        {
+          "id": "a-q5i",
+          "number": "5(i)",
+          "prompt": "What does ‘it’ (line 8) refer to?",
+          "type": "text",
+          "answers": [
+            "we are interested in celebrity gossip",
+            "the fact that we are interested in celebrity gossip",
+            "we are interested in celebrities romantic relationships"
+          ],
+          "evidenceSets": [["a2s1", "a2s3"]],
+          "explanation": "admit it 的 it 指前面的事实：我们对明星八卦／感情生活感兴趣。不能只答 celebrity。需连回本段主题。",
+          "bridge": ["admit it ↔ admit that we are interested"],
+          "skill": "指代"
+        },
+        {
+          "id": "a-q7i",
+          "number": "7(i)",
+          "prompt": "Use ONE word from paragraph 3. The glamorous, rich and successful lifestyles of celebrities represent people’s ____.",
+          "type": "text",
+          "answers": ["goals"],
+          "evidenceSets": [["a3s1"]],
+          "explanation": "people’s 后面填名词。原文 highest goals 对应这些生活方式代表的目标；按题目只写一个词。",
+          "bridge": ["represent people’s… ↔ represent a lot of our highest goals"],
+          "skill": "词性／取词"
+        },
+        {
+          "id": "a-q7iv",
+          "number": "7(iv)",
+          "prompt": "Use ONE word from paragraph 3. Seeing that celebrities have similar experiences as ordinary people ____ celebrities.",
+          "type": "text",
+          "answers": ["humanizes", "humanises"],
+          "evidenceSets": [["a3s3"]],
+          "explanation": "Seeing… 整个动名词结构作主语，谓语用单数 humanises。英式 humanises 与原文 humanizes 均在参考答案内。",
+          "bridge": ["similar experiences as ordinary people ↔ they have problems, too"],
+          "skill": "词形"
+        }
+      ],
+      "breakdown": {
+        "sentence": "The inner lives of celebrities have next to nothing to do with us, after all: we’re unlikely ever to meet them, and their romantic relationships have no bearing on how our own lives unravel, down here in the ‘real’ world.",
+        "parts": [
+          {
+            "label": "主干",
+            "text": "The inner lives of celebrities have next to nothing to do with us."
+          },
+          {
+            "label": "解释 1",
+            "text": "We’re unlikely ever to meet them."
+          },
+          {
+            "label": "解释 2",
+            "text": "Their romantic relationships have no bearing on how our own lives unravel."
+          }
+        ],
+        "meaning": "明星的私人生活与我们几乎无关：我们大概不会遇见他们，他们的感情也不影响普通人的生活。",
+        "vocabulary": [
+          "have next to nothing to do with：与……几乎无关",
+          "have no bearing on：对……没有影响",
+          "reluctant to admit：不愿承认"
+        ]
+      }
+    },
+    {
+      "id": "reading-2025-b1",
+      "title": "Foraging in Hong Kong for Beginners",
+      "part": "B1",
+      "minutes": 10,
+      "scope": "Text 2；原题 22、23、25、26、27、28。短题组，图片题 24 不在本组。",
+      "source": "2025 P1 · B1-RP-2；B1 QAB 第 1–2 页；2025 MS 第 140 页。原卷题号保留。句块划分、同义桥与中文解释由训练台编写。",
+      "paragraphs": [
+        {
+          "id": "b0",
+          "label": "网站标题与菜单",
+          "segments": [
+            {
+              "id": "b0s1",
+              "text": "Foraging in Hong Kong for Beginners"
+            },
+            {
+              "id": "b0s2",
+              "text": "Home"
+            },
+            {
+              "id": "b0s3",
+              "text": "Foraging Info"
+            },
+            {
+              "id": "b0s4",
+              "text": "Videos"
+            },
+            {
+              "id": "b0s5",
+              "text": "Recipes"
+            },
+            {
+              "id": "b0s6",
+              "text": "About Us"
+            },
+            {
+              "id": "b0s7",
+              "text": "Join Us"
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "label": "[1] What is Foraging?",
+          "segments": [
+            {
+              "id": "b1s1",
+              "text": "Foraging is identifying, collecting, and eating plants like herbs, fruits, and nuts that grow wild in nature."
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "label": "[2] Foraging Guidelines",
+          "segments": [
+            {
+              "id": "b2s1",
+              "text": "Here are some rules that every forager should follow:"
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "label": "[3]",
+          "segments": [
+            {
+              "id": "b3s1",
+              "text": "Never start solo."
+            },
+            {
+              "id": "b3s2",
+              "text": "It’s essential to begin by partnering up with a local expert who can teach you the best ways to forage while also keeping you safe."
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "label": "[4]",
+          "segments": [
+            {
+              "id": "b4s1",
+              "text": "Familiarise yourself with the herbs, bushes, and trees around you."
+            },
+            {
+              "id": "b4s2",
+              "text": "Try to learn as much as possible about the ecosystem of which you are a part."
+            }
+          ]
+        },
+        {
+          "id": "b5",
+          "label": "[5]",
+          "segments": [
+            {
+              "id": "b5s1",
+              "text": "Learn to identify the poisonous plants you are likely to encounter."
+            },
+            {
+              "id": "b5s2",
+              "text": "DO NOT EAT ANYTHING YOU CANNOT POSITIVELY IDENTIFY AND KNOW TO BE SAFE."
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "label": "[6]",
+          "segments": [
+            {
+              "id": "b6s1",
+              "text": "Familiarise yourself with the plants that are listed on the endangered species list for your area."
+            },
+            {
+              "id": "b6s2",
+              "text": "Apart from being unethical, it is also illegal to pick endangered plant species."
+            }
+          ]
+        },
+        {
+          "id": "b7",
+          "label": "[7]",
+          "segments": [
+            {
+              "id": "b7s1",
+              "text": "Don’t be greedy!"
+            },
+            {
+              "id": "b7s2",
+              "text": "Only pick as much as you need and never take ALL the plants of any one kind in a given patch."
+            },
+            {
+              "id": "b7s3",
+              "text": "After harvesting an area, give the plants plenty of time to recover before returning to the same patch."
+            },
+            {
+              "id": "b7s4",
+              "text": "If in doubt, don’t collect."
+            }
+          ]
+        },
+        {
+          "id": "b8",
+          "label": "[8] Know the Law!",
+          "segments": [
+            {
+              "id": "b8s1",
+              "text": "The Agriculture, Fisheries and Conservation Department (AFCD) says it is illegal to cut, pick, or uproot any plant or part of a plant, whether living or dead, from within a country park area without express permission."
+            },
+            {
+              "id": "b8s2",
+              "text": "It’s also illegal to dig up plants from private land without permission from the landowner."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "b-q22",
+          "number": "22",
+          "prompt": "Who is Text 2 written for? People who…",
+          "type": "choice",
+          "answers": ["B"],
+          "evidenceSets": [["b0s1"]],
+          "explanation": "标题 for Beginners 已直接指出对象是初学者；从基础定义和安全守则也可确认。",
+          "bridge": ["are new to ↔ beginners"],
+          "options": [
+            "A. dislike foraging.",
+            "B. are new to foraging.",
+            "C. want to stop foraging.",
+            "D. know a lot about foraging."
+          ],
+          "skill": "读者／标题"
+        },
+        {
+          "id": "b-q23i",
+          "number": "23(i)",
+          "prompt": "Select a menu option: If you want to watch a lesson on foraging, choose ____. Use each option ONCE.",
+          "type": "text",
+          "answers": ["videos", "video"],
+          "evidenceSets": [["b0s4"]],
+          "explanation": "watch a lesson 对应视频，不是只读文字介绍。",
+          "bridge": ["watch a lesson ↔ Videos"],
+          "skill": "同义定位"
+        },
+        {
+          "id": "b-q23ii",
+          "number": "23(ii)",
+          "prompt": "Select a menu option: If you want to read more about this topic, choose ____. Use each option ONCE.",
+          "type": "text",
+          "answers": ["foraging info"],
+          "evidenceSets": [["b0s3"]],
+          "explanation": "info 是 information 的简写，提供关于采集的更多资料。",
+          "bridge": ["read more about this topic ↔ Foraging Info"],
+          "skill": "同义定位"
+        },
+        {
+          "id": "b-q23iii",
+          "number": "23(iii)",
+          "prompt": "Select a menu option: If you want to learn how to cook your finds, choose ____. Use each option ONCE.",
+          "type": "text",
+          "answers": ["recipes", "recipe"],
+          "evidenceSets": [["b0s5"]],
+          "explanation": "finds 在这里是采集所得；recipes 提供烹调做法。",
+          "bridge": ["how to cook ↔ Recipes"],
+          "skill": "语境词义"
+        },
+        {
+          "id": "b-q25",
+          "number": "25",
+          "prompt": "Which of the following best replaces ‘every’ (line 4)?",
+          "type": "choice",
+          "answers": ["C"],
+          "evidenceSets": [["b2s1"]],
+          "explanation": "every forager 指每一个采集者，each 同样逐一涵盖所有人。many 只表示许多。",
+          "bridge": ["every forager ↔ each forager"],
+          "options": ["A. one", "B. your", "C. each", "D. many"],
+          "skill": "同义／语法"
+        },
+        {
+          "id": "b-q26i",
+          "number": "26(i)",
+          "prompt": "Use ONE word from paragraph 4. To understand the (i) ____ we all belong to, look (ii) ____ and learn all you can about the local plant life. Fill (i).",
+          "type": "text",
+          "answers": ["ecosystem"],
+          "evidenceSets": [["b4s2"]],
+          "explanation": "the 后需要名词。of which you are a part 改写为 we all belong to。",
+          "bridge": ["of which you are a part ↔ we all belong to"],
+          "skill": "词性／取词"
+        },
+        {
+          "id": "b-q26ii",
+          "number": "26(ii)",
+          "prompt": "Use ONE word from paragraph 4. To understand the (i) ____ we all belong to, look (ii) ____ and learn all you can about the local plant life. Fill (ii).",
+          "type": "text",
+          "answers": ["around"],
+          "evidenceSets": [["b4s1"]],
+          "explanation": "这里组成 look around；不要抄名词 trees 或 bushes。先看空格需要什么形式，再从原文取一个词。",
+          "bridge": ["trees around you ↔ look around"],
+          "skill": "词形／搭配"
+        },
+        {
+          "id": "b-q27",
+          "number": "27",
+          "prompt": "State ONE piece of advice from paragraphs 3–7 to protect the health of foragers.",
+          "type": "text",
+          "answers": [
+            "learn to identify poisonous plants",
+            "do not eat anything you cannot positively identify",
+            "do not eat anything you cannot positively identify and know to be safe",
+            "never start solo",
+            "begin by partnering up with a local expert",
+            "start by partnering up with a local expert",
+            "partner up with a local expert"
+          ],
+          "evidenceSets": [["b5s1"], ["b5s2"], ["b3s1"], ["b3s2"]],
+          "explanation": "给出一项保护采集者健康的建议即可：识别有毒植物／不吃无法确认安全的东西／不要独行／找当地专家同行。保护濒危植物主要关乎生态，不能代替保护人的健康。",
+          "bridge": ["protect the health ↔ poisonous / safe / never start solo"],
+          "skill": "短答／筛选"
+        },
+        {
+          "id": "b-q28",
+          "number": "28",
+          "prompt": "The main purpose of Text 2 is to…",
+          "type": "choice",
+          "answers": ["B"],
+          "evidenceSets": [["b2s1", "b1s1"]],
+          "explanation": "文章解释定义并提供操作守则，主要目的是提供信息。没有正反论辩、批评或娱乐叙事。",
+          "bridge": ["definition + guidelines ↔ inform"],
+          "options": ["A. debate.", "B. inform.", "C. criticise.", "D. entertain."],
+          "skill": "写作目的"
+        }
+      ],
+      "breakdown": {
+        "sentence": "It’s essential to begin by partnering up with a local expert who can teach you the best ways to forage while also keeping you safe.",
+        "parts": [
+          {
+            "label": "主干",
+            "text": "It’s essential to begin by partnering up with a local expert."
+          },
+          {
+            "label": "修饰 expert",
+            "text": "who can teach you the best ways to forage"
+          },
+          {
+            "label": "同时发生",
+            "text": "while also keeping you safe"
+          }
+        ],
+        "meaning": "开始时应与当地专家同行；专家既能教你采集方法，也能保障安全。",
+        "vocabulary": ["partner up with：与……结伴", "poisonous：有毒的", "positively identify：确实辨认出"]
+      }
+    }
+  ]
+}

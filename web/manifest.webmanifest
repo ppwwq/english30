@@ -1,0 +1,20 @@
+{
+  "name": "English30 · 英文训练台",
+  "short_name": "English30",
+  "description": "用自己的真题精听、找阅读证据、练准确写句，并安排复习。",
+  "lang": "zh-Hans",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f1e8",
+  "theme_color": "#242522",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

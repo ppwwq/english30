@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "lessons": [
+    {
+      "id": "2025-task1-intro",
+      "title": "2025 · Sea Friends · 入门选段",
+      "url": "./lessons/2025-task1-intro.json",
+      "year": 2025,
+      "part": "A",
+      "task": "Task 1 · Q1–4",
+      "minutes": 1.5,
+      "contentGroup": "2025-a1"
+    },
+    {
+      "id": "2025-task1",
+      "title": "2025 HKDSE · Sea Friends",
+      "url": "./lessons/2025-task1.json",
+      "year": 2025,
+      "part": "A",
+      "task": "Task 1 · Q1–13",
+      "minutes": 3.8,
+      "contentGroup": "2025-a1"
+    },
+    {
+      "id": "2024-task2-intro",
+      "title": "2024 · Paqua Monna · 远航选段",
+      "url": "./lessons/2024-task2-intro.json",
+      "year": 2024,
+      "part": "A",
+      "task": "Task 2 · Q13–20",
+      "minutes": 2.0,
+      "contentGroup": "2024-a2"
+    }
+  ]
+}
