@@ -26,7 +26,8 @@ async function navigate(view, options = {}) {
   }
   if (!allowed.has(view)) view = 'library';
   if (view === 'listening') {
-    if (options.lessonId) listeningMode = 'practice';
+    if (options.paper) listeningMode = 'papers';
+    else if (options.lessonId) listeningMode = 'practice';
     else if (['papers', 'practice'].includes(options.mode)) listeningMode = options.mode;
   }
   const request = ++generation;

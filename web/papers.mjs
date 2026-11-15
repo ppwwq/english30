@@ -1,5 +1,7 @@
 import { selectPapers, taskOptions, chooseTask } from './paper-core.mjs';
 import { PaperPlayer } from './paper-player.mjs';
+import { studyStore } from './training-core.mjs';
+import { mountPaperStudy } from './paper-study.mjs';
 
 const timeText = (seconds) =>
   `${Math.floor((seconds || 0) / 60)}:${String(Math.floor((seconds || 0) % 60)).padStart(2, '0')}`;
@@ -36,7 +38,9 @@ export async function mountPapers({ host, bridge }) {
     currentSentence = null,
     currentWord = null,
     selectedWord = null;
-  const marks = new Map();
+  let marks = new Map(studyStore.getState().paperMarks.map((m) => [m.key, m]));
+  const exposedSentences = new Set();
+  let paperStudy;
   const revealedSources = new Set();
   let selectionBusy = false,
     selectionInterrupted = false;
@@ -57,6 +61,8 @@ export async function mountPapers({ host, bridge }) {
       <div class="paper-audio-status"><span id="paper-audio-status" role="status">选择 Task 后可播放对应原音。</span><button id="paper-clear-range" type="button" hidden>退出片段 / 循环</button></div>
       <audio id="paper-audio" preload="none" playsinline></audio>
     </section>
+    <section id="paper-study-host" aria-label="原卷短句训练"></section>
+    <div class="paper-study-savebar"><p id="paper-study-status" role="status"></p><button id="paper-study-save" type="button" class="button-secondary">保存本次学习纪录</button><button id="paper-study-review" type="button">复习与备份</button></div>
     <div class="paper-workspace">
       <section id="paper-transcript-panel" class="paper-transcript-panel panel" hidden>
         <div class="panel-header"><h2>听力字幕</h2><button id="paper-follow" type="button" aria-pressed="true">跟随播放</button></div>
@@ -76,6 +82,67 @@ export async function mountPapers({ host, bridge }) {
   const $ = (id) => host.querySelector(`#${id}`);
   host.querySelector('form').onsubmit = (event) => event.preventDefault();
   const player = new PaperPlayer($('paper-audio'), updatePlayer);
+  paperStudy = mountPaperStudy({
+    host: $('paper-study-host'),
+    cancel: () => player.cancel(),
+    isExposed: (id) =>
+      exposedSentences.has(`${session?.id}:${id}`) ||
+      exposedSentences.has(`${session?.id}:reference`) ||
+      [...marks.values()].some((m) => m.sessionId === session?.id && m.sentenceId === id),
+    conceal: () => {
+      review = false;
+      $('paper-review').textContent = '开始复盘，显示字幕';
+      $('paper-rate').value = '1';
+      $('paper-audio').playbackRate = 1;
+      const target = chooseTask(catalogue.sources, selection, selection.task);
+      showSource(
+        catalogue.sources.find((s) => s.id === target?.sourceId) ||
+          selectPapers(catalogue.sources, selection).questions[0],
+        target?.page || 1,
+      );
+      renderTranscript();
+    },
+    play: async (sentence) => {
+      setFollow(true);
+      await player.playRange(sentence.start, sentence.end);
+      return { ok: player.playing, rate: $('paper-audio').playbackRate };
+    },
+  });
+  function updateStudySavebar() {
+    $('paper-study-save').disabled = !studyStore.hasUnsaved();
+    $('paper-study-status').textContent = studyStore.loadError
+      ? `已有记录未能载入：${studyStore.loadError}`
+      : studyStore.hasUnsaved()
+        ? '本次修改尚未保存。保存只写入当前浏览器。'
+        : '已保存的原卷标记会在这里恢复；完整备份可带到其他设备。';
+  }
+  studyStore.subscribe(() => {
+    marks = new Map(studyStore.getState().paperMarks.map((m) => [m.key, m]));
+    for (const word of host.querySelectorAll('.paper-word[data-word]'))
+      word.classList.toggle('is-marked', marks.has(`${session?.id}:${word.dataset.word}`));
+    if (selectedWord && session)
+      $('paper-word-mark').textContent = marks.has(`${session.id}:${selectedWord.word.id}`)
+        ? '移除复习标记'
+        : '加入复习标记';
+    renderMarks();
+    updateStudySavebar();
+  });
+  $('paper-study-save').onclick = () => {
+    if (
+      !confirm(
+        '准备保存本次学习纪录：包含原卷标记、已提交的短句练习和其他模块的未保存记录。只写入当前浏览器，保存后会回读验证。未提交的输入不包含。',
+      )
+    )
+      return;
+    try {
+      studyStore.save();
+      $('paper-study-status').textContent = '已保存到当前浏览器，并完成回读验证。';
+    } catch (error) {
+      $('paper-study-status').textContent = `未保存：${error.message}`;
+    }
+  };
+  $('paper-study-review').onclick = () => bridge.navigate('review');
+  updateStudySavebar();
   function updatePlayer(state) {
     $('paper-position').textContent = timeText(state.time);
     $('paper-duration').textContent = timeText(state.duration);
@@ -137,6 +204,7 @@ export async function mountPapers({ host, bridge }) {
     renderReferences(selected.references);
     $('paper-notice').textContent =
       `${selection.year} · ${variants[selection.variant]} · Paper 3 · Part ${next.part} · Task ${next.number}${next.part === 'A' ? '' : ' · Part B 共用同一段谈话'}`;
+    paperStudy?.setContext(session, selection);
     renderTranscript();
   }
   let scrubbing = false,
@@ -163,7 +231,21 @@ export async function mountPapers({ host, bridge }) {
   $('paper-forward').onclick = () => player.seek(player.time + 10);
   $('paper-rate').onchange = () => {
     $('paper-audio').playbackRate = Number($('paper-rate').value);
+    paperStudy.expose();
   };
+  $('paper-audio-panel').addEventListener(
+    'click',
+    (event) => {
+      if (
+        event.target.closest(
+          '#paper-play, #paper-back, #paper-forward, #paper-task-play, #paper-task-loop, #paper-clear-range',
+        )
+      )
+        paperStudy.expose();
+    },
+    true,
+  );
+  $('paper-seek').addEventListener('change', () => paperStudy.expose());
   $('paper-clear-range').onclick = () => {
     player.range = null;
     player.emit();
@@ -209,6 +291,10 @@ export async function mountPapers({ host, bridge }) {
     currentSentence = null;
     currentWord = null;
     const sentences = visibleSentences();
+    if (review && session && selection.paper === 3) {
+      for (const s of sentences) exposedSentences.add(`${session.id}:${s.id}`);
+      paperStudy?.expose();
+    }
     $('paper-timing-note').textContent =
       session?.timingNote || '字幕按原音生成；无法可靠定位的词按整句重听。原稿可在同年资料中对照。';
     $('paper-transcript').innerHTML = sentences.length
@@ -281,9 +367,10 @@ export async function mountPapers({ host, bridge }) {
   $('paper-word-mark').onclick = () => {
     if (!selectedWord) return;
     const key = `${session.id}:${selectedWord.word.id}`;
-    if (marks.has(key)) marks.delete(key);
+    const nextMarks = new Map(marks);
+    if (nextMarks.has(key)) nextMarks.delete(key);
     else
-      marks.set(key, {
+      nextMarks.set(key, {
         key,
         sessionId: session.id,
         year: selection.year,
@@ -292,9 +379,17 @@ export async function mountPapers({ host, bridge }) {
         part: selection.part,
         word: selectedWord.word.text,
         text: selectedWord.sentence.text,
+        sentenceId: selectedWord.sentence.id,
+        createdAt: new Date().toISOString(),
         start: selectedWord.sentence.start,
         end: selectedWord.sentence.end,
       });
+    try {
+      studyStore.setPaperMarks([...nextMarks.values()]);
+    } catch (error) {
+      $('paper-study-status').textContent = `标记未能暂存：${error.message} 原有标记已保留。`;
+      return;
+    }
     renderMarks();
     renderTranscript();
   };
@@ -405,6 +500,7 @@ export async function mountPapers({ host, bridge }) {
     const request = ++loadingGeneration;
     selectionInterrupted = false;
     selectionBusy = true;
+    paperStudy?.setContext(null, selection);
     player.range = null;
     selectedWord = null;
     $('paper-word-detail').hidden = true;
@@ -490,6 +586,7 @@ export async function mountPapers({ host, bridge }) {
           ? `${selection.year} · ${variants[selection.variant]} · Paper ${selection.paper}${selection.part ? ` · Part ${selection.part}` : ''}${selection.task ? ` · Task ${selection.task}` : ''}`
           : '你保存的材料中没有此项独立题卷；同年合订本保留在下方。';
     $('paper-audio-panel').hidden = selection.paper !== 3;
+    $('paper-study-host').hidden = selection.paper !== 3;
     const key = `${selection.year}-${selection.variant}`;
     if (selection.paper === 3 && key !== session?.id) {
       session = null;
@@ -525,6 +622,7 @@ export async function mountPapers({ host, bridge }) {
     for (const id of ['paper-play', 'paper-seek', 'paper-back', 'paper-forward', 'paper-rate'])
       $(id).disabled = !session?.audio;
     for (const id of ['paper-task-play', 'paper-task-loop']) $(id).disabled = !r;
+    paperStudy?.setContext(selection.paper === 3 ? session : null, selection);
     renderTranscript();
     renderMarks();
     return true;
@@ -544,6 +642,10 @@ export async function mountPapers({ host, bridge }) {
         return;
       }
       revealedSources.add(next.id);
+    }
+    if (next && (['marking', 'script', 'commentary'].includes(next.role) || answersPage)) {
+      exposedSentences.add(`${selection.year}-${selection.variant}:reference`);
+      paperStudy?.expose('session');
     }
     source = next;
     pageNumber = Math.min(next?.pages.length || 1, Math.max(1, Number(number) || 1));
@@ -604,6 +706,14 @@ export async function mountPapers({ host, bridge }) {
     sizeImage();
   };
   new ResizeObserver(sizeImage).observe($('paper-image-stage'));
+  // Native focus/scrollIntoView must reserve the actual sticky transport height,
+  // which wraps differently on iPad, phone and larger text settings.
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty(
+      '--paper-player-height',
+      `${$('paper-audio-panel').getBoundingClientRect().height}px`,
+    );
+  }).observe($('paper-audio-panel'));
   $('paper-image').onload = sizeImage;
   $('paper-image').onerror = () => {
     $('paper-image-error').hidden = false;
@@ -626,12 +736,13 @@ export async function mountPapers({ host, bridge }) {
     `已整理 ${catalogue.sources.length} 份原件。页面按原 PDF 页码保留；重复版本按原文件名称区分。个人练习纪录只保存在当前浏览器。`;
   await applySelection();
   return {
-    async show(view) {
+    async show(view, options = {}) {
       if (view === 'hidden') {
         ++loadingGeneration;
         selectionInterrupted ||= selectionBusy;
         selectionBusy = false;
         player.cancel();
+        paperStudy.suspend();
         return;
       }
       const listening = view === 'listening';
@@ -644,6 +755,34 @@ export async function mountPapers({ host, bridge }) {
         : '先选一份卷，再从想听的地方开始。';
       $('paper-paper').closest('label').hidden = listening;
       $('paper-paper').disabled = listening;
+      if (options.paper) {
+        selections[activeView] = { ...selection };
+        activeView = view;
+        const p = options.paper;
+        selection = {
+          year: Number(p.year),
+          variant: p.variant,
+          paper: 3,
+          part: p.part,
+          task: Number(p.task),
+        };
+        review = false;
+        $('paper-review').textContent = '开始复盘，显示字幕';
+        const applied = await applySelection();
+        if (applied && session?.id === p.sessionId) {
+          if (options.paperReplay) {
+            const sentence = session.sentences.find((s) => s.id === p.sentenceId);
+            if (sentence) {
+              review = true;
+              $('paper-review').textContent = '隐藏字幕，重新听';
+              renderTranscript();
+              setFollow(true);
+              await player.playRange(sentence.start, sentence.end);
+            }
+          } else paperStudy.open(p.sentenceId);
+        }
+        return;
+      }
       if (view !== activeView) {
         selections[activeView] = { ...selection };
         selection = { ...selections[view] };

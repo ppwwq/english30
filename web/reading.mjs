@@ -103,7 +103,7 @@ const baseSession = (phase) => ({
   activeQuestion: null,
   paraphrase: '',
 });
-const integratedSession = () => ({
+const integratedSession = (phase = 'first') => ({
   notes: '',
   draft: '',
   to: '',
@@ -112,7 +112,7 @@ const integratedSession = () => ({
   checklist: {},
   confirmed: {},
   submitted: false,
-  phase: 'first',
+  phase,
   clock: { elapsed: 0, runningSince: null },
   speed: 1,
   loop: false,
@@ -152,7 +152,10 @@ export function mountReading({ host, bridge = {} }) {
     (state.reading[getSet().id] ??= baseSession(
       getRecords().some((r) => r.taskId === getSet().id) ? 'retest' : 'first',
     ));
-  const getI = () => (state.integrated[getTask().id] ??= integratedSession());
+  const getI = () =>
+    (state.integrated[getTask().id] ??= integratedSession(
+      getRecords().some((r) => r.taskId === getTask().id) ? 'retest' : 'first',
+    ));
   function getRecords() {
     return studyStore.getState().records.filter((r) => ['reading', 'integrated'].includes(r.module));
   }

@@ -14,6 +14,23 @@ const safeId = (value) =>
   value.length < 250 &&
   /^[a-zA-Z0-9_:.@-]+$/.test(value) &&
   !(value in Object.prototype);
+const validPaperReference = (p) =>
+  p &&
+  safeId(p.sentenceId) &&
+  Number.isInteger(p.year) &&
+  p.year >= 2012 &&
+  p.year <= 2100 &&
+  ['exam', 'practice', 'sample'].includes(p.variant) &&
+  p.sessionId === `${p.year}-${p.variant}` &&
+  ['A', 'B1', 'B2'].includes(p.part) &&
+  Number.isInteger(p.task) &&
+  p.task >= 1 &&
+  p.task <= 10 &&
+  Number.isFinite(p.start) &&
+  p.start >= 0 &&
+  Number.isFinite(p.end) &&
+  p.end > p.start &&
+  p.end <= 14400;
 function inspect(value, depth = 0) {
   if (depth > 12) throw new Error('备份层级过深。');
   if (typeof value === 'number' && !Number.isFinite(value)) throw new Error('备份含无效数字。');
@@ -42,6 +59,7 @@ export function emptyStudyState(today = dateKey()) {
     schemaVersion: 1,
     records: [],
     personalExercises: [],
+    paperMarks: [],
     reviews: {},
     settings: { startDate: today, minutes: 60 },
   };
@@ -63,6 +81,24 @@ export function validateStudyState(value) {
   )
     throw new Error('学习备份格式不正确。');
   const ids = new Set();
+  const markIds = new Set();
+  if (value.paperMarks !== undefined && (!Array.isArray(value.paperMarks) || value.paperMarks.length > 10000))
+    throw new Error('原卷复习标记格式不正确。');
+  for (const m of value.paperMarks || []) {
+    if (
+      !validPaperReference(m) ||
+      !safeId(m.key) ||
+      markIds.has(m.key) ||
+      !m.key.startsWith(`${m.sessionId}:`) ||
+      typeof m.word !== 'string' ||
+      m.word.length > 200 ||
+      typeof m.text !== 'string' ||
+      m.text.length > 4000 ||
+      !Number.isFinite(Date.parse(m.createdAt))
+    )
+      throw new Error('原卷标记缺少有效的来源、原句或时间。');
+    markIds.add(m.key);
+  }
   for (const r of value.records) {
     if (
       !safeId(r.id) ||
@@ -74,6 +110,13 @@ export function validateStudyState(value) {
     )
       throw new Error('学习记录缺少有效的项目、时间或阶段。');
     ids.add(r.id);
+    if (
+      r.details?.paper &&
+      (!validPaperReference(r.details.paper) ||
+        r.module !== 'dictation' ||
+        r.taskId !== `paper:${r.details.paper.sessionId}:${r.details.paper.sentenceId}`)
+    )
+      throw new Error('原卷练习缺少匹配的材料或时间。');
     if (
       r.correct != null &&
       (!Number.isFinite(r.correct) || r.correct < 0 || !Number.isFinite(r.total) || r.correct > r.total)
@@ -115,7 +158,7 @@ export function validateStudyState(value) {
       !['again', 'remembered'].includes(r.rating)
     )
       throw new Error('复习安排格式无效。');
-  return clone(value);
+  return clone({ ...value, paperMarks: value.paperMarks || [] });
 }
 export function validateListeningRecords(records) {
   inspect(records);
@@ -351,6 +394,9 @@ export function createStudyStore({ storage = storageDefault(), now = () => new D
       });
       return exercise.id;
     },
+    setPaperMarks(paperMarks) {
+      set({ ...state, paperMarks });
+    },
     setSettings(settings) {
       set({ ...state, settings: { ...state.settings, ...settings } });
     },
@@ -397,6 +443,7 @@ export function createStudyStore({ storage = storageDefault(), now = () => new D
         ...state,
         records: merge(state.records, payload.study.records, (x) => x.id),
         personalExercises: merge(state.personalExercises, payload.study.personalExercises, (x) => x.id),
+        paperMarks: merge(state.paperMarks, payload.study.paperMarks, (x) => x.key),
         reviews: { ...state.reviews, ...payload.study.reviews },
         settings: payload.study.settings,
       });

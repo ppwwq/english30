@@ -162,7 +162,7 @@ export async function mountTraining({ host, bridge }) {
     }
     if (
       !confirm(
-        `准备保存本次学习纪录：${state.records.length - saved.records.length} 条新增练习，以及当前错句、复习结果和训练安排。\n仅写入当前浏览器；包含阅读等模块已提交但未保存的记录。保存后会回读验证。`,
+        `准备保存本次学习纪录：${state.records.length - saved.records.length} 条新增练习，以及当前原卷标记、错句、复习结果和训练安排。\n仅写入当前浏览器；包含阅读等模块已提交但未保存的记录。保存后会回读验证。`,
       )
     )
       return;
@@ -654,8 +654,9 @@ export async function mountTraining({ host, bridge }) {
     const sentences = dictationSentences();
     if (!sentences.length) {
       host.append(
-        create('div', 'training-paper', '先完成一组听力并提交，才能从已复盘的原音选句做听写。'),
-        action('去听力练习', () => navigate('listening'), 'button-primary'),
+        create('div', 'training-paper', '这里从分段精练的已复盘材料选句。历年原卷也能直接做短句听写。'),
+        action('去分段精练', () => navigate('listening', { mode: 'practice' }), 'button-primary'),
+        action('去原卷短句听写', () => navigate('listening', { mode: 'papers' }), 'button-secondary'),
       );
       return;
     }
@@ -1006,6 +1007,16 @@ export async function mountTraining({ host, bridge }) {
   function reviewItems() {
     const state = studyStore.getState();
     const items = [];
+    for (const m of state.paperMarks)
+      items.push({
+        id: `paper-mark:${m.key}`,
+        type: 'listening',
+        title: m.word,
+        detail: `${m.year} 原卷 · Part ${m.part} · Task ${m.task} · 回听时字幕跟随`,
+        createdAt: m.createdAt,
+        paper: m,
+        paperReplay: true,
+      });
     const current = listening();
     if (current.lesson?.sentences?.length) reviewLessons.set(current.lesson.id, current.lesson);
     const latest = new Map();
@@ -1071,6 +1082,7 @@ export async function mountTraining({ host, bridge }) {
               : '先独立回忆，再对照原材料',
         createdAt: r.createdAt,
         record: r,
+        paper: r.details?.paper,
       });
     }
     return items
@@ -1137,10 +1149,16 @@ export async function mountTraining({ host, bridge }) {
       const controls = create('div', 'training-actions');
       controls.append(
         action(
-          item.play ? '回原音复习' : '打开原练习',
+          item.paper && !item.paperReplay
+            ? '关提示复测原句'
+            : item.play || item.paperReplay
+              ? '回原音复习'
+              : '打开原练习',
           async () => {
             try {
-              if (item.play) await bridge.playListening(item.play);
+              if (item.paper)
+                await bridge.navigate('listening', { paper: item.paper, paperReplay: !!item.paperReplay });
+              else if (item.play) await bridge.playListening(item.play);
               else if (item.type === 'writing') {
                 setMode(
                   item.record.details?.kind === 'paper2'
@@ -1337,7 +1355,7 @@ export async function mountTraining({ host, bridge }) {
         const data = validateBackup(JSON.parse(await file.text()));
         if (
           !confirm(
-            `准备导入并合并：${data.study.records.length} 条练习、${data.listening.length} 份听力纪录、${data.study.personalExercises.length} 条个人错句。\n当前已提交但未保存的记录也会一并保存；尚未提交的输入不包含。保留现有记录；同 ID 项目采用导入版本。写入后会回读验证。`,
+            `准备导入并合并：${data.study.records.length} 条练习、${data.study.paperMarks.length} 个原卷标记、${data.listening.length} 份听力纪录、${data.study.personalExercises.length} 条个人错句。\n当前已提交但未保存的记录也会一并保存；尚未提交的输入不包含。保留现有记录；同 ID 项目采用导入版本。写入后会回读验证。`,
           )
         )
           return;
