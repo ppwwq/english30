@@ -1448,6 +1448,7 @@ input[type='range'] {
    see licenses/rubber-segment.txt and ui-motion.mjs. */
 :root {
   --paper: #f7f2e8;
+  --canvas-bg: #e8eff6;
   --surface: #fffefa;
   --surface-muted: #eee9df;
   --ink: #24241f;
@@ -1467,7 +1468,7 @@ input[type='range'] {
   --keyboard-offset: 0px;
 }
 body {
-  background: var(--paper);
+  background: var(--canvas-bg);
   color: var(--ink);
 }
 button:focus-visible,

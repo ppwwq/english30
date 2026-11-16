@@ -29,7 +29,7 @@ const ready = () =>
   );
 const records = () => page.evaluate(async () => (await import('/training-core.mjs')).studyStore.getState());
 try {
-  await page.goto(base + '/#listening');
+  await page.goto(base + '/#library');
   await ready();
   await page.locator('#paper-drill summary').tap({ timeout: 3000 });
   await page.locator('#paper-drill-submit').tap();

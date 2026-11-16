@@ -654,9 +654,9 @@ export async function mountTraining({ host, bridge }) {
     const sentences = dictationSentences();
     if (!sentences.length) {
       host.append(
-        create('div', 'training-paper', '这里从分段精练的已复盘材料选句。历年原卷也能直接做短句听写。'),
-        action('去分段精练', () => navigate('listening', { mode: 'practice' }), 'button-primary'),
-        action('去原卷短句听写', () => navigate('listening', { mode: 'papers' }), 'button-secondary'),
+        create('div', 'training-paper', '这里从已复盘的精练材料选句。我的原卷内也可直接做短句听写。'),
+        action('去原卷精练', () => navigate('listening', { mode: 'papers' }), 'button-primary'),
+        action('去原卷短句听写', () => navigate('library'), 'button-secondary'),
       );
       return;
     }

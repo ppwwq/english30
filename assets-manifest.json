@@ -13,6 +13,381 @@
       "sha256": "a9a64c5e2bf070109da08ec1305d9be398798bb736286ee707bd9938bfaabbf5"
     },
     {
+      "path": "audio/paper-2012-exam-a-task-1.mp3",
+      "size": 1975485,
+      "sha256": "75a5612817b195e9f39f9a154c3176deaf94018a2e39387a9c5cdeb023ecbe61"
+    },
+    {
+      "path": "audio/paper-2012-exam-a-task-2.mp3",
+      "size": 2840925,
+      "sha256": "c0b652e4b3acb7d20125a3d9519209889cfa1e94db4b3a2db32e73a514ddc50d"
+    },
+    {
+      "path": "audio/paper-2012-exam-a-task-3.mp3",
+      "size": 2254845,
+      "sha256": "c919d6492b78c09cafb700be4ef271598e4b96644abf8bb15f146b76c585bb39"
+    },
+    {
+      "path": "audio/paper-2012-exam-a-task-4.mp3",
+      "size": 2278317,
+      "sha256": "ee75af3ae2fd78597bcd8dfe90f192cd08fc3211533654fdb00566b9b014e5d6"
+    },
+    {
+      "path": "audio/paper-2012-exam-part-b.mp3",
+      "size": 2757981,
+      "sha256": "44b108f6432e49b8ed9c978a63390dc1f78fb2c0cc40bf8ad8cae9eedad638ac"
+    },
+    {
+      "path": "audio/paper-2012-practice-a-task-1.mp3",
+      "size": 2222589,
+      "sha256": "0ca4ae705b0b3e1bdd287446bd4e5acf6c6a18adf6ed88a8369e83f71b696b15"
+    },
+    {
+      "path": "audio/paper-2012-practice-a-task-2.mp3",
+      "size": 3283725,
+      "sha256": "394ebbc46d37e1b5effb8adbb323f3481e767e92d0d902581718c945f35d5ebd"
+    },
+    {
+      "path": "audio/paper-2012-practice-a-task-3.mp3",
+      "size": 2359245,
+      "sha256": "4153c4184447c3d7d2215e2f23bc5314ed575ae321976abb9db14217629160e3"
+    },
+    {
+      "path": "audio/paper-2012-practice-a-task-4.mp3",
+      "size": 2736525,
+      "sha256": "2fe15cca33552d03c6b530e79d241b88ff3efcb0e1910305f9c1e12b8df09a7d"
+    },
+    {
+      "path": "audio/paper-2012-practice-part-b.mp3",
+      "size": 2945613,
+      "sha256": "1699ee5c7624637d84e381025c121c788ead980ec4418219305ebca94b687158"
+    },
+    {
+      "path": "audio/paper-2013-exam-a-task-1.mp3",
+      "size": 2298765,
+      "sha256": "5a61de8875dae34298349a6085f88592855c5a1d7fcd473346382c9548b23e6d"
+    },
+    {
+      "path": "audio/paper-2013-exam-a-task-2.mp3",
+      "size": 2789085,
+      "sha256": "1fb30f917d1c208c2ae408b423ac85c62762c471761a0ad8ecd1d5e356d9b358"
+    },
+    {
+      "path": "audio/paper-2013-exam-a-task-3.mp3",
+      "size": 1906941,
+      "sha256": "13d2e2ffbb7dac2a6ec83926997b20d5e0d69617e92c7a0ded3449d382a9ab71"
+    },
+    {
+      "path": "audio/paper-2013-exam-a-task-4.mp3",
+      "size": 2350893,
+      "sha256": "15f8178b41345d881b212dc496d2ec3dadb6ff4db85e1a4dcc9e24fe54d2a37f"
+    },
+    {
+      "path": "audio/paper-2013-exam-part-b.mp3",
+      "size": 3421389,
+      "sha256": "e99d097b047aee7315ddbfca7571cdf896a7dacca019ecbbd0b0f070e7fec32a"
+    },
+    {
+      "path": "audio/paper-2014-exam-a-task-1.mp3",
+      "size": 2601741,
+      "sha256": "2bfef38e531fbf59922cffc622925ce45bc9bc38c257efbc6081afb0c2250b55"
+    },
+    {
+      "path": "audio/paper-2014-exam-a-task-2.mp3",
+      "size": 1903485,
+      "sha256": "bf29f213b1d357f836c41ef3914db48ecc9f73269b5465eece50a5135c5bf7d5"
+    },
+    {
+      "path": "audio/paper-2014-exam-a-task-3.mp3",
+      "size": 2633133,
+      "sha256": "60db2494d15f9a98b233c524f2caa6e0c4637c8417924a79c0bbf3fb02d67805"
+    },
+    {
+      "path": "audio/paper-2014-exam-a-task-4.mp3",
+      "size": 3305901,
+      "sha256": "c20a1b3851e742db3afd0ea16d8ef66f983a0d5dcae2e3fcadb44422c09a975f"
+    },
+    {
+      "path": "audio/paper-2014-exam-part-b.mp3",
+      "size": 2744733,
+      "sha256": "ed79874b10672a4a610cb1fe0850088612c6caa521a3b9120ee16c7cf654f11a"
+    },
+    {
+      "path": "audio/paper-2015-exam-a-task-1.mp3",
+      "size": 2758845,
+      "sha256": "59a319f3e5cbb2ab700f0c3d202c185f79dd537506a719f45cbc121bc5112a01"
+    },
+    {
+      "path": "audio/paper-2015-exam-a-task-2.mp3",
+      "size": 2420877,
+      "sha256": "00ec6d13f723fea523b4f41aa62445f96fe7d0926ba218b901e95e13f112d201"
+    },
+    {
+      "path": "audio/paper-2015-exam-a-task-3.mp3",
+      "size": 2611245,
+      "sha256": "c4fb9096c1fae80e796f2a95d882536533c1ef5c9aedee66fa9ff7b89d5fdf58"
+    },
+    {
+      "path": "audio/paper-2015-exam-a-task-4.mp3",
+      "size": 2312157,
+      "sha256": "e228fcc36e296180fae0869141d3aa3c455daada145fa21efb72c17c381d72df"
+    },
+    {
+      "path": "audio/paper-2015-exam-part-b.mp3",
+      "size": 3469197,
+      "sha256": "47be32d1936b785df04c577605b5bf58e905b4be8f897155e2069782b88ada88"
+    },
+    {
+      "path": "audio/paper-2016-exam-a-task-1.mp3",
+      "size": 1969437,
+      "sha256": "ce20b00d496fd5cff15027ff0389d52ccb0c6c2a93aff97f7d773d7c34c72857"
+    },
+    {
+      "path": "audio/paper-2016-exam-a-task-2.mp3",
+      "size": 1901181,
+      "sha256": "21e36aada20b9c7dcac19a5eeaa712834937182f349b8db9432b984fcbb306e9"
+    },
+    {
+      "path": "audio/paper-2016-exam-a-task-3.mp3",
+      "size": 2230941,
+      "sha256": "a58c8fde9b82f1a8ace3fad1935060564b7effcd94f9fc903d05960026c47029"
+    },
+    {
+      "path": "audio/paper-2016-exam-a-task-4.mp3",
+      "size": 2597997,
+      "sha256": "928604d2964fb3ea99cfc5b5932f20d85ce9bafb78c42e69542ea4f83c269db6"
+    },
+    {
+      "path": "audio/paper-2016-exam-part-b.mp3",
+      "size": 2472429,
+      "sha256": "6815a49fd14d916687840709bcdfc491b5c40b3d5c23a260fafe447f86ab0586"
+    },
+    {
+      "path": "audio/paper-2017-exam-a-task-1.mp3",
+      "size": 2382141,
+      "sha256": "d78959f8a96239adad298d9c378c7286fda4fce12f97732ae28353e464dd7a92"
+    },
+    {
+      "path": "audio/paper-2017-exam-a-task-2.mp3",
+      "size": 1699005,
+      "sha256": "b88df93c5f4a9539ccb65c1af362758b0827c9d8f29f5cb0bb7d58f6125b7fec"
+    },
+    {
+      "path": "audio/paper-2017-exam-a-task-3.mp3",
+      "size": 2367453,
+      "sha256": "ef3c4b25b3bc0ef2d6581efdd9f2927d24b252f86bdf2b29b7f8be4aa9d112c5"
+    },
+    {
+      "path": "audio/paper-2017-exam-a-task-4.mp3",
+      "size": 2557245,
+      "sha256": "f7a6129356bcbb1e8487f5db6a4967f955bff0457a779eb298ff0628dfb33177"
+    },
+    {
+      "path": "audio/paper-2017-exam-part-b.mp3",
+      "size": 2883981,
+      "sha256": "2add7e9608497878a885b8bf28bef888a60732543654fc402c5c933f03fbabb0"
+    },
+    {
+      "path": "audio/paper-2018-exam-a-task-1.mp3",
+      "size": 1947261,
+      "sha256": "42a7aa2e158fd63688f15d3611b78f206798ef1601d5ce225ec7354bddd22a91"
+    },
+    {
+      "path": "audio/paper-2018-exam-a-task-2.mp3",
+      "size": 2821485,
+      "sha256": "342e7133156c830057e019e474fdf92903d58fba627354d466369c8b87220dcc"
+    },
+    {
+      "path": "audio/paper-2018-exam-a-task-3.mp3",
+      "size": 2883117,
+      "sha256": "10328bf64606fed9ce72295e54e908efba9630c6bbe63773e389e749efcd5352"
+    },
+    {
+      "path": "audio/paper-2018-exam-a-task-4.mp3",
+      "size": 2068365,
+      "sha256": "fee30a5d9c56a05418aaa38b66ad2b18fc429e10fbf42fd5a1ee0f0d2d39e36e"
+    },
+    {
+      "path": "audio/paper-2018-exam-part-b.mp3",
+      "size": 2532909,
+      "sha256": "209906ce4b110cfde536fcd7f8c1453b3429de4d4bf72bac0022c06ff4df0ffe"
+    },
+    {
+      "path": "audio/paper-2019-exam-a-task-1.mp3",
+      "size": 1924653,
+      "sha256": "7ff3e7c7772092619a3adc6c0c44fb358c118ff338e6892f58146c3c8325eef1"
+    },
+    {
+      "path": "audio/paper-2019-exam-a-task-2.mp3",
+      "size": 2031501,
+      "sha256": "1b4b6e78446a00d3af51fc002904e0beefb9e5a08c173f33c0795938b869cdac"
+    },
+    {
+      "path": "audio/paper-2019-exam-a-task-3.mp3",
+      "size": 1945821,
+      "sha256": "cf2622ce01a0b9d85cfbf2e077302ab53d189cd1fbfdf062ff1ff6cd07394970"
+    },
+    {
+      "path": "audio/paper-2019-exam-a-task-4.mp3",
+      "size": 2267805,
+      "sha256": "6c024ab9da94097dfd4ed02b4261607640a1cc72c08a124a9f043e0e71123eb2"
+    },
+    {
+      "path": "audio/paper-2019-exam-part-b.mp3",
+      "size": 3333981,
+      "sha256": "2c9c4f84eea8aab0e615877e1739d6c05f053778c0d96c27cd316f003cc34ceb"
+    },
+    {
+      "path": "audio/paper-2020-exam-a-task-1.mp3",
+      "size": 2300781,
+      "sha256": "77fc88f4aa34c4332a10dbb09fd9ffbab56f1dd3c9263e0b804f381962cd590d"
+    },
+    {
+      "path": "audio/paper-2020-exam-a-task-2.mp3",
+      "size": 2375661,
+      "sha256": "420e4fe1090a17299edeb86a79a7e54ea8c1cc70a456afe216abfbdb99e87c45"
+    },
+    {
+      "path": "audio/paper-2020-exam-a-task-3.mp3",
+      "size": 2643213,
+      "sha256": "a574cbd1307904fa8ec6ea94ae31e8240169e53550201438416e904e9021fc75"
+    },
+    {
+      "path": "audio/paper-2020-exam-a-task-4.mp3",
+      "size": 2862381,
+      "sha256": "61f5be0864db3d65ffbebbdee9075a59b3574b94e25b3b01aba514a7c193c2ea"
+    },
+    {
+      "path": "audio/paper-2020-exam-part-b.mp3",
+      "size": 2818605,
+      "sha256": "feb2fd37ff4af6eb972a2ccfd6129a93c068eaf142fff1c28d79d433b4ea0cc0"
+    },
+    {
+      "path": "audio/paper-2021-exam-a-task-1.mp3",
+      "size": 2394957,
+      "sha256": "e3b433660fa943b0714483bb9b9501c4de59a44f33b5bd489e42465bd63821ab"
+    },
+    {
+      "path": "audio/paper-2021-exam-a-task-2.mp3",
+      "size": 2396397,
+      "sha256": "1f67ef50a5775e22fbf309745cd0027d264c2859480fbfc7560ada9234ea24d8"
+    },
+    {
+      "path": "audio/paper-2021-exam-a-task-3.mp3",
+      "size": 2182845,
+      "sha256": "2a704252601f8467b3587fde332048757384202df6b46c0ae8f4f68a7eff25b9"
+    },
+    {
+      "path": "audio/paper-2021-exam-a-task-4.mp3",
+      "size": 2680365,
+      "sha256": "c27587ccb63d1f4cc4eb332c86176493e62b2381783fad1653859d39c523b550"
+    },
+    {
+      "path": "audio/paper-2021-exam-part-b.mp3",
+      "size": 2596269,
+      "sha256": "fdc07a39d4b9949dd1a60c735da5018097e475ebf9edd1d6490df521973ab993"
+    },
+    {
+      "path": "audio/paper-2022-exam-a-task-1.mp3",
+      "size": 2045037,
+      "sha256": "896e68ea6d2cbd9df311fcd03be22f813fa5badf6cb2eb1641b9949f1c94b2c5"
+    },
+    {
+      "path": "audio/paper-2022-exam-a-task-2.mp3",
+      "size": 2359101,
+      "sha256": "1b92f58d5487e7a23fb77e6e28463358895c7375d00e8dd282c6e0984d1968f6"
+    },
+    {
+      "path": "audio/paper-2022-exam-a-task-3.mp3",
+      "size": 2347725,
+      "sha256": "e84d6f2cded731be096508f1573d3cad5f02c14a1339d6e33afbb2e57f154cc0"
+    },
+    {
+      "path": "audio/paper-2022-exam-a-task-4.mp3",
+      "size": 2687853,
+      "sha256": "14265ee24caae1353a25c51ca0d0985551d1b8eb3e5d965dfcfa23daadd93bc7"
+    },
+    {
+      "path": "audio/paper-2022-exam-part-b.mp3",
+      "size": 2671293,
+      "sha256": "9e50492c3e562ea74124daa3a168ea004cd80fde9cc118f248ab35c05938ce03"
+    },
+    {
+      "path": "audio/paper-2023-exam-a-task-1.mp3",
+      "size": 2183421,
+      "sha256": "23a8a63f06bde2d689dedc86ebb0a16a5f0bfc125598211eaf444dc0a1a3cebd"
+    },
+    {
+      "path": "audio/paper-2023-exam-a-task-2.mp3",
+      "size": 2222013,
+      "sha256": "35a90824afeefb146230985b11745fafa6b0b0ceb4943511684a113d2d6ea531"
+    },
+    {
+      "path": "audio/paper-2023-exam-a-task-3.mp3",
+      "size": 2545005,
+      "sha256": "cb3ac1c43fe8060828493b2d1f18e04031759a28c7cad9c94bd7c815fd464f76"
+    },
+    {
+      "path": "audio/paper-2023-exam-a-task-4.mp3",
+      "size": 2384157,
+      "sha256": "f381765ccc2bf576696ca968e5d5eb9e0e601893aa1d0e74f8e7116637490fac"
+    },
+    {
+      "path": "audio/paper-2023-exam-part-b.mp3",
+      "size": 2487261,
+      "sha256": "bcb34206e87ab691f0ba8316eb0ce14478584e2dfb49ffa0c7f140b21c76598b"
+    },
+    {
+      "path": "audio/paper-2024-exam-a-task-1.mp3",
+      "size": 1599357,
+      "sha256": "90e2e7cb9299c5a1ebd78e02739aecff61aec52ae41cc4195837d7cde8097ccc"
+    },
+    {
+      "path": "audio/paper-2024-exam-a-task-2.mp3",
+      "size": 1927101,
+      "sha256": "8c60173cfe955604bc1fee838fee5fc3ca91f5bdf5f073cea06ad567f365e2c5"
+    },
+    {
+      "path": "audio/paper-2024-exam-a-task-3.mp3",
+      "size": 2790813,
+      "sha256": "052260f86cd0b832b5e4a5b6743dae57ebe153a456d26ef763da3caf2d570e00"
+    },
+    {
+      "path": "audio/paper-2024-exam-a-task-4.mp3",
+      "size": 2615421,
+      "sha256": "7bbe8d0a8103a056dda281e176a6d43fa0bcb3d31df69142eccf337f11e6bfef"
+    },
+    {
+      "path": "audio/paper-2024-exam-part-b.mp3",
+      "size": 3026541,
+      "sha256": "e363482467b8d5329279f882cbf5121f8f22e8854d5561d5c087a813476984df"
+    },
+    {
+      "path": "audio/paper-2025-exam-a-task-1.mp3",
+      "size": 1759341,
+      "sha256": "c4034d545a03b69d32076f1f333ad4cf5ab52b0842b65ce5953cc609b7b45d24"
+    },
+    {
+      "path": "audio/paper-2025-exam-a-task-2.mp3",
+      "size": 2294877,
+      "sha256": "74bd36d1932ec8b94a92da0101a69d1e80ad41aeabe3d146db059c42f9d193a9"
+    },
+    {
+      "path": "audio/paper-2025-exam-a-task-3.mp3",
+      "size": 2298045,
+      "sha256": "9bfdd09f9dd5553a527394aef225d8080e422a63a12481aaf130d46781699f42"
+    },
+    {
+      "path": "audio/paper-2025-exam-a-task-4.mp3",
+      "size": 2614125,
+      "sha256": "b0479fd25ec57e65e11bcea163451fd4bcf03ffcaff4b83238e23db20a430b38"
+    },
+    {
+      "path": "audio/paper-2025-exam-part-b.mp3",
+      "size": 3107901,
+      "sha256": "c49ede31941fe70f1e481e6ef93220eb129070e73639888bdda20f7a21dcf279"
+    },
+    {
       "path": "audio/task1-intro.mp3",
       "size": 544455,
       "sha256": "f138becc8e892ac61f99da9a50f55ee64f58b0b62eeb6876ee2c4e8b7f5b407b"

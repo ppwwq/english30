@@ -1,7 +1,7 @@
-node_modules/
-.wrangler/
 web/lessons/
-web/papers/sessions/
-assets-manifest.json
+web/papers/practice/
 package-lock.json
-tests/artifacts/
+.openai/
+node_modules/
+
+dist/server/

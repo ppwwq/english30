@@ -50,9 +50,7 @@ try {
         page.on('pageerror', (error) => report.errors.push(error.message));
         await page.goto(base.href);
         await page.waitForFunction(
-          () =>
-            document.querySelector('#paper-drill-play') &&
-            !document.querySelector('#paper-drill-play').disabled,
+          () => document.querySelector('#play-pause') && !document.querySelector('#play-pause').disabled,
         );
         await page.evaluate(async () => {
           await document.fonts.ready;
@@ -99,7 +97,7 @@ try {
         });
         const page = await context.newPage();
         page.on('pageerror', (error) => report.errors.push(error.message));
-        await page.goto(base.href);
+        await page.goto(new URL('#library', base).href);
         await page.waitForFunction(
           () =>
             document.querySelector('#paper-drill-play') &&

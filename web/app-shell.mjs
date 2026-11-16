@@ -20,14 +20,17 @@ const bridge = {
   onChange: listeningBridge.onChange,
 };
 async function navigate(view, options = {}) {
+  const previousView = current,
+    previousMode = listeningMode;
   if (view === 'listening/practice') {
     view = 'listening';
     options = { ...options, mode: 'practice' };
   }
   if (!allowed.has(view)) view = 'library';
+  // Existing original-page marks retain their reader deep links.
+  if (view === 'listening' && options.paper) view = 'library';
   if (view === 'listening') {
-    if (options.paper) listeningMode = 'papers';
-    else if (options.lessonId) listeningMode = 'practice';
+    if (options.lessonId) listeningMode = options.lessonId.startsWith('paper-') ? 'papers' : 'practice';
     else if (['papers', 'practice'].includes(options.mode)) listeningMode = options.mode;
   }
   const request = ++generation;
@@ -36,16 +39,17 @@ async function navigate(view, options = {}) {
   document.body.dataset.listeningMode = listeningMode;
   const listening = view === 'listening',
     practice = listening && listeningMode === 'practice',
-    paperView = view === 'library' || (listening && !practice),
+    paperView = view === 'library',
     readingView = ['reading', 'integrated'].includes(view);
   document.getElementById('listening-modes').hidden = !listening;
   for (const button of document.querySelectorAll('button[data-listening-mode]'))
     button.setAttribute('aria-pressed', String(button.dataset.listeningMode === listeningMode));
   document.getElementById('listening-mode-note').textContent = practice
     ? '短段作答、错因复盘，也可以导入自己的练习包。'
-    : '按年份、Part 和 Task 选择原卷，直接听原音、看题页。';
-  document.getElementById('listening-panel').hidden = !practice;
-  document.querySelector('.player').hidden = !practice;
+    : '选择年份、Part 和 Task：先作答，再逐句精听、核对证据，最后关掉提示复测。';
+  document.getElementById('practice-picker').hidden = !listening || practice;
+  document.getElementById('listening-panel').hidden = !listening;
+  document.querySelector('.player').hidden = !listening;
   document.querySelector('.lesson-picker').hidden = !practice;
   document.querySelector('.import-menu').hidden = !practice;
   trainingHost.hidden = listening || readingView || view === 'library';
@@ -62,8 +66,15 @@ async function navigate(view, options = {}) {
   const hash = practice ? '#listening/practice' : `#${view}`;
   if (location.hash !== hash) history.replaceState(null, '', hash);
   try {
-    if (practice) {
-      if (options.lessonId) await listeningBridge.openLesson(options.lessonId);
+    if (listening) {
+      const changed = options.lessonId
+        ? await listeningBridge.openLesson(options.lessonId)
+        : await listeningBridge.showMode(listeningMode);
+      if (request !== generation) return;
+      if (changed === false) {
+        await navigate(previousView || 'listening', { mode: previousMode });
+        return;
+      }
       listeningBridge.refreshSaved();
       return;
     }
@@ -95,6 +106,10 @@ async function navigate(view, options = {}) {
     }
   } catch (error) {
     if (request !== generation) return;
+    if (listening) {
+      document.getElementById('status').textContent = error.message;
+      return;
+    }
     const host = paperView ? paperHost : readingView ? readingHost : trainingHost;
     host.replaceChildren();
     const notice = document.createElement('div');
@@ -117,7 +132,7 @@ for (const button of document.querySelectorAll('button[data-listening-mode]'))
 document.querySelector('.skip-link').addEventListener('click', (event) => {
   event.preventDefault();
   const target =
-    document.body.dataset.view === 'listening' && listeningMode === 'practice'
+    document.body.dataset.view === 'listening'
       ? document.getElementById('questions')
       : !paperHost.hidden
         ? paperHost

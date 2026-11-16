@@ -1,4 +1,4 @@
-import { validateLesson } from './core.mjs';
+import { validateLesson, validateAnswerResult } from './core.mjs';
 
 export const LISTENING_RECORDS_KEY = 'english30-records-v1';
 const safeId = (value) =>
@@ -64,19 +64,8 @@ export function parseListeningRecord(input) {
     )
       throw new Error('作答用时无效。');
     for (const [id, result] of Object.entries(a.results)) {
-      if (
-        !safeId(id) ||
-        !object(result) ||
-        typeof result.answer !== 'string' ||
-        result.answer.length > 500 ||
-        typeof result.correct !== 'boolean' ||
-        (result.duplicate != null && typeof result.duplicate !== 'boolean')
-      )
-        throw new Error('听力答案格式无效。');
-      if (result.selfCheck != null && !['', 'correct', 'retry'].includes(result.selfCheck))
-        throw new Error('听力自核结果无效。');
-      if (result.errorType != null && (typeof result.errorType !== 'string' || result.errorType.length > 100))
-        throw new Error('听力错因格式无效。');
+      if (!safeId(id)) throw new Error('听力答案编号无效。');
+      validateAnswerResult(result);
     }
   }
   for (const [id, type] of Object.entries(r.marks))

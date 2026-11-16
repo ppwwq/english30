@@ -1,3 +1,5 @@
+import { validateAnswerResult } from './core.mjs';
+
 export const STUDY_KEY = 'english30-study-v1';
 export const LISTENING_KEY = 'english30-records-v1';
 const modules = new Set(['writing', 'reading', 'integrated', 'dictation']);
@@ -175,9 +177,14 @@ export function validateListeningRecords(records) {
       !Array.isArray(r.moments)
     )
       throw new Error('听力记录缺少材料、作答或时间信息。');
-    for (const a of r.attempts)
+    for (const a of r.attempts) {
       if (!a || !a.results || typeof a.results !== 'object' || Array.isArray(a.results))
         throw new Error('听力作答格式不正确。');
+      for (const [id, result] of Object.entries(a.results)) {
+        if (!safeId(id)) throw new Error('听力答案编号无效。');
+        validateAnswerResult(result, { allowLegacy: true });
+      }
+    }
   }
   return clone(records);
 }
@@ -288,7 +295,10 @@ export function listeningAttempts(records) {
   const attempts = new Map();
   for (const record of records || [])
     for (const [i, attempt] of (record.attempts || []).entries()) {
-      const results = Object.values(attempt.results || {});
+      const results = Object.values(attempt.results || {}).filter(Boolean);
+      const scored = results.filter(
+        (result) => result.grading !== 'self' && typeof result.correct === 'boolean',
+      );
       const identity = attempt.id || attempt.submittedAt || attempt.createdAt || `legacy-${i}`;
       attempts.set(`${record.lessonId}:${identity}`, {
         module: 'listening',
@@ -300,8 +310,13 @@ export function listeningAttempts(records) {
           attempt.priorExposure ||
           attempt.phase === 'review'
         ),
-        correct: results.filter((result) => result.correct === true).length,
-        total: results.length,
+        correct: scored.length ? scored.filter((result) => result.correct).length : null,
+        total: scored.length,
+        selfAssessments: Object.fromEntries(
+          Object.entries(attempt.results || {})
+            .filter(([, result]) => result?.grading === 'self')
+            .map(([id, result]) => [id, result.selfAssessment ?? 'pending']),
+        ),
         elapsedSeconds: attempt.elapsedSeconds || 0,
         errorTypes: results.flatMap((result) =>
           typeof result.errorType === 'string' && result.errorType ? [result.errorType] : [],

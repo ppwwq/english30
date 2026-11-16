@@ -1,0 +1,81 @@
+.practice-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 24px;
+}
+.practice-picker label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  flex: 1;
+  min-width: 120px;
+}
+.practice-picker select,
+.practice-document-tools select,
+.practice-document-tools input,
+.practice-document-tools button {
+  min-height: 44px;
+  font: inherit;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+.practice-sources {
+  padding: 0 20px 16px;
+}
+.practice-sources summary {
+  min-height: 44px;
+  padding: 12px 0;
+  cursor: pointer;
+}
+.practice-document-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+.practice-document-tools select {
+  width: 100%;
+}
+.practice-document-tools input {
+  width: 72px;
+}
+.practice-page-wrap {
+  max-height: 65vh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.practice-page-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+body[data-listening-mode='papers'] .transcript:has(.task-context) {
+  min-height: 0;
+  max-height: none;
+}
+body[data-listening-mode='papers'] .transcript:has(.task-context) .empty-state {
+  padding: 18px 0;
+  min-height: 0;
+}
+textarea.question-input {
+  min-height: 240px;
+  resize: vertical;
+  line-height: 1.65;
+}
+@media (max-width: 600px) {
+  .practice-picker {
+    gap: 10px;
+  }
+  .practice-picker label {
+    min-width: 40%;
+  }
+  .practice-sources {
+    padding-inline: 14px;
+  }
+}

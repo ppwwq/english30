@@ -54,6 +54,39 @@ test('invalid and prototype-bearing imports cannot change saved records', () => 
   assert.equal({}.polluted, undefined);
 });
 
+test('manual original-paper exports round-trip long answers and reject forged self assessments', () => {
+  const incoming = record();
+  incoming.attempts[0].results.written = {
+    answer: 'My written response. '.repeat(60),
+    correct: null,
+    duplicate: false,
+    grading: 'self',
+    status: 'pending',
+  };
+  assert.deepEqual(parseListeningRecord(incoming), incoming);
+  const assessed = structuredClone(incoming);
+  Object.assign(assessed.attempts[0].results.written, { selfAssessment: 'correct', status: 'self-reviewed' });
+  const storage = memoryStorage();
+  assert.deepEqual(importListeningRecord(assessed, { storage }).record, assessed);
+  for (const badResult of [
+    { correct: true },
+    { selfAssessment: 'hacked' },
+    { selfAssessment: {} },
+    { selfAssessment: 'correct' },
+    { status: 'self-reviewed' },
+    { grading: 'auto' },
+    { duplicate: true },
+    { answer: 'x'.repeat(20001) },
+  ]) {
+    const bad = structuredClone(incoming);
+    Object.assign(bad.attempts[0].results.written, badResult);
+    assert.throws(() => parseListeningRecord(bad), /答案|自核/);
+  }
+  const automatic = record();
+  automatic.attempts[0].results.q1.selfAssessment = 'correct';
+  assert.throws(() => parseListeningRecord(automatic), /自核/);
+});
+
 test('a failed verification restores the pre-import record instead of reporting success', () => {
   const storage = memoryStorage();
   const prior = JSON.stringify([record()]);

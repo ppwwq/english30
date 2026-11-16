@@ -173,6 +173,42 @@ test('failed two-store import rolls back the successful first write and preserve
   assert.equal(store.getSavedState().records.length, 0);
 });
 
+test('full backups preserve pending and self-reviewed answers without accepting forged grades', () => {
+  const backup = createStudyStore({ storage: memoryStorage() }).exportBackup();
+  const manual = {
+    answer: 'My response.',
+    correct: null,
+    duplicate: false,
+    grading: 'self',
+    status: 'pending',
+  };
+  backup.listening = [
+    {
+      schemaVersion: 1,
+      lessonId: 'paper-task',
+      savedAt: '2026-11-15T10:00:00Z',
+      marks: {},
+      moments: [],
+      attempts: [{ results: { written: manual, legacy: { correct: true } } }],
+    },
+  ];
+  assert.deepEqual(validateBackup(backup).listening, backup.listening);
+  manual.status = 'self-reviewed';
+  manual.selfAssessment = 'incorrect';
+  assert.deepEqual(validateBackup(backup).listening, backup.listening);
+  for (const badResult of [
+    { ...manual, correct: false },
+    { ...manual, selfAssessment: 'wrong' },
+    { ...manual, status: 'pending' },
+    { ...manual, answer: [] },
+    null,
+  ]) {
+    const bad = structuredClone(backup);
+    bad.listening[0].attempts[0].results.written = badResult;
+    assert.throws(() => validateBackup(bad), /答案|自核/);
+  }
+});
+
 test('listening snapshots update one stable attempt and keep navigation-assisted work out of first-attempt results', () => {
   const attempt = {
     phase: 'first',
@@ -198,4 +234,35 @@ test('listening snapshots update one stable attempt and keep navigation-assisted
   assert.equal(stats.first.attempts, 0);
   assert.equal(stats.assisted.correct, 1);
   assert.equal(stats.retest.correct, 1);
+});
+
+test('manual listening attempts remain in history but do not lower automatic accuracy', () => {
+  const manual = {
+    answer: 'My response.',
+    correct: null,
+    duplicate: false,
+    grading: 'self',
+    status: 'self-reviewed',
+    selfAssessment: 'correct',
+  };
+  const flat = listeningAttempts([
+    {
+      lessonId: 'paper-task',
+      attempts: [
+        { id: 'first', phase: 'first', results: { q1: { correct: true }, q2: manual } },
+        { id: 'second', phase: 'retest', results: { q2: manual } },
+      ],
+    },
+  ]);
+  assert.equal(flat.length, 2);
+  assert.equal(flat[0].correct, 1);
+  assert.equal(flat[0].total, 1);
+  assert.equal(flat[1].correct, null);
+  assert.equal(flat[1].total, 0);
+  assert.deepEqual(flat[1].selfAssessments, { q2: 'correct' });
+  const stats = summariseRecords(flat);
+  assert.equal(stats.first.correct, 1);
+  assert.equal(stats.first.total, 1);
+  assert.equal(stats.retest.attempts, 1);
+  assert.equal(stats.retest.total, 0);
 });

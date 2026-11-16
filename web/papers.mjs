@@ -294,6 +294,12 @@ export async function mountPapers({ host, bridge }) {
     if (review && session && selection.paper === 3) {
       for (const s of sentences) exposedSentences.add(`${session.id}:${s.id}`);
       paperStudy?.expose();
+      bridge.exposePaper?.({
+        year: selection.year,
+        variant: selection.variant,
+        part: selection.part,
+        task: selection.task,
+      });
     }
     $('paper-timing-note').textContent =
       session?.timingNote || '字幕按原音生成；无法可靠定位的词按整句重听。原稿可在同年资料中对照。';
@@ -643,9 +649,11 @@ export async function mountPapers({ host, bridge }) {
       }
       revealedSources.add(next.id);
     }
-    if (next && (['marking', 'script', 'commentary'].includes(next.role) || answersPage)) {
+    if (next && (['marking', 'script', 'commentary', 'full'].includes(next.role) || answersPage)) {
       exposedSentences.add(`${selection.year}-${selection.variant}:reference`);
       paperStudy?.expose('session');
+      if (next.paper === 3 || next.paper == null)
+        bridge.exposePaper?.({ year: next.year, variant: next.variant, part: null, task: null });
     }
     source = next;
     pageNumber = Math.min(next?.pages.length || 1, Math.max(1, Number(number) || 1));

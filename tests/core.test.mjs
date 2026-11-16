@@ -11,6 +11,7 @@ import {
   buildRecord,
   shiftedRange,
   materialExposure,
+  selfAssessAnswer,
 } from '../web/core.mjs';
 
 const lesson = {
@@ -79,6 +80,46 @@ test('a first attempt cannot expose transcript, answers or evidence until it is 
   assert.equal(reviewed.attempts[0].results.q1.correct, true);
 });
 
+test('original-paper questions can require self assessment without invented answers or evidence', () => {
+  const manual = {
+    ...lesson,
+    questions: [
+      {
+        id: 'q1',
+        number: '1',
+        label: 'Task 5',
+        prompt: 'Write your response.',
+        answers: [],
+        grading: 'self',
+        input: 'textarea',
+      },
+    ],
+  };
+  assert.equal(validateLesson(manual), manual);
+  const question = visibleLesson(manual, createSession(manual)).questions[0];
+  assert.equal(question.input, 'textarea');
+  assert.equal(question.grading, 'self');
+  assert.equal(question.label, 'Task 5');
+  assert.equal(question.answers, undefined);
+  assert.equal(
+    validateLesson({ ...lesson, questions: [{ ...lesson.questions[0], grading: 'verified' }] }).questions[0]
+      .grading,
+    'verified',
+  );
+  assert.throws(
+    () => validateLesson({ ...manual, questions: [{ ...manual.questions[0], grading: 'pretend' }] }),
+    /判分/,
+  );
+  assert.throws(
+    () => validateLesson({ ...manual, questions: [{ ...manual.questions[0], input: 'html' }] }),
+    /输入/,
+  );
+  assert.throws(
+    () => validateLesson({ ...manual, questions: [{ ...manual.questions[0], grading: 'auto' }] }),
+    /参考答案/,
+  );
+});
+
 test('a retest hides old answers and evidence while keeping the first attempt unchanged', () => {
   const first = submitAnswers(lesson, createSession(lesson), { q1: 'Nine.' });
   const retest = switchPhase(first, 'retest');
@@ -90,6 +131,57 @@ test('a retest hides old answers and evidence while keeping the first attempt un
   assert.equal(second.attempts[0].results.q1.answer, 'Nine.');
   assert.equal(second.attempts[0].results.q1.correct, true);
   assert.equal(second.attempts[1].results.q1.correct, false);
+});
+
+test('submitting an ungraded original-paper answer keeps it pending beside automatic results', () => {
+  const mixed = {
+    ...lesson,
+    questions: [...lesson.questions, { id: 'written', answers: [], grading: 'self' }],
+  };
+  const review = submitAnswers(mixed, createSession(mixed), { q1: 'nine', written: '  My response.  ' });
+  assert.deepEqual(review.attempts[0].results.written, {
+    answer: 'My response.',
+    correct: null,
+    duplicate: false,
+    status: 'pending',
+    grading: 'self',
+  });
+  assert.equal(review.attempts[0].results.q1.correct, true);
+  const snapshot = buildRecord(mixed, review);
+  review.attempts[0].results.written.answer = 'later edit';
+  assert.equal(snapshot.attempts[0].results.written.answer, 'My response.');
+  assert.equal(snapshot.attempts[0].results.written.correct, null);
+});
+
+test('self assessment annotates only the submitted current attempt and never invents an automatic score', () => {
+  const mixed = {
+    ...lesson,
+    questions: [...lesson.questions, { id: 'written', answers: [], grading: 'self' }],
+  };
+  const first = submitAnswers(mixed, createSession(mixed), { written: 'First response.' });
+  const checked = selfAssessAnswer(mixed, first, 'written', 'correct');
+  assert.equal(first.attempts[0].results.written.selfAssessment, undefined);
+  assert.equal(checked.attempts[0].id, first.attempts[0].id);
+  assert.deepEqual(checked.attempts[0].results.written, {
+    answer: 'First response.',
+    correct: null,
+    duplicate: false,
+    status: 'self-reviewed',
+    grading: 'self',
+    selfAssessment: 'correct',
+  });
+  const second = submitAnswers(mixed, switchPhase(checked, 'retest'), { written: 'Second response.' });
+  const revised = selfAssessAnswer(mixed, second, 'written', 'incorrect');
+  assert.equal(revised.attempts[0].results.written.selfAssessment, 'correct');
+  assert.equal(revised.attempts[1].results.written.selfAssessment, 'incorrect');
+  assert.equal(revised.attempts[1].results.written.answer, 'Second response.');
+  const pending = selfAssessAnswer(mixed, revised, 'written', 'pending');
+  assert.equal(pending.attempts[1].results.written.status, 'pending');
+  assert.equal(pending.attempts[1].results.written.correct, null);
+  assert.throws(() => selfAssessAnswer(mixed, switchPhase(first, 'retest'), 'written', 'correct'), /提交/);
+  assert.throws(() => selfAssessAnswer(mixed, first, 'q1', 'correct'), /自核/);
+  assert.throws(() => selfAssessAnswer(mixed, first, 'missing', 'correct'), /自核/);
+  assert.throws(() => selfAssessAnswer(mixed, first, 'written', 'fake'), /自核/);
 });
 
 test('word highlighting uses actual timing and clears in gaps, after seeking backwards and at the end', () => {

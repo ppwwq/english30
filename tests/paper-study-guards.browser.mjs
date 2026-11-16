@@ -30,7 +30,7 @@ async function scenario(name, run) {
     page.on('pageerror', (error) => report.errors.push(error.message));
     page.on('dialog', (dialog) => dialog.accept());
     const url = new URL(process.env.TEST_URL || 'http://127.0.0.1:4173/');
-    url.hash = 'listening';
+    url.hash = 'library';
     await page.goto(url.href);
     await ready(page);
     await page.locator('#paper-drill').evaluate((details) => {
@@ -57,10 +57,10 @@ try {
     // Interrupt the actual seek promise through the two public controls.
     await page.evaluate(() => {
       document.querySelector('#paper-drill-play').click();
-      document.querySelector('button[data-listening-mode=practice]').click();
+      document.querySelector('.main-navigation > button[data-view=listening]').click();
     });
     await page.waitForTimeout(100);
-    await page.locator('button[data-listening-mode=papers]').click();
+    await page.locator('.main-navigation > button[data-view=library]').click();
     assert.equal(await page.locator('#paper-drill-play').isDisabled(), false);
     assert.equal(await page.locator('#paper-audio').evaluate((audio) => audio.paused), true);
     await page.locator('#paper-drill-play').click();

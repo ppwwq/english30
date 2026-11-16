@@ -21,7 +21,17 @@ export function visibleLesson(lesson, session) {
     ...lesson,
     sentences: reveal ? lesson.sentences : [],
     questions: lesson.questions.map((q) =>
-      reveal ? q : { id: q.id, number: q.number, prompt: q.prompt, options: q.options },
+      reveal
+        ? q
+        : {
+            id: q.id,
+            number: q.number,
+            label: q.label,
+            prompt: q.prompt,
+            options: q.options,
+            grading: q.grading,
+            input: q.input,
+          },
     ),
   };
 }
@@ -36,6 +46,41 @@ export function normaliseAnswer(value) {
     .replace(/\s+/g, ' ');
 }
 
+/** Shared answer boundary for single-record and full-backup imports. */
+export function validateAnswerResult(result, { allowLegacy = false } = {}) {
+  if (!result || typeof result !== 'object' || Array.isArray(result)) throw new Error('听力答案格式无效。');
+  const manual = result.grading === 'self';
+  if (
+    !(allowLegacy && !manual && result.answer === undefined) &&
+    (typeof result.answer !== 'string' || result.answer.length > (manual ? 20000 : 500))
+  )
+    throw new Error('听力答案格式无效。');
+  if (manual) {
+    if (result.correct !== null || result.duplicate !== false)
+      throw new Error('自核答案不能包含自动判分结果。');
+    const rating = result.selfAssessment;
+    if (
+      (rating !== undefined && !['correct', 'incorrect', 'pending'].includes(rating)) ||
+      result.status !== (rating === 'correct' || rating === 'incorrect' ? 'self-reviewed' : 'pending')
+    )
+      throw new Error('听力自核结果无效。');
+  } else {
+    if (
+      typeof result.correct !== 'boolean' ||
+      (result.grading !== undefined && !['auto', 'verified'].includes(result.grading)) ||
+      (result.status !== undefined && result.status !== 'auto') ||
+      (result.duplicate != null && typeof result.duplicate !== 'boolean')
+    )
+      throw new Error('听力答案格式无效。');
+    if (result.selfAssessment !== undefined) throw new Error('自动判分题不能导入自核结果。');
+  }
+  if (result.selfCheck != null && !['', 'correct', 'retry'].includes(result.selfCheck))
+    throw new Error('听力自核结果无效。');
+  if (result.errorType != null && (typeof result.errorType !== 'string' || result.errorType.length > 100))
+    throw new Error('听力错因格式无效。');
+  return result;
+}
+
 export function submitAnswers(lesson, session, answers) {
   if (session.phase === 'review') throw new Error('本轮已提交，请开始无字幕复测。');
   const pools = new Map();
@@ -43,6 +88,8 @@ export function submitAnswers(lesson, session, answers) {
     lesson.questions.map((q) => {
       const answer = String(answers[q.id] ?? '').trim(),
         normal = normaliseAnswer(answer);
+      if (q.grading === 'self')
+        return [q.id, { answer, correct: null, duplicate: false, status: 'pending', grading: 'self' }];
       let correct = q.answers.some((a) => normaliseAnswer(a) === normal),
         duplicate = false;
       if (q.requiredGroups && !correct) {
@@ -86,6 +133,38 @@ export function switchPhase(session, phase) {
   if (phase !== 'first' && !session.attempts.length) throw new Error('请先提交首听答案。');
   if (phase === 'first' && session.attempts.length) throw new Error('首听结果已保留，请选择无字幕复测。');
   return { ...session, phase };
+}
+
+export function selfAssessAnswer(lesson, session, questionId, rating) {
+  if (session.phase !== 'review' || !session.attempts.length)
+    throw new Error('请先提交本轮答案，再对照原卷自核。');
+  const question = lesson.questions.find((q) => q.id === questionId);
+  const attempt = session.attempts.at(-1);
+  const result = attempt.results[questionId];
+  if (
+    !['correct', 'incorrect', 'pending'].includes(rating) ||
+    question?.grading !== 'self' ||
+    result?.grading !== 'self' ||
+    result.correct !== null
+  )
+    throw new Error('这道题的自核结果无效。');
+  return {
+    ...session,
+    attempts: [
+      ...session.attempts.slice(0, -1),
+      {
+        ...attempt,
+        results: {
+          ...attempt.results,
+          [questionId]: {
+            ...result,
+            selfAssessment: rating,
+            status: rating === 'pending' ? 'pending' : 'self-reviewed',
+          },
+        },
+      },
+    ],
+  };
 }
 
 export function wordAtTime(lesson, time) {
@@ -171,10 +250,12 @@ export function validateLesson(data) {
   }
   for (const q of data.questions) {
     id(q.id);
+    if (q.grading != null && !['auto', 'verified', 'self'].includes(q.grading)) fail('题目判分方式无效。');
+    if (q.input != null && !['text', 'textarea'].includes(q.input)) fail('题目输入方式无效。');
     if (
       !short(q.prompt) ||
       !Array.isArray(q.answers) ||
-      !q.answers.length ||
+      (q.grading === 'self' ? q.answers.length !== 0 : !q.answers.length) ||
       !q.answers.every((a) => short(a, 500))
     )
       fail('题目或参考答案缺失。');
@@ -208,8 +289,9 @@ export function validateLesson(data) {
         ))
     )
       fail('共用答案组格式不正确。');
-    if (!Array.isArray(q.evidence) || !q.evidence.length) fail('题目缺少录音证据。');
-    for (const evidence of q.evidence) {
+    if (q.evidence != null && !Array.isArray(q.evidence)) fail('题目录音证据格式无效。');
+    if (q.grading !== 'self' && !q.evidence?.length) fail('题目缺少录音证据。');
+    for (const evidence of q.evidence || []) {
       range(evidence, '证据');
       if (
         evidence.wordIds &&

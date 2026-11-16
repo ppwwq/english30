@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content"
     />
-    <meta name="theme-color" content="#f7f2e8" />
+    <meta name="theme-color" content="#E8EFF6" />
     <meta name="description" content="用自己的音频逐句精听，对照题目找出卡点，再关掉字幕重新听。" />
     <title>English30 · 英文训练台</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./training.css" />
     <link rel="stylesheet" href="./reading.css" />
     <link rel="stylesheet" href="./papers.css" />
+    <link rel="stylesheet" href="./paper-practice.css" />
   </head>
   <body>
     <a class="skip-link" href="#questions">跳到答题区</a>
@@ -79,11 +80,12 @@
       </nav>
       <div id="listening-modes" class="listening-modes" hidden>
         <div class="phase-switch" role="group" aria-label="听力材料类型">
-          <button type="button" data-listening-mode="papers" aria-pressed="true">Past Paper 原卷</button>
-          <button type="button" data-listening-mode="practice" aria-pressed="false">分段精练</button>
+          <button type="button" data-listening-mode="papers" aria-pressed="true">原卷精练</button>
+          <button type="button" data-listening-mode="practice" aria-pressed="false">选段与导入</button>
         </div>
         <p id="listening-mode-note">按年份、Part 和 Task 选择原卷，直接听原音、看题页。</p>
       </div>
+      <div id="practice-picker" class="practice-picker" hidden></div>
       <main id="training-host" class="training-host" hidden></main>
       <main id="reading-host" class="reading-host" hidden></main>
       <main id="paper-host" class="paper-host" hidden></main>
@@ -119,6 +121,7 @@
                 跟随播放
               </button>
             </div>
+            <div id="practice-sources" class="practice-sources" hidden></div>
             <div id="transcript" class="transcript" tabindex="0" aria-label="音频字幕">
               <div class="empty-state">
                 <span class="empty-symbol" aria-hidden="true">◌</span>
