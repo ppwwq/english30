@@ -54,9 +54,9 @@ export async function mountPapers({ host, bridge }) {
     <div id="paper-notice" class="paper-notice" role="status"></div>
     <section id="paper-audio-panel" class="paper-audio-panel" aria-label="原卷录音">
       <div class="paper-transport"><button id="paper-play" type="button" class="button-primary">播放</button><button id="paper-back" type="button" aria-label="后退十秒">−10 秒</button><button id="paper-forward" type="button" aria-label="前进十秒">＋10 秒</button>
-      <label class="paper-rate">倍速<select id="paper-rate"><option value="0.75">0.75×</option><option value="0.9">0.9×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option></select></label>
+      <label class="paper-rate">速度<select id="paper-rate"><option value="0.75">0.75×</option><option value="0.85">0.85×</option><option value="1" selected>1.0×</option><option value="1.25">1.25×</option></select></label>
       <button id="paper-task-play" type="button" class="button-secondary">听这个 Task</button><button id="paper-task-loop" type="button" aria-pressed="false">循环 Task</button>
-      <button id="paper-review" type="button" class="button-secondary">开始复盘，显示字幕</button></div>
+      <button id="paper-review" type="button" class="button-secondary">开始复盘，显示字幕</button><button id="paper-practise-task" type="button" class="button-secondary">用此 Task 开始练习</button></div>
       <div class="paper-progress"><span id="paper-position">0:00</span><input id="paper-seek" type="range" min="0" max="1" step="0.05" value="0" aria-label="原卷录音进度"/><span id="paper-duration">0:00</span></div>
       <div class="paper-audio-status"><span id="paper-audio-status" role="status">选择 Task 后可播放对应原音。</span><button id="paper-clear-range" type="button" hidden>退出片段 / 循环</button></div>
       <audio id="paper-audio" preload="none" playsinline></audio>
@@ -107,7 +107,12 @@ export async function mountPapers({ host, bridge }) {
       await player.playRange(sentence.start, sentence.end);
       return { ok: player.playing, rate: $('paper-audio').playbackRate };
     },
+    onChange: () => bridge.onSessionChange?.(),
   });
+  $('paper-practise-task').onclick = () =>
+    bridge.navigate('listening', {
+      lessonId: `paper-${selection.year}-${selection.variant}-${selection.part.toLowerCase()}-task-${selection.task}`,
+    });
   function updateStudySavebar() {
     $('paper-study-save').disabled = !studyStore.hasUnsaved();
     $('paper-study-status').textContent = studyStore.loadError
@@ -128,6 +133,7 @@ export async function mountPapers({ host, bridge }) {
     updateStudySavebar();
   });
   $('paper-study-save').onclick = () => {
+    if (bridge.requestSave) return bridge.requestSave();
     if (
       !confirm(
         '准备保存本次学习纪录：包含原卷标记、已提交的短句练习和其他模块的未保存记录。只写入当前浏览器，保存后会回读验证。未提交的输入不包含。',
@@ -744,6 +750,7 @@ export async function mountPapers({ host, bridge }) {
     `已整理 ${catalogue.sources.length} 份原件。页面按原 PDF 页码保留；重复版本按原文件名称区分。个人练习纪录只保存在当前浏览器。`;
   await applySelection();
   return {
+    getSaveState: () => paperStudy.getSaveState(),
     async show(view, options = {}) {
       if (view === 'hidden') {
         ++loadingGeneration;
@@ -760,7 +767,7 @@ export async function mountPapers({ host, bridge }) {
         : '我的 Past Papers';
       host.querySelector('.paper-heading p').textContent = listening
         ? '选择原卷的年份、Part 和 Task，题页、原音与字幕一起练。'
-        : '先选一份卷，再从想听的地方开始。';
+        : '查看原卷资料；选好 Task 后，可以带着这份材料开始练习。';
       $('paper-paper').closest('label').hidden = listening;
       $('paper-paper').disabled = listening;
       if (options.paper) {

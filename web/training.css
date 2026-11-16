@@ -46,6 +46,37 @@
 }
 .training-savebar p {
   margin: 0;
+  color: var(--ink);
+  font-size: 13px;
+}
+.training-practice-kind,
+.training-review-focus {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.training-practice-kind {
+  border-left: 3px solid var(--line);
+  padding-left: 12px;
+}
+.training-manual-review {
+  width: 100%;
+  border-top: 1px solid var(--line);
+}
+.training-manual-review summary {
+  min-height: 44px;
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+.training-manual-review > p {
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.training-finish {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 16px;
 }
 .training-status:empty {
   display: none;
@@ -423,7 +454,7 @@
     gap: 12px;
   }
   .training-savebar p {
-    font-size: 11px;
+    font-size: 13px;
   }
   .training-savebar button {
     font-size: 12px;

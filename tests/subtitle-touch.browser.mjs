@@ -7,8 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -21,8 +20,7 @@ const report = { engine: 'Chromium with actual emulated touch input; not physica
 const reportFile = process.argv.find((a) => a.startsWith('--report='))?.slice(9);
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 try {
   for (const [name, viewport] of [
@@ -64,7 +62,7 @@ try {
       }
       item.after = await snapshot();
     }
-    async function touch(from, to) {
+    async function touch(from, to, pauseBeforeRelease = 0) {
       await cdp.send('Input.dispatchTouchEvent', {
         type: 'touchStart',
         touchPoints: [{ x: from.x, y: from.y, id: 1 }],
@@ -78,6 +76,7 @@ try {
         });
         await page.waitForTimeout(15);
       }
+      if (pauseBeforeRelease) await page.waitForTimeout(pauseBeforeRelease);
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
     }
     async function dragTo(fraction, concealed = false) {
@@ -233,28 +232,21 @@ try {
       const b = await transcript.boundingBox();
       const top = Math.max(b.y + 45, 120),
         bottom = Math.min(b.y + b.height - 45, viewport.height - 200);
-      await touch({ x: b.x + b.width * 0.7, y: bottom }, { x: b.x + b.width * 0.7, y: top });
+      const scrollBefore = await transcript.evaluate((node) => {
+        window.subtitleTouchScrollEnded = false;
+        node.addEventListener('scrollend', () => (window.subtitleTouchScrollEnded = true), { once: true });
+        return node.scrollTop;
+      });
+      // Hold the finger still before lifting: this case tests a completed drag,
+      // not the native tap-to-stop-fling gesture, which intentionally emits no click.
+      await touch({ x: b.x + b.width * 0.7, y: bottom }, { x: b.x + b.width * 0.7, y: top }, 150);
       assert.equal(await page.locator('#follow-toggle').getAttribute('aria-pressed'), 'false');
-      // A native tap during an active fling stops scrolling without producing a
-      // click. Test the return action after native scrolling has settled.
-      item.scrollingSettled = await page.evaluate(
-        () =>
-          new Promise((resolve) => {
-            const start = performance.now();
-            let previous = '',
-              stable = 0;
-            function check() {
-              const position = `${scrollY}:${document.getElementById('transcript').scrollTop}`;
-              stable = position === previous ? stable + 1 : 0;
-              previous = position;
-              if (stable >= 10) return resolve(true);
-              if (performance.now() - start > 2500) return resolve(false);
-              requestAnimationFrame(check);
-            }
-            check();
-          }),
-      );
+      // A stable scrollTop alone can occur before the native gesture has ended.
+      await page.waitForFunction(() => window.subtitleTouchScrollEnded, undefined, { timeout: 3000 });
+      item.scrollingSettled = await page.evaluate(() => window.subtitleTouchScrollEnded);
       assert.equal(item.scrollingSettled, true);
+      item.scrolledBy = await transcript.evaluate((node, before) => node.scrollTop - before, scrollBefore);
+      assert.ok(Math.abs(item.scrolledBy) > 40, 'the native touch must actually scroll the subtitles');
       await page.locator('#follow-toggle').tap();
       await page.waitForTimeout(650);
       assert.equal(await page.locator('#follow-toggle').getAttribute('aria-pressed'), 'true');

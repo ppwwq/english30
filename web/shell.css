@@ -3,6 +3,88 @@
   width: min(100%, 720px);
   margin: 4px 0 28px;
 }
+.session-savebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 22px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+}
+.session-savebar p {
+  margin: 3px 0 0;
+  font-size: 13px;
+  max-width: 65ch;
+}
+.session-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.focused-drill-dialog {
+  width: min(760px, calc(100vw - 32px));
+  max-height: calc(100dvh - 40px);
+  padding: 24px;
+  color: var(--ink);
+  background: var(--surface);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.focused-drill-dialog::backdrop {
+  background: var(--paper);
+}
+.focused-drill-heading,
+.focused-drill-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.focused-drill-heading h2 {
+  margin: 0;
+}
+.focused-drill-footer {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 12px;
+}
+body[data-focused-drill] #listening-panel {
+  visibility: hidden;
+}
+body[data-listening-phase]:not([data-listening-phase='review']) .player {
+  --player-space: 92px;
+}
+.player-note,
+.training-savebar .fine-print {
+  color: var(--ink);
+}
+@media (max-width: 900px) {
+  .session-savebar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 12px;
+    gap: 10px;
+  }
+  .session-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .session-actions button {
+    flex: 1;
+  }
+  body[data-listening-phase]:not([data-listening-phase='review']) .study-grid .answer-column {
+    order: -1;
+  }
+  body[data-listening-phase]:not([data-listening-phase='review']) .question-panel .questions {
+    max-height: none;
+  }
+}
 .main-navigation.phase-switch > button {
   flex: 1;
   min-height: 48px;

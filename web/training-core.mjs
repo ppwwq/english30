@@ -325,14 +325,39 @@ export function listeningAttempts(records) {
     }
   return [...attempts.values()];
 }
+export function isTargetedStructureAttempt(record) {
+  return (
+    record.details?.practiceKind === 'targeted-structure' ||
+    (!record.details?.practiceKind &&
+      record.module === 'writing' &&
+      record.details?.stage === 0 &&
+      typeof record.answers?.sentence === 'string')
+  );
+}
+
 export function summariseRecords(records) {
   const group = () => ({ attempts: 0, correct: 0, total: 0, seconds: 0 });
-  const out = { first: group(), assisted: group(), retest: group(), errors: {}, writing: 0, reading: 0 };
+  const out = {
+    first: group(),
+    targeted: group(),
+    assisted: group(),
+    retest: group(),
+    errors: {},
+    writing: 0,
+    reading: 0,
+  };
   const firstSeen = new Set();
   for (const r of records) {
-    let key = r.assisted || r.phase === 'review' ? 'assisted' : r.phase === 'retest' ? 'retest' : 'first';
+    let key =
+      r.assisted || r.phase === 'review'
+        ? 'assisted'
+        : r.phase === 'retest'
+          ? 'retest'
+          : isTargetedStructureAttempt(r)
+            ? 'targeted'
+            : 'first';
     const task = `${r.module}:${r.taskId}`;
-    if (key === 'first' && firstSeen.has(task)) key = 'retest';
+    if (['first', 'targeted'].includes(key) && firstSeen.has(task)) key = 'retest';
     firstSeen.add(task);
     const g = out[key];
     g.attempts++;
@@ -425,15 +450,24 @@ export function createStudyStore({ storage = storageDefault(), now = () => new D
     replaceState(value) {
       set(value);
     },
-    save() {
-      if (!storage) throw new Error('当前浏览器无法保存，请使用导出备份。');
-      const text = JSON.stringify(validateStudyState(state));
-      storage.setItem(STUDY_KEY, text);
-      if (storage.getItem(STUDY_KEY) !== text) throw new Error('保存回读不一致。');
-      saved = clone(state);
+    prepareSave() {
+      const snapshot = validateStudyState(state);
+      const text = JSON.stringify(snapshot);
+      return { state: snapshot, text, changed: text !== JSON.stringify(saved) };
+    },
+    ackSave(snapshot) {
+      // Acknowledge only the captured submission; newer edits remain in state.
+      saved = validateStudyState(snapshot.state);
       loadError = null;
       emit();
       return clone(saved);
+    },
+    save() {
+      if (!storage) throw new Error('当前浏览器无法保存，请使用导出备份。');
+      const snapshot = api.prepareSave();
+      storage.setItem(STUDY_KEY, snapshot.text);
+      if (storage.getItem(STUDY_KEY) !== snapshot.text) throw new Error('保存回读不一致。');
+      return api.ackSave(snapshot);
     },
     exportBackup() {
       let listening = [];

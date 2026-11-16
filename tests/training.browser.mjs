@@ -3,14 +3,12 @@ import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 import assert from 'node:assert/strict';
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const context = await browser.newContext({
   viewport: { width: 1080, height: 810 },
@@ -42,7 +40,7 @@ try {
   await page.goto(
     (process.env.TEST_URL || 'http://127.0.0.1:4173').replace(/\/#.*$/, '').replace(/\/$/, '') + '/#today',
   );
-  await page.locator('#training-save').waitFor();
+  await page.locator('#session-save').waitFor();
   await check('30-day calendar and 30-minute budget remain staged until explicit save', async () => {
     assert.equal(await page.locator('.training-day').count(), 30);
     await page.getByText('调整训练安排', { exact: true }).click();
@@ -82,7 +80,7 @@ try {
           ['retest', false],
         ],
       );
-      await page.locator('#training-save').click();
+      await page.locator('#session-save').click();
       assert.equal((await saved()).records.length, 4);
     },
   );
@@ -107,7 +105,7 @@ try {
       assert.equal((await state()).records.at(-1).details.kind, 'paragraph');
       await page.locator('#paragraph-revision').fill(draft + ' We can start next month.');
       for (const el of await page.locator('.training-checklist input').all()) await el.check();
-      await page.getByRole('button', { name: '记录修改稿与自查', exact: true }).click();
+      await page.getByRole('button', { name: '提交修改稿与自核', exact: true }).click();
       await page.locator('[data-training-mode=paper2]').click();
       assert.equal(await page.locator('#paragraph-draft').inputValue(), '');
       assert.equal(await page.locator('#paper2-task').inputValue(), '2025-p2-a-q1');
@@ -143,7 +141,7 @@ try {
       await page.waitForFunction(() => document.getElementById('audio').currentTime > 0.03);
       await page.locator('#submit-answers').click();
       await page.locator('.review-drawer > summary').click();
-      await page.locator('#save-record').click();
+      await page.locator('#session-save').click();
       await nav('writing');
       await page.locator('[data-training-mode=dictation]').click();
       await page.locator('#dictation-sentence').waitFor();
@@ -170,7 +168,7 @@ try {
     'backup export/import and invalid-file protection use the real saved record store',
     async () => {
       await page.getByRole('button', { name: '待复习与备份', exact: true }).click();
-      await page.locator('#training-save').click();
+      await page.locator('#session-save').click();
       const downloadEvent = page.waitForEvent('download');
       await page.locator('#training-export').click();
       const download = await downloadEvent;
@@ -196,6 +194,7 @@ try {
         document.getElementById('training-status').textContent.startsWith('已合并并回读验证'),
       );
       assert.equal((await saved()).records.length, data.study.records.length);
+      await page.getByText('仅手动标记（自评）', { exact: true }).first().click();
       await page.getByRole('button', { name: '仍需重练', exact: true }).first().click();
       assert.equal(Object.keys((await saved()).reviews).length, 0);
       assert.equal(Object.keys((await state()).reviews).length, 1);
@@ -208,7 +207,7 @@ try {
       const row = page
         .locator('.training-review-row')
         .filter({ has: page.getByRole('heading', { name: '给同学一段建议', exact: true }) });
-      await row.getByRole('button', { name: '打开原练习', exact: true }).click();
+      await row.getByRole('button', { name: '查看上次作答', exact: true }).click();
       assert.ok((await page.locator('#paragraph-draft').inputValue()).startsWith('Our school'));
       assert.ok(
         (await page.locator('#paragraph-revision').inputValue()).endsWith('We can start next month.'),
@@ -222,7 +221,7 @@ try {
       await page
         .locator('.training-review-row')
         .first()
-        .getByRole('button', { name: '打开原练习', exact: true })
+        .getByRole('button', { name: '关提示再测', exact: true })
         .click();
       await page.locator('#dictation-answer').waitFor();
       assert.equal(await page.locator('#dictation-answer').inputValue(), '');

@@ -11,6 +11,39 @@ import {
   listeningAttempts,
 } from '../web/training-core.mjs';
 
+test('legacy named-structure answers stay separate from independent paragraphs without rewriting records', () => {
+  const records = [
+    {
+      module: 'writing',
+      taskId: 'old-sentence',
+      phase: 'first',
+      answers: { sentence: 'My sentence.' },
+      details: { stage: 0 },
+    },
+    {
+      module: 'writing',
+      taskId: 'paragraph',
+      phase: 'first',
+      answers: { draft: 'My draft.' },
+      details: { kind: 'paragraph' },
+    },
+    {
+      module: 'writing',
+      taskId: 'assisted',
+      phase: 'first',
+      assisted: true,
+      answers: { sentence: 'Helped.' },
+      details: { stage: 0 },
+    },
+  ];
+  const before = structuredClone(records);
+  const stats = summariseRecords(records);
+  assert.equal(stats.targeted.attempts, 1);
+  assert.equal(stats.first.attempts, 1);
+  assert.equal(stats.assisted.attempts, 1);
+  assert.deepEqual(records, before);
+});
+
 function memoryStorage() {
   const values = new Map();
   return {
@@ -108,6 +141,28 @@ test('statistics keep independent first attempts separate from assisted practice
   ]);
   assert.equal(exposed.first.attempts, 0);
   assert.equal(exposed.retest.attempts, 1);
+});
+
+test('a named structure exercise is counted separately from independent first attempts', () => {
+  const stats = summariseRecords([
+    {
+      module: 'writing',
+      taskId: 'opportunities',
+      phase: 'first',
+      assisted: false,
+      correct: 1,
+      total: 1,
+      details: { practiceKind: 'targeted-structure', stage: 0 },
+    },
+    { module: 'writing', taskId: 'opportunities', phase: 'review', assisted: true, correct: 1, total: 1 },
+    { module: 'writing', taskId: 'opportunities', phase: 'retest', assisted: false, selfCheck: 'correct' },
+    { module: 'reading', taskId: 'new-passage', phase: 'first', assisted: false, correct: 2, total: 3 },
+  ]);
+  assert.equal(stats.first.attempts, 1);
+  assert.equal(stats.first.total, 3);
+  assert.equal(stats.targeted.attempts, 1);
+  assert.equal(stats.assisted.attempts, 1);
+  assert.equal(stats.retest.attempts, 1);
 });
 test('backup validators reject malformed or dangerous state before any write', () => {
   assert.throws(() => validateStudyState({ schemaVersion: 1, records: 'bad' }));

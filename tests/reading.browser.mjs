@@ -3,14 +3,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const report = { cases: [], errors: [], physicalDevice: false };
 try {
@@ -50,7 +48,13 @@ try {
   assert.equal(await page.evaluate(() => window.reader.getRecords()[0].details.pending), 2);
   await page.locator('[data-rd-self="a-q4"]').selectOption('yes');
   await page.locator('[data-rd-self="a-q5i"]').selectOption('no');
-  assert.equal(await page.evaluate(() => window.reader.getRecords()[0].correct), 5);
+  assert.equal(await page.evaluate(() => window.reader.getRecords()[0].correct), undefined);
+  assert.deepEqual(await page.evaluate(() => window.reader.getRecords()[0].details.matching), {
+    matched: 4,
+    selfConfirmed: 1,
+    pending: 0,
+    needsPractice: 1,
+  });
   await page.locator('[data-rd-action="save"]').tap();
   assert.equal(
     await page.evaluate(() => JSON.parse(localStorage.getItem('english30-study-v1')).records.length),
@@ -106,6 +110,7 @@ try {
     await page.evaluate(() => JSON.parse(localStorage.getItem('english30-study-v1')).records.length),
     1,
   );
+  await page.locator('.rd-language-review summary').click();
   await page.locator('[data-rd-language="reader"]').check();
   await page.locator('[data-rd-confirmed="guest"]').check();
   await page.locator('[data-rd-action="integrated-save"]').tap();

@@ -13,6 +13,8 @@ import {
 } from './core.mjs';
 import { listeningLibrary, parseListeningRecord, importListeningRecord } from './listening-library.mjs';
 import { mountPaperPractice } from './paper-practice.mjs';
+import { mountFocusedDrill } from './focused-drill.mjs';
+import { questionDrillSentence } from './focused-drill-core.mjs';
 
 const $ = (id) => document.getElementById(id);
 const audio = $('audio');
@@ -29,6 +31,8 @@ let requestedLessonId = null;
 let activeLessonLoad = null;
 let navigateTo = () => {},
   glossary = [];
+let requestSave = () => status('保存入口正在准备，请稍候。');
+let focusedDrill;
 const exposedLessons = new Set();
 let priorExposure = false;
 let importedMaterial = false,
@@ -79,6 +83,12 @@ function touch() {
 }
 function review() {
   return session?.phase === 'review';
+}
+function hasAnswerDraft() {
+  return !!session && !review() && Object.values(drafts).some((answer) => String(answer).trim());
+}
+function hasUnsavedListening() {
+  return hasAnswerDraft() || (revision > 0 && revision !== saveRevision);
 }
 function guardReview() {
   if (!review()) {
@@ -269,6 +279,7 @@ function render() {
   renderInspector();
   renderSaved();
   renderCatalogue();
+  listeningEvents.dispatchEvent(new Event('change'));
 }
 function renderTranscript() {
   clearHighlights();
@@ -471,6 +482,34 @@ function renderQuestions() {
         touch();
       });
       feedback.append(errorReason);
+      if (questionDrillSentence(lesson, q)) {
+        const practise = button(
+          '练这一处',
+          () => {
+            focusedDrill ||= mountFocusedDrill({
+              cancel: () => {
+                resetPlayer();
+                audio.playbackRate = 1;
+                $('playback-rate').value = '1';
+              },
+              play: async (start, end) => {
+                await playSubtitle(start, end);
+                return { ok: !audio.paused, rate: audio.playbackRate };
+              },
+              onChange: () => listeningEvents.dispatchEvent(new Event('change')),
+              requestSave: () => requestSave(),
+            });
+            focusedDrill.open(lesson, q, practise);
+          },
+          'button-secondary',
+        );
+        practise.dataset.practiceDrill = q.id;
+        feedback.append(practise);
+      } else if (lesson.paper) {
+        feedback.append(
+          el('p', 'fine-print', '这题暂无可靠短句定位，请先对照原音与评分参考；不强行生成听写答案。'),
+        );
+      }
       card.append(feedback);
     }
     target.append(card);
@@ -479,6 +518,7 @@ function renderQuestions() {
 
 function renderControls() {
   const isReview = review();
+  document.body.dataset.listeningPhase = session.phase;
   $('mode-label').textContent = phaseNames[session.phase];
   for (const phase of ['first', 'review', 'retest']) {
     const b = $(`phase-${phase}`);
@@ -488,8 +528,18 @@ function renderControls() {
   }
   $('submit-answers').hidden = isReview;
   $('submit-answers').disabled = !audioReady;
-  $('submit-answers').textContent =
-    session.phase === 'retest' ? '提交复测答案，查看对照' : '提交答案，开始复盘';
+  $('submit-answers').textContent = session.phase === 'retest' ? '提交复测答案' : '提交作答';
+  $('listening-next-actions').hidden = !isReview;
+  const fresh = catalogueWithStatus().some(
+    (entry) =>
+      entry.paperPractice &&
+      !entry.missingAudio &&
+      entry.exposure === 'fresh' &&
+      ['A', 'B1'].includes(entry.part) &&
+      entry.id !== lesson.id,
+  );
+  $('listening-fresh').disabled = !fresh;
+  $('listening-fresh').textContent = fresh ? '换未练过的 Task' : '暂无未练过的验证材料';
   for (const id of [
     'prev-sentence',
     'next-sentence',
@@ -510,6 +560,11 @@ function renderControls() {
   $('follow-toggle').setAttribute('aria-pressed', String(follow));
   $('follow-toggle').textContent = follow ? '正在跟随' : '回到播放位置';
   $('subtitle-adjustment').hidden = !isReview;
+  $('follow-toggle').hidden = !isReview;
+  $('prev-sentence').hidden = !isReview;
+  $('next-sentence').hidden = !isReview;
+  document.querySelector('.rate-control').hidden = !isReview;
+  document.querySelector('.player-bottom').hidden = !isReview;
   $('subtitle-offset').value = String(session.timingOffset || 0);
   const quiet = document.querySelector('.quiet-label');
   if (quiet) quiet.textContent = isReview ? '答案与证据已展开' : '原速 · 独立作答';
@@ -548,8 +603,7 @@ function renderSaved() {
       button(
         '恢复这份纪录，继续复盘',
         () => {
-          if (revision > 0 && revision !== saveRevision && !confirm('恢复会替换当前尚未保存的练习，继续吗？'))
-            return;
+          if (hasUnsavedListening() && !confirm('恢复会替换当前尚未保存的练习，继续吗？')) return;
           resetPlayer();
           const restored = structuredClone(record);
           session = {
@@ -1129,13 +1183,7 @@ $('import-package').addEventListener('change', async (event) => {
     if (file.size > 6_000_000) throw new Error('练习包太大，请把材料分成短任务。');
     const data = JSON.parse(await file.text());
     validateLesson(data);
-    if (
-      session &&
-      revision !== saveRevision &&
-      revision > 0 &&
-      !confirm('切换练习会清空未保存的本次作答与标记。继续吗？')
-    )
-      return;
+    if (hasUnsavedListening() && !confirm('切换练习会清空未保存的本次作答与标记。继续吗？')) return;
     ++loadGeneration;
     await loadLesson(data, { imported: true });
     $('lesson-select').value = '';
@@ -1175,47 +1223,27 @@ $('lesson-select').replaceChildren(...catalogue.map((x) => new Option(x.title, x
 $('lesson-select').addEventListener('change', (event) => {
   const entry = catalogue.find((x) => x.id === event.target.value);
   if (!entry) return;
-  if (
-    revision > 0 &&
-    revision !== saveRevision &&
-    !confirm('切换练习会清空未保存的本次作答与标记。继续吗？')
-  ) {
+  if (hasUnsavedListening() && !confirm('切换练习会清空未保存的本次作答与标记。继续吗？')) {
     event.target.value = lesson?.id || '';
     return;
   }
   chooseLesson(entry);
 });
 
-$('save-record').addEventListener('click', async () => {
-  if (!session?.attempts.length) return;
-  const savingSession = session,
-    savingRevision = revision;
-  const record = buildRecord(lesson, session);
-  const summary = `准备保存：${lesson.title}\n${record.attempts.length} 轮作答、${Object.keys(record.marks).length} 个卡词、${record.moments.length} 个时间标记。${importedMaterial ? '\n同时保留这份自导入练习包与原音。' : ''}\n仅保存在当前浏览器，不写入云端错题本。`;
-  if (!confirm(summary)) return;
-  try {
-    if (importedMaterial) await persistMaterial();
-    const stored = JSON.parse(localStorage.getItem(storageKey) || '[]');
-    if (!Array.isArray(stored)) throw new Error('已有记录格式异常');
-    const records = [...stored, record];
-    localStorage.setItem(storageKey, JSON.stringify(records));
-    const back = JSON.parse(localStorage.getItem(storageKey));
-    if (JSON.stringify(back.at(-1)) !== JSON.stringify(record)) throw new Error('回读不一致');
-    if (session === savingSession) {
-      savedRecord = record;
-      saveRevision = savingRevision;
-      renderControls();
-      renderSaved();
-      status(
-        savingRevision === revision
-          ? '已写入当前浏览器，并回读验证成功。可导出备份；尚未写入云端。'
-          : '已保存点击时的纪录，并回读验证。保存期间的新修改尚未保存。',
-      );
-    }
-    listeningEvents.dispatchEvent(new Event('change'));
-  } catch (e) {
-    status(`保存未完成：${e.message}。浏览器可能禁用了本地储存。`, true);
-  }
+$('save-record').addEventListener('click', () => requestSave());
+$('listening-retest').addEventListener('click', () => $('phase-retest').click());
+$('listening-finish').addEventListener('click', () => navigateTo('review'));
+$('listening-fresh').addEventListener('click', () => {
+  const fresh = catalogueWithStatus().filter(
+    (entry) =>
+      entry.paperPractice &&
+      !entry.missingAudio &&
+      entry.exposure === 'fresh' &&
+      ['A', 'B1'].includes(entry.part) &&
+      entry.id !== lesson.id,
+  );
+  const next = fresh.find((entry) => entry.part === lesson.paper?.part) || fresh[0];
+  if (next) navigateTo('listening', { lessonId: next.id });
 });
 $('save-material').addEventListener('click', async () => {
   if (!audioReady || !importedMaterial) return;
@@ -1262,6 +1290,9 @@ $('import-record').addEventListener('change', async (event) => {
 async function persistMaterial() {
   if (!currentAudioBlob || !audioReady) throw new Error('请先载入匹配的原音。');
   await listeningLibrary.save({ lesson, audio: currentAudioBlob });
+  await refreshMaterialCatalogue();
+}
+async function refreshMaterialCatalogue() {
   const entries = await listeningLibrary.list();
   for (const entry of entries) {
     const index = catalogue.findIndex((x) => x.id === entry.id);
@@ -1281,7 +1312,7 @@ $('export-record').addEventListener('click', () => {
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 10000);
   status(
-    saveRevision === revision ? '已导出刚才回读验证的学习纪录。' : '已导出上次保存的纪录；后续修改还未保存。',
+    !hasUnsavedListening() ? '已导出刚才回读验证的学习纪录。' : '已导出上次保存的纪录；后续修改还未保存。',
   );
 });
 document.addEventListener('keydown', (event) => {
@@ -1353,6 +1384,51 @@ function waitForAudio() {
   });
 }
 export const listeningBridge = {
+  setSaveHandler(fn) {
+    requestSave = fn;
+  },
+  getSaveState() {
+    return {
+      submitted: !!session?.attempts.length,
+      hasDraft: hasAnswerDraft() || !!focusedDrill?.getSaveState().hasDraft,
+      label: '听力',
+    };
+  },
+  getSaveSnapshot() {
+    if (!session?.attempts.length) return null;
+    const record = buildRecord(lesson, session);
+    const fingerprint = ({ savedAt, ...content }) => JSON.stringify(content);
+    if (savedRecord && fingerprint(savedRecord) === fingerprint(record)) return null;
+    const savingSession = session,
+      savingRevision = revision;
+    const material = importedMaterial ? { lesson: structuredClone(lesson), audio: currentAudioBlob } : null;
+    const materialReady = audioReady && !!currentAudioBlob;
+    return {
+      record,
+      label: lesson.title,
+      prepare: material
+        ? async () => {
+            if (!materialReady) throw new Error('请先载入匹配的原音。');
+            await listeningLibrary.save(material);
+            await refreshMaterialCatalogue();
+          }
+        : undefined,
+      acknowledge() {
+        if (session === savingSession) {
+          savedRecord = record;
+          saveRevision = savingRevision;
+          renderControls();
+          renderSaved();
+          status(
+            revision !== savingRevision
+              ? '确认时的纪录已保存并完成回读；保存期间的新修改尚未保存。'
+              : '已保存到当前浏览器，并完成回读验证。未提交输入不包含在内。',
+          );
+        }
+        listeningEvents.dispatchEvent(new Event('change'));
+      },
+    };
+  },
   exposePaper({ year, variant, part, task } = {}) {
     const affected = catalogue.filter(
       (e) =>
@@ -1385,6 +1461,7 @@ export const listeningBridge = {
     return () => listeningEvents.removeEventListener('change', fn);
   },
   pauseListening() {
+    focusedDrill?.suspend();
     ++playbackRequest;
     cancelPendingSeek();
     audio.pause();
@@ -1416,8 +1493,7 @@ export const listeningBridge = {
     }
     const entry = catalogue.find((x) => x.id === lessonId);
     if (!entry) throw new Error('这份材料尚未导入。');
-    if (revision > 0 && revision !== saveRevision && !confirm('切换材料会替换当前未保存的听力草稿，继续吗？'))
-      return false;
+    if (hasUnsavedListening() && !confirm('切换材料会替换当前未保存的听力草稿，继续吗？')) return false;
     await chooseLesson(entry);
   },
   async showMode(mode) {
@@ -1437,11 +1513,7 @@ export const listeningBridge = {
     if (lessonId && lesson?.id !== lessonId) {
       const entry = catalogue.find((x) => x.id === lessonId);
       if (!entry) throw new Error('这份材料尚未载入，请先在听力页导入对应练习包与原音。');
-      if (
-        revision > 0 &&
-        revision !== saveRevision &&
-        !confirm('切换材料会替换当前未保存的听力草稿。继续回听？')
-      )
+      if (hasUnsavedListening() && !confirm('切换材料会替换当前未保存的听力草稿。继续回听？'))
         throw new Error('已取消切换，当前草稿仍保留。');
       await chooseLesson(entry);
       if (request !== playbackRequest) return;
@@ -1450,11 +1522,7 @@ export const listeningBridge = {
     await waitForAudio();
     if (request !== playbackRequest) return;
     if (!review()) {
-      if (
-        revision > 0 &&
-        revision !== saveRevision &&
-        !confirm('回听会结束当前未提交的听力作答，并恢复上次保存的复盘。继续吗？')
-      )
+      if (hasUnsavedListening() && !confirm('回听会结束当前未提交的听力作答，并恢复上次保存的复盘。继续吗？'))
         throw new Error('已取消回听，当前作答仍保留。');
       const record = readSavedRecords().findLast(
         (r) => r.lessonId === lesson?.id && Array.isArray(r.attempts) && r.attempts.length,
@@ -1528,6 +1596,7 @@ async function initialiseListening() {
       entries,
       sources: originals.sources,
       onSelect: (entry) => listeningBridge.openLesson(entry.id),
+      onIntegrated: () => navigateTo('integrated', { taskId: 'integrated-2025-b1-t6' }),
       onLibrary: (paper) =>
         navigateTo('library', {
           paper: { year: paper.year, variant: paper.variant, paper: 3, part: paper.part, task: paper.task },

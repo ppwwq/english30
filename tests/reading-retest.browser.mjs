@@ -6,14 +6,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const report = { cases: [], errors: [], physicalDevice: false };
 const reportPath =
@@ -28,7 +26,7 @@ try {
   url.hash = 'integrated';
   await page.goto(url.href);
   await page.locator('#rd-draft').waitFor();
-  assert.equal(await page.locator('.rd-phase').textContent(), '首次练习');
+  assert.equal(await page.locator('.rd-phase').textContent(), '有支架练习');
   const firstDraft = 'Dear students, please come to our meeting next Friday. Thank you.';
   await page.locator('#rd-draft').fill(firstDraft);
   await page.locator('[data-rd-action=integrated-submit]').click();
@@ -43,7 +41,7 @@ try {
   await page.reload();
   await page.locator('#rd-draft').waitFor();
   assert.equal(await page.locator('#rd-draft').inputValue(), '');
-  assert.equal(await page.locator('.rd-phase').textContent(), '独立复测');
+  assert.equal(await page.locator('.rd-phase').textContent(), '关提示同题复测');
   await page.locator('#rd-draft').fill('Dear students, I invite you to our school event next Friday.');
   await page.locator('[data-rd-action=integrated-submit]').click();
   await page.locator('[data-rd-action=integrated-save]').click();

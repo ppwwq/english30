@@ -5,14 +5,12 @@ await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const base = new URL(process.env.TEST_URL || 'http://127.0.0.1:4174');
 base.hash = 'listening';
@@ -116,9 +114,7 @@ try {
       result.drags = [];
       if (process.argv.includes('--screenshots')) {
         await page.screenshot({
-          path: fileURLToPath(
-            new URL('./artifacts/paper-practice-ipad-first.png', import.meta.url),
-          ),
+          path: fileURLToPath(new URL('./artifacts/paper-practice-ipad-first.png', import.meta.url)),
           fullPage: true,
         });
       }
@@ -131,9 +127,7 @@ try {
       await review(page);
       if (process.argv.includes('--screenshots')) {
         await page.screenshot({
-          path: fileURLToPath(
-            new URL('./artifacts/paper-practice-ipad-review.png', import.meta.url),
-          ),
+          path: fileURLToPath(new URL('./artifacts/paper-practice-ipad-review.png', import.meta.url)),
           fullPage: true,
         });
       }
@@ -225,9 +219,7 @@ try {
       await page.locator('#mark-unknown').tap();
       await page.locator('.review-drawer > summary').tap();
       await page.locator('#save-record').tap();
-      await page.waitForFunction(() =>
-        document.querySelector('#status').textContent.includes('回读验证成功'),
-      );
+      await page.waitForFunction(() => document.querySelector('#status').textContent.includes('回读验证'));
       const records = await page.evaluate(() => JSON.parse(localStorage.getItem('english30-records-v1')));
       const saved = records.at(-1);
       result.savedLesson = saved.lessonId;

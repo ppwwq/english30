@@ -4,6 +4,7 @@ import {
   planForDay,
   dateKey,
   summariseRecords,
+  isTargetedStructureAttempt,
   listeningAttempts,
   validateStudyState,
   validateBackup,
@@ -44,7 +45,7 @@ const countWords = (text) => (String(text).match(/[A-Za-z]+(?:['’][A-Za-z]+)?|
 const dayAfter = (date, n) =>
   new Date(Date.parse(date + 'T00:00:00Z') + n * 86400000).toISOString().slice(0, 10);
 const moduleLabel = { writing: '写句', dictation: '听写', reading: '阅读', integrated: 'B1 综合' };
-const phaseLabel = { first: '独立首答', review: '辅助练习', retest: '复测' };
+const phaseLabel = { first: '独立首答', review: '辅助练习', retest: '同题复测' };
 
 export async function mountTraining({ host, bridge }) {
   let content = { exercises: [], paragraphs: [] },
@@ -55,11 +56,13 @@ export async function mountTraining({ host, bridge }) {
     messageError = false;
   let selectedDate = dateKey(),
     exerciseId = 'opportunities',
+    sentencePhase = 'first',
     step = 0,
     answers = ['', '', '', ''],
     attempted = false,
     revealed = false,
     hinted = false,
+    manualAccepted = false,
     result = null,
     checks = {};
   let dictationId = '',
@@ -71,6 +74,7 @@ export async function mountTraining({ host, bridge }) {
     paragraphDraft = '',
     paragraphRevision = '',
     paragraphSubmitted = false,
+    paragraphPhase = 'first',
     paragraphChecks = {},
     paperId = '2025-p2-a-q1',
     paperPrompt = '',
@@ -83,6 +87,61 @@ export async function mountTraining({ host, bridge }) {
   const reviewLessons = new Map(),
     requestedReviewLessons = new Set();
   const writingWorkspaces = new Map();
+  let sentenceCaptured = [null, null, null, null],
+    dictationCaptured = null,
+    paragraphCaptured = null;
+  const sentenceWork = (index) =>
+    JSON.stringify({ answer: answers[index], checks: index === 3 ? checks : {} });
+  const paragraphWork = () =>
+    JSON.stringify({
+      draft: paragraphDraft,
+      revision: paragraphRevision,
+      checks: paragraphChecks,
+      ...(mode === 'paper2'
+        ? { prompt: paperPrompt, source: paperSource, audience: paperAudience, purpose: paperPurpose }
+        : {}),
+    });
+  function captureWork() {
+    if (mode === 'sentence') sentenceCaptured[step] = sentenceWork(step);
+    else if (mode === 'dictation') dictationCaptured = dictationAnswer;
+    else paragraphCaptured = paragraphWork();
+    bridge.onSessionChange?.();
+  }
+  function getSaveState() {
+    const items = answers.map((answer, index) => ({
+      hasDraft: !!answer.trim(),
+      work: sentenceWork(index),
+      captured: sentenceCaptured[index],
+    }));
+    items.push({ hasDraft: !!dictationAnswer.trim(), work: dictationAnswer, captured: dictationCaptured });
+    for (const kind of ['paragraph', 'paper2']) {
+      const workspace =
+        mode === kind
+          ? {
+              draft: paragraphDraft,
+              revision: paragraphRevision,
+              work: paragraphWork(),
+              captured: paragraphCaptured,
+            }
+          : writingWorkspaces.get(kind);
+      if (workspace)
+        items.push({
+          hasDraft: !!(workspace.draft?.trim() || workspace.revision?.trim()),
+          work: workspace.work,
+          captured: workspace.captured,
+        });
+    }
+    return {
+      label: '写句与听写',
+      submitted: items.some((item) => item.captured !== null && item.captured !== undefined),
+      hasDraft: items.some((item) => item.hasDraft),
+      hasUnsubmittedChanges: items.some(
+        (item) => (item.hasDraft || item.captured != null) && item.work !== item.captured,
+      ),
+    };
+  }
+  host.addEventListener('input', () => bridge.onSessionChange?.());
+  host.addEventListener('change', () => bridge.onSessionChange?.());
   function setMode(next) {
     if (next === mode) return;
     if (mode === 'paragraph' || mode === 'paper2')
@@ -90,8 +149,11 @@ export async function mountTraining({ host, bridge }) {
         draft: paragraphDraft,
         revision: paragraphRevision,
         submitted: paragraphSubmitted,
+        phase: paragraphPhase,
         checks: paragraphChecks,
         started: paragraphStarted,
+        captured: paragraphCaptured,
+        work: paragraphWork(),
       });
     mode = next;
     if (next === 'paragraph' || next === 'paper2') {
@@ -99,6 +161,8 @@ export async function mountTraining({ host, bridge }) {
       paragraphDraft = workspace?.draft || '';
       paragraphRevision = workspace?.revision || '';
       paragraphSubmitted = workspace?.submitted || false;
+      paragraphPhase = workspace?.phase || 'first';
+      paragraphCaptured = workspace?.captured ?? null;
       paragraphChecks = workspace?.checks || {};
       paragraphStarted = workspace?.started || Date.now();
     }
@@ -141,19 +205,23 @@ export async function mountTraining({ host, bridge }) {
     bridge.pauseListening?.();
     bridge.navigate(next, options);
   }
-  function resetExercise(id) {
+  function resetExercise(id, phase = 'first') {
     exerciseId = id;
+    sentencePhase = phase;
     step = 0;
     answers = ['', '', '', ''];
+    sentenceCaptured = [null, null, null, null];
     attempted = false;
     revealed = false;
     hinted = false;
+    manualAccepted = false;
     dictationRevealed = false;
     result = null;
     checks = {};
     render();
   }
   function save() {
+    if (bridge.requestSave) return bridge.requestSave();
     const state = studyStore.getState();
     const saved = studyStore.getSavedState();
     if (!studyStore.hasUnsaved()) {
@@ -205,11 +273,20 @@ export async function mountTraining({ host, bridge }) {
     if (view === 'today') renderToday();
     else if (view === 'review') renderReview();
     else renderWriting();
+    bridge.onSessionChange?.();
   }
   function heading(title, description) {
     const h = create('header', 'training-heading');
     h.append(create('h1', '', title), create('p', '', description));
     host.append(h);
+  }
+  function finishActions(container) {
+    const end = create('div', 'training-finish');
+    end.append(
+      create('p', '', '已提交的作答会出现在复习卡。请用页面上方的「保存本次学习纪录」保留本次记录。'),
+      action('结束本次', () => navigate('review'), 'button-secondary'),
+    );
+    container.append(end);
   }
   function renderToday() {
     const state = studyStore.getState(),
@@ -353,7 +430,7 @@ export async function mountTraining({ host, bridge }) {
     );
     const modes = create('div', 'training-tabs');
     for (const [id, title] of [
-      ['sentence', '错句四阶'],
+      ['sentence', '错句与换境'],
       ['dictation', '原句听写'],
       ['paragraph', '短段落'],
       ['paper2', 'Paper 2 任务'],
@@ -391,7 +468,7 @@ export async function mountTraining({ host, bridge }) {
     row.append(select);
     host.append(row);
     const progress = create('ol', 'writing-steps');
-    ['自己修句', '看句跟打', '遮文回忆', '换境造句'].forEach((title, i) => {
+    ['自己修句', '可选跟打', '关提示复测', '换境检验'].forEach((title, i) => {
       const li = create('li', '', `${i + 1} ${title}`);
       if (i === step) li.setAttribute('aria-current', 'step');
       progress.append(li);
@@ -399,6 +476,9 @@ export async function mountTraining({ host, bridge }) {
     host.append(progress);
     const sheet = create('section', 'training-paper');
     sheet.append(create('h2', '', e.title || '个人错句'));
+    sheet.append(
+      create('p', 'training-practice-kind', '指定结构练习 · 题目已提示目标结构，不作为未见题的无提示诊断。'),
+    );
     if (step === 0) {
       sheet.append(
         create('p', 'fine-print', e.source || content.sourceNote),
@@ -443,7 +523,7 @@ export async function mountTraining({ host, bridge }) {
       sheet.append(list);
     }
     const submit = action(
-      step === 3 ? '提交并记录自核' : '提交这一句',
+      step === 3 ? '提交自核结果' : '提交作答',
       () => {
         if (!answers[step].trim()) {
           notice('先写下你的句子，再提交。', true);
@@ -468,7 +548,7 @@ export async function mountTraining({ host, bridge }) {
           studyStore.addAttempt({
             module: 'writing',
             taskId: e.id,
-            phase: step === 0 ? 'first' : step === 1 ? 'review' : 'retest',
+            phase: step === 0 ? sentencePhase : step === 1 ? 'review' : 'retest',
             assisted: step === 1 || hinted || revealed,
             answers: { sentence: answers[step] },
             correct: step === 3 ? undefined : result.correct ? 1 : exact ? 0 : undefined,
@@ -483,8 +563,14 @@ export async function mountTraining({ host, bridge }) {
                   : 'pending',
             errorTypes: result && !result.correct ? [e.errorType || '句式'] : [],
             source: e.source || '针对个人错误结构的教学练习',
-            details: { stage: step, meaning: e.meaning, checks: step === 3 ? checks : undefined },
+            details: {
+              stage: step,
+              meaning: e.meaning,
+              practiceKind: 'targeted-structure',
+              checks: step === 3 ? checks : undefined,
+            },
           });
+          captureWork();
           notice(step === 3 ? '新句已记录为自核结果，尚未保存。' : '本次作答已记录在当前会话。');
         } catch (err) {
           notice(err.message, true);
@@ -527,6 +613,7 @@ export async function mountTraining({ host, bridge }) {
         if (!result?.correct)
           feedback.append(
             action('我的改写合理，标为自核正确', () => {
+              manualAccepted = true;
               studyStore.addAttempt({
                 module: 'writing',
                 taskId: e.id,
@@ -534,8 +621,9 @@ export async function mountTraining({ host, bridge }) {
                 assisted: true,
                 answers: { sentence: answers[0] },
                 selfCheck: 'correct',
-                details: { stage: 0, manual: true },
+                details: { stage: 0, manual: true, practiceKind: 'targeted-structure' },
               });
+              captureWork();
               revealed = true;
               notice('已记录自核判断；自动匹配结果不会改成官方判分。');
             }),
@@ -549,9 +637,29 @@ export async function mountTraining({ host, bridge }) {
           }),
         );
       if (step === 2 && dictationRevealed) feedback.append(create('p', 'training-english', e.target));
+      if (step === 0 && (result?.correct || manualAccepted)) {
+        const transfer = action(
+          '换情境检验',
+          () => {
+            step = 3;
+            answers[3] = '';
+            attempted = false;
+            revealed = hinted = dictationRevealed = false;
+            result = null;
+            checks = {};
+            render();
+          },
+          'button-primary',
+        );
+        transfer.id = 'writing-transfer';
+        feedback.append(
+          create('p', '', '这一句已核对。换一个情境检查能否运用；需要时仍可选择跟打。'),
+          transfer,
+        );
+      }
       if (step < 3 && (step > 0 || revealed || result?.correct)) {
         const next = action(
-          '进入下一阶',
+          step === 0 ? '可选：看句跟打' : step === 1 ? '关提示再测' : '换情境检验',
           () => {
             step++;
             attempted = false;
@@ -565,8 +673,10 @@ export async function mountTraining({ host, bridge }) {
         );
         next.id = 'writing-next';
         feedback.append(next);
-      } else if (step === 3)
-        feedback.append(action('再练一遍，先关提示', () => resetExercise(e.id), 'button-secondary'));
+      } else if (step === 3) {
+        feedback.append(action('关提示再测', () => resetExercise(e.id, 'retest'), 'button-secondary'));
+        finishActions(feedback);
+      }
       sheet.append(feedback);
     }
     host.append(sheet);
@@ -654,9 +764,17 @@ export async function mountTraining({ host, bridge }) {
     const sentences = dictationSentences();
     if (!sentences.length) {
       host.append(
-        create('div', 'training-paper', '这里从已复盘的精练材料选句。我的原卷内也可直接做短句听写。'),
-        action('去原卷精练', () => navigate('listening', { mode: 'papers' }), 'button-primary'),
-        action('去原卷短句听写', () => navigate('library'), 'button-secondary'),
+        create(
+          'div',
+          'training-paper',
+          '这里还没有可听写的已复盘句子。先完成一组原题，提交后进入复盘；只想练一句，也可以打开原卷，选择听不清的片段做短句听写。',
+        ),
+        action('完成一组原题', () => navigate('listening', { mode: 'papers' }), 'button-primary'),
+        action(
+          '打开原卷选一句听写',
+          () => navigate('library', { paper: bridge.getLesson?.()?.paper }),
+          'button-secondary',
+        ),
       );
       return;
     }
@@ -685,6 +803,7 @@ export async function mountTraining({ host, bridge }) {
       dictationResult = null;
       dictationRevealed = false;
       dictationMode = 'first';
+      dictationCaptured = null;
       render();
     });
     label.append(select);
@@ -713,7 +832,7 @@ export async function mountTraining({ host, bridge }) {
       }),
     );
     const submit = action(
-      '提交听写，核对字词',
+      '提交作答',
       () => {
         if (!dictationAnswer.trim()) {
           notice('先写下听到的内容。', true);
@@ -738,6 +857,7 @@ export async function mountTraining({ host, bridge }) {
               end: chosen.end,
             },
           });
+          captureWork();
           notice('听写已核对；尚未写入正式学习纪录。');
         } catch (e) {
           notice(e.message, true);
@@ -759,17 +879,19 @@ export async function mountTraining({ host, bridge }) {
       if (dictationRevealed) feedback.append(create('p', 'training-english', chosen.text));
       feedback.append(
         action(
-          '遮住答案，再测一次',
+          '关提示再测',
           () => {
             dictationAnswer = '';
             dictationResult = null;
             dictationRevealed = false;
             dictationMode = 'retest';
+            dictationCaptured = null;
             render();
           },
           'button-secondary',
         ),
       );
+      finishActions(feedback);
       sheet.append(feedback);
     }
     host.append(sheet);
@@ -829,6 +951,8 @@ export async function mountTraining({ host, bridge }) {
         paragraphDraft = '';
         paragraphRevision = '';
         paragraphSubmitted = false;
+        paragraphPhase = 'first';
+        paragraphCaptured = null;
         paragraphChecks = {};
         paragraphStarted = Date.now();
         render();
@@ -887,6 +1011,8 @@ export async function mountTraining({ host, bridge }) {
         paragraphDraft = '';
         paragraphRevision = '';
         paragraphSubmitted = false;
+        paragraphPhase = 'first';
+        paragraphCaptured = null;
         paragraphChecks = {};
         paragraphStarted = Date.now();
         render();
@@ -904,6 +1030,17 @@ export async function mountTraining({ host, bridge }) {
     };
     updateCount();
     sheet.append(
+      create(
+        'p',
+        'training-practice-kind',
+        paragraphPhase === 'retest'
+          ? '同题复测 · 旧稿已隐藏，重新完成自己的表达。'
+          : paragraphPhase === 'review'
+            ? '查看上次作答 · 已显示旧稿，本轮属于辅助复盘。'
+            : '先独立作答，提交后再自核。',
+      ),
+    );
+    sheet.append(
       field(
         '独立初稿',
         paragraphDraft,
@@ -916,7 +1053,7 @@ export async function mountTraining({ host, bridge }) {
       info,
     );
     const button = action(
-      '提交初稿，开始自查',
+      '提交作答',
       () => {
         if (!paragraphDraft.trim() || (paper && (!paperPrompt.trim() || !paperSource.trim()))) {
           notice(paper ? '先填原题来源、任务和你的初稿。' : '先完成初稿再进入自查。', true);
@@ -926,8 +1063,8 @@ export async function mountTraining({ host, bridge }) {
         studyStore.addAttempt({
           module: 'writing',
           taskId: paper ? paperTaskId : `paragraph-${paragraphId}`,
-          phase: 'first',
-          assisted: false,
+          phase: paragraphPhase,
+          assisted: paragraphPhase === 'review',
           answers: { draft: paragraphDraft },
           elapsedSeconds: Math.round((Date.now() - paragraphStarted) / 1000),
           selfCheck: 'pending',
@@ -941,6 +1078,7 @@ export async function mountTraining({ host, bridge }) {
             wordCount: countWords(paragraphDraft),
           },
         });
+        captureWork();
         notice('初稿已保留在本次会话；现在选择最值得改的 2–3 类问题。');
       },
       'button-primary',
@@ -971,7 +1109,7 @@ export async function mountTraining({ host, bridge }) {
       );
       sheet.append(
         action(
-          '记录修改稿与自查',
+          '提交修改稿与自核',
           () => {
             if (!paragraphRevision.trim()) {
               notice('先写出修改稿，再记录。', true);
@@ -996,11 +1134,13 @@ export async function mountTraining({ host, bridge }) {
                 purpose: paper ? paperPurpose : prompt.purpose,
               },
             });
+            captureWork();
             notice('初稿、修改稿与自查已记录，点保存后保留。可换题独立检验，而不只重复抄改稿。');
           },
           'button-secondary',
         ),
       );
+      finishActions(sheet);
     }
     host.append(sheet);
   }
@@ -1055,8 +1195,13 @@ export async function mountTraining({ host, bridge }) {
           play: { lessonId: r.lessonId, start: Math.max(0, m.time - 4), end: m.time + 2 },
         });
     }
-    const taskRecords = new Map();
-    for (const r of state.records) taskRecords.set(`${r.module}:${r.taskId}`, r);
+    const taskRecords = new Map(),
+      taskErrors = new Map();
+    for (const r of state.records) {
+      const key = `${r.module}:${r.taskId}`;
+      taskRecords.set(key, r);
+      if (r.errorTypes?.length) taskErrors.set(key, [...new Set(r.errorTypes)].slice(0, 3));
+    }
     for (const [id, r] of taskRecords) {
       const e = allExercises().find((x) => x.id === r.taskId);
       const paragraph = content.paragraphs.find((p) => `paragraph-${p.id}` === r.taskId);
@@ -1076,13 +1221,15 @@ export async function mountTraining({ host, bridge }) {
               : r.taskId),
         detail:
           r.selfCheck === 'correct'
-            ? '上次自核：掌握；换情境再测'
+            ? '上次自核：已检查；这次仍需关提示作答'
             : r.correct === r.total && r.total
               ? '上次核对一致；关提示再测'
               : '先独立回忆，再对照原材料',
         createdAt: r.createdAt,
         record: r,
         paper: r.details?.paper,
+        focus: taskErrors.get(id)?.join('、') || (e ? e.meaning : ''),
+        focusLabel: taskErrors.has(id) ? '待巩固卡点' : '练习重点',
       });
     }
     return items
@@ -1094,7 +1241,7 @@ export async function mountTraining({ host, bridge }) {
       .sort((a, b) => a.dueDate.localeCompare(b.dueDate));
   }
   function renderReview() {
-    heading('复习与学习记录', '先回忆，再回到原音或原题。记住后逐步拉开间隔，仍不会就留到明天。');
+    heading('复习与学习记录', '先关提示作答，再核对卡点。同题复测与新材料表现分别看；手动标记只代表自评。');
     const filters = create('div', 'training-tabs');
     for (const [id, title] of [
       ['all', '全部项目'],
@@ -1139,6 +1286,7 @@ export async function mountTraining({ host, bridge }) {
       const text = create('div');
       text.append(
         create('h2', '', item.title),
+        ...(item.focus ? [create('p', 'training-review-focus', `${item.focusLabel}：${item.focus}`)] : []),
         create('p', '', item.detail),
         create(
           'p',
@@ -1147,82 +1295,90 @@ export async function mountTraining({ host, bridge }) {
         ),
       );
       const controls = create('div', 'training-actions');
+      const openItem = async (concealed = true) => {
+        try {
+          if (item.paper)
+            await bridge.navigate('listening', { paper: item.paper, paperReplay: !!item.paperReplay });
+          else if (item.play) await bridge.playListening(item.play);
+          else if (item.type === 'writing') {
+            setMode(
+              item.record.details?.kind === 'paper2'
+                ? 'paper2'
+                : item.record.details?.kind === 'paragraph'
+                  ? 'paragraph'
+                  : 'sentence',
+            );
+            if (mode === 'sentence') resetExercise(item.record.taskId, 'retest');
+            else {
+              const r = item.record;
+              if (mode === 'paragraph') paragraphId = r.taskId.replace(/^paragraph-/, '');
+              else {
+                paperId =
+                  r.details?.paperId ||
+                  (content.paper2?.some((p) => p.id === r.taskId) ? r.taskId : 'custom');
+                paperSource = r.source || r.details?.source || '';
+                paperPrompt = r.details?.prompt || '';
+                paperAudience = r.details?.audience || '';
+                paperPurpose = r.details?.purpose || '';
+              }
+              paragraphDraft = concealed ? '' : r.answers?.draft || r.answers?.revision || '';
+              paragraphRevision = concealed ? '' : r.answers?.revision || '';
+              paragraphSubmitted = !concealed;
+              paragraphPhase = concealed ? 'retest' : 'review';
+              paragraphChecks = concealed ? {} : r.details?.checks || {};
+              paragraphStarted = Date.now();
+              paragraphCaptured = concealed ? null : paragraphWork();
+            }
+            navigate('writing');
+          } else if (item.type === 'dictation') {
+            const d = item.record.details;
+            await bridge.playListening({
+              lessonId: d.lessonId,
+              start: d.start,
+              end: d.end,
+              concealed: true,
+            });
+            bridge.pauseListening?.();
+            setMode('dictation');
+            dictationId = item.record.taskId.slice(`${d.lessonId}:`.length);
+            dictationAnswer = '';
+            dictationResult = null;
+            dictationRevealed = false;
+            dictationMode = 'retest';
+            dictationCaptured = null;
+            navigate('writing');
+          } else
+            navigate(item.type === 'integrated' ? 'integrated' : 'reading', {
+              taskId: item.record.taskId,
+              kind: 'retest',
+            });
+        } catch (error) {
+          notice(error.message, true);
+        }
+      };
       controls.append(
         action(
-          item.paper && !item.paperReplay
-            ? '关提示复测原句'
-            : item.play || item.paperReplay
-              ? '回原音复习'
-              : '打开原练习',
-          async () => {
-            try {
-              if (item.paper)
-                await bridge.navigate('listening', { paper: item.paper, paperReplay: !!item.paperReplay });
-              else if (item.play) await bridge.playListening(item.play);
-              else if (item.type === 'writing') {
-                setMode(
-                  item.record.details?.kind === 'paper2'
-                    ? 'paper2'
-                    : item.record.details?.kind === 'paragraph'
-                      ? 'paragraph'
-                      : 'sentence',
-                );
-                if (mode === 'sentence') resetExercise(item.record.taskId);
-                else {
-                  const r = item.record;
-                  if (mode === 'paragraph') paragraphId = r.taskId.replace(/^paragraph-/, '');
-                  else {
-                    paperId =
-                      r.details?.paperId ||
-                      (content.paper2?.some((p) => p.id === r.taskId) ? r.taskId : 'custom');
-                    paperSource = r.source || r.details?.source || '';
-                    paperPrompt = r.details?.prompt || '';
-                    paperAudience = r.details?.audience || '';
-                    paperPurpose = r.details?.purpose || '';
-                  }
-                  paragraphDraft = r.answers?.draft || r.answers?.revision || '';
-                  paragraphRevision = r.answers?.revision || '';
-                  paragraphSubmitted = true;
-                  paragraphChecks = r.details?.checks || {};
-                  paragraphStarted = Date.now();
-                }
-                navigate('writing');
-              } else if (item.type === 'dictation') {
-                const d = item.record.details;
-                await bridge.playListening({
-                  lessonId: d.lessonId,
-                  start: d.start,
-                  end: d.end,
-                  concealed: true,
-                });
-                bridge.pauseListening?.();
-                setMode('dictation');
-                dictationId = item.record.taskId.slice(`${d.lessonId}:`.length);
-                dictationAnswer = '';
-                dictationResult = null;
-                dictationRevealed = false;
-                dictationMode = 'retest';
-                navigate('writing');
-              } else
-                navigate(item.type === 'integrated' ? 'integrated' : 'reading', {
-                  taskId: item.record.taskId,
-                  kind: 'retest',
-                });
-            } catch (error) {
-              notice(error.message, true);
-            }
-          },
-          'button-secondary',
+          item.play || item.paperReplay ? '回原音复习' : '关提示再测',
+          () => openItem(true),
+          'button-primary',
         ),
+      );
+      if (item.type === 'writing' && ['paragraph', 'paper2'].includes(item.record?.details?.kind))
+        controls.append(action('查看上次作答', () => openItem(false), 'button-secondary'));
+      const manual = create('details', 'training-manual-review');
+      manual.append(create('summary', '', '仅手动标记（自评）'));
+      manual.append(
+        create('p', 'fine-print', '未完成作答也可以留自评，但不会计作已完成复测。'),
         action('仍需重练', () => {
           studyStore.markReviewed(item.id, 'again');
-          notice('已排到明天；明确保存后保留复习结果。');
+          notice('自评已暂存，下一次设为明天；这不代表已完成复测。明确保存后保留。');
         }),
         action('已能独立回忆', () => {
           studyStore.markReviewed(item.id, 'remembered');
-          notice('已拉开下一次间隔；明确保存后保留。');
+          notice('自评已暂存并拉开下次间隔；这不代表新题已掌握。明确保存后保留。');
         }),
       );
+      controls.append(manual);
       row.append(text, controls);
       list.append(row);
     }
@@ -1236,11 +1392,11 @@ export async function mountTraining({ host, bridge }) {
     const uniqueAttempts = listeningAttempts(listeningRecords);
     const section = create('section', 'training-statistics');
     section.append(
-      create('h2', '', '已保存的学习变化'),
+      create('h2', '', '已保存的练习记录'),
       create(
         'p',
         'fine-print',
-        '新材料首答、辅助练习和旧题复测分开。这里是练习记录，不换算 DSE 等级；尚未保存的本次修改不计入。',
+        '首次独立作答、指定结构练习、辅助练习和同题复测分开。次数只表示练过，不代表能力或 DSE 等级；尚未保存的修改不计入。新材料表现仍需用未练过的材料检验。',
       ),
     );
     const groups = [
@@ -1255,14 +1411,15 @@ export async function mountTraining({ host, bridge }) {
     const table = create('table', 'training-table');
     const head = create('thead');
     const hr = create('tr');
-    for (const label of ['项目', '独立首答', '辅助练习', '复测']) hr.append(create('th', '', label));
+    for (const label of ['项目', '独立首答', '指定结构首答', '辅助练习', '同题复测'])
+      hr.append(create('th', '', label));
     head.append(hr);
     table.append(head);
     const body = create('tbody');
     for (const [name, s] of groups) {
       const tr = create('tr');
       tr.append(create('th', '', name));
-      for (const key of ['first', 'assisted', 'retest']) {
+      for (const key of ['first', 'targeted', 'assisted', 'retest']) {
         const g = s[key];
         tr.append(
           create(
@@ -1299,7 +1456,7 @@ export async function mountTraining({ host, bridge }) {
         create(
           'li',
           '',
-          `${dateKey(new Date(r.createdAt))} · ${moduleLabel[r.module]} · ${phaseLabel[r.phase]} · ${r.taskId}${r.selfCheck ? ' · ' + ({ correct: '自核掌握', retry: '需重练', pending: '待自核' }[r.selfCheck] || r.selfCheck) : ''}`,
+          `${dateKey(new Date(r.createdAt))} · ${moduleLabel[r.module]} · ${r.assisted ? '辅助练习' : r.phase === 'first' && isTargetedStructureAttempt(r) ? '指定结构首答' : phaseLabel[r.phase]} · ${r.taskId}${r.selfCheck ? ' · ' + ({ correct: '自核已检查', retry: '需重练', pending: '待自核' }[r.selfCheck] || r.selfCheck) : ''}`,
         ),
       );
     recent.append(ol);
@@ -1383,6 +1540,8 @@ export async function mountTraining({ host, bridge }) {
       render();
     },
     getState: () => studyStore.getState(),
+    getSaveState,
+    saveCurrent: save,
     restoreState(data) {
       studyStore.replaceState(validateStudyState(data));
     },

@@ -90,6 +90,18 @@ const statusText = {
   review: '合理改写请自核',
   unanswered: '未作答',
 };
+function readingSummary(results, selfCheck = {}) {
+  const entries = Object.entries(results || {});
+  return {
+    matched: entries.filter(([, r]) => r.answer === 'matched').length,
+    selfConfirmed: entries.filter(([id, r]) => r.answer === 'review' && selfCheck[id] === 'yes').length,
+    pending: entries.filter(([id, r]) => r.answer === 'review' && !selfCheck[id]).length,
+    needsPractice: entries.filter(
+      ([id, r]) =>
+        ['mismatch', 'unanswered'].includes(r.answer) || (r.answer === 'review' && selfCheck[id] === 'no'),
+    ).length,
+  };
+}
 const clockText = (seconds) =>
   `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 const baseSession = (phase) => ({
@@ -102,6 +114,7 @@ const baseSession = (phase) => ({
   clock: { elapsed: 0, runningSince: null },
   activeQuestion: null,
   paraphrase: '',
+  capturedParaphrase: '',
 });
 const integratedSession = (phase = 'first') => ({
   notes: '',
@@ -196,7 +209,7 @@ export function mountReading({ host, bridge = {} }) {
         (a, b) => b.filter((id) => picked.has(id)).length - a.filter((id) => picked.has(id)).length,
       )[0],
       reference = new Set(s.referenceQuestion === q.id && s.submitted ? best : []);
-    return `<div class="rd-passage-head"><span class="rd-kicker">${esc(set.part)} · 原文</span><h3>${esc(set.title)}</h3><p id="rd-evidence-help">正在为 <strong>原题 ${esc(q.number)}</strong> 选证据。点句块选择／取消；尽量短而充分。</p><span class="rd-small">已选 ${picked.size} 个句块${reference.size ? ' · 青柠边框为一组参考证据' : ''}</span></div>${set.paragraphs.map((p) => `<section class="rd-paragraph ${p.id === 'b0' ? 'rd-menu-source' : ''}"><h4>${esc(p.label)}</h4><div lang="en">${p.segments.map((seg) => `<button type="button" class="rd-sentence ${picked.has(seg.id) ? 'is-picked' : ''} ${reference.has(seg.id) ? 'is-reference' : ''}" data-rd-segment="${seg.id}" aria-pressed="${picked.has(seg.id)}" ${s.submitted ? 'aria-disabled="true"' : ''}>${esc(seg.text)}${picked.has(seg.id) ? '<span class="rd-selection-label"> 已选</span>' : ''}${reference.has(seg.id) ? '<span class="rd-selection-label"> 参考</span>' : ''}</button>`).join(' ')}</div></section>`).join('')}`;
+    return `<div class="rd-passage-head"><span class="rd-kicker">${esc(set.part)} · 原文</span><h3>${esc(set.title)}</h3></div><div class="rd-evidence-context" data-rd-evidence-context><p id="rd-evidence-help"><strong>当前题目 · 原题 ${esc(q.number)}</strong></p><p class="rd-current-prompt" lang="en">${esc(q.prompt)}</p><div class="rd-evidence-actions"><span class="rd-small">已选 ${picked.size} 个句块${reference.size ? ' · 青柠边框为参考证据' : ' · 点原文选择／取消'}</span><button type="button" data-rd-action="return-question">返回本题</button></div></div>${set.paragraphs.map((p) => `<section class="rd-paragraph ${p.id === 'b0' ? 'rd-menu-source' : ''}"><h4>${esc(p.label)}</h4><div lang="en">${p.segments.map((seg) => `<button type="button" class="rd-sentence ${picked.has(seg.id) ? 'is-picked' : ''} ${reference.has(seg.id) ? 'is-reference' : ''}" data-rd-segment="${seg.id}" aria-pressed="${picked.has(seg.id)}" ${s.submitted ? 'aria-disabled="true"' : ''}>${esc(seg.text)}${picked.has(seg.id) ? '<span class="rd-selection-label"> 已选</span>' : ''}${reference.has(seg.id) ? '<span class="rd-selection-label"> 参考</span>' : ''}</button>`).join(' ')}</div></section>`).join('')}`;
   }
   function renderReading() {
     const oldPassageScroll = host.querySelector('#rd-passage')?.scrollTop || 0;
@@ -207,28 +220,24 @@ export function mountReading({ host, bridge = {} }) {
       s = getR(),
       results = evaluateReading(set, s.answers, s.evidence, s.submitted);
     s.activeQuestion ??= set.questions[0].id;
-    const pending = results
-      ? Object.entries(results).filter(([id, r]) => r.answer === 'review' && !s.selfCheck[id]).length
-      : 0;
-    const confirmed = results
-      ? Object.entries(results).filter(
-          ([id, r]) => r.answer === 'matched' || (r.answer === 'review' && s.selfCheck[id] === 'yes'),
-        ).length
-      : 0;
-    host.innerHTML = `<section class="rd-workspace" aria-label="阅读练习"><header class="rd-heading"><div><h2>阅读练习</h2><p>先答题，再圈证据，最后对照原文与改写。</p></div><label>选择短题组<select data-rd-set>${content.sets.map((x) => `<option value="${x.id}" ${x.id === set.id ? 'selected' : ''}>2025 · ${x.part} · ${esc(x.title)}</option>`).join('')}</select></label></header><p class="rd-source">${esc(set.scope)}</p><div class="rd-toolbar"><span class="rd-phase">${s.submitted ? '复盘' : s.phase === 'retest' ? '独立复测' : '首次作答'}</span><span data-rd-clock aria-live="off"></span><button type="button" data-rd-action="clock" ${s.submitted ? 'disabled' : ''}>${s.clock.runningSince == null ? '开始／继续计时' : '暂停计时'}</button><button type="button" data-rd-action="reset">重新独立作答</button></div><div class="rd-notice" role="status">${esc(notice)}</div><div class="rd-reading-grid"><article class="rd-paper rd-passage" id="rd-passage">${renderPassage()}</article><section class="rd-questions" aria-label="阅读题目">${set.questions.map((q) => `<article class="rd-question ${s.activeQuestion === q.id ? 'is-active' : ''}" id="rd-question-${q.id}"><div class="rd-question-title"><span>原题 ${esc(q.number)} · ${esc(q.skill)}</span><button type="button" data-rd-action="select-question" data-q="${q.id}" aria-pressed="${s.activeQuestion === q.id}">${s.submitted ? '对照原文' : '为本题选证据'}</button></div><p lang="en">${esc(q.prompt)}</p>${q.type === 'choice' ? `<fieldset ${s.submitted ? 'disabled' : ''}><legend class="rd-sr-only">原题 ${esc(q.number)} 答案</legend>${q.options.map((option) => `<label class="rd-option"><input type="radio" name="rd-${q.id}" data-rd-answer="${q.id}" value="${option[0]}" ${s.answers[q.id] === option[0] ? 'checked' : ''}><span lang="en">${esc(option)}</span></label>`).join('')}</fieldset>` : q.type === 'multi' ? Array.from({ length: q.required }, (_, i) => `<label class="rd-input-label">第 ${i + 1} 个短语<input autocomplete="off" spellcheck="false" data-rd-answer="${q.id}" data-index="${i}" value="${esc(s.answers[q.id]?.[i] || '')}" ${s.submitted ? 'disabled' : ''}></label>`).join('') : `<label class="rd-input-label">你的答案<input autocomplete="off" spellcheck="false" data-rd-answer="${q.id}" value="${esc(s.answers[q.id] || '')}" ${s.submitted ? 'disabled' : ''}></label>`}<small>已选 ${(s.evidence[q.id] || []).length} 个证据句块</small>${s.submitted ? feedbackHTML(q, results[q.id], s) : ''}</article>`).join('')}<div class="rd-submit-block">${s.submitted ? `<p><strong>${confirmed} / ${set.questions.length} 项已匹配或自核正确</strong>${pending ? `，另有 ${pending} 项等待自核。` : '。'}</p><p class="rd-small">按练习项目记录，不换算原卷分数。证据选择另行反馈。</p><button type="button" class="rd-primary" data-rd-action="save">保存本次学习纪录</button>` : `<button type="button" class="rd-primary" data-rd-action="submit">提交答案与证据</button><p class="rd-small">提交后才显示参考要点、同义桥与解释。</p>`}</div></section></div>${s.submitted ? `<section class="rd-paper rd-breakdown"><h3>拆开一句，再用自己的话说</h3><p lang="en">${esc(set.breakdown.sentence)}</p><div class="rd-clause-list">${set.breakdown.parts.map((p) => `<p><strong>${esc(p.label)}</strong><span lang="en">${esc(p.text)}</span></p>`).join('')}</div><label>用中文或英文复述句意<textarea data-rd-paraphrase rows="2">${esc(s.paraphrase)}</textarea></label><details><summary>核对句意与本组表达</summary><p>${esc(set.breakdown.meaning)}</p>${set.breakdown.vocabulary.map((v) => `<p>${esc(v)}</p>`).join('')}</details></section>` : ''}<details class="rd-provenance"><summary>原卷来源与训练范围</summary><p>${esc(set.source)}</p><p>这里只显示本题组所需的原文；参考答案来自同年评分参考，中文解释与句块证据为训练辅助。</p></details></section>`;
+    const summary = readingSummary(results, s.selfCheck);
+    host.innerHTML = `<section class="rd-workspace" aria-label="阅读练习"><header class="rd-heading"><div><h2>阅读练习</h2><p>先答题，再圈证据，最后对照原文与改写。</p></div><label>选择短题组<select data-rd-set>${content.sets.map((x) => `<option value="${x.id}" ${x.id === set.id ? 'selected' : ''}>2025 · ${x.part} · ${esc(x.title)}</option>`).join('')}</select></label></header><p class="rd-source">${esc(set.scope)}</p><div class="rd-toolbar"><span class="rd-phase">${s.submitted ? '复盘' : s.phase === 'retest' ? '独立复测' : '首次作答'}</span><span data-rd-clock aria-live="off"></span><button type="button" data-rd-action="clock" ${s.submitted ? 'disabled' : ''}>${s.clock.runningSince == null ? '开始／继续计时' : '暂停计时'}</button><button type="button" data-rd-action="reset">关提示再测</button></div><div class="rd-notice" role="status">${esc(notice)}</div><div class="rd-reading-grid"><article class="rd-paper rd-passage" id="rd-passage">${renderPassage()}</article><section class="rd-questions" aria-label="阅读题目">${set.questions.map((q) => `<article class="rd-question ${s.activeQuestion === q.id ? 'is-active' : ''}" id="rd-question-${q.id}"><div class="rd-question-title"><span>原题 ${esc(q.number)} · ${esc(q.skill)}</span><button type="button" data-rd-action="select-question" data-q="${q.id}" aria-pressed="${s.activeQuestion === q.id}">${s.submitted ? '对照原文' : '为本题选证据'}</button></div><p lang="en">${esc(q.prompt)}</p>${q.type === 'choice' ? `<fieldset ${s.submitted ? 'disabled' : ''}><legend class="rd-sr-only">原题 ${esc(q.number)} 答案</legend>${q.options.map((option) => `<label class="rd-option"><input type="radio" name="rd-${q.id}" data-rd-answer="${q.id}" value="${option[0]}" ${s.answers[q.id] === option[0] ? 'checked' : ''}><span lang="en">${esc(option)}</span></label>`).join('')}</fieldset>` : q.type === 'multi' ? Array.from({ length: q.required }, (_, i) => `<label class="rd-input-label">第 ${i + 1} 个短语<input autocomplete="off" spellcheck="false" data-rd-answer="${q.id}" data-index="${i}" value="${esc(s.answers[q.id]?.[i] || '')}" ${s.submitted ? 'disabled' : ''}></label>`).join('') : `<label class="rd-input-label">你的答案<input autocomplete="off" spellcheck="false" data-rd-answer="${q.id}" value="${esc(s.answers[q.id] || '')}" ${s.submitted ? 'disabled' : ''}></label>`}<small>已选 ${(s.evidence[q.id] || []).length} 个证据句块</small>${s.submitted ? feedbackHTML(q, results[q.id], s) : ''}</article>`).join('')}<div class="rd-submit-block">${s.submitted ? `<div class="rd-result-summary" data-rd-result-summary><span>参考匹配 <strong>${summary.matched}</strong></span><span>自核正确 <strong>${summary.selfConfirmed}</strong></span><span>待自核 <strong>${summary.pending}</strong></span><span>需重练／未作答 <strong>${summary.needsPractice}</strong></span></div><p class="rd-small">参考匹配与自核分开记录，不合成正确率或 DSE 分数。证据选择另行反馈。</p><div class="rd-bottom-actions"><button type="button" class="rd-primary" data-rd-action="save">保存本次学习纪录</button><button type="button" data-rd-action="reset">关提示再测</button><button type="button" data-rd-action="open-review">复习与备份</button><button type="button" data-rd-action="open-library">去原卷库练习</button></div><p class="rd-small">同题复测只检验当场修正；暂无未练过的同类验证材料。原卷库保留年份、卷别与题号，可选另一份原卷独立练习。</p>` : `<button type="button" class="rd-primary" data-rd-action="submit">提交答案与证据</button><p class="rd-small">提交后才显示参考要点、同义桥与解释。</p>`}</div></section></div>${s.submitted ? `<section class="rd-paper rd-breakdown"><h3>拆开一句，再用自己的话说</h3><p lang="en">${esc(set.breakdown.sentence)}</p><div class="rd-clause-list">${set.breakdown.parts.map((p) => `<p><strong>${esc(p.label)}</strong><span lang="en">${esc(p.text)}</span></p>`).join('')}</div><label>用中文或英文复述句意<textarea data-rd-paraphrase rows="2">${esc(s.paraphrase)}</textarea></label><button type="button" data-rd-action="submit-paraphrase">提交句意复述</button><p class="rd-small">提交后才会纳入本次学习纪录。</p><details><summary>核对句意与本组表达</summary><p>${esc(set.breakdown.meaning)}</p>${set.breakdown.vocabulary.map((v) => `<p>${esc(v)}</p>`).join('')}</details></section>` : ''}<details class="rd-provenance"><summary>原卷来源与训练范围</summary><p>${esc(set.source)}</p><p>这里只显示本题组所需的原文；参考答案来自同年评分参考，中文解释与句块证据为训练辅助。</p></details></section>`;
     host.querySelector('#rd-passage').scrollTop = oldPassageScroll;
     if (focusAttribute && focusValue)
       host.querySelector(`[${focusAttribute}="${CSS.escape(focusValue)}"]`)?.focus({ preventScroll: true });
     updateClock();
   }
-  function renderIntegrated() {
-    stopMedia();
-    const task = getTask(),
-      s = getI();
-    host.innerHTML = `<section class="rd-workspace" aria-label="B1 综合运用"><header class="rd-heading"><div><span class="rd-kicker">2025 Paper 3 · B1 · Task ${task.taskNumber}</span><h2>把信息写进邀请邮件</h2><p>任务要求、录音笔记、Data File 放在同一个工作台。</p></div><button type="button" data-rd-action="integrated-reset">重新独立练习</button></header><div class="rd-toolbar"><span class="rd-phase">${s.submitted ? '自改与来源核对' : s.phase === 'retest' ? '独立复测' : '首次练习'}</span><span data-rd-clock aria-live="off"></span><button type="button" data-rd-action="integrated-clock" ${s.submitted ? 'disabled' : ''}>${s.clock.runningSince == null ? '开始／继续计时' : '暂停计时'}</button><span class="rd-small">建议 ${task.minutes} 分钟；非整卷模拟</span></div><div class="rd-notice" role="status">${esc(notice)}</div><section class="rd-paper rd-task-brief"><h3>01 · 任务要求</h3><p lang="en">${esc(task.prompt)}</p><p lang="en">${esc(task.situation)}</p><p lang="en">${esc(task.taskBrief)}</p></section><div class="rd-integrated-grid"><section class="rd-paper rd-audio-notes"><h3>02 · 录音与自己的笔记</h3><p>${esc(task.audio.label)} · 完整会议节选 8:42</p><p class="rd-small">${esc(task.audio.note)} 音频准备好后，可拖动进度、调速或整段循环。</p><audio controls preload="auto" playsinline aria-label="2025 B1 原录音"></audio><p data-rd-audio-status role="status">正在准备完整音频…</p><div class="rd-audio-tools"><label>速度<select data-rd-speed>${[0.75, 1, 1.25].map((v) => `<option value="${v}" ${s.speed === v ? 'selected' : ''}>${v}×</option>`).join('')}</select></label><label><input type="checkbox" data-rd-loop ${s.loop ? 'checked' : ''}>整段循环</label><button type="button" data-rd-action="audio-retry" hidden>重试加载音频</button></div><label>听到的日期、地点、演讲内容、后续活动<textarea rows="10" data-rd-integrated="notes" placeholder="先记关键词，特别留意改口。">${esc(s.notes)}</textarea></label>${s.submitted ? `<details class="rd-transcript"><summary>核对原音逐字稿节选</summary><p class="rd-small">官方 Track 8 节选；省略处标 …。本页用于核对信息，未制作逐词时间轴。</p>${task.transcriptExtracts.map((t) => `<h4>${esc(t.label)}</h4><p lang="en">${esc(t.text)}</p>`).join('')}</details>` : ''}</section><section class="rd-paper rd-data-file"><h3>03 · Data File</h3>${task.sources.map((source, i) => `<details ${i === 0 ? 'open' : ''}><summary>${esc(source.label)}</summary>${source.paragraphs.map((p) => `<p lang="en">${esc(p)}</p>`).join('')}${source.image ? `<a href="${esc(new URL(source.image, import.meta.url).href)}" target="_blank" rel="noopener"><img src="${esc(new URL(source.image, import.meta.url).href)}" alt="${esc(source.imageAlt)}" loading="lazy"></a>` : ''}${source.note ? `<p class="rd-small">${esc(source.note)}</p>` : ''}</details>`).join('')}</section></div><section class="rd-paper rd-composition"><div class="rd-draft-heading"><h3>写出你的邮件</h3><span data-rd-words>${countWords(s.draft)} 词 / 原题要求约 ${task.targetWords} 词</span></div><div class="rd-email-fields"><label>To<input data-rd-integrated="to" value="${esc(s.to)}" autocomplete="off"></label><label>From<input value="Nico Lin" readonly></label><label>Subject<input data-rd-integrated="subject" value="${esc(s.subject)}" autocomplete="off"></label></div><label class="rd-sr-only" for="rd-draft">邀请邮件正文</label><textarea id="rd-draft" rows="12" data-rd-integrated="draft" lang="en" spellcheck="false" placeholder="先自己写。提交后再核对信息与语言清单。">${esc(s.draft)}</textarea><h4>给每项信息标来源</h4><p class="rd-small">可选多个来源。按你实际用到的材料选择；提交后显示参考组合。</p><div class="rd-source-grid">${task.sourceFields
+  function sourceCardsHTML(task, s) {
+    if (!s.submitted && s.phase === 'retest')
+      return '<p class="rd-small">先按任务要求自己筛选信息；提交后再逐项核对来源。</p>';
+    s.activeField ||= task.sourceFields.find((f) => !s.confirmed[f.id])?.id || task.sourceFields[0].id;
+    const controls = s.submitted
+      ? `<div class="rd-source-controls"><label>当前核对项<select data-rd-source-step>${task.sourceFields.map((f, index) => `<option value="${f.id}" ${f.id === s.activeField ? 'selected' : ''}>${index + 1}. ${esc(f.label)}${s.confirmed[f.id] ? ' · 已自核' : ''}</option>`).join('')}</select></label><div><button type="button" data-rd-action="source-prev">上一项</button><span data-rd-source-position></span><button type="button" data-rd-action="source-next">下一项</button></div></div>`
+      : '';
+    return `<section id="rd-source-check" tabindex="-1"><h4>${s.submitted ? '逐项核对，再修改自己的句子' : '给每项信息标来源'}</h4><p class="rd-small">${s.submitted ? '先处理缺漏和不确定项；自核不代表官方评分。每项都可回到资料和自己的邮件。' : '有支架练习：按实际使用的材料选择，可多选；提交后才显示参考组合。'}</p>${controls}<div class="rd-source-grid ${s.submitted ? 'is-review' : ''}">${task.sourceFields
       .map(
         (f) =>
-          `<div class="rd-source-row"><strong>${esc(f.label)}</strong><div>${[
+          `<div class="rd-source-row" data-rd-source-card="${f.id}" ${s.submitted && f.id !== s.activeField ? 'hidden' : ''}><strong>${esc(f.label)}</strong><div>${[
             ['audio', '录音'],
             ['df4', 'DF4'],
             ['df7', 'DF7'],
@@ -240,11 +249,61 @@ export function mountReading({ host, bridge = {} }) {
             )
             .join(
               '',
-            )}</div>${s.submitted ? `<div class="rd-source-result"><p lang="en">${esc(f.answer)}</p><p><strong>参考来源：${f.sources.map((id) => (id === 'audio' ? '录音' : id.toUpperCase())).join(' + ')}</strong></p><p>${esc(f.why)}</p><label><input type="checkbox" data-rd-confirmed="${f.id}" ${s.confirmed[f.id] ? 'checked' : ''}>我的邮件已准确包含这一项</label></div>` : ''}</div>`,
+            )}</div>${s.submitted ? `<div class="rd-own-draft"><strong>我的邮件 · 找出涉及这一项的句子</strong><p lang="en">${esc(s.draft)}</p><button type="button" data-rd-action="edit-draft">修改我的邮件</button></div><div class="rd-source-result"><p lang="en">${esc(f.answer)}</p><p><strong>参考来源：${f.sources.map((id) => (id === 'audio' ? '录音' : id.toUpperCase())).join(' + ')}</strong></p><p>${esc(f.why)}</p><div class="rd-source-links">${f.sources.map((id) => `<button type="button" data-rd-action="source-link" data-source="${id}">${id === 'audio' ? '回到录音与笔记' : '查看 ' + id.toUpperCase()}</button>`).join('')}</div><label><input type="checkbox" data-rd-confirmed="${f.id}" ${s.confirmed[f.id] ? 'checked' : ''}>我的邮件已准确包含这一项</label></div>` : ''}</div>`,
       )
-      .join(
-        '',
-      )}</div>${s.submitted ? `<h4>人称、时态与语气自核</h4><div class="rd-language-checks">${task.languageChecks.map((c) => `<label><input type="checkbox" data-rd-language="${c.id}" ${s.checklist[c.id] ? 'checked' : ''}><span><strong>${esc(c.label)}</strong> ${esc(c.text)}</span></label>`).join('')}</div><p class="rd-small">${esc(task.feedbackNote)}</p>` : ''}<div class="rd-bottom-actions"><button type="button" class="rd-primary" data-rd-action="integrated-submit">${s.submitted ? '提交自改版本' : '提交初稿，开始核对'}</button><button type="button" data-rd-action="integrated-save" ${s.submitted ? '' : 'disabled'}>保存本次学习纪录</button><button type="button" data-rd-action="copy-draft">复制我的邮件</button></div></section><details class="rd-provenance"><summary>来源与记录说明</summary><p>${esc(task.source)}</p><p>原录音从用户整段文件第 6297–6819 秒提取，保留完整教师会议；本任务仅使用其中相关信息。学生调查为原卷扫描页。首次稿与提交后的自改版本分开记录。</p><p>作答暂存在本次页面内；点击保存并确认摘要后，才写入本机并回读。完整备份在复习页导出。</p></details></section>`;
+      .join('')}</div></section>`;
+  }
+  function updateSourceStep({ move = 0, selected } = {}) {
+    const task = getTask(),
+      s = getI();
+    const current = Math.max(
+      0,
+      task.sourceFields.findIndex((f) => f.id === s.activeField),
+    );
+    const index = selected
+      ? task.sourceFields.findIndex((f) => f.id === selected)
+      : Math.max(0, Math.min(task.sourceFields.length - 1, current + move));
+    s.activeField = task.sourceFields[Math.max(0, index)].id;
+    for (const card of host.querySelectorAll('[data-rd-source-card]'))
+      card.hidden = s.submitted && card.dataset.rdSourceCard !== s.activeField;
+    const select = host.querySelector('[data-rd-source-step]');
+    if (select) select.value = s.activeField;
+    const position = host.querySelector('[data-rd-source-position]');
+    if (position) position.textContent = `${Math.max(0, index) + 1} / ${task.sourceFields.length}`;
+    const previous = host.querySelector('[data-rd-action="source-prev"]'),
+      next = host.querySelector('[data-rd-action="source-next"]');
+    if (previous) previous.disabled = index <= 0;
+    if (next) next.disabled = index >= task.sourceFields.length - 1;
+  }
+  function goToRegion(id, { returnToCheck = false, edit = false } = {}) {
+    const target = host.querySelector(`#${CSS.escape(id)}`);
+    if (!target) return;
+    if (target.tagName === 'DETAILS') target.open = true;
+    const back = host.querySelector('[data-rd-action="back-to-check"]');
+    if (back) back.hidden = !returnToCheck;
+    if (edit) host.querySelector('#rd-draft')?.focus({ preventScroll: true });
+    else {
+      target.tabIndex = -1;
+      target.focus({ preventScroll: true });
+    }
+    target.scrollIntoView({ block: 'start', behavior: 'auto' });
+  }
+  function renderIntegrated() {
+    stopMedia();
+    const task = getTask(),
+      s = getI();
+    host.innerHTML = `<section class="rd-workspace rd-integrated-workspace" aria-label="B1 综合运用"><header class="rd-heading"><div><span class="rd-kicker">${task.year} Paper 3 · B1 · Task ${task.taskNumber}</span><h2>把信息写进邀请邮件</h2><p>任务要求、录音笔记、Data File 放在同一个工作台。</p></div><button type="button" data-rd-action="integrated-reset">关提示再测</button></header>
+<div class="rd-toolbar"><span class="rd-phase">${s.submitted ? '自改与来源核对' : s.phase === 'retest' ? '关提示同题复测' : '有支架练习'}</span><span data-rd-clock aria-live="off"></span><button type="button" data-rd-action="integrated-clock" ${s.submitted ? 'disabled' : ''}>${s.clock.runningSince == null ? '开始／继续计时' : '暂停计时'}</button><span class="rd-small">建议 ${task.minutes} 分钟；精选资料训练，不是完整新题检验</span></div>
+<nav class="rd-workbench-nav" aria-label="B1 工作区"><button type="button" data-rd-action="jump-region" data-region="rd-task-brief">任务要求</button><button type="button" data-rd-action="jump-region" data-region="rd-integrated-audio">录音与资料</button><button type="button" data-rd-action="jump-region" data-region="rd-composition">我的邮件</button>${s.submitted ? '<button type="button" data-rd-action="jump-region" data-region="rd-source-check">逐项核对</button>' : ''}<button type="button" class="rd-primary" data-rd-action="back-to-check" hidden>返回当前核对项</button></nav>
+<div class="rd-notice" role="status">${esc(notice)}</div><section class="rd-paper rd-task-brief" id="rd-task-brief"><h3>任务要求</h3><p lang="en">${esc(task.prompt)}</p><p lang="en">${esc(task.situation)}</p><p lang="en">${esc(task.taskBrief)}</p></section>
+<div class="rd-integrated-grid"><section class="rd-paper rd-audio-notes" id="rd-integrated-audio"><h3>录音与自己的笔记</h3><p>${esc(task.audio.label)} · 完整会议节选 8:42</p><p class="rd-small">${s.phase === 'retest' && !s.submitted ? '按任务要求独立记录信息。' : esc(task.audio.note)} 音频准备好后，可拖动进度、调速或整段循环。</p><audio controls preload="auto" playsinline aria-label="2025 B1 原录音"></audio><p data-rd-audio-status role="status">正在准备完整音频…</p><div class="rd-audio-tools"><label>速度<select data-rd-speed>${[0.75, 0.85, 1, 1.25].map((v) => `<option value="${v}" ${s.speed === v ? 'selected' : ''}>${v}×</option>`).join('')}</select></label><label><input type="checkbox" data-rd-loop ${s.loop ? 'checked' : ''}>循环这段录音</label><button type="button" data-rd-action="audio-retry" hidden>重试加载音频</button></div><label>${s.phase === 'retest' ? '自己的录音笔记' : '听到的日期、地点、演讲内容、后续活动'}<textarea rows="7" data-rd-integrated="notes" placeholder="写下自己的笔记。">${esc(s.notes)}</textarea></label>${s.submitted ? `<details class="rd-transcript"><summary>核对原音逐字稿节选</summary><p class="rd-small">官方 Track 8 节选；省略处标 …。本页用于核对信息，未制作逐词时间轴。</p>${task.transcriptExtracts.map((t) => `<h4>${esc(t.label)}</h4><p lang="en">${esc(t.text)}</p>`).join('')}</details>` : ''}</section>
+<section class="rd-paper rd-data-file"><h3>Data File</h3>${task.sources.map((source, i) => `<details id="rd-data-${source.id}" ${i === 0 ? 'open' : ''}><summary>${esc(source.label)}</summary>${source.paragraphs.map((p) => `<p lang="en">${esc(p)}</p>`).join('')}${source.image ? `<a href="${esc(new URL(source.image, import.meta.url).href)}" target="_blank" rel="noopener"><img src="${esc(new URL(source.image, import.meta.url).href)}" alt="${esc(source.imageAlt)}" loading="lazy"></a>` : ''}${source.note ? `<p class="rd-small">${esc(source.note)}</p>` : ''}</details>`).join('')}</section></div>
+<section class="rd-paper rd-composition" id="rd-composition"><div class="rd-draft-heading"><h3>写出你的邮件</h3><span data-rd-words>${countWords(s.draft)} 词 / 原题要求约 ${task.targetWords} 词</span></div><div class="rd-email-fields"><label>To<input data-rd-integrated="to" value="${esc(s.to)}" autocomplete="off"></label><label>From<input value="Nico Lin" readonly></label><label>Subject<input data-rd-integrated="subject" value="${esc(s.subject)}" autocomplete="off"></label></div><label class="rd-sr-only" for="rd-draft">邀请邮件正文</label><textarea id="rd-draft" rows="10" data-rd-integrated="draft" lang="en" spellcheck="false" placeholder="先自己写。提交后再核对信息与语言清单。">${esc(s.draft)}</textarea>
+${sourceCardsHTML(task, s)}
+${s.submitted ? `<details class="rd-language-review"><summary>人称、时态与语气自核</summary><div class="rd-language-checks">${task.languageChecks.map((c) => `<label><input type="checkbox" data-rd-language="${c.id}" ${s.checklist[c.id] ? 'checked' : ''}><span><strong>${esc(c.label)}</strong> ${esc(c.text)}</span></label>`).join('')}</div><p class="rd-small">${esc(task.feedbackNote)}</p></details>` : ''}
+<div class="rd-bottom-actions"><button type="button" class="rd-primary" data-rd-action="integrated-submit">${s.submitted ? '提交自改版本' : '提交作答，开始核对'}</button><button type="button" data-rd-action="integrated-save" ${s.submitted ? '' : 'disabled'}>保存本次学习纪录</button>${s.submitted ? '<button type="button" data-rd-action="integrated-reset">关提示再测</button><button type="button" data-rd-action="open-review">复习与备份</button><button type="button" data-rd-action="open-library">去原卷库练习</button>' : ''}<button type="button" data-rd-action="copy-draft">复制我的邮件</button></div><p class="rd-small">提交后暂存本次作答；明确保存才写入此浏览器。未提交的修订不包含在保存中。</p>${s.submitted ? '<p class="rd-small">同题复测只检验当场修正；暂无未练过的同类验证材料。原卷库保留年份、卷别、Part 与 Task，可选另一份原卷独立练习。</p>' : ''}</section>
+<details class="rd-provenance"><summary>来源与记录说明</summary><p>${esc(task.source)}</p><p>原录音从用户整段文件第 6297–6819 秒提取，保留完整教师会议；本任务仅使用其中相关信息。学生调查为原卷扫描页。首次稿与提交后的自改版本分开记录。</p><p>这是精选 Data File 的方法训练；关提示同题复测也不等于未见材料检验。作答暂存在本次页面内，明确保存并回读后才保留。</p></details></section>`;
+    updateSourceStep();
     updateClock();
     prepareAudio();
   }
@@ -315,22 +374,12 @@ export function mountReading({ host, bridge = {} }) {
     const set = getSet(),
       s = getR(),
       results = evaluateReading(set, s.answers, s.evidence, true);
-    const pending = Object.entries(results).filter(
-      ([id, r]) => r.answer === 'review' && !s.selfCheck[id],
-    ).length;
+    const summary = readingSummary(results, s.selfCheck);
     return {
       module: 'reading',
       taskId: set.id,
       phase: s.phase,
       answers: copy(s.answers),
-      ...(pending
-        ? {}
-        : {
-            correct: Object.entries(results).filter(
-              ([id, r]) => r.answer === 'matched' || (r.answer === 'review' && s.selfCheck[id] === 'yes'),
-            ).length,
-            total: set.questions.length,
-          }),
       elapsedSeconds: Math.round(readingElapsed(s.clock)),
       assisted: false,
       selfCheck: copy(s.selfCheck),
@@ -339,9 +388,10 @@ export function mountReading({ host, bridge = {} }) {
       details: {
         evidence: copy(s.evidence),
         results,
-        pending,
+        pending: summary.pending,
+        matching: summary,
         errors: copy(s.errors),
-        paraphrase: s.paraphrase,
+        paraphrase: s.capturedParaphrase || '',
         title: set.title,
         unit: '练习项目，非官方分数',
       },
@@ -389,7 +439,7 @@ export function mountReading({ host, bridge = {} }) {
       phase: reviewing ? 'review' : s.phase,
       answers: { to: s.to, subject: s.subject, draft: s.draft },
       elapsedSeconds: Math.round(Math.max(0, totalElapsed - (s.lastSubmittedElapsed || 0))),
-      assisted: reviewing || s.assisted || s.speed !== 1 || s.loop,
+      assisted: reviewing || s.phase === 'first' || s.assisted || s.speed !== 1 || s.loop,
       source: task.source,
       selfCheck: copy(s.checklist),
       errorTypes: [],
@@ -402,6 +452,7 @@ export function mountReading({ host, bridge = {} }) {
         checklist: copy(s.checklist),
         wordCount: countWords(s.draft),
         automaticMarking: false,
+        supportMode: s.phase === 'retest' ? 'concealed-same-task' : 'guided-practice',
       },
     });
     s.lastSubmittedElapsed = totalElapsed;
@@ -427,32 +478,67 @@ export function mountReading({ host, bridge = {} }) {
     );
     studyStore.replaceState(all);
   }
-  function saveRecord() {
-    if (view === 'integrated') {
-      const s = getI();
-      if (integratedWork(s) !== s.capturedWork) {
-        if (!submitIntegrated()) return;
-      }
-      refreshIntegratedChecks();
-    } else refreshReadingRecord();
-    const pending = studyStore.getState().records.length - studyStore.getSavedState().records.length;
-    const description =
+  function getSaveState() {
+    const label = view === 'integrated' ? 'B1 综合' : '阅读练习';
+    if (!content || !integrated || view === 'hidden')
+      return { label, submitted: false, hasDraft: false, hasUnsubmittedChanges: false };
+    const s = view === 'integrated' ? getI() : getR();
+    const hasDraft =
       view === 'integrated'
-        ? `${getTask().title}：${countWords(getI().draft)} 词、录音笔记、来源核对及语言清单`
-        : `${getSet().title}：答案、证据、用时与自核结果`;
+        ? [s.to, s.subject, s.draft, s.notes].some((value) => value.trim()) ||
+          Object.values(s.sourceChoices).some((ids) => ids.length)
+        : Object.values(s.answers)
+            .flat()
+            .some((value) => String(value).trim()) || Object.values(s.evidence).some((ids) => ids.length);
+    return {
+      label,
+      submitted: s.submitted,
+      hasDraft,
+      hasUnsubmittedChanges:
+        view === 'integrated'
+          ? s.submitted
+            ? integratedWork(s) !== s.capturedWork
+            : !!hasDraft
+          : s.submitted
+            ? s.paraphrase !== (s.capturedParaphrase || '')
+            : !!hasDraft,
+    };
+  }
+  async function saveRecord() {
+    const saveState = getSaveState();
+    if (!saveState.submitted) {
+      notice = '请先提交作答；尚未提交的输入不会保存。';
+      render();
+      return false;
+    }
+    if (view === 'integrated') refreshIntegratedChecks();
+    else refreshReadingRecord();
+    const exclusion = saveState.hasUnsubmittedChanges ? '当前修订尚未提交，不包含在保存中。' : '';
+    if (bridge.requestSave) {
+      const result = await bridge.requestSave();
+      if (result !== false) {
+        notice = `已保存已提交的学习纪录到此浏览器，并回读确认。${exclusion}`;
+        render();
+      }
+      return result;
+    }
+    const pending = studyStore.getState().records.length - studyStore.getSavedState().records.length;
     if (
       !window.confirm(
-        `保存本次学习纪录？\n${description}\n本次会一并保存学习台所有暂存改动（新增 ${Math.max(0, pending)} 条练习），写入本机后回读确认。`,
+        `保存本次学习纪录？\n${saveState.label}：已提交的作答、证据及自核结果。\n${exclusion}\n一并保存学习台暂存改动（新增 ${Math.max(0, pending)} 条练习），只写入此浏览器并回读确认。`,
       )
     )
-      return;
+      return false;
     try {
       studyStore.save();
-      notice = '已保存到本机，并回读确认。可在复习页导出完整备份。';
+      notice = `已保存到此浏览器，并回读确认。${exclusion}可从“复习与备份”继续。`;
+      render();
+      return true;
     } catch (e) {
       notice = `保存未完成：${e.message}`;
+      render();
+      return false;
     }
-    render();
   }
   function render() {
     if (view === 'hidden') return;
@@ -466,6 +552,7 @@ export function mountReading({ host, bridge = {} }) {
     }
     if (view === 'integrated') renderIntegrated();
     else renderReading();
+    bridge.onSessionChange?.();
   }
   host.addEventListener('input', (event) => {
     const el = event.target;
@@ -481,7 +568,6 @@ export function mountReading({ host, bridge = {} }) {
     }
     if (el.matches('[data-rd-paraphrase]')) {
       getR().paraphrase = el.value;
-      refreshReadingRecord();
     }
     if (el.matches('[data-rd-integrated]')) {
       const s = getI();
@@ -489,10 +575,13 @@ export function mountReading({ host, bridge = {} }) {
       startClock(s, true);
       const counter = host.querySelector('[data-rd-words]');
       if (counter) counter.textContent = `${countWords(s.draft)} 词 / 原题要求约 ${getTask().targetWords} 词`;
+      for (const preview of host.querySelectorAll('.rd-own-draft p')) preview.textContent = s.draft;
     }
   });
+  host.addEventListener('input', () => bridge.onSessionChange?.());
   host.addEventListener('change', (event) => {
     const el = event.target;
+    if (el.matches('[data-rd-source-step]')) updateSourceStep({ selected: el.value });
     if (el.matches('[data-rd-set]')) {
       pauseClock(getR());
       state.setId = el.value;
@@ -535,6 +624,7 @@ export function mountReading({ host, bridge = {} }) {
       refreshIntegratedChecks();
     }
   });
+  host.addEventListener('change', () => bridge.onSessionChange?.());
   host.addEventListener('click', async (event) => {
     const segment = event.target.closest('[data-rd-segment]');
     if (segment) {
@@ -547,6 +637,7 @@ export function mountReading({ host, bridge = {} }) {
         : picked.add(segment.dataset.rdSegment);
       s.evidence[s.activeQuestion] = [...picked];
       renderReading();
+      bridge.onSessionChange?.();
       return;
     }
     const button = event.target.closest('[data-rd-action]');
@@ -585,7 +676,37 @@ export function mountReading({ host, bridge = {} }) {
           block: 'start',
         });
     }
+    if (action === 'return-question') {
+      const target = host.querySelector(`#rd-question-${CSS.escape(getR().activeQuestion)}`);
+      const answer = target?.querySelector('input:not(:disabled),textarea:not(:disabled)');
+      if (answer) answer.focus({ preventScroll: true });
+      else if (target) {
+        target.tabIndex = -1;
+        target.focus({ preventScroll: true });
+      }
+      target?.scrollIntoView({ block: 'center', behavior: 'auto' });
+    }
+    if (action === 'jump-region') goToRegion(button.dataset.region);
+    if (action === 'source-link')
+      goToRegion(
+        button.dataset.source === 'audio' ? 'rd-integrated-audio' : `rd-data-${button.dataset.source}`,
+        { returnToCheck: true },
+      );
+    if (action === 'edit-draft') goToRegion('rd-composition', { returnToCheck: true, edit: true });
+    if (action === 'back-to-check') goToRegion('rd-source-check');
+    if (action === 'source-prev' || action === 'source-next') {
+      updateSourceStep({ move: action === 'source-prev' ? -1 : 1 });
+      goToRegion('rd-source-check');
+    }
+    if (action === 'open-review') bridge.navigate?.('review');
+    if (action === 'open-library') bridge.navigate?.('library');
     if (action === 'submit') submitReading();
+    if (action === 'submit-paraphrase') {
+      getR().capturedParaphrase = getR().paraphrase;
+      refreshReadingRecord();
+      notice = '句意复述已提交。可保存本次学习纪录，或关提示再测。';
+      render();
+    }
     if (action === 'reset') {
       if (window.confirm('重新开始此题组？本页当前答案会清空；已提交的学习记录会保留。')) {
         state.reading[getSet().id] = baseSession('retest');
@@ -670,6 +791,7 @@ export function mountReading({ host, bridge = {} }) {
               recordId: record.id,
               clock: { elapsed: record.elapsedSeconds || 0, runningSince: null },
               paraphrase: record.details?.paraphrase || '',
+              capturedParaphrase: record.details?.paraphrase || '',
             };
           if (record && next === 'integrated')
             state.integrated[options.taskId] = {
@@ -698,6 +820,8 @@ export function mountReading({ host, bridge = {} }) {
       render();
     },
     getRecords,
+    getSaveState,
+    saveCurrent: saveRecord,
     getState() {
       pauseAll();
       return copy(state);

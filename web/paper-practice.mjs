@@ -1,5 +1,5 @@
 // Original sources share the focused player; this module only selects and displays documents.
-export function mountPaperPractice({ entries, sources, onSelect, onLibrary }) {
+export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIntegrated }) {
   const host = document.getElementById('practice-picker');
   const fields = ['year', 'variant', 'part', 'task'];
   const labels = { year: '年份', variant: '卷别', part: 'Part', task: 'Task' };
@@ -47,7 +47,22 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary }) {
       );
       selects[field].value = String(selected[field]);
     });
+    const action = document.getElementById('practice-integrated');
+    if (action)
+      action.hidden = !(
+        selected.year === 2025 &&
+        selected.variant === 'exam' &&
+        selected.part === 'B1' &&
+        selected.task === 6
+      );
   }
+  const integrated = document.createElement('button');
+  integrated.type = 'button';
+  integrated.id = 'practice-integrated';
+  integrated.className = 'button-secondary';
+  integrated.textContent = '做这题的 B1 综合训练';
+  integrated.onclick = () => onIntegrated?.();
+  host.append(integrated);
   sync();
   let sourceKey = '';
   function renderSources(lesson, phase) {
@@ -81,7 +96,8 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary }) {
     }
     target.replaceChildren();
     const details = document.createElement('details');
-    details.open = phase !== 'review';
+    // The question is the default work area; full diagrams/Data File stay one action away.
+    details.open = phase !== 'review' && lesson.paper.part !== 'A';
     const summary = document.createElement('summary');
     summary.textContent = phase === 'review' ? '查看原题与评分参考' : '原卷题页与 Data File';
     details.append(summary);

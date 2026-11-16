@@ -3,14 +3,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const context = await browser.newContext({
   viewport: { width: 810, height: 1080 },
@@ -71,7 +69,7 @@ try {
   assert.equal((await records()).paperMarks.length, 1);
   assert.equal((await records()).records.length, 2);
   await page.locator('#paper-study-review').tap();
-  await page.getByRole('button', { name: '关提示复测原句', exact: true }).first().tap();
+  await page.getByRole('button', { name: '关提示再测', exact: true }).first().tap();
   await ready();
   assert.equal(await page.locator('#paper-drill-answer').inputValue(), '');
   assert.equal(await page.locator('#paper-transcript-panel').isVisible(), false);

@@ -1,4 +1,6 @@
 import { listeningBridge } from './app.mjs';
+import { studyStore } from './training-core.mjs';
+import { createSessionSaver } from './session-save.mjs';
 
 const allowed = new Set(['library', 'today', 'listening', 'reading', 'writing', 'review', 'integrated']);
 let training,
@@ -18,7 +20,112 @@ const bridge = {
   navigate,
   getReadingRecords: () => reading?.getRecords?.() || [],
   onChange: listeningBridge.onChange,
+  requestSave,
+  onSessionChange: () => sessionChanged(),
 };
+let saving = false,
+  saveMessage = '';
+const saver = createSessionSaver({
+  studyStore,
+  getListeningSnapshot: () => listeningBridge.getSaveSnapshot(),
+});
+const saveButton = document.getElementById('session-save');
+function hasUnsubmitted() {
+  return [
+    listeningBridge.getSaveState(),
+    reading?.getSaveState?.(),
+    training?.getSaveState?.(),
+    papers?.getSaveState?.(),
+  ].some((state) => state?.hasUnsubmittedChanges ?? state?.hasDraft);
+}
+function refreshSessionBar() {
+  if (saving) return;
+  try {
+    const pending = saver.prepare().changed;
+    const unsubmitted = hasUnsubmitted();
+    const saved =
+      !!localStorage.getItem('english30-study-v1') || !!localStorage.getItem('english30-records-v1');
+    saveButton.disabled = !pending;
+    document.getElementById('session-save-status').textContent = pending
+      ? '已提交，尚未保存'
+      : unsubmitted
+        ? '当前输入尚未提交'
+        : saved
+          ? '已保存到此浏览器'
+          : '尚未提交';
+    document.getElementById('session-save-detail').textContent =
+      saveMessage ||
+      (unsubmitted
+        ? '尚有未提交输入，保存只包含已提交的纪录和标记；请先提交要保留的作答。'
+        : pending
+          ? '点击保存，先核对本次包含的模块；确认后写入并回读。'
+          : '学习纪录只留在当前浏览器，可从「复习与备份」导出。');
+  } catch (error) {
+    saveButton.disabled = true;
+    document.getElementById('session-save-status').textContent = '保存状态暂不可用';
+    document.getElementById('session-save-detail').textContent = error.message;
+  }
+}
+async function requestSave() {
+  if (saving) return false;
+  let plan;
+  try {
+    plan = saver.prepare();
+    if (!plan.changed) {
+      saveMessage = '没有新的已提交纪录需要保存。未提交输入不会自动保存。';
+      refreshSessionBar();
+      return false;
+    }
+    const items = [];
+    if (plan.listening)
+      items.push(
+        `听力：${plan.listening.label || plan.listening.record.lessonTitle || plan.listening.record.lessonId}，${plan.listening.record.attempts.length} 轮作答及标记`,
+      );
+    if (plan.listening?.prepare) items.push('导入的听力材料与音频也会保存到此浏览器');
+    if (plan.study.changed) {
+      const saved = new Map(studyStore.getSavedState().records.map((r) => [r.id, JSON.stringify(r)]));
+      const changed = plan.study.state.records.filter((r) => saved.get(r.id) !== JSON.stringify(r));
+      const labels = { reading: '阅读', integrated: 'B1 综合', writing: '写句', dictation: '短句听写' };
+      for (const [module, label] of Object.entries(labels)) {
+        const count = changed.filter((r) => r.module === module).length;
+        if (count) items.push(`${label}：${count} 条新增或更新纪录`);
+      }
+      if (!changed.length || plan.study.state.paperMarks.length)
+        items.push('其他已暂存的复习标记、手动复习状态及设置');
+    }
+    if (
+      !confirm(
+        `准备保存本次学习纪录：\n${items.join('\n')}\n\n未提交的输入不包含。仅写入当前浏览器，不上传云端；保存后回读验证。`,
+      )
+    )
+      return false;
+    saving = true;
+    saveButton.disabled = true;
+    document.getElementById('session-save-status').textContent = '正在保存并回读…';
+    await saver.save(plan);
+    saveMessage = saver.prepare().changed
+      ? '确认时的纪录已完成回读验证；保存期间的新修改尚未保存。'
+      : hasUnsubmitted()
+        ? '已完成回读验证。尚有未提交输入未保存，请提交后再保存。'
+        : '已完成回读验证。可结束本次，或从「复习与备份」继续。';
+    return true;
+  } catch (error) {
+    saveMessage = `保存未完成：${error.message} 请保留当前页面，检查后重试。`;
+    return false;
+  } finally {
+    saving = false;
+    refreshSessionBar();
+  }
+}
+saveButton.addEventListener('click', requestSave);
+document.getElementById('session-review').addEventListener('click', () => navigate('review'));
+listeningBridge.setSaveHandler(requestSave);
+const sessionChanged = () => {
+  saveMessage = '';
+  refreshSessionBar();
+};
+studyStore.subscribe(sessionChanged);
+listeningBridge.onChange(sessionChanged);
 async function navigate(view, options = {}) {
   const previousView = current,
     previousMode = listeningMode;
@@ -60,7 +167,8 @@ async function navigate(view, options = {}) {
   reading?.show('hidden');
   papers?.show('hidden');
   window.speechSynthesis?.cancel();
-  const primary = view === 'review' ? 'writing' : view === 'integrated' ? 'reading' : view;
+  const primary = view === 'integrated' ? 'listening' : view;
+  document.getElementById('session-review').setAttribute('aria-pressed', String(view === 'review'));
   for (const button of document.querySelectorAll('.main-navigation>button'))
     button.setAttribute('aria-pressed', String(button.dataset.view === primary));
   const hash = practice ? '#listening/practice' : `#${view}`;
@@ -76,6 +184,7 @@ async function navigate(view, options = {}) {
         return;
       }
       listeningBridge.refreshSaved();
+      refreshSessionBar();
       return;
     }
     if (paperView) {
@@ -104,6 +213,7 @@ async function navigate(view, options = {}) {
         }));
       if (request === generation) await training.show(view, options);
     }
+    refreshSessionBar();
   } catch (error) {
     if (request !== generation) return;
     if (listening) {

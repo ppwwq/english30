@@ -8,7 +8,16 @@ const escape = (value) =>
   );
 const clock = (value) => `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, '0')}`;
 
-export function mountPaperStudy({ host, play, cancel, conceal, isExposed }) {
+export function mountPaperStudy({
+  host,
+  play,
+  cancel,
+  conceal,
+  isExposed,
+  idPrefix = '',
+  onChange = () => {},
+  formatTime = clock,
+}) {
   let session,
     selection,
     sentences = [],
@@ -24,17 +33,21 @@ export function mountPaperStudy({ host, play, cancel, conceal, isExposed }) {
       <div class="paper-drill-actions"><button type="button" id="paper-drill-play" class="button-secondary">听这一句</button><button type="button" id="paper-drill-next">换下一句</button></div>
       <label for="paper-drill-answer">写下听到的内容，没听清的地方留空</label>
       <textarea id="paper-drill-answer" rows="3" maxlength="2000" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-      <div class="paper-drill-actions"><button type="button" id="paper-drill-submit" class="button-primary">提交并对照</button><button type="button" id="paper-drill-blank">没听清，查看原句</button></div>
+      <div class="paper-drill-actions"><button type="button" id="paper-drill-submit" class="button-primary">提交作答</button><button type="button" id="paper-drill-blank">没听清，查看原句</button></div>
       <p id="paper-drill-message" role="status"></p>
       <section id="paper-drill-feedback" class="paper-drill-feedback" hidden>
         <h3>对照原句</h3><p id="paper-drill-reference" lang="en"></p><div id="paper-drill-diff"></div>
         <p class="paper-fine">这里只核对字幕字词，忽略大小写与标点，不代表 DSE 得分或完整理解。若字幕与原音不符，可标为待核实。</p>
         <label for="paper-drill-error">这次主要卡在哪里</label><select id="paper-drill-error">
           <option value="">选择自己的卡点</option><option>认识但听不出</option><option>词义不认识</option><option>漏听词尾或数字</option><option>拼写</option><option>整句意思不明</option><option>原稿可能有误</option><option>已听清并理解</option>
-        </select><div class="paper-drill-actions"><button type="button" id="paper-drill-record-error">记录卡点</button><button type="button" id="paper-drill-retest" class="button-secondary">关提示，再测一次</button></div>
+        </select><div class="paper-drill-actions"><button type="button" id="paper-drill-record-error">记录卡点</button><button type="button" id="paper-drill-retest" class="button-secondary">关提示再测</button></div>
       </section>
     </div></details>`;
-  const $ = (id) => host.querySelector(`#${id}`);
+  if (idPrefix) {
+    for (const node of host.querySelectorAll('[id]')) node.id = idPrefix + node.id;
+    for (const node of host.querySelectorAll('[for]')) node.htmlFor = idPrefix + node.htmlFor;
+  }
+  const $ = (id) => host.querySelector(`#${idPrefix}${id}`);
   function message(text) {
     $('paper-drill-message').textContent = text;
   }
@@ -63,13 +76,17 @@ export function mountPaperStudy({ host, play, cancel, conceal, isExposed }) {
     if (active) drafts.set(key(id), active);
     if (retest) conceal();
     render();
+    onChange();
   }
   function render() {
     const sentence = active?.drill.sentence;
     $('paper-drill-sentence').replaceChildren(
       ...sentences.map(
         (s) =>
-          new Option(`${clock(s.start)} · ${(s.end - s.start).toFixed(1)} 秒 · ${s.words.length} 词`, s.id),
+          new Option(
+            `${formatTime(s.start)} · ${(s.end - s.start).toFixed(1)} 秒 · ${s.words.length} 词`,
+            s.id,
+          ),
       ),
     );
     if (sentence) $('paper-drill-sentence').value = sentence.id;
@@ -114,6 +131,7 @@ export function mountPaperStudy({ host, play, cancel, conceal, isExposed }) {
   $('paper-drill-sentence').onchange = () => choose($('paper-drill-sentence').value);
   $('paper-drill-answer').oninput = () => {
     if (active) active.answer = $('paper-drill-answer').value;
+    onChange();
   };
   $('paper-drill-next').onclick = () => {
     const index = sentences.findIndex((s) => s.id === active?.drill.sentence.id);
@@ -143,6 +161,7 @@ export function mountPaperStudy({ host, play, cancel, conceal, isExposed }) {
       active.outcome = outcome;
       cancel();
       render();
+      onChange();
     } catch (error) {
       message(error.message);
     }
@@ -196,13 +215,16 @@ export function mountPaperStudy({ host, play, cancel, conceal, isExposed }) {
       for (const [draftKey, draft] of drafts)
         if (draftKey.startsWith(prefix) && !draft.outcome) draft.drill.reveal();
     },
-    open(sentenceId) {
+    getSaveState() {
+      return { hasDraft: [...drafts.values()].some((d) => d.answer.trim() && !d.outcome) };
+    },
+    open(sentenceId, { retest = true } = {}) {
       if (!sentences.some((s) => s.id === sentenceId)) {
         $('paper-drill').open = true;
         message('此标记原句的定位或长度暂不适合自动听写，可先用字幕复盘重听。');
         return false;
       }
-      choose(sentenceId, true);
+      choose(sentenceId, retest);
       $('paper-drill').open = true;
       $('paper-drill').scrollIntoView({ block: 'start', behavior: 'smooth' });
       return true;

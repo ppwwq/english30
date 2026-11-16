@@ -613,3 +613,110 @@
 .rd-workspace [data-rd-clock] {
   font-variant-numeric: tabular-nums;
 }
+
+/* Keep the question with the evidence, using the existing paper and ink palette. */
+.rd-evidence-context {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--rd-paper);
+  border-bottom: 1px solid var(--rd-line);
+  padding: 10px 0 14px;
+  margin-bottom: 20px;
+}
+.rd-evidence-context .rd-current-prompt {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.rd-evidence-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.rd-evidence-actions button {
+  flex-shrink: 0;
+}
+.rd-question {
+  scroll-margin-top: 24px;
+}
+
+.rd-result-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  font-size: 14px;
+}
+.rd-result-summary strong {
+  margin-left: 4px;
+}
+
+.rd-workbench-nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 0;
+  background: var(--rd-paper);
+  border-bottom: 1px solid var(--rd-line);
+  margin-bottom: 18px;
+}
+.rd-workbench-nav [hidden],
+.rd-source-row[hidden] {
+  display: none;
+}
+.rd-integrated-workspace [id] {
+  scroll-margin-top: 132px;
+}
+.rd-source-controls {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 15px 0;
+}
+.rd-source-controls label {
+  flex: 1 1 220px;
+}
+.rd-source-controls select {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+}
+.rd-source-controls > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rd-source-grid.is-review {
+  display: block;
+}
+.rd-own-draft {
+  padding: 14px 0;
+  border-top: 1px solid var(--rd-line);
+}
+.rd-own-draft p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.rd-source-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.rd-language-review {
+  margin-top: 22px;
+}
+@media (max-width: 500px) {
+  .rd-workbench-nav button {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .rd-source-controls {
+    align-items: stretch;
+  }
+}
