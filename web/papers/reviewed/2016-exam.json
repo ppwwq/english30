@@ -1,0 +1,2361 @@
+{
+  "sessionId": "2016-exam",
+  "reviewDate": "2026-11-17",
+  "reviewMethod": "Answers checked visually against 2016 MS PDF page 8 and question PDF pages 3–4. Audio locators use existing acoustic alignment with third-party transcript corroboration; no official script available in this source set.",
+  "tasks": {
+    "A-1": {
+      "reference": {
+        "sourceId": "p-70f90dfea1e6",
+        "page": 8
+      },
+      "script": {
+        "kind": "third-party-script",
+        "note": "2016 原稿替代来源；现有声学时间对照，非官方原稿。"
+      },
+      "questions": {
+        "1": {
+          "prompt": "Example Video Game 2: name.",
+          "referenceAnswer": "Ping Pong",
+          "evidence": [[112.28, 135.88, 126.9, 131.92]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 112.28,
+              "contextEnd": 135.88,
+              "start": 126.9,
+              "end": 131.92,
+              "sourceSentenceIds": ["s00071"],
+              "contextSentenceIds": ["s00068", "s00069", "s00070", "s00071", "s00072"],
+              "sentenceIndices": [19, 22, 22, 23],
+              "reason": "Retains earlier Tennis for Two distractor before Ping Pong."
+            }
+          ]
+        },
+        "2": {
+          "prompt": "Example Video Game 2: year.",
+          "referenceAnswer": "1972",
+          "evidence": [
+            [112.28, 135.88, 126.9, 131.92],
+            [133.2, 143.7, 139.3, 140.02]
+          ],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 112.28,
+              "contextEnd": 135.88,
+              "start": 126.9,
+              "end": 131.92,
+              "sourceSentenceIds": ["s00071"],
+              "contextSentenceIds": ["s00068", "s00069", "s00070", "s00071", "s00072"],
+              "sentenceIndices": [19, 22, 22, 23],
+              "reason": "Both 1972 occurrences retained, second with repeated question."
+            },
+            {
+              "contextStart": 133.2,
+              "contextEnd": 143.7,
+              "start": 139.3,
+              "end": 140.02,
+              "sourceSentenceIds": ["s00074"],
+              "contextSentenceIds": ["s00072", "s00073", "s00074", "s00075"],
+              "sentenceIndices": [23, 25, 25, 26],
+              "reason": "Both 1972 occurrences retained, second with repeated question."
+            }
+          ]
+        },
+        "3": {
+          "prompt": "Example Video Game 3: name.",
+          "referenceAnswer": "Teen Queen 4",
+          "evidence": [[144.66, 167.3, 149.16, 159.12]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 144.66,
+              "contextEnd": 167.3,
+              "start": 149.16,
+              "end": 159.12,
+              "sourceSentenceIds": ["s00078", "s00079", "s00080"],
+              "contextSentenceIds": [
+                "s00076",
+                "s00077",
+                "s00078",
+                "s00079",
+                "s00080",
+                "s00081",
+                "s00082",
+                "s00083"
+              ],
+              "sentenceIndices": [27, 29, 31, 34],
+              "reason": "New-game question and Teen Queen 5 next-year distractor retained."
+            }
+          ]
+        },
+        "4": {
+          "prompt": "Example Video Game 3: year.",
+          "referenceAnswer": "2016 / this year",
+          "evidence": [[144.66, 167.3, 151.46, 154.02]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 144.66,
+              "contextEnd": 167.3,
+              "start": 151.46,
+              "end": 154.02,
+              "sourceSentenceIds": ["s00079"],
+              "contextSentenceIds": [
+                "s00076",
+                "s00077",
+                "s00078",
+                "s00079",
+                "s00080",
+                "s00081",
+                "s00082",
+                "s00083"
+              ],
+              "sentenceIndices": [27, 30, 30, 34],
+              "reason": "2016 confirmation contrasted with next-year sequel."
+            }
+          ]
+        },
+        "5": {
+          "prompt": "Video Games Museum: reason for not going.",
+          "referenceAnswer": "not open / closed on Wednesday(s) / today",
+          "evidence": [[168.12, 185.84, 174.66, 179.74]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 168.12,
+              "contextEnd": 185.84,
+              "start": 174.66,
+              "end": 179.74,
+              "sourceSentenceIds": ["s00087"],
+              "contextSentenceIds": ["s00084", "s00085", "s00086", "s00087", "s00088", "s00089"],
+              "sentenceIndices": [35, 38, 38, 40],
+              "reason": "Opening-times enquiry and closure today."
+            }
+          ]
+        },
+        "6": {
+          "prompt": "Name of Museum 2.",
+          "referenceAnswer": "Railway Museum",
+          "evidence": [[186.72, 198.28, 191.1, 194.9]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 186.72,
+              "contextEnd": 198.28,
+              "start": 191.1,
+              "end": 194.9,
+              "sourceSentenceIds": ["s00092", "s00093"],
+              "contextSentenceIds": ["s00090", "s00091", "s00092", "s00093", "s00094"],
+              "sentenceIndices": [41, 43, 44, 45],
+              "reason": "Museum proposal identifies Railway Museum."
+            }
+          ]
+        },
+        "7": {
+          "prompt": "What you do in Museum 2.",
+          "referenceAnswer": "ride / go on an old train",
+          "evidence": [[191.1, 208.64, 199.06, 205.42]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 191.1,
+              "contextEnd": 208.64,
+              "start": 199.06,
+              "end": 205.42,
+              "sourceSentenceIds": ["s00095"],
+              "contextSentenceIds": ["s00092", "s00093", "s00094", "s00095", "s00096"],
+              "sentenceIndices": [43, 46, 46, 47],
+              "reason": "Train activity follows museum name."
+            }
+          ]
+        },
+        "8": {
+          "prompt": "Museum 2: first reason for not going.",
+          "referenceAnswer": "(it’s) boring (for mother and daughter)",
+          "evidence": [
+            [191.1, 208.64, 195.78, 208.64],
+            [208.64, 231.6, 226.44, 231.6]
+          ],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 191.1,
+              "contextEnd": 208.64,
+              "start": 195.78,
+              "end": 208.64,
+              "sourceSentenceIds": ["s00094", "s00095", "s00096"],
+              "contextSentenceIds": ["s00092", "s00093", "s00094", "s00095", "s00096"],
+              "sentenceIndices": [43, 45, 47, 47],
+              "reason": "Both boring responses; father disagrees before eventual agreement."
+            },
+            {
+              "contextStart": 208.64,
+              "contextEnd": 231.6,
+              "start": 226.44,
+              "end": 231.6,
+              "sourceSentenceIds": ["s00101", "s00102"],
+              "contextSentenceIds": ["s00097", "s00098", "s00099", "s00100", "s00101", "s00102"],
+              "sentenceIndices": [48, 52, 53, 53],
+              "reason": "Both boring responses; father disagrees before eventual agreement."
+            }
+          ]
+        },
+        "9": {
+          "prompt": "Museum 2: second reason for not going.",
+          "referenceAnswer": "expensive // cost too much // $250 is too much",
+          "evidence": [[208.64, 231.6, 219.44, 231.6]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 208.64,
+              "contextEnd": 231.6,
+              "start": 219.44,
+              "end": 231.6,
+              "sourceSentenceIds": ["s00099", "s00100", "s00101", "s00102"],
+              "contextSentenceIds": ["s00097", "s00098", "s00099", "s00100", "s00101", "s00102"],
+              "sentenceIndices": [48, 50, 53, 53],
+              "reason": "Cheap claim and price precede expensive correction."
+            }
+          ]
+        },
+        "10": {
+          "prompt": "Does Angela want to see the toy ponies exhibition? (yes / no)",
+          "referenceAnswer": "yes",
+          "evidence": [[242.02, 271.62, 259.26, 271.62]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 242.02,
+              "contextEnd": 271.62,
+              "start": 259.26,
+              "end": 271.62,
+              "sourceSentenceIds": ["s00111", "s00112", "s00113", "s00114"],
+              "contextSentenceIds": [
+                "s00106",
+                "s00107",
+                "s00108",
+                "s00109",
+                "s00110",
+                "s00111",
+                "s00112",
+                "s00113",
+                "s00114"
+              ],
+              "sentenceIndices": [57, 62, 65, 65],
+              "reason": "Past enthusiasm and no-longer-playing distractor before yes."
+            }
+          ]
+        },
+        "11": {
+          "prompt": "Does Angela want to see the boy bands exhibition? (yes / no)",
+          "referenceAnswer": "no",
+          "evidence": [[267.38, 278.46, 272.42, 278.46]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 267.38,
+              "contextEnd": 278.46,
+              "start": 272.42,
+              "end": 278.46,
+              "sourceSentenceIds": ["s00115", "s00116", "s00117"],
+              "contextSentenceIds": ["s00114", "s00115", "s00116", "s00117"],
+              "sentenceIndices": [65, 66, 68, 68],
+              "reason": "Boy-band proposal then explicit rejection."
+            }
+          ]
+        },
+        "12": {
+          "prompt": "Does Angela want to see the children's fashion exhibition? (yes / no)",
+          "referenceAnswer": "yes",
+          "evidence": [[279.22, 295.34, 288.74, 295.34]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 279.22,
+              "contextEnd": 295.34,
+              "start": 288.74,
+              "end": 295.34,
+              "sourceSentenceIds": ["s00122", "s00123"],
+              "contextSentenceIds": ["s00118", "s00119", "s00120", "s00121", "s00122", "s00123"],
+              "sentenceIndices": [69, 73, 74, 74],
+              "reason": "Boring first response reversed after pictures."
+            }
+          ]
+        },
+        "13": {
+          "prompt": "Museum of Youth Culture: first reason for going.",
+          "referenceAnswer": "open later (today)",
+          "evidence": [[299.14, 311.68, 307.12, 311.68]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 299.14,
+              "contextEnd": 311.68,
+              "start": 307.12,
+              "end": 311.68,
+              "sourceSentenceIds": ["s00127", "s00128"],
+              "contextSentenceIds": ["s00125", "s00126", "s00127", "s00128"],
+              "sentenceIndices": [76, 78, 79, 79],
+              "reason": "Distance concern resolved by late opening."
+            }
+          ]
+        },
+        "14": {
+          "prompt": "Museum of Youth Culture: second reason for going.",
+          "referenceAnswer": "free on Wednesday(s) / today for school children / students / Angela",
+          "evidence": [[312.24, 319.6, 313.72, 319.6]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 312.24,
+              "contextEnd": 319.6,
+              "start": 313.72,
+              "end": 319.6,
+              "sourceSentenceIds": ["s00130", "s00131"],
+              "contextSentenceIds": ["s00129", "s00130", "s00131"],
+              "sentenceIndices": [80, 81, 82, 82],
+              "reason": "Price question with school-child Wednesday condition."
+            }
+          ]
+        },
+        "15": {
+          "prompt": "Museum of Youth Culture: third reason for going.",
+          "referenceAnswer": "interesting for all of them / the whole family / the Chau family",
+          "evidence": [[320.14, 325.92, 322.98, 325.92]],
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidenceReview": [
+            {
+              "contextStart": 320.14,
+              "contextEnd": 325.92,
+              "start": 322.98,
+              "end": 325.92,
+              "sourceSentenceIds": ["s00133"],
+              "contextSentenceIds": ["s00132", "s00133"],
+              "sentenceIndices": [83, 84, 84, 84],
+              "reason": "Final additional reason covers whole family."
+            }
+          ]
+        }
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 8
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-2": {
+      "reference": {
+        "sourceId": "p-70f90dfea1e6",
+        "page": 8
+      },
+      "questions": {
+        "16": {
+          "prompt": "Comics for girls: country.",
+          "referenceAnswer": "Japan",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[78.15, 93.89, 88.99, 93.89]],
+          "evidenceReview": [
+            {
+              "contextStart": 78.15,
+              "contextEnd": 93.89,
+              "start": 88.99,
+              "end": 93.89,
+              "sourceSentenceIds": ["s00149"],
+              "contextSentenceIds": ["s00145", "s00146", "s00147", "s00148", "s00149"],
+              "sentenceIndices": [9, 13, 13, 13],
+              "reason": "Girls comics correction from boys to Japan."
+            }
+          ]
+        },
+        "17": {
+          "prompt": "First main kind of comics.",
+          "referenceAnswer": "fantasy",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[106.75, 114.31, 112.41, 114.31]],
+          "evidenceReview": [
+            {
+              "contextStart": 106.75,
+              "contextEnd": 114.31,
+              "start": 112.41,
+              "end": 114.31,
+              "sourceSentenceIds": ["s00156"],
+              "contextSentenceIds": ["s00154", "s00155", "s00156"],
+              "sentenceIndices": [18, 20, 20, 20],
+              "reason": "Two-kind question then fantasy label."
+            }
+          ]
+        },
+        "18": {
+          "prompt": "Example of the first main kind of comics.",
+          "referenceAnswer": "superheroes",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[112.41, 124.79, 119.15, 124.79]],
+          "evidenceReview": [
+            {
+              "contextStart": 112.41,
+              "contextEnd": 124.79,
+              "start": 119.15,
+              "end": 124.79,
+              "sourceSentenceIds": ["s00159"],
+              "contextSentenceIds": ["s00156", "s00157", "s00158", "s00159"],
+              "sentenceIndices": [20, 23, 23, 23],
+              "reason": "Fantasy example question and superheroes answer."
+            }
+          ]
+        },
+        "19": {
+          "prompt": "Second main kind of comics.",
+          "referenceAnswer": "real life",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[125.55, 133.29, 127.51, 133.29]],
+          "evidenceReview": [
+            {
+              "contextStart": 125.55,
+              "contextEnd": 133.29,
+              "start": 127.51,
+              "end": 133.29,
+              "sourceSentenceIds": ["s00161"],
+              "contextSentenceIds": ["s00160", "s00161"],
+              "sentenceIndices": [24, 25, 25, 25],
+              "reason": "Other-kind prompt identifies real life and school-life example."
+            }
+          ]
+        },
+        "20": {
+          "prompt": "Example of the second main kind of comics.",
+          "referenceAnswer": "school life",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[125.55, 133.29, 127.51, 133.29]],
+          "evidenceReview": [
+            {
+              "contextStart": 125.55,
+              "contextEnd": 133.29,
+              "start": 127.51,
+              "end": 133.29,
+              "sourceSentenceIds": ["s00161"],
+              "contextSentenceIds": ["s00160", "s00161"],
+              "sentenceIndices": [24, 25, 25, 25],
+              "reason": "Other-kind prompt identifies real life and school-life example."
+            }
+          ]
+        },
+        "21": {
+          "prompt": "The comic books Angela buys come from a shop in ___.",
+          "referenceAnswer": "Electric Road",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[133.99, 146.69, 143.01, 146.69]],
+          "evidenceReview": [
+            {
+              "contextStart": 133.99,
+              "contextEnd": 146.69,
+              "start": 143.01,
+              "end": 146.69,
+              "sourceSentenceIds": ["s00166"],
+              "contextSentenceIds": ["s00162", "s00163", "s00164", "s00165", "s00166"],
+              "sentenceIndices": [26, 30, 30, 30],
+              "reason": "Comic buying location question."
+            }
+          ]
+        },
+        "22": {
+          "prompt": "Reason for going to that comic book shop.",
+          "referenceAnswer": "(much) better / more choice (of books)",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[143.01, 154.51, 152.45, 154.51]],
+          "evidenceReview": [
+            {
+              "contextStart": 143.01,
+              "contextEnd": 154.51,
+              "start": 152.45,
+              "end": 154.51,
+              "sourceSentenceIds": ["s00169"],
+              "contextSentenceIds": ["s00166", "s00167", "s00168", "s00169"],
+              "sentenceIndices": [30, 33, 33, 33],
+              "reason": "Electric Road versus nearby shop reason."
+            }
+          ]
+        },
+        "23": {
+          "prompt": "The comic books Angela buys are about ___.",
+          "referenceAnswer": "problems teenagers / teens have",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[155.27, 170.27, 167.71, 170.27]],
+          "evidenceReview": [
+            {
+              "contextStart": 155.27,
+              "contextEnd": 170.27,
+              "start": 167.71,
+              "end": 170.27,
+              "sourceSentenceIds": ["s00174"],
+              "contextSentenceIds": ["s00170", "s00171", "s00172", "s00173", "s00174"],
+              "sentenceIndices": [34, 38, 38, 38],
+              "reason": "Parent violence concern corrected to teenage problems."
+            }
+          ]
+        },
+        "24": {
+          "prompt": "Example of the problems in Angela's comic books.",
+          "referenceAnswer": "arguing with parents",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[167.71, 180.95, 173.27, 180.95]],
+          "evidenceReview": [
+            {
+              "contextStart": 167.71,
+              "contextEnd": 180.95,
+              "start": 173.27,
+              "end": 180.95,
+              "sourceSentenceIds": ["s00176", "s00177", "s00178"],
+              "contextSentenceIds": ["s00174", "s00175", "s00176", "s00177", "s00178"],
+              "sentenceIndices": [38, 40, 42, 42],
+              "reason": "Problem example and actual argument."
+            }
+          ]
+        },
+        "25": {
+          "prompt": "Cabbage Patch Doll: popular in the ___.",
+          "referenceAnswer": "1980s",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[194.71, 202.71, 200.25, 202.71]],
+          "evidenceReview": [
+            {
+              "contextStart": 194.71,
+              "contextEnd": 202.71,
+              "start": 200.25,
+              "end": 202.71,
+              "sourceSentenceIds": ["s00187"],
+              "contextSentenceIds": ["s00185", "s00186", "s00187"],
+              "sentenceIndices": [49, 51, 51, 51],
+              "reason": "Doll identification then decade."
+            }
+          ]
+        },
+        "26": {
+          "prompt": "Cabbage Patch Doll: first reason for popularity.",
+          "referenceAnswer": "ugly",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[195.47, 217.39, 205.83, 217.39]],
+          "evidenceReview": [
+            {
+              "contextStart": 195.47,
+              "contextEnd": 217.39,
+              "start": 205.83,
+              "end": 217.39,
+              "sourceSentenceIds": ["s00189", "s00190", "s00191", "s00192"],
+              "contextSentenceIds": ["s00186", "s00187", "s00188", "s00189", "s00190", "s00191", "s00192"],
+              "sentenceIndices": [50, 53, 56, 56],
+              "reason": "Ugly description followed by reason people bought it."
+            }
+          ]
+        },
+        "27": {
+          "prompt": "Cabbage Patch Doll: second reason for popularity.",
+          "referenceAnswer": "many different designs // collectible",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[227.57, 239.35, 229.77, 239.35]],
+          "evidenceReview": [
+            {
+              "contextStart": 227.57,
+              "contextEnd": 239.35,
+              "start": 229.77,
+              "end": 239.35,
+              "sourceSentenceIds": ["s00197", "s00198", "s00199"],
+              "contextSentenceIds": ["s00196", "s00197", "s00198", "s00199"],
+              "sentenceIndices": [60, 61, 63, 63],
+              "reason": "Different designs and collectibility causal explanation."
+            }
+          ]
+        },
+        "28": {
+          "prompt": "Space Hopper: what it is.",
+          "referenceAnswer": "big rubber ball",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[258.69, 275.31, 271.17, 275.31]],
+          "evidenceReview": [
+            {
+              "contextStart": 258.69,
+              "contextEnd": 275.31,
+              "start": 271.17,
+              "end": 275.31,
+              "sourceSentenceIds": ["s00210", "s00211"],
+              "contextSentenceIds": ["s00206", "s00207", "s00208", "s00209", "s00210", "s00211"],
+              "sentenceIndices": [70, 74, 75, 75],
+              "reason": "Space hopper name and rubber-ball definition."
+            }
+          ]
+        },
+        "29": {
+          "prompt": "Space Hopper: what you do with it.",
+          "referenceAnswer": "sit on it (and) jump around",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[271.17, 283.61, 275.81, 278.65]],
+          "evidenceReview": [
+            {
+              "contextStart": 271.17,
+              "contextEnd": 283.61,
+              "start": 275.81,
+              "end": 278.65,
+              "sourceSentenceIds": ["s00212"],
+              "contextSentenceIds": ["s00210", "s00211", "s00212", "s00213", "s00214"],
+              "sentenceIndices": [74, 76, 76, 78],
+              "reason": "Ball question followed by sitting and jumping."
+            }
+          ]
+        },
+        "30": {
+          "prompt": "One more thing you can do with a Space Hopper.",
+          "referenceAnswer": "(have a) race",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[284.33, 302.53, 290.83, 302.53]],
+          "evidenceReview": [
+            {
+              "contextStart": 284.33,
+              "contextEnd": 302.53,
+              "start": 290.83,
+              "end": 302.53,
+              "sourceSentenceIds": ["s00216", "s00217"],
+              "contextSentenceIds": ["s00215", "s00216", "s00217"],
+              "sentenceIndices": [79, 80, 81, 81],
+              "reason": "Extra uses introduces racing and fighting together."
+            }
+          ]
+        },
+        "31": {
+          "prompt": "Another thing you can do with a Space Hopper.",
+          "referenceAnswer": "(have a) fight",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[284.33, 302.53, 294.01, 302.53]],
+          "evidenceReview": [
+            {
+              "contextStart": 284.33,
+              "contextEnd": 302.53,
+              "start": 294.01,
+              "end": 302.53,
+              "sourceSentenceIds": ["s00217"],
+              "contextSentenceIds": ["s00215", "s00216", "s00217"],
+              "sentenceIndices": [79, 81, 81, 81],
+              "reason": "Extra uses and race lead to fighting example."
+            }
+          ]
+        }
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 8
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-3": {
+      "questions": {
+        "32": {
+          "referenceAnswer": "(a lot of) wasted energy // a waste of energy",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[121.21, 136.67, 132.41, 136.67]],
+          "evidenceReview": [
+            {
+              "contextStart": 121.21,
+              "contextEnd": 136.67,
+              "start": 132.41,
+              "end": 136.67,
+              "sourceSentenceIds": ["s00241"],
+              "contextSentenceIds": ["s00239", "s00240", "s00241"],
+              "sentenceIndices": [14, 16, 16, 16],
+              "reason": "Daily walk context establishes wasted energy."
+            }
+          ]
+        },
+        "33": {
+          "referenceAnswer": "7,000 footsteps per / a / day",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[137.09, 160.93, 151.69, 159.01]],
+          "evidenceReview": [
+            {
+              "contextStart": 137.09,
+              "contextEnd": 160.93,
+              "start": 151.69,
+              "end": 159.01,
+              "sourceSentenceIds": ["s00246"],
+              "contextSentenceIds": ["s00242", "s00243", "s00244", "s00245", "s00246", "s00247"],
+              "sentenceIndices": [17, 21, 21, 22],
+              "reason": "Distance comment before average footsteps, preserving unit per day."
+            }
+          ]
+        },
+        "34": {
+          "referenceAnswer": "electrical discs / disks",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[161.83, 182.23, 167.93, 182.23]],
+          "evidenceReview": [
+            {
+              "contextStart": 161.83,
+              "contextEnd": 182.23,
+              "start": 167.93,
+              "end": 182.23,
+              "sourceSentenceIds": ["s00250", "s00251"],
+              "contextSentenceIds": ["s00248", "s00249", "s00250", "s00251"],
+              "sentenceIndices": [23, 25, 26, 26],
+              "reason": "How-it-works prompt then electrical discs inside shoes."
+            }
+          ]
+        },
+        "35": {
+          "referenceAnswer": "pressure",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[167.93, 192.77, 183.41, 192.77]],
+          "evidenceReview": [
+            {
+              "contextStart": 167.93,
+              "contextEnd": 192.77,
+              "start": 183.41,
+              "end": 192.77,
+              "sourceSentenceIds": ["s00252", "s00253"],
+              "contextSentenceIds": ["s00250", "s00251", "s00252", "s00253"],
+              "sentenceIndices": [25, 27, 28, 28],
+              "reason": "Footsteps generate pressure, then electricity."
+            }
+          ]
+        },
+        "36": {
+          "referenceAnswer": "the outside of your shoes",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[193.79, 201.27, 195.91, 201.27]],
+          "evidenceReview": [
+            {
+              "contextStart": 193.79,
+              "contextEnd": 201.27,
+              "start": 195.91,
+              "end": 201.27,
+              "sourceSentenceIds": ["s00255"],
+              "contextSentenceIds": ["s00254", "s00255"],
+              "sentenceIndices": [29, 30, 30, 30],
+              "reason": "Storage question leads to battery location outside shoes."
+            }
+          ]
+        },
+        "37": {
+          "referenceAnswer": "basketball",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[202.39, 227.71, 216.03, 225.81]],
+          "evidenceReview": [
+            {
+              "contextStart": 202.39,
+              "contextEnd": 227.71,
+              "start": 216.03,
+              "end": 225.81,
+              "sourceSentenceIds": ["s00260"],
+              "contextSentenceIds": ["s00256", "s00257", "s00258", "s00259", "s00260", "s00261"],
+              "sentenceIndices": [31, 35, 35, 36],
+              "reason": "Amount-of-electricity question and basketball/mobile-phone example."
+            }
+          ]
+        },
+        "38": {
+          "referenceAnswer": "mobile / cell phone",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[202.39, 227.71, 216.03, 225.81]],
+          "evidenceReview": [
+            {
+              "contextStart": 202.39,
+              "contextEnd": 227.71,
+              "start": 216.03,
+              "end": 225.81,
+              "sourceSentenceIds": ["s00260"],
+              "contextSentenceIds": ["s00256", "s00257", "s00258", "s00259", "s00260", "s00261"],
+              "sentenceIndices": [31, 35, 35, 36],
+              "reason": "Amount-of-electricity question and basketball/mobile-phone example."
+            }
+          ]
+        },
+        "39": {
+          "referenceAnswer": "power a light",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[226.41, 238.93, 233.75, 238.93]],
+          "evidenceReview": [
+            {
+              "contextStart": 226.41,
+              "contextEnd": 238.93,
+              "start": 233.75,
+              "end": 238.93,
+              "sourceSentenceIds": ["s00263"],
+              "contextSentenceIds": ["s00261", "s00262", "s00263"],
+              "sentenceIndices": [36, 38, 38, 38],
+              "reason": "Low output objection before light application."
+            }
+          ]
+        },
+        "40": {
+          "referenceAnswer": "A, B",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[239.53, 260.83, 241.45, 260.83]],
+          "evidenceReview": [
+            {
+              "contextStart": 239.53,
+              "contextEnd": 260.83,
+              "start": 241.45,
+              "end": 260.83,
+              "sourceSentenceIds": ["s00265", "s00266", "s00267", "s00268", "s00269", "s00270"],
+              "contextSentenceIds": ["s00264", "s00265", "s00266", "s00267", "s00268", "s00269", "s00270"],
+              "sentenceIndices": [39, 40, 45, 45],
+              "reason": "Question image identifies A Angela and B Mr Chau. Dialogue directly addresses Angela then Dad; both positive, third speaker rejects practicality."
+            }
+          ]
+        },
+        "41": {
+          "referenceAnswer": "couldn’t hear",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[271.3, 294.62, 289.58, 294.62]],
+          "evidenceReview": [
+            {
+              "contextStart": 271.3,
+              "contextEnd": 294.62,
+              "start": 289.58,
+              "end": 294.62,
+              "sourceSentenceIds": ["s00276"],
+              "contextSentenceIds": ["s00274", "s00275", "s00276"],
+              "sentenceIndices": [49, 51, 51, 51],
+              "reason": "Hearing impairment clarification then inability to hear alarm."
+            }
+          ]
+        },
+        "42": {
+          "referenceAnswer": "was often late for work (and almost lost his job)",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[289.58, 301.4, 295.72, 301.4]],
+          "evidenceReview": [
+            {
+              "contextStart": 289.58,
+              "contextEnd": 301.4,
+              "start": 295.72,
+              "end": 301.4,
+              "sourceSentenceIds": ["s00277"],
+              "contextSentenceIds": ["s00276", "s00277"],
+              "sentenceIndices": [51, 52, 52, 52],
+              "reason": "Alarm problem causes lateness and job risk."
+            }
+          ]
+        },
+        "43": {
+          "referenceAnswer": "peppermint",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[309.58, 321.94, 316.52, 321.94]],
+          "evidenceReview": [
+            {
+              "contextStart": 309.58,
+              "contextEnd": 321.94,
+              "start": 316.52,
+              "end": 321.94,
+              "sourceSentenceIds": ["s00281", "s00282"],
+              "contextSentenceIds": ["s00279", "s00280", "s00281", "s00282"],
+              "sentenceIndices": [54, 56, 57, 57],
+              "reason": "Most-effective-smell question and peppermint repetition."
+            }
+          ]
+        },
+        "44": {
+          "referenceAnswer": "blows air / smell",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[322.34, 337.08, 325.34, 337.08]],
+          "evidenceReview": [
+            {
+              "contextStart": 322.34,
+              "contextEnd": 337.08,
+              "start": 325.34,
+              "end": 337.08,
+              "sourceSentenceIds": ["s00284", "s00285"],
+              "contextSentenceIds": ["s00283", "s00284", "s00285"],
+              "sentenceIndices": [58, 59, 60, 60],
+              "reason": "How-it-works question, tablets, alarm, fan sequence."
+            }
+          ]
+        },
+        "45": {
+          "referenceAnswer": "in a good mood",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[337.08, 350.94, 345.12, 350.94]],
+          "evidenceReview": [
+            {
+              "contextStart": 337.08,
+              "contextEnd": 350.94,
+              "start": 345.12,
+              "end": 350.94,
+              "sourceSentenceIds": ["s00288", "s00289"],
+              "contextSentenceIds": ["s00286", "s00287", "s00288", "s00289"],
+              "sentenceIndices": [61, 63, 64, 64],
+              "reason": "Does-it-work question then good mood claim."
+            }
+          ]
+        },
+        "46": {
+          "referenceAnswer": "(feeling) refreshed",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[351.14, 361.3, 356.36, 358.88]],
+          "evidenceReview": [
+            {
+              "contextStart": 351.14,
+              "contextEnd": 361.3,
+              "start": 356.36,
+              "end": 358.88,
+              "sourceSentenceIds": ["s00292"],
+              "contextSentenceIds": ["s00290", "s00291", "s00292", "s00293"],
+              "sentenceIndices": [65, 67, 67, 68],
+              "reason": "Sceptical response and additional refreshed claim."
+            }
+          ]
+        },
+        "47": {
+          "referenceAnswer": "C",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[337.08, 369.98, 345.12, 369.98]],
+          "evidenceReview": [
+            {
+              "contextStart": 337.08,
+              "contextEnd": 369.98,
+              "start": 345.12,
+              "end": 369.98,
+              "sourceSentenceIds": [
+                "s00288",
+                "s00289",
+                "s00290",
+                "s00291",
+                "s00292",
+                "s00293",
+                "s00294",
+                "s00295",
+                "s00296"
+              ],
+              "contextSentenceIds": [
+                "s00286",
+                "s00287",
+                "s00288",
+                "s00289",
+                "s00290",
+                "s00291",
+                "s00292",
+                "s00293",
+                "s00294",
+                "s00295",
+                "s00296"
+              ],
+              "sentenceIndices": [61, 63, 71, 71],
+              "reason": "Question image C is Mrs Chau. Angela explicitly agrees with Dad after a negative response; remaining positive family member is Mrs Chau. Speaker inference corroborated by MS, not voice-recognition verification."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-70f90dfea1e6",
+        "page": 9
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 9
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-4": {
+      "questions": {
+        "48": {
+          "referenceAnswer": "Photo (on someone’s wall or a restaurant)；\nHear his name in (pop) song // lyrics of a (pop) song",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "Q48、Q49 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[96.55, 148.71, 116.03, 148.71]],
+          "evidenceReview": [
+            {
+              "contextStart": 96.55,
+              "contextEnd": 148.71,
+              "start": 116.03,
+              "end": 148.71,
+              "sourceSentenceIds": ["s00312", "s00313", "s00314"],
+              "contextSentenceIds": ["s00309", "s00310", "s00311", "s00312", "s00313", "s00314"],
+              "sentenceIndices": [10, 13, 15, 15],
+              "reason": "Recognition introduction and both interchangeable photo/song answers; completes split James Dean sentence."
+            }
+          ]
+        },
+        "49": {
+          "referenceAnswer": "Photo (on someone’s wall or a restaurant)；\nHear his name in (pop) song // lyrics of a (pop) song",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "Q48、Q49 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[96.55, 148.71, 116.03, 148.71]],
+          "evidenceReview": [
+            {
+              "contextStart": 96.55,
+              "contextEnd": 148.71,
+              "start": 116.03,
+              "end": 148.71,
+              "sourceSentenceIds": ["s00312", "s00313", "s00314"],
+              "contextSentenceIds": ["s00309", "s00310", "s00311", "s00312", "s00313", "s00314"],
+              "sentenceIndices": [10, 13, 15, 15],
+              "reason": "Recognition introduction and both interchangeable photo/song answers; completes split James Dean sentence."
+            }
+          ]
+        },
+        "50": {
+          "referenceAnswer": "Died young / at the age of 24 // His good looks never faded；\nDied tragically / in a car crash",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "Q50、Q51 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[148.71, 183.53, 158.37, 183.53]],
+          "evidenceReview": [
+            {
+              "contextStart": 148.71,
+              "contextEnd": 183.53,
+              "start": 158.37,
+              "end": 183.53,
+              "sourceSentenceIds": ["s00317", "s00318"],
+              "contextSentenceIds": ["s00315", "s00316", "s00317", "s00318"],
+              "sentenceIndices": [16, 18, 19, 19],
+              "reason": "Why still famous question followed by young death and tragic death."
+            }
+          ]
+        },
+        "51": {
+          "referenceAnswer": "Died young / at the age of 24 // His good looks never faded；\nDied tragically / in a car crash",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "Q50、Q51 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[148.71, 183.53, 158.37, 183.53]],
+          "evidenceReview": [
+            {
+              "contextStart": 148.71,
+              "contextEnd": 183.53,
+              "start": 158.37,
+              "end": 183.53,
+              "sourceSentenceIds": ["s00317", "s00318"],
+              "contextSentenceIds": ["s00315", "s00316", "s00317", "s00318"],
+              "sentenceIndices": [16, 18, 19, 19],
+              "reason": "Why still famous question followed by young death and tragic death."
+            }
+          ]
+        },
+        "52": {
+          "referenceAnswer": "For doing the stunts too / so quickly // For being too / so quick at the stunts",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[205.41, 265.95, 259.73, 265.95]],
+          "evidenceReview": [
+            {
+              "contextStart": 205.41,
+              "contextEnd": 265.95,
+              "start": 259.73,
+              "end": 265.95,
+              "sourceSentenceIds": ["s00329"],
+              "contextSentenceIds": [
+                "s00321",
+                "s00322",
+                "s00323",
+                "s00324",
+                "s00325",
+                "s00326",
+                "s00327",
+                "s00328",
+                "s00329"
+              ],
+              "sentenceIndices": [22, 30, 30, 30],
+              "reason": "Full stunt-tester/fired setup necessary to understand ironic too-quick reason."
+            }
+          ]
+        },
+        "53": {
+          "referenceAnswer": "Showed problems faced by teenagers (in the 1950s) for the first time",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[269.03, 322.7, 295.04, 322.7]],
+          "evidenceReview": [
+            {
+              "contextStart": 269.03,
+              "contextEnd": 322.7,
+              "start": 295.04,
+              "end": 322.7,
+              "sourceSentenceIds": ["s00333", "s00334", "s00335", "s00336"],
+              "contextSentenceIds": ["s00330", "s00331", "s00332", "s00333", "s00334", "s00335", "s00336"],
+              "sentenceIndices": [31, 34, 37, 37],
+              "reason": "Film identity and novelty question; reiteration confirms first teenage problems."
+            }
+          ]
+        },
+        "54": {
+          "referenceAnswer": "Sons and / or daughters of main characters // Small / supporting roles",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [
+            [325.88, 338.66, 333.88, 338.66],
+            [338.66, 362.82, 355.18, 362.82]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 325.88,
+              "contextEnd": 338.66,
+              "start": 333.88,
+              "end": 338.66,
+              "sourceSentenceIds": ["s00338"],
+              "contextSentenceIds": ["s00337", "s00338"],
+              "sentenceIndices": [38, 39, 39, 39],
+              "reason": "Adult leading roles then children/supporting-role screen-time explanation."
+            },
+            {
+              "contextStart": 338.66,
+              "contextEnd": 362.82,
+              "start": 355.18,
+              "end": 362.82,
+              "sourceSentenceIds": ["s00341", "s00342"],
+              "contextSentenceIds": ["s00339", "s00340", "s00341", "s00342"],
+              "sentenceIndices": [40, 42, 43, 43],
+              "reason": "Adult leading roles then children/supporting-role screen-time explanation."
+            }
+          ]
+        },
+        "55": {
+          "referenceAnswer": "To show main / adult characters were happily married (and had happy family)",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[333.88, 362.82, 344.46, 354.26]],
+          "evidenceReview": [
+            {
+              "contextStart": 333.88,
+              "contextEnd": 362.82,
+              "start": 344.46,
+              "end": 354.26,
+              "sourceSentenceIds": ["s00340"],
+              "contextSentenceIds": ["s00338", "s00339", "s00340", "s00341", "s00342"],
+              "sentenceIndices": [39, 41, 41, 43],
+              "reason": "Question why young people appeared and happy-family purpose."
+            }
+          ]
+        },
+        "56": {
+          "referenceAnswer": "Large number of movies about teenagers (began to be) made (in USA)；\nMovies about teenagers made in different countries / all over the world；\nTeenagers targeted as audience (by film industry) / became the target audience",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "Q56、Q57、Q58 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[364.98, 431.06, 377.96, 431.06]],
+          "evidenceReview": [
+            {
+              "contextStart": 364.98,
+              "contextEnd": 431.06,
+              "start": 377.96,
+              "end": 431.06,
+              "sourceSentenceIds": ["s00345", "s00346", "s00347", "s00348", "s00349", "s00350"],
+              "contextSentenceIds": [
+                "s00343",
+                "s00344",
+                "s00345",
+                "s00346",
+                "s00347",
+                "s00348",
+                "s00349",
+                "s00350"
+              ],
+              "sentenceIndices": [44, 46, 51, 51],
+              "reason": "Three effects explicitly enumerated; preserve all interchangeable answers."
+            }
+          ]
+        },
+        "57": {
+          "referenceAnswer": "Large number of movies about teenagers (began to be) made (in USA)；\nMovies about teenagers made in different countries / all over the world；\nTeenagers targeted as audience (by film industry) / became the target audience",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "Q56、Q57、Q58 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[364.98, 431.06, 377.96, 431.06]],
+          "evidenceReview": [
+            {
+              "contextStart": 364.98,
+              "contextEnd": 431.06,
+              "start": 377.96,
+              "end": 431.06,
+              "sourceSentenceIds": ["s00345", "s00346", "s00347", "s00348", "s00349", "s00350"],
+              "contextSentenceIds": [
+                "s00343",
+                "s00344",
+                "s00345",
+                "s00346",
+                "s00347",
+                "s00348",
+                "s00349",
+                "s00350"
+              ],
+              "sentenceIndices": [44, 46, 51, 51],
+              "reason": "Three effects explicitly enumerated; preserve all interchangeable answers."
+            }
+          ]
+        },
+        "58": {
+          "referenceAnswer": "Large number of movies about teenagers (began to be) made (in USA)；\nMovies about teenagers made in different countries / all over the world；\nTeenagers targeted as audience (by film industry) / became the target audience",
+          "reference": {
+            "sourceId": "p-70f90dfea1e6",
+            "page": 9
+          },
+          "note": "Q56、Q57、Q58 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[364.98, 431.06, 377.96, 431.06]],
+          "evidenceReview": [
+            {
+              "contextStart": 364.98,
+              "contextEnd": 431.06,
+              "start": 377.96,
+              "end": 431.06,
+              "sourceSentenceIds": ["s00345", "s00346", "s00347", "s00348", "s00349", "s00350"],
+              "contextSentenceIds": [
+                "s00343",
+                "s00344",
+                "s00345",
+                "s00346",
+                "s00347",
+                "s00348",
+                "s00349",
+                "s00350"
+              ],
+              "sentenceIndices": [44, 46, 51, 51],
+              "reason": "Three effects explicitly enumerated; preserve all interchangeable answers."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-70f90dfea1e6",
+        "page": 9
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 9
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [48, 49],
+        [50, 51],
+        [56, 57, 58]
+      ],
+      "reviewRules": []
+    },
+    "B1-5": {
+      "reference": {
+        "sourceId": "p-70f90dfea1e6",
+        "page": 10
+      },
+      "dataFile": {
+        "sourceId": "p-8fd046cc3972",
+        "page": 9
+      },
+      "reviewRules": ["Candidates must place the information in the correct section to be awarded a point."],
+      "referencePages": [
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 10
+        },
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 11
+        }
+      ],
+      "questions": {
+        "5": {
+          "referenceAnswer": "内容：16 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "5.1a",
+              "referenceAnswer": "An excellent day out",
+              "section": "Heading",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 13,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.1b",
+              "referenceAnswer": "The Hong Kong Review",
+              "section": "Heading",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 13,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2a",
+              "referenceAnswer": "Farming in the New Territories",
+              "section": "Talks",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 11,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 293.08,
+                  "contextEnd": 331.24,
+                  "start": 298.5,
+                  "end": 331.24,
+                  "sentenceIds": ["s00424", "s00425", "s00426", "s00427", "s00428", "s00429", "s00430"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.2b",
+              "referenceAnswer": "(presented / talk by) Dr Jack Jones (from the Social History Museum)",
+              "section": "Talks",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 11,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 48.88,
+                  "contextEnd": 75.36,
+                  "start": 53.91,
+                  "end": 75.36,
+                  "sentenceIds": ["s00372", "s00373", "s00374", "s00375", "s00376", "s00377", "s00378"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                },
+                {
+                  "contextStart": 293.08,
+                  "contextEnd": 331.24,
+                  "start": 293.08,
+                  "end": 331.24,
+                  "sentenceIds": ["s00424", "s00425", "s00426", "s00427", "s00428", "s00429", "s00430"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.2c",
+              "referenceAnswer": "changes in the (traditional) way of life on farms in the New Territories (since the 1980s)",
+              "section": "Talks",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2d",
+              "referenceAnswer": "(Wednesday) 13th April 8–9pm",
+              "section": "Talks",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 11,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 293.08,
+                  "contextEnd": 331.24,
+                  "start": 298.5,
+                  "end": 331.24,
+                  "sentenceIds": ["s00424", "s00425", "s00426", "s00427", "s00428", "s00429", "s00430"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.3a",
+              "referenceAnswer": "TV Lounge",
+              "section": "Household of the 1980s",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 13,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3b",
+              "referenceAnswer": "watch old TV programmes / TV programmes from 1980s / the past",
+              "section": "Household of the 1980s",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 13,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3c",
+              "referenceAnswer": "play old computer games (on a Spectrum) // play around on an old computer / a Spectrum",
+              "section": "Household of the 1980s",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 13,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3d",
+              "referenceAnswer": "The bathroom",
+              "section": "Household of the 1980s",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3e",
+              "referenceAnswer": "smell (different) soaps",
+              "section": "Household of the 1980s",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3f",
+              "referenceAnswer": "taste / try toothpaste",
+              "section": "Household of the 1980s",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.4a",
+              "referenceAnswer": "South Point MTR station",
+              "section": "Directions",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 11,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 13,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 257.32,
+                  "contextEnd": 278.54,
+                  "start": 265.58,
+                  "end": 278.54,
+                  "sentenceIds": ["s00415", "s00416", "s00417", "s00418", "s00419"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.4b",
+              "referenceAnswer": "Exit A",
+              "section": "Directions",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 11,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 257.32,
+                  "contextEnd": 292.32,
+                  "start": 271.52,
+                  "end": 292.32,
+                  "sentenceIds": [
+                    "s00415",
+                    "s00416",
+                    "s00417",
+                    "s00418",
+                    "s00419",
+                    "s00420",
+                    "s00421",
+                    "s00422",
+                    "s00423"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.4c",
+              "referenceAnswer": "go straight up Reid Street",
+              "section": "Directions",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 11,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 257.32,
+                  "contextEnd": 292.32,
+                  "start": 278.54,
+                  "end": 292.32,
+                  "sentenceIds": [
+                    "s00415",
+                    "s00416",
+                    "s00417",
+                    "s00418",
+                    "s00419",
+                    "s00420",
+                    "s00421",
+                    "s00422",
+                    "s00423"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.4d",
+              "referenceAnswer": "2-minute walk // 2 minutes",
+              "section": "Directions",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 11,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 257.32,
+                  "contextEnd": 278.54,
+                  "start": 271.52,
+                  "end": 278.54,
+                  "sentenceIds": ["s00415", "s00416", "s00417", "s00418", "s00419"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-70f90dfea1e6",
+              "page": 11
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-6": {
+      "reference": {
+        "sourceId": "p-70f90dfea1e6",
+        "page": 12
+      },
+      "dataFile": {
+        "sourceId": "p-8fd046cc3972",
+        "page": 9
+      },
+      "reviewRules": [],
+      "referencePages": [
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 12
+        },
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 13
+        },
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 14
+        }
+      ],
+      "questions": {
+        "6": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "6.1a",
+              "referenceAnswer": "new name of café – Spandau Café",
+              "section": "",
+              "sourceLabel": "Data File 第 7、8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 15,
+                  "printedPage": 7
+                },
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 16,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2a",
+              "referenceAnswer": "has been / will be moved from ground floor to rooftop",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 15,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2b",
+              "referenceAnswer": "(ground floor is) too close to the road and dangerous for children",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 15,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2c",
+              "referenceAnswer": "because of noise and air pollution (from traffic) (on the ground floor)",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 15,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3a",
+              "referenceAnswer": "dining area completed",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 16,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3b",
+              "referenceAnswer": "café kitchen completed by / on 16th April / 70% complete",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 16,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3c",
+              "referenceAnswer": "tables and chairs (made and) delivered on 27 April",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.4a",
+              "referenceAnswer": "work on children’s play area not started yet / will start after kitchen completed / will be completed by/on 30 April",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 16,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.4b",
+              "referenceAnswer": "children’s play area will have swings and kids’ climbing wall",
+              "section": "",
+              "sourceLabel": "Data File 第 7、8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 15,
+                  "printedPage": 7
+                },
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 16,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-70f90dfea1e6",
+              "page": 13
+            },
+            {
+              "sourceId": "p-70f90dfea1e6",
+              "page": 14
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-7": {
+      "reference": {
+        "sourceId": "p-70f90dfea1e6",
+        "page": 15
+      },
+      "dataFile": {
+        "sourceId": "p-8fd046cc3972",
+        "page": 9
+      },
+      "reviewRules": [
+        "7.1 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 3；4 → 4；5 → 5；6 → 5。",
+        "7.2 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2。",
+        "7.3 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 15
+        },
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 16
+        },
+        {
+          "sourceId": "p-70f90dfea1e6",
+          "page": 17
+        }
+      ],
+      "questions": {
+        "7": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "7.1a",
+              "referenceAnswer": "three part-time student assistants positions",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1b",
+              "referenceAnswer": "July to August work 4 days a week",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1c",
+              "referenceAnswer": "work 4 hours each day",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 17,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1d",
+              "referenceAnswer": "paid HK$38 an hour",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1e",
+              "referenceAnswer": "main duties - assist visitors, clean the museum items on display",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 17,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1f",
+              "referenceAnswer": "work in café when it is busy",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 14,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2a",
+              "referenceAnswer": "experience everyday / ordinary life in the past // see things that people used in the past",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 11,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 76.14,
+                  "contextEnd": 119.9,
+                  "start": 94.02,
+                  "end": 119.9,
+                  "sentenceIds": ["s00379", "s00380", "s00381", "s00382", "s00383", "s00384", "s00385"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.2b",
+              "referenceAnswer": "can see old furniture / clothes / telephones / computers / Spectrum (computer)",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 11,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 126.5,
+                  "contextEnd": 167.14,
+                  "start": 131.62,
+                  "end": 167.14,
+                  "sentenceIds": ["s00388", "s00389", "s00390", "s00391", "s00392", "s00393"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.3a",
+              "referenceAnswer": "(pupils said) taught them / learnt teamwork // will teach them / learnt teamwork",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 17,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3b",
+              "referenceAnswer": "(pupils said) better communicator / improved communication skills // will improve communication skills",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8fd046cc3972",
+                  "page": 17,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-70f90dfea1e6",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-70f90dfea1e6",
+              "page": 16
+            },
+            {
+              "sourceId": "p-70f90dfea1e6",
+              "page": 17
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    }
+  }
+}

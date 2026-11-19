@@ -7,7 +7,6 @@ import {
   isTargetedStructureAttempt,
   listeningAttempts,
   validateStudyState,
-  validateBackup,
 } from './training-core.mjs';
 
 const create = (tag, className, text) => {
@@ -262,11 +261,7 @@ export async function mountTraining({ host, bridge }) {
     host.append(status);
     if (studyStore.loadError)
       host.append(
-        create(
-          'p',
-          'training-warning',
-          `已有学习数据未能读取：${studyStore.loadError}。请先保留原备份，再导入可用文件。`,
-        ),
+        create('p', 'training-warning', `已有学习数据未能读取：${studyStore.loadError}。请保留已有备份。`),
       );
     if (loadError)
       host.append(create('p', 'training-warning', loadError + ' 可重新打开页面，个人记录仍可查看。'));
@@ -329,11 +324,13 @@ export async function mountTraining({ host, bridge }) {
     settings.append(settingsBody);
     host.append(settings);
     const materials = listening().catalogue || [];
-    const freshMaterial = materials.find((item) => item.exposure === 'fresh');
+    const freshMaterial = materials.find(
+      (item) => item.paperPractice && !item.missingAudio && item.exposure === 'fresh',
+    );
     const listeningSuggestion = freshMaterial
       ? `建议新材料：${freshMaterial.title}。`
       : materials.length
-        ? '现有材料都已有练习或重叠内容；今天先做复测，也可在听力页导入新材料。'
+        ? '现有材料都已有练习或重叠内容；今天可以选择一份原卷复测。'
         : '';
     const tasks = create('ol', 'training-agenda');
     const task = (title, time, detail, button, fn) => {
@@ -1467,11 +1464,7 @@ export async function mountTraining({ host, bridge }) {
     const section = create('section', 'training-backup');
     section.append(
       create('h2', '', '完整备份'),
-      create(
-        'p',
-        'fine-print',
-        '导出的是已保存的学习纪录和听力标记。导入会合并纪录，不删除现有项目；不会上传到云端或自动同步设备。',
-      ),
+      create('p', 'fine-print', '备份包含已保存的学习纪录和听力标记。'),
     );
     const buttons = create('div', 'training-actions');
     const exportButton = action(
@@ -1498,35 +1491,6 @@ export async function mountTraining({ host, bridge }) {
     );
     exportButton.id = 'training-export';
     buttons.append(exportButton);
-    const label = create('label', 'file-button training-import', '导入完整备份');
-    const input = create('input');
-    input.type = 'file';
-    input.accept = '.json,application/json';
-    input.id = 'training-import';
-    input.className = 'file-input';
-    input.addEventListener('change', async () => {
-      const file = input.files?.[0];
-      if (!file) return;
-      try {
-        if (file.size > 15_000_000) throw new Error('备份超过 15 MB，请使用较小的备份。');
-        const data = validateBackup(JSON.parse(await file.text()));
-        if (
-          !confirm(
-            `准备导入并合并：${data.study.records.length} 条练习、${data.study.paperMarks.length} 个原卷标记、${data.listening.length} 份听力纪录、${data.study.personalExercises.length} 条个人错句。\n当前已提交但未保存的记录也会一并保存；尚未提交的输入不包含。保留现有记录；同 ID 项目采用导入版本。写入后会回读验证。`,
-          )
-        )
-          return;
-        const result = studyStore.importBackup(data);
-        notice(`已合并并回读验证：${result.records} 条学习纪录、${result.listening} 份听力纪录。`);
-        bridge.onBackupImported?.();
-      } catch (e) {
-        notice(`未导入：${e.message}`, true);
-      } finally {
-        input.value = '';
-      }
-    });
-    label.append(input);
-    buttons.append(label);
     section.append(buttons);
     host.append(section);
   }

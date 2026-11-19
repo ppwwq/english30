@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { validateLesson } from '../web/core.mjs';
 import { chooseTask } from '../web/paper-core.mjs';
+import { taskQuestionPages } from '../web/paper-question-pages.mjs';
 
 const readJSON = async (path) =>
   JSON.parse(await readFile(new URL(`../web/${path}`, import.meta.url), 'utf8'));
@@ -80,8 +81,22 @@ test('all generated lessons satisfy the player schema and retain original-page a
         assert.ok(Math.abs(word.end + paper.originalAudioRange.start - original.end) <= 0.0011);
       }
     }
-    if (entry.part === 'A') partAQuestions += lesson.questions.length;
-    else {
+    if (entry.part === 'A') {
+      partAQuestions += lesson.questions.length;
+      const pages = taskQuestionPages(lesson);
+      const original = originals.sources.find((source) => source.id === paper.questionSourceId);
+      assert.equal(pages[0]?.[0], paper.questionPage, entry.id);
+      const numbers = [];
+      for (const [page, first, last] of pages) {
+        assert.ok(original.pages[page - 1], entry.id);
+        for (let number = first; number <= last; number++) numbers.push(number);
+      }
+      assert.deepEqual(
+        numbers,
+        lesson.questions.map((q) => q.number),
+        entry.id,
+      );
+    } else {
       assert.equal(lesson.questions.length, 1);
       assert.equal(lesson.questions[0].input, 'textarea');
       longResponses += 1;

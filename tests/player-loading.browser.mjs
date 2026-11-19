@@ -4,14 +4,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const report = { cases: [], errors: [] };
 const base = listeningPracticeURL();
@@ -100,21 +98,20 @@ try {
     assert.equal(await page.locator('.question-input').count(), 13);
   });
   await scenario(
-    'mismatched imported audio disables playback and a matching replacement recovers',
+    'mismatched DSE audio disables playback and a matching replacement recovers',
     async (page, item) => {
+      await page.route('**/audio/task1-intro.mp3', (route) =>
+        route.fulfill({
+          contentType: 'audio/mpeg',
+          path: new URL('../web/audio/task1.mp3', import.meta.url).pathname.replace(/^\/(\w:)/, '$1'),
+        }),
+      );
       await page.goto(base);
-      await ready(page);
-      await page
-        .locator('#import-audio')
-        .setInputFiles(new URL('../web/audio/task1.mp3', import.meta.url).pathname.replace(/^\/(\w:)/, '$1'));
       await page.waitForFunction(() => document.getElementById('status').textContent.includes('不一致'));
       assert.equal(await page.locator('#play-pause').isDisabled(), true);
       assert.equal(await page.locator('#seek').isDisabled(), true);
-      await page
-        .locator('#import-audio')
-        .setInputFiles(
-          new URL('../web/audio/task1-intro.mp3', import.meta.url).pathname.replace(/^\/(\w:)/, '$1'),
-        );
+      await page.unroute('**/audio/task1-intro.mp3');
+      await page.reload();
       await ready(page);
       await page.locator('#play-pause').click();
       await page.waitForFunction(() => document.getElementById('audio').currentTime > 0.1);

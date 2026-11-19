@@ -5,16 +5,14 @@ await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 import assert from 'node:assert/strict';
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const reportFile = process.argv.find((arg) => arg.startsWith('--report='))?.slice(9);
 const report = { cases: [], errors: [] };
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 try {
   const context = await browser.newContext({ viewport: { width: 1080, height: 810 } });
@@ -103,6 +101,7 @@ try {
   await page.waitForFunction(
     () => !document.getElementById('audio').paused && document.getElementById('audio').currentTime < 40.7,
   );
+  await page.locator('#loop-more > summary').click();
   await page.locator('#loop-toggle').click();
   await attempt('review: drag escapes AB loop', async (item) => {
     await drag(0.75, true, item);

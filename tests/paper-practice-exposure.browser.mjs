@@ -4,14 +4,12 @@ import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const base = process.env.TEST_URL || 'http://127.0.0.1:4174';
 const report = { cases: [], errors: [], physicalDevice: false };
@@ -23,16 +21,32 @@ async function scenario(name, reveal, wholePaper = false) {
   page.on('pageerror', (error) => report.errors.push(error.message));
   page.on('dialog', (dialog) => dialog.accept());
   try {
-    await page.goto(base + '/#listening/practice');
+    await page.goto(base + (wholePaper ? '/#listening' : '/#listening/practice'));
     await ready(page);
     await page.locator('.question-input').first().fill('my original draft');
     await page.locator('.main-navigation > button[data-view="library"]').click();
     await page.locator('#paper-review').waitFor();
     await page.waitForFunction(() => !document.getElementById('paper-play').disabled);
     await reveal(page);
-    await page.locator('.main-navigation > button[data-view="listening"]').click();
+    if (wholePaper) {
+      await page.locator('.main-navigation > button[data-view="listening"]').click();
+    } else {
+      await page.evaluate(() => {
+        location.hash = 'listening/practice';
+      });
+      await page.waitForFunction(
+        () =>
+          document.body.dataset.view === 'listening' && document.body.dataset.listeningMode === 'practice',
+      );
+    }
     await ready(page);
     assert.equal(await page.locator('.question-input').first().inputValue(), 'my original draft');
+    if (wholePaper) {
+      await page.reload();
+      await ready(page);
+      assert.equal(await page.locator('.question-input').first().inputValue(), 'my original draft');
+      assert.match(await page.locator('.question-panel .quiet-label').innerText(), /辅助作答/);
+    }
     await page.locator('#play-pause').click();
     await page.waitForFunction(() => document.getElementById('audio').currentTime > 0.05);
     await page.locator('#submit-answers').click();

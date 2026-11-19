@@ -1,0 +1,2271 @@
+{
+  "sessionId": "2015-exam",
+  "reviewDate": "2026-11-17",
+  "reviewMethod": "Independent visual comparison against marking-scheme images. OCR used only to locate/read. referenceAnswer preserves official alternatives (// or /) and optional parentheses; do not infer exact-match scoring. Square-bracket achievement percentages omitted.",
+  "tasks": {
+    "A-1": {
+      "questions": {
+        "1": {
+          "referenceAnswer": "Night to Remember",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[91.04, 102.48, 93.9, 102.48]],
+          "evidenceReview": [
+            {
+              "contextStart": 91.04,
+              "contextEnd": 102.48,
+              "start": 93.9,
+              "end": 102.48,
+              "sourceSentenceIds": ["s00061", "s00062"],
+              "contextSentenceIds": ["s00060", "s00061", "s00062"],
+              "sentenceIndices": [12, 13, 14, 14],
+              "reason": "Name question and repeated concert title."
+            }
+          ]
+        },
+        "2": {
+          "referenceAnswer": "November 24",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[103.2, 131.86, 116.92, 131.86]],
+          "evidenceReview": [
+            {
+              "contextStart": 103.2,
+              "contextEnd": 131.86,
+              "start": 116.92,
+              "end": 131.86,
+              "sourceSentenceIds": ["s00065", "s00066", "s00067"],
+              "contextSentenceIds": ["s00063", "s00064", "s00065", "s00066", "s00067"],
+              "sentenceIndices": [15, 17, 19, 19],
+              "reason": "Date and year confirmation."
+            }
+          ]
+        },
+        "3": {
+          "referenceAnswer": "Central Theatre",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[128.26, 140.06, 134.06, 140.06]],
+          "evidenceReview": [
+            {
+              "contextStart": 128.26,
+              "contextEnd": 140.06,
+              "start": 134.06,
+              "end": 140.06,
+              "sourceSentenceIds": ["s00069"],
+              "contextSentenceIds": ["s00067", "s00068", "s00069"],
+              "sentenceIndices": [19, 21, 21, 21],
+              "reason": "Venue question and full location."
+            }
+          ]
+        },
+        "4": {
+          "referenceAnswer": "intervals",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[145.92, 166.76, 155.22, 166.76]],
+          "evidenceReview": [
+            {
+              "contextStart": 145.92,
+              "contextEnd": 166.76,
+              "start": 155.22,
+              "end": 166.76,
+              "sourceSentenceIds": ["s00074", "s00075", "s00076", "s00077"],
+              "contextSentenceIds": ["s00072", "s00073", "s00074", "s00075", "s00076", "s00077"],
+              "sentenceIndices": [24, 26, 29, 29],
+              "reason": "Concert length then explicit no interval."
+            }
+          ]
+        },
+        "5": {
+          "referenceAnswer": "13 and 18",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[168.04, 183.36, 169.92, 177.24]],
+          "evidenceReview": [
+            {
+              "contextStart": 168.04,
+              "contextEnd": 183.36,
+              "start": 169.92,
+              "end": 177.24,
+              "sourceSentenceIds": ["s00079"],
+              "contextSentenceIds": ["s00078", "s00079", "s00080"],
+              "sentenceIndices": [30, 31, 31, 32],
+              "reason": "Eligibility question and age range."
+            }
+          ]
+        },
+        "6": {
+          "referenceAnswer": "independent",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[168.04, 189.66, 178.32, 183.36]],
+          "evidenceReview": [
+            {
+              "contextStart": 168.04,
+              "contextEnd": 189.66,
+              "start": 178.32,
+              "end": 183.36,
+              "sourceSentenceIds": ["s00080"],
+              "contextSentenceIds": ["s00078", "s00079", "s00080", "s00081", "s00082"],
+              "sentenceIndices": [30, 32, 32, 34],
+              "reason": "School versus independent groups, solo exception retained."
+            }
+          ]
+        },
+        "7": {
+          "referenceAnswer": "solo",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[178.32, 189.66, 185.94, 189.66]],
+          "evidenceReview": [
+            {
+              "contextStart": 178.32,
+              "contextEnd": 189.66,
+              "start": 185.94,
+              "end": 189.66,
+              "sourceSentenceIds": ["s00082"],
+              "contextSentenceIds": ["s00080", "s00081", "s00082"],
+              "sentenceIndices": [32, 34, 34, 34],
+              "reason": "Groups-only assumption corrected by solo welcome."
+            }
+          ]
+        },
+        "8": {
+          "referenceAnswer": "Jazz, Rap, Rock",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[190.52, 205.1, 198.88, 205.1]],
+          "evidenceReview": [
+            {
+              "contextStart": 190.52,
+              "contextEnd": 205.1,
+              "start": 198.88,
+              "end": 205.1,
+              "sourceSentenceIds": ["s00085"],
+              "contextSentenceIds": ["s00083", "s00084", "s00085"],
+              "sentenceIndices": [35, 37, 37, 37],
+              "reason": "Permitted genres explicitly enumerated."
+            }
+          ]
+        },
+        "9": {
+          "referenceAnswer": "dance groups",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[205.88, 215.66, 209.7, 215.66]],
+          "evidenceReview": [
+            {
+              "contextStart": 205.88,
+              "contextEnd": 215.66,
+              "start": 209.7,
+              "end": 215.66,
+              "sourceSentenceIds": ["s00087"],
+              "contextSentenceIds": ["s00086", "s00087"],
+              "sentenceIndices": [38, 39, 39, 39],
+              "reason": "Dance-groups question explicitly rejected."
+            }
+          ]
+        },
+        "10": {
+          "referenceAnswer": "a performance",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[216.7, 255.34, 236.42, 242.16]],
+          "evidenceReview": [
+            {
+              "contextStart": 216.7,
+              "contextEnd": 255.34,
+              "start": 236.42,
+              "end": 242.16,
+              "sourceSentenceIds": ["s00093"],
+              "contextSentenceIds": [
+                "s00088",
+                "s00089",
+                "s00090",
+                "s00091",
+                "s00092",
+                "s00093",
+                "s00094",
+                "s00095"
+              ],
+              "sentenceIndices": [40, 45, 45, 47],
+              "reason": "Three required video components retained to distinguish performance from introduction/story."
+            }
+          ]
+        },
+        "11": {
+          "referenceAnswer": "online",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[256.64, 288.26, 270.58, 288.26]],
+          "evidenceReview": [
+            {
+              "contextStart": 256.64,
+              "contextEnd": 288.26,
+              "start": 270.58,
+              "end": 288.26,
+              "sourceSentenceIds": ["s00099", "s00100"],
+              "contextSentenceIds": ["s00096", "s00097", "s00098", "s00099", "s00100"],
+              "sentenceIndices": [48, 51, 52, 52],
+              "reason": "Ticket methods question, online mechanism and trolley icon."
+            }
+          ]
+        },
+        "12": {
+          "referenceAnswer": "shopping trolley",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[256.64, 288.26, 270.58, 288.26]],
+          "evidenceReview": [
+            {
+              "contextStart": 256.64,
+              "contextEnd": 288.26,
+              "start": 270.58,
+              "end": 288.26,
+              "sourceSentenceIds": ["s00099", "s00100"],
+              "contextSentenceIds": ["s00096", "s00097", "s00098", "s00099", "s00100"],
+              "sentenceIndices": [48, 51, 52, 52],
+              "reason": "Ticket methods question, online mechanism and trolley icon."
+            }
+          ]
+        },
+        "13": {
+          "referenceAnswer": "74948161",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[289.06, 310.24, 289.06, 310.24]],
+          "evidenceReview": [
+            {
+              "contextStart": 289.06,
+              "contextEnd": 310.24,
+              "start": 289.06,
+              "end": 310.24,
+              "sourceSentenceIds": ["s00101", "s00102", "s00103", "s00104"],
+              "contextSentenceIds": ["s00101", "s00102", "s00103", "s00104"],
+              "sentenceIndices": [53, 53, 56, 56],
+              "reason": "Phone number and confirmation repeated."
+            }
+          ]
+        },
+        "14": {
+          "referenceAnswer": "information@caf.org",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[289.06, 342.36, 310.24, 342.36]],
+          "evidenceReview": [
+            {
+              "contextStart": 289.06,
+              "contextEnd": 342.36,
+              "start": 310.24,
+              "end": 342.36,
+              "sourceSentenceIds": ["s00105", "s00106"],
+              "contextSentenceIds": ["s00101", "s00102", "s00103", "s00104", "s00105", "s00106"],
+              "sentenceIndices": [53, 57, 58, 58],
+              "reason": "Third method email spelled and repeated."
+            }
+          ]
+        },
+        "15": {
+          "referenceAnswer": "box / booking / ticket office",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[310.24, 342.36, 327.22, 342.36]],
+          "evidenceReview": [
+            {
+              "contextStart": 310.24,
+              "contextEnd": 342.36,
+              "start": 327.22,
+              "end": 342.36,
+              "sourceSentenceIds": ["s00106"],
+              "contextSentenceIds": ["s00105", "s00106"],
+              "sentenceIndices": [57, 58, 58, 58],
+              "reason": "Email followed by distinct box-office method."
+            }
+          ]
+        },
+        "16": {
+          "referenceAnswer": "B",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[353.44, 411.06, 373.54, 411.06]],
+          "evidenceReview": [
+            {
+              "contextStart": 353.44,
+              "contextEnd": 411.06,
+              "start": 373.54,
+              "end": 411.06,
+              "sourceSentenceIds": ["s00113", "s00114", "s00115", "s00116", "s00117", "s00118", "s00119"],
+              "contextSentenceIds": [
+                "s00109",
+                "s00110",
+                "s00111",
+                "s00112",
+                "s00113",
+                "s00114",
+                "s00115",
+                "s00116",
+                "s00117",
+                "s00118",
+                "s00119"
+              ],
+              "sentenceIndices": [61, 65, 71, 71],
+              "reason": "Original question image B shows several people; transcript rejects dancers/guitar and chooses group rather than single girl."
+            }
+          ]
+        },
+        "17": {
+          "referenceAnswer": "White",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[412.32, 437.56, 429.3, 437.56]],
+          "evidenceReview": [
+            {
+              "contextStart": 412.32,
+              "contextEnd": 437.56,
+              "start": 429.3,
+              "end": 437.56,
+              "sourceSentenceIds": ["s00124"],
+              "contextSentenceIds": ["s00120", "s00121", "s00122", "s00123", "s00124"],
+              "sentenceIndices": [72, 76, 76, 76],
+              "reason": "Red preference changed to white after readability objection."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-7d51820b8786",
+        "page": 5
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 5
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-2": {
+      "questions": {
+        "18": {
+          "referenceAnswer": "mistakes",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[79.65, 121.27, 95.77, 121.27]],
+          "evidenceReview": [
+            {
+              "contextStart": 79.65,
+              "contextEnd": 121.27,
+              "start": 95.77,
+              "end": 121.27,
+              "sourceSentenceIds": ["s00143", "s00144", "s00145", "s00146"],
+              "contextSentenceIds": ["s00141", "s00142", "s00143", "s00144", "s00145", "s00146"],
+              "sentenceIndices": [9, 11, 14, 14],
+              "reason": "Quality criterion explained as no mistakes and professional standard."
+            }
+          ]
+        },
+        "19": {
+          "referenceAnswer": "professional / like a professional group",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[79.65, 121.27, 95.77, 121.27]],
+          "evidenceReview": [
+            {
+              "contextStart": 79.65,
+              "contextEnd": 121.27,
+              "start": 95.77,
+              "end": 121.27,
+              "sourceSentenceIds": ["s00143", "s00144", "s00145", "s00146"],
+              "contextSentenceIds": ["s00141", "s00142", "s00143", "s00144", "s00145", "s00146"],
+              "sentenceIndices": [9, 11, 14, 14],
+              "reason": "Quality criterion explained as no mistakes and professional standard."
+            }
+          ]
+        },
+        "20": {
+          "referenceAnswer": "excite",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[121.81, 146.93, 133.89, 146.93]],
+          "evidenceReview": [
+            {
+              "contextStart": 121.81,
+              "contextEnd": 146.93,
+              "start": 133.89,
+              "end": 146.93,
+              "sourceSentenceIds": ["s00151", "s00152", "s00153", "s00154"],
+              "contextSentenceIds": [
+                "s00147",
+                "s00148",
+                "s00149",
+                "s00150",
+                "s00151",
+                "s00152",
+                "s00153",
+                "s00154"
+              ],
+              "sentenceIndices": [15, 19, 22, 22],
+              "reason": "Emotional-impact request for explanation and excite answer."
+            }
+          ]
+        },
+        "21": {
+          "referenceAnswer": "like it / the performance // have a good time",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[147.69, 167.57, 151.39, 167.57]],
+          "evidenceReview": [
+            {
+              "contextStart": 147.69,
+              "contextEnd": 167.57,
+              "start": 151.39,
+              "end": 167.57,
+              "sourceSentenceIds": ["s00156", "s00157", "s00158", "s00159", "s00160"],
+              "contextSentenceIds": ["s00155", "s00156", "s00157", "s00158", "s00159", "s00160"],
+              "sentenceIndices": [23, 24, 28, 28],
+              "reason": "Audience popularity, good time and liking the performance."
+            }
+          ]
+        },
+        "22": {
+          "referenceAnswer": "(too) strange",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[163.91, 173.69, 168.23, 173.69]],
+          "evidenceReview": [
+            {
+              "contextStart": 163.91,
+              "contextEnd": 173.69,
+              "start": 168.23,
+              "end": 173.69,
+              "sourceSentenceIds": ["s00161", "s00162"],
+              "contextSentenceIds": ["s00160", "s00161", "s00162"],
+              "sentenceIndices": [28, 29, 30, 30],
+              "reason": "Audience acceptance question and too-strange warning."
+            }
+          ]
+        },
+        "23": {
+          "referenceAnswer": "different / new (types of) music",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[174.19, 195.93, 185.55, 195.93]],
+          "evidenceReview": [
+            {
+              "contextStart": 174.19,
+              "contextEnd": 195.93,
+              "start": 185.55,
+              "end": 195.93,
+              "sourceSentenceIds": ["s00166", "s00167", "s00168"],
+              "contextSentenceIds": ["s00163", "s00164", "s00165", "s00166", "s00167", "s00168"],
+              "sentenceIndices": [31, 34, 36, 36],
+              "reason": "Educational counterargument and exposure to different music."
+            }
+          ]
+        },
+        "24": {
+          "referenceAnswer": "original // (songs) written by them",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[199.03, 220.85, 204.23, 220.85]],
+          "evidenceReview": [
+            {
+              "contextStart": 199.03,
+              "contextEnd": 220.85,
+              "start": 204.23,
+              "end": 220.85,
+              "sourceSentenceIds": ["s00171", "s00172", "s00173", "s00174", "s00175"],
+              "contextSentenceIds": ["s00170", "s00171", "s00172", "s00173", "s00174", "s00175"],
+              "sentenceIndices": [38, 39, 43, 43],
+              "reason": "Song-choice criterion, original compositions explicitly repeated."
+            }
+          ]
+        },
+        "25": {
+          "referenceAnswer": "10–15 minutes",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[221.55, 238.51, 233.77, 238.51]],
+          "evidenceReview": [
+            {
+              "contextStart": 221.55,
+              "contextEnd": 238.51,
+              "start": 233.77,
+              "end": 238.51,
+              "sourceSentenceIds": ["s00179", "s00180"],
+              "contextSentenceIds": ["s00176", "s00177", "s00178", "s00179", "s00180"],
+              "sentenceIndices": [44, 47, 48, 48],
+              "reason": "Thirty-minute auditions rejected before 10-15 minute limit."
+            }
+          ]
+        },
+        "26": {
+          "referenceAnswer": "(too) boring if too long // audience feel bored if too long",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[221.55, 241.53, 239.59, 241.53]],
+          "evidenceReview": [
+            {
+              "contextStart": 221.55,
+              "contextEnd": 241.53,
+              "start": 239.59,
+              "end": 241.53,
+              "sourceSentenceIds": ["s00181"],
+              "contextSentenceIds": ["s00176", "s00177", "s00178", "s00179", "s00180", "s00181"],
+              "sentenceIndices": [44, 49, 49, 49],
+              "reason": "Length discussion and boredom consequence."
+            }
+          ]
+        },
+        "27": {
+          "referenceAnswer": "variety (of music) // different types of acts / music",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[242.41, 260.45, 246.57, 260.45]],
+          "evidenceReview": [
+            {
+              "contextStart": 242.41,
+              "contextEnd": 260.45,
+              "start": 246.57,
+              "end": 260.45,
+              "sourceSentenceIds": ["s00183", "s00184", "s00185"],
+              "contextSentenceIds": ["s00182", "s00183", "s00184", "s00185"],
+              "sentenceIndices": [50, 51, 53, 53],
+              "reason": "Final criterion distinguishing different acts and music."
+            }
+          ]
+        },
+        "28": {
+          "referenceAnswer": "Dragonhead Sportswear",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[306, 391.78, 323.46, 391.78]],
+          "evidenceReview": [
+            {
+              "contextStart": 306,
+              "contextEnd": 391.78,
+              "start": 323.46,
+              "end": 391.78,
+              "sourceSentenceIds": [
+                "s00192",
+                "s00193",
+                "s00194",
+                "s00195",
+                "s00196",
+                "s00197",
+                "s00198",
+                "s00199",
+                "s00200",
+                "s00201"
+              ],
+              "contextSentenceIds": [
+                "s00190",
+                "s00191",
+                "s00192",
+                "s00193",
+                "s00194",
+                "s00195",
+                "s00196",
+                "s00197",
+                "s00198",
+                "s00199",
+                "s00200",
+                "s00201"
+              ],
+              "sentenceIndices": [58, 60, 69, 69],
+              "reason": "All three criteria applied to original company table: Dragonhead is Hong Kong sportswear; alternatives fail health, locality or youth use."
+            }
+          ]
+        },
+        "29": {
+          "referenceAnswer": "health related // positive / healthy image // not encourage bad habits；\n(is) (useful) for / be used by young people；\nlocal // Hong Kong company",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "Q29、Q30、Q31 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[306, 359.78, 323.46, 359.78]],
+          "evidenceReview": [
+            {
+              "contextStart": 306,
+              "contextEnd": 359.78,
+              "start": 323.46,
+              "end": 359.78,
+              "sourceSentenceIds": ["s00192", "s00193", "s00194", "s00195", "s00196", "s00197", "s00198"],
+              "contextSentenceIds": [
+                "s00190",
+                "s00191",
+                "s00192",
+                "s00193",
+                "s00194",
+                "s00195",
+                "s00196",
+                "s00197",
+                "s00198"
+              ],
+              "sentenceIndices": [58, 60, 66, 66],
+              "reason": "All three interchangeable sponsor criteria and exclusions retained."
+            }
+          ]
+        },
+        "30": {
+          "referenceAnswer": "health related // positive / healthy image // not encourage bad habits；\n(is) (useful) for / be used by young people；\nlocal // Hong Kong company",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "Q29、Q30、Q31 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[306, 359.78, 323.46, 359.78]],
+          "evidenceReview": [
+            {
+              "contextStart": 306,
+              "contextEnd": 359.78,
+              "start": 323.46,
+              "end": 359.78,
+              "sourceSentenceIds": ["s00192", "s00193", "s00194", "s00195", "s00196", "s00197", "s00198"],
+              "contextSentenceIds": [
+                "s00190",
+                "s00191",
+                "s00192",
+                "s00193",
+                "s00194",
+                "s00195",
+                "s00196",
+                "s00197",
+                "s00198"
+              ],
+              "sentenceIndices": [58, 60, 66, 66],
+              "reason": "All three interchangeable sponsor criteria and exclusions retained."
+            }
+          ]
+        },
+        "31": {
+          "referenceAnswer": "health related // positive / healthy image // not encourage bad habits；\n(is) (useful) for / be used by young people；\nlocal // Hong Kong company",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 5
+          },
+          "note": "Q29、Q30、Q31 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[306, 359.78, 323.46, 359.78]],
+          "evidenceReview": [
+            {
+              "contextStart": 306,
+              "contextEnd": 359.78,
+              "start": 323.46,
+              "end": 359.78,
+              "sourceSentenceIds": ["s00192", "s00193", "s00194", "s00195", "s00196", "s00197", "s00198"],
+              "contextSentenceIds": [
+                "s00190",
+                "s00191",
+                "s00192",
+                "s00193",
+                "s00194",
+                "s00195",
+                "s00196",
+                "s00197",
+                "s00198"
+              ],
+              "sentenceIndices": [58, 60, 66, 66],
+              "reason": "All three interchangeable sponsor criteria and exclusions retained."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-7d51820b8786",
+        "page": 5
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 5
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[29, 30, 31]],
+      "reviewRules": []
+    },
+    "A-3": {
+      "questions": {
+        "32": {
+          "referenceAnswer": "slept in // got up late",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[70.78, 105.48, 75.16, 105.48]],
+          "evidenceReview": [
+            {
+              "contextStart": 70.78,
+              "contextEnd": 105.48,
+              "start": 75.16,
+              "end": 105.48,
+              "sourceSentenceIds": ["s00214", "s00215", "s00216", "s00217", "s00218", "s00219", "s00220"],
+              "contextSentenceIds": [
+                "s00213",
+                "s00214",
+                "s00215",
+                "s00216",
+                "s00217",
+                "s00218",
+                "s00219",
+                "s00220"
+              ],
+              "sentenceIndices": [9, 10, 16, 16],
+              "reason": "Amanda reputation and late telephone answer while still in bed."
+            }
+          ]
+        },
+        "33": {
+          "referenceAnswer": "a different / the wrong venue // a children’s show",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[106.2, 147.42, 112.3, 147.42]],
+          "evidenceReview": [
+            {
+              "contextStart": 106.2,
+              "contextEnd": 147.42,
+              "start": 112.3,
+              "end": 147.42,
+              "sourceSentenceIds": ["s00222", "s00223", "s00224"],
+              "contextSentenceIds": ["s00221", "s00222", "s00223", "s00224"],
+              "sentenceIndices": [17, 18, 20, 20],
+              "reason": "Correct venue then mistaken venue and children's show."
+            }
+          ]
+        },
+        "34": {
+          "referenceAnswer": "join in // dance with everybody else // have a good time",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[125.9, 160.38, 148.28, 160.38]],
+          "evidenceReview": [
+            {
+              "contextStart": 125.9,
+              "contextEnd": 160.38,
+              "start": 148.28,
+              "end": 160.38,
+              "sourceSentenceIds": ["s00225"],
+              "contextSentenceIds": ["s00223", "s00224", "s00225"],
+              "sentenceIndices": [19, 21, 21, 21],
+              "reason": "Wrong-show realization followed by joining/dancing."
+            }
+          ]
+        },
+        "35": {
+          "referenceAnswer": "the judges were sleeping // one of the judges was asleep",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[165.44, 193.54, 174.64, 193.54]],
+          "evidenceReview": [
+            {
+              "contextStart": 165.44,
+              "contextEnd": 193.54,
+              "start": 174.64,
+              "end": 193.54,
+              "sourceSentenceIds": ["s00230", "s00231", "s00232", "s00233"],
+              "contextSentenceIds": ["s00228", "s00229", "s00230", "s00231", "s00232", "s00233"],
+              "sentenceIndices": [24, 26, 29, 29],
+              "reason": "Gentle audition song and judges progressively falling asleep."
+            }
+          ]
+        },
+        "36": {
+          "referenceAnswer": "(gently) woke them up",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[185.94, 201.86, 194.56, 201.86]],
+          "evidenceReview": [
+            {
+              "contextStart": 185.94,
+              "contextEnd": 201.86,
+              "start": 194.56,
+              "end": 201.86,
+              "sourceSentenceIds": ["s00234"],
+              "contextSentenceIds": ["s00232", "s00233", "s00234"],
+              "sentenceIndices": [28, 30, 30, 30],
+              "reason": "Finishes song then gently wakes judges."
+            }
+          ]
+        },
+        "37": {
+          "referenceAnswer": "loud / rock song",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[194.56, 209.12, 202.6, 209.12]],
+          "evidenceReview": [
+            {
+              "contextStart": 194.56,
+              "contextEnd": 209.12,
+              "start": 202.6,
+              "end": 209.12,
+              "sourceSentenceIds": ["s00235"],
+              "contextSentenceIds": ["s00234", "s00235"],
+              "sentenceIndices": [30, 31, 31, 31],
+              "reason": "Second-song permission and loud-rock reason."
+            }
+          ]
+        },
+        "38": {
+          "referenceAnswer": "(she) didn’t get the part // failed (the audition) // was not successful",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[194.56, 214.86, 209.74, 214.86]],
+          "evidenceReview": [
+            {
+              "contextStart": 194.56,
+              "contextEnd": 214.86,
+              "start": 209.74,
+              "end": 214.86,
+              "sourceSentenceIds": ["s00236", "s00237"],
+              "contextSentenceIds": ["s00234", "s00235", "s00236", "s00237"],
+              "sentenceIndices": [30, 32, 33, 33],
+              "reason": "Second attempt followed by final unsuccessful outcome."
+            }
+          ]
+        },
+        "39": {
+          "referenceAnswer": "famous Hong Kong actor",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[220.12, 245.1, 229.48, 238.84]],
+          "evidenceReview": [
+            {
+              "contextStart": 220.12,
+              "contextEnd": 245.1,
+              "start": 229.48,
+              "end": 238.84,
+              "sourceSentenceIds": ["s00242"],
+              "contextSentenceIds": ["s00239", "s00240", "s00241", "s00242", "s00243"],
+              "sentenceIndices": [35, 38, 38, 39],
+              "reason": "Band story introduction and actor's son's party."
+            }
+          ]
+        },
+        "40": {
+          "referenceAnswer": "forgot the words",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[239.4, 260.46, 250.5, 260.46]],
+          "evidenceReview": [
+            {
+              "contextStart": 239.4,
+              "contextEnd": 260.46,
+              "start": 250.5,
+              "end": 260.46,
+              "sourceSentenceIds": ["s00245"],
+              "contextSentenceIds": ["s00243", "s00244", "s00245"],
+              "sentenceIndices": [39, 41, 41, 41],
+              "reason": "Nervous singer forgets words."
+            }
+          ]
+        },
+        "41": {
+          "referenceAnswer": "fell into the swimming pool",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[245.92, 275.94, 261.2, 275.94]],
+          "evidenceReview": [
+            {
+              "contextStart": 245.92,
+              "contextEnd": 275.94,
+              "start": 261.2,
+              "end": 275.94,
+              "sourceSentenceIds": ["s00246"],
+              "contextSentenceIds": ["s00244", "s00245", "s00246"],
+              "sentenceIndices": [40, 42, 42, 42],
+              "reason": "Trying to look cool leads to pool fall."
+            }
+          ]
+        },
+        "42": {
+          "referenceAnswer": "get a new singer // sack the singer",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[250.5, 286.6, 277.1, 286.6]],
+          "evidenceReview": [
+            {
+              "contextStart": 250.5,
+              "contextEnd": 286.6,
+              "start": 277.1,
+              "end": 286.6,
+              "sourceSentenceIds": ["s00247", "s00248"],
+              "contextSentenceIds": ["s00245", "s00246", "s00247", "s00248"],
+              "sentenceIndices": [41, 43, 44, 44],
+              "reason": "Forgotten words and pool fall precede replacement decision."
+            }
+          ]
+        },
+        "43": {
+          "referenceAnswer": "with just their voices // without (musical) instruments // a cappella",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[309.64, 328.92, 313.72, 328.92]],
+          "evidenceReview": [
+            {
+              "contextStart": 309.64,
+              "contextEnd": 328.92,
+              "start": 313.72,
+              "end": 328.92,
+              "sourceSentenceIds": ["s00254", "s00255", "s00256", "s00257", "s00258", "s00259"],
+              "contextSentenceIds": ["s00253", "s00254", "s00255", "s00256", "s00257", "s00258", "s00259"],
+              "sentenceIndices": [49, 50, 55, 55],
+              "reason": "A cappella identification and definition using voices only."
+            }
+          ]
+        },
+        "44": {
+          "referenceAnswer": "make drum beats / violins / animal sounds",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[321.16, 342.64, 333.22, 342.64]],
+          "evidenceReview": [
+            {
+              "contextStart": 321.16,
+              "contextEnd": 342.64,
+              "start": 333.22,
+              "end": 342.64,
+              "sourceSentenceIds": ["s00261", "s00262", "s00263", "s00264"],
+              "contextSentenceIds": [
+                "s00257",
+                "s00258",
+                "s00259",
+                "s00260",
+                "s00261",
+                "s00262",
+                "s00263",
+                "s00264"
+              ],
+              "sentenceIndices": [53, 57, 60, 60],
+              "reason": "Ordinary singing contrasted with imitated instrument/animal sounds."
+            }
+          ]
+        },
+        "45": {
+          "referenceAnswer": "play pop songs",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[347.64, 382.74, 364.7, 382.74]],
+          "evidenceReview": [
+            {
+              "contextStart": 347.64,
+              "contextEnd": 382.74,
+              "start": 364.7,
+              "end": 382.74,
+              "sourceSentenceIds": ["s00270", "s00271", "s00272"],
+              "contextSentenceIds": ["s00266", "s00267", "s00268", "s00269", "s00270", "s00271", "s00272"],
+              "sentenceIndices": [62, 66, 68, 68],
+              "reason": "Traditional orchestra setup followed by pop-song distinction."
+            }
+          ]
+        },
+        "46": {
+          "referenceAnswer": "while they march // and march at the same time",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[390.16, 411.24, 400.48, 411.24]],
+          "evidenceReview": [
+            {
+              "contextStart": 390.16,
+              "contextEnd": 411.24,
+              "start": 400.48,
+              "end": 411.24,
+              "sourceSentenceIds": ["s00280", "s00281", "s00282"],
+              "contextSentenceIds": ["s00276", "s00277", "s00278", "s00279", "s00280", "s00281", "s00282"],
+              "sentenceIndices": [72, 76, 78, 78],
+              "reason": "Marching band definition, simultaneous playing and marching."
+            }
+          ]
+        },
+        "47": {
+          "referenceAnswer": "form / march in (different) shapes",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[404.62, 431.76, 417.18, 431.76]],
+          "evidenceReview": [
+            {
+              "contextStart": 404.62,
+              "contextEnd": 431.76,
+              "start": 417.18,
+              "end": 431.76,
+              "sourceSentenceIds": ["s00285", "s00286", "s00287"],
+              "contextSentenceIds": ["s00282", "s00283", "s00284", "s00285", "s00286", "s00287"],
+              "sentenceIndices": [78, 81, 83, 83],
+              "reason": "Movement question and formation into different shapes."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-7d51820b8786",
+        "page": 6
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 6
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-4": {
+      "questions": {
+        "48": {
+          "referenceAnswer": "a means of hearing (great) pop music",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[109, 130.9, 124.58, 130.9]],
+          "evidenceReview": [
+            {
+              "contextStart": 109,
+              "contextEnd": 130.9,
+              "start": 124.58,
+              "end": 130.9,
+              "sourceSentenceIds": ["s00306"],
+              "contextSentenceIds": ["s00303", "s00304", "s00305", "s00306"],
+              "sentenceIndices": [12, 15, 15, 15],
+              "reason": "Against-motion speaker and first benefit."
+            }
+          ]
+        },
+        "49": {
+          "referenceAnswer": "they can develop a love for music // at least they are listening to something",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[124.58, 167.96, 141, 167.96]],
+          "evidenceReview": [
+            {
+              "contextStart": 124.58,
+              "contextEnd": 167.96,
+              "start": 141,
+              "end": 167.96,
+              "sourceSentenceIds": ["s00308", "s00309", "s00310"],
+              "contextSentenceIds": ["s00306", "s00307", "s00308", "s00309", "s00310"],
+              "sentenceIndices": [15, 17, 19, 19],
+              "reason": "Pop music objection answered by love of music and listening at all."
+            }
+          ]
+        },
+        "50": {
+          "referenceAnswer": "stop other artists getting a chance (to have a successful career) // destroy music / the industry",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[157.06, 194.72, 168.76, 194.72]],
+          "evidenceReview": [
+            {
+              "contextStart": 157.06,
+              "contextEnd": 194.72,
+              "start": 168.76,
+              "end": 194.72,
+              "sourceSentenceIds": ["s00311", "s00312", "s00313", "s00314"],
+              "contextSentenceIds": ["s00310", "s00311", "s00312", "s00313", "s00314"],
+              "sentenceIndices": [19, 20, 23, 23],
+              "reason": "Opponents' claim distinguished from speaker's rebuttal."
+            }
+          ]
+        },
+        "51": {
+          "referenceAnswer": "provide (information about) singing techniques",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[195.98, 227.1, 195.98, 207.78]],
+          "evidenceReview": [
+            {
+              "contextStart": 195.98,
+              "contextEnd": 227.1,
+              "start": 195.98,
+              "end": 207.78,
+              "sourceSentenceIds": ["s00315"],
+              "contextSentenceIds": ["s00315", "s00316", "s00317"],
+              "sentenceIndices": [24, 24, 24, 26],
+              "reason": "Third argument teaching techniques and practice."
+            }
+          ]
+        },
+        "52": {
+          "referenceAnswer": "talented singers don’t have to work hard",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[195.98, 227.1, 208.92, 227.1]],
+          "evidenceReview": [
+            {
+              "contextStart": 195.98,
+              "contextEnd": 227.1,
+              "start": 208.92,
+              "end": 227.1,
+              "sourceSentenceIds": ["s00316", "s00317"],
+              "contextSentenceIds": ["s00315", "s00316", "s00317"],
+              "sentenceIndices": [24, 25, 26, 26],
+              "reason": "Myth explicitly identified and contradicted by practice requirement."
+            }
+          ]
+        },
+        "53": {
+          "referenceAnswer": "get enjoyment from how bad a contestant is singing；\ncopying (famous) artists / (pop) singers // not original",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "Q53、Q54 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[239.48, 295.9, 257.46, 295.9]],
+          "evidenceReview": [
+            {
+              "contextStart": 239.48,
+              "contextEnd": 295.9,
+              "start": 257.46,
+              "end": 295.9,
+              "sourceSentenceIds": ["s00324", "s00325", "s00326"],
+              "contextSentenceIds": ["s00321", "s00322", "s00323", "s00324", "s00325", "s00326"],
+              "sentenceIndices": [30, 33, 35, 35],
+              "reason": "For-motion speaker and both televised-karaoke reasons, completing split sentence."
+            }
+          ]
+        },
+        "54": {
+          "referenceAnswer": "get enjoyment from how bad a contestant is singing；\ncopying (famous) artists / (pop) singers // not original",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "Q53、Q54 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[239.48, 295.9, 257.46, 295.9]],
+          "evidenceReview": [
+            {
+              "contextStart": 239.48,
+              "contextEnd": 295.9,
+              "start": 257.46,
+              "end": 295.9,
+              "sourceSentenceIds": ["s00324", "s00325", "s00326"],
+              "contextSentenceIds": ["s00321", "s00322", "s00323", "s00324", "s00325", "s00326"],
+              "sentenceIndices": [30, 33, 35, 35],
+              "reason": "For-motion speaker and both televised-karaoke reasons, completing split sentence."
+            }
+          ]
+        },
+        "55": {
+          "referenceAnswer": "winners achieve instant fame / become as famous as other (more established) artists",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[298.29, 315.4, 304.45, 311.83]],
+          "evidenceReview": [
+            {
+              "contextStart": 298.29,
+              "contextEnd": 315.4,
+              "start": 304.45,
+              "end": 311.83,
+              "sourceSentenceIds": ["s00328"],
+              "contextSentenceIds": ["s00327", "s00328", "s00329"],
+              "sentenceIndices": [36, 37, 37, 38],
+              "reason": "Post-series outcome and instant fame."
+            }
+          ]
+        },
+        "56": {
+          "referenceAnswer": "other singers don’t get as much publicity // other singers have worked just as hard",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[304.45, 326.34, 316.94, 326.34]],
+          "evidenceReview": [
+            {
+              "contextStart": 304.45,
+              "contextEnd": 326.34,
+              "start": 316.94,
+              "end": 326.34,
+              "sourceSentenceIds": ["s00330", "s00331"],
+              "contextSentenceIds": ["s00328", "s00329", "s00330", "s00331"],
+              "sentenceIndices": [37, 39, 40, 40],
+              "reason": "Unfairness explanation: unequal publicity despite equal work."
+            }
+          ]
+        },
+        "57": {
+          "referenceAnswer": "success is easy (in the music industry) / can happen overnight",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[327.72, 360.72, 335.48, 360.72]],
+          "evidenceReview": [
+            {
+              "contextStart": 327.72,
+              "contextEnd": 360.72,
+              "start": 335.48,
+              "end": 360.72,
+              "sourceSentenceIds": ["s00333", "s00334", "s00335", "s00336"],
+              "contextSentenceIds": ["s00332", "s00333", "s00334", "s00335", "s00336"],
+              "sentenceIndices": [41, 42, 45, 45],
+              "reason": "Easy/overnight success explicitly a lie, followed by correction."
+            }
+          ]
+        },
+        "58": {
+          "referenceAnswer": "many musicians will give up easily / won’t keep going when things get tough",
+          "reference": {
+            "sourceId": "p-7d51820b8786",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[327.72, 373.22, 361.6, 373.22]],
+          "evidenceReview": [
+            {
+              "contextStart": 327.72,
+              "contextEnd": 373.22,
+              "start": 361.6,
+              "end": 373.22,
+              "sourceSentenceIds": ["s00337", "s00338"],
+              "contextSentenceIds": ["s00332", "s00333", "s00334", "s00335", "s00336", "s00337", "s00338"],
+              "sentenceIndices": [41, 46, 47, 47],
+              "reason": "False-ease claim linked to giving up when difficulties arise."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-7d51820b8786",
+        "page": 6
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 6
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[53, 54]],
+      "reviewRules": []
+    },
+    "B1-5": {
+      "reference": {
+        "sourceId": "p-7d51820b8786",
+        "page": 6
+      },
+      "dataFile": {
+        "sourceId": "p-711d4dd89a3e",
+        "page": 13
+      },
+      "reviewRules": [
+        "Information must be in correct section.",
+        "5.4a–d must have exact wording and be put in correct order.",
+        "Language mark awarded on 5.1–5.3 only."
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 6
+        },
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 7
+        }
+      ],
+      "questions": {
+        "5": {
+          "referenceAnswer": "内容：16 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "5.1",
+              "referenceAnswer": "Monday May 18",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 15,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 151.25,
+                  "contextEnd": 213.39,
+                  "start": 156.67,
+                  "end": 213.39,
+                  "sentenceIds": [
+                    "s00362",
+                    "s00363",
+                    "s00364",
+                    "s00365",
+                    "s00366",
+                    "s00367",
+                    "s00368",
+                    "s00369",
+                    "s00370",
+                    "s00371"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.2a",
+              "referenceAnswer": "Have breakfast in Ms. Dong Jianzhen’s / managing director (of Atlantic Plaza)’s office",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 17,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2b",
+              "referenceAnswer": "Practise (the songs for the Atlantic Plaza show)",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 15,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 214.63,
+                  "contextEnd": 257.93,
+                  "start": 226.13,
+                  "end": 257.93,
+                  "sentenceIds": ["s00372", "s00373", "s00374", "s00375", "s00376"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.2c",
+              "referenceAnswer": "Have lunch at ‘Fresh and Healthy’ restaurant",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 17,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2d",
+              "referenceAnswer": "Take photographs (with Ajala) (at the main entrance) // photo taking",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 17,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2e",
+              "referenceAnswer": "Take (more) photos // photo taking",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 17,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2f",
+              "referenceAnswer": "Sign CDs",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 17,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2g",
+              "referenceAnswer": "Take helicopter back to the hotel",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 19,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3a",
+              "referenceAnswer": "Wear the T-shirts provided (by Atlantic Plaza / Ms. Dong)",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 17,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3b",
+              "referenceAnswer": "Say hello to Hong Kong (at the start of the performance)",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 18,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3c",
+              "referenceAnswer": "Say thank you to Atlantic Plaza",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 17,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3d",
+              "referenceAnswer": "Take a photograph with Ms. Dong",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 17,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.4a",
+              "referenceAnswer": "Mirror of love",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 18,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.4b",
+              "referenceAnswer": "You’re special",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 18,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.4c",
+              "referenceAnswer": "Hey! Don’t ignore me",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 18,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.4d",
+              "referenceAnswer": "Look at me",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 15,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 244.85,
+                  "contextEnd": 281.65,
+                  "start": 258.25,
+                  "end": 281.65,
+                  "sentenceIds": ["s00376", "s00377", "s00378", "s00379", "s00380", "s00381"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-7d51820b8786",
+              "page": 7
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-6": {
+      "reference": {
+        "sourceId": "p-7d51820b8786",
+        "page": 7
+      },
+      "dataFile": {
+        "sourceId": "p-711d4dd89a3e",
+        "page": 13
+      },
+      "reviewRules": [
+        "6.1 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 3；4 → 4；5 → 5。",
+        "6.2 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2。",
+        "6.3 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 7
+        },
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 8
+        }
+      ],
+      "questions": {
+        "6": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "6.1a",
+              "referenceAnswer": "born (in a small village) in Scotland in 1996",
+              "section": "Early life",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 20,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.1b",
+              "referenceAnswer": "Japanese dad and English mum",
+              "section": "Early life",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 20,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.1c",
+              "referenceAnswer": "moved to London aged 6",
+              "section": "Early life",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 20,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.1d",
+              "referenceAnswer": "attended Gray’s School of Music and Drama",
+              "section": "Early life",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 20,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.1e",
+              "referenceAnswer": "won best singer London Youth Music Awards in 2010 / when still at school / when 14",
+              "section": "Early life (may appear in Musical career before Bubblegum section)",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 20,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2a",
+              "referenceAnswer": "solo album “Oh So Pretty”",
+              "section": "Musical career before Bubblegum",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 20,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2b",
+              "referenceAnswer": "voted worst album of 2012 by (listeners of) Buzz Online",
+              "section": "Musical career before Bubblegum",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 21,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3a",
+              "referenceAnswer": "joined Bubblegum in 2013",
+              "section": "Career and achievements with Bubblegum",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 20,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3b",
+              "referenceAnswer": "wrote “Dance Addiction”",
+              "section": "Career and achievements with Bubblegum",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 21,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3c",
+              "referenceAnswer": "second biggest downloaded song in UK of 2014 // more than 10 million downloads in UK in 2014",
+              "section": "Career and achievements with Bubblegum",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 21,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-7d51820b8786",
+              "page": 8
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-7": {
+      "reference": {
+        "sourceId": "p-7d51820b8786",
+        "page": 9
+      },
+      "dataFile": {
+        "sourceId": "p-711d4dd89a3e",
+        "page": 13
+      },
+      "reviewRules": [
+        "7.1 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 3。",
+        "7.2 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2；4 → 3；5 → 3。",
+        "7.3 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2；4 → 3。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 9
+        },
+        {
+          "sourceId": "p-7d51820b8786",
+          "page": 10
+        }
+      ],
+      "questions": {
+        "7": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "7.1a",
+              "referenceAnswer": "May 19",
+              "section": "Time, place and length of interview",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 19,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1b",
+              "referenceAnswer": "Paradise Gardens Hotel Room 829",
+              "section": "Time, place and length of interview",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 19,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1c",
+              "referenceAnswer": "4:00 pm to 5:00 pm // for one hour from 4 pm",
+              "section": "Time, place and length of interview",
+              "sourceLabel": "Data File 第 6、7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 18,
+                  "printedPage": 6
+                },
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 19,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2a",
+              "referenceAnswer": "ask about the their latest CD “Sugar Love Mountain”",
+              "section": "Questions",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 18,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2b",
+              "referenceAnswer": "ask about what they think about Hong Kong",
+              "section": "Questions",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 18,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2c",
+              "referenceAnswer": "don’t ask about boyfriends or girlfriends / love lives of the band",
+              "section": "Questions",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 15,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 356.37,
+                  "contextEnd": 422.39,
+                  "start": 376.65,
+                  "end": 422.39,
+                  "sentenceIds": [
+                    "s00399",
+                    "s00400",
+                    "s00401",
+                    "s00402",
+                    "s00403",
+                    "s00404",
+                    "s00405",
+                    "s00406",
+                    "s00407",
+                    "s00408"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.2d",
+              "referenceAnswer": "don’t talk about (Mark Nelson’s) family",
+              "section": "Questions",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 18,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2e",
+              "referenceAnswer": "talk politely // be respectful",
+              "section": "Questions (May appear in Other rules section)",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 18,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3a",
+              "referenceAnswer": "maximum four people",
+              "section": "Other rules",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 19,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3b",
+              "referenceAnswer": "dress smartly (no sandals)",
+              "section": "Other rules",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 19,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3c",
+              "referenceAnswer": "show ID cards (before the interview)",
+              "section": "Other rules",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 20,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3d",
+              "referenceAnswer": "have bags and equipment searched",
+              "section": "Other rules",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-711d4dd89a3e",
+                  "page": 20,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d51820b8786",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-7d51820b8786",
+              "page": 9
+            },
+            {
+              "sourceId": "p-7d51820b8786",
+              "page": 10
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    }
+  }
+}

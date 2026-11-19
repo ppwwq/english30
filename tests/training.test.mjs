@@ -1,3 +1,4 @@
+import { restoreBackup } from '../scripts/repository-only/restore-backup.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -10,6 +11,13 @@ import {
   validateBackup,
   listeningAttempts,
 } from '../web/training-core.mjs';
+
+test('dictation treats standard thousands separators as the same number without discarding decimals', () => {
+  assert.equal(compareSentence('About 7,000 people.', 'About 7000 people').correct, true);
+  assert.equal(compareSentence('It costs 1,250.50 dollars.', 'It costs 1250.50 dollars').correct, true);
+  assert.equal(compareSentence('It costs 7.5 dollars.', 'It costs 75 dollars').correct, false);
+  assert.equal(compareSentence('There are 7,000 people.', '7000').correct, false);
+});
 
 test('legacy named-structure answers stay separate from independent paragraphs without rewriting records', () => {
   const records = [
@@ -201,7 +209,7 @@ test('full backup merges saved listening, existing drafts and imported learning 
       moments: [],
     },
   ];
-  assert.deepEqual(store.importBackup(backup), { records: 2, listening: 1 });
+  assert.deepEqual(restoreBackup(store, storage, backup), { records: 2, listening: 1 });
   assert.deepEqual(
     store.exportBackup().study.records.map((r) => r.id),
     ['existing', 'imported'],
@@ -209,7 +217,7 @@ test('full backup merges saved listening, existing drafts and imported learning 
   assert.equal(store.exportBackup().listening[0].marks.w1, 'heard');
   assert.equal(store.hasUnsaved(), false);
   assert.equal(createStudyStore({ storage }).getSavedState().records.length, 2);
-  assert.deepEqual(store.importBackup(backup), { records: 2, listening: 1 });
+  assert.deepEqual(restoreBackup(store, storage, backup), { records: 2, listening: 1 });
 });
 
 test('failed two-store import rolls back the successful first write and preserves memory state', () => {
@@ -222,7 +230,7 @@ test('failed two-store import rolls back the successful first write and preserve
   const store = createStudyStore({ storage });
   const backup = store.exportBackup();
   store.addAttempt({ id: 'draft', module: 'reading', taskId: 'r1', phase: 'first' });
-  assert.throws(() => store.importBackup(backup), /quota/);
+  assert.throws(() => restoreBackup(store, storage, backup), /quota/);
   assert.equal(storage.getItem('english30-study-v1'), null);
   assert.equal(store.getState().records.length, 1);
   assert.equal(store.getSavedState().records.length, 0);

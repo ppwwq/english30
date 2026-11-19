@@ -41,10 +41,10 @@ function hasUnsubmitted() {
 function refreshSessionBar() {
   if (saving) return;
   try {
-    const pending = saver.prepare().changed;
+    const plan = saver.prepare();
+    const pending = plan.changed;
     const unsubmitted = hasUnsubmitted();
-    const saved =
-      !!localStorage.getItem('english30-study-v1') || !!localStorage.getItem('english30-records-v1');
+    const saved = current === 'listening' ? listeningBridge.getSaveState().saved : !!saveMessage && !pending;
     saveButton.disabled = !pending;
     document.getElementById('session-save-status').textContent = pending
       ? '已提交，尚未保存'
@@ -58,7 +58,7 @@ function refreshSessionBar() {
       (unsubmitted
         ? '尚有未提交输入，保存只包含已提交的纪录和标记；请先提交要保留的作答。'
         : pending
-          ? '点击保存，先核对本次包含的模块；确认后写入并回读。'
+          ? `${plan.listening ? `待保存听力：${plan.listening.label}。` : ''}点击保存核对全部暂存内容；当前浏览的资料不会替换这份作答。`
           : '学习纪录只留在当前浏览器，可从「复习与备份」导出。');
   } catch (error) {
     saveButton.disabled = true;
@@ -81,7 +81,6 @@ async function requestSave() {
       items.push(
         `听力：${plan.listening.label || plan.listening.record.lessonTitle || plan.listening.record.lessonId}，${plan.listening.record.attempts.length} 轮作答及标记`,
       );
-    if (plan.listening?.prepare) items.push('导入的听力材料与音频也会保存到此浏览器');
     if (plan.study.changed) {
       const saved = new Map(studyStore.getSavedState().records.map((r) => [r.id, JSON.stringify(r)]));
       const changed = plan.study.state.records.filter((r) => saved.get(r.id) !== JSON.stringify(r));
@@ -126,6 +125,12 @@ const sessionChanged = () => {
 };
 studyStore.subscribe(sessionChanged);
 listeningBridge.onChange(sessionChanged);
+window.addEventListener('beforeunload', (event) => {
+  if (hasUnsubmitted() || saver.prepare().changed) {
+    event.preventDefault();
+    event.returnValue = '';
+  }
+});
 async function navigate(view, options = {}) {
   const previousView = current,
     previousMode = listeningMode;
@@ -148,17 +153,10 @@ async function navigate(view, options = {}) {
     practice = listening && listeningMode === 'practice',
     paperView = view === 'library',
     readingView = ['reading', 'integrated'].includes(view);
-  document.getElementById('listening-modes').hidden = !listening;
-  for (const button of document.querySelectorAll('button[data-listening-mode]'))
-    button.setAttribute('aria-pressed', String(button.dataset.listeningMode === listeningMode));
-  document.getElementById('listening-mode-note').textContent = practice
-    ? '短段作答、错因复盘，也可以导入自己的练习包。'
-    : '选择年份、Part 和 Task：先作答，再逐句精听、核对证据，最后关掉提示复测。';
   document.getElementById('practice-picker').hidden = !listening || practice;
   document.getElementById('listening-panel').hidden = !listening;
   document.querySelector('.player').hidden = !listening;
   document.querySelector('.lesson-picker').hidden = !practice;
-  document.querySelector('.import-menu').hidden = !practice;
   trainingHost.hidden = listening || readingView || view === 'library';
   readingHost.hidden = !readingView;
   paperHost.hidden = !paperView;
@@ -236,9 +234,7 @@ async function navigate(view, options = {}) {
   }
 }
 for (const button of document.querySelectorAll('.main-navigation>button'))
-  button.addEventListener('click', () => navigate(button.dataset.view));
-for (const button of document.querySelectorAll('button[data-listening-mode]'))
-  button.addEventListener('click', () => navigate('listening', { mode: button.dataset.listeningMode }));
+  button.addEventListener('click', () => navigate(button.dataset.view, { mode: 'papers' }));
 document.querySelector('.skip-link').addEventListener('click', (event) => {
   event.preventDefault();
   const target =

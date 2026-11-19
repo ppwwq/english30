@@ -6,14 +6,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const report = { cases: [], errors: [], physicalDevice: false };
 const reportPath =
@@ -100,13 +98,13 @@ try {
     },
   );
   await scenario(
-    'importing saved marks refreshes existing words without replacing the current draft or focus',
+    'restoring saved mark state refreshes existing words without replacing the current draft or focus',
     async (page) => {
       await page.locator('#paper-review').click();
       const word = page.locator('.paper-word').nth(8);
       await word.click();
       await page.locator('#paper-word-mark').click();
-      await page.locator('#paper-study-save').click();
+      await page.locator('#session-save').click();
       const backup = await page.evaluate(async () =>
         (await import('/training-core.mjs')).studyStore.exportBackup(),
       );
@@ -119,7 +117,7 @@ try {
       await page.locator('#paper-drill-answer').fill('keep this unsaved sentence');
       await page.locator('#paper-drill-answer').focus();
       await page.evaluate(
-        async (value) => (await import('/training-core.mjs')).studyStore.importBackup(value),
+        async (value) => (await import('/training-core.mjs')).studyStore.replaceState(value.study),
         backup,
       );
       assert.equal(await wordHandle.evaluate((element) => element.isConnected), true);

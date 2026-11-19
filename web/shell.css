@@ -26,17 +26,14 @@
   flex-shrink: 0;
 }
 .focused-drill-dialog {
-  width: min(760px, calc(100vw - 32px));
-  max-height: calc(100dvh - 40px);
-  padding: 24px;
+  width: 100%;
+  margin-block: 16px;
+  padding: 16px;
   color: var(--ink);
   background: var(--surface);
   overflow: auto;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-}
-.focused-drill-dialog::backdrop {
-  background: var(--paper);
 }
 .focused-drill-heading,
 .focused-drill-footer {
@@ -53,9 +50,6 @@
   border-top: 1px solid var(--line);
   margin-top: 20px;
   padding-top: 12px;
-}
-body[data-focused-drill] #listening-panel {
-  visibility: hidden;
 }
 body[data-listening-phase]:not([data-listening-phase='review']) .player {
   --player-space: 92px;

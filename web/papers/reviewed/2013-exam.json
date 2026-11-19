@@ -1,0 +1,2807 @@
+{
+  "sessionId": "2013-exam",
+  "reviewDate": "2026-11-17",
+  "reviewMethod": "Independent visual comparison against marking-scheme images. OCR used only to locate/read. referenceAnswer preserves official alternatives (// or /) and optional parentheses; do not infer exact-match scoring. Square-bracket achievement percentages omitted.",
+  "tasks": {
+    "A-1": {
+      "questions": {
+        "1": {
+          "referenceAnswer": "other",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[85.12, 119.46, 91.66, 119.46]],
+          "evidenceReview": [
+            {
+              "contextStart": 85.12,
+              "contextEnd": 119.46,
+              "start": 91.66,
+              "end": 119.46,
+              "sourceSentenceIds": ["s00062", "s00063", "s00064", "s00065", "s00066", "s00067", "s00068"],
+              "contextSentenceIds": [
+                "s00060",
+                "s00061",
+                "s00062",
+                "s00063",
+                "s00064",
+                "s00065",
+                "s00066",
+                "s00067",
+                "s00068"
+              ],
+              "sentenceIndices": [11, 13, 19, 19],
+              "reason": "Work and holiday assumptions both rejected; visiting ill mother means other."
+            }
+          ]
+        },
+        "2": {
+          "referenceAnswer": "long",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[120.2, 139.52, 130.3, 139.52]],
+          "evidenceReview": [
+            {
+              "contextStart": 120.2,
+              "contextEnd": 139.52,
+              "start": 130.3,
+              "end": 139.52,
+              "sourceSentenceIds": ["s00070", "s00071"],
+              "contextSentenceIds": ["s00069", "s00070", "s00071"],
+              "sentenceIndices": [20, 21, 22, 22],
+              "reason": "London distance and 13-hour duration imply long flight."
+            }
+          ]
+        },
+        "3": {
+          "referenceAnswer": "(about) ten to twelve/10–12 (trips) // up to twelve/12 (trip(s))/a dozen",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[140.72, 158.88, 145.56, 158.88]],
+          "evidenceReview": [
+            {
+              "contextStart": 140.72,
+              "contextEnd": 158.88,
+              "start": 145.56,
+              "end": 158.88,
+              "sourceSentenceIds": ["s00074", "s00075", "s00076", "s00077"],
+              "contextSentenceIds": ["s00072", "s00073", "s00074", "s00075", "s00076", "s00077"],
+              "sentenceIndices": [23, 25, 28, 28],
+              "reason": "Once/twice suggestion corrected to 10-12, repeated as dozen."
+            }
+          ]
+        },
+        "4": {
+          "referenceAnswer": "Bangkok // Thailand；\nSydney // Australia",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q4、Q5 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[159.74, 195.96, 168.5, 195.96]],
+          "evidenceReview": [
+            {
+              "contextStart": 159.74,
+              "contextEnd": 195.96,
+              "start": 168.5,
+              "end": 195.96,
+              "sourceSentenceIds": ["s00081", "s00082", "s00083", "s00084", "s00085", "s00086"],
+              "contextSentenceIds": [
+                "s00078",
+                "s00079",
+                "s00080",
+                "s00081",
+                "s00082",
+                "s00083",
+                "s00084",
+                "s00085",
+                "s00086"
+              ],
+              "sentenceIndices": [29, 32, 37, 37],
+              "reason": "UK denied as frequent; Bangkok and Sydney with spelling retained around Singapore example."
+            }
+          ]
+        },
+        "5": {
+          "referenceAnswer": "Bangkok // Thailand；\nSydney // Australia",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q4、Q5 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[159.74, 195.96, 168.5, 195.96]],
+          "evidenceReview": [
+            {
+              "contextStart": 159.74,
+              "contextEnd": 195.96,
+              "start": 168.5,
+              "end": 195.96,
+              "sourceSentenceIds": ["s00081", "s00082", "s00083", "s00084", "s00085", "s00086"],
+              "contextSentenceIds": [
+                "s00078",
+                "s00079",
+                "s00080",
+                "s00081",
+                "s00082",
+                "s00083",
+                "s00084",
+                "s00085",
+                "s00086"
+              ],
+              "sentenceIndices": [29, 32, 37, 37],
+              "reason": "UK denied as frequent; Bangkok and Sydney with spelling retained around Singapore example."
+            }
+          ]
+        },
+        "6": {
+          "referenceAnswer": "(the)/(enough) daylight；\nplenty/a lot/lots of lounge space；\nmoving walkway(s)/walk-way(s)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q6、Q7、Q8 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [197.12, 221.56, 205.86, 221.56],
+            [222.5, 247.74, 222.5, 247.74],
+            [248.74, 265.5, 248.74, 265.5]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 197.12,
+              "contextEnd": 221.56,
+              "start": 205.86,
+              "end": 221.56,
+              "sourceSentenceIds": ["s00088", "s00089", "s00090"],
+              "contextSentenceIds": ["s00087", "s00088", "s00089", "s00090"],
+              "sentenceIndices": [38, 39, 41, 41],
+              "reason": "Three separate positive features each retain explanation and contrast."
+            },
+            {
+              "contextStart": 222.5,
+              "contextEnd": 247.74,
+              "start": 222.5,
+              "end": 247.74,
+              "sourceSentenceIds": ["s00091", "s00092", "s00093", "s00094", "s00095", "s00096"],
+              "contextSentenceIds": ["s00091", "s00092", "s00093", "s00094", "s00095", "s00096"],
+              "sentenceIndices": [42, 42, 47, 47],
+              "reason": "Three separate positive features each retain explanation and contrast."
+            },
+            {
+              "contextStart": 248.74,
+              "contextEnd": 265.5,
+              "start": 248.74,
+              "end": 265.5,
+              "sourceSentenceIds": ["s00097", "s00098", "s00099", "s00100", "s00101"],
+              "contextSentenceIds": ["s00097", "s00098", "s00099", "s00100", "s00101"],
+              "sentenceIndices": [48, 48, 52, 52],
+              "reason": "Three separate positive features each retain explanation and contrast."
+            }
+          ]
+        },
+        "7": {
+          "referenceAnswer": "(the)/(enough) daylight；\nplenty/a lot/lots of lounge space；\nmoving walkway(s)/walk-way(s)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q6、Q7、Q8 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [197.12, 221.56, 205.86, 221.56],
+            [222.5, 247.74, 222.5, 247.74],
+            [248.74, 265.5, 248.74, 265.5]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 197.12,
+              "contextEnd": 221.56,
+              "start": 205.86,
+              "end": 221.56,
+              "sourceSentenceIds": ["s00088", "s00089", "s00090"],
+              "contextSentenceIds": ["s00087", "s00088", "s00089", "s00090"],
+              "sentenceIndices": [38, 39, 41, 41],
+              "reason": "Three separate positive features each retain explanation and contrast."
+            },
+            {
+              "contextStart": 222.5,
+              "contextEnd": 247.74,
+              "start": 222.5,
+              "end": 247.74,
+              "sourceSentenceIds": ["s00091", "s00092", "s00093", "s00094", "s00095", "s00096"],
+              "contextSentenceIds": ["s00091", "s00092", "s00093", "s00094", "s00095", "s00096"],
+              "sentenceIndices": [42, 42, 47, 47],
+              "reason": "Three separate positive features each retain explanation and contrast."
+            },
+            {
+              "contextStart": 248.74,
+              "contextEnd": 265.5,
+              "start": 248.74,
+              "end": 265.5,
+              "sourceSentenceIds": ["s00097", "s00098", "s00099", "s00100", "s00101"],
+              "contextSentenceIds": ["s00097", "s00098", "s00099", "s00100", "s00101"],
+              "sentenceIndices": [48, 48, 52, 52],
+              "reason": "Three separate positive features each retain explanation and contrast."
+            }
+          ]
+        },
+        "8": {
+          "referenceAnswer": "(the)/(enough) daylight；\nplenty/a lot/lots of lounge space；\nmoving walkway(s)/walk-way(s)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q6、Q7、Q8 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [197.12, 221.56, 205.86, 221.56],
+            [222.5, 247.74, 222.5, 247.74],
+            [248.74, 265.5, 248.74, 265.5]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 197.12,
+              "contextEnd": 221.56,
+              "start": 205.86,
+              "end": 221.56,
+              "sourceSentenceIds": ["s00088", "s00089", "s00090"],
+              "contextSentenceIds": ["s00087", "s00088", "s00089", "s00090"],
+              "sentenceIndices": [38, 39, 41, 41],
+              "reason": "Three separate positive features each retain explanation and contrast."
+            },
+            {
+              "contextStart": 222.5,
+              "contextEnd": 247.74,
+              "start": 222.5,
+              "end": 247.74,
+              "sourceSentenceIds": ["s00091", "s00092", "s00093", "s00094", "s00095", "s00096"],
+              "contextSentenceIds": ["s00091", "s00092", "s00093", "s00094", "s00095", "s00096"],
+              "sentenceIndices": [42, 42, 47, 47],
+              "reason": "Three separate positive features each retain explanation and contrast."
+            },
+            {
+              "contextStart": 248.74,
+              "contextEnd": 265.5,
+              "start": 248.74,
+              "end": 265.5,
+              "sourceSentenceIds": ["s00097", "s00098", "s00099", "s00100", "s00101"],
+              "contextSentenceIds": ["s00097", "s00098", "s00099", "s00100", "s00101"],
+              "sentenceIndices": [48, 48, 52, 52],
+              "reason": "Three separate positive features each retain explanation and contrast."
+            }
+          ]
+        },
+        "9": {
+          "referenceAnswer": "shop(s) overcrowded/too crowded；\nnot/no post office(s)/postal service(s)；\ntransit lounge trolley(s) (too)/(very) small",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q9、Q10、Q11 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [266.66, 295.98, 273.86, 295.98],
+            [296.48, 316.64, 296.48, 316.64]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 266.66,
+              "contextEnd": 295.98,
+              "start": 273.86,
+              "end": 295.98,
+              "sourceSentenceIds": ["s00104", "s00105", "s00106", "s00107", "s00108"],
+              "contextSentenceIds": ["s00102", "s00103", "s00104", "s00105", "s00106", "s00107", "s00108"],
+              "sentenceIndices": [53, 55, 59, 59],
+              "reason": "Negative-feature question and three complaints, trolley restriction explicitly retained."
+            },
+            {
+              "contextStart": 296.48,
+              "contextEnd": 316.64,
+              "start": 296.48,
+              "end": 316.64,
+              "sourceSentenceIds": ["s00109", "s00110", "s00111", "s00112"],
+              "contextSentenceIds": ["s00109", "s00110", "s00111", "s00112"],
+              "sentenceIndices": [60, 60, 63, 63],
+              "reason": "Negative-feature question and three complaints, trolley restriction explicitly retained."
+            }
+          ]
+        },
+        "10": {
+          "referenceAnswer": "shop(s) overcrowded/too crowded；\nnot/no post office(s)/postal service(s)；\ntransit lounge trolley(s) (too)/(very) small",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q9、Q10、Q11 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [266.66, 295.98, 273.86, 295.98],
+            [296.48, 316.64, 296.48, 316.64]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 266.66,
+              "contextEnd": 295.98,
+              "start": 273.86,
+              "end": 295.98,
+              "sourceSentenceIds": ["s00104", "s00105", "s00106", "s00107", "s00108"],
+              "contextSentenceIds": ["s00102", "s00103", "s00104", "s00105", "s00106", "s00107", "s00108"],
+              "sentenceIndices": [53, 55, 59, 59],
+              "reason": "Negative-feature question and three complaints, trolley restriction explicitly retained."
+            },
+            {
+              "contextStart": 296.48,
+              "contextEnd": 316.64,
+              "start": 296.48,
+              "end": 316.64,
+              "sourceSentenceIds": ["s00109", "s00110", "s00111", "s00112"],
+              "contextSentenceIds": ["s00109", "s00110", "s00111", "s00112"],
+              "sentenceIndices": [60, 60, 63, 63],
+              "reason": "Negative-feature question and three complaints, trolley restriction explicitly retained."
+            }
+          ]
+        },
+        "11": {
+          "referenceAnswer": "shop(s) overcrowded/too crowded；\nnot/no post office(s)/postal service(s)；\ntransit lounge trolley(s) (too)/(very) small",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q9、Q10、Q11 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [266.66, 295.98, 273.86, 295.98],
+            [296.48, 316.64, 296.48, 316.64]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 266.66,
+              "contextEnd": 295.98,
+              "start": 273.86,
+              "end": 295.98,
+              "sourceSentenceIds": ["s00104", "s00105", "s00106", "s00107", "s00108"],
+              "contextSentenceIds": ["s00102", "s00103", "s00104", "s00105", "s00106", "s00107", "s00108"],
+              "sentenceIndices": [53, 55, 59, 59],
+              "reason": "Negative-feature question and three complaints, trolley restriction explicitly retained."
+            },
+            {
+              "contextStart": 296.48,
+              "contextEnd": 316.64,
+              "start": 296.48,
+              "end": 316.64,
+              "sourceSentenceIds": ["s00109", "s00110", "s00111", "s00112"],
+              "contextSentenceIds": ["s00109", "s00110", "s00111", "s00112"],
+              "sentenceIndices": [60, 60, 63, 63],
+              "reason": "Negative-feature question and three complaints, trolley restriction explicitly retained."
+            }
+          ]
+        },
+        "12": {
+          "referenceAnswer": "better than",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[317.92, 346.24, 335.44, 346.24]],
+          "evidenceReview": [
+            {
+              "contextStart": 317.92,
+              "contextEnd": 346.24,
+              "start": 335.44,
+              "end": 346.24,
+              "sourceSentenceIds": ["s00115", "s00116"],
+              "contextSentenceIds": ["s00113", "s00114", "s00115", "s00116"],
+              "sentenceIndices": [64, 66, 67, 67],
+              "reason": "Comparison question and Singapore preference."
+            }
+          ]
+        },
+        "13": {
+          "referenceAnswer": "more greenery/plant(s)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[339.98, 359.08, 348.12, 359.08]],
+          "evidenceReview": [
+            {
+              "contextStart": 339.98,
+              "contextEnd": 359.08,
+              "start": 348.12,
+              "end": 359.08,
+              "sourceSentenceIds": ["s00118", "s00119"],
+              "contextSentenceIds": ["s00116", "s00117", "s00118", "s00119"],
+              "sentenceIndices": [67, 69, 70, 70],
+              "reason": "Reason-for-superiority prompt and greenery examples."
+            }
+          ]
+        },
+        "14": {
+          "referenceAnswer": "(free) (movie(s)) theatre(s)/theater(s)/cinema(s) // can watch free movies",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[339.98, 367.12, 359.84, 367.12]],
+          "evidenceReview": [
+            {
+              "contextStart": 339.98,
+              "contextEnd": 367.12,
+              "start": 359.84,
+              "end": 367.12,
+              "sourceSentenceIds": ["s00120", "s00121"],
+              "contextSentenceIds": ["s00116", "s00117", "s00118", "s00119", "s00120", "s00121"],
+              "sentenceIndices": [67, 71, 72, 72],
+              "reason": "Comparison reason and free cinema."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-8955fdbe2df3",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 8
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [4, 5],
+        [6, 7, 8],
+        [9, 10, 11]
+      ],
+      "reviewRules": []
+    },
+    "A-2": {
+      "questions": {
+        "15": {
+          "referenceAnswer": "Plants: 2; Toilets: 1; Coffee shop: 3; Internet corner: 5; Children’s play area: 4",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [
+            [98.3, 195.56, 111.08, 195.56],
+            [274.04, 311.96, 274.04, 311.96]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 98.3,
+              "contextEnd": 195.56,
+              "start": 111.08,
+              "end": 195.56,
+              "sourceSentenceIds": [
+                "s00139",
+                "s00140",
+                "s00141",
+                "s00142",
+                "s00143",
+                "s00144",
+                "s00145",
+                "s00146",
+                "s00147",
+                "s00148",
+                "s00149",
+                "s00150",
+                "s00151",
+                "s00152",
+                "s00153",
+                "s00154",
+                "s00155",
+                "s00156"
+              ],
+              "contextSentenceIds": [
+                "s00138",
+                "s00139",
+                "s00140",
+                "s00141",
+                "s00142",
+                "s00143",
+                "s00144",
+                "s00145",
+                "s00146",
+                "s00147",
+                "s00148",
+                "s00149",
+                "s00150",
+                "s00151",
+                "s00152",
+                "s00153",
+                "s00154",
+                "s00155",
+                "s00156"
+              ],
+              "sentenceIndices": [10, 11, 28, 28],
+              "reason": "Full ranking discussion preserves revised least-important item and confirms play area second from bottom."
+            },
+            {
+              "contextStart": 274.04,
+              "contextEnd": 311.96,
+              "start": 274.04,
+              "end": 311.96,
+              "sourceSentenceIds": ["s00173", "s00174", "s00175", "s00176", "s00177"],
+              "contextSentenceIds": ["s00173", "s00174", "s00175", "s00176", "s00177"],
+              "sentenceIndices": [45, 45, 49, 49],
+              "reason": "Full ranking discussion preserves revised least-important item and confirms play area second from bottom."
+            }
+          ]
+        },
+        "16": {
+          "referenceAnswer": "bring(s)/give(s)/add(s) colour(s)/color(s) and freshness (to a lounge)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[183.36, 208.36, 195.94, 208.36]],
+          "evidenceReview": [
+            {
+              "contextStart": 183.36,
+              "contextEnd": 208.36,
+              "start": 195.94,
+              "end": 208.36,
+              "sourceSentenceIds": ["s00157", "s00158"],
+              "contextSentenceIds": ["s00153", "s00154", "s00155", "s00156", "s00157", "s00158"],
+              "sentenceIndices": [25, 29, 30, 30],
+              "reason": "Highly rated greenery question and colour/freshness reason."
+            }
+          ]
+        },
+        "17": {
+          "referenceAnswer": "toilet(s) on/in/of plane(s) (are) (often) cramped/not spacious/smelly",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[208.92, 224.16, 212.96, 224.16]],
+          "evidenceReview": [
+            {
+              "contextStart": 208.92,
+              "contextEnd": 224.16,
+              "start": 212.96,
+              "end": 224.16,
+              "sourceSentenceIds": ["s00160", "s00161", "s00162"],
+              "contextSentenceIds": ["s00159", "s00160", "s00161", "s00162"],
+              "sentenceIndices": [31, 32, 34, 34],
+              "reason": "Toilet ranking reason and cramped/smelly qualification."
+            }
+          ]
+        },
+        "18": {
+          "referenceAnswer": "coffee on/in/of plane(s) tastes bad/is lukewarm/not hot enough/not warm enough",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[224.78, 248.3, 235.68, 248.3]],
+          "evidenceReview": [
+            {
+              "contextStart": 224.78,
+              "contextEnd": 248.3,
+              "start": 235.68,
+              "end": 248.3,
+              "sourceSentenceIds": ["s00165", "s00166", "s00167"],
+              "contextSentenceIds": ["s00163", "s00164", "s00165", "s00166", "s00167"],
+              "sentenceIndices": [35, 37, 39, 39],
+              "reason": "Coffee-shop need and bad/lukewarm airline coffee with challenge."
+            }
+          ]
+        },
+        "19": {
+          "referenceAnswer": "a lot of/some/most people use/have their own device(s)/smartphone(s) and tablet(s)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[248.94, 273.36, 257.1, 273.36]],
+          "evidenceReview": [
+            {
+              "contextStart": 248.94,
+              "contextEnd": 273.36,
+              "start": 257.1,
+              "end": 273.36,
+              "sourceSentenceIds": ["s00169", "s00170", "s00171", "s00172"],
+              "contextSentenceIds": ["s00168", "s00169", "s00170", "s00171", "s00172"],
+              "sentenceIndices": [40, 41, 44, 44],
+              "reason": "Internet-corner objection because people use personal devices."
+            }
+          ]
+        },
+        "20": {
+          "referenceAnswer": "help(s) kid(s) use up (their) energy；\nkid(s) are/can/may be noisy // kids can make noise",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q20、Q21 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[274.04, 317.48, 287.36, 317.48]],
+          "evidenceReview": [
+            {
+              "contextStart": 274.04,
+              "contextEnd": 317.48,
+              "start": 287.36,
+              "end": 317.48,
+              "sourceSentenceIds": ["s00175", "s00176", "s00177", "s00178"],
+              "contextSentenceIds": ["s00173", "s00174", "s00175", "s00176", "s00177", "s00178"],
+              "sentenceIndices": [45, 47, 50, 50],
+              "reason": "Both good energy-use and bad noise reasons retained."
+            }
+          ]
+        },
+        "21": {
+          "referenceAnswer": "help(s) kid(s) use up (their) energy；\nkid(s) are/can/may be noisy // kids can make noise",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "Q20、Q21 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[274.04, 317.48, 287.36, 317.48]],
+          "evidenceReview": [
+            {
+              "contextStart": 274.04,
+              "contextEnd": 317.48,
+              "start": 287.36,
+              "end": 317.48,
+              "sourceSentenceIds": ["s00175", "s00176", "s00177", "s00178"],
+              "contextSentenceIds": ["s00173", "s00174", "s00175", "s00176", "s00177", "s00178"],
+              "sentenceIndices": [45, 47, 50, 50],
+              "reason": "Both good energy-use and bad noise reasons retained."
+            }
+          ]
+        },
+        "22": {
+          "referenceAnswer": "1. C",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[359.3, 378.38, 362.62, 378.38]],
+          "evidenceReview": [
+            {
+              "contextStart": 359.3,
+              "contextEnd": 378.38,
+              "start": 362.62,
+              "end": 378.38,
+              "sourceSentenceIds": ["s00190", "s00191", "s00192"],
+              "contextSentenceIds": ["s00188", "s00189", "s00190", "s00191", "s00192"],
+              "sentenceIndices": [60, 62, 64, 64],
+              "reason": "Coffee shop at walkway end, near gate and window matches location1/C."
+            }
+          ]
+        },
+        "23": {
+          "referenceAnswer": "2. B",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[344.94, 358.24, 352.1, 358.24]],
+          "evidenceReview": [
+            {
+              "contextStart": 344.94,
+              "contextEnd": 358.24,
+              "start": 352.1,
+              "end": 358.24,
+              "sourceSentenceIds": ["s00185", "s00186", "s00187"],
+              "contextSentenceIds": ["s00184", "s00185", "s00186", "s00187"],
+              "sentenceIndices": [56, 57, 59, 59],
+              "reason": "Toilets closest to gate matches location2/B."
+            }
+          ]
+        },
+        "24": {
+          "referenceAnswer": "3. A",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[327.74, 351.7, 336.32, 351.7]],
+          "evidenceReview": [
+            {
+              "contextStart": 327.74,
+              "contextEnd": 351.7,
+              "start": 336.32,
+              "end": 351.7,
+              "sourceSentenceIds": ["s00182", "s00183", "s00184"],
+              "contextSentenceIds": ["s00181", "s00182", "s00183", "s00184"],
+              "sentenceIndices": [53, 54, 56, 56],
+              "reason": "Plants middle position followed by explicit letter A."
+            }
+          ]
+        },
+        "25": {
+          "referenceAnswer": "4. D",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[379.36, 410.66, 398, 410.66]],
+          "evidenceReview": [
+            {
+              "contextStart": 379.36,
+              "contextEnd": 410.66,
+              "start": 398,
+              "end": 410.66,
+              "sourceSentenceIds": ["s00195", "s00196", "s00197"],
+              "contextSentenceIds": ["s00193", "s00194", "s00195", "s00196", "s00197"],
+              "sentenceIndices": [65, 67, 69, 69],
+              "reason": "Sleeper chairs opposite gate beyond plants, window and privacy matches location4/D."
+            }
+          ]
+        },
+        "26": {
+          "referenceAnswer": "5. F",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[411.16, 441.3, 419.78, 441.3]],
+          "evidenceReview": [
+            {
+              "contextStart": 411.16,
+              "contextEnd": 441.3,
+              "start": 419.78,
+              "end": 441.3,
+              "sourceSentenceIds": ["s00200", "s00201", "s00202", "s00203", "s00204"],
+              "contextSentenceIds": ["s00198", "s00199", "s00200", "s00201", "s00202", "s00203", "s00204"],
+              "sentenceIndices": [70, 72, 76, 76],
+              "reason": "Bottom-right proposal rejected for internet; internet moves beside play area at foot, location5/F."
+            }
+          ]
+        },
+        "27": {
+          "referenceAnswer": "6. E",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[411.16, 441.3, 419.78, 441.3]],
+          "evidenceReview": [
+            {
+              "contextStart": 411.16,
+              "contextEnd": 441.3,
+              "start": 419.78,
+              "end": 441.3,
+              "sourceSentenceIds": ["s00200", "s00201", "s00202", "s00203", "s00204"],
+              "contextSentenceIds": ["s00198", "s00199", "s00200", "s00201", "s00202", "s00203", "s00204"],
+              "sentenceIndices": [70, 72, 76, 76],
+              "reason": "Bottom-right corner assigned to play area away from passengers, location6/E."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-8955fdbe2df3",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 8
+        },
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 9
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[20, 21]],
+      "reviewRules": []
+    },
+    "A-3": {
+      "questions": {
+        "28": {
+          "referenceAnswer": "X",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[86.39, 121.68, 93.09, 121.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 86.39,
+              "contextEnd": 121.68,
+              "start": 93.09,
+              "end": 121.68,
+              "sourceSentenceIds": ["s00222", "s00223", "s00224", "s00225", "s00226"],
+              "contextSentenceIds": [
+                "s00219",
+                "s00220",
+                "s00221",
+                "s00222",
+                "s00223",
+                "s00224",
+                "s00225",
+                "s00226"
+              ],
+              "sentenceIndices": [8, 11, 15, 15],
+              "reason": "Hot dog disliked and salty reason."
+            }
+          ]
+        },
+        "29": {
+          "referenceAnswer": "?",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[161.42, 207.64, 173.28, 207.64]],
+          "evidenceReview": [
+            {
+              "contextStart": 161.42,
+              "contextEnd": 207.64,
+              "start": 173.28,
+              "end": 207.64,
+              "sourceSentenceIds": ["s00234", "s00235", "s00236", "s00237", "s00238", "s00239", "s00240"],
+              "contextSentenceIds": [
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235",
+                "s00236",
+                "s00237",
+                "s00238",
+                "s00239",
+                "s00240"
+              ],
+              "sentenceIndices": [21, 23, 29, 29],
+              "reason": "Chicken mixed tasty/stringy judgement, explicit question mark instruction."
+            }
+          ]
+        },
+        "30": {
+          "referenceAnswer": "X",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[235.76, 272.48, 242.4, 272.48]],
+          "evidenceReview": [
+            {
+              "contextStart": 235.76,
+              "contextEnd": 272.48,
+              "start": 242.4,
+              "end": 272.48,
+              "sourceSentenceIds": ["s00246", "s00247", "s00248", "s00249", "s00250", "s00251", "s00252"],
+              "contextSentenceIds": [
+                "s00245",
+                "s00246",
+                "s00247",
+                "s00248",
+                "s00249",
+                "s00250",
+                "s00251",
+                "s00252"
+              ],
+              "sentenceIndices": [34, 35, 41, 41],
+              "reason": "Sushi avoidance and explicit dislike, distinguishes fish from fishy."
+            }
+          ]
+        },
+        "31": {
+          "referenceAnswer": "✓",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[122.54, 160.7, 133.12, 160.7]],
+          "evidenceReview": [
+            {
+              "contextStart": 122.54,
+              "contextEnd": 160.7,
+              "start": 133.12,
+              "end": 160.7,
+              "sourceSentenceIds": ["s00229", "s00230", "s00231"],
+              "contextSentenceIds": ["s00227", "s00228", "s00229", "s00230", "s00231"],
+              "sentenceIndices": [16, 18, 20, 20],
+              "reason": "Tortilla positive judgement, spicy and filling."
+            }
+          ]
+        },
+        "32": {
+          "referenceAnswer": "?",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[273.32, 307.9, 285.98, 307.9]],
+          "evidenceReview": [
+            {
+              "contextStart": 273.32,
+              "contextEnd": 307.9,
+              "start": 285.98,
+              "end": 307.9,
+              "sourceSentenceIds": ["s00256", "s00257", "s00258", "s00259", "s00260"],
+              "contextSentenceIds": [
+                "s00253",
+                "s00254",
+                "s00255",
+                "s00256",
+                "s00257",
+                "s00258",
+                "s00259",
+                "s00260"
+              ],
+              "sentenceIndices": [42, 45, 49, 49],
+              "reason": "Cupcake indecision and mixed positive/negative reasons."
+            }
+          ]
+        },
+        "33": {
+          "referenceAnswer": "✓",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[208.78, 234.58, 222.74, 234.58]],
+          "evidenceReview": [
+            {
+              "contextStart": 208.78,
+              "contextEnd": 234.58,
+              "start": 222.74,
+              "end": 234.58,
+              "sourceSentenceIds": ["s00242", "s00243", "s00244"],
+              "contextSentenceIds": ["s00241", "s00242", "s00243", "s00244"],
+              "sentenceIndices": [30, 31, 33, 33],
+              "reason": "Smoothie enthusiastic approval and cooling/refreshing."
+            }
+          ]
+        },
+        "34": {
+          "referenceAnswer": "too salty",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[86.39, 121.68, 112, 121.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 86.39,
+              "contextEnd": 121.68,
+              "start": 112,
+              "end": 121.68,
+              "sourceSentenceIds": ["s00225", "s00226"],
+              "contextSentenceIds": [
+                "s00219",
+                "s00220",
+                "s00221",
+                "s00222",
+                "s00223",
+                "s00224",
+                "s00225",
+                "s00226"
+              ],
+              "sentenceIndices": [8, 14, 15, 15],
+              "reason": "Hot-dog taste reason repeated."
+            }
+          ]
+        },
+        "35": {
+          "referenceAnswer": "tasty sauce(s)；\n(really)/(a bit)/(very) stringy",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q35、Q36 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[161.42, 207.64, 173.28, 207.64]],
+          "evidenceReview": [
+            {
+              "contextStart": 161.42,
+              "contextEnd": 207.64,
+              "start": 173.28,
+              "end": 207.64,
+              "sourceSentenceIds": ["s00234", "s00235", "s00236", "s00237", "s00238", "s00239", "s00240"],
+              "contextSentenceIds": [
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235",
+                "s00236",
+                "s00237",
+                "s00238",
+                "s00239",
+                "s00240"
+              ],
+              "sentenceIndices": [21, 23, 29, 29],
+              "reason": "Chicken sauce praise and stringy criticism retained together."
+            }
+          ]
+        },
+        "36": {
+          "referenceAnswer": "tasty sauce(s)；\n(really)/(a bit)/(very) stringy",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q35、Q36 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[161.42, 207.64, 173.28, 207.64]],
+          "evidenceReview": [
+            {
+              "contextStart": 161.42,
+              "contextEnd": 207.64,
+              "start": 173.28,
+              "end": 207.64,
+              "sourceSentenceIds": ["s00234", "s00235", "s00236", "s00237", "s00238", "s00239", "s00240"],
+              "contextSentenceIds": [
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235",
+                "s00236",
+                "s00237",
+                "s00238",
+                "s00239",
+                "s00240"
+              ],
+              "sentenceIndices": [21, 23, 29, 29],
+              "reason": "Chicken sauce praise and stringy criticism retained together."
+            }
+          ]
+        },
+        "37": {
+          "referenceAnswer": "(much) (too)/(very) fishy",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[235.76, 272.48, 255.26, 272.48]],
+          "evidenceReview": [
+            {
+              "contextStart": 235.76,
+              "contextEnd": 272.48,
+              "start": 255.26,
+              "end": 272.48,
+              "sourceSentenceIds": ["s00249", "s00250", "s00251", "s00252"],
+              "contextSentenceIds": [
+                "s00245",
+                "s00246",
+                "s00247",
+                "s00248",
+                "s00249",
+                "s00250",
+                "s00251",
+                "s00252"
+              ],
+              "sentenceIndices": [34, 38, 41, 41],
+              "reason": "Sushi rejection specifically too fishy."
+            }
+          ]
+        },
+        "38": {
+          "referenceAnswer": "(it’s) spicy/hot",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[122.54, 160.7, 140.24, 160.7]],
+          "evidenceReview": [
+            {
+              "contextStart": 122.54,
+              "contextEnd": 160.7,
+              "start": 140.24,
+              "end": 160.7,
+              "sourceSentenceIds": ["s00230", "s00231"],
+              "contextSentenceIds": ["s00227", "s00228", "s00229", "s00230", "s00231"],
+              "sentenceIndices": [16, 19, 20, 20],
+              "reason": "Tortilla spice explicitly distinguished from temperature."
+            }
+          ]
+        },
+        "39": {
+          "referenceAnswer": "light // not (so/too/very) heavy；\n(a bit) tasteless // no taste",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q39、Q40 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[273.32, 307.9, 285.98, 307.9]],
+          "evidenceReview": [
+            {
+              "contextStart": 273.32,
+              "contextEnd": 307.9,
+              "start": 285.98,
+              "end": 307.9,
+              "sourceSentenceIds": ["s00256", "s00257", "s00258", "s00259", "s00260"],
+              "contextSentenceIds": [
+                "s00253",
+                "s00254",
+                "s00255",
+                "s00256",
+                "s00257",
+                "s00258",
+                "s00259",
+                "s00260"
+              ],
+              "sentenceIndices": [42, 45, 49, 49],
+              "reason": "Cupcake lightness and tastelessness explain uncertainty."
+            }
+          ]
+        },
+        "40": {
+          "referenceAnswer": "light // not (so/too/very) heavy；\n(a bit) tasteless // no taste",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q39、Q40 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[273.32, 307.9, 285.98, 307.9]],
+          "evidenceReview": [
+            {
+              "contextStart": 273.32,
+              "contextEnd": 307.9,
+              "start": 285.98,
+              "end": 307.9,
+              "sourceSentenceIds": ["s00256", "s00257", "s00258", "s00259", "s00260"],
+              "contextSentenceIds": [
+                "s00253",
+                "s00254",
+                "s00255",
+                "s00256",
+                "s00257",
+                "s00258",
+                "s00259",
+                "s00260"
+              ],
+              "sentenceIndices": [42, 45, 49, 49],
+              "reason": "Cupcake lightness and tastelessness explain uncertainty."
+            }
+          ]
+        },
+        "41": {
+          "referenceAnswer": "(very) (icy) cool；\nRefreshing // make you feel refresh(ed)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q41、Q42 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[208.78, 234.58, 222.74, 234.58]],
+          "evidenceReview": [
+            {
+              "contextStart": 208.78,
+              "contextEnd": 234.58,
+              "start": 222.74,
+              "end": 234.58,
+              "sourceSentenceIds": ["s00242", "s00243", "s00244"],
+              "contextSentenceIds": ["s00241", "s00242", "s00243", "s00244"],
+              "sentenceIndices": [30, 31, 33, 33],
+              "reason": "Smoothie coolness and refreshing effect."
+            }
+          ]
+        },
+        "42": {
+          "referenceAnswer": "(very) (icy) cool；\nRefreshing // make you feel refresh(ed)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q41、Q42 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[208.78, 234.58, 222.74, 234.58]],
+          "evidenceReview": [
+            {
+              "contextStart": 208.78,
+              "contextEnd": 234.58,
+              "start": 222.74,
+              "end": 234.58,
+              "sourceSentenceIds": ["s00242", "s00243", "s00244"],
+              "contextSentenceIds": ["s00241", "s00242", "s00243", "s00244"],
+              "sentenceIndices": [30, 31, 33, 33],
+              "reason": "Smoothie coolness and refreshing effect."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-8955fdbe2df3",
+        "page": 9
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 9
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [35, 36],
+        [39, 40],
+        [41, 42]
+      ],
+      "reviewRules": []
+    },
+    "A-4": {
+      "questions": {
+        "43": {
+          "referenceAnswer": "60% / percent / per cent",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[126.29, 146.27, 133.75, 146.27]],
+          "evidenceReview": [
+            {
+              "contextStart": 126.29,
+              "contextEnd": 146.27,
+              "start": 133.75,
+              "end": 146.27,
+              "sourceSentenceIds": ["s00277", "s00278", "s00279"],
+              "contextSentenceIds": ["s00275", "s00276", "s00277", "s00278", "s00279"],
+              "sentenceIndices": [10, 12, 14, 14],
+              "reason": "Ratings question and 60 percent impressed; 15/50 distractor retained separately."
+            }
+          ]
+        },
+        "44": {
+          "referenceAnswer": "impressed",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[126.29, 146.27, 133.75, 146.27]],
+          "evidenceReview": [
+            {
+              "contextStart": 126.29,
+              "contextEnd": 146.27,
+              "start": 133.75,
+              "end": 146.27,
+              "sourceSentenceIds": ["s00277", "s00278", "s00279"],
+              "contextSentenceIds": ["s00275", "s00276", "s00277", "s00278", "s00279"],
+              "sentenceIndices": [10, 12, 14, 14],
+              "reason": "Ratings question and 60 percent impressed; 15/50 distractor retained separately."
+            }
+          ]
+        },
+        "45": {
+          "referenceAnswer": "¼ / quarter",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[137.31, 159.91, 147.57, 159.91]],
+          "evidenceReview": [
+            {
+              "contextStart": 137.31,
+              "contextEnd": 159.91,
+              "start": 147.57,
+              "end": 159.91,
+              "sourceSentenceIds": ["s00280", "s00281", "s00282"],
+              "contextSentenceIds": ["s00278", "s00279", "s00280", "s00281", "s00282"],
+              "sentenceIndices": [13, 15, 17, 17],
+              "reason": "25 percent no restaurant use contrasted with unhappy15 percent."
+            }
+          ]
+        },
+        "46": {
+          "referenceAnswer": "fewer/reduce/decrease(ing)/(the) number/no. of fast(-)food outlet(s)/restaurant(s)/shop(s)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[161.05, 186.99, 167.91, 186.99]],
+          "evidenceReview": [
+            {
+              "contextStart": 161.05,
+              "contextEnd": 186.99,
+              "start": 167.91,
+              "end": 186.99,
+              "sourceSentenceIds": ["s00285", "s00286", "s00287", "s00288"],
+              "contextSentenceIds": ["s00283", "s00284", "s00285", "s00286", "s00287", "s00288"],
+              "sentenceIndices": [18, 20, 23, 23],
+              "reason": "Improvement question and fewer fast-food outlets."
+            }
+          ]
+        },
+        "47": {
+          "referenceAnswer": "(increase)/(add) more medium(-)price(d) restaurant(s)",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[187.63, 206.63, 187.63, 206.63]],
+          "evidenceReview": [
+            {
+              "contextStart": 187.63,
+              "contextEnd": 206.63,
+              "start": 187.63,
+              "end": 206.63,
+              "sourceSentenceIds": ["s00289", "s00290", "s00291", "s00292"],
+              "contextSentenceIds": ["s00289", "s00290", "s00291", "s00292"],
+              "sentenceIndices": [24, 24, 27, 27],
+              "reason": "Medium-price addition balances cheap/expensive extremes."
+            }
+          ]
+        },
+        "48": {
+          "referenceAnswer": "(provide) (a) greater variety of food",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[207.51, 217.71, 207.51, 217.71]],
+          "evidenceReview": [
+            {
+              "contextStart": 207.51,
+              "contextEnd": 217.71,
+              "start": 207.51,
+              "end": 217.71,
+              "sourceSentenceIds": ["s00293", "s00294", "s00295"],
+              "contextSentenceIds": ["s00293", "s00294", "s00295"],
+              "sentenceIndices": [28, 28, 30, 30],
+              "reason": "Greater variety request clarified as cuisines."
+            }
+          ]
+        },
+        "49": {
+          "referenceAnswer": "Japanese (food)；\nIndian (food)；\nMiddle Eastern",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q49、Q50、Q51 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[207.51, 245.01, 218.73, 245.01]],
+          "evidenceReview": [
+            {
+              "contextStart": 207.51,
+              "contextEnd": 245.01,
+              "start": 218.73,
+              "end": 245.01,
+              "sourceSentenceIds": ["s00296", "s00297", "s00298", "s00299", "s00300", "s00301", "s00302"],
+              "contextSentenceIds": [
+                "s00293",
+                "s00294",
+                "s00295",
+                "s00296",
+                "s00297",
+                "s00298",
+                "s00299",
+                "s00300",
+                "s00301",
+                "s00302"
+              ],
+              "sentenceIndices": [28, 31, 37, 37],
+              "reason": "Three interchangeable cuisines retained, not nationalities of customers."
+            }
+          ]
+        },
+        "50": {
+          "referenceAnswer": "Japanese (food)；\nIndian (food)；\nMiddle Eastern",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q49、Q50、Q51 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[207.51, 245.01, 218.73, 245.01]],
+          "evidenceReview": [
+            {
+              "contextStart": 207.51,
+              "contextEnd": 245.01,
+              "start": 218.73,
+              "end": 245.01,
+              "sourceSentenceIds": ["s00296", "s00297", "s00298", "s00299", "s00300", "s00301", "s00302"],
+              "contextSentenceIds": [
+                "s00293",
+                "s00294",
+                "s00295",
+                "s00296",
+                "s00297",
+                "s00298",
+                "s00299",
+                "s00300",
+                "s00301",
+                "s00302"
+              ],
+              "sentenceIndices": [28, 31, 37, 37],
+              "reason": "Three interchangeable cuisines retained, not nationalities of customers."
+            }
+          ]
+        },
+        "51": {
+          "referenceAnswer": "Japanese (food)；\nIndian (food)；\nMiddle Eastern",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q49、Q50、Q51 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[207.51, 245.01, 218.73, 245.01]],
+          "evidenceReview": [
+            {
+              "contextStart": 207.51,
+              "contextEnd": 245.01,
+              "start": 218.73,
+              "end": 245.01,
+              "sourceSentenceIds": ["s00296", "s00297", "s00298", "s00299", "s00300", "s00301", "s00302"],
+              "contextSentenceIds": [
+                "s00293",
+                "s00294",
+                "s00295",
+                "s00296",
+                "s00297",
+                "s00298",
+                "s00299",
+                "s00300",
+                "s00301",
+                "s00302"
+              ],
+              "sentenceIndices": [28, 31, 37, 37],
+              "reason": "Three interchangeable cuisines retained, not nationalities of customers."
+            }
+          ]
+        },
+        "52": {
+          "referenceAnswer": "place(s) of worship",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[246.01, 266.49, 253.45, 266.49]],
+          "evidenceReview": [
+            {
+              "contextStart": 246.01,
+              "contextEnd": 266.49,
+              "start": 253.45,
+              "end": 266.49,
+              "sourceSentenceIds": ["s00305", "s00306", "s00307", "s00308"],
+              "contextSentenceIds": ["s00303", "s00304", "s00305", "s00306", "s00307", "s00308"],
+              "sentenceIndices": [38, 40, 43, 43],
+              "reason": "Other facilities request and places of worship heading."
+            }
+          ]
+        },
+        "53": {
+          "referenceAnswer": "Muslim/Moslem prayer room；\nmeditation room",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q53、Q54 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[253.45, 316.97, 267.17, 316.97]],
+          "evidenceReview": [
+            {
+              "contextStart": 253.45,
+              "contextEnd": 316.97,
+              "start": 267.17,
+              "end": 316.97,
+              "sourceSentenceIds": [
+                "s00309",
+                "s00310",
+                "s00311",
+                "s00312",
+                "s00313",
+                "s00314",
+                "s00315",
+                "s00316",
+                "s00317",
+                "s00318"
+              ],
+              "contextSentenceIds": [
+                "s00305",
+                "s00306",
+                "s00307",
+                "s00308",
+                "s00309",
+                "s00310",
+                "s00311",
+                "s00312",
+                "s00313",
+                "s00314",
+                "s00315",
+                "s00316",
+                "s00317",
+                "s00318"
+              ],
+              "sentenceIndices": [40, 44, 53, 53],
+              "reason": "Existing chapel distinguished from Muslim prayer and meditation rooms."
+            }
+          ]
+        },
+        "54": {
+          "referenceAnswer": "Muslim/Moslem prayer room；\nmeditation room",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 9
+          },
+          "note": "Q53、Q54 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[253.45, 316.97, 267.17, 316.97]],
+          "evidenceReview": [
+            {
+              "contextStart": 253.45,
+              "contextEnd": 316.97,
+              "start": 267.17,
+              "end": 316.97,
+              "sourceSentenceIds": [
+                "s00309",
+                "s00310",
+                "s00311",
+                "s00312",
+                "s00313",
+                "s00314",
+                "s00315",
+                "s00316",
+                "s00317",
+                "s00318"
+              ],
+              "contextSentenceIds": [
+                "s00305",
+                "s00306",
+                "s00307",
+                "s00308",
+                "s00309",
+                "s00310",
+                "s00311",
+                "s00312",
+                "s00313",
+                "s00314",
+                "s00315",
+                "s00316",
+                "s00317",
+                "s00318"
+              ],
+              "sentenceIndices": [40, 44, 53, 53],
+              "reason": "Existing chapel distinguished from Muslim prayer and meditation rooms."
+            }
+          ]
+        },
+        "55": {
+          "referenceAnswer": "entertainment facilities/facility",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 11
+          },
+          "note": "",
+          "evidence": [[318.07, 333.17, 318.07, 333.17]],
+          "evidenceReview": [
+            {
+              "contextStart": 318.07,
+              "contextEnd": 333.17,
+              "start": 318.07,
+              "end": 333.17,
+              "sourceSentenceIds": ["s00319", "s00320"],
+              "contextSentenceIds": ["s00319", "s00320"],
+              "sentenceIndices": [54, 54, 55, 55],
+              "reason": "Entertainment heading followed by request for examples."
+            }
+          ]
+        },
+        "56": {
+          "referenceAnswer": "game(s) centre/center",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 11
+          },
+          "note": "",
+          "evidence": [[318.07, 341.77, 322.19, 341.77]],
+          "evidenceReview": [
+            {
+              "contextStart": 318.07,
+              "contextEnd": 341.77,
+              "start": 322.19,
+              "end": 341.77,
+              "sourceSentenceIds": ["s00320", "s00321"],
+              "contextSentenceIds": ["s00319", "s00320", "s00321"],
+              "sentenceIndices": [54, 55, 56, 56],
+              "reason": "Game centre suggestion remains recordable despite authority reluctance."
+            }
+          ]
+        },
+        "57": {
+          "referenceAnswer": "art gallery",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 11
+          },
+          "note": "",
+          "evidence": [[322.19, 356.09, 342.13, 356.09]],
+          "evidenceReview": [
+            {
+              "contextStart": 322.19,
+              "contextEnd": 356.09,
+              "start": 342.13,
+              "end": 356.09,
+              "sourceSentenceIds": ["s00322", "s00323", "s00324", "s00325"],
+              "contextSentenceIds": ["s00320", "s00321", "s00322", "s00323", "s00324", "s00325"],
+              "sentenceIndices": [55, 57, 60, 60],
+              "reason": "More acceptable alternative art gallery and explanation."
+            }
+          ]
+        },
+        "58": {
+          "referenceAnswer": "satisfied // pleased // happy // contented",
+          "reference": {
+            "sourceId": "p-8955fdbe2df3",
+            "page": 11
+          },
+          "note": "",
+          "evidence": [[357.79, 373.01, 357.79, 373.01]],
+          "evidenceReview": [
+            {
+              "contextStart": 357.79,
+              "contextEnd": 373.01,
+              "start": 357.79,
+              "end": 373.01,
+              "sourceSentenceIds": ["s00326", "s00327", "s00328"],
+              "contextSentenceIds": ["s00326", "s00327", "s00328"],
+              "sentenceIndices": [61, 61, 63, 63],
+              "reason": "Explicit concluding satisfactory judgement and confirmation."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-8955fdbe2df3",
+        "page": 9
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 9
+        },
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 11
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [49, 50, 51],
+        [53, 54]
+      ],
+      "reviewRules": []
+    },
+    "B1-5": {
+      "reference": {
+        "sourceId": "p-8955fdbe2df3",
+        "page": 12
+      },
+      "dataFile": {
+        "sourceId": "p-c6ef1e44062f",
+        "page": 1
+      },
+      "reviewRules": [
+        "Information must be in correct section.",
+        "5.2,5.4,5.7,5.8,5.9,5.10 must have correct spelling and capitalization."
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 12
+        },
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 13
+        }
+      ],
+      "questions": {
+        "5": {
+          "referenceAnswer": "内容：16 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "5.1",
+              "referenceAnswer": "Top/Popular Destinations (or something similar)",
+              "section": "",
+              "sourceLabel": "评分参考未列资料页码",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2",
+              "referenceAnswer": "(the) USA",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 231.44,
+                  "contextEnd": 268.66,
+                  "start": 254.18,
+                  "end": 268.66,
+                  "sentenceIds": [
+                    "s00390",
+                    "s00391",
+                    "s00392",
+                    "s00393",
+                    "s00394",
+                    "s00395",
+                    "s00396",
+                    "s00397",
+                    "s00398",
+                    "s00399"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.3",
+              "referenceAnswer": "55 million (visitors)",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 254.18,
+                  "contextEnd": 283,
+                  "start": 268.96,
+                  "end": 283,
+                  "sentenceIds": ["s00397", "s00398", "s00399", "s00400", "s00401"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.4",
+              "referenceAnswer": "Spain",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 254.18,
+                  "contextEnd": 297.78,
+                  "start": 275.8,
+                  "end": 297.78,
+                  "sentenceIds": ["s00397", "s00398", "s00399", "s00400", "s00401", "s00402", "s00403"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.5",
+              "referenceAnswer": "52 million (visitors)",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 254.18,
+                  "contextEnd": 297.78,
+                  "start": 275.8,
+                  "end": 297.78,
+                  "sentenceIds": ["s00397", "s00398", "s00399", "s00400", "s00401", "s00402", "s00403"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.6",
+              "referenceAnswer": "(Top) Airports // Busiest and best airports",
+              "section": "",
+              "sourceLabel": "评分参考未列资料页码",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.7",
+              "referenceAnswer": "Atlanta",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.8",
+              "referenceAnswer": "Hong Kong",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.9",
+              "referenceAnswer": "Singapore",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.10",
+              "referenceAnswer": "Seoul",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.11",
+              "referenceAnswer": "Reasons for travel / Why do people travel?",
+              "section": "",
+              "sourceLabel": "评分参考未列资料页码",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.12",
+              "referenceAnswer": "(To) have fun",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 49.79,
+                  "contextEnd": 85.66,
+                  "start": 56.34,
+                  "end": 85.66,
+                  "sentenceIds": ["s00359", "s00360", "s00361", "s00362", "s00363"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.13",
+              "referenceAnswer": "(To) learn a / another language / different languages",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 49.79,
+                  "contextEnd": 119.38,
+                  "start": 86.18,
+                  "end": 119.38,
+                  "sentenceIds": [
+                    "s00359",
+                    "s00360",
+                    "s00361",
+                    "s00362",
+                    "s00363",
+                    "s00364",
+                    "s00365",
+                    "s00366",
+                    "s00367",
+                    "s00368",
+                    "s00369",
+                    "s00370",
+                    "s00371"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.14",
+              "referenceAnswer": "(To) meet new people / make (new) friends",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.15",
+              "referenceAnswer": "(To) try new food",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.16",
+              "referenceAnswer": "(To) see new places",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-8955fdbe2df3",
+              "page": 13
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-6": {
+      "reference": {
+        "sourceId": "p-8955fdbe2df3",
+        "page": 13
+      },
+      "dataFile": {
+        "sourceId": "p-c6ef1e44062f",
+        "page": 1
+      },
+      "reviewRules": [
+        "语气：friendly, polite and businesslike",
+        "合适开头：Dear Mr. Ross",
+        "不合适开头：Dear Kim / Kim Ross / Ms. Ross / Sir // Hi / Hello // No salutation",
+        "合适结尾：Marty Poon // Yours sincerely, Marty Poon // Yours truly, Marty Poon // Yours, Marty Poon // Regards, Marty Poon // Best wishes, Marty Poon",
+        "不合适结尾：Yours faithfully, Marty Poon // Marty // Mr. / Ms. / Mrs. Poon"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 13
+        },
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 14
+        },
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 15
+        }
+      ],
+      "questions": {
+        "6": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "6.1",
+              "referenceAnswer": "Subject line: your advertisement + amendments / changes / comments / problems",
+              "section": "",
+              "sourceLabel": "评分参考未列资料页码",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2",
+              "referenceAnswer": "over the word limit (for half page advert) // 80+ words",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3",
+              "referenceAnswer": "should be 50–70 words (for half page advert)",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.4",
+              "referenceAnswer": "include a photo of one of the hotel rooms / picture of the hotel itself",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.5",
+              "referenceAnswer": "no room price // include room price",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.6",
+              "referenceAnswer": "no business address // include business address",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.7",
+              "referenceAnswer": "no website address or company registration number // please add website address and company registration number",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.8",
+              "referenceAnswer": "submission deadline is 30 April",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.9",
+              "referenceAnswer": "payment deadline: first 50% due one week before the issue is published",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-8955fdbe2df3",
+              "page": 14
+            },
+            {
+              "sourceId": "p-8955fdbe2df3",
+              "page": 15
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-7": {
+      "reference": {
+        "sourceId": "p-8955fdbe2df3",
+        "page": 16
+      },
+      "dataFile": {
+        "sourceId": "p-c6ef1e44062f",
+        "page": 1
+      },
+      "reviewRules": [
+        "7.1 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2；4 → 2；5 → 3；6 → 3。",
+        "7.2 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2；4 → 2；5 → 3；6 → 3。",
+        "7.3 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2；4 → 2；5 → 3；6 → 3。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 16
+        },
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 17
+        },
+        {
+          "sourceId": "p-8955fdbe2df3",
+          "page": 18
+        }
+      ],
+      "questions": {
+        "7": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "7.1a",
+              "referenceAnswer": "ice hotel",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 298.68,
+                  "contextEnd": 342.66,
+                  "start": 315.86,
+                  "end": 342.66,
+                  "sentenceIds": [
+                    "s00404",
+                    "s00405",
+                    "s00406",
+                    "s00407",
+                    "s00408",
+                    "s00409",
+                    "s00410",
+                    "s00411",
+                    "s00412"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.1b",
+              "referenceAnswer": "in Norway",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1c",
+              "referenceAnswer": "everything made of ice",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 315.86,
+                  "contextEnd": 342.66,
+                  "start": 327.46,
+                  "end": 342.66,
+                  "sentenceIds": ["s00407", "s00408", "s00409", "s00410", "s00411", "s00412"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.1d",
+              "referenceAnswer": "not cold",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 315.86,
+                  "contextEnd": 349.92,
+                  "start": 338.28,
+                  "end": 349.92,
+                  "sentenceIds": [
+                    "s00407",
+                    "s00408",
+                    "s00409",
+                    "s00410",
+                    "s00411",
+                    "s00412",
+                    "s00413",
+                    "s00414",
+                    "s00415"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.1e",
+              "referenceAnswer": "warm clothes/coats are provided",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1f",
+              "referenceAnswer": "(only) opens in winter",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2a",
+              "referenceAnswer": "prison hotel",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、5、7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 5,
+                  "printedPage": 5
+                },
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 350.74,
+                  "contextEnd": 374,
+                  "start": 350.74,
+                  "end": 374,
+                  "sentenceIds": ["s00416", "s00417", "s00418", "s00419", "s00420"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.2b",
+              "referenceAnswer": "in Australia",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 350.74,
+                  "contextEnd": 374,
+                  "start": 350.74,
+                  "end": 374,
+                  "sentenceIds": ["s00416", "s00417", "s00418", "s00419", "s00420"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.2c",
+              "referenceAnswer": "history of the prison is interesting",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2d",
+              "referenceAnswer": "sleep in a cell",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 350.74,
+                  "contextEnd": 397.62,
+                  "start": 367.88,
+                  "end": 397.62,
+                  "sentenceIds": [
+                    "s00416",
+                    "s00417",
+                    "s00418",
+                    "s00419",
+                    "s00420",
+                    "s00421",
+                    "s00422",
+                    "s00423",
+                    "s00424",
+                    "s00425"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.2e",
+              "referenceAnswer": "have a key for your room // not locked up in room",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 350.74,
+                  "contextEnd": 397.62,
+                  "start": 367.88,
+                  "end": 397.62,
+                  "sentenceIds": [
+                    "s00416",
+                    "s00417",
+                    "s00418",
+                    "s00419",
+                    "s00420",
+                    "s00421",
+                    "s00422",
+                    "s00423",
+                    "s00424",
+                    "s00425"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.2f",
+              "referenceAnswer": "(hotel guests) cook (dinner) together",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3a",
+              "referenceAnswer": "lighthouse hotel",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3b",
+              "referenceAnswer": "in Scotland",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3c",
+              "referenceAnswer": "rooms are round",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3d",
+              "referenceAnswer": "fantastic scenery",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3e",
+              "referenceAnswer": "peace / quiet // is peaceful / quiet",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3f",
+              "referenceAnswer": "see birdlife",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-c6ef1e44062f",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-8955fdbe2df3",
+                "page": 16
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-8955fdbe2df3",
+              "page": 17
+            },
+            {
+              "sourceId": "p-8955fdbe2df3",
+              "page": 18
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    }
+  }
+}

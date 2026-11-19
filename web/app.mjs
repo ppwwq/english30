@@ -11,13 +11,16 @@ import {
   materialExposure,
   selfAssessAnswer,
 } from './core.mjs';
-import { listeningLibrary, parseListeningRecord, importListeningRecord } from './listening-library.mjs';
 import { mountPaperPractice } from './paper-practice.mjs';
+import { taskQuestionPages } from './paper-question-pages.mjs';
+import { mountTranscriptWindow } from './transcript-window.mjs';
 import { mountFocusedDrill } from './focused-drill.mjs';
 import { questionDrillSentence } from './focused-drill-core.mjs';
+import { checkpointPaper, readPaperDraft, seenMaterials, markSeen } from './paper-recovery.mjs';
 
 const $ = (id) => document.getElementById(id);
 const audio = $('audio');
+const transcriptWindow = mountTranscriptWindow();
 let catalogue = [
   { id: '2025-task1-intro', title: '入门选段 · 第 1–4 题', url: './lessons/2025-task1-intro.json' },
   { id: '2025-task1', title: '完整访谈 · 第 1–13 题', url: './lessons/2025-task1.json' },
@@ -33,10 +36,13 @@ let navigateTo = () => {},
   glossary = [];
 let requestSave = () => status('保存入口正在准备，请稍候。');
 let focusedDrill;
-const exposedLessons = new Set();
+let answerMode = 'type',
+  inkPages = {},
+  paperPage = null;
+const exposedLessons = seenMaterials();
+let recoveringPaper = readPaperDraft(),
+  checkpointTimer;
 let priorExposure = false;
-let importedMaterial = false,
-  currentAudioBlob = null;
 let playbackRequest = 0;
 let lesson = null,
   session = null,
@@ -56,6 +62,8 @@ let loop = { start: null, end: null, enabled: false },
   loadGeneration = 0;
 let audioLoadController = null,
   pendingSeek = null;
+let seekPreview = null;
+let seekGesturePaused = null;
 let savedRecord = null,
   saveRevision = null,
   revision = 0,
@@ -79,13 +87,42 @@ function status(message, error = false) {
 }
 function touch() {
   revision++;
+  queueCheckpoint();
   listeningEvents.dispatchEvent(new Event('change'));
+}
+function checkpoint() {
+  clearTimeout(checkpointTimer);
+  if (!lesson?.paper || !session) return;
+  const elapsedMs = attemptStart == null ? 0 : Math.max(0, Date.now() - attemptStart);
+  const ok = checkpointPaper({
+    session,
+    drafts,
+    inkPages,
+    answerMode,
+    paperPage,
+    hasStarted,
+    elapsedMs,
+    navigationUsed,
+    revision,
+    priorExposure,
+    savedAt: savedRecord?.savedAt,
+  });
+  if (!ok) status('浏览器暂时无法保留刷新草稿，请保持此页打开。', true);
+}
+function queueCheckpoint() {
+  if (!lesson?.paper) return;
+  clearTimeout(checkpointTimer);
+  checkpointTimer = setTimeout(checkpoint, 100);
 }
 function review() {
   return session?.phase === 'review';
 }
 function hasAnswerDraft() {
-  return !!session && !review() && Object.values(drafts).some((answer) => String(answer).trim());
+  return (
+    !!session &&
+    !review() &&
+    (Object.keys(inkPages).length > 0 || Object.values(drafts).some((answer) => String(answer).trim()))
+  );
 }
 function hasUnsavedListening() {
   return hasAnswerDraft() || (revision > 0 && revision !== saveRevision);
@@ -114,10 +151,15 @@ function resetPlayer() {
   audio.pause();
   loop = { start: null, end: null, enabled: false };
   stopAt = null;
+  seekPreview = null;
+  seekGesturePaused = null;
+  $('loop-more').open = false;
+  $('player-feedback').hidden = true;
   selectedWord = null;
   audio.playbackRate = 1;
   $('playback-rate').value = '1';
   updateLoop();
+  syncPlaybackButton();
 }
 function clearHighlights() {
   if (activeWord) wordElements.get(activeWord)?.classList.remove('is-playing');
@@ -126,7 +168,7 @@ function clearHighlights() {
   activeSentence = null;
 }
 
-async function loadLesson(data, { imported = false, audioBlob = null } = {}) {
+async function loadLesson(data) {
   validateLesson(data);
   for (const [node, disabled] of unavailableControls) node.disabled = disabled;
   unavailableControls = [];
@@ -139,18 +181,38 @@ async function loadLesson(data, { imported = false, audioBlob = null } = {}) {
     objectURL = null;
   }
   lesson = data;
-  importedMaterial = imported;
-  currentAudioBlob = audioBlob;
   priorExposure = exposureFor(data.id) !== 'fresh';
   session = createSession(lesson);
   drafts = {};
+  answerMode = 'type';
+  inkPages = {};
+  paperPage = null;
   selectedWord = null;
   hasStarted = false;
   attemptStart = null;
   navigationUsed = false;
+  follow = true;
   revision = 0;
   saveRevision = null;
   savedRecord = null;
+  if (data.paper && recoveringPaper?.session.lessonId === data.id) {
+    const draft = recoveringPaper;
+    session = draft.session;
+    drafts = draft.drafts || {};
+    inkPages = draft.inkPages;
+    answerMode = draft.answerMode === 'ink' ? 'ink' : 'type';
+    paperPage = draft.paperPage;
+    hasStarted = !!draft.hasStarted;
+    if (hasStarted && !review()) attemptStart = Date.now() - (draft.elapsedMs || 0);
+    navigationUsed = !!draft.navigationUsed;
+    priorExposure ||= !!draft.priorExposure;
+    revision = draft.revision || 0;
+    savedRecord = draft.savedAt
+      ? readSavedRecords().findLast((r) => r.lessonId === data.id && r.savedAt === draft.savedAt)
+      : null;
+    if (savedRecord && !hasAnswerDraft() && !listeningBridge.getSaveSnapshot()) saveRevision = revision;
+  }
+  if (data.paper) recoveringPaper = null;
   audioReady = false;
   wordsById = new Map();
   for (const s of lesson.sentences) for (const w of s.words) wordsById.set(w.id, { word: w, sentence: s });
@@ -159,32 +221,13 @@ async function loadLesson(data, { imported = false, audioBlob = null } = {}) {
     ? `${lesson.paper.year} · Part ${lesson.paper.part} · Task ${lesson.paper.task} · ${formatTime(lesson.duration)}${lesson.paper.sharedAudio ? ' · Part B 共用原音' : ' · Task 原音分段'}`
     : `第 ${lesson.questions[0].number}–${lesson.questions.at(-1).number} 题 · ${formatTime(lesson.duration)} · 原卷对话节选`;
   paperPractice?.setEntry(data.id);
-  let sourceDetails = $('source-details');
-  if (!sourceDetails) {
-    sourceDetails = el('details', 'source-details');
-    sourceDetails.id = 'source-details';
-    document.querySelector('.import-content').append(sourceDetails);
-  }
-  sourceDetails.replaceChildren(
-    el('summary', '', '材料来源与字幕说明'),
-    el('p', 'detail-note', lesson.source?.notes || '个人导入的练习包，请核对与原音是否匹配。'),
-  );
   $('time-total').textContent = formatTime(lesson.duration);
   $('seek').max = lesson.duration;
   audio.removeAttribute('src');
   audio.load();
   render();
-  status(
-    imported
-      ? '练习包已载入。请再选择与这个包匹配的本地音频。'
-      : '正在载入原音，请先读题目。提交前隐藏字幕与答案线索。',
-  );
-  if (audioBlob) {
-    objectURL = URL.createObjectURL(audioBlob);
-    audio.src = objectURL;
-    audio.load();
-    status('已从本机材料库载入题目、字幕和原音。');
-  } else if (!imported && lesson.audio) {
+  status('正在载入原音。');
+  if (lesson.audio) {
     const controller = new AbortController();
     audioLoadController = controller;
     try {
@@ -195,10 +238,15 @@ async function loadLesson(data, { imported = false, audioBlob = null } = {}) {
       const blob = await response.blob();
       if (controller.signal.aborted || audioLoadController !== controller) return;
       objectURL = URL.createObjectURL(blob);
-      currentAudioBlob = blob;
       audio.src = objectURL;
       audio.load();
-      status('原音已载入。准备好后播放；提交前隐藏字幕与答案线索。');
+      status(
+        review()
+          ? '已恢复本轮复盘，可继续核对答案与原音。'
+          : hasAnswerDraft()
+            ? '已恢复本页草稿，可以继续作答。'
+            : '原音已载入。准备好后播放；提交前隐藏字幕与答案线索。',
+      );
     } catch (error) {
       if (!controller.signal.aborted) throw error;
     } finally {
@@ -212,6 +260,7 @@ function chooseLesson(entry) {
   return activeLessonLoad;
 }
 async function performLessonChoice(entry) {
+  transcriptWindow.enable(false);
   const generation = ++loadGeneration;
   requestedLessonId = entry.id;
   audioLoadController?.abort();
@@ -223,14 +272,34 @@ async function performLessonChoice(entry) {
   if (session) renderControls();
   for (const id of ['play-pause', 'seek', 'mark-moment', 'submit-answers']) $(id).disabled = true;
   if (entry.missingAudio) {
+    $('question-pages').hidden = true;
+    $('transcript').before($('practice-sources'), $('original-responses'));
+    $('review-paper-panel').hidden = true;
+    clearTimeout(checkpointTimer);
+    checkpointPaper(null);
+    recoveringPaper = null;
+    delete document.body.dataset.paperAnswer;
     lesson = null;
     session = null;
     drafts = {};
     revision = 0;
     saveRevision = null;
     clearHighlights();
+    paperPractice?.setEntry(entry.id);
     $('lesson-title').textContent = entry.title;
-    $('lesson-meta').textContent = '原题可在「我的原卷」查看；当前没有匹配原音。';
+    $('lesson-meta').textContent =
+      `${entry.year} · ${entry.variant} · Part ${entry.part} · Task ${entry.task} · 无匹配原音`;
+    $('time-current').textContent = '0:00';
+    $('time-total').textContent = '—';
+    $('seek').value = 0;
+    $('seek').max = 1;
+    $('mode-label').textContent = '只读原卷';
+    $('original-responses').replaceChildren();
+    $('original-responses').hidden = true;
+    $('review-navigation').hidden = true;
+    $('listening-next-actions').hidden = true;
+    $('marks-list').replaceChildren();
+    $('saved-records')?.replaceChildren();
     if (!unavailableControls.length)
       unavailableControls = [
         ...document.querySelectorAll(
@@ -239,31 +308,25 @@ async function performLessonChoice(entry) {
       ].map((node) => [node, node.disabled]);
     for (const [node] of unavailableControls) node.disabled = true;
     $('questions').replaceChildren();
-    paperPractice?.renderSources(null);
+    paperPractice?.renderUnavailable(entry);
     $('word-inspector').hidden = true;
     empty($('transcript'), '这份 Sample 的音频尚未匹配', '请选择正式试卷或 Practice 继续精练。');
     status('Sample 音频缺失或与原稿不匹配，尚不能开始听力精练。');
     requestedLessonId = null;
+    listeningEvents.dispatchEvent(new Event('change'));
     return;
   }
   status('正在载入练习与原音，请稍候。');
   try {
-    if (entry.imported) {
-      const stored = await listeningLibrary.load(entry.id);
-      if (generation !== loadGeneration) return;
-      if (!stored) throw new Error('本机材料已不在，请重新导入原练习包与音频。');
-      await loadLesson(stored.lesson, { imported: true, audioBlob: stored.audio });
-      return;
-    }
     const response = await fetch(entry.url);
-    if (!response.ok) throw new Error('练习材料载入失败，请联网后刷新，或导入本地练习包。');
+    if (!response.ok) throw new Error('练习材料载入失败，请联网后重试。');
     const data = await response.json();
     if (generation !== loadGeneration) return;
     await loadLesson(data);
   } catch (error) {
     if (generation !== loadGeneration) return;
     status(error.message, true);
-    empty($('transcript'), '材料暂未载入', '检查网络后刷新，或从「导入与说明」选择练习包。');
+    empty($('transcript'), '材料暂未载入', '请检查网络后重新选择原卷。');
   } finally {
     if (generation === loadGeneration) requestedLessonId = null;
   }
@@ -271,7 +334,32 @@ async function performLessonChoice(entry) {
 
 function render() {
   if (!lesson) return;
-  paperPractice?.renderSources(lesson, session.phase);
+  transcriptWindow.enable(review() && !!lesson.paper && !!lesson.sentences.length);
+  const submittedInk = session.attempts.at(-1)?.ink;
+  const mode = review() ? (submittedInk ? 'ink' : 'type') : answerMode;
+  document.body.dataset.paperAnswer = lesson.paper ? mode : '';
+  paperPractice?.renderSources(lesson, session.phase, {
+    mode,
+    ink: review() ? submittedInk : inkPages,
+    readOnly: review(),
+    page: paperPage,
+    setMode(next) {
+      if (next === answerMode) return;
+      answerMode = next;
+      touch();
+      render();
+    },
+    setPage(sourceId, page) {
+      const previous = paperPage?.questionPage;
+      const questionPage =
+        sourceId === lesson.paper.questionSourceId ? page : (previous ?? lesson.paper.questionPage);
+      paperPage = { sourceId, page, questionPage };
+      syncQuestionPage();
+      if (previous !== questionPage) $('questions').scrollTop = 0;
+      queueCheckpoint();
+    },
+    changed: touch,
+  });
   renderTranscript();
   renderQuestions();
   renderMarks();
@@ -279,6 +367,7 @@ function render() {
   renderInspector();
   renderSaved();
   renderCatalogue();
+  queueCheckpoint();
   listeningEvents.dispatchEvent(new Event('change'));
 }
 function renderTranscript() {
@@ -317,7 +406,11 @@ function renderTranscript() {
     row.dataset.sentenceId = sentence.id;
     const heading = el('div', 'sentence-meta');
     heading.append(
-      button(formatTime(sentence.start), () => playSubtitle(sentence.start, sentence.end), 'sentence-time'),
+      button(
+        formatTime(sentence.start),
+        () => seekPosition(sentence.start + (session.timingOffset || 0)),
+        'sentence-time',
+      ),
       el('span', 'speaker', sentence.speaker || ''),
     );
     row.append(heading);
@@ -342,6 +435,18 @@ function renderTranscript() {
 function renderQuestions() {
   const target = $('questions');
   target.replaceChildren();
+  const responses = $('original-responses');
+  responses.replaceChildren();
+  const splitReview = review() && !!lesson.paper;
+  const paperPanel = $('review-paper-panel');
+  paperPanel.hidden = !splitReview;
+  const sources = $('practice-sources');
+  if (splitReview && sources.parentElement !== paperPanel) paperPanel.append(sources, responses);
+  if (!splitReview && sources.parentElement === paperPanel) $('transcript').before(sources, responses);
+  $('review-navigation').hidden = !splitReview;
+  responses.hidden = !splitReview;
+  if (splitReview) responses.append(el('h2', '', '原题与本轮作答'));
+  $('question-heading').textContent = splitReview ? '答案与证据' : '题目与作答';
   const last = session.attempts.at(-1);
   if (review() && last) {
     const results = Object.values(last.results);
@@ -354,12 +459,19 @@ function renderQuestions() {
       'result-summary',
       `${automatic.length ? `本轮 ${matched}/${automatic.length} 题与参考表达匹配。` : ''}${manual.length ? ` ${pending} 题待自核，${manual.length - pending} 题已自核；不计入自动正确率。` : '其余请自核。'}`,
     );
-    summary.append(el('small', 'fine-print', '这不是官方评分；不同正确表述可能未被自动识别。'));
+    if (automatic.length) summary.append(el('small', 'fine-print', '不同的正确写法可对照评分参考自核。'));
     target.append(summary);
+    if (lesson.paper?.reviewRules?.length) {
+      const rules = el('details', 'task-scoring-rules');
+      rules.append(el('summary', '', '计分规则与可互换答案'));
+      for (const rule of lesson.paper.reviewRules) rules.append(el('p', 'task-scoring-rule', rule));
+      target.append(rules);
+    }
   }
   for (const q of visibleLesson(lesson, session).questions) {
     const card = el('article', 'question-card');
     card.dataset.questionId = q.id;
+    card.dataset.questionNumber = q.number;
     const label = el('label', 'question-label', `${q.label || q.number}. ${q.prompt}`);
     label.htmlFor = `answer-${q.id}`;
     label.lang = 'en';
@@ -390,11 +502,20 @@ function renderQuestions() {
       touch();
     });
     card.append(input);
+    if (splitReview) {
+      const original = el('article', 'original-response');
+      original.dataset.questionNumber = q.number;
+      original.append(label, input);
+      responses.append(original);
+      card.append(el('h3', 'question-label', q.label || `第 ${q.number} 题`));
+    }
     if (review()) {
       const result = last.results[q.id];
       card.classList.toggle('is-correct', result.correct);
       const feedback = el('div', 'question-feedback');
-      feedback.append(
+      const tools = el('details', 'question-review-tools');
+      tools.append(el('summary', '', '自核与详情'));
+      tools.append(
         el(
           'strong',
           '',
@@ -409,11 +530,90 @@ function renderQuestions() {
                 : '待自核：对照参考表达与录音',
         ),
       );
-      if (q.grading !== 'self')
+      if (q.referenceAnswer || q.grading !== 'self')
         feedback.append(
-          el('p', 'reference-answer', `参考：${q.referenceAnswer || q.answers.slice(0, 3).join(' / ')}`),
+          el(
+            'p',
+            'reference-answer',
+            q.referenceAnswer ||
+              (q.answerCategories
+                ? q.answerCategories.map((c) => c.answers.join(' / ')).join('；\n')
+                : q.answers.join(' / ')),
+          ),
         );
-      if (q.explanation) feedback.append(el('p', '', q.explanation));
+      if (q.referenceImage) {
+        const img = el('img', 'reference-diagram');
+        img.src = q.referenceImage.src;
+        img.alt = q.referenceImage.alt;
+        feedback.append(img);
+      }
+      const sourcePage = paperPractice?.sourcePage(q.reference);
+      if (sourcePage) {
+        const link = el('a', 'reference-source', `${sourcePage.name} · PDF 第 ${q.reference.page} 页`);
+        link.href = sourcePage.src;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        tools.append(link);
+      }
+      if (q.scoringPoints?.length) {
+        const points = el('ol', 'scoring-points');
+        for (const point of q.scoringPoints) {
+          const item = el('li', 'scoring-point');
+          item.dataset.pointId = point.id;
+          item.append(el('strong', '', point.id), el('p', 'reference-answer', point.referenceAnswer));
+          if (point.section) item.append(el('p', 'fine-print', point.section));
+          item.append(el('p', 'point-source', point.sourceLabel));
+          for (const ref of point.dataReferences || []) {
+            const page = paperPractice?.sourcePage(ref);
+            if (!page) continue;
+            const link = el('a', 'reference-source', `查看 Data File 第 ${ref.printedPage} 页`);
+            link.href = page.src;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            item.append(link);
+          }
+          for (const evidence of point.evidence || []) {
+            item.append(
+              button(
+                '听原音 · ' + formatTime(evidence.contextStart ?? evidence.start),
+                () => showEvidence(q, evidence),
+                'evidence-link',
+              ),
+            );
+            tools.append(
+              button(
+                point.id + ' · 只听答案句',
+                () => showEvidence(q, evidence, true),
+                'button-text answer-replay',
+              ),
+            );
+          }
+          points.append(item);
+        }
+        feedback.append(points);
+      }
+      if (q.rubricReferences?.length) {
+        const rubric = el('details', 'scoring-rubric');
+        rubric.append(el('summary', '', '语言、组织与语气评分表'));
+        for (const ref of q.rubricReferences) {
+          const page = paperPractice?.sourcePage(ref);
+          if (!page) continue;
+          const link = el('a', 'reference-source', `评分参考 · PDF 第 ${ref.page} 页`);
+          link.href = page.src;
+          link.target = '_blank';
+          link.rel = 'noopener';
+          rubric.append(link);
+          for (const [index, src] of (page.displayImages || [page.src]).entries()) {
+            const img = el('img');
+            img.src = src;
+            img.alt = `${q.label || q.number} 评分参考 PDF 第 ${ref.page} 页${page.displayImages ? `，第 ${index + 1} 栏` : ''}`;
+            img.loading = 'lazy';
+            rubric.append(img);
+          }
+        }
+        feedback.append(rubric);
+      }
+      if (q.explanation) tools.append(el('p', '', q.explanation));
       const evidence = q.evidence || [];
       const evidenceIds = new Set(evidence.flatMap((e) => e.wordIds || []));
       const spoken = lesson.sentences
@@ -428,19 +628,24 @@ function renderQuestions() {
           el('p', '', `题目：${q.prompt}`),
           el('p', '', `原音关键词：${spoken}`),
         );
-        feedback.append(pair);
+        tools.append(pair);
       }
-      evidence.forEach((e, i) =>
+      evidence.forEach((e, i) => {
         feedback.append(
           button(
             evidence.length > 1
-              ? `听证据 ${i + 1} · ${formatTime(e.start)}`
-              : `听原音证据 · ${formatTime(e.start)}`,
+              ? `听证据 ${i + 1} · ${formatTime(e.contextStart ?? e.start)}`
+              : `听原音 · ${formatTime(e.contextStart ?? e.start)}`,
             () => showEvidence(q, e),
             'evidence-link',
           ),
-        ),
-      );
+        );
+        if (Number.isFinite(e.contextStart)) {
+          const answerOnly = button('只重听答案句', () => showEvidence(q, e, true), 'button-text');
+          answerOnly.dataset.answerOnly = 'true';
+          tools.append(answerOnly);
+        }
+      });
       const selfCheck = el('select', 'self-check');
       selfCheck.setAttribute('aria-label', `第${q.number}题自核结果`);
       selfCheck.append(
@@ -464,7 +669,7 @@ function renderQuestions() {
         } else result.selfCheck = selfCheck.value;
         touch();
       });
-      feedback.append(selfCheck);
+      tools.append(selfCheck);
       const errorReason = el('select', 'error-reason');
       errorReason.setAttribute('aria-label', `第${q.number}题主要错因`);
       for (const [value, label] of [
@@ -481,7 +686,7 @@ function renderQuestions() {
         result.errorType = errorReason.value;
         touch();
       });
-      feedback.append(errorReason);
+      tools.append(errorReason);
       if (questionDrillSentence(lesson, q)) {
         const practise = button(
           '练这一处',
@@ -497,23 +702,58 @@ function renderQuestions() {
                 return { ok: !audio.paused, rate: audio.playbackRate };
               },
               onChange: () => listeningEvents.dispatchEvent(new Event('change')),
-              requestSave: () => requestSave(),
             });
             focusedDrill.open(lesson, q, practise);
           },
           'button-secondary',
         );
         practise.dataset.practiceDrill = q.id;
-        feedback.append(practise);
+        tools.append(practise);
       } else if (lesson.paper) {
-        feedback.append(
-          el('p', 'fine-print', '这题暂无可靠短句定位，请先对照原音与评分参考；不强行生成听写答案。'),
+        tools.append(
+          el(
+            'p',
+            'fine-print',
+            evidence.length
+              ? '可听原音证据；此处逐词时间尚未全部核实，暂不提供单句听写。'
+              : '原音证据定位待核实；本题暂不提供单句听写。',
+          ),
         );
       }
+      feedback.append(tools);
       card.append(feedback);
     }
     target.append(card);
   }
+  syncQuestionPage();
+}
+
+function syncQuestionPage() {
+  const pages = taskQuestionPages(lesson);
+  const pager = $('question-pages');
+  pager.hidden = !pages.length;
+  if (!pages.length) return;
+  const page = paperPage?.questionPage ?? lesson.paper.questionPage;
+  const index = pages.findIndex(([number]) => number === page);
+  const range = pages[index];
+  for (const card of document.querySelectorAll(
+    '#questions [data-question-number], #original-responses [data-question-number]',
+  )) {
+    const number = Number(card.dataset.questionNumber);
+    card.hidden = !range || number < range[1] || number > range[2];
+  }
+  const label = range && (range[1] === range[2] ? 'Q' + range[1] : 'Q' + range[1] + '–Q' + range[2]);
+  $('question-page-range').textContent = range ? '第 ' + page + ' 页 · ' + label : '此页没有本 Task 的题目';
+  const previous = $('previous-question-page'),
+    next = $('next-question-page'),
+    back = $('return-question-page');
+  previous.hidden = next.hidden = !range || pages.length === 1;
+  previous.disabled = index <= 0;
+  next.disabled = index < 0 || index === pages.length - 1;
+  back.hidden = !!range;
+  previous.onclick = () => paperPractice.showQuestionPage(pages[index - 1][0]);
+  next.onclick = () => paperPractice.showQuestionPage(pages[index + 1][0]);
+  back.onclick = () => paperPractice.showQuestionPage(pages[0][0]);
 }
 
 function renderControls() {
@@ -527,7 +767,9 @@ function renderControls() {
       (phase === 'first' && !!session.attempts.length) || (phase !== 'first' && !session.attempts.length);
   }
   $('submit-answers').hidden = isReview;
-  $('submit-answers').disabled = !audioReady;
+  $('submission-note').hidden = isReview;
+  $('submit-answers').disabled = !audioReady || !hasStarted;
+  $('submit-answers').title = hasStarted ? '' : '先播放原音；播放后可留空交卷。';
   $('submit-answers').textContent = session.phase === 'retest' ? '提交复测答案' : '提交作答';
   $('listening-next-actions').hidden = !isReview;
   const fresh = catalogueWithStatus().some(
@@ -553,10 +795,10 @@ function renderControls() {
     $(id).disabled = !isReview || !audioReady;
   $('play-pause').disabled = !audioReady;
   $('seek').disabled = !audioReady;
-  $('mark-moment').disabled = !audioReady;
+  $('mark-moment').disabled = !audioReady || !hasStarted || audio.currentTime <= 0;
+  syncPlaybackButton();
   $('save-record').disabled = !session.attempts.length;
   $('export-record').disabled = !savedRecord;
-  $('save-material').disabled = !audioReady || !importedMaterial;
   $('follow-toggle').setAttribute('aria-pressed', String(follow));
   $('follow-toggle').textContent = follow ? '正在跟随' : '回到播放位置';
   $('subtitle-adjustment').hidden = !isReview;
@@ -567,7 +809,14 @@ function renderControls() {
   document.querySelector('.player-bottom').hidden = !isReview;
   $('subtitle-offset').value = String(session.timingOffset || 0);
   const quiet = document.querySelector('.quiet-label');
-  if (quiet) quiet.textContent = isReview ? '答案与证据已展开' : '原速 · 独立作答';
+  if (quiet)
+    quiet.textContent = isReview
+      ? '按题对照 · 未核实不判错'
+      : session.phase === 'retest'
+        ? '原速 · 无提示复测'
+        : priorExposure || navigationUsed
+          ? '原速 · 辅助作答'
+          : '原速 · 独立作答';
 }
 
 function renderSaved() {
@@ -794,8 +1043,24 @@ function playSubtitle(start, end) {
   }
 }
 
-function showEvidence(q, e) {
+// Navigation changes position only. A bounded replay is an explicit, separate action.
+function seekPosition(time) {
+  if (!audioReady || !lesson) return;
+  cancelPendingSeek();
+  stopAt = null;
+  loop.enabled = false;
+  follow = true;
+  clearHighlights();
+  if (!review()) navigationUsed = true;
+  audio.currentTime = Math.max(0, Math.min(time, lesson.duration, audio.duration));
+  updateLoop();
+  renderControls();
+  updatePlayback();
+}
+
+function showEvidence(q, e, answerOnly = false) {
   if (!guardReview()) return;
+  transcriptWindow.showForPlayback();
   for (const node of wordElements.values()) node.classList.remove('is-evidence');
   for (const s of lesson.sentences)
     for (const w of s.words) {
@@ -808,7 +1073,10 @@ function showEvidence(q, e) {
     }
   follow = true;
   renderControls();
-  playRange(e.start, e.end);
+  playSubtitle(
+    answerOnly ? e.start : (e.contextStart ?? e.start),
+    answerOnly ? e.end : (e.contextEnd ?? e.end),
+  );
   status(`第 ${q.number} 题：已标出本题证据，当前播放词会随原音移动。`);
 }
 async function play() {
@@ -877,8 +1145,8 @@ async function playRange(start, end, repeat = false) {
     const transcriptBounds = $('transcript').getBoundingClientRect();
     const visibleBottom =
       window.innerHeight - document.querySelector('.player').getBoundingClientRect().height;
-    if (transcriptBounds.bottom < 0 || transcriptBounds.top > visibleBottom) {
-      $('transcript').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    if (!lesson.paper && (transcriptBounds.bottom < 0 || transcriptBounds.top > visibleBottom)) {
+      $('transcript').scrollIntoView({ block: 'center', behavior: 'instant' });
     }
     loop.enabled = repeat;
     stopAt = repeat ? null : range.end;
@@ -896,7 +1164,7 @@ async function playRange(start, end, repeat = false) {
 function currentSentence() {
   const time = audio.currentTime - (session?.timingOffset || 0);
   return (
-    lesson?.sentences.find((s) => time >= s.start && time < s.end) ||
+    lesson?.sentences.find((s) => time + 0.001 >= s.start && time < s.end) ||
     lesson?.sentences.findLast((s) => s.start <= time) ||
     lesson?.sentences[0]
   );
@@ -920,12 +1188,14 @@ function updatePlayback() {
     audio.pause();
     stopAt = null;
   }
-  $('time-current').textContent = formatTime(time);
-  $('seek').value = time;
+  $('time-current').textContent = formatTime(seekPreview ?? time);
+  if (seekPreview === null) $('seek').value = time;
+  $('mark-moment').disabled = !audioReady || !hasStarted || time <= 0;
   if (!review()) return;
   const subtitleTime = time - (session.timingOffset || 0);
   const word = wordAtTime(lesson, subtitleTime);
-  if (activeWord !== word?.id) {
+  const wordChanged = activeWord !== word?.id;
+  if (wordChanged) {
     wordElements.get(activeWord)?.classList.remove('is-playing');
     activeWord = word?.id || null;
     wordElements.get(activeWord)?.classList.add('is-playing');
@@ -938,14 +1208,27 @@ function updatePlayback() {
     node?.classList.add('is-current');
     if (follow && node) {
       const target = $('transcript');
-      const top = node.offsetTop - target.offsetTop;
+      const top = node.getBoundingClientRect().top - target.getBoundingClientRect().top + target.scrollTop;
       target.scrollTo({
         top: Math.max(0, top - 50),
-        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+        behavior: 'instant',
       });
     }
   }
+  if (follow && wordChanged && word && transcriptWindow.open) {
+    const target = $('transcript');
+    const bounds = target.getBoundingClientRect();
+    const current = wordElements.get(word.id)?.getBoundingClientRect();
+    if (current && (current.top < bounds.top || current.bottom > bounds.bottom))
+      target.scrollTop += current.top - bounds.top - target.clientHeight / 3;
+  }
 }
+document.querySelector('.transcript-panel').addEventListener('transcript-layout', () => {
+  if (follow && review()) {
+    clearHighlights();
+    updatePlayback();
+  }
+});
 function tick() {
   updatePlayback();
   if (!audio.paused) raf = requestAnimationFrame(tick);
@@ -962,20 +1245,24 @@ audio.addEventListener('error', () => {
   if (audio.getAttribute('src')) {
     audioReady = false;
     renderControls();
-    status('音频载入失败。检查网络，或从「导入与说明」重新选择匹配的音频。', true);
+    status('音频载入失败。请检查网络并重新载入这份原卷。', true);
   }
 });
+function syncPlaybackButton() {
+  $('play-pause').setAttribute('aria-label', audio.paused ? '播放' : '暂停');
+  $('play-pause').innerHTML = audio.paused
+    ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg>'
+    : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+}
 audio.addEventListener('play', () => {
-  $('play-pause').setAttribute('aria-label', '暂停');
-  $('play-pause').innerHTML =
-    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+  hasStarted = true;
+  renderControls();
   cancelAnimationFrame(raf);
   tick();
 });
 audio.addEventListener('pause', () => {
   cancelAnimationFrame(raf);
-  $('play-pause').setAttribute('aria-label', '播放');
-  $('play-pause').innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg>';
+  syncPlaybackButton();
   updatePlayback();
 });
 audio.addEventListener('timeupdate', updatePlayback);
@@ -993,6 +1280,7 @@ $('play-pause').addEventListener('click', () => {
   if (!lesson || !audioReady) return;
   cancelPendingSeek();
   if (audio.paused) {
+    if (review()) transcriptWindow.showForPlayback();
     if (audio.ended || audio.currentTime >= Math.min(lesson.duration, audio.duration) - 0.1) {
       stopAt = null;
       audio.currentTime = loop.enabled ? loop.start : 0;
@@ -1002,14 +1290,43 @@ $('play-pause').addEventListener('click', () => {
 });
 $('seek').addEventListener('input', () => {
   if (audioReady) {
-    if (!review()) navigationUsed = true;
-    cancelPendingSeek();
-    stopAt = null;
-    loop.enabled = false;
-    updateLoop();
-    audio.currentTime = Number($('seek').value);
-    updatePlayback();
+    seekPreview = Number($('seek').value);
+    $('time-current').textContent = formatTime(seekPreview);
   }
+});
+$('seek').addEventListener('pointerdown', () => {
+  if (audioReady) seekGesturePaused = audio.paused;
+});
+function commitSeek() {
+  if (seekPreview === null) {
+    seekGesturePaused = null;
+    return;
+  }
+  const destination = seekPreview;
+  const wasPaused = seekGesturePaused ?? audio.paused;
+  seekPreview = null;
+  seekGesturePaused = null;
+  seekPosition(destination);
+  if (!wasPaused && audio.paused) play();
+  else if (wasPaused && !audio.paused) audio.pause();
+}
+$('seek').addEventListener('change', commitSeek);
+$('seek').addEventListener('pointerup', commitSeek);
+$('seek').addEventListener('pointercancel', () => {
+  seekPreview = null;
+  seekGesturePaused = null;
+  updatePlayback();
+});
+$('review-navigation').addEventListener('click', (event) => {
+  const link = event.target.closest('[data-review-target]');
+  if (!link) return;
+  event.preventDefault();
+  if (link.dataset.reviewTarget === 'transcript' && $('paper-float-transcript')) {
+    if (!transcriptWindow.open) transcriptWindow.toggle();
+    $('transcript').focus({ preventScroll: true });
+    return;
+  }
+  $(link.dataset.reviewTarget).scrollIntoView({ block: 'start', behavior: 'instant' });
 });
 $('playback-rate').addEventListener('change', () => {
   audio.playbackRate = review() ? Number($('playback-rate').value) : 1;
@@ -1025,7 +1342,7 @@ for (const [id, step] of [
     const target =
       step < 0 && audio.currentTime - (session.timingOffset || 0) >= current.end ? index : index + step;
     const s = lesson.sentences[Math.max(0, Math.min(lesson.sentences.length - 1, target))];
-    playSubtitle(s.start, s.end);
+    seekPosition(s.start + (session.timingOffset || 0));
   });
 $('repeat-sentence').addEventListener('click', () => {
   const s = currentSentence();
@@ -1076,13 +1393,15 @@ $('loop-toggle').addEventListener('click', () => {
   }
 });
 $('mark-moment').addEventListener('click', () => {
-  if (!audioReady) return;
+  if (!audioReady || !hasStarted || audio.currentTime <= 0) return;
   const time = audio.currentTime;
   if (session.moments.some((m) => Math.abs(m.time - time) < 2)) {
     status('这个位置刚刚记下了，继续听就好。');
     return;
   }
   session.moments.push({ time, phase: session.phase });
+  $('player-feedback').hidden = false;
+  $('player-feedback').textContent = `已记下 ${formatTime(time)} · 交卷后可回听`;
   touch();
   renderMarks();
   status(`已记下 ${formatTime(time)}，提交后从前几秒回听。`);
@@ -1093,7 +1412,7 @@ $('follow-toggle').addEventListener('click', () => {
   renderControls();
   updatePlayback();
 });
-for (const event of ['wheel', 'touchstart'])
+for (const event of ['wheel', 'touchmove'])
   $('transcript').addEventListener(
     event,
     () => {
@@ -1106,6 +1425,13 @@ for (const event of ['wheel', 'touchstart'])
   );
 $('mark-heard').addEventListener('click', () => setMark('heard'));
 $('mark-unknown').addEventListener('click', () => setMark('unknown'));
+$('dismiss-word').addEventListener('click', () => {
+  const previous = wordElements.get(selectedWord);
+  previous?.classList.remove('is-selected');
+  selectedWord = null;
+  renderInspector();
+  previous?.focus({ preventScroll: true });
+});
 $('clear-mark').addEventListener('click', () => setMark(null));
 $('apply-subtitle-offset').addEventListener('click', () => {
   if (!guardReview()) return;
@@ -1139,14 +1465,15 @@ $('submit-answers').addEventListener('click', () => {
     return;
   }
   audio.pause();
-  session = submitAnswers(lesson, session, drafts);
+  const handwritten = lesson.paper && answerMode === 'ink';
+  session = submitAnswers(lesson, session, handwritten ? {} : drafts, handwritten ? { ink: inkPages } : {});
   Object.assign(session.attempts.at(-1), {
     elapsedSeconds: attemptStart == null ? 0 : Math.round((Date.now() - attemptStart) / 1000),
     navigationUsed,
-    assisted: navigationUsed,
-    priorExposure,
+    assisted: navigationUsed || (session.attempts.at(-1).phase === 'first' && priorExposure),
+    priorExposure: session.attempts.at(-1).phase === 'first' && priorExposure,
   });
-  exposedLessons.add(lesson.id);
+  markSeen(exposedLessons, lesson.id);
   touch();
   render();
   status('已提交。现在可点题目证据、点词回听，或设置 AB 循环。未匹配的表达请按参考自行核对。');
@@ -1160,9 +1487,12 @@ for (const phase of ['first', 'review', 'retest'])
     }
     try {
       session = switchPhase(session, phase);
+      if (phase === 'retest') answerMode = session.attempts.at(-1)?.ink ? 'ink' : 'type';
       resetPlayer();
       audio.currentTime = 0;
       drafts = {};
+      inkPages = {};
+      paperPage = null;
       hasStarted = false;
       attemptStart = null;
       navigationUsed = false;
@@ -1176,49 +1506,6 @@ for (const phase of ['first', 'review', 'retest'])
     }
   });
 
-$('import-package').addEventListener('change', async (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
-  try {
-    if (file.size > 6_000_000) throw new Error('练习包太大，请把材料分成短任务。');
-    const data = JSON.parse(await file.text());
-    validateLesson(data);
-    if (hasUnsavedListening() && !confirm('切换练习会清空未保存的本次作答与标记。继续吗？')) return;
-    ++loadGeneration;
-    await loadLesson(data, { imported: true });
-    $('lesson-select').value = '';
-  } catch (e) {
-    status(`未导入：${e.message}`, true);
-  } finally {
-    event.target.value = '';
-  }
-});
-$('import-audio').addEventListener('change', (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
-  if (!lesson) {
-    status('请先导入含时间轴的练习包。', true);
-    event.target.value = '';
-    return;
-  }
-  if (file.size > 300_000_000) {
-    status('音频超过 300 MB，请先剪成短任务。', true);
-    event.target.value = '';
-    return;
-  }
-  audioLoadController?.abort();
-  audioLoadController = null;
-  resetPlayer();
-  if (objectURL) URL.revokeObjectURL(objectURL);
-  objectURL = URL.createObjectURL(file);
-  currentAudioBlob = file;
-  audioReady = false;
-  audio.src = objectURL;
-  audio.load();
-  renderControls();
-  status('正在检查音频时长。请确保它与练习包是同一段原音。');
-  event.target.value = '';
-});
 $('lesson-select').replaceChildren(...catalogue.map((x) => new Option(x.title, x.id)));
 $('lesson-select').addEventListener('change', (event) => {
   const entry = catalogue.find((x) => x.id === event.target.value);
@@ -1245,63 +1532,6 @@ $('listening-fresh').addEventListener('click', () => {
   const next = fresh.find((entry) => entry.part === lesson.paper?.part) || fresh[0];
   if (next) navigateTo('listening', { lessonId: next.id });
 });
-$('save-material').addEventListener('click', async () => {
-  if (!audioReady || !importedMaterial) return;
-  if (
-    !confirm(
-      `将「${lesson.title}」的题目、字幕和原音保存到当前浏览器？刷新后可从材料列表重新打开。学习作答仍须另点保存。`,
-    )
-  )
-    return;
-  try {
-    await persistMaterial();
-    status('练习包与原音已在本机保存，并回读验证。可从材料列表重新打开。');
-  } catch (error) {
-    status(`材料未能保存：${error.message}`, true);
-  }
-});
-$('import-record').addEventListener('change', async (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
-  try {
-    if (file.size > 6_000_000) throw new Error('记录文件过大。');
-    const record = parseListeningRecord(await file.text());
-    if (
-      !confirm(
-        `导入「${record.lessonTitle || record.lessonId}」的 ${record.attempts.length} 轮已保存听力纪录？会与当前浏览器记录合并。`,
-      )
-    )
-      return;
-    importListeningRecord(record);
-    renderSaved();
-    renderCatalogue();
-    listeningEvents.dispatchEvent(new Event('change'));
-    status(
-      catalogue.some((x) => x.id === record.lessonId)
-        ? '听力纪录已合并并回读。选中对应材料后，在本次复习标记中恢复。'
-        : '纪录已保存。请再导入同一份练习包与原音，之后可恢复标记与作答。',
-    );
-  } catch (error) {
-    status(`未导入：${error.message}`, true);
-  } finally {
-    event.target.value = '';
-  }
-});
-async function persistMaterial() {
-  if (!currentAudioBlob || !audioReady) throw new Error('请先载入匹配的原音。');
-  await listeningLibrary.save({ lesson, audio: currentAudioBlob });
-  await refreshMaterialCatalogue();
-}
-async function refreshMaterialCatalogue() {
-  const entries = await listeningLibrary.list();
-  for (const entry of entries) {
-    const index = catalogue.findIndex((x) => x.id === entry.id);
-    if (index >= 0) catalogue[index] = { ...catalogue[index], ...entry };
-    else catalogue.push(entry);
-  }
-  renderCatalogue();
-  listeningEvents.dispatchEvent(new Event('change'));
-}
 $('export-record').addEventListener('click', () => {
   if (!savedRecord) return;
   const blob = new Blob([JSON.stringify(savedRecord, null, 2)], { type: 'application/json' });
@@ -1330,8 +1560,19 @@ document.addEventListener('keydown', (event) => {
   $('play-pause').click();
 });
 window.addEventListener('pagehide', () => {
+  checkpoint();
   cancelPendingSeek();
   audio.pause();
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) checkpoint();
+});
+window.addEventListener('storage', () => {
+  for (const id of seenMaterials()) exposedLessons.add(id);
+  if (lesson && !review() && exposureFor(lesson.id) !== 'fresh') {
+    priorExposure = true;
+    renderControls();
+  }
 });
 
 function readSavedRecords() {
@@ -1350,7 +1591,8 @@ function exposureFor(id) {
   ]);
 }
 function catalogueWithStatus() {
-  return catalogue.map((x) => ({ ...x, exposure: exposureFor(x.id) }));
+  const seen = [...exposedLessons, ...readSavedRecords().map((r) => r.lessonId)];
+  return catalogue.map((x) => ({ ...x, exposure: materialExposure(x, catalogue, seen) }));
 }
 function renderCatalogue() {
   const selected = lesson?.id || $('lesson-select').value;
@@ -1392,6 +1634,8 @@ export const listeningBridge = {
       submitted: !!session?.attempts.length,
       hasDraft: hasAnswerDraft() || !!focusedDrill?.getSaveState().hasDraft,
       label: '听力',
+      saved: !!savedRecord && !!session?.attempts.length,
+      lessonTitle: lesson?.title || '',
     };
   },
   getSaveSnapshot() {
@@ -1401,22 +1645,14 @@ export const listeningBridge = {
     if (savedRecord && fingerprint(savedRecord) === fingerprint(record)) return null;
     const savingSession = session,
       savingRevision = revision;
-    const material = importedMaterial ? { lesson: structuredClone(lesson), audio: currentAudioBlob } : null;
-    const materialReady = audioReady && !!currentAudioBlob;
     return {
       record,
       label: lesson.title,
-      prepare: material
-        ? async () => {
-            if (!materialReady) throw new Error('请先载入匹配的原音。');
-            await listeningLibrary.save(material);
-            await refreshMaterialCatalogue();
-          }
-        : undefined,
       acknowledge() {
         if (session === savingSession) {
           savedRecord = record;
           saveRevision = savingRevision;
+          queueCheckpoint();
           renderControls();
           renderSaved();
           status(
@@ -1438,10 +1674,12 @@ export const listeningBridge = {
         (!part || e.part === part) &&
         (!task || e.task === Number(task)),
     );
-    for (const entry of affected) exposedLessons.add(entry.id);
+    for (const entry of affected) markSeen(exposedLessons, entry.id);
     if (lesson && exposureFor(lesson.id) !== 'fresh') {
       priorExposure = true;
       if (session?.phase !== 'review') navigationUsed = true;
+      renderControls();
+      queueCheckpoint();
     }
     listeningEvents.dispatchEvent(new Event('change'));
   },
@@ -1492,7 +1730,7 @@ export const listeningBridge = {
       return;
     }
     const entry = catalogue.find((x) => x.id === lessonId);
-    if (!entry) throw new Error('这份材料尚未导入。');
+    if (!entry) throw new Error('这份材料不在 DSE 目录中。');
     if (hasUnsavedListening() && !confirm('切换材料会替换当前未保存的听力草稿，继续吗？')) return false;
     await chooseLesson(entry);
   },
@@ -1512,7 +1750,7 @@ export const listeningBridge = {
     const request = ++playbackRequest;
     if (lessonId && lesson?.id !== lessonId) {
       const entry = catalogue.find((x) => x.id === lessonId);
-      if (!entry) throw new Error('这份材料尚未载入，请先在听力页导入对应练习包与原音。');
+      if (!entry) throw new Error('这条旧纪录对应的材料不在当前 DSE 目录中。');
       if (hasUnsavedListening() && !confirm('切换材料会替换当前未保存的听力草稿。继续回听？'))
         throw new Error('已取消切换，当前草稿仍保留。');
       await chooseLesson(entry);
@@ -1588,32 +1826,27 @@ async function initialiseListening() {
     ]);
     if (responses.some((r) => !r.ok)) throw new Error('原卷精练目录载入失败，请刷新后重试。');
     const [practice, originals] = await Promise.all(responses.map((r) => r.json()));
-    const entries = practice.lessons.map((e) => ({ ...e, paperPractice: true }));
+    const entries = practice.lessons
+      .filter((e) => ['A', 'B1'].includes(e.part))
+      .map((e) => ({ ...e, paperPractice: true }));
     catalogue.push(...entries.filter((e) => !e.missingAudio));
     // Missing-audio entries remain selectable to explain the source gap without playing another paper.
     catalogue.push(...entries.filter((e) => e.missingAudio));
     paperPractice = mountPaperPractice({
+      transcriptWindow,
       entries,
       sources: originals.sources,
       onSelect: (entry) => listeningBridge.openLesson(entry.id),
+      onReference: (paper) => listeningBridge.exposePaper({ year: paper.year, variant: paper.variant }),
       onIntegrated: () => navigateTo('integrated', { taskId: 'integrated-2025-b1-t6' }),
       onLibrary: (paper) =>
         navigateTo('library', {
           paper: { year: paper.year, variant: paper.variant, paper: 3, part: paper.part, task: paper.task },
         }),
     });
+    if (recoveringPaper) paperPractice.setEntry(recoveringPaper.session.lessonId);
   } catch (error) {
     paperCatalogueError = error;
-  }
-  try {
-    const entries = await listeningLibrary.list();
-    for (const entry of entries) {
-      const index = catalogue.findIndex((x) => x.id === entry.id);
-      if (index >= 0) catalogue[index] = { ...catalogue[index], ...entry };
-      else catalogue.push(entry);
-    }
-  } catch {
-    /* Bundled lessons remain available if local material storage is blocked. */
   }
   $('lesson-select').replaceChildren(
     ...catalogue.filter((x) => !x.paperPractice).map((x) => new Option(x.title, x.id)),

@@ -1,0 +1,1163 @@
+{
+  "sessionId": "2012-sample",
+  "reviewDate": "2026-11-17",
+  "reviewMethod": "Independent visual comparison against marking-scheme images. OCR used only to locate/read. referenceAnswer preserves official alternatives (// or /) and optional parentheses; do not infer exact-match scoring. Square-bracket achievement percentages omitted.",
+  "tasks": {
+    "A-1": {
+      "questions": {
+        "1": {
+          "referenceAnswer": "TV shows with (real) people doing real things",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": ""
+        },
+        "2": {
+          "referenceAnswer": "Pot of Gold",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": ""
+        },
+        "3": {
+          "referenceAnswer": "Job Survivor",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": ""
+        },
+        "4": {
+          "referenceAnswer": "Build(ing) a boat",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": ""
+        },
+        "5": {
+          "referenceAnswer": "Sell(ing) T-shirts (in teams)",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": ""
+        },
+        "6": {
+          "referenceAnswer": "(Since) 1997",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": ""
+        },
+        "7": {
+          "referenceAnswer": "(About) 12 episodes // three months",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": ""
+        },
+        "8": {
+          "referenceAnswer": "contain some kind of competition；\nsomeone has to leave // gets kicked out of/off the show every week；\nprize for the person left",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": "Q8、Q9、Q10 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "9": {
+          "referenceAnswer": "contain some kind of competition；\nsomeone has to leave // gets kicked out of/off the show every week；\nprize for the person left",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": "Q8、Q9、Q10 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "10": {
+          "referenceAnswer": "contain some kind of competition；\nsomeone has to leave // gets kicked out of/off the show every week；\nprize for the person left",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": "Q8、Q9、Q10 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "11": {
+          "referenceAnswer": "lots of people watch them",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": ""
+        },
+        "12": {
+          "referenceAnswer": "make a lot of money from advertising",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 9
+          },
+          "note": ""
+        }
+      },
+      "reference": {
+        "sourceId": "p-5b94ac0c839f",
+        "page": 9
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-5b94ac0c839f",
+          "page": 9
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[8, 9, 10]],
+      "reviewRules": []
+    },
+    "A-2": {
+      "questions": {
+        "13": {
+          "referenceAnswer": "only appeal to (school) kids of that age；\nsmall audience figures",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q13、Q14 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "14": {
+          "referenceAnswer": "only appeal to (school) kids of that age；\nsmall audience figures",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q13、Q14 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "15": {
+          "referenceAnswer": "interesting",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": ""
+        },
+        "16": {
+          "referenceAnswer": "too expensive // travel costs",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": ""
+        },
+        "17": {
+          "referenceAnswer": "✓ Families",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": ""
+        },
+        "18": {
+          "referenceAnswer": "will appeal to everyone；\nlarge audience figures",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q18、Q19 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "19": {
+          "referenceAnswer": "will appeal to everyone；\nlarge audience figures",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q18、Q19 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "20": {
+          "referenceAnswer": "best quality",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": ""
+        },
+        "21": {
+          "referenceAnswer": "(really / very) big；\n(really) expensive；\nneeds (a) tripod",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q21、Q22、Q23 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "22": {
+          "referenceAnswer": "(really / very) big；\n(really) expensive；\nneeds (a) tripod",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q21、Q22、Q23 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "23": {
+          "referenceAnswer": "(really / very) big；\n(really) expensive；\nneeds (a) tripod",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q21、Q22、Q23 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "24": {
+          "referenceAnswer": "✓ Video camera",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": ""
+        },
+        "25": {
+          "referenceAnswer": "easy to carry (around)；\neasy to use/operate // anyone can use it；\nquality is quite good",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q25、Q26、Q27 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "26": {
+          "referenceAnswer": "easy to carry (around)；\neasy to use/operate // anyone can use it；\nquality is quite good",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q25、Q26、Q27 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "27": {
+          "referenceAnswer": "easy to carry (around)；\neasy to use/operate // anyone can use it；\nquality is quite good",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q25、Q26、Q27 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "28": {
+          "referenceAnswer": "cheap",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": ""
+        },
+        "29": {
+          "referenceAnswer": "computer has to be on；\npeople have to stand in front of camera all the time // camera can only film small area；\nquality is bad",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q29、Q30、Q31 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "30": {
+          "referenceAnswer": "computer has to be on；\npeople have to stand in front of camera all the time // camera can only film small area；\nquality is bad",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q29、Q30、Q31 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "31": {
+          "referenceAnswer": "computer has to be on；\npeople have to stand in front of camera all the time // camera can only film small area；\nquality is bad",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": "Q29、Q30、Q31 组内可互换次序，每个不同要点只计一次。 "
+        },
+        "32": {
+          "referenceAnswer": "family",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": ""
+        },
+        "33": {
+          "referenceAnswer": "studio audience",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 10
+          },
+          "note": ""
+        }
+      },
+      "reference": {
+        "sourceId": "p-5b94ac0c839f",
+        "page": 10
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-5b94ac0c839f",
+          "page": 10
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [13, 14],
+        [18, 19],
+        [21, 22, 23],
+        [25, 26, 27],
+        [29, 30, 31]
+      ],
+      "reviewRules": [
+        "Items must be in the correct box, but can be in any order within that box. Capitalisation is not necessary."
+      ]
+    },
+    "A-3": {
+      "questions": {
+        "34": {
+          "referenceAnswer": "✓ a) the prize",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "35": {
+          "referenceAnswer": "$15,000",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "36": {
+          "referenceAnswer": "✓ c) filming equipment",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "37": {
+          "referenceAnswer": "$5,000 (per household)",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "38": {
+          "referenceAnswer": "✓ e) editing the film",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "39": {
+          "referenceAnswer": "$40,000",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "40": {
+          "referenceAnswer": "✓ f) venue for studio audience",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "41": {
+          "referenceAnswer": "$10,000",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "42": {
+          "referenceAnswer": "✓ b)",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "43": {
+          "referenceAnswer": "8",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "44": {
+          "referenceAnswer": "4 months",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        }
+      },
+      "reference": {
+        "sourceId": "p-5b94ac0c839f",
+        "page": 11
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-5b94ac0c839f",
+          "page": 11
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-4": {
+      "questions": {
+        "45": {
+          "referenceAnswer": "folder // cover",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "46": {
+          "referenceAnswer": "(popular) theme // reality show on families",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "47": {
+          "referenceAnswer": "(clear and) workable concept",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "48": {
+          "referenceAnswer": "(likely to) attract large audience",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "49": {
+          "referenceAnswer": "kind of families/people to have/participate on the show",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "50": {
+          "referenceAnswer": "how to find them // get them to take part // get them interested in taking part",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "51": {
+          "referenceAnswer": "how to choose families (from those that applied)",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "52": {
+          "referenceAnswer": "how to make up a studio audience",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        },
+        "53": {
+          "referenceAnswer": "costs in more detail // detailed cost breakdown // accurate cost estimates",
+          "reference": {
+            "sourceId": "p-5b94ac0c839f",
+            "page": 11
+          },
+          "note": ""
+        }
+      },
+      "reference": {
+        "sourceId": "p-5b94ac0c839f",
+        "page": 11
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-5b94ac0c839f",
+          "page": 11
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": ["Capitalisation is not necessary."]
+    },
+    "B1-5": {
+      "reference": {
+        "sourceId": "p-5b94ac0c839f",
+        "page": 12
+      },
+      "dataFile": {
+        "sourceId": "p-7a05dea2d781",
+        "page": 16
+      },
+      "reviewRules": [
+        "Points must be in correct boxes, but in any order within each box.",
+        "Capitalisation is not necessary. All answers can be found in tapescript.",
+        "5.1、5.2：同组理由可互换次序。",
+        "5.3、5.4、5.5：同组理由可互换次序。",
+        "5.6、5.7：同组理由可互换次序。",
+        "5.9、5.10、5.11：同组理由可互换次序。",
+        "5.13、5.14：同组理由可互换次序。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-5b94ac0c839f",
+          "page": 12
+        }
+      ],
+      "questions": {
+        "5": {
+          "referenceAnswer": "内容：14 分；全题：14 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "5.1",
+              "referenceAnswer": "good fun // made others laugh",
+              "section": "Richard Ho — Good points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2",
+              "referenceAnswer": "helped (Mary) with homework",
+              "section": "Richard Ho — Good points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3",
+              "referenceAnswer": "disgusting // didn’t clean bathroom after using it",
+              "section": "Richard Ho — Bad points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.4",
+              "referenceAnswer": "inconsiderate // left his dirty dishes for others to do",
+              "section": "Richard Ho — Bad points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.5",
+              "referenceAnswer": "impolite/rude (on phone) // never offered to take a message // didn’t say who he was",
+              "section": "Richard Ho — Bad points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.6",
+              "referenceAnswer": "gets on well with everyone else // friendly",
+              "section": "Mary Robinson — Good points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.7",
+              "referenceAnswer": "willing to help others // helpful",
+              "section": "Mary Robinson — Good points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.8",
+              "referenceAnswer": "(a bit) untidy // left her clothes all over the flat",
+              "section": "Mary Robinson — Bad points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.9",
+              "referenceAnswer": "intelligent // talked about current affairs/news",
+              "section": "Susan Wong — Good points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.10",
+              "referenceAnswer": "fashionable // had a stylish hair cut",
+              "section": "Susan Wong — Good points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.11",
+              "referenceAnswer": "polite to Mary’s mother // she chatted with Mary’s mother",
+              "section": "Susan Wong — Good points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.12",
+              "referenceAnswer": "impolite to flatmates // had a sharp tongue // shouted at flatmates",
+              "section": "Susan Wong — Bad points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.13",
+              "referenceAnswer": "boring // hardly spoke to anyone",
+              "section": "Stephen Smith — Bad points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.14",
+              "referenceAnswer": "watched TV the whole time",
+              "section": "Stephen Smith — Bad points / habits mentioned",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-6": {
+      "reference": {
+        "sourceId": "p-5b94ac0c839f",
+        "page": 13
+      },
+      "dataFile": {
+        "sourceId": "p-7a05dea2d781",
+        "page": 16
+      },
+      "reviewRules": [
+        "6.1、6.2、6.3、6.4、6.5：同组理由可互换次序。",
+        "6.6、6.7、6.8、6.9：同组理由可互换次序。",
+        "6.10、6.11、6.12、6.13、6.14：同组理由可互换次序。",
+        "6.15、6.16：同组理由可互换次序。",
+        "whole-task 内容计分（正确点数 → 分数）：0 → 0；1 → 0；2 → 2；3 → 2；4 → 4；5 → 4；6 → 4；7 → 6；8 → 6；9 → 6；10 → 8；11 → 8；12 → 8；13 → 10；14 → 10；15 → 10；16 → 10。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-5b94ac0c839f",
+          "page": 13
+        },
+        {
+          "sourceId": "p-5b94ac0c839f",
+          "page": 14
+        }
+      ],
+      "questions": {
+        "6": {
+          "referenceAnswer": "内容：10 分；全题：19 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "6.1",
+              "referenceAnswer": "a show about a group of students sharing a flat",
+              "section": "Introduction",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 20,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2",
+              "referenceAnswer": "on from (beginning of) January to (the end of) March",
+              "section": "Introduction",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 21,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3",
+              "referenceAnswer": "12 episodes",
+              "section": "Introduction",
+              "sourceLabel": "Data File 第 5、7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 20,
+                  "printedPage": 5
+                },
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 22,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.4",
+              "referenceAnswer": "winner voted as being the nicest",
+              "section": "Introduction",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 20,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.5",
+              "referenceAnswer": "prize was a holiday in Paris",
+              "section": "Introduction",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 20,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.6",
+              "referenceAnswer": "advertising revenue generally greater than other programmes in the same time slot",
+              "section": "Audience figures, advertising figures and production costs",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 21,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.7",
+              "referenceAnswer": "audience figures were generally higher than those for other programmes in the same time slot",
+              "section": "Audience figures, advertising figures and production costs",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 21,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.8",
+              "referenceAnswer": "viewing figures rose from January to March",
+              "section": "Audience figures, advertising figures and production costs",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 21,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.9",
+              "referenceAnswer": "cost to produce Flatmates is $852,400/$61,700 per episode/over $60,000 per episode",
+              "section": "Audience figures, advertising figures and production costs",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 22,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.10",
+              "referenceAnswer": "funny and entertaining",
+              "section": "Views of studio audience",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.11",
+              "referenceAnswer": "people can watch how people interact with each other",
+              "section": "Views of studio audience",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.12",
+              "referenceAnswer": "surprising interactions // you can never tell what’s going to happen next",
+              "section": "Views of studio audience",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.13",
+              "referenceAnswer": "can learn about getting along with others",
+              "section": "Views of studio audience",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.14",
+              "referenceAnswer": "useful for anyone planning to share a flat // useful for students going to live in university hall of residence",
+              "section": "Views of studio audience",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.15",
+              "referenceAnswer": "should have a better/more serious/mature presenter",
+              "section": "Recommendations for future shows like this",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.16",
+              "referenceAnswer": "upload a live, unedited version of the show onto the Internet",
+              "section": "Recommendations for future shows like this",
+              "sourceLabel": "原音（听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 13
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-5b94ac0c839f",
+              "page": 14
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-7": {
+      "reference": {
+        "sourceId": "p-5b94ac0c839f",
+        "page": 15
+      },
+      "dataFile": {
+        "sourceId": "p-7a05dea2d781",
+        "page": 16
+      },
+      "reviewRules": ["7.1、7.2、7.3：同组理由可互换次序。", "7.4、7.5、7.6：同组理由可互换次序。"],
+      "referencePages": [
+        {
+          "sourceId": "p-5b94ac0c839f",
+          "page": 15
+        }
+      ],
+      "questions": {
+        "7": {
+          "referenceAnswer": "内容：7 分；全题：14 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "7.1",
+              "referenceAnswer": "an audience member for Flatmates",
+              "section": "Reason for writing",
+              "sourceLabel": "Data File 第 4、8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 19,
+                  "printedPage": 4
+                },
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 23,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2",
+              "referenceAnswer": "he hasn’t been paid (what he thought he would be)",
+              "section": "Reason for writing",
+              "sourceLabel": "Data File 第 4 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 19,
+                  "printedPage": 4
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3",
+              "referenceAnswer": "he was only given $84/$7 per episode",
+              "section": "Reason for writing",
+              "sourceLabel": "Data File 第 4 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 19,
+                  "printedPage": 4
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.4",
+              "referenceAnswer": "he lives in Mei Foo",
+              "section": "Details and action to be taken",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 23,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.5",
+              "referenceAnswer": "$18 for MTR and $5 for minibus // $23 for return fare/per episode",
+              "section": "Details and action to be taken",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 24,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.6",
+              "referenceAnswer": "$150 for taking part in studio discussion",
+              "section": "Details and action to be taken",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 23,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.7",
+              "referenceAnswer": "complimentary close: Please follow up on the matter // Regards // Yours sincerely // Thanks // David (Chan)",
+              "section": "Closing",
+              "sourceLabel": "Data File 第 4 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-7a05dea2d781",
+                  "page": 19,
+                  "printedPage": 4
+                }
+              ],
+              "reference": {
+                "sourceId": "p-5b94ac0c839f",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-5b94ac0c839f",
+              "page": 15
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2295 @@
+{
+  "sessionId": "2012-exam",
+  "reviewDate": "2026-11-17",
+  "reviewMethod": "Independent visual comparison against marking-scheme images. OCR used only to locate/read. referenceAnswer preserves official alternatives (// or /) and optional parentheses; do not infer exact-match scoring. Square-bracket achievement percentages omitted.",
+  "tasks": {
+    "A-1": {
+      "questions": {
+        "1": {
+          "referenceAnswer": "Saturday/Sat",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[60.85, 75.67, 66.27, 75.67]],
+          "evidenceReview": [
+            {
+              "contextStart": 60.85,
+              "contextEnd": 75.67,
+              "start": 66.27,
+              "end": 75.67,
+              "sourceSentenceIds": ["s00054"],
+              "contextSentenceIds": ["s00052", "s00053", "s00054"],
+              "sentenceIndices": [5, 7, 7, 7],
+              "reason": "Meeting greeting explicitly Saturday twice."
+            }
+          ]
+        },
+        "2": {
+          "referenceAnswer": "student president",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[80.97, 96.93, 91.27, 96.93]],
+          "evidenceReview": [
+            {
+              "contextStart": 80.97,
+              "contextEnd": 96.93,
+              "start": 91.27,
+              "end": 96.93,
+              "sourceSentenceIds": ["s00060", "s00061"],
+              "contextSentenceIds": ["s00058", "s00059", "s00060", "s00061"],
+              "sentenceIndices": [11, 13, 14, 14],
+              "reason": "Cherry introduced as student president, distinguish Rob technician."
+            }
+          ]
+        },
+        "3": {
+          "referenceAnswer": "boring",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[108.47, 131.889, 116.07, 131.889]],
+          "evidenceReview": [
+            {
+              "contextStart": 108.47,
+              "contextEnd": 131.889,
+              "start": 116.07,
+              "end": 131.889,
+              "sourceSentenceIds": ["s00065", "s00066", "s00067"],
+              "contextSentenceIds": ["s00063", "s00064", "s00065", "s00066", "s00067"],
+              "sentenceIndices": [16, 18, 20, 20],
+              "reason": "Website comments question and boring repeated."
+            }
+          ]
+        },
+        "4": {
+          "referenceAnswer": "user-friendly",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[116.07, 141.149, 132.77, 141.149]],
+          "evidenceReview": [
+            {
+              "contextStart": 116.07,
+              "contextEnd": 141.149,
+              "start": 132.77,
+              "end": 141.149,
+              "sourceSentenceIds": ["s00068", "s00069", "s00070"],
+              "contextSentenceIds": ["s00065", "s00066", "s00067", "s00068", "s00069", "s00070"],
+              "sentenceIndices": [18, 21, 23, 23],
+              "reason": "Additional problem not user-friendly, repeated confirmation."
+            }
+          ]
+        },
+        "5": {
+          "referenceAnswer": "file(s)/document(s)/picture(s)/video clips",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[142.19, 162.55, 154.09, 162.55]],
+          "evidenceReview": [
+            {
+              "contextStart": 142.19,
+              "contextEnd": 162.55,
+              "start": 154.09,
+              "end": 162.55,
+              "sourceSentenceIds": ["s00073"],
+              "contextSentenceIds": ["s00071", "s00072", "s00073"],
+              "sentenceIndices": [24, 26, 26, 26],
+              "reason": "Intranet definition then transferable file examples."
+            }
+          ]
+        },
+        "6": {
+          "referenceAnswer": "safe/secure/protected/firewall",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[163.21, 180.35, 166.889, 180.35]],
+          "evidenceReview": [
+            {
+              "contextStart": 163.21,
+              "contextEnd": 180.35,
+              "start": 166.889,
+              "end": 180.35,
+              "sourceSentenceIds": ["s00075", "s00076", "s00077"],
+              "contextSentenceIds": ["s00074", "s00075", "s00076", "s00077"],
+              "sentenceIndices": [27, 28, 30, 30],
+              "reason": "Email suggestion rejected; intranet secure because firewall."
+            }
+          ]
+        },
+        "7": {
+          "referenceAnswer": "student(s)/classmate(s) and teacher(s)",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[184.77, 214.37, 197.509, 214.37]],
+          "evidenceReview": [
+            {
+              "contextStart": 184.77,
+              "contextEnd": 214.37,
+              "start": 197.509,
+              "end": 214.37,
+              "sourceSentenceIds": ["s00082", "s00083", "s00084"],
+              "contextSentenceIds": ["s00079", "s00080", "s00081", "s00082", "s00083", "s00084"],
+              "sentenceIndices": [32, 35, 37, 37],
+              "reason": "Proposed social network users include both schoolmates and teachers, clarified."
+            }
+          ]
+        },
+        "8": {
+          "referenceAnswer": "(online) market",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[215.11, 227.99, 218.25, 227.99]],
+          "evidenceReview": [
+            {
+              "contextStart": 215.11,
+              "contextEnd": 227.99,
+              "start": 218.25,
+              "end": 227.99,
+              "sourceSentenceIds": ["s00086", "s00087", "s00088"],
+              "contextSentenceIds": ["s00085", "s00086", "s00087", "s00088"],
+              "sentenceIndices": [38, 39, 41, 41],
+              "reason": "Next online service market and definition."
+            }
+          ]
+        },
+        "9": {
+          "referenceAnswer": "(old text) book(s)",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[218.25, 241.21, 228.69, 241.21]],
+          "evidenceReview": [
+            {
+              "contextStart": 218.25,
+              "contextEnd": 241.21,
+              "start": 228.69,
+              "end": 241.21,
+              "sourceSentenceIds": ["s00089", "s00090"],
+              "contextSentenceIds": ["s00086", "s00087", "s00088", "s00089", "s00090"],
+              "sentenceIndices": [39, 42, 43, 43],
+              "reason": "Market use example old textbooks sold to younger pupils."
+            }
+          ]
+        },
+        "10": {
+          "referenceAnswer": "Rob",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[241.97, 274.01, 252.21, 274.01]],
+          "evidenceReview": [
+            {
+              "contextStart": 241.97,
+              "contextEnd": 274.01,
+              "start": 252.21,
+              "end": 274.01,
+              "sourceSentenceIds": ["s00092", "s00093", "s00094"],
+              "contextSentenceIds": ["s00091", "s00092", "s00093", "s00094"],
+              "sentenceIndices": [44, 45, 47, 47],
+              "reason": "Rob asked about redesign, clarifies contacting designer instead."
+            }
+          ]
+        },
+        "11": {
+          "referenceAnswer": "Cherry",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[274.87, 299.11, 277.73, 299.11]],
+          "evidenceReview": [
+            {
+              "contextStart": 274.87,
+              "contextEnd": 299.11,
+              "start": 277.73,
+              "end": 299.11,
+              "sourceSentenceIds": ["s00096", "s00097", "s00098", "s00099", "s00100"],
+              "contextSentenceIds": ["s00095", "s00096", "s00097", "s00098", "s00099", "s00100"],
+              "sentenceIndices": [48, 49, 53, 53],
+              "reason": "Student survey offered and Cherry named twice."
+            }
+          ]
+        },
+        "12": {
+          "referenceAnswer": "Jack",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[274.87, 313.169, 299.429, 308.05]],
+          "evidenceReview": [
+            {
+              "contextStart": 274.87,
+              "contextEnd": 313.169,
+              "start": 299.429,
+              "end": 308.05,
+              "sourceSentenceIds": ["s00101", "s00102", "s00103"],
+              "contextSentenceIds": [
+                "s00095",
+                "s00096",
+                "s00097",
+                "s00098",
+                "s00099",
+                "s00100",
+                "s00101",
+                "s00102",
+                "s00103",
+                "s00104"
+              ],
+              "sentenceIndices": [48, 54, 56, 57],
+              "reason": "Official script visually identifies Jack Law as teacher-survey volunteer; retains student survey contrast."
+            }
+          ]
+        },
+        "13": {
+          "referenceAnswer": "after/in/2 week(s time)/25th June",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[308.97, 328.19, 314.149, 328.19]],
+          "evidenceReview": [
+            {
+              "contextStart": 308.97,
+              "contextEnd": 328.19,
+              "start": 314.149,
+              "end": 328.19,
+              "sourceSentenceIds": ["s00105", "s00106", "s00107", "s00108"],
+              "contextSentenceIds": ["s00104", "s00105", "s00106", "s00107", "s00108"],
+              "sentenceIndices": [57, 58, 61, 61],
+              "reason": "Next-week proposal corrected to two weeks and agreed."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-9a35c61b2710",
+        "page": 5
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9a35c61b2710",
+          "page": 5
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-2": {
+      "questions": {
+        "14": {
+          "referenceAnswer": "search",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[84.73, 109.81, 98.13, 109.81]],
+          "evidenceReview": [
+            {
+              "contextStart": 84.73,
+              "contextEnd": 109.81,
+              "start": 98.13,
+              "end": 109.81,
+              "sourceSentenceIds": ["s00122", "s00123", "s00124"],
+              "contextSentenceIds": ["s00121", "s00122", "s00123", "s00124"],
+              "sentenceIndices": [10, 11, 13, 13],
+              "reason": "Homepage layout and top-right Search box."
+            }
+          ]
+        },
+        "15": {
+          "referenceAnswer": "about us",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[110.45, 134.23, 110.45, 134.23]],
+          "evidenceReview": [
+            {
+              "contextStart": 110.45,
+              "contextEnd": 134.23,
+              "start": 110.45,
+              "end": 134.23,
+              "sourceSentenceIds": ["s00125", "s00126"],
+              "contextSentenceIds": ["s00125", "s00126"],
+              "sentenceIndices": [14, 14, 15, 15],
+              "reason": "Ordered tabs and About Us purpose, completes split sentence."
+            }
+          ]
+        },
+        "16": {
+          "referenceAnswer": "parents",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[110.45, 145.09, 135.25, 145.09]],
+          "evidenceReview": [
+            {
+              "contextStart": 110.45,
+              "contextEnd": 145.09,
+              "start": 135.25,
+              "end": 145.09,
+              "sourceSentenceIds": ["s00127", "s00128"],
+              "contextSentenceIds": ["s00125", "s00126", "s00127", "s00128"],
+              "sentenceIndices": [14, 16, 17, 17],
+              "reason": "Parents tab follows students in ordered list."
+            }
+          ]
+        },
+        "17": {
+          "referenceAnswer": "subjects",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[135.25, 155.25, 146.23, 155.25]],
+          "evidenceReview": [
+            {
+              "contextStart": 135.25,
+              "contextEnd": 155.25,
+              "start": 146.23,
+              "end": 155.25,
+              "sourceSentenceIds": ["s00129"],
+              "contextSentenceIds": ["s00127", "s00128", "s00129"],
+              "sentenceIndices": [16, 18, 18, 18],
+              "reason": "Subjects tab and course-outline purpose."
+            }
+          ]
+        },
+        "18": {
+          "referenceAnswer": "study at AC",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[155.95, 197.85, 174.01, 197.85]],
+          "evidenceReview": [
+            {
+              "contextStart": 155.95,
+              "contextEnd": 197.85,
+              "start": 174.01,
+              "end": 197.85,
+              "sourceSentenceIds": ["s00133", "s00134", "s00135", "s00136"],
+              "contextSentenceIds": ["s00130", "s00131", "s00132", "s00133", "s00134", "s00135", "s00136"],
+              "sentenceIndices": [19, 22, 25, 25],
+              "reason": "Photo captions and middle Study at AC identified and repeated."
+            }
+          ]
+        },
+        "19": {
+          "referenceAnswer": "latest news (section)",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[200.49, 250.47, 227.65, 250.47]],
+          "evidenceReview": [
+            {
+              "contextStart": 200.49,
+              "contextEnd": 250.47,
+              "start": 227.65,
+              "end": 250.47,
+              "sourceSentenceIds": ["s00141", "s00142", "s00143", "s00144", "s00145"],
+              "contextSentenceIds": [
+                "s00138",
+                "s00139",
+                "s00140",
+                "s00141",
+                "s00142",
+                "s00143",
+                "s00144",
+                "s00145"
+              ],
+              "sentenceIndices": [27, 30, 34, 34],
+              "reason": "Three information boxes: latest news after upcoming events."
+            }
+          ]
+        },
+        "20": {
+          "referenceAnswer": "have your say",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[250.47, 277.79, 254.93, 277.79]],
+          "evidenceReview": [
+            {
+              "contextStart": 250.47,
+              "contextEnd": 277.79,
+              "start": 254.93,
+              "end": 277.79,
+              "sourceSentenceIds": ["s00148", "s00149"],
+              "contextSentenceIds": ["s00146", "s00147", "s00148", "s00149"],
+              "sentenceIndices": [35, 37, 38, 38],
+              "reason": "Next box labelled Have your say, purpose and repetition."
+            }
+          ]
+        },
+        "21": {
+          "referenceAnswer": "transport/transportation",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[283.63, 337.83, 308.53, 337.83]],
+          "evidenceReview": [
+            {
+              "contextStart": 283.63,
+              "contextEnd": 337.83,
+              "start": 308.53,
+              "end": 337.83,
+              "sourceSentenceIds": ["s00157", "s00158", "s00159", "s00160", "s00161"],
+              "contextSentenceIds": [
+                "s00151",
+                "s00152",
+                "s00153",
+                "s00154",
+                "s00155",
+                "s00156",
+                "s00157",
+                "s00158",
+                "s00159",
+                "s00160",
+                "s00161"
+              ],
+              "sentenceIndices": [40, 46, 50, 50],
+              "reason": "Student-page menu and transport at top, completes split sentence."
+            }
+          ]
+        },
+        "22": {
+          "referenceAnswer": "make/meet (new) friend(s)；\nbuild relationship(s)",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "Q22、Q24 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[339.81, 396.71, 370.95, 396.71]],
+          "evidenceReview": [
+            {
+              "contextStart": 339.81,
+              "contextEnd": 396.71,
+              "start": 370.95,
+              "end": 396.71,
+              "sourceSentenceIds": ["s00166", "s00167", "s00168"],
+              "contextSentenceIds": ["s00162", "s00163", "s00164", "s00165", "s00166", "s00167", "s00168"],
+              "sentenceIndices": [51, 55, 57, 57],
+              "reason": "Social-network examples distinguish share-content example from friends/relationships."
+            }
+          ]
+        },
+        "23": {
+          "referenceAnswer": "academe",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[397.51, 429.67, 397.51, 429.67]],
+          "evidenceReview": [
+            {
+              "contextStart": 397.51,
+              "contextEnd": 429.67,
+              "start": 397.51,
+              "end": 429.67,
+              "sourceSentenceIds": ["s00169", "s00170", "s00171", "s00172", "s00173"],
+              "contextSentenceIds": ["s00169", "s00170", "s00171", "s00172", "s00173"],
+              "sentenceIndices": [58, 58, 62, 62],
+              "reason": "Learning system Academe named and spelled explicitly."
+            }
+          ]
+        },
+        "24": {
+          "referenceAnswer": "make/meet (new) friend(s)；\nbuild relationship(s)",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "Q22、Q24 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[339.81, 396.71, 370.95, 396.71]],
+          "evidenceReview": [
+            {
+              "contextStart": 339.81,
+              "contextEnd": 396.71,
+              "start": 370.95,
+              "end": 396.71,
+              "sourceSentenceIds": ["s00166", "s00167", "s00168"],
+              "contextSentenceIds": ["s00162", "s00163", "s00164", "s00165", "s00166", "s00167", "s00168"],
+              "sentenceIndices": [51, 55, 57, 57],
+              "reason": "Social-network examples distinguish share-content example from friends/relationships."
+            }
+          ]
+        },
+        "25": {
+          "referenceAnswer": "exam information/info；\nexam(s) results",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "Q25、Q26 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[436.71, 458.35, 445.17, 458.35]],
+          "evidenceReview": [
+            {
+              "contextStart": 436.71,
+              "contextEnd": 458.35,
+              "start": 445.17,
+              "end": 458.35,
+              "sourceSentenceIds": ["s00176", "s00177", "s00178", "s00179"],
+              "contextSentenceIds": ["s00175", "s00176", "s00177", "s00178", "s00179"],
+              "sentenceIndices": [64, 65, 68, 68],
+              "reason": "After library, separate exam information and results links."
+            }
+          ]
+        },
+        "26": {
+          "referenceAnswer": "exam information/info；\nexam(s) results",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "Q25、Q26 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[436.71, 458.35, 445.17, 458.35]],
+          "evidenceReview": [
+            {
+              "contextStart": 436.71,
+              "contextEnd": 458.35,
+              "start": 445.17,
+              "end": 458.35,
+              "sourceSentenceIds": ["s00176", "s00177", "s00178", "s00179"],
+              "contextSentenceIds": ["s00175", "s00176", "s00177", "s00178", "s00179"],
+              "sentenceIndices": [64, 65, 68, 68],
+              "reason": "After library, separate exam information and results links."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-9a35c61b2710",
+        "page": 5
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9a35c61b2710",
+          "page": 5
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [22, 24],
+        [25, 26]
+      ],
+      "reviewRules": []
+    },
+    "A-3": {
+      "questions": {
+        "27": {
+          "referenceAnswer": "Negative",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[65.92, 141.68, 79.64, 141.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 65.92,
+              "contextEnd": 141.68,
+              "start": 79.64,
+              "end": 141.68,
+              "sourceSentenceIds": [
+                "s00194",
+                "s00195",
+                "s00196",
+                "s00197",
+                "s00198",
+                "s00199",
+                "s00200",
+                "s00201",
+                "s00202",
+                "s00203",
+                "s00204",
+                "s00205"
+              ],
+              "contextSentenceIds": [
+                "s00193",
+                "s00194",
+                "s00195",
+                "s00196",
+                "s00197",
+                "s00198",
+                "s00199",
+                "s00200",
+                "s00201",
+                "s00202",
+                "s00203",
+                "s00204",
+                "s00205"
+              ],
+              "sentenceIndices": [7, 8, 19, 19],
+              "reason": "Grace introduced, classroom-learning preference and rejected computer substitute support negative stance."
+            }
+          ]
+        },
+        "28": {
+          "referenceAnswer": "do(ing) experiments",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[103.74, 141.68, 119.22, 141.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 103.74,
+              "contextEnd": 141.68,
+              "start": 119.22,
+              "end": 141.68,
+              "sourceSentenceIds": ["s00201", "s00202", "s00203", "s00204", "s00205"],
+              "contextSentenceIds": [
+                "s00198",
+                "s00199",
+                "s00200",
+                "s00201",
+                "s00202",
+                "s00203",
+                "s00204",
+                "s00205"
+              ],
+              "sentenceIndices": [12, 15, 19, 19],
+              "reason": "Learning-by-doing gives science experiments and art creation, with challenge."
+            }
+          ]
+        },
+        "29": {
+          "referenceAnswer": "creat(ing) things",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[103.74, 141.68, 119.22, 141.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 103.74,
+              "contextEnd": 141.68,
+              "start": 119.22,
+              "end": 141.68,
+              "sourceSentenceIds": ["s00201", "s00202", "s00203", "s00204", "s00205"],
+              "contextSentenceIds": [
+                "s00198",
+                "s00199",
+                "s00200",
+                "s00201",
+                "s00202",
+                "s00203",
+                "s00204",
+                "s00205"
+              ],
+              "sentenceIndices": [12, 15, 19, 19],
+              "reason": "Learning-by-doing gives science experiments and art creation, with challenge."
+            }
+          ]
+        },
+        "30": {
+          "referenceAnswer": "Icarus Liu",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[141.68, 166.66, 149.32, 164.04]],
+          "evidenceReview": [
+            {
+              "contextStart": 141.68,
+              "contextEnd": 166.66,
+              "start": 149.32,
+              "end": 164.04,
+              "sourceSentenceIds": ["s00208", "s00209"],
+              "contextSentenceIds": ["s00206", "s00207", "s00208", "s00209", "s00210"],
+              "sentenceIndices": [20, 22, 23, 24],
+              "reason": "Name request, Icarus Liu and spelling."
+            }
+          ]
+        },
+        "31": {
+          "referenceAnswer": "Positive",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[164.46, 214.7, 166.66, 214.7]],
+          "evidenceReview": [
+            {
+              "contextStart": 164.46,
+              "contextEnd": 214.7,
+              "start": 166.66,
+              "end": 214.7,
+              "sourceSentenceIds": ["s00211", "s00212", "s00213", "s00214", "s00215"],
+              "contextSentenceIds": ["s00210", "s00211", "s00212", "s00213", "s00214", "s00215"],
+              "sentenceIndices": [24, 25, 29, 29],
+              "reason": "Icarus advocates online learning and supplies positive examples."
+            }
+          ]
+        },
+        "32": {
+          "referenceAnswer": "creative software//software to draw/design",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[166.66, 214.7, 192.1, 214.7]],
+          "evidenceReview": [
+            {
+              "contextStart": 166.66,
+              "contextEnd": 214.7,
+              "start": 192.1,
+              "end": 214.7,
+              "sourceSentenceIds": ["s00214", "s00215"],
+              "contextSentenceIds": ["s00211", "s00212", "s00213", "s00214", "s00215"],
+              "sentenceIndices": [25, 28, 29, 29],
+              "reason": "Creative-software phrase clarified as drawing/design."
+            }
+          ]
+        },
+        "33": {
+          "referenceAnswer": "Undecided",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[214.98, 251.82, 218.44, 251.82]],
+          "evidenceReview": [
+            {
+              "contextStart": 214.98,
+              "contextEnd": 251.82,
+              "start": 218.44,
+              "end": 251.82,
+              "sourceSentenceIds": ["s00217", "s00218", "s00219", "s00220"],
+              "contextSentenceIds": ["s00216", "s00217", "s00218", "s00219", "s00220"],
+              "sentenceIndices": [30, 31, 34, 34],
+              "reason": "Michael introduced, explicitly unsure, benefits and caveat."
+            }
+          ]
+        },
+        "34": {
+          "referenceAnswer": "(look up words in) online dictionary",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[218.44, 251.82, 229.12, 251.82]],
+          "evidenceReview": [
+            {
+              "contextStart": 218.44,
+              "contextEnd": 251.82,
+              "start": 229.12,
+              "end": 251.82,
+              "sourceSentenceIds": ["s00219", "s00220"],
+              "contextSentenceIds": ["s00217", "s00218", "s00219", "s00220"],
+              "sentenceIndices": [31, 33, 34, 34],
+              "reason": "Online-dictionary example with classroom-sharing caveat."
+            }
+          ]
+        },
+        "35": {
+          "referenceAnswer": "(put up) video(s) of self",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[274.88, 306.72, 277.36, 306.72]],
+          "evidenceReview": [
+            {
+              "contextStart": 274.88,
+              "contextEnd": 306.72,
+              "start": 277.36,
+              "end": 306.72,
+              "sourceSentenceIds": ["s00226", "s00227", "s00228", "s00229", "s00230", "s00231", "s00232"],
+              "contextSentenceIds": [
+                "s00225",
+                "s00226",
+                "s00227",
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232"
+              ],
+              "sentenceIndices": [39, 40, 46, 46],
+              "reason": "Danger concern and concrete personal video/phone-number disclosures."
+            }
+          ]
+        },
+        "36": {
+          "referenceAnswer": "(give out) phone number",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[274.88, 306.72, 277.36, 306.72]],
+          "evidenceReview": [
+            {
+              "contextStart": 274.88,
+              "contextEnd": 306.72,
+              "start": 277.36,
+              "end": 306.72,
+              "sourceSentenceIds": ["s00226", "s00227", "s00228", "s00229", "s00230", "s00231", "s00232"],
+              "contextSentenceIds": [
+                "s00225",
+                "s00226",
+                "s00227",
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232"
+              ],
+              "sentenceIndices": [39, 40, 46, 46],
+              "reason": "Danger concern and concrete personal video/phone-number disclosures."
+            }
+          ]
+        },
+        "37": {
+          "referenceAnswer": "every friend request",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[298.06, 320, 307.28, 320]],
+          "evidenceReview": [
+            {
+              "contextStart": 298.06,
+              "contextEnd": 320,
+              "start": 307.28,
+              "end": 320,
+              "sourceSentenceIds": ["s00233", "s00234"],
+              "contextSentenceIds": ["s00231", "s00232", "s00233", "s00234"],
+              "sentenceIndices": [45, 47, 48, 48],
+              "reason": "Privacy-controls objection answered by indiscriminate friend-request acceptance."
+            }
+          ]
+        },
+        "38": {
+          "referenceAnswer": "(too) eager to make friends(s)",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[311.28, 346.58, 332.52, 343.1]],
+          "evidenceReview": [
+            {
+              "contextStart": 311.28,
+              "contextEnd": 346.58,
+              "start": 332.52,
+              "end": 343.1,
+              "sourceSentenceIds": ["s00239"],
+              "contextSentenceIds": ["s00234", "s00235", "s00236", "s00237", "s00238", "s00239", "s00240"],
+              "sentenceIndices": [48, 53, 53, 54],
+              "reason": "Risk discussion and eagerness to make friends with immediate rebuttal."
+            }
+          ]
+        },
+        "39": {
+          "referenceAnswer": "get social network (system)",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[332.52, 371.8, 343.74, 371.8]],
+          "evidenceReview": [
+            {
+              "contextStart": 332.52,
+              "contextEnd": 371.8,
+              "start": 343.74,
+              "end": 371.8,
+              "sourceSentenceIds": ["s00240", "s00241", "s00242", "s00243", "s00244", "s00245"],
+              "contextSentenceIds": ["s00239", "s00240", "s00241", "s00242", "s00243", "s00244", "s00245"],
+              "sentenceIndices": [53, 54, 59, 59],
+              "reason": "Michael agreement leads to social-network adoption and education about dangers."
+            }
+          ]
+        },
+        "40": {
+          "referenceAnswer": "educate students about dangers",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[332.52, 371.8, 343.74, 371.8]],
+          "evidenceReview": [
+            {
+              "contextStart": 332.52,
+              "contextEnd": 371.8,
+              "start": 343.74,
+              "end": 371.8,
+              "sourceSentenceIds": ["s00240", "s00241", "s00242", "s00243", "s00244", "s00245"],
+              "contextSentenceIds": ["s00239", "s00240", "s00241", "s00242", "s00243", "s00244", "s00245"],
+              "sentenceIndices": [53, 54, 59, 59],
+              "reason": "Michael agreement leads to social-network adoption and education about dangers."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-9a35c61b2710",
+        "page": 5
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9a35c61b2710",
+          "page": 5
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-4": {
+      "questions": {
+        "41": {
+          "referenceAnswer": "12–17",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[111.28, 154.72, 126.44, 154.72]],
+          "evidenceReview": [
+            {
+              "contextStart": 111.28,
+              "contextEnd": 154.72,
+              "start": 126.44,
+              "end": 154.72,
+              "sourceSentenceIds": ["s00259", "s00260", "s00261"],
+              "contextSentenceIds": ["s00257", "s00258", "s00259", "s00260", "s00261"],
+              "sentenceIndices": [9, 11, 13, 13],
+              "reason": "Report population and 12-17 group greatest decline; completes split sentence."
+            }
+          ]
+        },
+        "42": {
+          "referenceAnswer": "browser",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[126.44, 163.54, 145.9, 163.54]],
+          "evidenceReview": [
+            {
+              "contextStart": 126.44,
+              "contextEnd": 163.54,
+              "start": 145.9,
+              "end": 163.54,
+              "sourceSentenceIds": ["s00261", "s00262", "s00263"],
+              "contextSentenceIds": ["s00259", "s00260", "s00261", "s00262", "s00263"],
+              "sentenceIndices": [11, 13, 15, 15],
+              "reason": "Webmail defined as browser access with examples."
+            }
+          ]
+        },
+        "43": {
+          "referenceAnswer": "seniors",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[164.2, 188.82, 175.86, 188.82]],
+          "evidenceReview": [
+            {
+              "contextStart": 164.2,
+              "contextEnd": 188.82,
+              "start": 175.86,
+              "end": 188.82,
+              "sourceSentenceIds": ["s00265"],
+              "contextSentenceIds": ["s00264", "s00265"],
+              "sentenceIndices": [16, 17, 17, 17],
+              "reason": "Younger groups decline contrasted with seniors increasing."
+            }
+          ]
+        },
+        "44": {
+          "referenceAnswer": "drastically (plus other appropriate adverbs)",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[189.8, 212.28, 195.32, 212.28]],
+          "evidenceReview": [
+            {
+              "contextStart": 189.8,
+              "contextEnd": 212.28,
+              "start": 195.32,
+              "end": 212.28,
+              "sourceSentenceIds": ["s00267", "s00268"],
+              "contextSentenceIds": ["s00266", "s00267", "s00268"],
+              "sentenceIndices": [18, 19, 20, 20],
+              "reason": "Time-use comparison says social-network rise drastic."
+            }
+          ]
+        },
+        "45": {
+          "referenceAnswer": "die/disappear",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[213.08, 230, 213.08, 230]],
+          "evidenceReview": [
+            {
+              "contextStart": 213.08,
+              "contextEnd": 230,
+              "start": 213.08,
+              "end": 230,
+              "sourceSentenceIds": ["s00269", "s00270"],
+              "contextSentenceIds": ["s00269", "s00270"],
+              "sentenceIndices": [21, 21, 22, 22],
+              "reason": "Zuckerberg death-of-email prediction and quoted explanation."
+            }
+          ]
+        },
+        "46": {
+          "referenceAnswer": "one place/news feed",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[230.5, 258.44, 230.5, 258.44]],
+          "evidenceReview": [
+            {
+              "contextStart": 230.5,
+              "contextEnd": 258.44,
+              "start": 230.5,
+              "end": 258.44,
+              "sourceSentenceIds": ["s00271", "s00272"],
+              "contextSentenceIds": ["s00271", "s00272"],
+              "sentenceIndices": [23, 23, 24, 24],
+              "reason": "Multiple channels consolidated into one feed/place."
+            }
+          ]
+        },
+        "47": {
+          "referenceAnswer": "cloud (email) based//cloud(-based) (email) service/system",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[259.32, 290.96, 259.32, 290.96]],
+          "evidenceReview": [
+            {
+              "contextStart": 259.32,
+              "contextEnd": 290.96,
+              "start": 259.32,
+              "end": 290.96,
+              "sourceSentenceIds": ["s00273", "s00274", "s00275"],
+              "contextSentenceIds": ["s00273", "s00274", "s00275"],
+              "sentenceIndices": [25, 25, 27, 27],
+              "reason": "In-house to cloud-email switch with Gmail example."
+            }
+          ]
+        },
+        "48": {
+          "referenceAnswer": "cut costs",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[259.32, 290.96, 274.6, 290.96]],
+          "evidenceReview": [
+            {
+              "contextStart": 259.32,
+              "contextEnd": 290.96,
+              "start": 274.6,
+              "end": 290.96,
+              "sourceSentenceIds": ["s00274", "s00275"],
+              "contextSentenceIds": ["s00273", "s00274", "s00275"],
+              "sentenceIndices": [25, 26, 27, 27],
+              "reason": "Cloud switch benefit explicitly cuts costs."
+            }
+          ]
+        },
+        "49": {
+          "referenceAnswer": "connecting with/contacting (prospective) customers",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[279.48, 335.66, 291.78, 323.56]],
+          "evidenceReview": [
+            {
+              "contextStart": 279.48,
+              "contextEnd": 335.66,
+              "start": 291.78,
+              "end": 323.56,
+              "sourceSentenceIds": ["s00276", "s00277"],
+              "contextSentenceIds": ["s00275", "s00276", "s00277", "s00278"],
+              "sentenceIndices": [27, 28, 29, 30],
+              "reason": "Business system connects prospective customers and ensuing benefits."
+            }
+          ]
+        },
+        "50": {
+          "referenceAnswer": "office productivity；\noffice efficiency",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "Q50、Q51 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[291.78, 335.66, 307.72, 335.66]],
+          "evidenceReview": [
+            {
+              "contextStart": 291.78,
+              "contextEnd": 335.66,
+              "start": 307.72,
+              "end": 335.66,
+              "sourceSentenceIds": ["s00277", "s00278"],
+              "contextSentenceIds": ["s00276", "s00277", "s00278"],
+              "sentenceIndices": [28, 29, 30, 30],
+              "reason": "Office productivity and efficiency paired and repeated, completes split sentence."
+            }
+          ]
+        },
+        "51": {
+          "referenceAnswer": "office productivity；\noffice efficiency",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "Q50、Q51 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[291.78, 335.66, 307.72, 335.66]],
+          "evidenceReview": [
+            {
+              "contextStart": 291.78,
+              "contextEnd": 335.66,
+              "start": 307.72,
+              "end": 335.66,
+              "sourceSentenceIds": ["s00277", "s00278"],
+              "contextSentenceIds": ["s00276", "s00277", "s00278"],
+              "sentenceIndices": [28, 29, 30, 30],
+              "reason": "Office productivity and efficiency paired and repeated, completes split sentence."
+            }
+          ]
+        },
+        "52": {
+          "referenceAnswer": "Sceptical",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[335.94, 365.52, 338.2, 365.52]],
+          "evidenceReview": [
+            {
+              "contextStart": 335.94,
+              "contextEnd": 365.52,
+              "start": 338.2,
+              "end": 365.52,
+              "sourceSentenceIds": ["s00280", "s00281", "s00282", "s00283", "s00284", "s00285"],
+              "contextSentenceIds": ["s00279", "s00280", "s00281", "s00282", "s00283", "s00284", "s00285"],
+              "sentenceIndices": [31, 32, 37, 37],
+              "reason": "Roland named by question; concession but rejects email disappearance for privacy."
+            }
+          ]
+        },
+        "53": {
+          "referenceAnswer": "Enthusiastic",
+          "reference": {
+            "sourceId": "p-9a35c61b2710",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[335.94, 378.24, 366.4, 378.24]],
+          "evidenceReview": [
+            {
+              "contextStart": 335.94,
+              "contextEnd": 378.24,
+              "start": 366.4,
+              "end": 378.24,
+              "sourceSentenceIds": ["s00286", "s00287"],
+              "contextSentenceIds": [
+                "s00279",
+                "s00280",
+                "s00281",
+                "s00282",
+                "s00283",
+                "s00284",
+                "s00285",
+                "s00286",
+                "s00287"
+              ],
+              "sentenceIndices": [31, 38, 39, 39],
+              "reason": "Next speaker finds talk interesting and business use exciting."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-9a35c61b2710",
+        "page": 5
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9a35c61b2710",
+          "page": 5
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[50, 51]],
+      "reviewRules": []
+    },
+    "B1-5": {
+      "reference": {
+        "sourceId": "p-9a35c61b2710",
+        "page": 6
+      },
+      "dataFile": {
+        "sourceId": "p-79e7323badba",
+        "page": 1
+      },
+      "reviewRules": [
+        "Information must be in correct section.",
+        "5.1a,5.1d,5.3a,5.3c,5.4a require correct spelling of proper nouns; capitalization not required.",
+        "5.1 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 2；4 → 3。",
+        "5.2 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2；4 → 2。",
+        "5.3 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2；4 → 2。",
+        "5.4 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-9a35c61b2710",
+          "page": 6
+        }
+      ],
+      "questions": {
+        "5": {
+          "referenceAnswer": "内容：9 分；全题：12 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "5.1a",
+              "referenceAnswer": "Kowloon Park",
+              "section": "Place, date and time",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 24.429,
+                  "contextEnd": 56.35,
+                  "start": 36.07,
+                  "end": 56.35,
+                  "sentenceIds": ["s00309", "s00310", "s00311", "s00312", "s00313", "s00314"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.1b",
+              "referenceAnswer": "Sunday 15th April",
+              "section": "Place, date and time",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 24.429,
+                  "contextEnd": 56.35,
+                  "start": 36.07,
+                  "end": 56.35,
+                  "sentenceIds": ["s00309", "s00310", "s00311", "s00312", "s00313", "s00314"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.1c",
+              "referenceAnswer": "2 pm to 6.30",
+              "section": "Place, date and time",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.1d",
+              "referenceAnswer": "Chinese Garden",
+              "section": "Place, date and time",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2a",
+              "referenceAnswer": "lucky draw",
+              "section": "Activities",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 57.03,
+                  "contextEnd": 82.73,
+                  "start": 59.869,
+                  "end": 82.73,
+                  "sentenceIds": ["s00315", "s00316", "s00317", "s00318", "s00319", "s00320", "s00321"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.2b",
+              "referenceAnswer": "talk about body language",
+              "section": "Activities",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 83.489,
+                  "contextEnd": 108.09,
+                  "start": 86.01,
+                  "end": 108.09,
+                  "sentenceIds": ["s00322", "s00323", "s00324", "s00325", "s00326", "s00327", "s00328"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.2c",
+              "referenceAnswer": "Indian cooking workshop",
+              "section": "Activities",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2d",
+              "referenceAnswer": "national dress competition",
+              "section": "Activities",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3a",
+              "referenceAnswer": "Duleep Singh",
+              "section": "Special Guests",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3b",
+              "referenceAnswer": "actor / film star",
+              "section": "Special Guests",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3c",
+              "referenceAnswer": "Lionel Chan",
+              "section": "Special Guests",
+              "sourceLabel": "评分参考未列资料页码",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3d",
+              "referenceAnswer": "author / writer",
+              "section": "Special Guests",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、8、9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 3,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 8,
+                  "printedPage": 8
+                },
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 14.29,
+                  "contextEnd": 35.61,
+                  "start": 20.75,
+                  "end": 35.61,
+                  "sentenceIds": ["s00307", "s00308", "s00309"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                },
+                {
+                  "contextStart": 418.389,
+                  "contextEnd": 452.65,
+                  "start": 418.389,
+                  "end": 452.65,
+                  "sentenceIds": ["s00388", "s00389", "s00390", "s00391", "s00392"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.4a",
+              "referenceAnswer": "Cultural Commons",
+              "section": "Organisation and phone number",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.4b",
+              "referenceAnswer": "46288070",
+              "section": "Organisation and phone number",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 6
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-9a35c61b2710",
+              "page": 6
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-6": {
+      "reference": {
+        "sourceId": "p-9a35c61b2710",
+        "page": 7
+      },
+      "dataFile": {
+        "sourceId": "p-79e7323badba",
+        "page": 1
+      },
+      "reviewRules": [
+        "6.1 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 2。",
+        "6.2 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 2；4 → 3；5 → 3。",
+        "6.3 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2。",
+        "6.4 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-9a35c61b2710",
+          "page": 7
+        },
+        {
+          "sourceId": "p-9a35c61b2710",
+          "page": 8
+        }
+      ],
+      "questions": {
+        "6": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "6.1a",
+              "referenceAnswer": "25–30 minutes",
+              "section": "Time needed and how many people",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.1b",
+              "referenceAnswer": "14 dancers / 17–18 people",
+              "section": "Time needed and how many people",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.1c",
+              "referenceAnswer": "3–4 helpers",
+              "section": "Time needed and how many people",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2a",
+              "referenceAnswer": "a stage",
+              "section": "Requirements and availability",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2b",
+              "referenceAnswer": "electricity for their music",
+              "section": "Requirements and availability",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2c",
+              "referenceAnswer": "chairs for old people",
+              "section": "Requirements and availability",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2d",
+              "referenceAnswer": "enough space for all of them and for bags and costumes",
+              "section": "Requirements and availability",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2e",
+              "referenceAnswer": "they do not need sound system / lights",
+              "section": "Requirements and availability",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3a",
+              "referenceAnswer": "only one stage available",
+              "section": "Possible problems",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3b",
+              "referenceAnswer": "stage not big enough // holds 10 people only",
+              "section": "Possible problems",
+              "sourceLabel": "Data File 第 6、7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 6,
+                  "printedPage": 6
+                },
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.4a",
+              "referenceAnswer": "$500 deposit for 100 chairs",
+              "section": "Costs",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.4b",
+              "referenceAnswer": "$150 (deposit) for generator",
+              "section": "Costs",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-9a35c61b2710",
+              "page": 7
+            },
+            {
+              "sourceId": "p-9a35c61b2710",
+              "page": 8
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-7": {
+      "reference": {
+        "sourceId": "p-9a35c61b2710",
+        "page": 8
+      },
+      "dataFile": {
+        "sourceId": "p-79e7323badba",
+        "page": 1
+      },
+      "reviewRules": [
+        "7.1a,7.1c,7.3d,7.4a require correct spelling of proper nouns; capitalization not required.",
+        "7.1 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 2。",
+        "7.2 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2。",
+        "7.3 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 2；4 → 3；5 → 3。",
+        "7.4 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2；4 → 2。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-9a35c61b2710",
+          "page": 8
+        },
+        {
+          "sourceId": "p-9a35c61b2710",
+          "page": 9
+        }
+      ],
+      "questions": {
+        "7": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "7.1a",
+              "referenceAnswer": "born in / comes from Singapore",
+              "section": "Background and Family",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 207.969,
+                  "contextEnd": 238.369,
+                  "start": 216.73,
+                  "end": 238.369,
+                  "sentenceIds": [
+                    "s00346",
+                    "s00347",
+                    "s00348",
+                    "s00349",
+                    "s00350",
+                    "s00351",
+                    "s00352",
+                    "s00353"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.1b",
+              "referenceAnswer": "has a daughter",
+              "section": "Background and Family",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1c",
+              "referenceAnswer": "has a wife from Sri Lanka",
+              "section": "Background and Family",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2a",
+              "referenceAnswer": "previous job: social worker (for 10 years)",
+              "section": "Current and previous jobs",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 207.969,
+                  "contextEnd": 248.67,
+                  "start": 219.17,
+                  "end": 248.67,
+                  "sentenceIds": [
+                    "s00346",
+                    "s00347",
+                    "s00348",
+                    "s00349",
+                    "s00350",
+                    "s00351",
+                    "s00352",
+                    "s00353",
+                    "s00354",
+                    "s00355",
+                    "s00356"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.2b",
+              "referenceAnswer": "current job: teacher (for 8 years)",
+              "section": "Current and previous jobs",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2c",
+              "referenceAnswer": "(teacher at Kowloon) university",
+              "section": "Current and previous jobs",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3a",
+              "referenceAnswer": "new book called An Immigrant’s Song",
+              "section": "His new book",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3b",
+              "referenceAnswer": "his 5th book",
+              "section": "His new book",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3c",
+              "referenceAnswer": "lets you see Hong Kong from immigrant’s point of view",
+              "section": "His new book",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3d",
+              "referenceAnswer": "(stories) about people from different cultures / countries / India, Colombia and Cameroon",
+              "section": "His new book",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3e",
+              "referenceAnswer": "(can) learn about communication in Hong Kong",
+              "section": "His new book",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.4a",
+              "referenceAnswer": "all profits (from sales of the book) going to Cultural Commons",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.4b",
+              "referenceAnswer": "available at all major / big book stores",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 418.389,
+                  "contextEnd": 452.65,
+                  "start": 424.949,
+                  "end": 452.65,
+                  "sentenceIds": ["s00388", "s00389", "s00390", "s00391", "s00392"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.4c",
+              "referenceAnswer": "available at Fun Day",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 418.389,
+                  "contextEnd": 452.65,
+                  "start": 424.949,
+                  "end": 452.65,
+                  "sentenceIds": ["s00388", "s00389", "s00390", "s00391", "s00392"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.4d",
+              "referenceAnswer": "$100",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-79e7323badba",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9a35c61b2710",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-9a35c61b2710",
+              "page": 9
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    }
+  }
+}

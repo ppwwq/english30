@@ -4,8 +4,12 @@ import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 const root = new URL('../web/', import.meta.url);
 const catalogue = JSON.parse(await fs.readFile(new URL('papers/catalogue.json', root), 'utf8'));
-test('all126providedPDFsand3supplementsretainoriginalsourceidentityandreadablepageassets', async () => {
-  assert.equal(catalogue.sources.filter((s) => s.role !== 'supplement').length, 126);
+test('provided PDFs and reviewed supplements retain source identity and readable page assets', async () => {
+  assert.equal(catalogue.sources.filter((s) => s.role !== 'supplement' && !s.externalSupplement).length, 126);
+  const added = catalogue.sources.filter((s) => s.externalSupplement);
+  assert.equal(added.length, 1);
+  assert.equal(added[0].sourceUrl, 'https://src.dselib.com/eng/eng/2022/ans.pdf');
+  assert.deepEqual(added[0].originalPdfPages, [17, 24]);
   assert.equal(catalogue.sources.filter((s) => s.role === 'supplement').length, 3);
   assert.equal(new Set(catalogue.sources.map((s) => s.id)).size, catalogue.sources.length);
   for (const source of catalogue.sources) {

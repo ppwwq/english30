@@ -3,14 +3,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const page = await browser.newPage({
   viewport: { width: 810, height: 1080 },
@@ -54,6 +52,7 @@ try {
       await page.locator('#transcript .word').first().waitFor();
       assert.match(await page.locator('.result-summary').textContent(), /待自核/);
       assert.ok((await page.locator('#practice-document option[data-reference]').count()) > 0);
+      await page.locator('.question-review-tools > summary').first().click();
       await page.locator('.self-check').first().selectOption('correct');
       await page.locator('.review-drawer > summary').tap();
       await page.locator('#save-record').tap();
@@ -91,7 +90,9 @@ try {
     assert.equal(await page.locator('#audio').getAttribute('src'), null);
     await page.locator('#practice-variant').selectOption('practice');
     await ready();
-    assert.equal(await page.locator('#submit-answers').isDisabled(), false);
+    assert.equal(await page.locator('#submit-answers').isDisabled(), true);
+    await page.locator('#play-pause').tap();
+    await page.waitForFunction(() => !document.querySelector('#submit-answers').disabled);
   });
   assert.deepEqual(report.errors, []);
 } finally {

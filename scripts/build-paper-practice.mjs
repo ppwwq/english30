@@ -209,3 +209,5 @@ console.log(
     audioBytes,
   }),
 );
+// Keep reviewed references and contextual evidence when regenerating audio/lessons.
+await import('./apply-reviewed-content.mjs');

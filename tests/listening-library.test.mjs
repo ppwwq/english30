@@ -4,7 +4,7 @@ import {
   createListeningLibrary,
   parseListeningRecord,
   importListeningRecord,
-} from '../web/listening-library.mjs';
+} from '../scripts/repository-only/listening-library.mjs';
 
 const record = () => ({
   schemaVersion: 1,
@@ -135,13 +135,12 @@ test(
     const { readFile } = await import('node:fs/promises');
     const { createRequire } = await import('node:module');
     const require = createRequire(
-      process.env.PLAYWRIGHT_PACKAGE ||
-        new URL('../package.json', import.meta.url).href,
+      process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
     );
     const { chromium } = require('playwright');
     const routes = new Map([
-      ['/listening-library.mjs', ['listening-library.mjs', 'text/javascript']],
-      ['/core.mjs', ['core.mjs', 'text/javascript']],
+      ['/listening-library.mjs', ['../scripts/repository-only/listening-library.mjs', 'text/javascript']],
+      ['/web/core.mjs', ['core.mjs', 'text/javascript']],
       ['/lesson.json', ['lessons/2024-task2-intro.json', 'application/json']],
       ['/audio.mp3', ['audio/2024-task2-intro.mp3', 'audio/mpeg']],
     ]);
@@ -170,8 +169,7 @@ test(
     try {
       browser = await chromium.launch({
         headless: true,
-        executablePath:
-          process.env.CHROMIUM_EXECUTABLE || undefined,
+        executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
       });
       const page = await browser.newPage();
       await page.goto(`http://127.0.0.1:${server.address().port}/`);

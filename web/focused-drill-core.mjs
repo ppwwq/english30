@@ -40,3 +40,14 @@ export function questionDrillSentence(lesson, question) {
   }
   return null;
 }
+
+export function sentenceQuestionLabels(questions, start, end) {
+  const labels = [];
+  const overlaps = (e) => Math.min(end, e.end) - Math.max(start, e.start) > 0.001;
+  for (const q of questions) {
+    const points = q.scoringPoints?.filter((p) => p.evidence?.some(overlaps)) || [];
+    if (points.length) labels.push(...points.map((p) => p.id));
+    else if (q.evidence?.some(overlaps)) labels.push(q.label || String(q.number));
+  }
+  return labels;
+}

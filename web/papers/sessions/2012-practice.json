@@ -13,32 +13,32 @@
       {
         "src": "./papers/audio/a-66eddd2e57cc/001.mp3",
         "start": 479.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-66eddd2e57cc/002.mp3",
         "start": 959.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-66eddd2e57cc/003.mp3",
         "start": 1439.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-66eddd2e57cc/004.mp3",
         "start": 1919.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-66eddd2e57cc/005.mp3",
         "start": 2399.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-66eddd2e57cc/006.mp3",
         "start": 2879.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-66eddd2e57cc/007.mp3",
@@ -154,13 +154,13 @@
   "sentences": [
     {
       "id": "s00001",
-      "start": 0.0,
+      "start": 0,
       "end": 9.24,
       "text": "Hong Kong Diploma of Secondary Education, English language Practice Paper 3, Integrated Listening, Reading and Writing.",
       "words": [
         {
           "text": "Hong",
-          "start": 0.0,
+          "start": 0,
           "end": 0.36,
           "probability": 0.5884,
           "id": "w000001",
@@ -305,14 +305,14 @@
         {
           "text": "to",
           "start": 11.52,
-          "end": 12.0,
+          "end": 12,
           "probability": 0.9937,
           "id": "w000018",
           "sourceMatched": true
         },
         {
           "text": "Candidates.",
-          "start": 12.0,
+          "start": 12,
           "end": 12.3,
           "probability": 0.941,
           "id": "w000019",
@@ -424,7 +424,7 @@
         },
         {
           "text": "a",
-          "start": 18.0,
+          "start": 18,
           "end": 18.08,
           "probability": 0.9357,
           "id": "w000032",
@@ -1033,14 +1033,14 @@
         {
           "text": "answer",
           "start": 47.72,
-          "end": 48.0,
+          "end": 48,
           "probability": 0.9501,
           "id": "w000105",
           "sourceMatched": false
         },
         {
           "text": "Book.",
-          "start": 48.0,
+          "start": 48,
           "end": 48.34,
           "probability": 0.9733,
           "id": "w000106",
@@ -2177,14 +2177,14 @@
         {
           "text": "End",
           "start": 163.26,
-          "end": 164.0,
+          "end": 164,
           "probability": 0.5156,
           "id": "w000237",
           "sourceMatched": true
         },
         {
           "text": "of",
-          "start": 164.0,
+          "start": 164,
           "end": 164.32,
           "probability": 0.9891,
           "id": "w000238",
@@ -2457,14 +2457,14 @@
         {
           "text": "at",
           "start": 216.88,
-          "end": 217.0,
+          "end": 217,
           "probability": 0.9886,
           "id": "w000270",
           "sourceMatched": true
         },
         {
           "text": "your",
-          "start": 217.0,
+          "start": 217,
           "end": 217.16,
           "probability": 0.9924,
           "id": "w000271",
@@ -3401,14 +3401,14 @@
         {
           "text": "examination",
           "start": 311.52,
-          "end": 312.0,
+          "end": 312,
           "probability": 0.9972,
           "id": "w000380",
           "sourceMatched": false
         },
         {
           "text": "materials",
-          "start": 312.0,
+          "start": 312,
           "end": 312.78,
           "probability": 0.9908,
           "id": "w000381",
@@ -4257,14 +4257,14 @@
         {
           "text": "You",
           "start": 368.44,
-          "end": 369.0,
+          "end": 369,
           "probability": 0.9153,
           "id": "w000478",
           "sourceMatched": true
         },
         {
           "text": "are",
-          "start": 369.0,
+          "start": 369,
           "end": 369.3,
           "probability": 0.9808,
           "id": "w000479",
@@ -4672,7 +4672,7 @@
         },
         {
           "text": "and",
-          "start": 391.0,
+          "start": 391,
           "end": 391.28,
           "probability": 0.9387,
           "id": "w000528",
@@ -29277,49 +29277,142 @@
     },
     {
       "id": "s00301",
-      "start": 2203.646,
-      "end": 2205.066,
-      "text": "What schools by medical experts.",
+      "start": 2200.746,
+      "end": 2205.146,
+      "text": "What we would like to see is a programme of visits to schools by medical experts.",
+      "source": {
+        "sourceId": "p-b2c036c38ec6",
+        "page": 51
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
       "words": [
         {
+          "id": "s00301-fixed-w0",
           "text": "What",
           "start": null,
           "end": null,
-          "probability": 0.9954,
-          "id": "w003347",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00301-fixed-w1",
+          "text": "we",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w2",
+          "text": "would",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w3",
+          "text": "like",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w4",
+          "text": "to",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w5",
+          "text": "see",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w6",
+          "text": "is",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w7",
+          "text": "a",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w8",
+          "text": "programme",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w9",
+          "text": "of",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w10",
+          "text": "visits",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w11",
+          "text": "to",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00301-fixed-w12",
           "text": "schools",
           "start": null,
           "end": null,
-          "probability": 0.146,
-          "id": "w003348",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00301-fixed-w13",
           "text": "by",
-          "start": 2203.926,
-          "end": 2204.326,
-          "probability": 0.9827,
-          "id": "w003349",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00301-fixed-w14",
           "text": "medical",
-          "start": 2204.326,
-          "end": 2204.626,
-          "probability": 0.9836,
-          "id": "w003350",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00301-fixed-w15",
           "text": "experts.",
-          "start": 2204.626,
-          "end": 2205.066,
-          "probability": 0.9968,
-          "id": "w003351",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },

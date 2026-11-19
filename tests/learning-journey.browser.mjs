@@ -29,18 +29,33 @@ try {
   await page.locator('#play-pause').click();
   await page.waitForFunction(() => !document.querySelector('#audio').paused);
   await page.locator('#submit-answers').click();
+  await page.locator('[data-question-id="q1"] .question-review-tools > summary').click();
   await page.locator('[data-question-id="q1"] [data-practice-drill]').click();
   await page.locator('#focused-drill-dialog').waitFor();
-  assert.equal(await page.locator('#transcript').isVisible(), false);
+  assert.equal(await page.locator('#original-responses').isVisible(), true);
+  assert.equal(await page.locator('#focused-drill-dialog').evaluate((n) => n.tagName), 'SECTION');
+  assert.equal(await page.locator('#focus-paper-drill-pause').isVisible(), true);
   assert.equal(await page.locator('#focus-paper-drill-reference').textContent(), '');
+  await page.locator('#focus-paper-drill-play').click();
+  await page.locator('#focus-paper-drill-pause').click();
+  assert.equal(await page.locator('#audio').evaluate((a) => a.paused), true);
   await page.locator('#focus-paper-drill-play').click();
   await page.locator('#focus-paper-drill-answer').fill('About 7000.');
   await page.locator('#focus-paper-drill-submit').click();
   await page.locator('#focus-paper-drill-feedback').waitFor();
+  assert.ok((await page.locator('#focus-paper-drill-reference').textContent()).length > 0);
   assert.equal(await page.evaluate(() => localStorage.getItem('english30-study-v1')), null);
   await page.locator('#focus-paper-drill-retest').click();
   assert.equal(await page.locator('#focus-paper-drill-feedback').isVisible(), false);
   assert.equal(await page.locator('#focus-paper-drill-answer').inputValue(), '');
+  await page.locator('#focus-paper-drill-blank').click();
+  assert.ok(
+    (await page.locator('#focus-paper-drill-reference').textContent()).length > 0,
+    'explicit reveal works before playing',
+  );
+  await page.locator('#focus-paper-drill-next').click();
+  assert.equal(await page.getByRole('button', { name: '保存本次学习纪录', exact: true }).count(), 1);
+  assert.equal(await page.locator('#focused-drill-question').textContent(), 'Q2');
   await page.locator('#focused-drill-return').click();
   assert.equal(await page.locator('#answer-q1').inputValue(), '100');
   await page.locator('#session-save').click();

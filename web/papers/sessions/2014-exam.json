@@ -13,32 +13,32 @@
       {
         "src": "./papers/audio/a-2a02fb0f6c4c/001.mp3",
         "start": 479.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2a02fb0f6c4c/002.mp3",
         "start": 959.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2a02fb0f6c4c/003.mp3",
         "start": 1439.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2a02fb0f6c4c/004.mp3",
         "start": 1919.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2a02fb0f6c4c/005.mp3",
         "start": 2399.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2a02fb0f6c4c/006.mp3",
         "start": 2879.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2a02fb0f6c4c/007.mp3",
@@ -3696,7 +3696,7 @@
         },
         {
           "text": "you",
-          "start": 307.0,
+          "start": 307,
           "end": 307.04,
           "probability": 0.9954,
           "id": "w000410",
@@ -18940,42 +18940,193 @@
       ]
     },
     {
-      "id": "s00209",
-      "start": 1311.436,
-      "end": 1319.816,
-      "text": "Well, that’s it then.",
+      "id": "gap2014-similar",
+      "start": 1308.116,
+      "end": 1310.336,
+      "text": "Similar? Similar how?",
+      "source": {
+        "sourceId": "p-a384002a66aa",
+        "page": 166
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
       "words": [
         {
+          "id": "gap2014-similar-fixed-w0",
+          "text": "Similar?",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-similar-fixed-w1",
+          "text": "Similar",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-similar-fixed-w2",
+          "text": "how?",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        }
+      ]
+    },
+    {
+      "id": "gap2014-stories",
+      "start": 1310.956,
+      "end": 1316.496,
+      "text": "Well, especially the stories. The stories are nearly always the same.",
+      "source": {
+        "sourceId": "p-a384002a66aa",
+        "page": 166
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+      "words": [
+        {
+          "id": "gap2014-stories-fixed-w0",
           "text": "Well,",
           "start": null,
           "end": null,
-          "probability": 0.4883,
-          "id": "w002141",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
-          "text": "that’s",
-          "start": 1312.056,
-          "end": 1312.676,
-          "probability": 0.6414,
-          "id": "w002142",
-          "sourceMatched": true
+          "id": "gap2014-stories-fixed-w1",
+          "text": "especially",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "gap2014-stories-fixed-w2",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-stories-fixed-w3",
+          "text": "stories.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-stories-fixed-w4",
+          "text": "The",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-stories-fixed-w5",
+          "text": "stories",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-stories-fixed-w6",
+          "text": "are",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-stories-fixed-w7",
+          "text": "nearly",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-stories-fixed-w8",
+          "text": "always",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-stories-fixed-w9",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2014-stories-fixed-w10",
+          "text": "same.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        }
+      ]
+    },
+    {
+      "id": "s00209",
+      "start": 1317.376,
+      "end": 1319.816,
+      "text": "Hmm. Well, that's it then.",
+      "source": {
+        "sourceId": "p-a384002a66aa",
+        "page": 166
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+      "words": [
+        {
+          "id": "s00209-fixed-w0",
+          "text": "Hmm.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00209-fixed-w1",
+          "text": "Well,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00209-fixed-w2",
+          "text": "that's",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00209-fixed-w3",
           "text": "it",
           "start": null,
           "end": null,
-          "probability": 0.9883,
-          "id": "w002143",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00209-fixed-w4",
           "text": "then.",
-          "start": 1319.496,
-          "end": 1319.816,
-          "probability": 0.7876,
-          "id": "w002144",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },

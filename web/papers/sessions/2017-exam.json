@@ -13,32 +13,32 @@
       {
         "src": "./papers/audio/a-6737383b513a/001.mp3",
         "start": 479.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6737383b513a/002.mp3",
         "start": 959.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6737383b513a/003.mp3",
         "start": 1439.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6737383b513a/004.mp3",
         "start": 1919.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6737383b513a/005.mp3",
         "start": 2399.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6737383b513a/006.mp3",
         "start": 2879.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6737383b513a/007.mp3",
@@ -1393,14 +1393,14 @@
         {
           "text": "last",
           "start": 87.74,
-          "end": 88.0,
+          "end": 88,
           "probability": 0.9918,
           "id": "w000145",
           "sourceMatched": true
         },
         {
           "text": "page.",
-          "start": 88.0,
+          "start": 88,
           "end": 88.48,
           "probability": 0.9986,
           "id": "w000146",
@@ -1520,7 +1520,7 @@
         },
         {
           "text": "3",
-          "start": 105.0,
+          "start": 105,
           "end": 106.26,
           "probability": 0.9888,
           "id": "w000159",
@@ -3610,13 +3610,13 @@
     },
     {
       "id": "s00033",
-      "start": 352.0,
+      "start": 352,
       "end": 357.94,
       "text": "You are reminded that all examination materials will be played ONCE only.",
       "words": [
         {
           "text": "You",
-          "start": 352.0,
+          "start": 352,
           "end": 352.18,
           "probability": 0.9633,
           "id": "w000403",
@@ -3856,7 +3856,7 @@
         },
         {
           "text": "you",
-          "start": 368.0,
+          "start": 368,
           "end": 368.32,
           "probability": 0.9974,
           "id": "w000430",
@@ -4089,14 +4089,14 @@
         {
           "text": "have",
           "start": 380.8,
-          "end": 381.0,
+          "end": 381,
           "probability": 0.999,
           "id": "w000457",
           "sourceMatched": true
         },
         {
           "text": "any",
-          "start": 381.0,
+          "start": 381,
           "end": 381.36,
           "probability": 0.9963,
           "id": "w000458",
@@ -4800,7 +4800,7 @@
         },
         {
           "text": "you",
-          "start": 442.0,
+          "start": 442,
           "end": 442.38,
           "probability": 0.991,
           "id": "w000538",
@@ -4833,14 +4833,14 @@
         {
           "text": "total",
           "start": 442.72,
-          "end": 443.0,
+          "end": 443,
           "probability": 0.9968,
           "id": "w000542",
           "sourceMatched": true
         },
         {
           "text": "of",
-          "start": 443.0,
+          "start": 443,
           "end": 443.28,
           "probability": 0.9988,
           "id": "w000543",
@@ -10946,128 +10946,274 @@
     {
       "id": "s00099",
       "start": 897.126,
-      "end": 912.026,
-      "text": "There’s this one town called twinned with more than one city, but certainly not thirty.",
+      "end": 905.1659999999999,
+      "text": "There's this one town called Judenburg in Austria, and it's twinned with over thirty different towns.",
+      "source": {
+        "sourceId": "p-4008438af0ff",
+        "page": 156
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
       "words": [
         {
-          "text": "There’s",
-          "start": 897.126,
-          "end": 897.766,
-          "probability": 0.9318,
-          "id": "w001253",
-          "sourceMatched": true
+          "id": "s00099-fixed-w0",
+          "text": "There's",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00099-fixed-w1",
           "text": "this",
-          "start": 897.766,
-          "end": 897.846,
-          "probability": 0.9896,
-          "id": "w001254",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00099-fixed-w2",
           "text": "one",
-          "start": 897.846,
-          "end": 898.086,
-          "probability": 0.9965,
-          "id": "w001255",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00099-fixed-w3",
           "text": "town",
           "start": null,
           "end": null,
-          "probability": 0.9991,
-          "id": "w001256",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00099-fixed-w4",
           "text": "called",
           "start": null,
           "end": null,
-          "probability": 0.9864,
-          "id": "w001257",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00099-fixed-w5",
+          "text": "Judenburg",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00099-fixed-w6",
+          "text": "in",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00099-fixed-w7",
+          "text": "Austria,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00099-fixed-w8",
+          "text": "and",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00099-fixed-w9",
+          "text": "it's",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00099-fixed-w10",
           "text": "twinned",
           "start": null,
           "end": null,
-          "probability": 0.0406,
-          "id": "w001258",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00099-fixed-w11",
           "text": "with",
-          "start": 909.046,
-          "end": 909.166,
-          "probability": 0.9584,
-          "id": "w001259",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00099-fixed-w12",
+          "text": "over",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00099-fixed-w13",
+          "text": "thirty",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00099-fixed-w14",
+          "text": "different",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00099-fixed-w15",
+          "text": "towns.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        }
+      ]
+    },
+    {
+      "id": "gap2017-big-city",
+      "start": 906.746,
+      "end": 912.0260000000001,
+      "text": "A big city is usually twinned with more than one city, but certainly not thirty.",
+      "source": {
+        "sourceId": "p-4008438af0ff",
+        "page": 156
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+      "words": [
+        {
+          "id": "gap2017-big-city-fixed-w0",
+          "text": "A",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2017-big-city-fixed-w1",
+          "text": "big",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2017-big-city-fixed-w2",
+          "text": "city",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2017-big-city-fixed-w3",
+          "text": "is",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2017-big-city-fixed-w4",
+          "text": "usually",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2017-big-city-fixed-w5",
+          "text": "twinned",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2017-big-city-fixed-w6",
+          "text": "with",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2017-big-city-fixed-w7",
           "text": "more",
-          "start": 909.166,
-          "end": 909.446,
-          "probability": 0.9809,
-          "id": "w001260",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "gap2017-big-city-fixed-w8",
           "text": "than",
-          "start": 909.446,
-          "end": 909.666,
-          "probability": 0.9902,
-          "id": "w001261",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "gap2017-big-city-fixed-w9",
           "text": "one",
-          "start": 909.666,
-          "end": 909.866,
-          "probability": 0.9443,
-          "id": "w001262",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "gap2017-big-city-fixed-w10",
           "text": "city,",
-          "start": 909.866,
-          "end": 910.186,
-          "probability": 0.9746,
-          "id": "w001263",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "gap2017-big-city-fixed-w11",
           "text": "but",
-          "start": 910.786,
-          "end": 910.886,
-          "probability": 0.9868,
-          "id": "w001264",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "gap2017-big-city-fixed-w12",
           "text": "certainly",
-          "start": 910.886,
-          "end": 911.446,
-          "probability": 0.9882,
-          "id": "w001265",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "gap2017-big-city-fixed-w13",
           "text": "not",
-          "start": 911.446,
-          "end": 911.766,
-          "probability": 0.9921,
-          "id": "w001266",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "gap2017-big-city-fixed-w14",
           "text": "thirty.",
-          "start": 911.766,
-          "end": 912.026,
-          "probability": 0.5536,
-          "id": "w001267",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },

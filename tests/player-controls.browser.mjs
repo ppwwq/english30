@@ -5,8 +5,7 @@ await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 import assert from 'node:assert/strict';
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const reportFile = process.argv.find((x) => x.startsWith('--report='))?.slice(9);
@@ -14,8 +13,7 @@ const only = process.argv.find((x) => x.startsWith('--only='))?.slice(7);
 const report = { cases: [], errors: [] };
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const context = await browser.newContext({ viewport: { width: 1080, height: 810 } });
 const page = await context.newPage();
@@ -37,6 +35,7 @@ async function ready(review = true) {
     await page.locator('#play-pause').click();
     await page.waitForFunction(() => document.getElementById('audio').currentTime > 0.05);
     await page.locator('#submit-answers').click();
+    await page.locator('#loop-more > summary').click();
   }
 }
 async function pause() {
@@ -189,6 +188,8 @@ try {
   });
   await attempt('repeat at a sentence endpoint repeats the just-heard sentence', async () => {
     await page.locator('[data-sentence-id="s010"] .sentence-time').click();
+    assert.equal((await media()).paused, true, 'time navigation stays paused');
+    await page.locator('#repeat-sentence').click();
     await page.waitForFunction(
       () => document.getElementById('audio').paused && document.getElementById('audio').currentTime > 41.8,
     );

@@ -3,14 +3,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const context = await browser.newContext({
   viewport: { width: 1080, height: 810 },
@@ -29,7 +27,12 @@ const check = async (name, fn) => {
 const nav = async (view) => {
   await page.locator(`.main-navigation [data-view="${view}"]`).tap();
   await page.waitForFunction((v) => document.body.dataset.view === v, view);
-  if (view === 'listening') await page.locator('button[data-listening-mode=practice]').tap();
+  if (view === 'listening') {
+    await page.evaluate(() => {
+      location.hash = 'listening/practice';
+    });
+    await page.waitForFunction(() => document.body.dataset.listeningMode === 'practice');
+  }
 };
 const ready = () => page.waitForFunction(() => !document.getElementById('play-pause').disabled);
 try {
@@ -112,71 +115,10 @@ try {
       assert.ok(await page.locator('#audio').evaluate((a) => a.paused && a.currentTime < 10.5));
     },
   );
-  await check(
-    'single listening exports restore safely and invalid imports leave saved data intact',
-    async () => {
-      await page.locator('.import-menu>summary').tap();
-      const before = await page.evaluate(() => localStorage.getItem('english30-records-v1'));
-      await page.locator('#import-record').setInputFiles({
-        name: 'invalid.json',
-        mimeType: 'application/json',
-        buffer: Buffer.from('{"schemaVersion":1}'),
-      });
-      await page.waitForFunction(() => document.getElementById('status').textContent.startsWith('未导入'));
-      assert.equal(await page.evaluate(() => localStorage.getItem('english30-records-v1')), before);
-      await page.evaluate(() => localStorage.removeItem('english30-records-v1'));
-      await page.locator('#import-record').setInputFiles({
-        name: 'record.json',
-        mimeType: 'application/json',
-        buffer: Buffer.from(JSON.stringify(record)),
-      });
-      await page.waitForFunction(() =>
-        document.getElementById('status').textContent.startsWith('听力纪录已合并'),
-      );
-      assert.equal(
-        await page.evaluate(
-          () => JSON.parse(localStorage.getItem('english30-records-v1')).at(-1).timingOffset,
-        ),
-        0.4,
-      );
-    },
-  );
-  await check(
-    'imported source package and original audio survive explicit save and page reload',
-    async () => {
-      const lesson = JSON.parse(
-        await fs.readFile(new URL('../web/lessons/2025-task1-intro.json', import.meta.url), 'utf8'),
-      );
-      lesson.id = 'local-browser-regression';
-      lesson.title = '本机回归材料';
-      await page.locator('#import-package').setInputFiles({
-        name: 'source.json',
-        mimeType: 'application/json',
-        buffer: Buffer.from(JSON.stringify(lesson)),
-      });
-      await page.waitForFunction(
-        () => document.getElementById('lesson-title').textContent === '本机回归材料',
-      );
-      await page
-        .locator('#import-audio')
-        .setInputFiles(new URL('../web/audio/task1-intro.mp3', import.meta.url).pathname.replace(/^\//, ''));
-      await ready();
-      await page.locator('#save-material').tap();
-      await page.waitForFunction(() =>
-        document.getElementById('status').textContent.startsWith('练习包与原音已在本机保存'),
-      );
-      await page.reload();
-      await ready();
-      await page.locator('#lesson-select').selectOption('local-browser-regression');
-      await ready();
-      assert.equal(await page.locator('#lesson-title').textContent(), '本机回归材料');
-      assert.ok(await page.locator('#audio').evaluate((a) => a.src.startsWith('blob:') && a.duration > 87));
-      await page.locator('#seek').fill('20');
-      await page.locator('#play-pause').tap();
-      await page.waitForFunction(() => document.getElementById('audio').currentTime > 20.1);
-      await nav('writing');
-    },
-  );
+  await check('listening offers only DSE excerpts and no file picker', async () => {
+    assert.equal(await page.locator('input[type=file]').count(), 0);
+    assert.equal(await page.locator('#lesson-select option').count(), 3);
+  });
   await check(
     'leaving listening stops playback and Space on Reading never starts a hidden player',
     async () => {

@@ -96,23 +96,6 @@ html:has(#paper-host:not([hidden])) {
   font-size: 14px;
   color: var(--ink-soft);
 }
-.listening-modes {
-  margin: 0 30px 22px;
-}
-.listening-modes .phase-switch {
-  display: inline-grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: min(100%, 360px);
-  max-width: 100%;
-}
-.listening-modes .phase-switch > button {
-  min-height: 48px;
-}
-.listening-modes p {
-  margin: 10px 0 0;
-  color: var(--ink-soft);
-  font-size: 14px;
-}
 .paper-listening .paper-filters {
   grid-template-columns: 0.8fr 1.2fr 1fr 1fr;
 }
@@ -128,10 +111,6 @@ body[data-view='library'] .app-shell {
   width: min(calc(100% - 60px), 720px);
 }
 @media (max-width: 700px) {
-  .listening-modes {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
   .paper-host {
     padding: 10px 16px 30px;
   }

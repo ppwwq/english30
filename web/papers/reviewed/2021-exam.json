@@ -1,0 +1,2941 @@
+{
+  "sessionId": "2021-exam",
+  "reviewDate": "2026-11-17",
+  "reviewMethod": "Independent visual comparison against marking-scheme images. OCR used only to locate/read. referenceAnswer preserves official alternatives (// or /) and optional parentheses; do not infer exact-match scoring. Square-bracket achievement percentages omitted.",
+  "tasks": {
+    "A-1": {
+      "questions": {
+        "1": {
+          "referenceAnswer": "August 30 // 30/8",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[92.32, 111.72, 97.4, 111.72]],
+          "evidenceReview": [
+            {
+              "contextStart": 92.32,
+              "contextEnd": 111.72,
+              "start": 97.4,
+              "end": 111.72,
+              "sentenceIds": ["s00057", "s00058", "s00059", "s00060", "s00061", "s00062"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "2": {
+          "referenceAnswer": "half past 9 // 9:30 (AM)",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[92.32, 111.72, 100.54, 111.72]],
+          "evidenceReview": [
+            {
+              "contextStart": 92.32,
+              "contextEnd": 111.72,
+              "start": 100.54,
+              "end": 111.72,
+              "sentenceIds": ["s00057", "s00058", "s00059", "s00060", "s00061", "s00062"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "3": {
+          "referenceAnswer": "(all) department heads",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[120.4, 132.1, 124.72, 132.1]],
+          "evidenceReview": [
+            {
+              "contextStart": 120.4,
+              "contextEnd": 132.1,
+              "start": 124.72,
+              "end": 132.1,
+              "sentenceIds": ["s00067", "s00068", "s00069", "s00070"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "4": {
+          "referenceAnswer": "board room",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[132.1, 140.94, 133.86, 140.94]],
+          "evidenceReview": [
+            {
+              "contextStart": 132.1,
+              "contextEnd": 140.94,
+              "start": 133.86,
+              "end": 140.94,
+              "sentenceIds": ["s00071", "s00072", "s00073"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "5": {
+          "referenceAnswer": "5 (PowerPoint) slides each // 15 (PowerPoint) slides",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[141.72, 168.2, 149.04, 168.2]],
+          "evidenceReview": [
+            {
+              "contextStart": 141.72,
+              "contextEnd": 168.2,
+              "start": 149.04,
+              "end": 168.2,
+              "sentenceIds": ["s00074", "s00075", "s00076", "s00077", "s00078", "s00079"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "6": {
+          "referenceAnswer": "history",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[158.64, 184.08, 170.96, 184.08]],
+          "evidenceReview": [
+            {
+              "contextStart": 158.64,
+              "contextEnd": 184.08,
+              "start": 170.96,
+              "end": 184.08,
+              "sentenceIds": ["s00079", "s00080", "s00081", "s00082", "s00083"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "7": {
+          "referenceAnswer": "good and bad things",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[158.64, 193.68, 170.96, 193.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 158.64,
+              "contextEnd": 193.68,
+              "start": 170.96,
+              "end": 193.68,
+              "sentenceIds": ["s00079", "s00080", "s00081", "s00082", "s00083", "s00084", "s00085"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "8": {
+          "referenceAnswer": "future",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[194.28, 205.12, 196.64, 205.12]],
+          "evidenceReview": [
+            {
+              "contextStart": 194.28,
+              "contextEnd": 205.12,
+              "start": 196.64,
+              "end": 205.12,
+              "sentenceIds": ["s00086", "s00087", "s00088", "s00089"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "9": {
+          "referenceAnswer": "August 9 // 9/8",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[219.28, 270.18, 240.76, 270.18]],
+          "evidenceReview": [
+            {
+              "contextStart": 219.28,
+              "contextEnd": 270.18,
+              "start": 240.76,
+              "end": 270.18,
+              "sentenceIds": [
+                "s00091",
+                "s00092",
+                "s00093",
+                "s00094",
+                "s00095",
+                "s00096",
+                "s00097",
+                "s00098",
+                "s00099",
+                "s00100",
+                "s00101",
+                "s00102"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "10": {
+          "referenceAnswer": "interview / meeting (up with) Mr. Roy / Leo’s father",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[205.4, 270.18, 219.28, 270.18]],
+          "evidenceReview": [
+            {
+              "contextStart": 205.4,
+              "contextEnd": 270.18,
+              "start": 219.28,
+              "end": 270.18,
+              "sentenceIds": [
+                "s00090",
+                "s00091",
+                "s00092",
+                "s00093",
+                "s00094",
+                "s00095",
+                "s00096",
+                "s00097",
+                "s00098",
+                "s00099",
+                "s00100",
+                "s00101",
+                "s00102"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "11": {
+          "referenceAnswer": "go to a talk (by Prof. Leung on expos)",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[272.06, 311.88, 272.06, 311.88]],
+          "evidenceReview": [
+            {
+              "contextStart": 272.06,
+              "contextEnd": 311.88,
+              "start": 272.06,
+              "end": 311.88,
+              "sentenceIds": [
+                "s00104",
+                "s00105",
+                "s00106",
+                "s00107",
+                "s00108",
+                "s00109",
+                "s00110",
+                "s00111",
+                "s00112"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "12": {
+          "referenceAnswer": "August 22 // 22/8",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[312.34, 340.06, 320.68, 340.06]],
+          "evidenceReview": [
+            {
+              "contextStart": 312.34,
+              "contextEnd": 340.06,
+              "start": 320.68,
+              "end": 340.06,
+              "sentenceIds": ["s00113", "s00114", "s00115", "s00116", "s00117", "s00118", "s00119", "s00120"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "13": {
+          "referenceAnswer": "C",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[341.2, 375.04, 341.2, 375.04]],
+          "evidenceReview": [
+            {
+              "contextStart": 341.2,
+              "contextEnd": 375.04,
+              "start": 341.2,
+              "end": 375.04,
+              "sentenceIds": ["s00121", "s00122", "s00123", "s00124", "s00125", "s00126", "s00127"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "14": {
+          "referenceAnswer": "first draft",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[341.2, 375.04, 351.42, 375.04]],
+          "evidenceReview": [
+            {
+              "contextStart": 341.2,
+              "contextEnd": 375.04,
+              "start": 351.42,
+              "end": 375.04,
+              "sentenceIds": ["s00121", "s00122", "s00123", "s00124", "s00125", "s00126", "s00127"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "15": {
+          "referenceAnswer": "All // B, C and J",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[375.72, 393.74, 380.54, 393.74]],
+          "evidenceReview": [
+            {
+              "contextStart": 375.72,
+              "contextEnd": 393.74,
+              "start": 380.54,
+              "end": 393.74,
+              "sentenceIds": ["s00128", "s00129", "s00130", "s00131", "s00132", "s00133", "s00134"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "16": {
+          "referenceAnswer": "practise / rehearse presentation // rehearsal / practice of presentation",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[375.72, 393.74, 375.72, 393.74]],
+          "evidenceReview": [
+            {
+              "contextStart": 375.72,
+              "contextEnd": 393.74,
+              "start": 375.72,
+              "end": 393.74,
+              "sentenceIds": ["s00128", "s00129", "s00130", "s00131", "s00132", "s00133", "s00134"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-cd2535dfcb2b",
+        "page": 5
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 5
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-2": {
+      "questions": {
+        "17": {
+          "referenceAnswer": "bringing people together",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[67.57, 103.01, 83.73, 103.01]],
+          "evidenceReview": [
+            {
+              "contextStart": 67.57,
+              "contextEnd": 103.01,
+              "start": 83.73,
+              "end": 103.01,
+              "sentenceIds": ["s00145", "s00146", "s00147", "s00148"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "18": {
+          "referenceAnswer": "decide (on) a theme；\ninvite other countries to join",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "Q18、Q19 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[121.19, 167.47, 136.81, 167.47]],
+          "evidenceReview": [
+            {
+              "contextStart": 121.19,
+              "contextEnd": 167.47,
+              "start": 136.81,
+              "end": 167.47,
+              "sentenceIds": ["s00151", "s00152", "s00153", "s00154", "s00155", "s00156", "s00157"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "19": {
+          "referenceAnswer": "decide (on) a theme；\ninvite other countries to join",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "Q18、Q19 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[121.19, 167.47, 136.81, 167.47]],
+          "evidenceReview": [
+            {
+              "contextStart": 121.19,
+              "contextEnd": 167.47,
+              "start": 136.81,
+              "end": 167.47,
+              "sentenceIds": ["s00151", "s00152", "s00153", "s00154", "s00155", "s00156", "s00157"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "20": {
+          "referenceAnswer": "6.3 million",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[191.87, 225.39, 199.61, 225.39]],
+          "evidenceReview": [
+            {
+              "contextStart": 191.87,
+              "contextEnd": 225.39,
+              "start": 199.61,
+              "end": 225.39,
+              "sentenceIds": ["s00162", "s00163", "s00164", "s00165"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "21": {
+          "referenceAnswer": "grew / produced the biggest flower in the world；\nraised / increased awareness of (different) farming techniques // increase in awareness of (different) farming techniques",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "Q21、Q22 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[225.39, 276.49, 236.39, 276.49]],
+          "evidenceReview": [
+            {
+              "contextStart": 225.39,
+              "contextEnd": 276.49,
+              "start": 236.39,
+              "end": 276.49,
+              "sentenceIds": ["s00166", "s00167", "s00168", "s00169", "s00170", "s00171"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "22": {
+          "referenceAnswer": "grew / produced the biggest flower in the world；\nraised / increased awareness of (different) farming techniques // increase in awareness of (different) farming techniques",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "Q21、Q22 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[225.39, 276.49, 236.39, 276.49]],
+          "evidenceReview": [
+            {
+              "contextStart": 225.39,
+              "contextEnd": 276.49,
+              "start": 236.39,
+              "end": 276.49,
+              "sentenceIds": ["s00166", "s00167", "s00168", "s00169", "s00170", "s00171"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "23": {
+          "referenceAnswer": "cultural exchange",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[262.11, 289.27, 262.11, 289.27]],
+          "evidenceReview": [
+            {
+              "contextStart": 262.11,
+              "contextEnd": 289.27,
+              "start": 262.11,
+              "end": 289.27,
+              "sentenceIds": ["s00171", "s00172"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "24": {
+          "referenceAnswer": "1939–1987",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[262.11, 289.27, 277.63, 289.27]],
+          "evidenceReview": [
+            {
+              "contextStart": 262.11,
+              "contextEnd": 289.27,
+              "start": 277.63,
+              "end": 289.27,
+              "sentenceIds": ["s00171", "s00172"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "25": {
+          "referenceAnswer": "city of tomorrow",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[290.17, 326.15, 305.37, 326.15]],
+          "evidenceReview": [
+            {
+              "contextStart": 290.17,
+              "contextEnd": 326.15,
+              "start": 305.37,
+              "end": 326.15,
+              "sentenceIds": ["s00173", "s00174", "s00175"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "26": {
+          "referenceAnswer": "(modern) food；\n(latest works of) art // artwork",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "Q26、Q27 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[290.17, 326.15, 305.37, 326.15]],
+          "evidenceReview": [
+            {
+              "contextStart": 290.17,
+              "contextEnd": 326.15,
+              "start": 305.37,
+              "end": 326.15,
+              "sentenceIds": ["s00173", "s00174", "s00175"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "27": {
+          "referenceAnswer": "(modern) food；\n(latest works of) art // artwork",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "Q26、Q27 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[290.17, 326.15, 305.37, 326.15]],
+          "evidenceReview": [
+            {
+              "contextStart": 290.17,
+              "contextEnd": 326.15,
+              "start": 305.37,
+              "end": 326.15,
+              "sentenceIds": ["s00173", "s00174", "s00175"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "28": {
+          "referenceAnswer": "50",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[290.17, 341.73, 326.15, 341.73]],
+          "evidenceReview": [
+            {
+              "contextStart": 290.17,
+              "contextEnd": 341.73,
+              "start": 326.15,
+              "end": 341.73,
+              "sentenceIds": ["s00173", "s00174", "s00175", "s00176"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "29": {
+          "referenceAnswer": "1988–now / present / 2021",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[326.15, 359.99, 341.73, 359.99]],
+          "evidenceReview": [
+            {
+              "contextStart": 326.15,
+              "contextEnd": 359.99,
+              "start": 341.73,
+              "end": 359.99,
+              "sentenceIds": ["s00176", "s00177", "s00178", "s00179"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "30": {
+          "referenceAnswer": "nature and technology",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[361.21, 382.15, 364.33, 382.15]],
+          "evidenceReview": [
+            {
+              "contextStart": 361.21,
+              "contextEnd": 382.15,
+              "start": 364.33,
+              "end": 382.15,
+              "sentenceIds": ["s00180", "s00181", "s00182"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "31": {
+          "referenceAnswer": "only 25 million people came // low(er) number of visitors (than expected)",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 5
+          },
+          "note": "",
+          "evidence": [[361.21, 399.31, 384.29, 399.31]],
+          "evidenceReview": [
+            {
+              "contextStart": 361.21,
+              "contextEnd": 399.31,
+              "start": 384.29,
+              "end": 399.31,
+              "sentenceIds": ["s00180", "s00181", "s00182", "s00183", "s00184"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-cd2535dfcb2b",
+        "page": 5
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 5
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [18, 19],
+        [21, 22],
+        [26, 27]
+      ],
+      "reviewRules": []
+    },
+    "A-3": {
+      "questions": {
+        "32": {
+          "referenceAnswer": "millions of dollars (are) spent / wasted；\ndisruption to life in the (host) city / for people living in the (host) city / of the (host) city；\n(expo) buildings (are) not re-used / used again",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q32、Q33、Q34 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[87.57, 156.37, 105.85, 156.37]],
+          "evidenceReview": [
+            {
+              "contextStart": 87.57,
+              "contextEnd": 156.37,
+              "start": 105.85,
+              "end": 156.37,
+              "sentenceIds": [
+                "s00198",
+                "s00199",
+                "s00200",
+                "s00201",
+                "s00202",
+                "s00203",
+                "s00204",
+                "s00205",
+                "s00206",
+                "s00207"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "33": {
+          "referenceAnswer": "millions of dollars (are) spent / wasted；\ndisruption to life in the (host) city / for people living in the (host) city / of the (host) city；\n(expo) buildings (are) not re-used / used again",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q32、Q33、Q34 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[87.57, 156.37, 105.85, 156.37]],
+          "evidenceReview": [
+            {
+              "contextStart": 87.57,
+              "contextEnd": 156.37,
+              "start": 105.85,
+              "end": 156.37,
+              "sentenceIds": [
+                "s00198",
+                "s00199",
+                "s00200",
+                "s00201",
+                "s00202",
+                "s00203",
+                "s00204",
+                "s00205",
+                "s00206",
+                "s00207"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "34": {
+          "referenceAnswer": "millions of dollars (are) spent / wasted；\ndisruption to life in the (host) city / for people living in the (host) city / of the (host) city；\n(expo) buildings (are) not re-used / used again",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q32、Q33、Q34 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[87.57, 156.37, 105.85, 156.37]],
+          "evidenceReview": [
+            {
+              "contextStart": 87.57,
+              "contextEnd": 156.37,
+              "start": 105.85,
+              "end": 156.37,
+              "sentenceIds": [
+                "s00198",
+                "s00199",
+                "s00200",
+                "s00201",
+                "s00202",
+                "s00203",
+                "s00204",
+                "s00205",
+                "s00206",
+                "s00207"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "35": {
+          "referenceAnswer": "friendship among different countries // international friendship",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[162.45, 196.41, 166.25, 196.41]],
+          "evidenceReview": [
+            {
+              "contextStart": 162.45,
+              "contextEnd": 196.41,
+              "start": 166.25,
+              "end": 196.41,
+              "sentenceIds": ["s00209", "s00210", "s00211", "s00212", "s00213"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "36": {
+          "referenceAnswer": "business and tourism",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[166.25, 219.17, 197.39, 219.17]],
+          "evidenceReview": [
+            {
+              "contextStart": 166.25,
+              "contextEnd": 219.17,
+              "start": 197.39,
+              "end": 219.17,
+              "sentenceIds": ["s00211", "s00212", "s00213", "s00214", "s00215", "s00216"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "37": {
+          "referenceAnswer": "take out some (of the) writing / words // less writing；\n(add more) visuals / pictures；\n(change) background (colour) to light blue；\n(put) headings in red；\nmake the writing / font bigger (so it’s easier to read) // bigger writing / font；\nchange the font / letter style to make it look more up to date / modern；\n(change) numbers to bullet points // (use) bullet points instead of numbers",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q37、Q38、Q39、Q40、Q41、Q42、Q43 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [224.07, 267.89, 239.91, 267.89],
+            [267.89, 313.55, 267.89, 313.55],
+            [308.29, 336.23, 314.27, 336.23],
+            [336.23, 357.41, 336.23, 357.41]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 224.07,
+              "contextEnd": 267.89,
+              "start": 239.91,
+              "end": 267.89,
+              "sentenceIds": [
+                "s00218",
+                "s00219",
+                "s00220",
+                "s00221",
+                "s00222",
+                "s00223",
+                "s00224",
+                "s00225",
+                "s00226"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 267.89,
+              "contextEnd": 313.55,
+              "start": 267.89,
+              "end": 313.55,
+              "sentenceIds": [
+                "s00227",
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 308.29,
+              "contextEnd": 336.23,
+              "start": 314.27,
+              "end": 336.23,
+              "sentenceIds": ["s00235", "s00236", "s00237", "s00238", "s00239", "s00240", "s00241"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 336.23,
+              "contextEnd": 357.41,
+              "start": 336.23,
+              "end": 357.41,
+              "sentenceIds": ["s00242", "s00243", "s00244", "s00245"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "38": {
+          "referenceAnswer": "take out some (of the) writing / words // less writing；\n(add more) visuals / pictures；\n(change) background (colour) to light blue；\n(put) headings in red；\nmake the writing / font bigger (so it’s easier to read) // bigger writing / font；\nchange the font / letter style to make it look more up to date / modern；\n(change) numbers to bullet points // (use) bullet points instead of numbers",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q37、Q38、Q39、Q40、Q41、Q42、Q43 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [224.07, 267.89, 239.91, 267.89],
+            [267.89, 313.55, 267.89, 313.55],
+            [308.29, 336.23, 314.27, 336.23],
+            [336.23, 357.41, 336.23, 357.41]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 224.07,
+              "contextEnd": 267.89,
+              "start": 239.91,
+              "end": 267.89,
+              "sentenceIds": [
+                "s00218",
+                "s00219",
+                "s00220",
+                "s00221",
+                "s00222",
+                "s00223",
+                "s00224",
+                "s00225",
+                "s00226"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 267.89,
+              "contextEnd": 313.55,
+              "start": 267.89,
+              "end": 313.55,
+              "sentenceIds": [
+                "s00227",
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 308.29,
+              "contextEnd": 336.23,
+              "start": 314.27,
+              "end": 336.23,
+              "sentenceIds": ["s00235", "s00236", "s00237", "s00238", "s00239", "s00240", "s00241"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 336.23,
+              "contextEnd": 357.41,
+              "start": 336.23,
+              "end": 357.41,
+              "sentenceIds": ["s00242", "s00243", "s00244", "s00245"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "39": {
+          "referenceAnswer": "take out some (of the) writing / words // less writing；\n(add more) visuals / pictures；\n(change) background (colour) to light blue；\n(put) headings in red；\nmake the writing / font bigger (so it’s easier to read) // bigger writing / font；\nchange the font / letter style to make it look more up to date / modern；\n(change) numbers to bullet points // (use) bullet points instead of numbers",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q37、Q38、Q39、Q40、Q41、Q42、Q43 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [224.07, 267.89, 239.91, 267.89],
+            [267.89, 313.55, 267.89, 313.55],
+            [308.29, 336.23, 314.27, 336.23],
+            [336.23, 357.41, 336.23, 357.41]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 224.07,
+              "contextEnd": 267.89,
+              "start": 239.91,
+              "end": 267.89,
+              "sentenceIds": [
+                "s00218",
+                "s00219",
+                "s00220",
+                "s00221",
+                "s00222",
+                "s00223",
+                "s00224",
+                "s00225",
+                "s00226"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 267.89,
+              "contextEnd": 313.55,
+              "start": 267.89,
+              "end": 313.55,
+              "sentenceIds": [
+                "s00227",
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 308.29,
+              "contextEnd": 336.23,
+              "start": 314.27,
+              "end": 336.23,
+              "sentenceIds": ["s00235", "s00236", "s00237", "s00238", "s00239", "s00240", "s00241"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 336.23,
+              "contextEnd": 357.41,
+              "start": 336.23,
+              "end": 357.41,
+              "sentenceIds": ["s00242", "s00243", "s00244", "s00245"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "40": {
+          "referenceAnswer": "take out some (of the) writing / words // less writing；\n(add more) visuals / pictures；\n(change) background (colour) to light blue；\n(put) headings in red；\nmake the writing / font bigger (so it’s easier to read) // bigger writing / font；\nchange the font / letter style to make it look more up to date / modern；\n(change) numbers to bullet points // (use) bullet points instead of numbers",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q37、Q38、Q39、Q40、Q41、Q42、Q43 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [224.07, 267.89, 239.91, 267.89],
+            [267.89, 313.55, 267.89, 313.55],
+            [308.29, 336.23, 314.27, 336.23],
+            [336.23, 357.41, 336.23, 357.41]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 224.07,
+              "contextEnd": 267.89,
+              "start": 239.91,
+              "end": 267.89,
+              "sentenceIds": [
+                "s00218",
+                "s00219",
+                "s00220",
+                "s00221",
+                "s00222",
+                "s00223",
+                "s00224",
+                "s00225",
+                "s00226"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 267.89,
+              "contextEnd": 313.55,
+              "start": 267.89,
+              "end": 313.55,
+              "sentenceIds": [
+                "s00227",
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 308.29,
+              "contextEnd": 336.23,
+              "start": 314.27,
+              "end": 336.23,
+              "sentenceIds": ["s00235", "s00236", "s00237", "s00238", "s00239", "s00240", "s00241"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 336.23,
+              "contextEnd": 357.41,
+              "start": 336.23,
+              "end": 357.41,
+              "sentenceIds": ["s00242", "s00243", "s00244", "s00245"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "41": {
+          "referenceAnswer": "take out some (of the) writing / words // less writing；\n(add more) visuals / pictures；\n(change) background (colour) to light blue；\n(put) headings in red；\nmake the writing / font bigger (so it’s easier to read) // bigger writing / font；\nchange the font / letter style to make it look more up to date / modern；\n(change) numbers to bullet points // (use) bullet points instead of numbers",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q37、Q38、Q39、Q40、Q41、Q42、Q43 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [224.07, 267.89, 239.91, 267.89],
+            [267.89, 313.55, 267.89, 313.55],
+            [308.29, 336.23, 314.27, 336.23],
+            [336.23, 357.41, 336.23, 357.41]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 224.07,
+              "contextEnd": 267.89,
+              "start": 239.91,
+              "end": 267.89,
+              "sentenceIds": [
+                "s00218",
+                "s00219",
+                "s00220",
+                "s00221",
+                "s00222",
+                "s00223",
+                "s00224",
+                "s00225",
+                "s00226"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 267.89,
+              "contextEnd": 313.55,
+              "start": 267.89,
+              "end": 313.55,
+              "sentenceIds": [
+                "s00227",
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 308.29,
+              "contextEnd": 336.23,
+              "start": 314.27,
+              "end": 336.23,
+              "sentenceIds": ["s00235", "s00236", "s00237", "s00238", "s00239", "s00240", "s00241"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 336.23,
+              "contextEnd": 357.41,
+              "start": 336.23,
+              "end": 357.41,
+              "sentenceIds": ["s00242", "s00243", "s00244", "s00245"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "42": {
+          "referenceAnswer": "take out some (of the) writing / words // less writing；\n(add more) visuals / pictures；\n(change) background (colour) to light blue；\n(put) headings in red；\nmake the writing / font bigger (so it’s easier to read) // bigger writing / font；\nchange the font / letter style to make it look more up to date / modern；\n(change) numbers to bullet points // (use) bullet points instead of numbers",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q37、Q38、Q39、Q40、Q41、Q42、Q43 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [224.07, 267.89, 239.91, 267.89],
+            [267.89, 313.55, 267.89, 313.55],
+            [308.29, 336.23, 314.27, 336.23],
+            [336.23, 357.41, 336.23, 357.41]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 224.07,
+              "contextEnd": 267.89,
+              "start": 239.91,
+              "end": 267.89,
+              "sentenceIds": [
+                "s00218",
+                "s00219",
+                "s00220",
+                "s00221",
+                "s00222",
+                "s00223",
+                "s00224",
+                "s00225",
+                "s00226"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 267.89,
+              "contextEnd": 313.55,
+              "start": 267.89,
+              "end": 313.55,
+              "sentenceIds": [
+                "s00227",
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 308.29,
+              "contextEnd": 336.23,
+              "start": 314.27,
+              "end": 336.23,
+              "sentenceIds": ["s00235", "s00236", "s00237", "s00238", "s00239", "s00240", "s00241"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 336.23,
+              "contextEnd": 357.41,
+              "start": 336.23,
+              "end": 357.41,
+              "sentenceIds": ["s00242", "s00243", "s00244", "s00245"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "43": {
+          "referenceAnswer": "take out some (of the) writing / words // less writing；\n(add more) visuals / pictures；\n(change) background (colour) to light blue；\n(put) headings in red；\nmake the writing / font bigger (so it’s easier to read) // bigger writing / font；\nchange the font / letter style to make it look more up to date / modern；\n(change) numbers to bullet points // (use) bullet points instead of numbers",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q37、Q38、Q39、Q40、Q41、Q42、Q43 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [224.07, 267.89, 239.91, 267.89],
+            [267.89, 313.55, 267.89, 313.55],
+            [308.29, 336.23, 314.27, 336.23],
+            [336.23, 357.41, 336.23, 357.41]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 224.07,
+              "contextEnd": 267.89,
+              "start": 239.91,
+              "end": 267.89,
+              "sentenceIds": [
+                "s00218",
+                "s00219",
+                "s00220",
+                "s00221",
+                "s00222",
+                "s00223",
+                "s00224",
+                "s00225",
+                "s00226"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 267.89,
+              "contextEnd": 313.55,
+              "start": 267.89,
+              "end": 313.55,
+              "sentenceIds": [
+                "s00227",
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 308.29,
+              "contextEnd": 336.23,
+              "start": 314.27,
+              "end": 336.23,
+              "sentenceIds": ["s00235", "s00236", "s00237", "s00238", "s00239", "s00240", "s00241"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 336.23,
+              "contextEnd": 357.41,
+              "start": 336.23,
+              "end": 357.41,
+              "sentenceIds": ["s00242", "s00243", "s00244", "s00245"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-cd2535dfcb2b",
+        "page": 6
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 6
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [32, 33, 34],
+        [37, 38, 39, 40, 41, 42, 43]
+      ],
+      "reviewRules": []
+    },
+    "A-4": {
+      "questions": {
+        "44": {
+          "referenceAnswer": "(only way) (normal) people / they could see things from around the world",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[103.9, 135.42, 112.78, 135.42]],
+          "evidenceReview": [
+            {
+              "contextStart": 103.9,
+              "contextEnd": 135.42,
+              "start": 112.78,
+              "end": 135.42,
+              "sentenceIds": ["s00264", "s00265", "s00266", "s00267", "s00268"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "45": {
+          "referenceAnswer": "(more than) 35,000",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[138.22, 169.14, 151.92, 169.14]],
+          "evidenceReview": [
+            {
+              "contextStart": 138.22,
+              "contextEnd": 169.14,
+              "start": 151.92,
+              "end": 169.14,
+              "sentenceIds": ["s00270", "s00271", "s00272"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "46": {
+          "referenceAnswer": "cooking；\n(put on an) exotic show(s) // dancing // danced // religious rituals",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q46、Q47 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[169.74, 209.91, 175.86, 209.91]],
+          "evidenceReview": [
+            {
+              "contextStart": 169.74,
+              "contextEnd": 209.91,
+              "start": 175.86,
+              "end": 209.91,
+              "sentenceIds": ["s00273", "s00274", "s00275", "s00276", "s00277", "s00278", "s00279"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "47": {
+          "referenceAnswer": "cooking；\n(put on an) exotic show(s) // dancing // danced // religious rituals",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "Q46、Q47 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[169.74, 209.91, 175.86, 209.91]],
+          "evidenceReview": [
+            {
+              "contextStart": 169.74,
+              "contextEnd": 209.91,
+              "start": 175.86,
+              "end": 209.91,
+              "sentenceIds": ["s00273", "s00274", "s00275", "s00276", "s00277", "s00278", "s00279"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "48": {
+          "referenceAnswer": "McGee wanted (to exhibit) the most extreme examples of man / the smallest (and the tallest) men / people in the world // they were smaller than average humans // they were pygmies // pygmies are the smallest people in the world // Ota Benga was a pygmy",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[210.61, 282.99, 234.81, 282.99]],
+          "evidenceReview": [
+            {
+              "contextStart": 210.61,
+              "contextEnd": 282.99,
+              "start": 234.81,
+              "end": 282.99,
+              "sentenceIds": [
+                "s00280",
+                "s00281",
+                "s00282",
+                "s00283",
+                "s00284",
+                "s00285",
+                "s00286",
+                "s00287",
+                "s00288",
+                "s00289",
+                "s00290",
+                "s00291",
+                "s00292",
+                "s00293",
+                "s00294",
+                "s00295"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "49": {
+          "referenceAnswer": "they were showing (off) their culture",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[234.81, 306.59, 277.91, 306.59]],
+          "evidenceReview": [
+            {
+              "contextStart": 234.81,
+              "contextEnd": 306.59,
+              "start": 277.91,
+              "end": 306.59,
+              "sentenceIds": [
+                "s00288",
+                "s00289",
+                "s00290",
+                "s00291",
+                "s00292",
+                "s00293",
+                "s00294",
+                "s00295",
+                "s00296",
+                "s00297"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "50": {
+          "referenceAnswer": "they were advertised as / McGee wanted to show the most primitive (people in the planet)",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[234.81, 306.59, 277.91, 306.59]],
+          "evidenceReview": [
+            {
+              "contextStart": 234.81,
+              "contextEnd": 306.59,
+              "start": 277.91,
+              "end": 306.59,
+              "sentenceIds": [
+                "s00288",
+                "s00289",
+                "s00290",
+                "s00291",
+                "s00292",
+                "s00293",
+                "s00294",
+                "s00295",
+                "s00296",
+                "s00297"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "51": {
+          "referenceAnswer": "(be) a live exhibit (in the zoo)",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[322.16, 344.56, 332.56, 344.56]],
+          "evidenceReview": [
+            {
+              "contextStart": 307.63,
+              "contextEnd": 352.67,
+              "start": 322.23,
+              "end": 352.67,
+              "sentenceIds": [
+                "s00298",
+                "s00299",
+                "s00300",
+                "s00301",
+                "s00302",
+                "s00303",
+                "s00304",
+                "s00305",
+                "s00306"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "script": {
+            "sourceId": "p-0b02d79fa432",
+            "page": 84
+          }
+        },
+        "52": {
+          "referenceAnswer": "protested // complained // wrote to newspaper",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[322.23, 357.41, 346.71, 357.41]],
+          "evidenceReview": [
+            {
+              "contextStart": 322.23,
+              "contextEnd": 357.41,
+              "start": 346.71,
+              "end": 357.41,
+              "sentenceIds": ["s00302", "s00303", "s00304", "s00305", "s00306", "s00307", "s00308"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "53": {
+          "referenceAnswer": "No, he never returned to Africa / home // No, he did not have enough money to go back to Africa / home",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[357.93, 384.81, 361.21, 384.81]],
+          "evidenceReview": [
+            {
+              "contextStart": 357.93,
+              "contextEnd": 384.81,
+              "start": 361.21,
+              "end": 384.81,
+              "sentenceIds": ["s00309", "s00310", "s00311", "s00312"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "54": {
+          "referenceAnswer": "Yes, it gives the full picture (of the history of expos)",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[395.85, 411.17, 399.33, 411.17]],
+          "evidenceReview": [
+            {
+              "contextStart": 395.85,
+              "contextEnd": 411.17,
+              "start": 399.33,
+              "end": 411.17,
+              "sentenceIds": ["s00315", "s00316", "s00317", "s00318"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "55": {
+          "referenceAnswer": "No, it might offend Americans (in the audience)",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[395.85, 428.49, 414.17, 428.49]],
+          "evidenceReview": [
+            {
+              "contextStart": 395.85,
+              "contextEnd": 428.49,
+              "start": 414.17,
+              "end": 428.49,
+              "sentenceIds": ["s00315", "s00316", "s00317", "s00318", "s00319", "s00320"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "56": {
+          "referenceAnswer": "Yes, but only first half / part is relevant",
+          "reference": {
+            "sourceId": "p-cd2535dfcb2b",
+            "page": 6
+          },
+          "note": "",
+          "evidence": [[429.19, 444.45, 430.17, 444.45]],
+          "evidenceReview": [
+            {
+              "contextStart": 429.19,
+              "contextEnd": 444.45,
+              "start": 430.17,
+              "end": 444.45,
+              "sentenceIds": ["s00321", "s00322", "s00323", "s00324", "s00325"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-cd2535dfcb2b",
+        "page": 6
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 6
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[46, 47]],
+      "reviewRules": [],
+      "sentences": [
+        {
+          "id": "s00304",
+          "start": 328.24,
+          "end": 331.96,
+          "text": "He then became famous because he got a job at a zoo in New York.",
+          "source": {
+            "sourceId": "p-0b02d79fa432",
+            "page": 84
+          },
+          "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+          "words": [
+            {
+              "id": "s00304-fixed-w0",
+              "text": "He",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w1",
+              "text": "then",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w2",
+              "text": "became",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w3",
+              "text": "famous",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w4",
+              "text": "because",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w5",
+              "text": "he",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w6",
+              "text": "got",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w7",
+              "text": "a",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w8",
+              "text": "job",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w9",
+              "text": "at",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w10",
+              "text": "a",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w11",
+              "text": "zoo",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w12",
+              "text": "in",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w13",
+              "text": "New",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00304-fixed-w14",
+              "text": "York.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        },
+        {
+          "id": "gap2021-live-exhibit",
+          "start": 332.56,
+          "end": 341.24,
+          "text": "He thought he was going to look after the elephants, but he was actually given a job to be a live exhibit in the zoo.",
+          "source": {
+            "sourceId": "p-0b02d79fa432",
+            "page": 84
+          },
+          "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+          "words": [
+            {
+              "id": "gap2021-live-exhibit-fixed-w0",
+              "text": "He",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w1",
+              "text": "thought",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w2",
+              "text": "he",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w3",
+              "text": "was",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w4",
+              "text": "going",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w5",
+              "text": "to",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w6",
+              "text": "look",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w7",
+              "text": "after",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w8",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w9",
+              "text": "elephants,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w10",
+              "text": "but",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w11",
+              "text": "he",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w12",
+              "text": "was",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w13",
+              "text": "actually",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w14",
+              "text": "given",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w15",
+              "text": "a",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w16",
+              "text": "job",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w17",
+              "text": "to",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w18",
+              "text": "be",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w19",
+              "text": "a",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w20",
+              "text": "live",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w21",
+              "text": "exhibit",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w22",
+              "text": "in",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w23",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-live-exhibit-fixed-w24",
+              "text": "zoo.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        },
+        {
+          "id": "gap2021-cage",
+          "start": 342.02,
+          "end": 344.56,
+          "text": "He shared a cage with a chimpanzee.",
+          "source": {
+            "sourceId": "p-0b02d79fa432",
+            "page": 84
+          },
+          "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+          "words": [
+            {
+              "id": "gap2021-cage-fixed-w0",
+              "text": "He",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-cage-fixed-w1",
+              "text": "shared",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-cage-fixed-w2",
+              "text": "a",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-cage-fixed-w3",
+              "text": "cage",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-cage-fixed-w4",
+              "text": "with",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-cage-fixed-w5",
+              "text": "a",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2021-cage-fixed-w6",
+              "text": "chimpanzee.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        },
+        {
+          "id": "s00305",
+          "start": 345.02,
+          "end": 345.92,
+          "text": "That's awful.",
+          "source": {
+            "sourceId": "p-0b02d79fa432",
+            "page": 84
+          },
+          "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+          "words": [
+            {
+              "id": "s00305-fixed-w0",
+              "text": "That's",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00305-fixed-w1",
+              "text": "awful.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        }
+      ]
+    },
+    "B1-5": {
+      "reference": {
+        "sourceId": "p-cd2535dfcb2b",
+        "page": 7
+      },
+      "dataFile": {
+        "sourceId": "p-8d381cc93567",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 7
+        },
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 8
+        }
+      ],
+      "questions": {
+        "5": {
+          "referenceAnswer": "内容：14 分；全题：17 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "5.1a",
+              "referenceAnswer": "longer / 8-minute breaks between games",
+              "section": "Hot Weather · a–c 顺序可互换",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 46.77,
+                  "contextEnd": 85.15,
+                  "start": 72.39,
+                  "end": 85.15,
+                  "sentenceIds": [
+                    "s00347",
+                    "s00348",
+                    "s00349",
+                    "s00350",
+                    "s00351",
+                    "s00352",
+                    "s00353",
+                    "s00354",
+                    "s00355"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.1b",
+              "referenceAnswer": "matches will be played in the evening",
+              "section": "Hot Weather · a–c 顺序可互换",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 46.77,
+                  "contextEnd": 105.67,
+                  "start": 85.15,
+                  "end": 105.67,
+                  "sentenceIds": [
+                    "s00347",
+                    "s00348",
+                    "s00349",
+                    "s00350",
+                    "s00351",
+                    "s00352",
+                    "s00353",
+                    "s00354",
+                    "s00355",
+                    "s00356",
+                    "s00357",
+                    "s00358",
+                    "s00359",
+                    "s00360"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.1c",
+              "referenceAnswer": "(two outdoor) cooling fans",
+              "section": "Hot Weather · a–c 顺序可互换",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 15,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2a",
+              "referenceAnswer": "private car with darkened windows",
+              "section": "Player Privacy · a–b 顺序可互换",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 12,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.2b",
+              "referenceAnswer": "hotel address will not be revealed (to the press)",
+              "section": "Player Privacy · a–b 顺序可互换",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 12,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.3",
+              "referenceAnswer": "(disruptive spectators) will be removed (from the venue)",
+              "section": "Behaviour of Spectators",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 171.65,
+                  "contextEnd": 211.33,
+                  "start": 190.93,
+                  "end": 211.33,
+                  "sentenceIds": [
+                    "s00375",
+                    "s00376",
+                    "s00377",
+                    "s00378",
+                    "s00379",
+                    "s00380",
+                    "s00381",
+                    "s00382",
+                    "s00383",
+                    "s00384"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.4a",
+              "referenceAnswer": "200",
+              "section": "Air Pollution",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 106.41,
+                  "contextEnd": 155.79,
+                  "start": 129.19,
+                  "end": 155.79,
+                  "sentenceIds": [
+                    "s00361",
+                    "s00362",
+                    "s00363",
+                    "s00364",
+                    "s00365",
+                    "s00366",
+                    "s00367",
+                    "s00368",
+                    "s00369",
+                    "s00370",
+                    "s00371",
+                    "s00372"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.4b",
+              "referenceAnswer": "matches will be moved to indoor court",
+              "section": "Air Pollution",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 106.41,
+                  "contextEnd": 155.79,
+                  "start": 129.19,
+                  "end": 155.79,
+                  "sentenceIds": [
+                    "s00361",
+                    "s00362",
+                    "s00363",
+                    "s00364",
+                    "s00365",
+                    "s00366",
+                    "s00367",
+                    "s00368",
+                    "s00369",
+                    "s00370",
+                    "s00371",
+                    "s00372"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.5",
+              "referenceAnswer": "(kitchen) surfaces disinfected every two hours",
+              "section": "Food Safety",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 13,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.6a",
+              "referenceAnswer": "(four sets of) security checkpoints",
+              "section": "Security · a–b 顺序可互换",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 13,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.6b",
+              "referenceAnswer": "baggage scanners",
+              "section": "Security · a–b 顺序可互换",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 13,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.7a",
+              "referenceAnswer": "does not eat pork",
+              "section": "Special Dietary Requirements",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 12,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.7b",
+              "referenceAnswer": "for religious reasons",
+              "section": "Special Dietary Requirements",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 12,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.8",
+              "referenceAnswer": "00 852 17473562",
+              "section": "Player/Agent Enquiries",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 7
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 397.37,
+                  "contextEnd": 427.97,
+                  "start": 403.57,
+                  "end": 427.97,
+                  "sentenceIds": ["s00423", "s00424", "s00425", "s00426", "s00427"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-cd2535dfcb2b",
+              "page": 8
+            }
+          ],
+          "note": "资料须填在正确栏目。5.1a–c、5.2a–b、5.6a–b各组内顺序可互换。内容14分，语言3分。"
+        }
+      }
+    },
+    "B1-6": {
+      "reference": {
+        "sourceId": "p-cd2535dfcb2b",
+        "page": 9
+      },
+      "dataFile": {
+        "sourceId": "p-8d381cc93567",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 9
+        },
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 10
+        },
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 11
+        }
+      ],
+      "questions": {
+        "6": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "6.1",
+              "referenceAnswer": "give local families a chance to interact with international tennis stars",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 14,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2",
+              "referenceAnswer": "at Ballater Hill Secondary School",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 13,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3",
+              "referenceAnswer": "on September 24",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 12,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.4",
+              "referenceAnswer": "Lara Taranova",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 224.13,
+                  "contextEnd": 245.93,
+                  "start": 231.03,
+                  "end": 245.93,
+                  "sentenceIds": ["s00387", "s00388", "s00389", "s00390"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.5",
+              "referenceAnswer": "coaching session",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 14,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.6",
+              "referenceAnswer": "autograph signing",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 14,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.7",
+              "referenceAnswer": "5 families will be chosen",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 14,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.8",
+              "referenceAnswer": "The child / children (of the participating family) must be between 12–16 (years old)",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 224.13,
+                  "contextEnd": 267.81,
+                  "start": 244.57,
+                  "end": 267.81,
+                  "sentenceIds": [
+                    "s00387",
+                    "s00388",
+                    "s00389",
+                    "s00390",
+                    "s00391",
+                    "s00392",
+                    "s00393",
+                    "s00394",
+                    "s00395"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.9",
+              "referenceAnswer": "To apply, child of family must submit 2 sentences explaining why they want to meet Lara",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 13,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-cd2535dfcb2b",
+              "page": 10
+            },
+            {
+              "sourceId": "p-cd2535dfcb2b",
+              "page": 11
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-7": {
+      "reference": {
+        "sourceId": "p-cd2535dfcb2b",
+        "page": 12
+      },
+      "dataFile": {
+        "sourceId": "p-8d381cc93567",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 12
+        },
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 13
+        },
+        {
+          "sourceId": "p-cd2535dfcb2b",
+          "page": 14
+        }
+      ],
+      "questions": {
+        "7": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "7.1a",
+              "referenceAnswer": "Complaint: there was a lot of rubbish last year",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 15,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1b",
+              "referenceAnswer": "will increase number of anti-littering signs",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 16,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1c",
+              "referenceAnswer": "will increase number of no smoking signs",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 16,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2a",
+              "referenceAnswer": "We’ll hire 35 Green Ambassadors",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 13,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2b",
+              "referenceAnswer": "will ask spectators not to litter",
+              "section": "",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 17,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2c",
+              "referenceAnswer": "will tell spectators not to smoke",
+              "section": "",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 17,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2d",
+              "referenceAnswer": "will clean up after the event",
+              "section": "",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 17,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3a",
+              "referenceAnswer": "Cable TV will show the whole tournament",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 16,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3b",
+              "referenceAnswer": "you can watch the semi-finals and final on local TV",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-8d381cc93567",
+                  "page": 16,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-cd2535dfcb2b",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-cd2535dfcb2b",
+              "page": 13
+            },
+            {
+              "sourceId": "p-cd2535dfcb2b",
+              "page": 14
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    }
+  }
+}

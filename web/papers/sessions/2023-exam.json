@@ -13,32 +13,32 @@
       {
         "src": "./papers/audio/a-6d2c22fceca8/001.mp3",
         "start": 479.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6d2c22fceca8/002.mp3",
         "start": 959.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6d2c22fceca8/003.mp3",
         "start": 1439.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6d2c22fceca8/004.mp3",
         "start": 1919.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6d2c22fceca8/005.mp3",
         "start": 2399.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6d2c22fceca8/006.mp3",
         "start": 2879.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-6d2c22fceca8/007.mp3",
@@ -657,14 +657,14 @@
         {
           "text": "Do",
           "start": 46.82,
-          "end": 47.0,
+          "end": 47,
           "probability": 0.9519,
           "id": "w000059",
           "sourceMatched": true
         },
         {
           "text": "not",
-          "start": 47.0,
+          "start": 47,
           "end": 47.18,
           "probability": 0.9962,
           "id": "w000060",
@@ -713,14 +713,14 @@
         {
           "text": "told",
           "start": 48.76,
-          "end": 49.0,
+          "end": 49,
           "probability": 0.9983,
           "id": "w000066",
           "sourceMatched": true
         },
         {
           "text": "to",
-          "start": 49.0,
+          "start": 49,
           "end": 49.32,
           "probability": 0.9981,
           "id": "w000067",
@@ -2304,7 +2304,7 @@
         },
         {
           "text": "of",
-          "start": 201.0,
+          "start": 201,
           "end": 201.36,
           "probability": 0.9811,
           "id": "w000250",
@@ -4345,14 +4345,14 @@
         {
           "text": "them",
           "start": 392.78,
-          "end": 393.0,
+          "end": 393,
           "probability": 0.9901,
           "id": "w000486",
           "sourceMatched": true
         },
         {
           "text": "off.",
-          "start": 393.0,
+          "start": 393,
           "end": 393.24,
           "probability": 0.9946,
           "id": "w000487",
@@ -21821,201 +21821,323 @@
     },
     {
       "id": "s00230",
-      "start": 1649.286,
-      "end": 1649.566,
-      "text": "Mr",
+      "start": 1649.376,
+      "end": 1656.356,
+      "text": "Mr Suess plays the piano. In fact, his piano playing videos are the most popular ones.",
+      "source": {
+        "sourceId": "p-82913e0b123c",
+        "page": 4
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
       "words": [
         {
+          "id": "s00230-fixed-w0",
           "text": "Mr",
-          "start": 1649.286,
-          "end": 1649.566,
-          "probability": 0.9952,
-          "id": "w002478",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w1",
+          "text": "Suess",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w2",
+          "text": "plays",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w3",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w4",
+          "text": "piano.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w5",
+          "text": "In",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w6",
+          "text": "fact,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w7",
+          "text": "his",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w8",
+          "text": "piano",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w9",
+          "text": "playing",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w10",
+          "text": "videos",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w11",
+          "text": "are",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w12",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w13",
+          "text": "most",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w14",
+          "text": "popular",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00230-fixed-w15",
+          "text": "ones.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },
     {
       "id": "s00231",
-      "start": 1656.166,
-      "end": 1664.566,
-      "text": "Seuss And the other thing that makes him an internet sensation is that Mr Seuss gets gifts from all over the world.",
+      "start": 1657.376,
+      "end": 1664.576,
+      "text": "And the other thing that makes him an internet sensation is that Mr Suess gets gifts from all over the world.",
+      "source": {
+        "sourceId": "p-82913e0b123c",
+        "page": 4
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
       "words": [
         {
-          "text": "Seuss",
-          "start": 1656.166,
-          "end": 1656.806,
-          "probability": 0.9966,
-          "id": "w002479",
-          "sourceMatched": false
-        },
-        {
+          "id": "s00231-fixed-w0",
           "text": "And",
           "start": null,
           "end": null,
-          "probability": 0.3234,
-          "id": "w002480",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w1",
           "text": "the",
-          "start": 1657.386,
-          "end": 1657.526,
-          "probability": 0.9721,
-          "id": "w002481",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w2",
           "text": "other",
-          "start": 1657.526,
-          "end": 1657.746,
-          "probability": 0.9894,
-          "id": "w002482",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w3",
           "text": "thing",
-          "start": 1657.746,
-          "end": 1658.026,
-          "probability": 0.9938,
-          "id": "w002483",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w4",
           "text": "that",
-          "start": 1658.026,
-          "end": 1658.226,
-          "probability": 0.996,
-          "id": "w002484",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w5",
           "text": "makes",
-          "start": 1658.226,
-          "end": 1658.566,
-          "probability": 0.9946,
-          "id": "w002485",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w6",
           "text": "him",
-          "start": 1658.566,
-          "end": 1658.786,
-          "probability": 0.9978,
-          "id": "w002486",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w7",
           "text": "an",
-          "start": 1658.786,
-          "end": 1658.886,
-          "probability": 0.9806,
-          "id": "w002487",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w8",
           "text": "internet",
-          "start": 1658.886,
-          "end": 1659.266,
-          "probability": 0.7159,
-          "id": "w002488",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w9",
           "text": "sensation",
-          "start": 1659.266,
-          "end": 1660.086,
-          "probability": 0.9974,
-          "id": "w002489",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w10",
           "text": "is",
-          "start": 1660.086,
-          "end": 1660.906,
-          "probability": 0.7709,
-          "id": "w002490",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w11",
           "text": "that",
-          "start": 1660.906,
-          "end": 1661.106,
-          "probability": 0.9905,
-          "id": "w002491",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w12",
           "text": "Mr",
-          "start": 1661.106,
-          "end": 1661.366,
-          "probability": 0.9549,
-          "id": "w002492",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
-          "text": "Seuss",
-          "start": 1661.706,
-          "end": 1661.946,
-          "probability": 0.8011,
-          "id": "w002493",
-          "sourceMatched": false
+          "id": "s00231-fixed-w13",
+          "text": "Suess",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w14",
           "text": "gets",
-          "start": 1661.946,
-          "end": 1662.206,
-          "probability": 0.9388,
-          "id": "w002494",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w15",
           "text": "gifts",
-          "start": 1662.206,
-          "end": 1662.606,
-          "probability": 0.9864,
-          "id": "w002495",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w16",
           "text": "from",
-          "start": 1662.606,
-          "end": 1663.086,
-          "probability": 0.993,
-          "id": "w002496",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w17",
           "text": "all",
-          "start": 1663.086,
-          "end": 1663.486,
-          "probability": 0.9822,
-          "id": "w002497",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w18",
           "text": "over",
-          "start": 1663.486,
-          "end": 1664.046,
-          "probability": 0.9984,
-          "id": "w002498",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w19",
           "text": "the",
-          "start": 1664.046,
-          "end": 1664.186,
-          "probability": 0.9984,
-          "id": "w002499",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00231-fixed-w20",
           "text": "world.",
-          "start": 1664.186,
-          "end": 1664.566,
-          "probability": 0.9971,
-          "id": "w002500",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },

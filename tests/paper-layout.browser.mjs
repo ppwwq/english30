@@ -5,14 +5,12 @@ await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const base = new URL(process.env.TEST_URL || 'http://127.0.0.1:4174');
 base.hash = 'listening';
@@ -33,7 +31,7 @@ async function check(name, run) {
 }
 try {
   await check(
-    'both mode labels stay inside their actual buttons at desktop, iPad and phone widths',
+    'navigation labels stay inside their actual buttons at desktop, iPad and phone widths',
     async (result) => {
       result.viewports = [];
       for (const [width, height] of [
@@ -56,7 +54,7 @@ try {
           await document.fonts.ready;
           await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
         });
-        const labels = await page.locator('#listening-modes .phase-switch').evaluate((track) => {
+        const labels = await page.locator('.main-navigation.phase-switch').evaluate((track) => {
           const buttons = [...track.querySelectorAll(':scope > button')];
           return [...track.querySelectorAll('.rubber-copy')].map((copy, index) => {
             const range = document.createRange();
@@ -72,7 +70,7 @@ try {
         });
         result.viewports.push({ width, labels });
         await context.close();
-        assert.equal(labels.length, 2);
+        assert.equal(labels.length, 5);
         for (const label of labels)
           assert.ok(
             label.text.left >= label.button.left - 1 && label.text.right <= label.button.right + 1,

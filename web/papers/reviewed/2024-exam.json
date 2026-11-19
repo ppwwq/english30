@@ -1,0 +1,2073 @@
+{
+  "sessionId": "2024-exam",
+  "reviewDate": "2026-11-17",
+  "reviewMethod": "Each reference text visually checked against the cited marking-scheme image; manual grading retained.",
+  "tasks": {
+    "B1-5": {
+      "reference": {
+        "sourceId": "p-f3aeb809c6bf",
+        "page": 10
+      },
+      "dataFile": {
+        "sourceId": "p-e4f62fc87128",
+        "page": 1
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 10
+        },
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 11
+        }
+      ],
+      "questions": {
+        "5": {
+          "referenceAnswer": "内容：15 分；全题：17 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "5.1",
+              "referenceAnswer": "27th April",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 33.37,
+                  "contextEnd": 51.97,
+                  "start": 41.81,
+                  "end": 51.97,
+                  "sentenceIds": ["s00316", "s00317", "s00318", "s00319"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.2",
+              "referenceAnswer": "10am",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 33.37,
+                  "contextEnd": 51.97,
+                  "start": 41.81,
+                  "end": 51.97,
+                  "sentenceIds": ["s00316", "s00317", "s00318", "s00319"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.3",
+              "referenceAnswer": "Visitors’ Centre",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 62.75,
+                  "contextEnd": 81.19,
+                  "start": 66.31,
+                  "end": 81.19,
+                  "sentenceIds": ["s00324", "s00325", "s00326", "s00327", "s00328"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.4",
+              "referenceAnswer": "2 hours",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 33.37,
+                  "contextEnd": 61.95,
+                  "start": 54.97,
+                  "end": 61.95,
+                  "sentenceIds": [
+                    "s00316",
+                    "s00317",
+                    "s00318",
+                    "s00319",
+                    "s00320",
+                    "s00321",
+                    "s00322",
+                    "s00323"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.5",
+              "referenceAnswer": "Chinese",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.6",
+              "referenceAnswer": "English audio guides",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.7",
+              "referenceAnswer": "light clothing / clothes",
+              "section": "5.7–5.8 顺序可互换",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.8",
+              "referenceAnswer": "walking or running shoes",
+              "section": "5.7–5.8 顺序可互换",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.9",
+              "referenceAnswer": "water",
+              "section": "5.9–5.12 顺序可互换",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.10",
+              "referenceAnswer": "sunglasses",
+              "section": "5.9–5.12 顺序可互换",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.11",
+              "referenceAnswer": "mosquito repellent",
+              "section": "5.9–5.12 顺序可互换",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.12",
+              "referenceAnswer": "(a) hat",
+              "section": "5.9–5.12 顺序可互换",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.13",
+              "referenceAnswer": "pregnant woman",
+              "section": "5.13–5.14 顺序可互换",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.14",
+              "referenceAnswer": "person with serious health issues",
+              "section": "5.13–5.14 顺序可互换",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.15",
+              "referenceAnswer": "(we recommend you) consult a doctor (before joining the walk)",
+              "section": "",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-f3aeb809c6bf",
+              "page": 11
+            }
+          ],
+          "note": "资料须在正确栏目。5.7–5.8、5.9–5.12、5.13–5.14 各组内可互换次序，各点只计一次。内容15分，语言2分。"
+        }
+      }
+    },
+    "B1-6": {
+      "reference": {
+        "sourceId": "p-f3aeb809c6bf",
+        "page": 11
+      },
+      "dataFile": {
+        "sourceId": "p-e4f62fc87128",
+        "page": 1
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 11
+        },
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 12
+        },
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 13
+        }
+      ],
+      "questions": {
+        "6": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "6.1",
+              "referenceAnswer": "the start time has been changed (from 7:30am) to 9:30am",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 11
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 85.45,
+                  "contextEnd": 134.19,
+                  "start": 102.17,
+                  "end": 134.19,
+                  "sentenceIds": [
+                    "s00330",
+                    "s00331",
+                    "s00332",
+                    "s00333",
+                    "s00334",
+                    "s00335",
+                    "s00336",
+                    "s00337",
+                    "s00338",
+                    "s00339",
+                    "s00340"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.2",
+              "referenceAnswer": "because not enough people are signing up to join the tour",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 11
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 135.15,
+                  "contextEnd": 161.03,
+                  "start": 139.75,
+                  "end": 161.03,
+                  "sentenceIds": ["s00341", "s00342", "s00343", "s00344", "s00345", "s00346"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.3",
+              "referenceAnswer": "because the tour starts too early",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 11
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 139.75,
+                  "contextEnd": 186.53,
+                  "start": 161.75,
+                  "end": 186.53,
+                  "sentenceIds": [
+                    "s00343",
+                    "s00344",
+                    "s00345",
+                    "s00346",
+                    "s00347",
+                    "s00348",
+                    "s00349",
+                    "s00350",
+                    "s00351",
+                    "s00352"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.4",
+              "referenceAnswer": "Request: Will the staff give out (free) refreshments / cool water and ice cream?",
+              "section": "",
+              "sourceLabel": "Data File 第 11 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 11,
+                  "printedPage": 11
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 11
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.5",
+              "referenceAnswer": "Reason: (the) hot weather (in Hong Kong)",
+              "section": "",
+              "sourceLabel": "Data File 第 11 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 11,
+                  "printedPage": 11
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 11
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.6",
+              "referenceAnswer": "Reason: participants will be doing a lot of walking",
+              "section": "",
+              "sourceLabel": "Data File 第 11 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 11,
+                  "printedPage": 11
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 11
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.7",
+              "referenceAnswer": "Request: Will there be a refund if there are not sufficient bird sightings or there is poor weather?",
+              "section": "",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 11
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.8",
+              "referenceAnswer": "Reason: previous participants left negative reviews due to not seeing many birds",
+              "section": "",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 11
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.9",
+              "referenceAnswer": "Reason: coupons and discounts won’t make up for the time they lost (so only a refund would be suitable)",
+              "section": "",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 11
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-f3aeb809c6bf",
+              "page": 12
+            },
+            {
+              "sourceId": "p-f3aeb809c6bf",
+              "page": 13
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-7": {
+      "reference": {
+        "sourceId": "p-f3aeb809c6bf",
+        "page": 14
+      },
+      "dataFile": {
+        "sourceId": "p-e4f62fc87128",
+        "page": 1
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 14
+        },
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 15
+        },
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 16
+        }
+      ],
+      "questions": {
+        "7": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "7.1",
+              "referenceAnswer": "learn about (different) insects and reptiles",
+              "section": "At the Insects and Reptiles Exhibition, you can…",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 14
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2",
+              "referenceAnswer": "experience a different side of Hong Kong",
+              "section": "At the Insects and Reptiles Exhibition, you can…",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 14
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3",
+              "referenceAnswer": "meet Oggie, the salt water crocodile",
+              "section": "At the Insects and Reptiles Exhibition, you can…",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 14
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.4",
+              "referenceAnswer": "dragonflies at the exhibition: Red Baller and Blue Tail",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记） ＋ Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 14
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 343.37,
+                  "contextEnd": 394.86,
+                  "start": 355.81,
+                  "end": 394.86,
+                  "sentenceIds": [
+                    "s00388",
+                    "s00389",
+                    "s00390",
+                    "s00391",
+                    "s00392",
+                    "s00393",
+                    "s00394",
+                    "s00395",
+                    "s00396",
+                    "s00397",
+                    "s00398",
+                    "s00399",
+                    "s00400",
+                    "s00401"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.5",
+              "referenceAnswer": "(some of) the dragonflies at the exhibition are rare (in Hong Kong) as they migrate during the winter",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 14
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.6",
+              "referenceAnswer": "there will be a dragonfly photo-taking competition (at the exhibition)",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 14
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 355.81,
+                  "contextEnd": 409.6,
+                  "start": 395.98,
+                  "end": 409.6,
+                  "sentenceIds": [
+                    "s00392",
+                    "s00393",
+                    "s00394",
+                    "s00395",
+                    "s00396",
+                    "s00397",
+                    "s00398",
+                    "s00399",
+                    "s00400",
+                    "s00401",
+                    "s00402",
+                    "s00403"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.7",
+              "referenceAnswer": "the best dragonfly photo wins $500",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 14
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 395.98,
+                  "contextEnd": 424.4,
+                  "start": 409.6,
+                  "end": 424.4,
+                  "sentenceIds": ["s00402", "s00403", "s00404"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "7.8",
+              "referenceAnswer": "(World City Travel early booking offer:) book your ticket two weeks in advance for a 30% discount",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 14
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.9",
+              "referenceAnswer": "tickets are free for children under 6 years old when accompanied by parents",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-e4f62fc87128",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-f3aeb809c6bf",
+                "page": 14
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-f3aeb809c6bf",
+              "page": 15
+            },
+            {
+              "sourceId": "p-f3aeb809c6bf",
+              "page": 16
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "A-1": {
+      "questions": {
+        "1": {
+          "referenceAnswer": "April 30th // end of April",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [
+            [1.7, 15.28, 6.44, 15.28],
+            [41.78, 59.44, 54.72, 59.44]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 1.7,
+              "contextEnd": 15.28,
+              "start": 6.44,
+              "end": 15.28,
+              "sentenceIds": ["s00051", "s00052", "s00053"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 41.78,
+              "contextEnd": 59.44,
+              "start": 54.72,
+              "end": 59.44,
+              "sentenceIds": ["s00063", "s00064", "s00065", "s00066"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Date exhibition will end:"
+        },
+        "2": {
+          "referenceAnswer": "(only) 50 dollars",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[16.08, 27.22, 19.84, 27.22]],
+          "evidenceReview": [
+            {
+              "contextStart": 16.08,
+              "contextEnd": 27.22,
+              "start": 19.84,
+              "end": 27.22,
+              "sentenceIds": ["s00054", "s00055", "s00056", "s00057"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Cost to enter the exhibition:"
+        },
+        "3": {
+          "referenceAnswer": "Monday",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[27.72, 35.28, 29.58, 35.28]],
+          "evidenceReview": [
+            {
+              "contextStart": 27.72,
+              "contextEnd": 35.28,
+              "start": 29.58,
+              "end": 35.28,
+              "sentenceIds": ["s00058", "s00059", "s00060"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Day of the week it is closed:"
+        },
+        "4": {
+          "referenceAnswer": "take photos",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[27.72, 45.44, 32.38, 45.44]],
+          "evidenceReview": [
+            {
+              "contextStart": 27.72,
+              "contextEnd": 45.44,
+              "start": 32.38,
+              "end": 45.44,
+              "sentenceIds": ["s00058", "s00059", "s00060", "s00061", "s00062", "s00063"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "What you are not allowed to do in the exhibition:"
+        },
+        "5": {
+          "referenceAnswer": "D",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[62.76, 98.82, 66.6, 98.82]],
+          "evidenceReview": [
+            {
+              "contextStart": 62.76,
+              "contextEnd": 98.82,
+              "start": 66.6,
+              "end": 98.82,
+              "sentenceIds": [
+                "s00068",
+                "s00069",
+                "s00070",
+                "s00071",
+                "s00072",
+                "s00073",
+                "s00074",
+                "s00075",
+                "s00076",
+                "s00077"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Look at the map above. Where is the Great Human Migration Exhibition?"
+        },
+        "6": {
+          "referenceAnswer": "(around) 70,000 years ago",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[106.3, 132.68, 110.9, 132.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 106.3,
+              "contextEnd": 132.68,
+              "start": 110.9,
+              "end": 132.68,
+              "sentenceIds": ["s00081", "s00082", "s00083", "s00084", "s00085"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "When humans left Africa:"
+        },
+        "7": {
+          "referenceAnswer": "(by) canoe",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[133.6, 147.64, 139.24, 147.64]],
+          "evidenceReview": [
+            {
+              "contextStart": 133.6,
+              "contextEnd": 147.64,
+              "start": 139.24,
+              "end": 147.64,
+              "sentenceIds": ["s00086", "s00087", "s00088", "s00089"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Where humans went after Asia | Australia | Means of transport:"
+        },
+        "8": {
+          "referenceAnswer": "on foot // walking",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[170.26, 203.64, 180.64, 203.64]],
+          "evidenceReview": [
+            {
+              "contextStart": 170.26,
+              "contextEnd": 203.64,
+              "start": 180.64,
+              "end": 203.64,
+              "sentenceIds": ["s00096", "s00097", "s00098", "s00099", "s00100", "s00101", "s00102"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Where humans went after Asia | America | Means of transport:"
+        },
+        "9": {
+          "referenceAnswer": "(from) island to island",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[148.36, 170.26, 156.16, 170.26]],
+          "evidenceReview": [
+            {
+              "contextStart": 148.36,
+              "contextEnd": 170.26,
+              "start": 156.16,
+              "end": 170.26,
+              "sentenceIds": ["s00090", "s00091", "s00092", "s00093", "s00094", "s00095"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Where humans went after Asia | Australia | Route of travel:"
+        },
+        "10": {
+          "referenceAnswer": "lack of food // to find food；\nfighting (with) other humans // escape from other humans",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "Q10、Q11 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[204.36, 234.96, 220.9, 234.96]],
+          "evidenceReview": [
+            {
+              "contextStart": 204.36,
+              "contextEnd": 234.96,
+              "start": 220.9,
+              "end": 234.96,
+              "sentenceIds": ["s00103", "s00104", "s00105", "s00106"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Two possible reasons for migrating (first reason):"
+        },
+        "11": {
+          "referenceAnswer": "lack of food // to find food；\nfighting (with) other humans // escape from other humans",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "Q10、Q11 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[204.36, 234.96, 220.9, 234.96]],
+          "evidenceReview": [
+            {
+              "contextStart": 204.36,
+              "contextEnd": 234.96,
+              "start": 220.9,
+              "end": 234.96,
+              "sentenceIds": ["s00103", "s00104", "s00105", "s00106"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Two possible reasons for migrating (second reason):"
+        },
+        "12": {
+          "referenceAnswer": "✓ Grow food; ✓ Make clothes; ✓ Build houses; ✓ Make weapons",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[235.4, 258.76, 246.16, 258.76]],
+          "evidenceReview": [
+            {
+              "contextStart": 235.4,
+              "contextEnd": 258.76,
+              "start": 246.16,
+              "end": 258.76,
+              "sentenceIds": ["s00107", "s00108", "s00109", "s00110"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Things that they learnt to do as they reached new environments (tick FOUR): Use a compass / Use money / Grow food / Make clothes / Make fire / Swim / Build houses / Make weapons."
+        }
+      },
+      "reference": {
+        "sourceId": "p-f3aeb809c6bf",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 8
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[10, 11]],
+      "reviewRules": []
+    },
+    "A-2": {
+      "questions": {
+        "13": {
+          "referenceAnswer": "Paqua Monna",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[62.734, 81.094, 70.494, 81.094]],
+          "evidenceReview": [
+            {
+              "contextStart": 62.734,
+              "contextEnd": 81.094,
+              "start": 70.494,
+              "end": 81.094,
+              "sentenceIds": ["v2024t2-s001", "v2024t2-s002", "v2024t2-s003"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Topic of the lecture: The ___ Expedition."
+        },
+        "14": {
+          "referenceAnswer": "languages；\ncustoms",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "Q14、Q15 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[81.974, 100.274, 91.014, 100.274]],
+          "evidenceReview": [
+            {
+              "contextStart": 81.974,
+              "contextEnd": 100.274,
+              "start": 91.014,
+              "end": 100.274,
+              "sentenceIds": ["v2024t2-s004", "v2024t2-s005"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "People in Polynesia share similar: ___ (first item)."
+        },
+        "15": {
+          "referenceAnswer": "languages；\ncustoms",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "Q14、Q15 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[81.974, 100.274, 91.014, 100.274]],
+          "evidenceReview": [
+            {
+              "contextStart": 81.974,
+              "contextEnd": 100.274,
+              "start": 91.014,
+              "end": 100.274,
+              "sentenceIds": ["v2024t2-s004", "v2024t2-s005"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "People in Polynesia share similar: ___ (second item)."
+        },
+        "16": {
+          "referenceAnswer": "C",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[101.874, 148.234, 123.074, 148.234]],
+          "evidenceReview": [
+            {
+              "contextStart": 101.874,
+              "contextEnd": 148.234,
+              "start": 123.074,
+              "end": 148.234,
+              "sentenceIds": [
+                "v2024t2-s006",
+                "v2024t2-s007",
+                "v2024t2-s008",
+                "v2024t2-s009",
+                "v2024t2-s010",
+                "v2024t2-s011"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "The route of Jenson’s expedition: A. From Polynesia to Southeast Asia / B. From Polynesia to South America / C. From South America to Polynesia / D. From South America to Southeast Asia."
+        },
+        "17": {
+          "referenceAnswer": "light；\nstrong",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "Q17、Q18 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[149.954, 172.934, 163.014, 172.934]],
+          "evidenceReview": [
+            {
+              "contextStart": 149.954,
+              "contextEnd": 172.934,
+              "start": 163.014,
+              "end": 172.934,
+              "sentenceIds": ["v2024t2-s012", "v2024t2-s013", "v2024t2-s014", "v2024t2-s015"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Qualities of the wood Jenson used for his boat (first quality):"
+        },
+        "18": {
+          "referenceAnswer": "light；\nstrong",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "Q17、Q18 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[149.954, 172.934, 163.014, 172.934]],
+          "evidenceReview": [
+            {
+              "contextStart": 149.954,
+              "contextEnd": 172.934,
+              "start": 163.014,
+              "end": 172.934,
+              "sentenceIds": ["v2024t2-s012", "v2024t2-s013", "v2024t2-s014", "v2024t2-s015"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Qualities of the wood Jenson used for his boat (second quality):"
+        },
+        "19": {
+          "referenceAnswer": "5",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[149.954, 184.654, 173.834, 184.654]],
+          "evidenceReview": [
+            {
+              "contextStart": 149.954,
+              "contextEnd": 184.654,
+              "start": 173.834,
+              "end": 184.654,
+              "sentenceIds": ["v2024t2-s012", "v2024t2-s013", "v2024t2-s014", "v2024t2-s015", "v2024t2-s016"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Measurements: ___ metres (side shown in the boat diagram)."
+        },
+        "20": {
+          "referenceAnswer": "14",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[149.954, 184.654, 173.834, 184.654]],
+          "evidenceReview": [
+            {
+              "contextStart": 149.954,
+              "contextEnd": 184.654,
+              "start": 173.834,
+              "end": 184.654,
+              "sentenceIds": ["v2024t2-s012", "v2024t2-s013", "v2024t2-s014", "v2024t2-s015", "v2024t2-s016"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Measurements: ___ metres (length shown in the boat diagram)."
+        },
+        "21": {
+          "referenceAnswer": "May 1950",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[173.834, 194.08, 186.28, 194.08]],
+          "evidenceReview": [
+            {
+              "contextStart": 173.834,
+              "contextEnd": 194.08,
+              "start": 186.28,
+              "end": 194.08,
+              "sentenceIds": ["v2024t2-s016", "s00138"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "The expedition | Month and year they set off:"
+        },
+        "22": {
+          "referenceAnswer": "(the) stars",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[195.28, 215.5, 202.68, 215.5]],
+          "evidenceReview": [
+            {
+              "contextStart": 195.28,
+              "contextEnd": 215.5,
+              "start": 202.68,
+              "end": 215.5,
+              "sentenceIds": ["s00139", "s00140", "s00141"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "The expedition | Navigation method:"
+        },
+        "23": {
+          "referenceAnswer": "fish",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[195.28, 223.34, 216.24, 223.34]],
+          "evidenceReview": [
+            {
+              "contextStart": 195.28,
+              "contextEnd": 223.34,
+              "start": 216.24,
+              "end": 223.34,
+              "sentenceIds": ["s00139", "s00140", "s00141", "s00142"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "The expedition | What they ate:"
+        },
+        "24": {
+          "referenceAnswer": "in bamboo (water) containers",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[195.28, 223.34, 216.24, 223.34]],
+          "evidenceReview": [
+            {
+              "contextStart": 195.28,
+              "contextEnd": 223.34,
+              "start": 216.24,
+              "end": 223.34,
+              "sentenceIds": ["s00139", "s00140", "s00141", "s00142"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "The expedition | How water was stored:"
+        },
+        "25": {
+          "referenceAnswer": "✓ Lost food source; ✓ Lost water; ✓ Lost sail",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[230.96, 267.62, 239.24, 267.62]],
+          "evidenceReview": [
+            {
+              "contextStart": 230.96,
+              "contextEnd": 267.62,
+              "start": 239.24,
+              "end": 267.62,
+              "sentenceIds": ["s00144", "s00145", "s00146", "s00147", "s00148", "s00149"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Problems caused by the storm (tick THREE): Lost food source / Lost navigation tools / Lost crew members / Lost water / Lost journal / Lost sail."
+        },
+        "26": {
+          "referenceAnswer": "D",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[268.98, 308.08, 287.44, 308.08]],
+          "evidenceReview": [
+            {
+              "contextStart": 268.98,
+              "contextEnd": 308.08,
+              "start": 287.44,
+              "end": 308.08,
+              "sentenceIds": ["s00150", "s00151", "s00152", "s00153"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Modern research shows that modern Polynesians share similar ___ to South Americans. A. languages / B. religions / C. culture / D. genes."
+        }
+      },
+      "reference": {
+        "sourceId": "p-f3aeb809c6bf",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 8
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [14, 15],
+        [17, 18]
+      ],
+      "reviewRules": []
+    },
+    "A-3": {
+      "questions": {
+        "27": {
+          "referenceAnswer": "(strongly) connected to (your / our / one’s) cultural background",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[57.41, 115.98, 92.32, 115.98]],
+          "evidenceReview": [
+            {
+              "contextStart": 57.41,
+              "contextEnd": 115.98,
+              "start": 92.32,
+              "end": 115.98,
+              "sentenceIds": [
+                "s00162",
+                "s00163",
+                "s00164",
+                "s00165",
+                "s00166",
+                "s00167",
+                "s00168",
+                "s00169",
+                "s00170"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Heritage Language Learning is: Learning a language that is ___."
+        },
+        "28": {
+          "referenceAnswer": "Singapore",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[120.72, 146.74, 130.2, 146.74]],
+          "evidenceReview": [
+            {
+              "contextStart": 120.72,
+              "contextEnd": 146.74,
+              "start": 130.2,
+              "end": 146.74,
+              "sentenceIds": ["s00173", "s00174", "s00175", "s00176"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Learner profiles | Anna | Family originated from:"
+        },
+        "29": {
+          "referenceAnswer": "explore his (Peruvian) identity",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[168.62, 214.1, 200.76, 214.1]],
+          "evidenceReview": [
+            {
+              "contextStart": 168.62,
+              "contextEnd": 214.1,
+              "start": 200.76,
+              "end": 214.1,
+              "sentenceIds": [
+                "s00184",
+                "s00185",
+                "s00186",
+                "s00187",
+                "s00188",
+                "s00189",
+                "s00190",
+                "s00191",
+                "s00192"
+              ],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Learner profiles | Charles | Reasons for learning:"
+        },
+        "30": {
+          "referenceAnswer": "speak with her grandparents // get to know her grandparents",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[200.76, 237.08, 214.7, 237.08]],
+          "evidenceReview": [
+            {
+              "contextStart": 200.76,
+              "contextEnd": 237.08,
+              "start": 214.7,
+              "end": 237.08,
+              "sentenceIds": ["s00190", "s00191", "s00192", "s00193", "s00194", "s00195", "s00196"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Learner profiles | Anna | Reasons for learning:"
+        },
+        "31": {
+          "referenceAnswer": "give a speech at his cousin’s wedding",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[168.62, 194.94, 179.34, 194.94]],
+          "evidenceReview": [
+            {
+              "contextStart": 168.62,
+              "contextEnd": 194.94,
+              "start": 179.34,
+              "end": 194.94,
+              "sentenceIds": ["s00184", "s00185", "s00186", "s00187", "s00188"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Learner profiles | Philip | Reasons for learning:"
+        },
+        "32": {
+          "referenceAnswer": "lesson(s) every week with a private tutor",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[272.28, 286.6, 274.16, 286.6]],
+          "evidenceReview": [
+            {
+              "contextStart": 272.28,
+              "contextEnd": 286.6,
+              "start": 274.16,
+              "end": 286.6,
+              "sentenceIds": ["s00208", "s00209", "s00210", "s00211", "s00212"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Learner profiles | Charles | Methods of learning:"
+        },
+        "33": {
+          "referenceAnswer": "language exchange partner",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[237.88, 255.5, 245.28, 255.5]],
+          "evidenceReview": [
+            {
+              "contextStart": 237.88,
+              "contextEnd": 255.5,
+              "start": 245.28,
+              "end": 255.5,
+              "sentenceIds": ["s00197", "s00198", "s00199", "s00200", "s00201"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Learner profiles | Anna | Methods of learning:"
+        },
+        "34": {
+          "referenceAnswer": "use a language learning app (on his way to work)",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[290.44, 315.02, 300.6, 315.02]],
+          "evidenceReview": [
+            {
+              "contextStart": 290.44,
+              "contextEnd": 315.02,
+              "start": 300.6,
+              "end": 315.02,
+              "sentenceIds": ["s00214", "s00215", "s00216", "s00217", "s00218"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Problems and solutions | Charles | Solution:"
+        },
+        "35": {
+          "referenceAnswer": "reading and writing Chinese characters",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[293.96, 332.7, 315.58, 332.7]],
+          "evidenceReview": [
+            {
+              "contextStart": 293.96,
+              "contextEnd": 332.7,
+              "start": 315.58,
+              "end": 332.7,
+              "sentenceIds": ["s00215", "s00216", "s00217", "s00218", "s00219", "s00220"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Problems and solutions | Anna | Problem:"
+        },
+        "36": {
+          "referenceAnswer": "write a daily diary in Chinese",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[315.58, 342.68, 325.94, 342.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 315.58,
+              "contextEnd": 342.68,
+              "start": 325.94,
+              "end": 342.68,
+              "sentenceIds": ["s00219", "s00220", "s00221", "s00222"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Problems and solutions | Anna | Solution:"
+        },
+        "37": {
+          "referenceAnswer": "watch YouTube series in French every week / regularly",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[343.24, 374.68, 345.36, 374.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 343.24,
+              "contextEnd": 374.68,
+              "start": 345.36,
+              "end": 374.68,
+              "sentenceIds": ["s00223", "s00224", "s00225", "s00226", "s00227", "s00228", "s00229", "s00230"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Problems and solutions | Philip | Solution:"
+        },
+        "38": {
+          "referenceAnswer": "it’s never too late to learn",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[375.24, 398.74, 382.8, 398.74]],
+          "evidenceReview": [
+            {
+              "contextStart": 375.24,
+              "contextEnd": 398.74,
+              "start": 382.8,
+              "end": 398.74,
+              "sentenceIds": ["s00231", "s00232", "s00233", "s00234"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Write each learner’s message in the correct speech box: Charles."
+        },
+        "39": {
+          "referenceAnswer": "motivation is everything // without motivation you’ll never succeed",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[399.04, 420.66, 400.16, 420.66]],
+          "evidenceReview": [
+            {
+              "contextStart": 399.04,
+              "contextEnd": 420.66,
+              "start": 400.16,
+              "end": 420.66,
+              "sentenceIds": ["s00235", "s00236", "s00237", "s00238", "s00239"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Write each learner’s message in the correct speech box: Anna."
+        },
+        "40": {
+          "referenceAnswer": "not one / no single (right) way of learning // have to be ready to try out lots of ways to learn // try out different ways to succeed",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[424.46, 456.66, 428.66, 456.66]],
+          "evidenceReview": [
+            {
+              "contextStart": 424.46,
+              "contextEnd": 456.66,
+              "start": 428.66,
+              "end": 456.66,
+              "sentenceIds": ["s00241", "s00242", "s00243", "s00244", "s00245", "s00246"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Write each learner’s message in the correct speech box: Philip."
+        }
+      },
+      "reference": {
+        "sourceId": "p-f3aeb809c6bf",
+        "page": 9
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 9
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-4": {
+      "questions": {
+        "41": {
+          "referenceAnswer": "largest annual human migration (on Earth) // more people travel than the population of the United States",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[63.43, 88.19, 73.25, 88.19]],
+          "evidenceReview": [
+            {
+              "contextStart": 63.43,
+              "contextEnd": 88.19,
+              "start": 73.25,
+              "end": 88.19,
+              "sentenceIds": ["s00255", "s00256", "s00257"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "What is special about Chunyun?"
+        },
+        "42": {
+          "referenceAnswer": "(estimated) 400,000,000",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[63.43, 95.81, 89.49, 95.81]],
+          "evidenceReview": [
+            {
+              "contextStart": 63.43,
+              "contextEnd": 95.81,
+              "start": 89.49,
+              "end": 95.81,
+              "sentenceIds": ["s00255", "s00256", "s00257", "s00258"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "How many people are likely to travel during the Spring Festival each year?"
+        },
+        "43": {
+          "referenceAnswer": "(economic reforms meant that) they left their hometowns to work (in the city) // (before) most people lived in towns in which they were born；\nthe number of university students studying outside their hometown has increased",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "Q43、Q44 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[111.29, 154.03, 125.63, 154.03]],
+          "evidenceReview": [
+            {
+              "contextStart": 111.29,
+              "contextEnd": 154.03,
+              "start": 125.63,
+              "end": 154.03,
+              "sentenceIds": ["s00260", "s00261", "s00262", "s00263"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Why do many more people travel during the Spring Festival now, when compared to the past? Reason 1."
+        },
+        "44": {
+          "referenceAnswer": "(economic reforms meant that) they left their hometowns to work (in the city) // (before) most people lived in towns in which they were born；\nthe number of university students studying outside their hometown has increased",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "Q43、Q44 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[111.29, 154.03, 125.63, 154.03]],
+          "evidenceReview": [
+            {
+              "contextStart": 111.29,
+              "contextEnd": 154.03,
+              "start": 125.63,
+              "end": 154.03,
+              "sentenceIds": ["s00260", "s00261", "s00262", "s00263"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Why do many more people travel during the Spring Festival now, when compared to the past? Reason 2."
+        },
+        "45": {
+          "referenceAnswer": "buying a ticket … they sell out (quickly) (especially online) // the scarcity of tickets；\nrisk of accidents // safety issues … of (over) crowded trains // many people have to stand (on train)",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "Q45、Q46 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[156.45, 213.67, 177.37, 213.67]],
+          "evidenceReview": [
+            {
+              "contextStart": 156.45,
+              "contextEnd": 213.67,
+              "start": 177.37,
+              "end": 213.67,
+              "sentenceIds": ["s00264", "s00265", "s00266", "s00267", "s00268"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "What are the two main issues that people face travelling by train in Chunyun? First issue and reason."
+        },
+        "46": {
+          "referenceAnswer": "buying a ticket … they sell out (quickly) (especially online) // the scarcity of tickets；\nrisk of accidents // safety issues … of (over) crowded trains // many people have to stand (on train)",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "Q45、Q46 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[156.45, 213.67, 177.37, 213.67]],
+          "evidenceReview": [
+            {
+              "contextStart": 156.45,
+              "contextEnd": 213.67,
+              "start": 177.37,
+              "end": 213.67,
+              "sentenceIds": ["s00264", "s00265", "s00266", "s00267", "s00268"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "What are the two main issues that people face travelling by train in Chunyun? Second issue and reason."
+        },
+        "47": {
+          "referenceAnswer": "passengers called his family to (come and) meet him at next stop / station",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[215.94, 258.34, 235.22, 258.34]],
+          "evidenceReview": [
+            {
+              "contextStart": 215.94,
+              "contextEnd": 258.34,
+              "start": 235.22,
+              "end": 258.34,
+              "sentenceIds": ["s00269", "s00270", "s00271", "s00272"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Summarise the outcome from Story 1: A drunk man falls asleep and misses his stop."
+        },
+        "48": {
+          "referenceAnswer": "a stranger shared / offered to share his lunch box",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[261.42, 303.56, 270.56, 303.56]],
+          "evidenceReview": [
+            {
+              "contextStart": 261.42,
+              "contextEnd": 303.56,
+              "start": 270.56,
+              "end": 303.56,
+              "sentenceIds": ["s00273", "s00274", "s00275", "s00276", "s00277", "s00278", "s00279"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Summarise the outcome from Story 2: A student has his money stolen by a pickpocket."
+        },
+        "49": {
+          "referenceAnswer": "they (got chatting about their love of reading and later) got married // became husband and wife",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[306.41, 342.97, 316.39, 342.97]],
+          "evidenceReview": [
+            {
+              "contextStart": 306.41,
+              "contextEnd": 342.97,
+              "start": 316.39,
+              "end": 342.97,
+              "sentenceIds": ["s00280", "s00281", "s00282", "s00283", "s00284", "s00285"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "Summarise the outcome from Story 3: A young woman sits opposite a student on the train."
+        },
+        "50": {
+          "referenceAnswer": "stay where they are // avoid Chunyun (altogether)；\nreduce cost by sharing their car (with friends and strangers)；\ninternational travel",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "Q50、Q51、Q52 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[354.34, 400.4, 362.26, 400.4]],
+          "evidenceReview": [
+            {
+              "contextStart": 354.34,
+              "contextEnd": 400.4,
+              "start": 362.26,
+              "end": 400.4,
+              "sentenceIds": ["s00287", "s00288", "s00289", "s00290"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "What are the three ways suggested about how to cope with the problems of Chunyun? First way."
+        },
+        "51": {
+          "referenceAnswer": "stay where they are // avoid Chunyun (altogether)；\nreduce cost by sharing their car (with friends and strangers)；\ninternational travel",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "Q50、Q51、Q52 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[354.34, 400.4, 362.26, 400.4]],
+          "evidenceReview": [
+            {
+              "contextStart": 354.34,
+              "contextEnd": 400.4,
+              "start": 362.26,
+              "end": 400.4,
+              "sentenceIds": ["s00287", "s00288", "s00289", "s00290"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "What are the three ways suggested about how to cope with the problems of Chunyun? Second way."
+        },
+        "52": {
+          "referenceAnswer": "stay where they are // avoid Chunyun (altogether)；\nreduce cost by sharing their car (with friends and strangers)；\ninternational travel",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "Q50、Q51、Q52 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[354.34, 400.4, 362.26, 400.4]],
+          "evidenceReview": [
+            {
+              "contextStart": 354.34,
+              "contextEnd": 400.4,
+              "start": 362.26,
+              "end": 400.4,
+              "sentenceIds": ["s00287", "s00288", "s00289", "s00290"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "What are the three ways suggested about how to cope with the problems of Chunyun? Third way."
+        },
+        "53": {
+          "referenceAnswer": "(they feel that) (despite the stress) it is worth it to spend time with loved ones / family // (the reward of) spending time with loved ones / family makes it all worth it",
+          "reference": {
+            "sourceId": "p-f3aeb809c6bf",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[403.06, 433.42, 409.6, 433.42]],
+          "evidenceReview": [
+            {
+              "contextStart": 403.06,
+              "contextEnd": 433.42,
+              "start": 409.6,
+              "end": 433.42,
+              "sentenceIds": ["s00291", "s00292", "s00293"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ],
+          "prompt": "According to the presenter, how do most Chinese feel about Chunyun?"
+        }
+      },
+      "reference": {
+        "sourceId": "p-f3aeb809c6bf",
+        "page": 9
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-f3aeb809c6bf",
+          "page": 9
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [43, 44],
+        [45, 46],
+        [50, 51, 52]
+      ],
+      "reviewRules": []
+    }
+  }
+}

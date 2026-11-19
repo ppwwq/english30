@@ -81,14 +81,29 @@ export function validateAnswerResult(result, { allowLegacy = false } = {}) {
   return result;
 }
 
-export function submitAnswers(lesson, session, answers) {
+// A stroke is stored in page-relative coordinates, independent of display size.
+export function validatePaperInk(ink) {
+  if (!ink || typeof ink !== 'object' || Array.isArray(ink)) throw new Error('手写页格式无效。');
+  for (const [page, strokes] of Object.entries(ink)) {
+    if (
+      !/^[\w-]+:[1-9]\d*$/.test(page) ||
+      !Array.isArray(strokes) ||
+      strokes.some((s) => typeof s !== 'string' || !/^(?:\d{1,4},\d{1,4})(?: \d{1,4},\d{1,4})*$/.test(s))
+    ) {
+      throw new Error('手写笔迹格式无效。');
+    }
+  }
+  return ink;
+}
+
+export function submitAnswers(lesson, session, answers, { ink } = {}) {
   if (session.phase === 'review') throw new Error('本轮已提交，请开始无字幕复测。');
   const pools = new Map();
   const results = Object.fromEntries(
     lesson.questions.map((q) => {
       const answer = String(answers[q.id] ?? '').trim(),
         normal = normaliseAnswer(answer);
-      if (q.grading === 'self')
+      if (ink || q.grading === 'self')
         return [q.id, { answer, correct: null, duplicate: false, status: 'pending', grading: 'self' }];
       let correct = q.answers.some((a) => normaliseAnswer(a) === normal),
         duplicate = false;
@@ -124,6 +139,7 @@ export function submitAnswers(lesson, session, answers) {
     phase: session.phase,
     submittedAt: new Date().toISOString(),
     results,
+    ...(ink && { ink: structuredClone(validatePaperInk(ink)) }),
   };
   return { ...session, phase: 'review', attempts: [...session.attempts, attempt] };
 }
@@ -143,7 +159,8 @@ export function selfAssessAnswer(lesson, session, questionId, rating) {
   const result = attempt.results[questionId];
   if (
     !['correct', 'incorrect', 'pending'].includes(rating) ||
-    question?.grading !== 'self' ||
+    !question ||
+    (question.grading !== 'self' && !attempt.ink) ||
     result?.grading !== 'self' ||
     result.correct !== null
   )

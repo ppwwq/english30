@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { practiceDrillContext, questionDrillSentence } from '../web/focused-drill-core.mjs';
+import {
+  practiceDrillContext,
+  questionDrillSentence,
+  sentenceQuestionLabels,
+} from '../web/focused-drill-core.mjs';
 
 const lesson = {
   paper: {
@@ -63,4 +67,14 @@ test('a question selects its reliable evidence sentence, never an unrelated or u
   assert.equal(questionDrillSentence(lesson, { evidence: [{ start: 20.2, end: 21.8 }] }), 'answer');
   assert.equal(questionDrillSentence(lesson, { evidence: [{ start: 5, end: 7 }] }), null);
   assert.equal(questionDrillSentence(lesson, { evidence: [] }), null);
+});
+test('changing sentence keeps all matching question and scoring-point labels, excluding lead-in only', () => {
+  const questions = [
+    { label: 'Q11', evidence: [{ start: 20, end: 22, contextStart: 18 }] },
+    { label: 'Q12', evidence: [{ start: 20, end: 23 }] },
+    { label: 'Task 5', scoringPoints: [{ id: '5.2', evidence: [{ start: 40, end: 42 }] }] },
+  ];
+  assert.deepEqual(sentenceQuestionLabels(questions, 20, 21), ['Q11', 'Q12']);
+  assert.deepEqual(sentenceQuestionLabels(questions, 18, 20), []);
+  assert.deepEqual(sentenceQuestionLabels(questions, 40, 41), ['5.2']);
 });

@@ -6253,24 +6253,44 @@
           "height": 1978
         },
         {
-          "src": "./papers/pages/p-3dc72dea616b/0005.webp",
-          "width": 1399,
-          "height": 1978
+          "src": "./papers/reviewed-images/2018-marking/0005.webp",
+          "width": 1979,
+          "height": 1399,
+          "originalSrc": "./papers/pages/p-3dc72dea616b/0005.webp",
+          "displayImages": [
+            "./papers/reviewed-images/2018-marking/0005-1.webp",
+            "./papers/reviewed-images/2018-marking/0005-2.webp"
+          ]
         },
         {
-          "src": "./papers/pages/p-3dc72dea616b/0006.webp",
-          "width": 1399,
-          "height": 1978
+          "src": "./papers/reviewed-images/2018-marking/0006.webp",
+          "width": 1979,
+          "height": 1399,
+          "originalSrc": "./papers/pages/p-3dc72dea616b/0006.webp",
+          "displayImages": [
+            "./papers/reviewed-images/2018-marking/0006-1.webp",
+            "./papers/reviewed-images/2018-marking/0006-2.webp"
+          ]
         },
         {
-          "src": "./papers/pages/p-3dc72dea616b/0007.webp",
-          "width": 1399,
-          "height": 1978
+          "src": "./papers/reviewed-images/2018-marking/0007.webp",
+          "width": 1979,
+          "height": 1399,
+          "originalSrc": "./papers/pages/p-3dc72dea616b/0007.webp",
+          "displayImages": [
+            "./papers/reviewed-images/2018-marking/0007-1.webp",
+            "./papers/reviewed-images/2018-marking/0007-2.webp"
+          ]
         },
         {
-          "src": "./papers/pages/p-3dc72dea616b/0008.webp",
-          "width": 1399,
-          "height": 1978
+          "src": "./papers/reviewed-images/2018-marking/0008.webp",
+          "width": 1979,
+          "height": 1399,
+          "originalSrc": "./papers/pages/p-3dc72dea616b/0008.webp",
+          "displayImages": [
+            "./papers/reviewed-images/2018-marking/0008-1.webp",
+            "./papers/reviewed-images/2018-marking/0008-2.webp"
+          ]
         },
         {
           "src": "./papers/pages/p-3dc72dea616b/0009.webp",
@@ -26764,6 +26784,73 @@
           "height": 450
         }
       ]
+    },
+    {
+      "id": "p-2022-b1-ms-complete",
+      "name": "2022 B1 评分参考（完整补页）",
+      "year": 2022,
+      "variant": "exam",
+      "paper": 3,
+      "role": "marking",
+      "parts": ["B1"],
+      "bytes": 951290,
+      "pages": [
+        {
+          "src": "./papers/pages/p-2022-b1-ms-complete/0001.webp",
+          "width": 952,
+          "height": 1500,
+          "originalPdfPage": 17
+        },
+        {
+          "src": "./papers/pages/p-2022-b1-ms-complete/0002.webp",
+          "width": 964,
+          "height": 1500,
+          "originalPdfPage": 18
+        },
+        {
+          "src": "./papers/pages/p-2022-b1-ms-complete/0003.webp",
+          "width": 943,
+          "height": 1500,
+          "originalPdfPage": 19
+        },
+        {
+          "src": "./papers/pages/p-2022-b1-ms-complete/0004.webp",
+          "width": 988,
+          "height": 1500,
+          "originalPdfPage": 20
+        },
+        {
+          "src": "./papers/pages/p-2022-b1-ms-complete/0005.webp",
+          "width": 924,
+          "height": 1500,
+          "originalPdfPage": 21
+        },
+        {
+          "src": "./papers/pages/p-2022-b1-ms-complete/0006.webp",
+          "width": 959,
+          "height": 1500,
+          "originalPdfPage": 22
+        },
+        {
+          "src": "./papers/pages/p-2022-b1-ms-complete/0007.webp",
+          "width": 954,
+          "height": 1500,
+          "originalPdfPage": 23
+        },
+        {
+          "src": "./papers/pages/p-2022-b1-ms-complete/0008.webp",
+          "width": 978,
+          "height": 1500,
+          "originalPdfPage": 24
+        }
+      ],
+      "pageCount": 8,
+      "tasks": [],
+      "containsAnswers": true,
+      "sourceUrl": "https://src.dselib.com/eng/eng/2022/ans.pdf",
+      "originalPdfPages": [17, 24],
+      "externalSupplement": true,
+      "sourcePath": "Supplemental/2022/B1-marking-scheme-pages-17-24"
     }
   ],
   "sessions": [

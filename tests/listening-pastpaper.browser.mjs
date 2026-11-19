@@ -5,14 +5,12 @@ await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const base = new URL(process.env.TEST_URL || 'http://127.0.0.1:4174');
 const report = { cases: [], errors: [], physicalDevice: false };
@@ -63,10 +61,7 @@ try {
     'original practice selects Year, Part and Task with original question pages and concealed first answers',
     async (page) => {
       assert.equal(await page.locator('body').getAttribute('data-view'), 'listening');
-      assert.equal(
-        await page.locator('button[data-listening-mode=papers]').getAttribute('aria-pressed'),
-        'true',
-      );
+      assert.equal(await page.locator('body').getAttribute('data-listening-mode'), 'papers');
       assert.equal(await page.locator('#paper-host').isVisible(), false);
       assert.equal(await page.locator('#listening-panel').isVisible(), true);
       await page.locator('#practice-year').selectOption('2013');
@@ -92,15 +87,22 @@ try {
       await page.locator('#play-pause').tap();
       await page.waitForFunction(() => !document.querySelector('#audio').paused);
       dialogs.accept = false;
-      await page.locator('button[data-listening-mode=practice]').tap();
-      await page.waitForFunction(() => document.body.dataset.listeningMode === 'papers');
+      await page.evaluate(() => {
+        location.hash = 'listening/practice';
+      });
+      await page.waitForFunction(
+        () => location.hash === '#listening' && document.body.dataset.listeningMode === 'papers',
+      );
       assert.equal(await page.locator('.question-input').first().inputValue(), 'original draft kept');
       assert.equal(await page.locator('#practice-year').inputValue(), '2025');
       assert.equal(await page.locator('#practice-picker').isVisible(), true);
       assert.equal(new URL(page.url()).hash, '#listening');
       assert.equal(await page.locator('#audio').evaluate((audio) => audio.paused), true);
       dialogs.accept = true;
-      await page.locator('button[data-listening-mode=practice]').tap();
+      await page.evaluate(() => {
+        location.hash = 'listening/practice';
+      });
+      await page.waitForFunction(() => document.body.dataset.listeningMode === 'practice');
       await ready(page);
       assert.equal(await page.locator('#lesson-select').isVisible(), true);
       assert.equal(new URL(page.url()).hash, '#listening/practice');
@@ -112,7 +114,7 @@ try {
       const title = await page.locator('#lesson-title').textContent();
       await page.locator('.question-input').first().fill('focused draft kept');
       dialogs.accept = false;
-      await page.locator('button[data-listening-mode=papers]').tap();
+      await page.locator('.main-navigation [data-view=listening]').tap();
       await page.waitForFunction(() => document.body.dataset.listeningMode === 'practice');
       assert.equal(await page.locator('#lesson-title').textContent(), title);
       assert.equal(await page.locator('.question-input').first().inputValue(), 'focused draft kept');
@@ -182,9 +184,12 @@ try {
         await waiting;
         await route.continue().catch(() => {});
       });
-      await page.locator('button[data-listening-mode=papers]').tap();
+      await page.locator('.main-navigation [data-view=listening]').tap();
       await requested;
-      await page.locator('button[data-listening-mode=practice]').tap();
+      await page.evaluate(() => {
+        location.hash = 'listening/practice';
+      });
+      await page.waitForFunction(() => document.body.dataset.listeningMode === 'practice');
       release();
       await page.waitForTimeout(650);
       assert.equal(await page.locator('body').getAttribute('data-listening-mode'), 'practice');
@@ -210,8 +215,10 @@ try {
       assert.match(await page.locator('#status').textContent(), /缺失|不匹配/);
       await page.locator('#practice-variant').selectOption('exam');
       await ready(page, '2012 正式卷');
-      for (const id of ['play-pause', 'seek', 'mark-moment', 'submit-answers'])
+      for (const id of ['play-pause', 'seek'])
         assert.equal(await page.locator(`#${id}`).isDisabled(), false, `${id} must recover after Sample`);
+      for (const id of ['mark-moment', 'submit-answers'])
+        assert.equal(await page.locator(`#${id}`).isDisabled(), true, `${id} waits for real listening`);
       await page.locator('#play-pause').tap();
       await page.waitForFunction(() => !document.querySelector('#audio').paused);
       await page.locator('#submit-answers').tap();
@@ -234,7 +241,14 @@ try {
       ]) {
         await page.setViewportSize({ width, height });
         for (const mode of ['papers', 'practice']) {
-          await page.locator(`button[data-listening-mode=${mode}]`).tap();
+          if (mode === 'papers') {
+            await page.locator('.main-navigation [data-view=listening]').tap();
+          } else {
+            await page.evaluate(() => {
+              location.hash = 'listening/practice';
+            });
+          }
+          await page.waitForFunction((expected) => document.body.dataset.listeningMode === expected, mode);
           await ready(page);
           for (const phase of ['first', 'review']) {
             if (phase === 'review' && (await page.locator('#submit-answers').isVisible())) {

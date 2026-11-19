@@ -1,4 +1,4 @@
-import { validateLesson, validateAnswerResult } from './core.mjs';
+import { validateLesson, validateAnswerResult, validatePaperInk } from '../../web/core.mjs';
 
 export const LISTENING_RECORDS_KEY = 'english30-records-v1';
 const safeId = (value) =>
@@ -46,6 +46,7 @@ export function parseListeningRecord(input) {
   if (r.timingOffset != null && (!Number.isFinite(r.timingOffset) || Math.abs(r.timingOffset) > 5))
     throw new Error('字幕偏移必须在正负 5 秒内。');
   for (const a of r.attempts) {
+    if (a?.ink !== undefined) validatePaperInk(a.ink);
     if (
       !object(a) ||
       !phases.has(a.phase) ||

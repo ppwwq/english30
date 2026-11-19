@@ -13,32 +13,32 @@
       {
         "src": "./papers/audio/a-2add30a11031/001.mp3",
         "start": 479.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2add30a11031/002.mp3",
         "start": 959.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2add30a11031/003.mp3",
         "start": 1439.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2add30a11031/004.mp3",
         "start": 1919.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2add30a11031/005.mp3",
         "start": 2399.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2add30a11031/006.mp3",
         "start": 2879.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-2add30a11031/007.mp3",
@@ -297,14 +297,14 @@
         {
           "text": "to",
           "start": 20.52,
-          "end": 21.0,
+          "end": 21,
           "probability": 0.9831,
           "id": "w000017",
           "sourceMatched": true
         },
         {
           "text": "Candidates.",
-          "start": 21.0,
+          "start": 21,
           "end": 21.38,
           "probability": 0.9981,
           "id": "w000018",
@@ -1995,7 +1995,7 @@
     {
       "id": "s00020",
       "start": 166.94,
-      "end": 175.0,
+      "end": 175,
       "text": "Now write your Candidate Number in the space provided on Page one of your Part B1 question answer Book.",
       "words": [
         {
@@ -2145,7 +2145,7 @@
         {
           "text": "Book.",
           "start": 174.46,
-          "end": 175.0,
+          "end": 175,
           "probability": 0.9686,
           "id": "w000231",
           "sourceMatched": true
@@ -2505,14 +2505,14 @@
         {
           "text": "Data",
           "start": 233.44,
-          "end": 234.0,
+          "end": 234,
           "probability": 0.8935,
           "id": "w000272",
           "sourceMatched": true
         },
         {
           "text": "File.",
-          "start": 234.0,
+          "start": 234,
           "end": 234.46,
           "probability": 0.9893,
           "id": "w000273",
@@ -2523,7 +2523,7 @@
     {
       "id": "s00027",
       "start": 235.54,
-      "end": 240.0,
+      "end": 240,
       "text": "Take out the inserted Part B2 Question Answer Book.",
       "words": [
         {
@@ -2593,7 +2593,7 @@
         {
           "text": "Book.",
           "start": 239.5,
-          "end": 240.0,
+          "end": 240,
           "probability": 0.9882,
           "id": "w000282",
           "sourceMatched": true
@@ -2753,14 +2753,14 @@
         {
           "text": "File",
           "start": 253.56,
-          "end": 254.0,
+          "end": 254,
           "probability": 0.9898,
           "id": "w000301",
           "sourceMatched": true
         },
         {
           "text": "on",
-          "start": 254.0,
+          "start": 254,
           "end": 254.8,
           "probability": 0.9255,
           "id": "w000302",
@@ -3514,13 +3514,13 @@
     },
     {
       "id": "s00038",
-      "start": 345.0,
+      "start": 345,
       "end": 347.54,
       "text": "Part A and Part B.",
       "words": [
         {
           "text": "Part",
-          "start": 345.0,
+          "start": 345,
           "end": 345.32,
           "probability": 0.9802,
           "id": "w000389",
@@ -3633,14 +3633,14 @@
         {
           "text": "to",
           "start": 352.22,
-          "end": 353.0,
+          "end": 353,
           "probability": 0.9871,
           "id": "w000402",
           "sourceMatched": true
         },
         {
           "text": "answer",
-          "start": 353.0,
+          "start": 353,
           "end": 353.28,
           "probability": 0.9992,
           "id": "w000403",
@@ -3721,14 +3721,14 @@
         {
           "text": "a",
           "start": 357.84,
-          "end": 358.0,
+          "end": 358,
           "probability": 0.9986,
           "id": "w000412",
           "sourceMatched": true
         },
         {
           "text": "pen",
-          "start": 358.0,
+          "start": 358,
           "end": 358.32,
           "probability": 0.9985,
           "id": "w000413",
@@ -4275,13 +4275,13 @@
     {
       "id": "s00049",
       "start": 405.06,
-      "end": 406.0,
+      "end": 406,
       "text": "is",
       "words": [
         {
           "text": "is",
           "start": 405.06,
-          "end": 406.0,
+          "end": 406,
           "probability": 0.5445,
           "id": "w000473",
           "sourceMatched": true
@@ -4819,7 +4819,7 @@
     {
       "id": "s00055",
       "start": 440.76,
-      "end": 446.0,
+      "end": 446,
       "text": "You will find all the information you need in the question answer Book and the recording.",
       "words": [
         {
@@ -4945,7 +4945,7 @@
         {
           "text": "recording.",
           "start": 445.68,
-          "end": 446.0,
+          "end": 446,
           "probability": 0.9981,
           "id": "w000550",
           "sourceMatched": true
@@ -4954,7 +4954,7 @@
     },
     {
       "id": "s00056",
-      "start": 446.0,
+      "start": 446,
       "end": 453.76,
       "text": "You now have two minutes to familiarize yourself with Tasks 1 to 4.",
       "words": [
@@ -4969,14 +4969,14 @@
         {
           "text": "now",
           "start": 447.82,
-          "end": 448.0,
+          "end": 448,
           "probability": 0.9664,
           "id": "w000552",
           "sourceMatched": true
         },
         {
           "text": "have",
-          "start": 448.0,
+          "start": 448,
           "end": 448.28,
           "probability": 0.9968,
           "id": "w000553",
@@ -14609,89 +14609,238 @@
     },
     {
       "id": "s00165",
-      "start": 1206.216,
-      "end": 1218.956,
-      "text": "Like, many they can choose a school for that subject.",
+      "start": 1206.926,
+      "end": 1218.9859999999999,
+      "text": "Like, many Italian schools specialise in just one area. So, if Italian teenagers want to specialise in, say, sports coaching, they can choose a school for that subject.",
+      "source": {
+        "sourceId": "p-431bb5bf1de5",
+        "page": 89
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
       "words": [
         {
+          "id": "s00165-fixed-w0",
           "text": "Like,",
           "start": null,
           "end": null,
-          "probability": 0.3948,
-          "id": "w001649",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00165-fixed-w1",
           "text": "many",
           "start": null,
           "end": null,
-          "probability": 0.9892,
-          "id": "w001650",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00165-fixed-w2",
+          "text": "Italian",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w3",
+          "text": "schools",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w4",
+          "text": "specialise",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w5",
+          "text": "in",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w6",
+          "text": "just",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w7",
+          "text": "one",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w8",
+          "text": "area.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w9",
+          "text": "So,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w10",
+          "text": "if",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w11",
+          "text": "Italian",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w12",
+          "text": "teenagers",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w13",
+          "text": "want",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w14",
+          "text": "to",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w15",
+          "text": "specialise",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w16",
+          "text": "in,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w17",
+          "text": "say,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w18",
+          "text": "sports",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w19",
+          "text": "coaching,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00165-fixed-w20",
           "text": "they",
           "start": null,
           "end": null,
-          "probability": 0.0336,
-          "id": "w001651",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00165-fixed-w21",
           "text": "can",
-          "start": 1217.216,
-          "end": 1217.416,
-          "probability": 0.746,
-          "id": "w001652",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00165-fixed-w22",
           "text": "choose",
-          "start": 1217.416,
-          "end": 1217.616,
-          "probability": 0.9609,
-          "id": "w001653",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00165-fixed-w23",
           "text": "a",
-          "start": 1217.616,
-          "end": 1217.776,
-          "probability": 0.9707,
-          "id": "w001654",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00165-fixed-w24",
           "text": "school",
-          "start": 1217.776,
-          "end": 1218.116,
-          "probability": 0.9868,
-          "id": "w001655",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00165-fixed-w25",
           "text": "for",
-          "start": 1218.116,
-          "end": 1218.356,
-          "probability": 0.9524,
-          "id": "w001656",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00165-fixed-w26",
           "text": "that",
-          "start": 1218.356,
-          "end": 1218.516,
-          "probability": 0.9833,
-          "id": "w001657",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00165-fixed-w27",
           "text": "subject.",
-          "start": 1218.516,
-          "end": 1218.956,
-          "probability": 0.9974,
-          "id": "w001658",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },

@@ -1,4 +1,4 @@
-import { validateAnswerResult } from './core.mjs';
+import { validateAnswerResult, validatePaperInk } from './core.mjs';
 
 export const STUDY_KEY = 'english30-study-v1';
 export const LISTENING_KEY = 'english30-records-v1';
@@ -178,6 +178,7 @@ export function validateListeningRecords(records) {
     )
       throw new Error('听力记录缺少材料、作答或时间信息。');
     for (const a of r.attempts) {
+      if (a?.ink !== undefined) validatePaperInk(a.ink);
       if (!a || !a.results || typeof a.results !== 'object' || Array.isArray(a.results))
         throw new Error('听力作答格式不正确。');
       for (const [id, result] of Object.entries(a.results)) {
@@ -211,6 +212,7 @@ export function compareSentence(target, answer) {
     String(text)
       .toLowerCase()
       .replace(/[’‘]/g, "'")
+      .replace(/\b\d{1,3}(?:,\d{3})+(?:\.\d+)?\b/g, (number) => number.replaceAll(',', ''))
       .match(/[a-z]+(?:'[a-z]+)?|\d+(?:[.,]\d+)*/g) || [];
   const expected = words(target),
     actual = words(answer);
@@ -480,44 +482,6 @@ export function createStudyStore({ storage = storageDefault(), now = () => new D
         study: clone(saved),
         listening,
       };
-    },
-    importBackup(input) {
-      const payload = validateBackup(input);
-      if (!storage) throw new Error('当前浏览器无法导入保存。');
-      const oldStudy = storage.getItem(STUDY_KEY),
-        oldListening = storage.getItem(LISTENING_KEY);
-      const existing = oldListening ? validateListeningRecords(JSON.parse(oldListening)) : [];
-      const merge = (a, b, key) => [...new Map([...a, ...b].map((x) => [key(x), x])).values()];
-      const merged = validateStudyState({
-        ...state,
-        records: merge(state.records, payload.study.records, (x) => x.id),
-        personalExercises: merge(state.personalExercises, payload.study.personalExercises, (x) => x.id),
-        paperMarks: merge(state.paperMarks, payload.study.paperMarks, (x) => x.key),
-        reviews: { ...state.reviews, ...payload.study.reviews },
-        settings: payload.study.settings,
-      });
-      const listening = merge(existing, payload.listening, (x) => `${x.lessonId}:${x.savedAt}`);
-      const a = JSON.stringify(merged),
-        b = JSON.stringify(listening);
-      try {
-        storage.setItem(STUDY_KEY, a);
-        storage.setItem(LISTENING_KEY, b);
-        if (storage.getItem(STUDY_KEY) !== a || storage.getItem(LISTENING_KEY) !== b)
-          throw new Error('导入回读不一致。');
-      } catch (e) {
-        try {
-          oldStudy == null ? storage.removeItem(STUDY_KEY) : storage.setItem(STUDY_KEY, oldStudy);
-          oldListening == null
-            ? storage.removeItem(LISTENING_KEY)
-            : storage.setItem(LISTENING_KEY, oldListening);
-        } catch {}
-        throw e;
-      }
-      state = merged;
-      saved = clone(merged);
-      loadError = null;
-      emit();
-      return { records: merged.records.length, listening: listening.length };
     },
   };
   return api;

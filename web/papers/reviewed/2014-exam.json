@@ -1,0 +1,2635 @@
+{
+  "sessionId": "2014-exam",
+  "reviewDate": "2026-11-17",
+  "reviewMethod": "Independent visual comparison against marking-scheme images. OCR used only to locate/read. referenceAnswer preserves official alternatives (// or /) and optional parentheses; do not infer exact-match scoring. Square-bracket achievement percentages omitted.",
+  "tasks": {
+    "A-1": {
+      "questions": {
+        "1": {
+          "referenceAnswer": "17 may // may 17th // 17/5",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[89.33, 121.01, 109.61, 121.01]],
+          "evidenceReview": [
+            {
+              "contextStart": 89.33,
+              "contextEnd": 121.01,
+              "start": 109.61,
+              "end": 121.01,
+              "sourceSentenceIds": ["s00068", "s00069", "s00070"],
+              "contextSentenceIds": [
+                "s00062",
+                "s00063",
+                "s00064",
+                "s00065",
+                "s00066",
+                "s00067",
+                "s00068",
+                "s00069",
+                "s00070"
+              ],
+              "sentenceIndices": [13, 19, 21, 21],
+              "reason": "First-clip February deadline contrasted with all-six May deadline."
+            }
+          ]
+        },
+        "2": {
+          "referenceAnswer": "John",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[127.43, 161.15, 142.33, 161.15]],
+          "evidenceReview": [
+            {
+              "contextStart": 127.43,
+              "contextEnd": 161.15,
+              "start": 142.33,
+              "end": 161.15,
+              "sourceSentenceIds": ["s00076", "s00077", "s00078", "s00079"],
+              "contextSentenceIds": [
+                "s00072",
+                "s00073",
+                "s00074",
+                "s00075",
+                "s00076",
+                "s00077",
+                "s00078",
+                "s00079"
+              ],
+              "sentenceIndices": [23, 27, 30, 30],
+              "reason": "John writing and editing role explicitly addressed by name."
+            }
+          ]
+        },
+        "3": {
+          "referenceAnswer": "Mike",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[162.19, 177.83, 166.27, 177.83]],
+          "evidenceReview": [
+            {
+              "contextStart": 162.19,
+              "contextEnd": 177.83,
+              "start": 166.27,
+              "end": 177.83,
+              "sourceSentenceIds": ["s00081", "s00082", "s00083", "s00084"],
+              "contextSentenceIds": ["s00080", "s00081", "s00082", "s00083", "s00084"],
+              "sentenceIndices": [31, 32, 35, 35],
+              "reason": "Mike addressed before recording/equipment responsibilities."
+            }
+          ]
+        },
+        "4": {
+          "referenceAnswer": "Helen",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[127.43, 150.91, 136.21, 150.91]],
+          "evidenceReview": [
+            {
+              "contextStart": 127.43,
+              "contextEnd": 150.91,
+              "start": 136.21,
+              "end": 150.91,
+              "sourceSentenceIds": ["s00074", "s00075", "s00076"],
+              "contextSentenceIds": ["s00072", "s00073", "s00074", "s00075", "s00076"],
+              "sentenceIndices": [23, 25, 27, 27],
+              "reason": "Helen addressed before directing/interviewing and writing support."
+            }
+          ]
+        },
+        "5": {
+          "referenceAnswer": "Brad",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[191.11, 224.63, 216.25, 224.63]],
+          "evidenceReview": [
+            {
+              "contextStart": 191.11,
+              "contextEnd": 224.63,
+              "start": 216.25,
+              "end": 224.63,
+              "sourceSentenceIds": ["s00092", "s00093", "s00094"],
+              "contextSentenceIds": ["s00088", "s00089", "s00090", "s00091", "s00092", "s00093", "s00094"],
+              "sentenceIndices": [39, 43, 45, 45],
+              "reason": "Animal-shelter contact Brad spelled and confirmed."
+            }
+          ]
+        },
+        "6": {
+          "referenceAnswer": "wildtamer@gmail.com",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[225.51, 261.93, 237.43, 261.93]],
+          "evidenceReview": [
+            {
+              "contextStart": 225.51,
+              "contextEnd": 261.93,
+              "start": 237.43,
+              "end": 261.93,
+              "sourceSentenceIds": ["s00099", "s00100", "s00101", "s00102", "s00103"],
+              "contextSentenceIds": [
+                "s00095",
+                "s00096",
+                "s00097",
+                "s00098",
+                "s00099",
+                "s00100",
+                "s00101",
+                "s00102",
+                "s00103"
+              ],
+              "sentenceIndices": [46, 50, 54, 54],
+              "reason": "Email dictated then spelled fully."
+            }
+          ]
+        },
+        "7": {
+          "referenceAnswer": "hobbies",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[267.27, 292.33, 276.21, 292.33]],
+          "evidenceReview": [
+            {
+              "contextStart": 267.27,
+              "contextEnd": 292.33,
+              "start": 276.21,
+              "end": 292.33,
+              "sourceSentenceIds": ["s00107", "s00108", "s00109"],
+              "contextSentenceIds": ["s00105", "s00106", "s00107", "s00108", "s00109"],
+              "sentenceIndices": [56, 58, 60, 60],
+              "reason": "Alternative theme identified with examples and repetition."
+            }
+          ]
+        },
+        "8": {
+          "referenceAnswer": "article",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[305.85, 342.83, 336.15, 342.83]],
+          "evidenceReview": [
+            {
+              "contextStart": 305.85,
+              "contextEnd": 342.83,
+              "start": 336.15,
+              "end": 342.83,
+              "sourceSentenceIds": ["s00121", "s00122"],
+              "contextSentenceIds": [
+                "s00113",
+                "s00114",
+                "s00115",
+                "s00116",
+                "s00117",
+                "s00118",
+                "s00119",
+                "s00120",
+                "s00121",
+                "s00122"
+              ],
+              "sentenceIndices": [64, 72, 73, 73],
+              "reason": "Important-places proposal and article resource."
+            }
+          ]
+        },
+        "9": {
+          "referenceAnswer": "ghosts",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[343.73, 360.61, 348.51, 360.61]],
+          "evidenceReview": [
+            {
+              "contextStart": 343.73,
+              "contextEnd": 360.61,
+              "start": 348.51,
+              "end": 360.61,
+              "sourceSentenceIds": ["s00125", "s00126", "s00127"],
+              "contextSentenceIds": ["s00123", "s00124", "s00125", "s00126", "s00127"],
+              "sentenceIndices": [74, 76, 78, 78],
+              "reason": "Additional proposal explicitly ghosts."
+            }
+          ]
+        },
+        "10": {
+          "referenceAnswer": "(very) difficult // hard",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[348.51, 369.27, 361.27, 369.27]],
+          "evidenceReview": [
+            {
+              "contextStart": 348.51,
+              "contextEnd": 369.27,
+              "start": 361.27,
+              "end": 369.27,
+              "sourceSentenceIds": ["s00128", "s00129"],
+              "contextSentenceIds": ["s00125", "s00126", "s00127", "s00128", "s00129"],
+              "sentenceIndices": [76, 79, 80, 80],
+              "reason": "Ghost proposal followed by interviewing difficulty."
+            }
+          ]
+        },
+        "11": {
+          "referenceAnswer": "gifts // presents",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[381.77, 412.13, 402.77, 412.13]],
+          "evidenceReview": [
+            {
+              "contextStart": 381.77,
+              "contextEnd": 412.13,
+              "start": 402.77,
+              "end": 412.13,
+              "sourceSentenceIds": ["s00136", "s00137", "s00138"],
+              "contextSentenceIds": [
+                "s00131",
+                "s00132",
+                "s00133",
+                "s00134",
+                "s00135",
+                "s00136",
+                "s00137",
+                "s00138"
+              ],
+              "sentenceIndices": [82, 87, 89, 89],
+              "reason": "Budget uses question and gifts for interviewees."
+            }
+          ]
+        },
+        "12": {
+          "referenceAnswer": "smart card // smartcard // smart-card",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[413.05, 424.81, 416.81, 424.81]],
+          "evidenceReview": [
+            {
+              "contextStart": 413.05,
+              "contextEnd": 424.81,
+              "start": 416.81,
+              "end": 424.81,
+              "sourceSentenceIds": ["s00140", "s00141"],
+              "contextSentenceIds": ["s00139", "s00140", "s00141"],
+              "sentenceIndices": [90, 91, 92, 92],
+              "reason": "Final instruction explains smart-card purpose and repetition."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-7d3d91a4edab",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 8
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "A-2": {
+      "questions": {
+        "13": {
+          "referenceAnswer": "comics",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[75.42, 94.7, 80.4, 94.7]],
+          "evidenceReview": [
+            {
+              "contextStart": 75.42,
+              "contextEnd": 94.7,
+              "start": 80.4,
+              "end": 94.7,
+              "sourceSentenceIds": ["s00154"],
+              "contextSentenceIds": ["s00153", "s00154"],
+              "sentenceIndices": [7, 8, 8, 8],
+              "reason": "Request for list of themes and Hong Kong comics as final theme."
+            }
+          ]
+        },
+        "14": {
+          "referenceAnswer": "cute；\nscary / scarey",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "Q14、Q15 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[95.4, 124.84, 103.3, 124.84]],
+          "evidenceReview": [
+            {
+              "contextStart": 95.4,
+              "contextEnd": 124.84,
+              "start": 103.3,
+              "end": 124.84,
+              "sourceSentenceIds": ["s00158", "s00159", "s00160", "s00161", "s00162"],
+              "contextSentenceIds": [
+                "s00155",
+                "s00156",
+                "s00157",
+                "s00158",
+                "s00159",
+                "s00160",
+                "s00161",
+                "s00162"
+              ],
+              "sentenceIndices": [9, 12, 16, 16],
+              "reason": "Wild-animals topic, cute/scary pair and counterexample retained."
+            }
+          ]
+        },
+        "15": {
+          "referenceAnswer": "cute；\nscary / scarey",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "Q14、Q15 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[95.4, 124.84, 103.3, 124.84]],
+          "evidenceReview": [
+            {
+              "contextStart": 95.4,
+              "contextEnd": 124.84,
+              "start": 103.3,
+              "end": 124.84,
+              "sourceSentenceIds": ["s00158", "s00159", "s00160", "s00161", "s00162"],
+              "contextSentenceIds": [
+                "s00155",
+                "s00156",
+                "s00157",
+                "s00158",
+                "s00159",
+                "s00160",
+                "s00161",
+                "s00162"
+              ],
+              "sentenceIndices": [9, 12, 16, 16],
+              "reason": "Wild-animals topic, cute/scary pair and counterexample retained."
+            }
+          ]
+        },
+        "16": {
+          "referenceAnswer": "✓ // Yes",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[127.64, 157.58, 131.32, 157.58]],
+          "evidenceReview": [
+            {
+              "contextStart": 127.64,
+              "contextEnd": 157.58,
+              "start": 131.32,
+              "end": 157.58,
+              "sourceSentenceIds": ["s00166", "s00167", "s00168", "s00169", "s00170", "s00171", "s00172"],
+              "contextSentenceIds": [
+                "s00164",
+                "s00165",
+                "s00166",
+                "s00167",
+                "s00168",
+                "s00169",
+                "s00170",
+                "s00171",
+                "s00172"
+              ],
+              "sentenceIndices": [18, 20, 26, 26],
+              "reason": "Animal votes explicitly affirmative; shared passage includes named Mike and third yes."
+            }
+          ]
+        },
+        "17": {
+          "referenceAnswer": "colourful // colorful",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[143.66, 157.58, 146.66, 157.58]],
+          "evidenceReview": [
+            {
+              "contextStart": 143.66,
+              "contextEnd": 157.58,
+              "start": 146.66,
+              "end": 157.58,
+              "sourceSentenceIds": ["s00171", "s00172"],
+              "contextSentenceIds": ["s00170", "s00171", "s00172"],
+              "sentenceIndices": [24, 25, 26, 26],
+              "reason": "Yes response justified by colourful animals."
+            }
+          ]
+        },
+        "18": {
+          "referenceAnswer": "? // Maybe",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[158.4, 177.92, 163.82, 177.92]],
+          "evidenceReview": [
+            {
+              "contextStart": 158.4,
+              "contextEnd": 177.92,
+              "start": 163.82,
+              "end": 177.92,
+              "sourceSentenceIds": ["s00174", "s00175", "s00176", "s00177", "s00178"],
+              "contextSentenceIds": ["s00173", "s00174", "s00175", "s00176", "s00177", "s00178"],
+              "sentenceIndices": [27, 28, 32, 32],
+              "reason": "Important-places topic and unsure response."
+            }
+          ]
+        },
+        "19": {
+          "referenceAnswer": "know/knew these/the places/this/these/them (already)",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [
+            [158.4, 177.92, 174.08, 177.92],
+            [178.78, 211.84, 193.02, 211.84]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 158.4,
+              "contextEnd": 177.92,
+              "start": 174.08,
+              "end": 177.92,
+              "sourceSentenceIds": ["s00178"],
+              "contextSentenceIds": ["s00173", "s00174", "s00175", "s00176", "s00177", "s00178"],
+              "sentenceIndices": [27, 32, 32, 32],
+              "reason": "Already-known places reason repeated and John counterargument rejected."
+            },
+            {
+              "contextStart": 178.78,
+              "contextEnd": 211.84,
+              "start": 193.02,
+              "end": 211.84,
+              "sourceSentenceIds": ["s00183", "s00184", "s00185", "s00186"],
+              "contextSentenceIds": [
+                "s00179",
+                "s00180",
+                "s00181",
+                "s00182",
+                "s00183",
+                "s00184",
+                "s00185",
+                "s00186"
+              ],
+              "sentenceIndices": [33, 37, 40, 40],
+              "reason": "Already-known places reason repeated and John counterargument rejected."
+            }
+          ]
+        },
+        "20": {
+          "referenceAnswer": "boring // dull (theme) (to look at) (on video)",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[178.78, 211.84, 182.4, 211.84]],
+          "evidenceReview": [
+            {
+              "contextStart": 178.78,
+              "contextEnd": 211.84,
+              "start": 182.4,
+              "end": 211.84,
+              "sourceSentenceIds": ["s00181", "s00182", "s00183", "s00184", "s00185", "s00186"],
+              "contextSentenceIds": [
+                "s00179",
+                "s00180",
+                "s00181",
+                "s00182",
+                "s00183",
+                "s00184",
+                "s00185",
+                "s00186"
+              ],
+              "sentenceIndices": [33, 35, 40, 40],
+              "reason": "Buildings do not move, dull video; objection and final dismissal."
+            }
+          ]
+        },
+        "21": {
+          "referenceAnswer": "✓ // Yes",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[212.6, 237.48, 227.94, 237.48]],
+          "evidenceReview": [
+            {
+              "contextStart": 212.6,
+              "contextEnd": 237.48,
+              "start": 227.94,
+              "end": 237.48,
+              "sourceSentenceIds": ["s00191", "s00192", "s00193"],
+              "contextSentenceIds": ["s00187", "s00188", "s00189", "s00190", "s00191", "s00192", "s00193"],
+              "sentenceIndices": [41, 45, 47, 47],
+              "reason": "Famous-people topic; positive idea and named Mike follow-up."
+            }
+          ]
+        },
+        "22": {
+          "referenceAnswer": "good for (the/our) school(’s) image",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[227.94, 237.48, 231.14, 237.48]],
+          "evidenceReview": [
+            {
+              "contextStart": 227.94,
+              "contextEnd": 237.48,
+              "start": 231.14,
+              "end": 237.48,
+              "sourceSentenceIds": ["s00192", "s00193"],
+              "contextSentenceIds": ["s00191", "s00192", "s00193"],
+              "sentenceIndices": [45, 46, 47, 47],
+              "reason": "School-image reason repeated and Mike named."
+            }
+          ]
+        },
+        "23": {
+          "referenceAnswer": "(boring old) writer(s)",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[238.32, 258.38, 247.34, 258.38]],
+          "evidenceReview": [
+            {
+              "contextStart": 238.32,
+              "contextEnd": 258.38,
+              "start": 247.34,
+              "end": 258.38,
+              "sourceSentenceIds": ["s00195", "s00196", "s00197"],
+              "contextSentenceIds": ["s00194", "s00195", "s00196", "s00197"],
+              "sentenceIndices": [48, 49, 51, 51],
+              "reason": "Interview targets distinguish writers from movie/pop stars."
+            }
+          ]
+        },
+        "24": {
+          "referenceAnswer": "✓ // Yes",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[259.08, 272, 268.06, 272]],
+          "evidenceReview": [
+            {
+              "contextStart": 259.08,
+              "contextEnd": 272,
+              "start": 268.06,
+              "end": 272,
+              "sourceSentenceIds": ["s00200", "s00201"],
+              "contextSentenceIds": ["s00198", "s00199", "s00200", "s00201"],
+              "sentenceIndices": [52, 54, 55, 55],
+              "reason": "Comics proposer explicitly requests yes and loves comics."
+            }
+          ]
+        },
+        "25": {
+          "referenceAnswer": "drawing(s)/artwork/pictures (is/are) amazing",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[272, 287.8, 279.94, 287.8]],
+          "evidenceReview": [
+            {
+              "contextStart": 272,
+              "contextEnd": 287.8,
+              "start": 279.94,
+              "end": 287.8,
+              "sourceSentenceIds": ["s00204", "s00205"],
+              "contextSentenceIds": ["s00202", "s00203", "s00204", "s00205"],
+              "sentenceIndices": [56, 58, 59, 59],
+              "reason": "Too-common objection and artwork counterargument."
+            }
+          ]
+        },
+        "26": {
+          "referenceAnswer": "same // similar",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[282.6, 297.72, 292.44, 297.72]],
+          "evidenceReview": [
+            {
+              "contextStart": 282.6,
+              "contextEnd": 297.72,
+              "start": 292.44,
+              "end": 297.72,
+              "sourceSentenceIds": ["s00208"],
+              "contextSentenceIds": ["s00205", "s00206", "s00207", "s00208"],
+              "sentenceIndices": [59, 62, 62, 62],
+              "reason": "Gender objection and similar-comics judgement."
+            }
+          ]
+        },
+        "27": {
+          "referenceAnswer": "stories // story",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[292.44, 306.88, 301.34, 306.88]],
+          "script": {
+            "sourceId": "p-a384002a66aa",
+            "page": 166
+          }
+        }
+      },
+      "reference": {
+        "sourceId": "p-7d3d91a4edab",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 8
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[14, 15]],
+      "reviewRules": [],
+      "sentences": [
+        {
+          "id": "gap2014-similar",
+          "start": 298.5,
+          "end": 300.72,
+          "text": "Similar? Similar how?",
+          "source": {
+            "sourceId": "p-a384002a66aa",
+            "page": 166
+          },
+          "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+          "words": [
+            {
+              "id": "gap2014-similar-fixed-w0",
+              "text": "Similar?",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-similar-fixed-w1",
+              "text": "Similar",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-similar-fixed-w2",
+              "text": "how?",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        },
+        {
+          "id": "gap2014-stories",
+          "start": 301.34,
+          "end": 306.88,
+          "text": "Well, especially the stories. The stories are nearly always the same.",
+          "source": {
+            "sourceId": "p-a384002a66aa",
+            "page": 166
+          },
+          "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+          "words": [
+            {
+              "id": "gap2014-stories-fixed-w0",
+              "text": "Well,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w1",
+              "text": "especially",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w2",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w3",
+              "text": "stories.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w4",
+              "text": "The",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w5",
+              "text": "stories",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w6",
+              "text": "are",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w7",
+              "text": "nearly",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w8",
+              "text": "always",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w9",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2014-stories-fixed-w10",
+              "text": "same.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        },
+        {
+          "id": "s00209",
+          "start": 307.76,
+          "end": 310.2,
+          "text": "Hmm. Well, that's it then.",
+          "source": {
+            "sourceId": "p-a384002a66aa",
+            "page": 166
+          },
+          "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+          "words": [
+            {
+              "id": "s00209-fixed-w0",
+              "text": "Hmm.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00209-fixed-w1",
+              "text": "Well,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00209-fixed-w2",
+              "text": "that's",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00209-fixed-w3",
+              "text": "it",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00209-fixed-w4",
+              "text": "then.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        }
+      ]
+    },
+    "A-3": {
+      "questions": {
+        "28": {
+          "referenceAnswer": "senior officer",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[56.46, 75.1, 63.32, 75.1]],
+          "evidenceReview": [
+            {
+              "contextStart": 56.46,
+              "contextEnd": 75.1,
+              "start": 63.32,
+              "end": 75.1,
+              "sourceSentenceIds": ["s00219", "s00220"],
+              "contextSentenceIds": ["s00218", "s00219", "s00220"],
+              "sentenceIndices": [4, 5, 6, 6],
+              "reason": "Occupation enquiry answered twice, tenure not job title."
+            }
+          ]
+        },
+        "29": {
+          "referenceAnswer": "(kitchen) cupboard // cup board (shelves)；\n(fancy) (expensive) (Indian) carpet；\ncurtains",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "Q29、Q30、Q31 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[119.6, 187.42, 147.52, 187.42]],
+          "evidenceReview": [
+            {
+              "contextStart": 119.6,
+              "contextEnd": 187.42,
+              "start": 147.52,
+              "end": 187.42,
+              "sourceSentenceIds": ["s00234", "s00235", "s00236", "s00237", "s00238", "s00239", "s00240"],
+              "contextSentenceIds": [
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235",
+                "s00236",
+                "s00237",
+                "s00238",
+                "s00239",
+                "s00240"
+              ],
+              "sentenceIndices": [14, 20, 26, 26],
+              "reason": "Damage question and three interchangeable damaged items after TV example."
+            }
+          ]
+        },
+        "30": {
+          "referenceAnswer": "(kitchen) cupboard // cup board (shelves)；\n(fancy) (expensive) (Indian) carpet；\ncurtains",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "Q29、Q30、Q31 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[119.6, 187.42, 147.52, 187.42]],
+          "evidenceReview": [
+            {
+              "contextStart": 119.6,
+              "contextEnd": 187.42,
+              "start": 147.52,
+              "end": 187.42,
+              "sourceSentenceIds": ["s00234", "s00235", "s00236", "s00237", "s00238", "s00239", "s00240"],
+              "contextSentenceIds": [
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235",
+                "s00236",
+                "s00237",
+                "s00238",
+                "s00239",
+                "s00240"
+              ],
+              "sentenceIndices": [14, 20, 26, 26],
+              "reason": "Damage question and three interchangeable damaged items after TV example."
+            }
+          ]
+        },
+        "31": {
+          "referenceAnswer": "(kitchen) cupboard // cup board (shelves)；\n(fancy) (expensive) (Indian) carpet；\ncurtains",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "Q29、Q30、Q31 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [[119.6, 187.42, 147.52, 187.42]],
+          "evidenceReview": [
+            {
+              "contextStart": 119.6,
+              "contextEnd": 187.42,
+              "start": 147.52,
+              "end": 187.42,
+              "sourceSentenceIds": ["s00234", "s00235", "s00236", "s00237", "s00238", "s00239", "s00240"],
+              "contextSentenceIds": [
+                "s00228",
+                "s00229",
+                "s00230",
+                "s00231",
+                "s00232",
+                "s00233",
+                "s00234",
+                "s00235",
+                "s00236",
+                "s00237",
+                "s00238",
+                "s00239",
+                "s00240"
+              ],
+              "sentenceIndices": [14, 20, 26, 26],
+              "reason": "Damage question and three interchangeable damaged items after TV example."
+            }
+          ]
+        },
+        "32": {
+          "referenceAnswer": "chased // ran after // scared",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[204.04, 242.38, 222.28, 242.38]],
+          "evidenceReview": [
+            {
+              "contextStart": 204.04,
+              "contextEnd": 242.38,
+              "start": 222.28,
+              "end": 242.38,
+              "sourceSentenceIds": ["s00252", "s00253", "s00254"],
+              "contextSentenceIds": [
+                "s00246",
+                "s00247",
+                "s00248",
+                "s00249",
+                "s00250",
+                "s00251",
+                "s00252",
+                "s00253",
+                "s00254"
+              ],
+              "sentenceIndices": [32, 38, 40, 40],
+              "reason": "Usually dog scares boars; this time reversed chase."
+            }
+          ]
+        },
+        "33": {
+          "referenceAnswer": "broke his arm // landed badly // called his son (for help)",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 8
+          },
+          "note": "",
+          "evidence": [[242.7, 295.3, 260.36, 295.3]],
+          "evidenceReview": [
+            {
+              "contextStart": 242.7,
+              "contextEnd": 295.3,
+              "start": 260.36,
+              "end": 295.3,
+              "sourceSentenceIds": [
+                "s00258",
+                "s00259",
+                "s00260",
+                "s00261",
+                "s00262",
+                "s00263",
+                "s00264",
+                "s00265",
+                "s00266"
+              ],
+              "contextSentenceIds": [
+                "s00255",
+                "s00256",
+                "s00257",
+                "s00258",
+                "s00259",
+                "s00260",
+                "s00261",
+                "s00262",
+                "s00263",
+                "s00264",
+                "s00265",
+                "s00266"
+              ],
+              "sentenceIndices": [41, 44, 52, 52],
+              "reason": "Door impact, broken arm and call to son retained as accepted alternatives."
+            }
+          ]
+        },
+        "34": {
+          "referenceAnswer": "bang(ing) the floor (with a stick)",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[295.76, 322.9, 302.08, 322.9]],
+          "evidenceReview": [
+            {
+              "contextStart": 295.76,
+              "contextEnd": 322.9,
+              "start": 302.08,
+              "end": 322.9,
+              "sourceSentenceIds": ["s00269", "s00270", "s00271", "s00272"],
+              "contextSentenceIds": ["s00267", "s00268", "s00269", "s00270", "s00271", "s00272"],
+              "sentenceIndices": [53, 55, 58, 58],
+              "reason": "Son's approach and unsuccessful banging on floor."
+            }
+          ]
+        },
+        "35": {
+          "referenceAnswer": "injection",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[309.28, 329.16, 323.96, 329.16]],
+          "evidenceReview": [
+            {
+              "contextStart": 309.28,
+              "contextEnd": 329.16,
+              "start": 323.96,
+              "end": 329.16,
+              "sourceSentenceIds": ["s00273"],
+              "contextSentenceIds": ["s00270", "s00271", "s00272", "s00273"],
+              "sentenceIndices": [56, 59, 59, 59],
+              "reason": "Attack caused injury then stitches plus injection."
+            }
+          ]
+        },
+        "36": {
+          "referenceAnswer": "cage",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[330.26, 353.68, 338.38, 353.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 330.26,
+              "contextEnd": 353.68,
+              "start": 338.38,
+              "end": 353.68,
+              "sourceSentenceIds": ["s00276", "s00277"],
+              "contextSentenceIds": ["s00274", "s00275", "s00276", "s00277"],
+              "sentenceIndices": [60, 62, 63, 63],
+              "reason": "Rescue team arrives with cage and dog-food lure."
+            }
+          ]
+        },
+        "37": {
+          "referenceAnswer": "dog food",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[330.26, 353.68, 338.38, 353.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 330.26,
+              "contextEnd": 353.68,
+              "start": 338.38,
+              "end": 353.68,
+              "sourceSentenceIds": ["s00276", "s00277"],
+              "contextSentenceIds": ["s00274", "s00275", "s00276", "s00277"],
+              "sentenceIndices": [60, 62, 63, 63],
+              "reason": "Rescue team arrives with cage and dog-food lure."
+            }
+          ]
+        },
+        "38": {
+          "referenceAnswer": "ate food in kitchen // didn’t eat food in cage / the food // didn’t go near / into cage // went into kitchen to find other food",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[338.38, 361.74, 354.58, 361.74]],
+          "evidenceReview": [
+            {
+              "contextStart": 338.38,
+              "contextEnd": 361.74,
+              "start": 354.58,
+              "end": 361.74,
+              "sourceSentenceIds": ["s00278", "s00279", "s00280"],
+              "contextSentenceIds": ["s00276", "s00277", "s00278", "s00279", "s00280"],
+              "sentenceIndices": [62, 64, 66, 66],
+              "reason": "Intended trap contrasted with refusal and kitchen food."
+            }
+          ]
+        },
+        "39": {
+          "referenceAnswer": "vet",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[361.74, 395.1, 375.9, 395.1]],
+          "evidenceReview": [
+            {
+              "contextStart": 361.74,
+              "contextEnd": 395.1,
+              "start": 375.9,
+              "end": 395.1,
+              "sourceSentenceIds": ["s00284", "s00285", "s00286", "s00287", "s00288"],
+              "contextSentenceIds": [
+                "s00281",
+                "s00282",
+                "s00283",
+                "s00284",
+                "s00285",
+                "s00286",
+                "s00287",
+                "s00288"
+              ],
+              "sentenceIndices": [67, 70, 74, 74],
+              "reason": "Police help question clarified vet with tranquiliser gun."
+            }
+          ]
+        },
+        "40": {
+          "referenceAnswer": "shot // tranquilised/tranquilized",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[395.76, 402.38, 397.72, 402.38]],
+          "evidenceReview": [
+            {
+              "contextStart": 395.76,
+              "contextEnd": 402.38,
+              "start": 397.72,
+              "end": 402.38,
+              "sourceSentenceIds": ["s00290"],
+              "contextSentenceIds": ["s00289", "s00290"],
+              "sentenceIndices": [75, 76, 76, 76],
+              "reason": "Whether it worked question; first shot misses, second succeeds."
+            }
+          ]
+        },
+        "41": {
+          "referenceAnswer": "fell asleep // went to sleep // was tranquilized/tranquilised // was caught",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[395.76, 410.04, 403.06, 410.04]],
+          "evidenceReview": [
+            {
+              "contextStart": 395.76,
+              "contextEnd": 410.04,
+              "start": 403.06,
+              "end": 410.04,
+              "sourceSentenceIds": ["s00291", "s00292"],
+              "contextSentenceIds": ["s00289", "s00290", "s00291", "s00292"],
+              "sentenceIndices": [75, 77, 78, 78],
+              "reason": "Successful shot followed by sleeping/caged boar."
+            }
+          ]
+        },
+        "42": {
+          "referenceAnswer": "released the boar/it (into the wild) // set the boar/it free // let the boar/it go (back into the wild) // took the boar/it to a country park",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[410.8, 422.84, 410.8, 422.84]],
+          "evidenceReview": [
+            {
+              "contextStart": 410.8,
+              "contextEnd": 422.84,
+              "start": 410.8,
+              "end": 422.84,
+              "sourceSentenceIds": ["s00293", "s00294", "s00295", "s00296", "s00297"],
+              "contextSentenceIds": ["s00293", "s00294", "s00295", "s00296", "s00297"],
+              "sentenceIndices": [79, 79, 83, 83],
+              "reason": "Released next day, clarification country park not victim's farm."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-7d3d91a4edab",
+        "page": 8
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 8
+        },
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 9
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[29, 30, 31]],
+      "reviewRules": []
+    },
+    "A-4": {
+      "questions": {
+        "43": {
+          "referenceAnswer": "abandoned farm animals",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[111.15, 148.69, 137.73, 148.69]],
+          "evidenceReview": [
+            {
+              "contextStart": 111.15,
+              "contextEnd": 148.69,
+              "start": 137.73,
+              "end": 148.69,
+              "sourceSentenceIds": ["s00321", "s00322", "s00323"],
+              "contextSentenceIds": ["s00317", "s00318", "s00319", "s00320", "s00321", "s00322", "s00323"],
+              "sentenceIndices": [12, 16, 18, 18],
+              "reason": "Three types introduced and second farm-animal type with example."
+            }
+          ]
+        },
+        "44": {
+          "referenceAnswer": "attacks // bites",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[173.14, 204.44, 184.82, 204.44]],
+          "evidenceReview": [
+            {
+              "contextStart": 173.14,
+              "contextEnd": 204.44,
+              "start": 184.82,
+              "end": 204.44,
+              "sourceSentenceIds": ["s00328", "s00329", "s00330"],
+              "contextSentenceIds": ["s00326", "s00327", "s00328", "s00329", "s00330"],
+              "sentenceIndices": [21, 23, 25, 25],
+              "reason": "Dog risks, bites and diseases/rabies; frequency qualification retained."
+            }
+          ]
+        },
+        "45": {
+          "referenceAnswer": "disease(s) // rabies",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[173.14, 204.44, 184.82, 204.44]],
+          "evidenceReview": [
+            {
+              "contextStart": 173.14,
+              "contextEnd": 204.44,
+              "start": 184.82,
+              "end": 204.44,
+              "sourceSentenceIds": ["s00328", "s00329", "s00330"],
+              "contextSentenceIds": ["s00326", "s00327", "s00328", "s00329", "s00330"],
+              "sentenceIndices": [21, 23, 25, 25],
+              "reason": "Dog risks, bites and diseases/rabies; frequency qualification retained."
+            }
+          ]
+        },
+        "46": {
+          "referenceAnswer": "local wild animals // wildlife // wild life",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[205.42, 236.8, 210.52, 236.8]],
+          "evidenceReview": [
+            {
+              "contextStart": 205.42,
+              "contextEnd": 236.8,
+              "start": 210.52,
+              "end": 236.8,
+              "sourceSentenceIds": ["s00332", "s00333", "s00334"],
+              "contextSentenceIds": ["s00331", "s00332", "s00333", "s00334"],
+              "sentenceIndices": [26, 27, 29, 29],
+              "reason": "Damage to wildlife and deaths of local animals."
+            }
+          ]
+        },
+        "47": {
+          "referenceAnswer": "catch and kill (policy)",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[227.88, 272.06, 237.76, 272.06]],
+          "evidenceReview": [
+            {
+              "contextStart": 227.88,
+              "contextEnd": 272.06,
+              "start": 237.76,
+              "end": 272.06,
+              "sourceSentenceIds": ["s00335", "s00336", "s00337", "s00338", "s00339"],
+              "contextSentenceIds": ["s00334", "s00335", "s00336", "s00337", "s00338", "s00339"],
+              "sentenceIndices": [29, 30, 34, 34],
+              "reason": "Methods question, policy name and process."
+            }
+          ]
+        },
+        "48": {
+          "referenceAnswer": "drop/decrease in (stray dog) population/numbers // fewer stray dogs",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[256.62, 300.88, 273.44, 300.88]],
+          "evidenceReview": [
+            {
+              "contextStart": 256.62,
+              "contextEnd": 300.88,
+              "start": 273.44,
+              "end": 300.88,
+              "sourceSentenceIds": ["s00340", "s00341", "s00342"],
+              "contextSentenceIds": ["s00338", "s00339", "s00340", "s00341", "s00342"],
+              "sentenceIndices": [33, 35, 37, 37],
+              "reason": "Catch-kill does not reduce population, comparison with natural deaths retained."
+            }
+          ]
+        },
+        "49": {
+          "referenceAnswer": "cruel",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[302.32, 327.06, 306.8, 327.06]],
+          "evidenceReview": [
+            {
+              "contextStart": 302.32,
+              "contextEnd": 327.06,
+              "start": 306.8,
+              "end": 327.06,
+              "sourceSentenceIds": ["s00344", "s00345", "s00346"],
+              "contextSentenceIds": ["s00343", "s00344", "s00345", "s00346"],
+              "sentenceIndices": [38, 39, 41, 41],
+              "reason": "Ethical disadvantage and destruction statistic."
+            }
+          ]
+        },
+        "50": {
+          "referenceAnswer": "makes (a) mistake(s) // gets it wrong",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[328.42, 347.74, 328.42, 347.74]],
+          "evidenceReview": [
+            {
+              "contextStart": 328.42,
+              "contextEnd": 347.74,
+              "start": 328.42,
+              "end": 347.74,
+              "sourceSentenceIds": ["s00347", "s00348"],
+              "contextSentenceIds": ["s00347", "s00348"],
+              "sentenceIndices": [42, 42, 43, 43],
+              "reason": "Mistake disadvantage illustrated by microchipped pet."
+            }
+          ]
+        },
+        "51": {
+          "referenceAnswer": "trapped // captured // caught",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[350.25, 368.97, 350.25, 368.97]],
+          "evidenceReview": [
+            {
+              "contextStart": 350.25,
+              "contextEnd": 368.97,
+              "start": 350.25,
+              "end": 368.97,
+              "sourceSentenceIds": ["s00349", "s00350"],
+              "contextSentenceIds": ["s00349", "s00350"],
+              "sentenceIndices": [44, 44, 45, 45],
+              "reason": "TNR named and first trapping stage; sentence completes next segment."
+            }
+          ]
+        },
+        "52": {
+          "referenceAnswer": "released (where it was found)",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[350.25, 378.41, 368.97, 378.41]],
+          "evidenceReview": [
+            {
+              "contextStart": 350.25,
+              "contextEnd": 378.41,
+              "start": 368.97,
+              "end": 378.41,
+              "sourceSentenceIds": ["s00351"],
+              "contextSentenceIds": ["s00349", "s00350", "s00351"],
+              "sentenceIndices": [44, 46, 46, 46],
+              "reason": "Trap/neuter/vaccinate sequence then release where found."
+            }
+          ]
+        },
+        "53": {
+          "referenceAnswer": "ear is cut off",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[379.37, 404.93, 385.65, 404.93]],
+          "evidenceReview": [
+            {
+              "contextStart": 379.37,
+              "contextEnd": 404.93,
+              "start": 385.65,
+              "end": 404.93,
+              "sourceSentenceIds": ["s00354", "s00355", "s00356"],
+              "contextSentenceIds": ["s00352", "s00353", "s00354", "s00355", "s00356"],
+              "sentenceIndices": [47, 49, 51, 51],
+              "reason": "Ear question, confirmation, small amount and identification purpose."
+            }
+          ]
+        },
+        "54": {
+          "referenceAnswer": "support/accept/agree with it/the method",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[406.83, 428.15, 416.43, 428.15]],
+          "evidenceReview": [
+            {
+              "contextStart": 406.83,
+              "contextEnd": 428.15,
+              "start": 416.43,
+              "end": 428.15,
+              "sourceSentenceIds": ["s00358"],
+              "contextSentenceIds": ["s00357", "s00358"],
+              "sentenceIndices": [52, 53, 53, 53],
+              "reason": "Overseas success contrasted with government's belief public opposes it."
+            }
+          ]
+        },
+        "55": {
+          "referenceAnswer": "breed",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[429.63, 455.93, 438.51, 455.93]],
+          "evidenceReview": [
+            {
+              "contextStart": 429.63,
+              "contextEnd": 455.93,
+              "start": 438.51,
+              "end": 455.93,
+              "sourceSentenceIds": ["s00360", "s00361"],
+              "contextSentenceIds": ["s00359", "s00360", "s00361"],
+              "sentenceIndices": [54, 55, 56, 56],
+              "reason": "Advantages: reduced aggression then no breeding and population decline."
+            }
+          ]
+        },
+        "56": {
+          "referenceAnswer": "visual (enough) // visually interesting / enough",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[462.53, 495.68, 480.34, 495.68]],
+          "evidenceReview": [
+            {
+              "contextStart": 462.53,
+              "contextEnd": 495.68,
+              "start": 480.34,
+              "end": 495.68,
+              "sourceSentenceIds": ["s00369", "s00370", "s00371"],
+              "contextSentenceIds": [
+                "s00364",
+                "s00365",
+                "s00366",
+                "s00367",
+                "s00368",
+                "s00369",
+                "s00370",
+                "s00371"
+              ],
+              "sentenceIndices": [59, 64, 66, 66],
+              "reason": "Teacher's review begins; lack of visual interest explained."
+            }
+          ]
+        },
+        "57": {
+          "referenceAnswer": "put (in)/add/include/have shots/video clips/photos of stray dogs",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[480.34, 505.72, 496.7, 505.72]],
+          "evidenceReview": [
+            {
+              "contextStart": 480.34,
+              "contextEnd": 505.72,
+              "start": 496.7,
+              "end": 505.72,
+              "sourceSentenceIds": ["s00372", "s00373"],
+              "contextSentenceIds": ["s00369", "s00370", "s00371", "s00372", "s00373"],
+              "sentenceIndices": [64, 67, 68, 68],
+              "reason": "Visual problem followed by stray-dog-shot remedy."
+            }
+          ]
+        },
+        "58": {
+          "referenceAnswer": "biased // unbalanced",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[507.26, 523.58, 514.7, 523.58]],
+          "evidenceReview": [
+            {
+              "contextStart": 507.26,
+              "contextEnd": 523.58,
+              "start": 514.7,
+              "end": 523.58,
+              "sourceSentenceIds": ["s00376", "s00377"],
+              "contextSentenceIds": ["s00374", "s00375", "s00376", "s00377"],
+              "sentenceIndices": [69, 71, 72, 72],
+              "reason": "Content question and biased/unbalanced criticism."
+            }
+          ]
+        },
+        "59": {
+          "referenceAnswer": "include/find interview someone who disagrees/has opposing/contrasting/opposite opinion/from AFCD/contrasts Robbie’s opinion",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[514.7, 536.08, 524.86, 536.08]],
+          "evidenceReview": [
+            {
+              "contextStart": 514.7,
+              "contextEnd": 536.08,
+              "start": 524.86,
+              "end": 536.08,
+              "sourceSentenceIds": ["s00378", "s00379"],
+              "contextSentenceIds": ["s00376", "s00377", "s00378", "s00379"],
+              "sentenceIndices": [71, 73, 74, 74],
+              "reason": "Bias problem followed by opposing interview and AFCD example."
+            }
+          ]
+        },
+        "60": {
+          "referenceAnswer": "Disappointed",
+          "reference": {
+            "sourceId": "p-7d3d91a4edab",
+            "page": 9
+          },
+          "note": "",
+          "evidence": [[536.74, 547.84, 536.74, 547.84]],
+          "evidenceReview": [
+            {
+              "contextStart": 536.74,
+              "contextEnd": 547.84,
+              "start": 536.74,
+              "end": 547.84,
+              "sourceSentenceIds": ["s00380", "s00381", "s00382", "s00383", "s00384"],
+              "contextSentenceIds": ["s00380", "s00381", "s00382", "s00383", "s00384"],
+              "sentenceIndices": [75, 75, 79, 79],
+              "reason": "John apologises and promises improvement; teacher reassures, supporting disappointed response."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-7d3d91a4edab",
+        "page": 9
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 9
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [],
+      "reviewRules": []
+    },
+    "B1-5": {
+      "reference": {
+        "sourceId": "p-7d3d91a4edab",
+        "page": 10
+      },
+      "dataFile": {
+        "sourceId": "p-b24c8aea9ea9",
+        "page": 1
+      },
+      "reviewRules": ["Information must be placed in correct section."],
+      "referencePages": [
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 10
+        },
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 11
+        }
+      ],
+      "questions": {
+        "5": {
+          "referenceAnswer": "内容：14 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "5.1",
+              "referenceAnswer": "a wild animal which is kept / looked after by a person / people treat as a pet",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 54.69,
+                  "contextEnd": 103.55,
+                  "start": 66.97,
+                  "end": 103.55,
+                  "sentenceIds": [
+                    "s00409",
+                    "s00410",
+                    "s00411",
+                    "s00412",
+                    "s00413",
+                    "s00414",
+                    "s00415",
+                    "s00416"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.2",
+              "referenceAnswer": "wolf spider",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 142.71,
+                  "contextEnd": 161.21,
+                  "start": 147.41,
+                  "end": 161.21,
+                  "sentenceIds": ["s00427", "s00428", "s00429", "s00430"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.3",
+              "referenceAnswer": "tarantula",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.4",
+              "referenceAnswer": "corn snake",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.5",
+              "referenceAnswer": "python",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.6",
+              "referenceAnswer": "tree frog",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.7",
+              "referenceAnswer": "turtles",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 162.23,
+                  "contextEnd": 181.43,
+                  "start": 167.31,
+                  "end": 181.43,
+                  "sentenceIds": ["s00431", "s00432", "s00433", "s00434"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.8",
+              "referenceAnswer": "(small) pigs",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 162.23,
+                  "contextEnd": 181.43,
+                  "start": 167.31,
+                  "end": 181.43,
+                  "sentenceIds": ["s00431", "s00432", "s00433", "s00434"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.9",
+              "referenceAnswer": "sugar gliders",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3、5、6、7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                },
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 5,
+                  "printedPage": 5
+                },
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 6,
+                  "printedPage": 6
+                },
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 195.31,
+                  "contextEnd": 232.45,
+                  "start": 199.03,
+                  "end": 232.45,
+                  "sentenceIds": [
+                    "s00437",
+                    "s00438",
+                    "s00439",
+                    "s00440",
+                    "s00441",
+                    "s00442",
+                    "s00443",
+                    "s00444"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.10",
+              "referenceAnswer": "(people want to) impress their friends",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.11",
+              "referenceAnswer": "learn (about) something (new)",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 105.69,
+                  "contextEnd": 142.71,
+                  "start": 121.47,
+                  "end": 142.71,
+                  "sentenceIds": [
+                    "s00418",
+                    "s00419",
+                    "s00420",
+                    "s00421",
+                    "s00422",
+                    "s00423",
+                    "s00424",
+                    "s00425",
+                    "s00426"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.12",
+              "referenceAnswer": "(want something) unusual / not ordinary / special",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 105.69,
+                  "contextEnd": 120.93,
+                  "start": 109.11,
+                  "end": 120.93,
+                  "sentenceIds": ["s00418", "s00419", "s00420"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.13",
+              "referenceAnswer": "don’t (usually) need a lot of attention",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.14",
+              "referenceAnswer": "(are) beautiful / people think they’re beautiful",
+              "section": "",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 10
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 162.23,
+                  "contextEnd": 194.47,
+                  "start": 177.63,
+                  "end": 194.47,
+                  "sentenceIds": ["s00431", "s00432", "s00433", "s00434", "s00435", "s00436"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-7d3d91a4edab",
+              "page": 11
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-6": {
+      "reference": {
+        "sourceId": "p-7d3d91a4edab",
+        "page": 12
+      },
+      "dataFile": {
+        "sourceId": "p-b24c8aea9ea9",
+        "page": 1
+      },
+      "reviewRules": [
+        "语气：professional and friendly; placate the customer and provide clear advice",
+        "合适开头：Dear Ms. / Mrs. Cheung",
+        "不合适开头：Dear Eunice / Eunice Cheung / Mr. Cheung // Hi // Hello // No salutation",
+        "合适结尾：Yours sincerely, Joey Wong // Yours truly, Joey Wong // Yours, Joey Wong // Regards, Joey Wong // Best wishes, Joey Wong",
+        "不合适结尾：Yours faithfully, Joey Wong / Joey // Mr. / Ms. / Mrs. Wong // Kerry Lam"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 12
+        },
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 13
+        },
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 14
+        }
+      ],
+      "questions": {
+        "6": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "6.1",
+              "referenceAnswer": "provides apology (related to the incident)",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2",
+              "referenceAnswer": "smelly // need to clean cage",
+              "section": "Sugar gliders not suitable / don’t make good pets because:",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3",
+              "referenceAnswer": "need more than one / get lonely",
+              "section": "Sugar gliders not suitable / don’t make good pets because:",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.4",
+              "referenceAnswer": "need a lot of space / a big space",
+              "section": "Sugar gliders not suitable / don’t make good pets because:",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 195.31,
+                  "contextEnd": 232.45,
+                  "start": 199.03,
+                  "end": 232.45,
+                  "sentenceIds": [
+                    "s00437",
+                    "s00438",
+                    "s00439",
+                    "s00440",
+                    "s00441",
+                    "s00442",
+                    "s00443",
+                    "s00444"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.5",
+              "referenceAnswer": "active at night / nocturnal / noisy at night / keeps you awake",
+              "section": "Sugar gliders not suitable / don’t make good pets because:",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.6",
+              "referenceAnswer": "can bite / attack you",
+              "section": "Sugar gliders not suitable / don’t make good pets because:",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.7",
+              "referenceAnswer": "quiet",
+              "section": "A non-poisonous snake may be more suitable because:",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.8",
+              "referenceAnswer": "feeding a snake is easy",
+              "section": "A non-poisonous snake may be more suitable because:",
+              "sourceLabel": "原音（听力笔记） ＋ Data File 第 3 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 3,
+                  "printedPage": 3
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 240.81,
+                  "contextEnd": 283.55,
+                  "start": 265.53,
+                  "end": 283.55,
+                  "sentenceIds": [
+                    "s00447",
+                    "s00448",
+                    "s00449",
+                    "s00450",
+                    "s00451",
+                    "s00452",
+                    "s00453",
+                    "s00454",
+                    "s00455",
+                    "s00456",
+                    "s00457",
+                    "s00458"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.9",
+              "referenceAnswer": "safe (for kids)",
+              "section": "A non-poisonous snake may be more suitable because:",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-7d3d91a4edab",
+              "page": 13
+            },
+            {
+              "sourceId": "p-7d3d91a4edab",
+              "page": 14
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    },
+    "B1-7": {
+      "reference": {
+        "sourceId": "p-7d3d91a4edab",
+        "page": 15
+      },
+      "dataFile": {
+        "sourceId": "p-b24c8aea9ea9",
+        "page": 1
+      },
+      "reviewRules": [
+        "7.1 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 3。",
+        "7.2 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 1；3 → 2；4 → 3。",
+        "7.3 内容计分（正确点数 → 分数）：0 → 0；1 → 1；2 → 2；3 → 3。"
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 15
+        },
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 16
+        },
+        {
+          "sourceId": "p-7d3d91a4edab",
+          "page": 17
+        }
+      ],
+      "questions": {
+        "7": {
+          "referenceAnswer": "内容：9 分；全题：18 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "7.1a",
+              "referenceAnswer": "not real",
+              "section": "Background",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1b",
+              "referenceAnswer": "can create an account online",
+              "section": "Background",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.1c",
+              "referenceAnswer": "has increased in popularity in recent years",
+              "section": "Background",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2a",
+              "referenceAnswer": "send other pets (birthday) cards",
+              "section": "What can you do with a virtual pet?",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2b",
+              "referenceAnswer": "enter the pet in a (beauty) contest",
+              "section": "What can you do with a virtual pet?",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2c",
+              "referenceAnswer": "get the pet toys // get your pet a football",
+              "section": "What can you do with a virtual pet?",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2d",
+              "referenceAnswer": "play (games / a game) with the pet // play hide and seek",
+              "section": "What can you do with a virtual pet?",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3a",
+              "referenceAnswer": "they’re free",
+              "section": "Advantages",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3b",
+              "referenceAnswer": "learn / take responsibility by remembering to feed it / look after it",
+              "section": "Advantages",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3c",
+              "referenceAnswer": "a practice for / before having a real pet",
+              "section": "Advantages",
+              "sourceLabel": "Data File 第 9 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-b24c8aea9ea9",
+                  "page": 9,
+                  "printedPage": 9
+                }
+              ],
+              "reference": {
+                "sourceId": "p-7d3d91a4edab",
+                "page": 15
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-7d3d91a4edab",
+              "page": 16
+            },
+            {
+              "sourceId": "p-7d3d91a4edab",
+              "page": 17
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      }
+    }
+  }
+}

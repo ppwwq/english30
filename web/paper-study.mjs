@@ -16,6 +16,7 @@ export function mountPaperStudy({
   isExposed,
   idPrefix = '',
   onChange = () => {},
+  onSentenceChange = () => {},
   formatTime = clock,
 }) {
   let session,
@@ -30,10 +31,10 @@ export function mountPaperStudy({
       <p>先写出听到的词，再找漏听的位置。复测时关掉提示；同一句练熟后，换一句检查。</p>
       <label for="paper-drill-sentence">这个 Task 的短句</label><select id="paper-drill-sentence"></select>
       <p id="paper-drill-meta" class="paper-fine"></p>
-      <div class="paper-drill-actions"><button type="button" id="paper-drill-play" class="button-secondary">听这一句</button><button type="button" id="paper-drill-next">换下一句</button></div>
+      <div class="paper-drill-actions"><button type="button" id="paper-drill-play" class="button-secondary">重听这一句</button><button type="button" id="paper-drill-pause">暂停单句</button><button type="button" id="paper-drill-next">换下一句</button></div>
       <label for="paper-drill-answer">写下听到的内容，没听清的地方留空</label>
       <textarea id="paper-drill-answer" rows="3" maxlength="2000" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-      <div class="paper-drill-actions"><button type="button" id="paper-drill-submit" class="button-primary">提交作答</button><button type="button" id="paper-drill-blank">没听清，查看原句</button></div>
+      <div class="paper-drill-actions"><button type="button" id="paper-drill-submit" class="button-primary">对照这句听写</button><button type="button" id="paper-drill-blank">查看原句（提示）</button></div>
       <p id="paper-drill-message" role="status"></p>
       <section id="paper-drill-feedback" class="paper-drill-feedback" hidden>
         <h3>对照原句</h3><p id="paper-drill-reference" lang="en"></p><div id="paper-drill-diff"></div>
@@ -65,6 +66,7 @@ export function mountPaperStudy({
       outcome: null,
       recordId: null,
       error: '',
+      revealed: false,
     };
   }
   const key = (id) => `${session.id}:${selection.part}:${selection.task}:${id}`;
@@ -76,6 +78,7 @@ export function mountPaperStudy({
     if (active) drafts.set(key(id), active);
     if (retest) conceal();
     render();
+    onSentenceChange(active?.drill.sentence);
     onChange();
   }
   function render() {
@@ -95,13 +98,16 @@ export function mountPaperStudy({
       : selection?.part === 'B2'
         ? '短句训练目前只练 Part A＋B1。B2 原件仍可查看。'
         : '这个 Task 暂无适合自动听写的可靠短句。可用逐句复盘；不会把定位不稳的字幕当标准答案。';
-    for (const id of ['paper-drill-play', 'paper-drill-next', 'paper-drill-sentence'])
+    for (const id of ['paper-drill-play', 'paper-drill-pause', 'paper-drill-next', 'paper-drill-sentence'])
       $(id).disabled = !sentence;
     for (const id of ['paper-drill-answer', 'paper-drill-submit', 'paper-drill-blank'])
       $(id).disabled = !sentence || !!active.outcome;
     $('paper-drill-answer').value = active?.answer || '';
-    $('paper-drill-feedback').hidden = !active?.outcome;
-    $('paper-drill-reference').textContent = active?.outcome ? sentence.text : '';
+    const revealed = !!active?.outcome || !!active?.revealed;
+    $('paper-drill-feedback').hidden = !revealed;
+    $('paper-drill-reference').textContent = revealed ? sentence.text : '';
+    $('paper-drill-error').disabled = !active?.outcome;
+    $('paper-drill-record-error').disabled = !active?.outcome;
     $('paper-drill-diff').replaceChildren();
     message('');
     if (!active?.outcome) return;
@@ -125,7 +131,7 @@ export function mountPaperStudy({
     $('paper-drill-error').value = active.error;
     const r = active.outcome.record;
     message(
-      `${r.assisted ? '辅助练习' : r.phase === 'retest' ? '关提示复测' : '本次首答'}已暂存。选择卡点后，点下方“保存本次学习纪录”保留。`,
+      `${r.assisted ? '辅助练习' : r.phase === 'retest' ? '关提示复测' : '本次首答'}已暂存。选择卡点后，点页首“保存本次学习纪录”保留。`,
     );
   }
   $('paper-drill-sentence').onchange = () => choose($('paper-drill-sentence').value);
@@ -167,7 +173,19 @@ export function mountPaperStudy({
     }
   }
   $('paper-drill-submit').onclick = () => submit();
-  $('paper-drill-blank').onclick = () => submit(true);
+  $('paper-drill-blank').onclick = () => {
+    if (!active) return;
+    active.drill.reveal();
+    active.revealed = true;
+    cancel();
+    render();
+    message('已显示原句。本轮属于有提示练习；查看提示不会自动提交或保存作答。');
+    onChange();
+  };
+  $('paper-drill-pause').onclick = () => {
+    cancel();
+    message('已暂停。点“重听这一句”从句首再听。');
+  };
   $('paper-drill-record-error').onclick = () => {
     if (!active?.recordId) return;
     const error = $('paper-drill-error').value;

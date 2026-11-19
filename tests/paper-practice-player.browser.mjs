@@ -144,6 +144,8 @@ try {
     async (page, result) => {
       await review(page);
       await page.locator('.sentence-time').first().tap();
+      assert.equal((await media(page)).paused, true, 'subtitle time only positions');
+      await page.locator('#play-pause').tap();
       await page.waitForFunction(() => document.querySelector('.word.is-playing'));
       const followed = new Set();
       for (let sample = 0; sample < 15; sample++) {
@@ -158,7 +160,10 @@ try {
       result.followedWords = [...followed];
       assert.ok(followed.size >= 3, 'real playback should advance across at least three words');
       assert.ok((await page.locator('.sentence.is-current').count()) > 0);
-      await page.locator('[data-question-id=q1] .evidence-link').first().tap();
+      await page.locator('[data-question-id=q1] .question-review-tools').evaluate((d) => {
+        d.open = true;
+      });
+      await page.locator('[data-question-id=q1] [data-answer-only]').first().tap();
       await page.waitForTimeout(150);
       result.start = await media(page);
       assert.ok(result.start.time >= evidence.start - 0.15 && result.start.time < evidence.end);
@@ -177,7 +182,11 @@ try {
     'original evidence AB loops repeatedly and real dragging exits its bounds while retaining playback',
     async (page, result) => {
       await review(page);
-      await page.locator('[data-question-id=q1] .evidence-link').first().tap();
+      await page.locator('[data-question-id=q1] .question-review-tools').evaluate((d) => {
+        d.open = true;
+      });
+      await page.locator('[data-question-id=q1] [data-answer-only]').first().tap();
+      await page.locator('#loop-more > summary').tap();
       await page.locator('#loop-toggle').tap();
       await page.waitForFunction(
         () => document.querySelector('#loop-toggle').getAttribute('aria-pressed') === 'true',
@@ -212,8 +221,12 @@ try {
       await review(page);
       assert.match(await page.locator('.result-summary').textContent(), /待自核.*不计入自动正确率/);
       assert.equal(await page.locator('.question-card.is-incorrect').count(), 0);
-      assert.equal(await page.locator('.reference-answer').count(), 0);
+      assert.ok(
+        (await page.locator('.reference-answer').count()) > 0,
+        'reviewed references are visible while grading remains manual',
+      );
       assert.equal(await page.evaluate(() => localStorage.getItem('english30-records-v1')), null);
+      await page.locator('.question-review-tools > summary').first().click();
       await page.locator('.self-check').first().selectOption('correct');
       await page.locator('.word').first().tap();
       await page.locator('#mark-unknown').tap();
@@ -229,8 +242,6 @@ try {
       assert.ok(results.slice(1).every((r) => r.status === 'pending'));
       assert.equal(Object.keys(saved.marks).length, 1);
       await page.reload();
-      await ready(page, '2025');
-      await page.locator('#practice-year').selectOption('2013');
       await ready(page, '2013');
       await page.locator('.review-drawer > summary').tap();
       await page.getByRole('button', { name: '恢复这份纪录，继续复盘', exact: true }).tap();
@@ -246,7 +257,7 @@ try {
       await review(page);
       await page.evaluate(() => {
         document.querySelector('[data-question-id=q1] .evidence-link').click();
-        document.querySelector('button[data-listening-mode=practice]').click();
+        location.hash = 'listening/practice';
       });
       await ready(page);
       await page.waitForTimeout(600);

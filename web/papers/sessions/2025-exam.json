@@ -13,67 +13,67 @@
       {
         "src": "./papers/audio/a-3b5d7aec971a/001.mp3",
         "start": 479.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/002.mp3",
         "start": 959.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/003.mp3",
         "start": 1439.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/004.mp3",
         "start": 1919.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/005.mp3",
         "start": 2399.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/006.mp3",
         "start": 2879.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/007.mp3",
         "start": 3359.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/008.mp3",
         "start": 3839.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/009.mp3",
         "start": 4319.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/010.mp3",
         "start": 4799.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/011.mp3",
         "start": 5279.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/012.mp3",
         "start": 5759.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/013.mp3",
         "start": 6239.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-3b5d7aec971a/014.mp3",
@@ -6706,7 +6706,7 @@
           "id": "v2025t1-w0005",
           "text": "continuing",
           "start": 4089.6,
-          "end": 4090.0,
+          "end": 4090,
           "probability": 0.9920765161514282,
           "sourceMatched": true,
           "timingStatus": "machine-aligned"
@@ -6714,7 +6714,7 @@
         {
           "id": "v2025t1-w0006",
           "text": "our",
-          "start": 4090.0,
+          "start": 4090,
           "end": 4090.46,
           "probability": 0.9949933886528015,
           "sourceMatched": true,
@@ -6931,7 +6931,7 @@
           "id": "v2025t1-w0029",
           "text": "got",
           "start": 4097.84,
-          "end": 4098.0,
+          "end": 4098,
           "probability": 0.9948804378509521,
           "sourceMatched": true,
           "timingStatus": "machine-aligned"
@@ -6939,7 +6939,7 @@
         {
           "id": "v2025t1-w0030",
           "text": "with",
-          "start": 4098.0,
+          "start": 4098,
           "end": 4098.28,
           "probability": 0.9945774078369141,
           "sourceMatched": true,
@@ -7084,7 +7084,7 @@
           "id": "v2025t1-w0046",
           "text": "organises",
           "start": 4105.34,
-          "end": 4106.0,
+          "end": 4106,
           "probability": 0.8262476027011871,
           "sourceMatched": true,
           "timingStatus": "text-corrected"
@@ -7092,7 +7092,7 @@
         {
           "id": "v2025t1-w0047",
           "text": "swimming",
-          "start": 4106.0,
+          "start": 4106,
           "end": 4106.38,
           "probability": 0.9959379434585571,
           "sourceMatched": true,
@@ -7516,7 +7516,7 @@
           "id": "v2025t1-w0089",
           "text": "with",
           "start": 4123.76,
-          "end": 4124.0,
+          "end": 4124,
           "probability": 0.9986504912376404,
           "sourceMatched": true,
           "timingStatus": "machine-aligned"
@@ -7524,7 +7524,7 @@
         {
           "id": "v2025t1-w0090",
           "text": "you?",
-          "start": 4124.0,
+          "start": 4124,
           "end": 4124.18,
           "probability": 0.9991984963417053,
           "sourceMatched": true,
@@ -8346,7 +8346,7 @@
         {
           "id": "v2025t1-w0164",
           "text": "most",
-          "start": 4156.0,
+          "start": 4156,
           "end": 4156.3,
           "probability": 0.9975159168243408,
           "sourceMatched": true,
@@ -9071,7 +9071,7 @@
           "id": "v2025t1-w0233",
           "text": "with",
           "start": 4181.8,
-          "end": 4182.0,
+          "end": 4182,
           "probability": 0.9973379969596863,
           "sourceMatched": true,
           "timingStatus": "machine-aligned",
@@ -9080,7 +9080,7 @@
         {
           "id": "v2025t1-w0234",
           "text": "my",
-          "start": 4182.0,
+          "start": 4182,
           "end": 4182.2,
           "probability": 0.9986081719398499,
           "sourceMatched": true,
@@ -9373,14 +9373,14 @@
     },
     {
       "id": "v2025t1-s033",
-      "start": 4193.0,
+      "start": 4193,
       "end": 4193.78,
       "text": "Why was that?",
       "words": [
         {
           "id": "v2025t1-w0263",
           "text": "Why",
-          "start": 4193.0,
+          "start": 4193,
           "end": 4193.34,
           "probability": 0.9966263771057129,
           "sourceMatched": true,
@@ -9515,7 +9515,7 @@
         {
           "id": "v2025t1-w0276",
           "text": "but",
-          "start": 4198.0,
+          "start": 4198,
           "end": 4198.2,
           "probability": 0.9906871914863586,
           "sourceMatched": true,
@@ -9684,7 +9684,7 @@
           "id": "v2025t1-w0292",
           "text": "up",
           "start": 4203.8,
-          "end": 4204.0,
+          "end": 4204,
           "probability": 0.9432218670845032,
           "sourceMatched": true,
           "timingStatus": "machine-aligned"
@@ -9692,7 +9692,7 @@
         {
           "id": "v2025t1-w0293",
           "text": "swimming",
-          "start": 4204.0,
+          "start": 4204,
           "end": 4204.32,
           "probability": 0.9862418174743652,
           "sourceMatched": true,
@@ -9963,7 +9963,7 @@
           "id": "v2025t1-w0319",
           "text": "Ah,",
           "start": 4214.66,
-          "end": 4215.0,
+          "end": 4215,
           "probability": 0.8698886632919312,
           "sourceMatched": true,
           "timingStatus": "machine-aligned"
@@ -11518,7 +11518,7 @@
           "id": "v2025t1-w0474",
           "text": "Sounds",
           "start": 4270.66,
-          "end": 4271.0,
+          "end": 4271,
           "probability": 0.970258891582489,
           "sourceMatched": true,
           "timingStatus": "machine-aligned"
@@ -11526,7 +11526,7 @@
         {
           "id": "v2025t1-w0475",
           "text": "\"Grand\"",
-          "start": 4271.0,
+          "start": 4271,
           "end": 4271.58,
           "probability": 0.9696748852729797,
           "sourceMatched": true,
@@ -11607,7 +11607,7 @@
         {
           "id": "v2025t1-w0482",
           "text": "you",
-          "start": 4275.0,
+          "start": 4275,
           "end": 4275.12,
           "probability": 0.9547423720359802,
           "sourceMatched": true,
@@ -12207,7 +12207,7 @@
           "id": "v2025t1-w0538",
           "text": "to",
           "start": 4296.7,
-          "end": 4297.0,
+          "end": 4297,
           "probability": 0.9956892132759094,
           "sourceMatched": true,
           "timingStatus": "machine-aligned",
@@ -12216,7 +12216,7 @@
         {
           "id": "v2025t1-w0539",
           "text": "join",
-          "start": 4297.0,
+          "start": 4297,
           "end": 4297.28,
           "probability": 0.9989468455314636,
           "sourceMatched": true,
@@ -18641,41 +18641,281 @@
       ]
     },
     {
-      "id": "s00184",
-      "start": 4722.656,
-      "end": 4724.496,
-      "text": "That are so beautiful.",
+      "id": "gap2025a2-s1",
+      "start": 4711.676,
+      "end": 4712.296,
+      "text": "That really helps.",
+      "source": {
+        "sourceId": "p-5100eead3809",
+        "page": 4
+      },
+      "timingMethod": "local acoustic alignment checked against official script; unmatched word has sentence-only timing",
       "words": [
         {
+          "id": "gap2025a2-s1-w0",
           "text": "That",
-          "start": 4722.656,
-          "end": 4723.376,
-          "probability": 0.9946,
-          "id": "w002001",
+          "start": 4711.676,
+          "end": 4711.716,
+          "probability": 0.993337869644165,
           "sourceMatched": true
         },
         {
-          "text": "are",
+          "id": "gap2025a2-s1-w1",
+          "text": "really",
+          "start": 4711.716,
+          "end": 4711.936000000001,
+          "probability": 0.9978489875793457,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s1-w2",
+          "text": "helps.",
+          "start": 4711.936000000001,
+          "end": 4712.296,
+          "probability": 0.9989075660705566,
+          "sourceMatched": true
+        }
+      ]
+    },
+    {
+      "id": "gap2025a2-s2",
+      "start": 4713.0160000000005,
+      "end": 4719.436000000001,
+      "text": "I'm sure it does but, given the heat, why is marathon running so popular in Thailand?",
+      "source": {
+        "sourceId": "p-5100eead3809",
+        "page": 4
+      },
+      "timingMethod": "local acoustic alignment checked against official script; unmatched word has sentence-only timing",
+      "words": [
+        {
+          "id": "gap2025a2-s2-w0",
+          "text": "I'm",
+          "start": 4713.0160000000005,
+          "end": 4713.296,
+          "probability": 0.9595344066619873,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w1",
+          "text": "sure",
+          "start": 4713.296,
+          "end": 4713.5160000000005,
+          "probability": 0.9996987581253052,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w2",
+          "text": "it",
+          "start": 4713.5160000000005,
+          "end": 4713.776,
+          "probability": 0.9980989098548889,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w3",
+          "text": "does",
+          "start": 4713.776,
+          "end": 4714.036,
+          "probability": 0.998818576335907,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w4",
+          "text": "but,",
+          "start": 4714.036,
+          "end": 4714.436000000001,
+          "probability": 0.9990867376327515,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w5",
+          "text": "given",
+          "start": 4714.436000000001,
+          "end": 4714.936000000001,
+          "probability": 0.787055253982544,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w6",
+          "text": "the",
+          "start": 4714.936000000001,
+          "end": 4715.276,
+          "probability": 0.9973268508911133,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w7",
+          "text": "heat,",
+          "start": 4715.276,
+          "end": 4715.536,
+          "probability": 0.9994540810585022,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w8",
+          "text": "why",
+          "start": 4716.0560000000005,
+          "end": 4716.5960000000005,
+          "probability": 0.9874386191368103,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w9",
+          "text": "is",
+          "start": 4716.5960000000005,
+          "end": 4716.976000000001,
+          "probability": 0.9977678060531616,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w10",
+          "text": "marathon",
+          "start": 4716.976000000001,
+          "end": 4717.196,
+          "probability": 0.6898255348205566,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w11",
+          "text": "running",
+          "start": 4717.196,
+          "end": 4717.816000000001,
+          "probability": 0.981217622756958,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w12",
+          "text": "so",
+          "start": 4717.816000000001,
+          "end": 4718.276,
+          "probability": 0.998981773853302,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w13",
+          "text": "popular",
+          "start": 4718.276,
+          "end": 4718.776,
+          "probability": 0.9994327425956726,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w14",
+          "text": "in",
+          "start": 4718.776,
+          "end": 4719.136,
+          "probability": 0.9981364011764526,
+          "sourceMatched": true
+        },
+        {
+          "id": "gap2025a2-s2-w15",
+          "text": "Thailand?",
+          "start": 4719.136,
+          "end": 4719.436000000001,
+          "probability": 0.9990567564964294,
+          "sourceMatched": true
+        }
+      ]
+    },
+    {
+      "id": "s00184",
+      "start": 4720.256,
+      "end": 4724.616,
+      "text": "From my experience, it's because the courses there are so beautiful.",
+      "source": {
+        "sourceId": "p-5100eead3809",
+        "page": 4
+      },
+      "timingMethod": "local acoustic alignment checked against official script; unmatched word has sentence-only timing",
+      "words": [
+        {
+          "id": "s00184-w0",
+          "text": "From",
+          "start": 4720.256,
+          "end": 4720.536,
+          "probability": 0.9923772811889648,
+          "sourceMatched": true
+        },
+        {
+          "id": "s00184-w1",
+          "text": "my",
+          "start": 4720.536,
+          "end": 4720.796,
+          "probability": 0.999026894569397,
+          "sourceMatched": true
+        },
+        {
+          "id": "s00184-w2",
+          "text": "experience,",
+          "start": 4720.796,
+          "end": 4721.396000000001,
+          "probability": 0.9990386962890625,
+          "sourceMatched": true
+        },
+        {
+          "id": "s00184-w3",
+          "text": "it's",
+          "start": 4721.876,
+          "end": 4722.216,
+          "probability": 0.9724633395671844,
+          "sourceMatched": true
+        },
+        {
+          "id": "s00184-w4",
+          "text": "because",
+          "start": 4722.216,
+          "end": 4722.476000000001,
+          "probability": 0.998237133026123,
+          "sourceMatched": true
+        },
+        {
+          "id": "s00184-w5",
+          "text": "the",
+          "start": 4722.476000000001,
+          "end": 4722.696,
+          "probability": 0.9947311878204346,
+          "sourceMatched": true
+        },
+        {
+          "id": "s00184-w6",
+          "text": "courses",
           "start": null,
           "end": null,
-          "probability": 0.0148,
-          "id": "w002002",
+          "probability": 0.6245555281639099,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00184-w7",
+          "text": "there",
+          "start": 4723.116,
+          "end": 4723.456,
+          "probability": 0.9532157182693481,
           "sourceMatched": true
         },
         {
+          "id": "s00184-w8",
+          "text": "are",
+          "start": 4723.456,
+          "end": 4723.636,
+          "probability": 0.9939221143722534,
+          "sourceMatched": true
+        },
+        {
+          "id": "s00184-w9",
           "text": "so",
-          "start": 4723.556,
-          "end": 4724.036,
-          "probability": 0.8868,
-          "id": "w002003",
+          "start": 4723.636,
+          "end": 4724.0560000000005,
+          "probability": 0.9981003403663635,
           "sourceMatched": true
         },
         {
+          "id": "s00184-w10",
           "text": "beautiful.",
-          "start": 4724.036,
-          "end": 4724.496,
-          "probability": 0.9875,
-          "id": "w002004",
+          "start": 4724.0560000000005,
+          "end": 4724.616,
+          "probability": 0.99826580286026,
           "sourceMatched": true
         }
       ]
@@ -29834,73 +30074,206 @@
     },
     {
       "id": "s00317",
-      "start": 5433.356,
-      "end": 5435.096,
-      "text": "When the chef had a drink of water.",
+      "start": 5426.946,
+      "end": 5435.146,
+      "text": "When the chef had prepared it, I made a video of the dog eating the steak, while I just had a drink of water.",
+      "source": {
+        "sourceId": "p-5100eead3809",
+        "page": 6
+      },
+      "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
       "words": [
         {
+          "id": "s00317-review-w0",
           "text": "When",
-          "start": 5433.356,
-          "end": 5433.536,
-          "probability": 0.9955,
-          "id": "w003265",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00317-review-w1",
           "text": "the",
-          "start": 5433.536,
-          "end": 5433.936,
-          "probability": 0.9933,
-          "id": "w003266",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00317-review-w2",
           "text": "chef",
           "start": null,
           "end": null,
-          "probability": 0.9314,
-          "id": "w003267",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00317-review-w3",
           "text": "had",
           "start": null,
           "end": null,
-          "probability": 0.2681,
-          "id": "w003268",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00317-review-w4",
+          "text": "prepared",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w5",
+          "text": "it,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w6",
+          "text": "I",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w7",
+          "text": "made",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w8",
           "text": "a",
-          "start": 5434.116,
-          "end": 5434.276,
-          "probability": 0.9878,
-          "id": "w003269",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
-          "text": "drink",
-          "start": 5434.276,
-          "end": 5434.476,
-          "probability": 0.9981,
-          "id": "w003270",
-          "sourceMatched": true
+          "id": "s00317-review-w9",
+          "text": "video",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00317-review-w10",
           "text": "of",
-          "start": 5434.476,
-          "end": 5434.716,
-          "probability": 0.996,
-          "id": "w003271",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00317-review-w11",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w12",
+          "text": "dog",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w13",
+          "text": "eating",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w14",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w15",
+          "text": "steak,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w16",
+          "text": "while",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w17",
+          "text": "I",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w18",
+          "text": "just",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w19",
+          "text": "had",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w20",
+          "text": "a",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w21",
+          "text": "drink",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w22",
+          "text": "of",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00317-review-w23",
           "text": "water.",
-          "start": 5434.716,
-          "end": 5435.096,
-          "probability": 0.9977,
-          "id": "w003272",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },
@@ -32983,257 +33356,379 @@
     },
     {
       "id": "s00340",
-      "start": 5601.136,
-      "end": 5616.216,
-      "text": "If you don't have that background, it will be very hard to teach your dog how to scuba is you need",
+      "start": 5601.146,
+      "end": 5611.726,
+      "text": "If you don't have that background, it will be very hard to teach your dog how to scuba dive no matter how well trained they are on dry land.",
+      "source": {
+        "sourceId": "p-5100eead3809",
+        "page": 6
+      },
+      "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
       "words": [
         {
+          "id": "s00340-review-w0",
           "text": "If",
-          "start": 5601.136,
-          "end": 5601.416,
-          "probability": 0.9953,
-          "id": "w003634",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w1",
           "text": "you",
-          "start": 5601.416,
-          "end": 5601.576,
-          "probability": 0.9986,
-          "id": "w003635",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w2",
           "text": "don't",
-          "start": 5601.576,
-          "end": 5601.916,
-          "probability": 0.9902,
-          "id": "w003636",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w3",
           "text": "have",
-          "start": 5601.916,
-          "end": 5602.076,
-          "probability": 0.9988,
-          "id": "w003637",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w4",
           "text": "that",
-          "start": 5602.076,
-          "end": 5602.256,
-          "probability": 0.995,
-          "id": "w003638",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w5",
           "text": "background,",
-          "start": 5602.256,
-          "end": 5602.676,
-          "probability": 0.9988,
-          "id": "w003639",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w6",
           "text": "it",
           "start": null,
           "end": null,
-          "probability": 0.4497,
-          "id": "w003640",
-          "sourceMatched": false
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w7",
           "text": "will",
-          "start": 5603.576,
-          "end": 5603.776,
-          "probability": 0.7461,
-          "id": "w003641",
-          "sourceMatched": false
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w8",
           "text": "be",
-          "start": 5603.776,
-          "end": 5603.976,
-          "probability": 0.991,
-          "id": "w003642",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w9",
           "text": "very",
-          "start": 5603.976,
-          "end": 5604.436,
-          "probability": 0.9897,
-          "id": "w003643",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w10",
           "text": "hard",
-          "start": 5604.436,
-          "end": 5605.016,
-          "probability": 0.9976,
-          "id": "w003644",
-          "sourceMatched": false
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
-          "text": "to",
-          "start": 5605.016,
-          "end": 5605.356,
-          "probability": 0.9969,
-          "id": "w003645",
-          "sourceMatched": true
-        },
-        {
-          "text": "teach",
-          "start": 5605.356,
-          "end": 5605.536,
-          "probability": 0.994,
-          "id": "w003646",
-          "sourceMatched": true
-        },
-        {
-          "text": "your",
-          "start": 5605.536,
-          "end": 5605.816,
-          "probability": 0.9792,
-          "id": "w003647",
-          "sourceMatched": true
-        },
-        {
-          "text": "dog",
-          "start": 5605.816,
-          "end": 5606.156,
-          "probability": 0.9958,
-          "id": "w003648",
-          "sourceMatched": true
-        },
-        {
-          "text": "how",
-          "start": 5606.156,
-          "end": 5606.776,
-          "probability": 0.9724,
-          "id": "w003649",
-          "sourceMatched": true
-        },
-        {
+          "id": "s00340-review-w11",
           "text": "to",
           "start": null,
           "end": null,
-          "probability": 0.9907,
-          "id": "w003650",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00340-review-w12",
+          "text": "teach",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w13",
+          "text": "your",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w14",
+          "text": "dog",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w15",
+          "text": "how",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w16",
+          "text": "to",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w17",
           "text": "scuba",
           "start": null,
           "end": null,
-          "probability": 0.9947,
-          "id": "w003651",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
-          "text": "is",
+          "id": "s00340-review-w18",
+          "text": "dive",
           "start": null,
           "end": null,
-          "probability": 0.1576,
-          "id": "w003652",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
-          "text": "you",
-          "start": 5615.636,
-          "end": 5615.876,
-          "probability": 0.9757,
-          "id": "w003653",
-          "sourceMatched": true
+          "id": "s00340-review-w19",
+          "text": "no",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
-          "text": "need",
-          "start": 5615.876,
-          "end": 5616.216,
-          "probability": 0.9802,
-          "id": "w003654",
-          "sourceMatched": true
+          "id": "s00340-review-w20",
+          "text": "matter",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w21",
+          "text": "how",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w22",
+          "text": "well",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w23",
+          "text": "trained",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w24",
+          "text": "they",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w25",
+          "text": "are",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w26",
+          "text": "on",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w27",
+          "text": "dry",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00340-review-w28",
+          "text": "land.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },
     {
       "id": "s00341",
-      "start": 5616.216,
-      "end": 5619.656,
-      "text": "to make a special diving suit for your dog.",
+      "start": 5613.546,
+      "end": 5619.686,
+      "text": "The second thing is you need to make a special diving suit for your dog.",
+      "source": {
+        "sourceId": "p-5100eead3809",
+        "page": 6
+      },
+      "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
       "words": [
         {
+          "id": "s00341-review-w0",
+          "text": "The",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00341-review-w1",
+          "text": "second",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00341-review-w2",
+          "text": "thing",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00341-review-w3",
+          "text": "is",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00341-review-w4",
+          "text": "you",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00341-review-w5",
+          "text": "need",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00341-review-w6",
           "text": "to",
-          "start": 5616.216,
-          "end": 5616.636,
-          "probability": 0.9959,
-          "id": "w003655",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00341-review-w7",
           "text": "make",
-          "start": 5616.636,
-          "end": 5616.916,
-          "probability": 0.997,
-          "id": "w003656",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00341-review-w8",
           "text": "a",
-          "start": 5616.916,
-          "end": 5617.216,
-          "probability": 0.9938,
-          "id": "w003657",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00341-review-w9",
           "text": "special",
-          "start": 5617.216,
-          "end": 5617.636,
-          "probability": 0.9904,
-          "id": "w003658",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00341-review-w10",
           "text": "diving",
-          "start": 5617.636,
-          "end": 5618.016,
-          "probability": 0.9905,
-          "id": "w003659",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00341-review-w11",
           "text": "suit",
-          "start": 5618.016,
-          "end": 5618.536,
-          "probability": 0.9912,
-          "id": "w003660",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00341-review-w12",
           "text": "for",
-          "start": 5618.536,
-          "end": 5618.896,
-          "probability": 0.9925,
-          "id": "w003661",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00341-review-w13",
           "text": "your",
-          "start": 5618.896,
-          "end": 5619.256,
-          "probability": 0.9872,
-          "id": "w003662",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00341-review-w14",
           "text": "dog.",
-          "start": 5619.256,
-          "end": 5619.656,
-          "probability": 0.9965,
-          "id": "w003663",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },
@@ -39897,6 +40392,179 @@
           "probability": 0.9143,
           "id": "w004434",
           "sourceMatched": true
+        }
+      ]
+    },
+    {
+      "id": "gap2025b-mainhall",
+      "start": 6451.126,
+      "end": 6458.526,
+      "text": "To be safe, though, we'd better hold it in the Main Hall. We never know what the skies will bring.",
+      "source": {
+        "sourceId": "p-5100eead3809",
+        "page": 7
+      },
+      "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
+      "words": [
+        {
+          "id": "gap2025b-mainhall-review-w0",
+          "text": "To",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w1",
+          "text": "be",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w2",
+          "text": "safe,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w3",
+          "text": "though,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w4",
+          "text": "we'd",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w5",
+          "text": "better",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w6",
+          "text": "hold",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w7",
+          "text": "it",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w8",
+          "text": "in",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w9",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w10",
+          "text": "Main",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w11",
+          "text": "Hall.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w12",
+          "text": "We",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w13",
+          "text": "never",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w14",
+          "text": "know",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w15",
+          "text": "what",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w16",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w17",
+          "text": "skies",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w18",
+          "text": "will",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2025b-mainhall-review-w19",
+          "text": "bring.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },
@@ -48958,8 +49626,8 @@
     {
       "lessonId": "2025-task1",
       "originalAudioRange": {
-        "start": 4086.0,
-        "end": 4314.0
+        "start": 4086,
+        "end": 4314
       },
       "acousticOffsetAgreement": 19,
       "checkedWords": 20

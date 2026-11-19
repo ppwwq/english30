@@ -34,13 +34,16 @@ const state = () => page.evaluate(async () => (await import('/training-core.mjs'
 const nav = async (view) => {
   await page.locator(`.main-navigation [data-view="${view}"]`).click();
   await page.waitForFunction((v) => document.body.dataset.view === v, view);
-  if (view === 'listening') await page.locator('button[data-listening-mode=practice]').click();
+  if (view === 'listening')
+    await page.evaluate(() => {
+      location.hash = 'listening/practice';
+    });
 };
 try {
   await page.goto(
     (process.env.TEST_URL || 'http://127.0.0.1:4173').replace(/\/#.*$/, '').replace(/\/$/, '') + '/#today',
   );
-  await page.locator('#session-save').waitFor();
+  await page.locator('.training-day').first().waitFor();
   await check('30-day calendar and 30-minute budget remain staged until explicit save', async () => {
     assert.equal(await page.locator('.training-day').count(), 30);
     await page.getByText('调整训练安排', { exact: true }).click();
@@ -164,42 +167,22 @@ try {
       assert.ok((await page.locator('.training-feedback').textContent()).includes(text));
     },
   );
-  await check(
-    'backup export/import and invalid-file protection use the real saved record store',
-    async () => {
-      await page.getByRole('button', { name: '待复习与备份', exact: true }).click();
-      await page.locator('#session-save').click();
-      const downloadEvent = page.waitForEvent('download');
-      await page.locator('#training-export').click();
-      const download = await downloadEvent;
-      const data = JSON.parse(await fs.readFile(await download.path(), 'utf8'));
-      assert.equal(data.kind, 'english30-backup');
-      assert.ok(data.study.records.length >= 6);
-      const before = JSON.stringify(await saved());
-      await page.locator('#training-import').setInputFiles({
-        name: 'bad.json',
-        mimeType: 'application/json',
-        buffer: Buffer.from('{"kind":"invalid"}'),
-      });
-      await page.waitForFunction(() =>
-        document.getElementById('training-status').textContent.startsWith('未导入'),
-      );
-      assert.equal(JSON.stringify(await saved()), before);
-      await page.locator('#training-import').setInputFiles({
-        name: 'good.json',
-        mimeType: 'application/json',
-        buffer: Buffer.from(JSON.stringify(data)),
-      });
-      await page.waitForFunction(() =>
-        document.getElementById('training-status').textContent.startsWith('已合并并回读验证'),
-      );
-      assert.equal((await saved()).records.length, data.study.records.length);
-      await page.getByText('仅手动标记（自评）', { exact: true }).first().click();
-      await page.getByRole('button', { name: '仍需重练', exact: true }).first().click();
-      assert.equal(Object.keys((await saved()).reviews).length, 0);
-      assert.equal(Object.keys((await state()).reviews).length, 1);
-    },
-  );
+  await check('backup export uses the real saved record store', async () => {
+    await page.getByRole('button', { name: '待复习与备份', exact: true }).click();
+    await page.locator('#session-save').click();
+    const downloadEvent = page.waitForEvent('download');
+    await page.locator('#training-export').click();
+    const download = await downloadEvent;
+    const data = JSON.parse(await fs.readFile(await download.path(), 'utf8'));
+    assert.equal(data.kind, 'english30-backup');
+    assert.ok(data.study.records.length >= 6);
+    assert.equal(await page.locator('input[type=file]').count(), 0);
+    assert.equal((await saved()).records.length, data.study.records.length);
+    await page.getByText('仅手动标记（自评）', { exact: true }).first().click();
+    await page.getByRole('button', { name: '仍需重练', exact: true }).first().click();
+    assert.equal(Object.keys((await saved()).reviews).length, 0);
+    assert.equal(Object.keys((await state()).reviews).length, 1);
+  });
   await check(
     'review reopens the original paragraph draft and revision, and returns to the exact dictation sentence with answers hidden',
     async () => {

@@ -1,0 +1,3215 @@
+{
+  "sessionId": "2025-exam",
+  "reviewDate": "2026-11-17",
+  "reviewMethod": "Reference text checked visually against the cited marking-scheme and question-page images. Context selected against official script and existing audio alignment; not a claim of full manual audio proof-listening.",
+  "tasks": {
+    "A-1": {
+      "reference": {
+        "sourceId": "p-9f8236cfe333",
+        "page": 6
+      },
+      "script": {
+        "sourceId": "p-5100eead3809",
+        "page": 2
+      },
+      "questions": {
+        "1": {
+          "evidence": [[101.594, 108.374, 105.154, 107.054]],
+          "referenceAnswer": "(about) 7,000",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "2": {
+          "evidence": [[110.174, 128.454, 113.774, 121.914]],
+          "referenceAnswer": "a few months // 20 hours",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "3": {
+          "evidence": [[129.474, 142.334, 135.054, 142.334]],
+          "referenceAnswer": "high school students … their parents",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "4": {
+          "evidence": [[143.034, 153.974, 146.094, 152.074]],
+          "referenceAnswer": "on Sundays",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "5": {
+          "evidence": [[154.454, 169.234, 158.214, 165.754]],
+          "referenceAnswer": "older sister",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "6": {
+          "evidence": [[169.794, 182.654, 174.734, 180.074]],
+          "referenceAnswer": "was always shouting at him / Ricky",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "7": {
+          "evidence": [[183.394, 199.014, 189.634, 194.394]],
+          "referenceAnswer": "teach his own kids (how to swim)",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "8": {
+          "evidence": [[199.354, 211.454, 209.574, 211.454]],
+          "referenceAnswer": "(old) school friend",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "9": {
+          "evidence": [[211.454, 223.334, 216.714, 221.194]],
+          "referenceAnswer": "Grand Island Project",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "10": {
+          "evidence": [[223.334, 250.474, 225.854, 228.834]],
+          "referenceAnswer": "to swim around every island in Hong Kong",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "11": {
+          "referenceAnswer": "it’s free // members don’t need to pay；\nswimming’s the best kind of exercise // there’s nothing better than swimming；\nyou meet many / different people // you make friends",
+          "note": "Q11、Q12、Q13 组内可互换次序，每个不同要点只计一次。 Q11–Q13 三类理由可互换顺序；同一理由只计一次。",
+          "evidence": [[254.034, 282.754, 264.114, 282.754]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          }
+        },
+        "12": {
+          "referenceAnswer": "it’s free // members don’t need to pay；\nswimming’s the best kind of exercise // there’s nothing better than swimming；\nyou meet many / different people // you make friends",
+          "note": "Q11、Q12、Q13 组内可互换次序，每个不同要点只计一次。 Q11–Q13 三类理由可互换顺序；同一理由只计一次。",
+          "evidence": [[254.034, 282.754, 264.114, 282.754]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          }
+        },
+        "13": {
+          "referenceAnswer": "it’s free // members don’t need to pay；\nswimming’s the best kind of exercise // there’s nothing better than swimming；\nyou meet many / different people // you make friends",
+          "note": "Q11、Q12、Q13 组内可互换次序，每个不同要点只计一次。 Q11–Q13 三类理由可互换顺序；同一理由只计一次。",
+          "evidence": [[254.034, 282.754, 264.114, 282.754]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          }
+        }
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 6
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[11, 12, 13]],
+      "reviewRules": []
+    },
+    "A-2": {
+      "reference": {
+        "sourceId": "p-9f8236cfe333",
+        "page": 6
+      },
+      "script": {
+        "sourceId": "p-5100eead3809",
+        "page": 3
+      },
+      "questions": {
+        "14": {
+          "prompt": "The Taiko Drumming Tradition: the aim of taiko drumming was to communicate ___.",
+          "referenceAnswer": "with the gods",
+          "evidence": [[86.7, 103.62, 93.42, 97.98]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "15": {
+          "prompt": "Taiko Festivals: taiko drums are too ___ to ___.",
+          "referenceAnswer": "large // heavy … carry",
+          "evidence": [[103.62, 124.72, 116.96, 122.46]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "16": {
+          "prompt": "Taiko Festivals: the drums are placed on ___.",
+          "referenceAnswer": "a moving platform",
+          "evidence": [[111.68, 132.58, 124.72, 129.68]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "17": {
+          "prompt": "The Big Drums: in the past, the big drums were made from ___.",
+          "referenceAnswer": "one piece of wood",
+          "evidence": [[133.26, 165.4, 148.34, 154.4]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "18": {
+          "prompt": "The Big Drums: to play a big drum well, you must use ___.",
+          "referenceAnswer": "your whole body",
+          "evidence": [[165.4, 186.58, 176.44, 184.36]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "19": {
+          "prompt": "K-pop Dancing Lessons in Korea: boy bands added ___ to their performances.",
+          "referenceAnswer": "street dance",
+          "evidence": [[186.58, 208.26, 197.26, 205.06]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "20": {
+          "prompt": "Jessica's advice for a K-pop dance class: ___ before class.",
+          "referenceAnswer": "warm up",
+          "evidence": [[219.8, 237.52, 225.06, 230.32]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "21": {
+          "prompt": "Jessica's advice for a K-pop dance class: wear ___.",
+          "referenceAnswer": "sports shoes",
+          "note": "评分参考写作 sports shoes；不以字幕中的 sport shoes 取代评分依据。",
+          "evidence": [[248.9, 264.16, 256.62, 261.18]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          }
+        },
+        "22": {
+          "prompt": "According to Jessica, the most important thing to learn in a K-pop dance class is ___.",
+          "referenceAnswer": "quick thinking",
+          "evidence": [[264.84, 289.72, 273.14, 279.52]],
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "23": {
+          "prompt": "Marathons in Thailand: because it is hot, marathons usually start ___.",
+          "referenceAnswer": "when it’s still dark // before sunrise",
+          "evidence": [[295.76, 321.24, 310.6, 317]],
+          "script": {
+            "sourceId": "p-5100eead3809",
+            "page": 4
+          },
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "24": {
+          "prompt": "Marathons in Thailand: ___ are given out.",
+          "referenceAnswer": "wet towels",
+          "evidence": [[317.88, 329.5, 323.62, 328.24]],
+          "script": {
+            "sourceId": "p-5100eead3809",
+            "page": 4
+          },
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          },
+          "note": ""
+        },
+        "25": {
+          "prompt": "Jessica's tips for marathon running in Thailand (first tip).",
+          "referenceAnswer": "sign up early；\ncheck the difficulty (of the course)",
+          "note": "Q25、Q26 组内可互换次序，每个不同要点只计一次。 Q25–Q26 两项可互换；分别写不同要点。括号内为评分参考可省略文字。",
+          "evidence": [[344.52, 368.4, 349.4, 368.4]],
+          "script": {
+            "sourceId": "p-5100eead3809",
+            "page": 4
+          },
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          }
+        },
+        "26": {
+          "prompt": "Jessica's tips for marathon running in Thailand (second tip).",
+          "referenceAnswer": "sign up early；\ncheck the difficulty (of the course)",
+          "note": "Q25、Q26 组内可互换次序，每个不同要点只计一次。 Q25–Q26 两项可互换；分别写不同要点。括号内为评分参考可省略文字。",
+          "evidence": [[344.52, 368.4, 349.4, 368.4]],
+          "script": {
+            "sourceId": "p-5100eead3809",
+            "page": 4
+          },
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 6
+          }
+        }
+      },
+      "sentences": [
+        {
+          "id": "gap2025a2-s1",
+          "start": 328.88,
+          "end": 329.5,
+          "text": "That really helps.",
+          "source": {
+            "sourceId": "p-5100eead3809",
+            "page": 4
+          },
+          "timingMethod": "local acoustic alignment checked against official script; unmatched word has sentence-only timing",
+          "words": [
+            {
+              "id": "gap2025a2-s1-w0",
+              "text": "That",
+              "start": 328.88,
+              "end": 328.92,
+              "probability": 0.993337869644165,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s1-w1",
+              "text": "really",
+              "start": 328.92,
+              "end": 329.14,
+              "probability": 0.9978489875793457,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s1-w2",
+              "text": "helps.",
+              "start": 329.14,
+              "end": 329.5,
+              "probability": 0.9989075660705566,
+              "sourceMatched": true
+            }
+          ]
+        },
+        {
+          "id": "gap2025a2-s2",
+          "start": 330.22,
+          "end": 336.64,
+          "text": "I'm sure it does but, given the heat, why is marathon running so popular in Thailand?",
+          "source": {
+            "sourceId": "p-5100eead3809",
+            "page": 4
+          },
+          "timingMethod": "local acoustic alignment checked against official script; unmatched word has sentence-only timing",
+          "words": [
+            {
+              "id": "gap2025a2-s2-w0",
+              "text": "I'm",
+              "start": 330.22,
+              "end": 330.5,
+              "probability": 0.9595344066619873,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w1",
+              "text": "sure",
+              "start": 330.5,
+              "end": 330.72,
+              "probability": 0.9996987581253052,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w2",
+              "text": "it",
+              "start": 330.72,
+              "end": 330.98,
+              "probability": 0.9980989098548889,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w3",
+              "text": "does",
+              "start": 330.98,
+              "end": 331.24,
+              "probability": 0.998818576335907,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w4",
+              "text": "but,",
+              "start": 331.24,
+              "end": 331.64,
+              "probability": 0.9990867376327515,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w5",
+              "text": "given",
+              "start": 331.64,
+              "end": 332.14,
+              "probability": 0.787055253982544,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w6",
+              "text": "the",
+              "start": 332.14,
+              "end": 332.48,
+              "probability": 0.9973268508911133,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w7",
+              "text": "heat,",
+              "start": 332.48,
+              "end": 332.74,
+              "probability": 0.9994540810585022,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w8",
+              "text": "why",
+              "start": 333.26,
+              "end": 333.8,
+              "probability": 0.9874386191368103,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w9",
+              "text": "is",
+              "start": 333.8,
+              "end": 334.18,
+              "probability": 0.9977678060531616,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w10",
+              "text": "marathon",
+              "start": 334.18,
+              "end": 334.4,
+              "probability": 0.6898255348205566,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w11",
+              "text": "running",
+              "start": 334.4,
+              "end": 335.02,
+              "probability": 0.981217622756958,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w12",
+              "text": "so",
+              "start": 335.02,
+              "end": 335.48,
+              "probability": 0.998981773853302,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w13",
+              "text": "popular",
+              "start": 335.48,
+              "end": 335.98,
+              "probability": 0.9994327425956726,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w14",
+              "text": "in",
+              "start": 335.98,
+              "end": 336.34,
+              "probability": 0.9981364011764526,
+              "sourceMatched": true
+            },
+            {
+              "id": "gap2025a2-s2-w15",
+              "text": "Thailand?",
+              "start": 336.34,
+              "end": 336.64,
+              "probability": 0.9990567564964294,
+              "sourceMatched": true
+            }
+          ]
+        },
+        {
+          "id": "s00184",
+          "start": 337.46,
+          "end": 341.82,
+          "text": "From my experience, it's because the courses there are so beautiful.",
+          "source": {
+            "sourceId": "p-5100eead3809",
+            "page": 4
+          },
+          "timingMethod": "local acoustic alignment checked against official script; unmatched word has sentence-only timing",
+          "words": [
+            {
+              "id": "s00184-w0",
+              "text": "From",
+              "start": 337.46,
+              "end": 337.74,
+              "probability": 0.9923772811889648,
+              "sourceMatched": true
+            },
+            {
+              "id": "s00184-w1",
+              "text": "my",
+              "start": 337.74,
+              "end": 338,
+              "probability": 0.999026894569397,
+              "sourceMatched": true
+            },
+            {
+              "id": "s00184-w2",
+              "text": "experience,",
+              "start": 338,
+              "end": 338.6,
+              "probability": 0.9990386962890625,
+              "sourceMatched": true
+            },
+            {
+              "id": "s00184-w3",
+              "text": "it's",
+              "start": 339.08,
+              "end": 339.42,
+              "probability": 0.9724633395671844,
+              "sourceMatched": true
+            },
+            {
+              "id": "s00184-w4",
+              "text": "because",
+              "start": 339.42,
+              "end": 339.68,
+              "probability": 0.998237133026123,
+              "sourceMatched": true
+            },
+            {
+              "id": "s00184-w5",
+              "text": "the",
+              "start": 339.68,
+              "end": 339.9,
+              "probability": 0.9947311878204346,
+              "sourceMatched": true
+            },
+            {
+              "id": "s00184-w6",
+              "text": "courses",
+              "start": null,
+              "end": null,
+              "probability": 0.6245555281639099,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00184-w7",
+              "text": "there",
+              "start": 340.32,
+              "end": 340.66,
+              "probability": 0.9532157182693481,
+              "sourceMatched": true
+            },
+            {
+              "id": "s00184-w8",
+              "text": "are",
+              "start": 340.66,
+              "end": 340.84,
+              "probability": 0.9939221143722534,
+              "sourceMatched": true
+            },
+            {
+              "id": "s00184-w9",
+              "text": "so",
+              "start": 340.84,
+              "end": 341.26,
+              "probability": 0.9981003403663635,
+              "sourceMatched": true
+            },
+            {
+              "id": "s00184-w10",
+              "text": "beautiful.",
+              "start": 341.26,
+              "end": 341.82,
+              "probability": 0.99826580286026,
+              "sourceMatched": true
+            }
+          ]
+        }
+      ],
+      "referencePages": [
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 6
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[25, 26]],
+      "reviewRules": []
+    },
+    "B1-5": {
+      "reference": {
+        "sourceId": "p-9f8236cfe333",
+        "page": 8
+      },
+      "dataFile": {
+        "sourceId": "p-0f9d7f187a64",
+        "page": 1
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 8
+        },
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 9
+        }
+      ],
+      "questions": {
+        "5": {
+          "referenceAnswer": "内容：13 分；全题：15 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "5.1",
+              "referenceAnswer": "one games, one Asia",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 20.36,
+                  "contextEnd": 78.44,
+                  "start": 53.22,
+                  "end": 78.44,
+                  "sentenceIds": [
+                    "s00375",
+                    "s00376",
+                    "s00377",
+                    "s00378",
+                    "s00379",
+                    "s00380",
+                    "s00381",
+                    "s00382",
+                    "s00383",
+                    "s00384",
+                    "s00385"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.2",
+              "referenceAnswer": "13 // 13th",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 79.1,
+                  "contextEnd": 126.48,
+                  "start": 113.76,
+                  "end": 126.48,
+                  "sentenceIds": [
+                    "s00386",
+                    "s00387",
+                    "s00388",
+                    "s00389",
+                    "s00390",
+                    "s00391",
+                    "s00392",
+                    "s00393",
+                    "s00394",
+                    "s00395",
+                    "s00396",
+                    "s00397",
+                    "s00398"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.3",
+              "referenceAnswer": "main hall",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 137.92,
+                  "contextEnd": 160.7,
+                  "start": 156.48,
+                  "end": 160.7,
+                  "sentenceIds": ["s00402", "s00403", "s00404", "s00405"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "5.4",
+              "referenceAnswer": "the Asian games quiz",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.5",
+              "referenceAnswer": "two / 2",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.6",
+              "referenceAnswer": "lesson six / 6",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.7",
+              "referenceAnswer": "morning",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.8",
+              "referenceAnswer": "five / 5",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.9",
+              "referenceAnswer": "sports ground",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.10",
+              "referenceAnswer": "compete (against each other) in field events",
+              "section": "",
+              "sourceLabel": "Data File 第 5 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 5,
+                  "printedPage": 5
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.11",
+              "referenceAnswer": "(your) PE uniform",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.12",
+              "referenceAnswer": "on classroom notice boards",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "5.13",
+              "referenceAnswer": "(you can) email events@blhs.edu.hk",
+              "section": "",
+              "sourceLabel": "Data File 第 6 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 6,
+                  "printedPage": 6
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 8
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-9f8236cfe333",
+              "page": 9
+            }
+          ],
+          "note": "除非另有说明，必须把资料填在正确栏目才得内容分。内容13分，语言2分；语言表见评分参考PDF9上方。"
+        }
+      },
+      "sentences": [
+        {
+          "id": "gap2025b-mainhall",
+          "start": 148.76,
+          "end": 156.16,
+          "text": "To be safe, though, we'd better hold it in the Main Hall. We never know what the skies will bring.",
+          "source": {
+            "sourceId": "p-5100eead3809",
+            "page": 7
+          },
+          "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
+          "words": [
+            {
+              "id": "gap2025b-mainhall-review-w0",
+              "text": "To",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w1",
+              "text": "be",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w2",
+              "text": "safe,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w3",
+              "text": "though,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w4",
+              "text": "we'd",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w5",
+              "text": "better",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w6",
+              "text": "hold",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w7",
+              "text": "it",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w8",
+              "text": "in",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w9",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w10",
+              "text": "Main",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w11",
+              "text": "Hall.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w12",
+              "text": "We",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w13",
+              "text": "never",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w14",
+              "text": "know",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w15",
+              "text": "what",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w16",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w17",
+              "text": "skies",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w18",
+              "text": "will",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w19",
+              "text": "bring.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        }
+      ]
+    },
+    "B1-6": {
+      "reference": {
+        "sourceId": "p-9f8236cfe333",
+        "page": 9
+      },
+      "dataFile": {
+        "sourceId": "p-0f9d7f187a64",
+        "page": 1
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 9
+        },
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 10
+        },
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 11
+        }
+      ],
+      "questions": {
+        "6": {
+          "referenceAnswer": "内容：10 分；全题：19 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "6.1",
+              "referenceAnswer": "To: Frank Brown",
+              "section": "",
+              "sourceLabel": "Data File 第 7、8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 7,
+                  "printedPage": 7
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.2",
+              "referenceAnswer": "invitation to be the (guest) speaker at the Opening Event of the Asian Games Week (at our school / Ballater High School)",
+              "section": "",
+              "sourceLabel": "Data File 第 7、8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 7,
+                  "printedPage": 7
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.3",
+              "referenceAnswer": "the event is on 13th October from 2:00pm to 3:15pm at the main hall",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记） ＋ Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 79.1,
+                  "contextEnd": 126.48,
+                  "start": 113.76,
+                  "end": 126.48,
+                  "sentenceIds": [
+                    "s00386",
+                    "s00387",
+                    "s00388",
+                    "s00389",
+                    "s00390",
+                    "s00391",
+                    "s00392",
+                    "s00393",
+                    "s00394",
+                    "s00395",
+                    "s00396",
+                    "s00397",
+                    "s00398"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                },
+                {
+                  "contextStart": 137.92,
+                  "contextEnd": 160.7,
+                  "start": 156.48,
+                  "end": 160.7,
+                  "sentenceIds": ["s00402", "s00403", "s00404", "s00405"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.4",
+              "referenceAnswer": "Speech topic: why your sport / ultimate frisbee should be added to the Asian Games",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记） ＋ Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 302.56,
+                  "contextEnd": 353.58,
+                  "start": 331.66,
+                  "end": 353.58,
+                  "sentenceIds": [
+                    "s00437",
+                    "s00438",
+                    "s00439",
+                    "s00440",
+                    "s00441",
+                    "s00442",
+                    "s00443",
+                    "s00444",
+                    "s00445",
+                    "s00446"
+                  ],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.5",
+              "referenceAnswer": "After the speech, there will be a discussion about your sport / ultimate frisbee",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 354.5,
+                  "contextEnd": 386.96,
+                  "start": 371.62,
+                  "end": 386.96,
+                  "sentenceIds": ["s00447", "s00448", "s00449", "s00450"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.6",
+              "referenceAnswer": "with questions from students",
+              "section": "",
+              "sourceLabel": "原音（Data File 听力笔记）",
+              "dataReferences": [],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed",
+              "evidence": [
+                {
+                  "contextStart": 371.62,
+                  "contextEnd": 401.86,
+                  "start": 387.34,
+                  "end": 401.86,
+                  "sentenceIds": ["s00449", "s00450", "s00451", "s00452", "s00453"],
+                  "status": "editorially-mapped-existing-alignment",
+                  "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+                }
+              ]
+            },
+            {
+              "id": "6.7",
+              "referenceAnswer": "ultimate frisbee got the highest number of votes in a survey // students wanted to know more about ultimate frisbee",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.8",
+              "referenceAnswer": "(our students think) ultimate frisbee is (really) fun to play",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.9",
+              "referenceAnswer": "and exciting to watch",
+              "section": "",
+              "sourceLabel": "Data File 第 8 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 8,
+                  "printedPage": 8
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "6.10",
+              "referenceAnswer": "we can offer you payment of $1000 / 1000 dollars",
+              "section": "",
+              "sourceLabel": "Data File 第 7 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 7,
+                  "printedPage": 7
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 9
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-9f8236cfe333",
+              "page": 10
+            },
+            {
+              "sourceId": "p-9f8236cfe333",
+              "page": 11
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      },
+      "sentences": [
+        {
+          "id": "gap2025b-mainhall",
+          "start": 148.76,
+          "end": 156.16,
+          "text": "To be safe, though, we'd better hold it in the Main Hall. We never know what the skies will bring.",
+          "source": {
+            "sourceId": "p-5100eead3809",
+            "page": 7
+          },
+          "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
+          "words": [
+            {
+              "id": "gap2025b-mainhall-review-w0",
+              "text": "To",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w1",
+              "text": "be",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w2",
+              "text": "safe,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w3",
+              "text": "though,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w4",
+              "text": "we'd",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w5",
+              "text": "better",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w6",
+              "text": "hold",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w7",
+              "text": "it",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w8",
+              "text": "in",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w9",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w10",
+              "text": "Main",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w11",
+              "text": "Hall.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w12",
+              "text": "We",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w13",
+              "text": "never",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w14",
+              "text": "know",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w15",
+              "text": "what",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w16",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w17",
+              "text": "skies",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w18",
+              "text": "will",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w19",
+              "text": "bring.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        }
+      ]
+    },
+    "B1-7": {
+      "reference": {
+        "sourceId": "p-9f8236cfe333",
+        "page": 12
+      },
+      "dataFile": {
+        "sourceId": "p-0f9d7f187a64",
+        "page": 1
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 12
+        },
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 13
+        },
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 14
+        }
+      ],
+      "questions": {
+        "7": {
+          "referenceAnswer": "内容：10 分；全题：19 分。逐点对照下列参考，语言、组织及语气另按评分表自核。",
+          "scoringPoints": [
+            {
+              "id": "7.1",
+              "referenceAnswer": "the Asian Games was first held in 1951",
+              "section": "",
+              "sourceLabel": "Data File 第 9、10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 9,
+                  "printedPage": 9
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.2",
+              "referenceAnswer": "Hangzhou, Incheon and Doha have all hosted the Games",
+              "section": "",
+              "sourceLabel": "Data File 第 9、10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 9,
+                  "printedPage": 9
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.3",
+              "referenceAnswer": "long-distance running, chess and e-sports are three sports that have featured",
+              "section": "",
+              "sourceLabel": "Data File 第 9、10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 9,
+                  "printedPage": 9
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.4",
+              "referenceAnswer": "Mascots: in Hangzhou / 2022 the mascots were three futuristic robot characters",
+              "section": "",
+              "sourceLabel": "Data File 第 9、10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 9,
+                  "printedPage": 9
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.5",
+              "referenceAnswer": "in Nagoya / 2026 the mascot will be a tigerfish, which means ‘flame’ in Japanese",
+              "section": "",
+              "sourceLabel": "Data File 第 9、10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 9,
+                  "printedPage": 9
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.6",
+              "referenceAnswer": "to promote environmental awareness, the organisers (of Incheon 2014) collected rainwater for the athletes / participants",
+              "section": "",
+              "sourceLabel": "Data File 第 9、10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 9,
+                  "printedPage": 9
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.7",
+              "referenceAnswer": "to reduce water consumption",
+              "section": "",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.8",
+              "referenceAnswer": "to promote health awareness, (in Nagoya 2026) there will be a “walk for fun” campaign",
+              "section": "",
+              "sourceLabel": "Data File 第 9、10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 9,
+                  "printedPage": 9
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.9",
+              "referenceAnswer": "to get the public walking more",
+              "section": "",
+              "sourceLabel": "Data File 第 10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            },
+            {
+              "id": "7.10",
+              "referenceAnswer": "Hong Kong won 53 medals at the last Asian Games / in Hangzhou / in 2022",
+              "section": "",
+              "sourceLabel": "Data File 第 9、10 页",
+              "dataReferences": [
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 9,
+                  "printedPage": 9
+                },
+                {
+                  "sourceId": "p-0f9d7f187a64",
+                  "page": 10,
+                  "printedPage": 10
+                }
+              ],
+              "reference": {
+                "sourceId": "p-9f8236cfe333",
+                "page": 12
+              },
+              "referenceStatus": "source-reviewed"
+            }
+          ],
+          "rubricReferences": [
+            {
+              "sourceId": "p-9f8236cfe333",
+              "page": 13
+            },
+            {
+              "sourceId": "p-9f8236cfe333",
+              "page": 14
+            }
+          ],
+          "note": "保留评分参考中的可接受写法；/ 为词句替代，// 为另一种完整表达。内容点不等于逐字听写，本题不自动评分。"
+        }
+      },
+      "sentences": [
+        {
+          "id": "gap2025b-mainhall",
+          "start": 148.76,
+          "end": 156.16,
+          "text": "To be safe, though, we'd better hold it in the Main Hall. We never know what the skies will bring.",
+          "source": {
+            "sourceId": "p-5100eead3809",
+            "page": 7
+          },
+          "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
+          "words": [
+            {
+              "id": "gap2025b-mainhall-review-w0",
+              "text": "To",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w1",
+              "text": "be",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w2",
+              "text": "safe,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w3",
+              "text": "though,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w4",
+              "text": "we'd",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w5",
+              "text": "better",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w6",
+              "text": "hold",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w7",
+              "text": "it",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w8",
+              "text": "in",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w9",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w10",
+              "text": "Main",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w11",
+              "text": "Hall.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w12",
+              "text": "We",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w13",
+              "text": "never",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w14",
+              "text": "know",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w15",
+              "text": "what",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w16",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w17",
+              "text": "skies",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w18",
+              "text": "will",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "gap2025b-mainhall-review-w19",
+              "text": "bring.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        }
+      ]
+    },
+    "A-3": {
+      "questions": {
+        "27": {
+          "referenceAnswer": "difficult to use",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[100.32, 112.56, 104.92, 107.58]],
+          "evidenceReview": [
+            {
+              "contextStart": 100.32,
+              "contextEnd": 112.56,
+              "start": 104.92,
+              "end": 107.58,
+              "sentenceIds": ["s00215", "s00216", "s00217", "s00218", "s00219"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "28": {
+          "referenceAnswer": "you need to have a smartphone // it only works properly with a smartphone；\nyou have to pay for the app // the app’s not free",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "Q28、Q29 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [113.66, 125.26, 118.08, 125.26],
+            [125.96, 135.4, 130.48, 135.4]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 113.66,
+              "contextEnd": 125.26,
+              "start": 118.08,
+              "end": 125.26,
+              "sentenceIds": ["s00220", "s00221", "s00222"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 125.96,
+              "contextEnd": 135.4,
+              "start": 130.48,
+              "end": 135.4,
+              "sentenceIds": ["s00223", "s00224", "s00225", "s00226"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "29": {
+          "referenceAnswer": "you need to have a smartphone // it only works properly with a smartphone；\nyou have to pay for the app // the app’s not free",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "Q28、Q29 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [113.66, 125.26, 118.08, 125.26],
+            [125.96, 135.4, 130.48, 135.4]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 113.66,
+              "contextEnd": 125.26,
+              "start": 118.08,
+              "end": 125.26,
+              "sentenceIds": ["s00220", "s00221", "s00222"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 125.96,
+              "contextEnd": 135.4,
+              "start": 130.48,
+              "end": 135.4,
+              "sentenceIds": ["s00223", "s00224", "s00225", "s00226"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "30": {
+          "referenceAnswer": "a lot of detailed fitness data",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[137.58, 149.64, 144.84, 149.64]],
+          "evidenceReview": [
+            {
+              "contextStart": 137.58,
+              "contextEnd": 149.64,
+              "start": 144.84,
+              "end": 149.64,
+              "sentenceIds": ["s00228", "s00229", "s00230"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "31": {
+          "referenceAnswer": "cleaning your apartment",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[155.16, 179.8, 170.74, 179.8]],
+          "evidenceReview": [
+            {
+              "contextStart": 155.16,
+              "contextEnd": 179.8,
+              "start": 170.74,
+              "end": 179.8,
+              "sentenceIds": ["s00233", "s00234", "s00235", "s00236"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "32": {
+          "referenceAnswer": "the packaging",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[180.8, 199.92, 187.58, 199.92]],
+          "evidenceReview": [
+            {
+              "contextStart": 180.8,
+              "contextEnd": 199.92,
+              "start": 187.58,
+              "end": 199.92,
+              "sentenceIds": ["s00237", "s00238", "s00239", "s00240", "s00241", "s00242", "s00243"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "33": {
+          "referenceAnswer": "she forgot",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[206.62, 216.88, 214.58, 216.88]],
+          "evidenceReview": [
+            {
+              "contextStart": 206.62,
+              "contextEnd": 216.88,
+              "start": 214.58,
+              "end": 216.88,
+              "sentenceIds": ["s00246", "s00247", "s00248"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "34": {
+          "referenceAnswer": "not accurate",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[212.22, 233.16, 222.32, 233.16]],
+          "evidenceReview": [
+            {
+              "contextStart": 212.22,
+              "contextEnd": 233.16,
+              "start": 222.32,
+              "end": 233.16,
+              "sentenceIds": ["s00247", "s00248", "s00249", "s00250", "s00251", "s00252", "s00253"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "35": {
+          "referenceAnswer": "N.R.G. 6 is better",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[244.24, 263.56, 247.14, 263.56]],
+          "evidenceReview": [
+            {
+              "contextStart": 244.24,
+              "contextEnd": 263.56,
+              "start": 247.14,
+              "end": 263.56,
+              "sentenceIds": ["s00258", "s00259", "s00260", "s00261", "s00262"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "36": {
+          "referenceAnswer": "N.R.G. 6 is better",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[264.02, 288.48, 270.06, 288.48]],
+          "evidenceReview": [
+            {
+              "contextStart": 264.02,
+              "contextEnd": 288.48,
+              "start": 270.06,
+              "end": 288.48,
+              "sentenceIds": ["s00263", "s00264", "s00265", "s00266", "s00267", "s00268", "s00269"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "37": {
+          "referenceAnswer": "Both are very good",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[290.46, 309.4, 292.52, 309.4]],
+          "evidenceReview": [
+            {
+              "contextStart": 290.46,
+              "contextEnd": 309.4,
+              "start": 292.52,
+              "end": 309.4,
+              "sentenceIds": ["s00271", "s00272", "s00273", "s00274", "s00275", "s00276"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "38": {
+          "referenceAnswer": "N.R.G. 6 is better",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[310.28, 333.14, 310.28, 333.14]],
+          "evidenceReview": [
+            {
+              "contextStart": 310.28,
+              "contextEnd": 333.14,
+              "start": 310.28,
+              "end": 333.14,
+              "sentenceIds": ["s00277", "s00278", "s00279", "s00280", "s00281", "s00282"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "39": {
+          "referenceAnswer": "needs all the features of a smartwatch",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[333.14, 350.84, 341.6, 350.84]],
+          "evidenceReview": [
+            {
+              "contextStart": 333.14,
+              "contextEnd": 350.84,
+              "start": 341.6,
+              "end": 350.84,
+              "sentenceIds": ["s00283", "s00284", "s00285"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "40": {
+          "referenceAnswer": "are mainly interested in their fitness",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[361.2, 376.54, 363, 376.54]],
+          "evidenceReview": [
+            {
+              "contextStart": 361.2,
+              "contextEnd": 376.54,
+              "start": 363,
+              "end": 376.54,
+              "sentenceIds": ["s00289", "s00290", "s00291", "s00292", "s00293"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-9f8236cfe333",
+        "page": 7
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 7
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [[28, 29]],
+      "reviewRules": []
+    },
+    "A-4": {
+      "questions": {
+        "41": {
+          "referenceAnswer": "a short report about / on their dog (by text message)",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[103.79, 125.99, 116.93, 125.99]],
+          "evidenceReview": [
+            {
+              "contextStart": 103.79,
+              "contextEnd": 125.99,
+              "start": 116.93,
+              "end": 125.99,
+              "sentenceIds": ["s00310", "s00311", "s00312", "s00313"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "42": {
+          "referenceAnswer": "eating a steak (from a posh restaurant)",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[127.31, 150.36, 135.69, 150.36]]
+        },
+        "43": {
+          "referenceAnswer": "dressed in a historical costume (in places) around the city",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[151.95, 175.37, 155.05, 175.37]],
+          "evidenceReview": [
+            {
+              "contextStart": 151.95,
+              "contextEnd": 175.37,
+              "start": 155.05,
+              "end": 175.37,
+              "sentenceIds": ["s00318", "s00319", "s00320", "s00321"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "44": {
+          "referenceAnswer": "regular social contact with other dog owners // meet and chat with other dog owners",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[192.93, 216.67, 200.65, 216.67]],
+          "evidenceReview": [
+            {
+              "contextStart": 192.93,
+              "contextEnd": 216.67,
+              "start": 200.65,
+              "end": 216.67,
+              "sentenceIds": ["s00323", "s00324", "s00325"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "45": {
+          "referenceAnswer": "improve your balance",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[218.11, 247.99, 241.43, 247.99]],
+          "evidenceReview": [
+            {
+              "contextStart": 218.11,
+              "contextEnd": 247.99,
+              "start": 241.43,
+              "end": 247.99,
+              "sentenceIds": ["s00326", "s00327", "s00328", "s00329", "s00330"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "46": {
+          "referenceAnswer": "improve your memory",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[247.99, 254.67, 247.99, 254.67]],
+          "evidenceReview": [
+            {
+              "contextStart": 247.99,
+              "contextEnd": 254.67,
+              "start": 247.99,
+              "end": 254.67,
+              "sentenceIds": ["s00331"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "47": {
+          "referenceAnswer": "more oxygen (is sent) to the brain (while walking) // increased oxygen to the brain",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[247.99, 267.79, 255.79, 267.79]],
+          "evidenceReview": [
+            {
+              "contextStart": 247.99,
+              "contextEnd": 267.79,
+              "start": 255.79,
+              "end": 267.79,
+              "sentenceIds": ["s00331", "s00332", "s00333"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "48": {
+          "referenceAnswer": "Bugsy / her dog started to cry because he was left alone on the boat / when she went scuba diving",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[269.69, 297.99, 282.17, 297.99]],
+          "evidenceReview": [
+            {
+              "contextStart": 269.69,
+              "contextEnd": 297.99,
+              "start": 282.17,
+              "end": 297.99,
+              "sentenceIds": ["s00334", "s00335", "s00336", "s00337"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "49": {
+          "referenceAnswer": "the owner needs be an experienced scuba diver；\nto make a diving suit for your dog // to have a diving suit made for your dog",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "Q49、Q50 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [299.21, 326.94, 310.17, 326.94],
+            [299.21, 342.63, 328.76, 342.63]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 299.21,
+              "contextEnd": 331.43,
+              "start": 310.17,
+              "end": 331.43,
+              "sentenceIds": ["s00338", "s00339", "s00340"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 299.21,
+              "contextEnd": 342.63,
+              "start": 331.43,
+              "end": 342.63,
+              "sentenceIds": ["s00338", "s00339", "s00340", "s00341", "s00342"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "50": {
+          "referenceAnswer": "the owner needs be an experienced scuba diver；\nto make a diving suit for your dog // to have a diving suit made for your dog",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "Q49、Q50 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [299.21, 326.94, 310.17, 326.94],
+            [299.21, 342.63, 328.76, 342.63]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 299.21,
+              "contextEnd": 331.43,
+              "start": 310.17,
+              "end": 331.43,
+              "sentenceIds": ["s00338", "s00339", "s00340"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 299.21,
+              "contextEnd": 342.63,
+              "start": 331.43,
+              "end": 342.63,
+              "sentenceIds": ["s00338", "s00339", "s00340", "s00341", "s00342"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "51": {
+          "referenceAnswer": "her diving school offered to sponsor // she got sponsorship from her diving school",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "",
+          "evidence": [[343.87, 366.67, 356.55, 366.67]],
+          "evidenceReview": [
+            {
+              "contextStart": 343.87,
+              "contextEnd": 366.67,
+              "start": 356.55,
+              "end": 366.67,
+              "sentenceIds": ["s00343", "s00344", "s00345"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "52": {
+          "referenceAnswer": "get practice in a swimming pool // check you can handle your dog in a swimming pool；\nmake sure there are (at least) two human divers with the dog at all times",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "Q52、Q53 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [368.13, 401.55, 386.35, 401.55],
+            [378.53, 424.51, 403.15, 424.51]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 368.13,
+              "contextEnd": 401.55,
+              "start": 386.35,
+              "end": 401.55,
+              "sentenceIds": ["s00346", "s00347", "s00348", "s00349", "s00350"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 378.53,
+              "contextEnd": 424.51,
+              "start": 403.15,
+              "end": 424.51,
+              "sentenceIds": ["s00348", "s00349", "s00350", "s00351", "s00352", "s00353"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        },
+        "53": {
+          "referenceAnswer": "get practice in a swimming pool // check you can handle your dog in a swimming pool；\nmake sure there are (at least) two human divers with the dog at all times",
+          "reference": {
+            "sourceId": "p-9f8236cfe333",
+            "page": 7
+          },
+          "note": "Q52、Q53 组内可互换次序，每个不同要点只计一次。 ",
+          "evidence": [
+            [368.13, 401.55, 386.35, 401.55],
+            [378.53, 424.51, 403.15, 424.51]
+          ],
+          "evidenceReview": [
+            {
+              "contextStart": 368.13,
+              "contextEnd": 401.55,
+              "start": 386.35,
+              "end": 401.55,
+              "sentenceIds": ["s00346", "s00347", "s00348", "s00349", "s00350"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            },
+            {
+              "contextStart": 378.53,
+              "contextEnd": 424.51,
+              "start": 403.15,
+              "end": 424.51,
+              "sentenceIds": ["s00348", "s00349", "s00350", "s00351", "s00352", "s00353"],
+              "status": "editorially-mapped-existing-alignment",
+              "reviewNote": "Context selected by reading the full task transcript against the reviewed marking points. Timing is inherited alignment, not a claim of full audio proof-listening."
+            }
+          ]
+        }
+      },
+      "reference": {
+        "sourceId": "p-9f8236cfe333",
+        "page": 7
+      },
+      "referencePages": [
+        {
+          "sourceId": "p-9f8236cfe333",
+          "page": 7
+        }
+      ],
+      "reviewNotes": [],
+      "anyOrderGroups": [
+        [49, 50],
+        [52, 53]
+      ],
+      "reviewRules": [],
+      "sentences": [
+        {
+          "id": "s00317",
+          "start": 142.16,
+          "end": 150.36,
+          "text": "When the chef had prepared it, I made a video of the dog eating the steak, while I just had a drink of water.",
+          "source": {
+            "sourceId": "p-5100eead3809",
+            "page": 6
+          },
+          "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
+          "words": [
+            {
+              "id": "s00317-review-w0",
+              "text": "When",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w1",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w2",
+              "text": "chef",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w3",
+              "text": "had",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w4",
+              "text": "prepared",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w5",
+              "text": "it,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w6",
+              "text": "I",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w7",
+              "text": "made",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w8",
+              "text": "a",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w9",
+              "text": "video",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w10",
+              "text": "of",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w11",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w12",
+              "text": "dog",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w13",
+              "text": "eating",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w14",
+              "text": "the",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w15",
+              "text": "steak,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w16",
+              "text": "while",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w17",
+              "text": "I",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w18",
+              "text": "just",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w19",
+              "text": "had",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w20",
+              "text": "a",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w21",
+              "text": "drink",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w22",
+              "text": "of",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00317-review-w23",
+              "text": "water.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        },
+        {
+          "id": "s00340",
+          "start": 316.36,
+          "end": 326.94,
+          "text": "If you don't have that background, it will be very hard to teach your dog how to scuba dive no matter how well trained they are on dry land.",
+          "source": {
+            "sourceId": "p-5100eead3809",
+            "page": 6
+          },
+          "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
+          "words": [
+            {
+              "id": "s00340-review-w0",
+              "text": "If",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w1",
+              "text": "you",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w2",
+              "text": "don't",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w3",
+              "text": "have",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w4",
+              "text": "that",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w5",
+              "text": "background,",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w6",
+              "text": "it",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w7",
+              "text": "will",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w8",
+              "text": "be",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w9",
+              "text": "very",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w10",
+              "text": "hard",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w11",
+              "text": "to",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w12",
+              "text": "teach",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w13",
+              "text": "your",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w14",
+              "text": "dog",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w15",
+              "text": "how",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w16",
+              "text": "to",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w17",
+              "text": "scuba",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w18",
+              "text": "dive",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w19",
+              "text": "no",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w20",
+              "text": "matter",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w21",
+              "text": "how",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w22",
+              "text": "well",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w23",
+              "text": "trained",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w24",
+              "text": "they",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w25",
+              "text": "are",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w26",
+              "text": "on",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w27",
+              "text": "dry",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00340-review-w28",
+              "text": "land.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        },
+        {
+          "id": "s00341",
+          "start": 328.76,
+          "end": 334.9,
+          "text": "The second thing is you need to make a special diving suit for your dog.",
+          "source": {
+            "sourceId": "p-5100eead3809",
+            "page": 6
+          },
+          "timingMethod": "Official script, sentence bounds corroborated by local ASR; no invented word timing",
+          "words": [
+            {
+              "id": "s00341-review-w0",
+              "text": "The",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w1",
+              "text": "second",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w2",
+              "text": "thing",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w3",
+              "text": "is",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w4",
+              "text": "you",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w5",
+              "text": "need",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w6",
+              "text": "to",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w7",
+              "text": "make",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w8",
+              "text": "a",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w9",
+              "text": "special",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w10",
+              "text": "diving",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w11",
+              "text": "suit",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w12",
+              "text": "for",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w13",
+              "text": "your",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            },
+            {
+              "id": "s00341-review-w14",
+              "text": "dog.",
+              "start": null,
+              "end": null,
+              "sourceMatched": true,
+              "timingStatus": "segment-only"
+            }
+          ]
+        }
+      ],
+      "script": {
+        "sourceId": "p-5100eead3809",
+        "page": 6
+      }
+    }
+  }
+}

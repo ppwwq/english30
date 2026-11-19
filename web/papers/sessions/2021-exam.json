@@ -13,32 +13,32 @@
       {
         "src": "./papers/audio/a-aaa24ca77243/001.mp3",
         "start": 479.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-aaa24ca77243/002.mp3",
         "start": 959.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-aaa24ca77243/003.mp3",
         "start": 1439.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-aaa24ca77243/004.mp3",
         "start": 1919.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-aaa24ca77243/005.mp3",
         "start": 2399.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-aaa24ca77243/006.mp3",
         "start": 2879.976,
-        "duration": 480.0
+        "duration": 480
       },
       {
         "src": "./papers/audio/a-aaa24ca77243/007.mp3",
@@ -155,7 +155,7 @@
     {
       "id": "s00001",
       "start": 0.78,
-      "end": 13.0,
+      "end": 13,
       "text": "Hong Kong Diploma of Secondary Education 2021, English Language Paper 3, Listening and Integrated Skills, Instructions to Candidates.",
       "words": [
         {
@@ -297,7 +297,7 @@
         {
           "text": "Candidates.",
           "start": 12.46,
-          "end": 13.0,
+          "end": 13,
           "probability": 0.8503,
           "id": "w000018",
           "sourceMatched": true
@@ -433,14 +433,14 @@
         {
           "text": "Data",
           "start": 20.46,
-          "end": 21.0,
+          "end": 21,
           "probability": 0.8711,
           "id": "w000034",
           "sourceMatched": true
         },
         {
           "text": "File",
-          "start": 21.0,
+          "start": 21,
           "end": 21.46,
           "probability": 0.8277,
           "id": "w000035",
@@ -2410,13 +2410,13 @@
     },
     {
       "id": "s00021",
-      "start": 197.0,
+      "start": 197,
       "end": 202.22,
       "text": "Now stick your barcode label in the space provided on Page 1.",
       "words": [
         {
           "text": "Now",
-          "start": 197.0,
+          "start": 197,
           "end": 197.28,
           "probability": 0.9949,
           "id": "w000263",
@@ -2697,14 +2697,14 @@
         {
           "text": "Take",
           "start": 222.64,
-          "end": 223.0,
+          "end": 223,
           "probability": 0.9406,
           "id": "w000295",
           "sourceMatched": true
         },
         {
           "text": "out",
-          "start": 223.0,
+          "start": 223,
           "end": 223.24,
           "probability": 0.9903,
           "id": "w000296",
@@ -2889,14 +2889,14 @@
         {
           "text": "the",
           "start": 234.9,
-          "end": 235.0,
+          "end": 235,
           "probability": 0.9945,
           "id": "w000317",
           "sourceMatched": true
         },
         {
           "text": "words",
-          "start": 235.0,
+          "start": 235,
           "end": 235.32,
           "probability": 0.9922,
           "id": "w000318",
@@ -4833,14 +4833,14 @@
         {
           "text": "research",
           "start": 408.52,
-          "end": 409.0,
+          "end": 409,
           "probability": 0.995,
           "id": "w000543",
           "sourceMatched": true
         },
         {
           "text": "World",
-          "start": 409.0,
+          "start": 409,
           "end": 409.64,
           "probability": 0.8586,
           "id": "w000544",
@@ -5017,14 +5017,14 @@
         {
           "text": "in",
           "start": 420.16,
-          "end": 421.0,
+          "end": 421,
           "probability": 0.9777,
           "id": "w000565",
           "sourceMatched": true
         },
         {
           "text": "the",
-          "start": 421.0,
+          "start": 421,
           "end": 421.14,
           "probability": 0.9969,
           "id": "w000566",
@@ -32294,153 +32294,445 @@
     },
     {
       "id": "s00304",
-      "start": 2245.206,
-      "end": 2261.926,
-      "text": "He then became famous because he got a job at a zoo in",
+      "start": 2245.156,
+      "end": 2248.8759999999997,
+      "text": "He then became famous because he got a job at a zoo in New York.",
+      "source": {
+        "sourceId": "p-0b02d79fa432",
+        "page": 84
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
       "words": [
         {
+          "id": "s00304-fixed-w0",
           "text": "He",
-          "start": 2245.206,
-          "end": 2245.526,
-          "probability": 0.9955,
-          "id": "w003709",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w1",
           "text": "then",
-          "start": 2245.526,
-          "end": 2245.686,
-          "probability": 0.9918,
-          "id": "w003710",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w2",
           "text": "became",
-          "start": 2245.686,
-          "end": 2245.906,
-          "probability": 0.9962,
-          "id": "w003711",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w3",
           "text": "famous",
-          "start": 2245.906,
-          "end": 2246.526,
-          "probability": 0.9991,
-          "id": "w003712",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w4",
           "text": "because",
           "start": null,
           "end": null,
-          "probability": 0.4096,
-          "id": "w003713",
-          "sourceMatched": false
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w5",
           "text": "he",
-          "start": 2247.066,
-          "end": 2247.186,
-          "probability": 0.9972,
-          "id": "w003714",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w6",
           "text": "got",
-          "start": 2247.186,
-          "end": 2247.286,
-          "probability": 0.9913,
-          "id": "w003715",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w7",
           "text": "a",
-          "start": 2247.286,
-          "end": 2247.406,
-          "probability": 0.9949,
-          "id": "w003716",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w8",
           "text": "job",
-          "start": 2247.406,
-          "end": 2247.686,
-          "probability": 0.9988,
-          "id": "w003717",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w9",
           "text": "at",
-          "start": 2247.686,
-          "end": 2247.846,
-          "probability": 0.983,
-          "id": "w003718",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w10",
           "text": "a",
-          "start": 2247.846,
-          "end": 2247.906,
-          "probability": 0.9749,
-          "id": "w003719",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w11",
           "text": "zoo",
-          "start": 2247.906,
-          "end": 2248.146,
-          "probability": 0.9884,
-          "id": "w003720",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00304-fixed-w12",
           "text": "in",
           "start": null,
           "end": null,
-          "probability": 0.9954,
-          "id": "w003721",
-          "sourceMatched": true
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00304-fixed-w13",
+          "text": "New",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "s00304-fixed-w14",
+          "text": "York.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        }
+      ]
+    },
+    {
+      "id": "gap2021-live-exhibit",
+      "start": 2249.476,
+      "end": 2258.156,
+      "text": "He thought he was going to look after the elephants, but he was actually given a job to be a live exhibit in the zoo.",
+      "source": {
+        "sourceId": "p-0b02d79fa432",
+        "page": 84
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+      "words": [
+        {
+          "id": "gap2021-live-exhibit-fixed-w0",
+          "text": "He",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w1",
+          "text": "thought",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w2",
+          "text": "he",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w3",
+          "text": "was",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w4",
+          "text": "going",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w5",
+          "text": "to",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w6",
+          "text": "look",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w7",
+          "text": "after",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w8",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w9",
+          "text": "elephants,",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w10",
+          "text": "but",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w11",
+          "text": "he",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w12",
+          "text": "was",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w13",
+          "text": "actually",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w14",
+          "text": "given",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w15",
+          "text": "a",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w16",
+          "text": "job",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w17",
+          "text": "to",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w18",
+          "text": "be",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w19",
+          "text": "a",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w20",
+          "text": "live",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w21",
+          "text": "exhibit",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w22",
+          "text": "in",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w23",
+          "text": "the",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-live-exhibit-fixed-w24",
+          "text": "zoo.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        }
+      ]
+    },
+    {
+      "id": "gap2021-cage",
+      "start": 2258.9359999999997,
+      "end": 2261.476,
+      "text": "He shared a cage with a chimpanzee.",
+      "source": {
+        "sourceId": "p-0b02d79fa432",
+        "page": 84
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
+      "words": [
+        {
+          "id": "gap2021-cage-fixed-w0",
+          "text": "He",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-cage-fixed-w1",
+          "text": "shared",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-cage-fixed-w2",
+          "text": "a",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-cage-fixed-w3",
+          "text": "cage",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-cage-fixed-w4",
+          "text": "with",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-cage-fixed-w5",
+          "text": "a",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
+        },
+        {
+          "id": "gap2021-cage-fixed-w6",
+          "text": "chimpanzee.",
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },
     {
       "id": "s00305",
-      "start": 2261.926,
-      "end": 2262.826,
-      "text": "New York. That's awful.",
+      "start": 2261.9359999999997,
+      "end": 2262.836,
+      "text": "That's awful.",
+      "source": {
+        "sourceId": "p-0b02d79fa432",
+        "page": 84
+      },
+      "timingMethod": "Official script visually checked; sentence bounds corroborated by local acoustic transcription. Word timing deliberately withheld.",
       "words": [
         {
-          "text": "New",
-          "start": null,
-          "end": null,
-          "probability": 0.9957,
-          "id": "w003722",
-          "sourceMatched": true
-        },
-        {
-          "text": "York.",
-          "start": null,
-          "end": null,
-          "probability": 0.9989,
-          "id": "w003723",
-          "sourceMatched": true
-        },
-        {
+          "id": "s00305-fixed-w0",
           "text": "That's",
-          "start": 2261.926,
-          "end": 2262.506,
-          "probability": 0.7161,
-          "id": "w003724",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         },
         {
+          "id": "s00305-fixed-w1",
           "text": "awful.",
-          "start": 2262.506,
-          "end": 2262.826,
-          "probability": 0.9747,
-          "id": "w003725",
-          "sourceMatched": true
+          "start": null,
+          "end": null,
+          "sourceMatched": true,
+          "timingStatus": "segment-only"
         }
       ]
     },

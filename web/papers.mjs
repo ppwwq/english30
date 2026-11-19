@@ -42,10 +42,12 @@ export async function mountPapers({ host, bridge }) {
   const exposedSentences = new Set();
   let paperStudy;
   const revealedSources = new Set();
+  const reviewedSources = new Map();
+  let sourceRequest = 0;
   let selectionBusy = false,
     selectionInterrupted = false;
   host.innerHTML = `
-    <section class="paper-heading"><div><h1>我的 Past Papers</h1><p>先选一份卷，再从想听的地方开始。</p></div><span class="paper-count">2012—2025 · Sample / Practice</span></section>
+    <section class="paper-heading"><div><h1>原卷资料库</h1><p>浏览题页、Data File 和评分参考；作答请选「开始精练」。</p></div><span class="paper-count">2012—2025 · Sample / Practice</span></section>
     <form class="paper-filters" aria-label="选择原卷">
       <label>年份<select id="paper-year"></select></label><label>版本<select id="paper-variant"></select></label>
       <label>卷别<select id="paper-paper"><option value="3">Paper 3 · 听力</option><option value="1">Paper 1 · 阅读</option><option value="2">Paper 2 · 写作</option><option value="4">Paper 4 · 说话</option></select></label>
@@ -148,6 +150,10 @@ export async function mountPapers({ host, bridge }) {
     }
   };
   $('paper-study-review').onclick = () => bridge.navigate('review');
+  if (bridge.requestSave) {
+    $('paper-study-save').hidden = true;
+    $('paper-study-review').hidden = true;
+  }
   updateStudySavebar();
   function updatePlayer(state) {
     $('paper-position').textContent = timeText(state.time);
@@ -681,8 +687,38 @@ export async function mountPapers({ host, bridge }) {
     $('paper-image-wrap').scrollTop = 0;
     sizeImage();
   }
+  async function showSelectedSource(next, allowReference = false) {
+    const request = ++sourceRequest;
+    const generation = loadingGeneration;
+    let page = chooseTask([next].filter(Boolean), selection, selection.task)?.page || 1;
+    if (next && selection.paper === 3 && ['marking', 'full', 'script'].includes(next.role)) {
+      const key = `${selection.year}-${selection.variant}`;
+      try {
+        if (!reviewedSources.has(key))
+          reviewedSources.set(
+            key,
+            fetch(`./papers/reviewed/${key}.json`).then((r) => {
+              if (!r.ok) throw new Error('评分页码未能载入');
+              return r.json();
+            }),
+          );
+        const reviewed = await reviewedSources.get(key);
+        if (generation !== loadingGeneration || request !== sourceRequest) return;
+        const task = reviewed.tasks?.[`${selection.part}-${selection.task}`];
+        const refs = [...(task?.referencePages || []), task?.reference, task?.script].filter(Boolean);
+        page = refs.find((ref) => ref.sourceId === next.id)?.page || page;
+      } catch (error) {
+        reviewedSources.delete(key);
+        if (generation === loadingGeneration && request === sourceRequest)
+          $('paper-notice').textContent = `${error.message}，请重试。`;
+        return;
+      }
+    }
+    showSource(next, page, allowReference);
+    host.querySelector('.paper-reader-heading')?.scrollIntoView({ block: 'nearest' });
+  }
   $('paper-source').onchange = () =>
-    showSource(catalogue.sources.find((s) => s.id === $('paper-source').value));
+    showSelectedSource(catalogue.sources.find((s) => s.id === $('paper-source').value));
   $('paper-prev').onclick = () => showSource(source, pageNumber - 1);
   $('paper-next').onclick = () => showSource(source, pageNumber + 1);
   $('paper-page').onchange = () => showSource(source, $('paper-page').value);
@@ -743,8 +779,7 @@ export async function mountPapers({ host, bridge }) {
       !confirm('这份参考资料可能显示答案或原稿。是否现在打开？')
     )
       return;
-    showSource(next, 1, true);
-    host.querySelector('.paper-reader-heading')?.scrollIntoView({ block: 'nearest' });
+    showSelectedSource(next, true);
   };
   $('paper-source-summary').textContent =
     `已整理 ${catalogue.sources.length} 份原件。页面按原 PDF 页码保留；重复版本按原文件名称区分。个人练习纪录只保存在当前浏览器。`;
@@ -762,9 +797,7 @@ export async function mountPapers({ host, bridge }) {
       }
       const listening = view === 'listening';
       host.classList.toggle('paper-listening', listening);
-      host.querySelector('.paper-heading h1').textContent = listening
-        ? 'Past Paper 听力'
-        : '我的 Past Papers';
+      host.querySelector('.paper-heading h1').textContent = listening ? 'Past Paper 听力' : '原卷资料库';
       host.querySelector('.paper-heading p').textContent = listening
         ? '选择原卷的年份、Part 和 Task，题页、原音与字幕一起练。'
         : '查看原卷资料；选好 Task 后，可以带着这份材料开始练习。';
@@ -806,7 +839,8 @@ export async function mountPapers({ host, bridge }) {
         await applySelection();
       } else if (
         selectionInterrupted ||
-        (!session &&
+        (!selectionBusy &&
+          !session &&
           selection.paper === 3 &&
           catalogue.sessions.some((s) => s.id === `${selection.year}-${selection.variant}`))
       ) {

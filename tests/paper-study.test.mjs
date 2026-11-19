@@ -1,3 +1,4 @@
+import { restoreBackup } from '../scripts/repository-only/restore-backup.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createStudyStore, validateStudyState } from '../web/training-core.mjs';
@@ -96,10 +97,11 @@ test('original-paper marks stay drafts until explicit save, then survive reload 
   assert.deepEqual(store.exportBackup().study.paperMarks, []);
   store.save();
   assert.deepEqual(createStudyStore({ storage }).getState().paperMarks, [mark]);
-  const restored = createStudyStore({ storage: memoryStorage() });
-  restored.importBackup(store.exportBackup());
+  const restoredStorage = memoryStorage();
+  const restored = createStudyStore({ storage: restoredStorage });
+  restoreBackup(restored, restoredStorage, store.exportBackup());
   assert.deepEqual(restored.getSavedState().paperMarks, [mark]);
-  restored.importBackup(store.exportBackup());
+  restoreBackup(restored, restoredStorage, store.exportBackup());
   assert.equal(restored.getState().paperMarks.length, 1);
 });
 
