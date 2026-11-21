@@ -12,7 +12,7 @@ const file = {
 };
 const manifest = {
   schemaVersion: 1,
-  baseUrl: 'https://english30-listening.philipwwq.workers.dev/',
+  baseUrl: 'https://philip.eng30.workers.dev/',
   files: [file],
 };
 
@@ -22,7 +22,7 @@ test('restoring media verifies bytes and a rerun reuses the complete local file'
   let requests = 0;
   const fetchImpl = async (url, options) => {
     requests++;
-    assert.equal(String(url), 'https://english30-listening.philipwwq.workers.dev/audio/example.mp3');
+    assert.equal(String(url), 'https://philip.eng30.workers.dev/audio/example.mp3');
     assert.equal(options.redirect, 'error');
     return new Response('hello');
   };

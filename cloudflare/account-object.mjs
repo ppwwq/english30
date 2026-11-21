@@ -1,6 +1,7 @@
 import { createAccountApi } from './account-api.mjs';
+import { createPrivateFiles } from './private-files.mjs';
 
-// SQLite and the private bucket belong to English30 alone.
+// Account metadata and private files share the English30 SQLite namespace.
 export class EnglishAccounts {
   constructor(ctx, env) {
     this.ctx = ctx;
@@ -11,7 +12,7 @@ export class EnglishAccounts {
       all: (q, ...args) => sql.exec(q, ...args).toArray(),
       transaction: (callback) => ctx.storage.transactionSync(callback),
     };
-    this.api = createAccountApi(db, env.ANSWER_FILES, (path) =>
+    this.api = createAccountApi(db, createPrivateFiles(db), (path) =>
       env.ASSETS.fetch(new Request('https://assets.internal' + path)),
     );
   }

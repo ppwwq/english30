@@ -456,32 +456,12 @@ export function createAccountApi(db, bucket, assets) {
           );
         const row = version(owner, id, v);
         if (item === 'pdf') {
-          const path = 'pdf/' + owner + '/' + id + '/' + v;
-          let file = await bucket.get(path);
-          if (!file) {
-            const manifest = await loadJson(owner, row.manifest);
-            const pdf = await paperPdf(manifest.pages, async (p) =>
-              bytesToRead(await bucket.get(p.hash ? privatePath(owner, p.hash) : masterPath(p.master))),
-            );
-            await bucket.put(path, await pdf.arrayBuffer());
-            if (!one('SELECT v FROM versions WHERE owner=? AND paper=? AND v=?', owner, id, Number(v))) {
-              await bucket.delete(path);
-              need(false, '答卷已移除。', 404);
-            }
-            run(
-              'INSERT OR REPLACE INTO objects VALUES (?,?,?,?,?,?)',
-              path,
-              owner,
-              pdf.size,
-              Date.now(),
-              0,
-              0,
-            );
-            addRef(owner, id, Number(v), path);
-            file = await bucket.get(path);
-          }
-          need(file, '导出文件未能读取。', 503);
-          return new Response(file.body, {
+          const manifest = await loadJson(owner, row.manifest);
+          const pdf = await paperPdf(manifest.pages, async (p) =>
+            bytesToRead(await bucket.get(p.hash ? privatePath(owner, p.hash) : masterPath(p.master))),
+          );
+          version(owner, id, v);
+          return new Response(pdf, {
             headers: {
               ...secure,
               'Content-Type': 'application/pdf',

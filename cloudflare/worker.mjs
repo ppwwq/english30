@@ -4,7 +4,7 @@ export default {
     const path = new URL(request.url).pathname;
     if (path.startsWith('/api/')) {
       if (/^\/api\/(account|papers|learning|images|ink|books)(\/|$)/.test(path)) {
-        if (!env.ENGLISH_ACCOUNTS || !env.ANSWER_FILES)
+        if (!env.ENGLISH_ACCOUNTS)
           return Response.json(
             { error: '账号服务尚未配置。' },
             { status: 503, headers: { 'Cache-Control': 'no-store' } },

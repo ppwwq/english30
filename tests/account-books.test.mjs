@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
 import { createAccountApi } from '../cloudflare/account-api.mjs';
+import { createPrivateFiles } from '../cloudflare/private-files.mjs';
 
 const read = (name) => readFileSync(new URL('../' + name, import.meta.url));
 const books = JSON.parse(read('web/papers/answer-books.json'));
@@ -42,9 +43,8 @@ test('all 30 A/B1 books keep safe distinct original pages, full Task coverage an
   );
 });
 
-test('a confirmed save survives a verified missing original, preserves ordered Data File and retries just once', async () => {
-  const raw = new DatabaseSync(':memory:');
-  const db = {
+function database(raw) {
+  return {
     one: (q, ...v) => raw.prepare(q).get(...v),
     all: (q, ...v) => raw.prepare(q).all(...v),
     run: (q, ...v) => raw.prepare(q).run(...v),
@@ -60,19 +60,36 @@ test('a confirmed save survives a verified missing original, preserves ordered D
       }
     },
   };
-  const files = new Map();
-  const bucket = {
-    async put(k, v) {
-      files.set(k, new Uint8Array(v));
-    },
-    async get(k) {
-      const bytes = files.get(k);
-      return bytes ? { body: bytes, arrayBuffer: async () => bytes.slice().buffer } : null;
-    },
-    async delete(keys) {
-      for (const k of [keys].flat()) files.delete(k);
-    },
-  };
+}
+
+test('private SQLite files round-trip over 2 MiB and an interrupted replacement preserves every old part', async (t) => {
+  const raw = new DatabaseSync(':memory:');
+  t.after(() => raw.close());
+  const db = database(raw);
+  const files = createPrivateFiles(db);
+  const bytes = Uint8Array.from({ length: 2 * 1024 * 1024 + 17 }, (_, i) => (i * 31 + (i >>> 16)) % 251);
+  files.put('users/a/page', bytes);
+  files.put('users/b/page', Uint8Array.of(42));
+  assert.deepEqual(new Uint8Array(await files.get('users/a/page').arrayBuffer()), bytes);
+  assert.ok(db.one('SELECT max(length(data)) AS n FROM file_parts').n < 2 * 1024 * 1024);
+  raw.exec(
+    "CREATE TRIGGER simulate_full BEFORE INSERT ON file_parts WHEN NEW.part=1 BEGIN SELECT RAISE(ABORT,'full'); END",
+  );
+  assert.throws(() => files.put('users/a/page', new Uint8Array(bytes.length)), /full/);
+  assert.deepEqual(new Uint8Array(await files.get('users/a/page').arrayBuffer()), bytes);
+  raw.exec('DROP TRIGGER simulate_full');
+  files.put('users/a/page', new Uint8Array());
+  assert.equal((await files.get('users/a/page').arrayBuffer()).byteLength, 0);
+  assert.deepEqual(new Uint8Array(await files.get('users/b/page').arrayBuffer()), Uint8Array.of(42));
+  files.delete(['users/a/page', 'users/b/page']);
+  assert.equal(files.get('users/a/page'), null);
+  assert.equal(files.get('users/b/page'), null);
+});
+
+test('a confirmed save survives a verified missing original, preserves ordered Data File and retries just once', async () => {
+  const raw = new DatabaseSync(':memory:');
+  const db = database(raw);
+  const bucket = createPrivateFiles(db);
   const book = structuredClone(books['2014-exam-B1']);
   // A one-pixel RGB JPEG. A distinct JPEG comment identifies each simulated original.
   const pixel = Buffer.from(

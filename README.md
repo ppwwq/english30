@@ -2,7 +2,7 @@
 
 面向 iPad 和电脑的 HKDSE 英文练习网站，围绕原卷精听、逐词字幕、题目原音证据、阅读和写句练习。
 
-**[打开公开网站](https://english30-listening.philipwwq.workers.dev/#listening)** · 无需登录
+**[打开公开网站](https://philip.eng30.workers.dev/)** · 可作为游客练习
 
 ## 听力练习
 
@@ -54,7 +54,7 @@ npm start
 
 打开 <http://127.0.0.1:4173>。本地服务默认只监听本机，账号数据库和文件放在 `.local/accounts/`，可通过 `ENGLISH30_ACCOUNT_DIR` 指定测试目录。首次启动会从已核对的本机原图生成答题册所需的 JPEG。
 
-Git 仓库包含源码、字幕、题目数据和媒体清单，音频与试卷图片不放进 Git 历史。`assets:download` 从上述公开站点恢复约 **1.4 GB / 4,915 个媒体文件**，逐个校验大小与 SHA-256。中断后重新运行会复用已完整校验的文件，未完成的文件重新下载；不会从任意来源执行代码。站点若停止提供原文件，恢复会明确失败，不会把错误内容当成功。
+Git 仓库包含源码、字幕、题目数据和媒体清单，音频与试卷图片不放进 Git 历史。`assets:download` 从上述公开站点恢复约 **1.4 GB / 4,941 个媒体文件**，逐个校验大小与 SHA-256。中断后重新运行会复用已完整校验的文件，未完成的文件重新下载；不会从任意来源执行代码。站点若停止提供原文件，恢复会明确失败，不会把错误内容当成功。
 
 媒体恢复完成后，网站和全库测试可使用本地文件。没有自动离线缓存或仅凭 MP3 自动生成字幕的服务。
 
@@ -85,7 +85,7 @@ npm run test:accounts
 
 ## Cloudflare 发布
 
-先恢复媒体并通过本地检查。在要发布的 Cloudflare 账号内准备私有 R2 桶 `english30-private-answers`，保持公共访问关闭。SQLite Durable Object 使用英文站独立绑定。
+先恢复媒体并通过本地检查。账号、私有答卷页、笔迹和学习记录由英文站独立的 SQLite Durable Object 保存。相同原页共用一份，PDF 在下载时按保存版本生成。此配置可使用 Workers 免费方案。
 
 ```sh
 npx --yes wrangler@4.129.0 login
@@ -93,7 +93,7 @@ npm run check:cloudflare
 npm run deploy:cloudflare
 ```
 
-`wrangler.jsonc` 声明独立的 Durable Object 和 R2 绑定。发布到自己的账号前可改 Worker 名称。静态资源与小型 Worker 分开上传；后续只传内容变更的资源。音频由 Worker 补充真实 HTTP Range／HEAD 支持，以兼容 Safari 的媒体探测与拖动。
+`wrangler.jsonc` 声明独立的 Durable Object 绑定。部署前用 `wrangler whoami` 核对目标账号，并设置该账号的 Worker 名称。静态资源与 Worker 分开上传，后续只传内容有变更的资源。音频由 Worker 补充 HTTP Range 和 HEAD 支持，以兼容 Safari 的媒体探测与拖动。
 
 ## 来源与许可
 

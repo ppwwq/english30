@@ -3,7 +3,7 @@ import path from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
-const baseUrl = 'https://english30-listening.philipwwq.workers.dev/';
+const baseUrl = 'https://philip.eng30.workers.dev/';
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 
 async function rejectLinks(root, destination) {
