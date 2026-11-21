@@ -13,22 +13,52 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./shell.css" />
+    <link rel="stylesheet" href="./account.css" />
     <link rel="stylesheet" href="./training.css" />
     <link rel="stylesheet" href="./reading.css" />
     <link rel="stylesheet" href="./papers.css" />
     <link rel="stylesheet" href="./paper-practice.css" />
+    <link rel="stylesheet" href="./listening-screen.css" />
+    <link rel="stylesheet" href="./library-screen.css" />
+    <link rel="stylesheet" href="./study-screens.css" />
+    <link rel="stylesheet" href="./study-shell.css" />
   </head>
   <body>
-    <a class="skip-link" href="#questions">跳到答题区</a>
+    <a class="skip-link" href="#home-panel">跳到主要内容</a>
     <div id="app-shell" class="app-shell">
       <header class="app-header">
-        <a class="brand" href="#library" aria-label="English30 我的原卷">
+        <a class="brand" href="#home" aria-label="English30 主页">
           <svg class="brand-symbol" viewBox="0 0 32 32" aria-hidden="true">
             <path d="M6 13v6M11 8v16M16 4v24M21 10v12M26 13v6" />
           </svg>
           <span>English<span class="brand-number">30</span><small>英文训练台</small></span>
         </a>
-        <div class="lesson-picker">
+        <a id="home-avatar" class="home-avatar" href="#account" aria-label="登录账号" title="登录账号" hidden>
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M4.5 20c.6-4.1 3.2-6.4 7.5-6.4s6.9 2.3 7.5 6.4" />
+          </svg>
+        </a>
+        <a id="home-back" class="home-back" href="#home" hidden><span aria-hidden="true">←</span> 返回主页</a>
+        <button
+          id="change-paper"
+          class="button-quiet"
+          type="button"
+          aria-controls="practice-picker"
+          aria-expanded="false"
+        >
+          切换试卷
+        </button>
+        <div class="lesson-picker" hidden>
           <label for="lesson-select">练习材料</label>
           <select id="lesson-select" aria-label="选择练习材料">
             <option value="">正在载入…</option>
@@ -36,29 +66,70 @@
         </div>
       </header>
 
-      <nav class="main-navigation phase-switch" aria-label="训练模块">
-        <button type="button" data-view="library" aria-pressed="true">我的原卷</button>
-        <button type="button" data-view="listening" aria-pressed="false">听力练习</button>
-        <button type="button" data-view="reading" aria-pressed="false">阅读练习</button>
-        <button type="button" data-view="writing" aria-pressed="false">写句与复习</button>
-        <button type="button" data-view="today" aria-pressed="false">训练计划</button>
-      </nav>
+      <main id="home-panel" class="home-panel" aria-labelledby="home-title" hidden>
+        <h1 id="home-title" tabindex="-1">学习主页</h1>
+        <nav class="main-navigation" aria-label="训练模块">
+          <div class="home-practice">
+            <a class="home-listening" href="#listening" data-view="listening">
+              <span class="home-link-title">听力练习</span>
+              <small>首听作答、原音复盘与复测</small>
+              <span class="home-wave" aria-hidden="true"></span>
+              <span class="home-listening-foot">
+                <span lang="en">Part A + B1</span>
+                <span class="home-start">进入练习<span class="home-arrow" aria-hidden="true">→</span></span>
+              </span>
+            </a>
+            <div class="home-other-practice">
+              <a href="#reading" data-view="reading">
+                <svg class="home-subject-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M12 6c-2.6-1.7-6-2-9-1v13c3-1 6.4-.7 9 1 2.6-1.7 6-2 9-1V5c-3-1-6.4-.7-9 1Zm0 0v13"
+                  />
+                </svg>
+                <span class="home-link-title">阅读练习</span><small>阅读原文，定位答题证据</small>
+                <span class="home-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="#writing" data-view="writing">
+                <svg class="home-subject-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="./ink-icons.svg#pencil" />
+                </svg>
+                <span class="home-link-title">写句与复习</span><small>练习句式，重温学过的表达</small>
+                <span class="home-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="home-resources">
+            <a href="#library" data-view="library"
+              ><span class="home-link-title">我的原卷</span><small>按年份查阅试题、原音与评分参考</small></a
+            >
+            <a href="#account" data-view="account"
+              ><span class="home-link-title">我的答卷</span
+              ><small>登录账号，取回整卷、查看版本或继续作答</small></a
+            >
+            <a href="#today" data-view="today"
+              ><span class="home-link-title">训练计划</span><small>查看本次可选练习</small></a
+            >
+          </div>
+        </nav>
+      </main>
       <section class="session-savebar" aria-label="本次学习与保存">
-        <div>
-          <strong id="session-save-status" role="status" aria-live="polite">尚未提交</strong>
+        <details class="session-state" open>
+          <summary>
+            <strong id="session-save-status" role="status" aria-live="polite">尚未提交</strong>
+          </summary>
           <p id="session-save-detail">提交后的学习纪录，经你确认才保存到当前浏览器。</p>
-        </div>
+        </details>
         <div class="session-actions">
           <button id="session-review" type="button" class="button-secondary">复习与备份</button
           ><button id="session-save" type="button" class="button-primary" disabled>保存本次学习纪录</button>
         </div>
       </section>
-      <div id="practice-picker" class="practice-picker" hidden></div>
+      <main id="account-host" hidden></main>
       <main id="training-host" class="training-host" hidden></main>
       <main id="reading-host" class="reading-host" hidden></main>
       <main id="paper-host" class="paper-host" hidden></main>
 
-      <main id="listening-panel" class="workspace">
+      <main id="listening-panel" class="workspace" hidden>
         <section class="session-heading" aria-labelledby="lesson-title">
           <div class="session-title">
             <h1 id="lesson-title">准备你的第一段精听</h1>
@@ -77,6 +148,7 @@
           </div>
         </section>
 
+        <div id="practice-picker" class="practice-picker" hidden></div>
         <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">
           先读右侧题目，准备好后开始播放。
         </div>
@@ -91,6 +163,7 @@
           <section class="transcript-panel panel" aria-labelledby="transcript-heading">
             <div class="panel-header">
               <h2 id="transcript-heading"><span id="mode-label">首听作答</span></h2>
+              <div id="paper-mode-slot"></div>
               <button
                 class="caption-grip"
                 type="button"
@@ -335,8 +408,7 @@
       </footer>
       <audio id="audio" preload="metadata" playsinline></audio>
     </div>
-    <script type="module" src="./app.mjs"></script>
-    <script type="module" src="./app-shell.mjs"></script>
+    <script type="module" src="./bootstrap.mjs"></script>
     <script type="module" src="./ui-motion.mjs"></script>
   </body>
 </html>

@@ -55,6 +55,58 @@ try {
       );
     }
   }
+  const zoom = btn('调整纸面缩放');
+  const zoomSlider = page.getByRole('slider', { name: '纸面缩放比例' });
+  const changeRange = (slider, value) =>
+    slider.evaluate((node, v) => {
+      node.value = v;
+      node.dispatchEvent(new Event('input', { bubbles: true }));
+    }, String(value));
+  await zoom.click();
+  assert.equal(await zoomSlider.inputValue(), '80');
+  await btn('恢复适合宽度').click();
+  const baseWidth = (await svg.boundingBox()).width;
+  for (const percent of [35, 73, 173, 300]) {
+    await changeRange(zoomSlider, percent);
+    assert.ok(Math.abs((await svg.boundingBox()).width / baseWidth - percent / 100) < 0.025);
+    assert.equal(await img.boundingBox().then((b) => b.width), await svg.boundingBox().then((b) => b.width));
+  }
+  await btn('恢复适合宽度').click();
+  await zoom.click();
+  const viewport = await page.locator('.practice-page-wrap').boundingBox();
+  const touchPoint = (kind, id, x) =>
+    svg.dispatchEvent('pointer' + kind, {
+      pointerType: 'touch',
+      pointerId: id,
+      button: 0,
+      clientX: viewport.x + x,
+      clientY: viewport.y + 130,
+    });
+  if (useWebKit) {
+    await touchPoint('down', 20, 220);
+    await touchPoint('down', 21, 320);
+    await touchPoint('move', 21, 410);
+    await touchPoint('up', 21, 410);
+    await touchPoint('up', 20, 220);
+  } else {
+    const cdp = await page.context().newCDPSession(page);
+    const finger = (id, x) => ({ id, x: viewport.x + x, y: viewport.y + 130 });
+    await cdp.send('Input.dispatchTouchEvent', {
+      type: 'touchStart',
+      touchPoints: [finger(20, 220), finger(21, 320)],
+    });
+    await cdp.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [finger(20, 220), finger(21, 410)],
+    });
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await cdp.detach();
+  }
+  await zoom.click();
+  assert.equal(await zoomSlider.inputValue(), '190');
+  assert.equal(await strokes.count(), 0, 'pinch does not leave ink');
+  await btn('恢复适合宽度').click();
+  await zoom.click();
   await draw(
     [
       [30, 50],
@@ -75,11 +127,24 @@ try {
     [133, 120],
   ]);
   assert.equal(await strokes.count(), 2, 'partial eraser cuts one stroke into two fragments');
-  await btn('撤销').click();
+  await btn('其他工具').click();
+  const menu = page.locator('#ink-menu-tools');
+  await menu.getByRole('button', { name: '撤销', exact: true }).click();
   assert.equal(await strokes.count(), 1);
-  await btn('重做').click();
+  await menu.getByRole('button', { name: '重做', exact: true }).click();
+  await btn('其他工具').click();
   assert.equal(await strokes.count(), 2);
   await btn('橡皮设置').click();
+  for (const [slot, value] of [
+    [1, 4],
+    [2, 11],
+    [3, 28],
+  ]) {
+    await btn('橡皮档位 ' + slot).click();
+    await changeRange(page.getByRole('slider', { name: '橡皮半径 · 档 ' + slot }), value);
+  }
+  await btn('橡皮档位 2').click();
+  assert.equal(await page.getByRole('slider', { name: '橡皮半径 · 档 2' }).inputValue(), '11');
   await btn('整笔擦除').click();
   await draw([
     [70, 80],
@@ -108,6 +173,18 @@ try {
   await btn('删除选中').click();
   assert.equal(await strokes.count(), 1);
   await btn('荧光笔').click();
+  await btn('荧光笔粗细').click();
+  for (const [slot, value] of [
+    [1, 7],
+    [2, 16],
+    [3, 32],
+  ]) {
+    await btn('荧光笔档位 ' + slot).click();
+    await changeRange(page.getByRole('slider', { name: '荧光笔宽 · 档 ' + slot }), value);
+  }
+  await btn('荧光笔档位 2').click();
+  assert.equal(await page.getByRole('slider', { name: '荧光笔宽 · 档 2' }).inputValue(), '16');
+  await btn('荧光笔粗细').click();
   await draw([
     [60, 150],
     [180, 150],

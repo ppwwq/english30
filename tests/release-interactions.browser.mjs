@@ -105,6 +105,7 @@ try {
     'drag retains gesture-start playback even if evidence ends while held',
   );
   await page.locator('#audio').evaluate((a) => a.pause());
+  await page.locator('#change-paper').click();
   await page.locator('#practice-task').selectOption('3');
   await ready();
   await page.locator('.question-input').first().fill('my Task 3 answer');

@@ -1,0 +1,509 @@
+/* Hallmark · English30 study screens · paper workspaces, manuscript type, and an agenda set in minutes. */
+.rd-workspace,
+.training-host {
+  --study-gutter: clamp(16px, 3.4vw, 52px);
+  --study-pad: clamp(18px, 2.2vw, 32px);
+  --study-gap: clamp(14px, 1.8vw, 24px);
+  width: min(100%, 88rem);
+  padding: clamp(24px, 3vw, 44px) var(--study-gutter) 40px;
+  margin-inline: auto;
+}
+.training-host {
+  max-width: 80rem;
+}
+.rd-workspace {
+  --rd-paper: var(--surface);
+  --rd-line: var(--line);
+  --rd-muted: var(--ink-soft);
+}
+:is(.rd-workspace, .training-host) :focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.rd-heading,
+.training-heading {
+  margin: 0 0 clamp(18px, 2vw, 28px);
+}
+.rd-heading h1,
+.training-heading h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(30px, 3.6vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+.rd-heading p,
+.training-heading p {
+  line-height: 1.55;
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+}
+.rd-heading > label,
+.rd-workspace .rd-kicker {
+  font-size: 14px;
+  font-weight: 650;
+}
+.rd-heading select,
+.training-field select,
+.study-review .training-tabs select {
+  color: var(--ink);
+  font-weight: 400;
+}
+.rd-workspace .rd-paper,
+.training-host .training-paper {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: none;
+  padding: var(--study-pad);
+}
+.rd-workspace .rd-reading-grid,
+.rd-workspace .rd-integrated-grid {
+  gap: var(--study-gap);
+}
+.rd-workspace button:not(.rd-sentence) {
+  border-radius: 999px;
+}
+.rd-workspace > .rd-source {
+  margin: 0 0 9px;
+}
+.rd-workspace .rd-toolbar {
+  gap: 6px 12px;
+  border-block: 1px solid var(--line);
+  padding-block: 8px;
+  margin: 0 0 var(--study-gap);
+}
+.rd-toolbar .rd-phase {
+  color: var(--ink);
+  background: var(--lilac);
+  font-weight: 650;
+}
+.rd-toolbar [data-rd-clock] {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-inline-end: auto;
+}
+.rd-workspace .rd-passage {
+  top: 14px;
+  max-height: calc(100dvh - 38px);
+}
+.rd-passage .rd-passage-head h3 {
+  font: 500 clamp(27px, 3.4vw, 44px)/1.12 var(--reading);
+  letter-spacing: -0.035em;
+  margin: 7px 0 0;
+}
+.rd-passage .rd-passage-head {
+  margin-bottom: 0;
+  padding-bottom: 16px;
+}
+.rd-passage .rd-evidence-context {
+  padding: 10px 0;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.rd-evidence-context > p {
+  margin: 0 0 5px;
+}
+.rd-passage .rd-evidence-context .rd-current-prompt {
+  font-size: 17px;
+}
+.rd-evidence-actions [data-rd-action] {
+  font-size: 13px;
+}
+.rd-workspace .rd-paragraph h4 {
+  font: italic 15px/1.5 var(--reading);
+}
+.rd-workspace .rd-question {
+  padding: clamp(18px, 2vw, 26px);
+  background: var(--surface);
+  border-color: var(--line);
+}
+.rd-workspace .rd-question.is-active {
+  border-color: var(--ink);
+  box-shadow: inset 4px 0 var(--lilac);
+}
+.rd-question .rd-question-title {
+  font-size: 14px;
+}
+.rd-question .rd-question-title strong {
+  color: var(--ink);
+  font-size: 17px;
+}
+.rd-workspace .rd-question > p[lang='en'] {
+  margin: 13px 0;
+  font: 500 clamp(20px, 1.7vw, 25px)/1.42 var(--reading);
+}
+.rd-question .rd-option {
+  padding-inline: 9px;
+  border-radius: 7px;
+}
+.rd-question .rd-option:has(input:checked) {
+  background: var(--surface-muted);
+}
+.rd-workspace .rd-submit-block {
+  padding: 8px 0 20px;
+}
+.rd-workspace .rd-workbench-nav {
+  background: var(--canvas-bg);
+  padding: 6px 0;
+  margin: 0 0 var(--study-gap);
+}
+.rd-integrated-workspace .rd-toolbar {
+  margin-bottom: 3px;
+}
+.rd-integrated-workspace .rd-task-brief {
+  border-inline-start: 5px solid var(--lilac);
+  margin-bottom: var(--study-gap);
+}
+.rd-task-brief p[lang='en'] {
+  font: 18px/1.62 var(--reading);
+  max-width: 86ch;
+}
+.rd-workspace .rd-data-file > h3 {
+  font: 500 30px/1.2 var(--reading);
+}
+.rd-workspace .rd-audio-notes h3,
+.rd-workspace .rd-draft-heading h3 {
+  font-size: 23px;
+}
+.rd-workspace .rd-composition {
+  margin-top: var(--study-gap);
+}
+
+.study-writing-layout,
+.study-schedule,
+.study-review-workspace {
+  display: grid;
+  align-items: start;
+  gap: var(--study-gap);
+}
+.study-writing-layout {
+  grid-template-columns: minmax(12.5rem, 1fr) minmax(0, 3.6fr);
+}
+.study-writing-tools,
+.study-planner,
+.study-review,
+.study-review-workspace .training-backup,
+.study-agenda {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.study-writing-tools {
+  padding: 8px 12px 12px;
+}
+.study-writing-tools .training-tabs {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+}
+.study-writing-tools .training-tabs button {
+  text-align: left;
+  font-size: 15px;
+  min-height: 44px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: 0;
+}
+.study-writing-tools .training-tabs [aria-pressed='true'] {
+  background: var(--lilac);
+  color: var(--ink);
+  font-weight: 700;
+}
+.study-writing-tools .training-tabs button:last-child:not([aria-pressed]) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 0;
+}
+.study-writing-tools .training-field {
+  margin: 6px 0;
+  padding: 15px 3px 0;
+  border-top: 1px solid var(--line);
+}
+.study-writing-tools .training-field select {
+  width: 100%;
+}
+.study-writing-tools .writing-steps {
+  display: grid;
+  gap: 0;
+  margin: 12px 0 0;
+  padding: 0 3px;
+  border: 0;
+}
+.study-writing-tools .writing-steps li {
+  padding: 5px 8px;
+  border-inline-start: 2px solid var(--line);
+}
+.study-writing-tools .writing-steps li[aria-current] {
+  border-color: var(--ink);
+  box-shadow: none;
+}
+.study-writing-work,
+.study-agenda,
+.study-review {
+  min-width: 0;
+}
+.study-writing-work .training-paper {
+  margin: 0;
+}
+.training-paper > h2 {
+  font-size: clamp(23px, 2.4vw, 32px);
+  line-height: 1.2;
+}
+.training-paper .original-sentence {
+  padding-block: 13px;
+  margin-block: 14px;
+  font-size: clamp(23px, 2.3vw, 31px);
+  line-height: 1.48;
+}
+.training-paper .training-practice-kind {
+  border-inline-start-color: var(--lilac);
+}
+.training-paper :is(.training-field, .training-field > textarea) {
+  max-width: 100%;
+}
+.training-paper .training-field > textarea {
+  line-height: 1.75;
+}
+.training-paper .training-field > textarea:focus-visible {
+  outline-color: var(--ink);
+}
+.training-host .training-savebar {
+  margin-top: 28px;
+  padding-block: 12px;
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+}
+
+.study-schedule {
+  grid-template-columns: minmax(0, 1.8fr) minmax(18.75rem, 1fr);
+}
+.study-agenda .training-agenda {
+  margin: 0;
+}
+.study-agenda .training-agenda > li {
+  grid-template-columns: minmax(3.1rem, auto) minmax(0, 1fr) auto;
+  column-gap: clamp(12px, 1.65vw, 25px);
+  padding: clamp(18px, 2.2vw, 30px);
+}
+.study-agenda .training-agenda > li:last-child,
+.study-review .training-review-row:last-child {
+  border-bottom: 0;
+}
+.study-agenda .training-minutes {
+  color: var(--ink);
+  font: 500 clamp(26px, 3.5vw, 45px)/1 var(--reading);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.study-agenda .training-minutes small {
+  display: block;
+  color: var(--ink-soft);
+  margin-top: 5px;
+  font: 500 12px/1.35 var(--ui);
+}
+.study-agenda .training-agenda h2 {
+  font-size: clamp(17px, 1.7vw, 22px);
+}
+.study-agenda .training-agenda p {
+  font-size: 14px;
+}
+.study-agenda .training-agenda .button-primary {
+  white-space: nowrap;
+}
+.study-agenda li:not(:first-child) .button-primary {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.study-planner {
+  padding: 0 var(--study-pad) var(--study-pad);
+}
+.study-planner .training-settings {
+  border-top: 0;
+  margin: 0 0 18px;
+  padding: 4px 0;
+}
+.study-planner .training-settings-body .training-field {
+  min-width: 0;
+}
+.study-planner .training-calendar {
+  padding: 0;
+}
+.study-planner h2 {
+  font-size: 23px;
+}
+.study-planner .training-day-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+}
+.study-planner .training-day {
+  padding: 3px 0;
+  min-height: 44px;
+  border: 0;
+  border-radius: 7px;
+  font-size: 13px;
+  color: var(--ink);
+}
+.study-planner .training-day:not([aria-pressed='true']) {
+  background: var(--surface-muted);
+}
+
+.study-review-workspace {
+  grid-template-columns: minmax(0, 2.7fr) minmax(14.5rem, 1fr);
+}
+.study-review-workspace .training-backup {
+  margin: 0;
+  padding: var(--study-pad);
+}
+.study-review-workspace .training-backup h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+.study-review .training-tabs {
+  margin: 0;
+  padding: 12px var(--study-pad);
+  border-bottom: 1px solid var(--line);
+}
+.study-review .training-tabs select {
+  max-width: 100%;
+  min-height: 44px;
+  font: inherit;
+  font-size: 15px;
+  margin-inline-start: auto;
+  padding: 6px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+.study-review .training-review-list {
+  margin: 0;
+}
+.study-review .empty-copy,
+.study-review .training-review-row {
+  padding: var(--study-pad);
+  margin: 0;
+}
+.study-review .training-review-row {
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.study-review .training-review-row .training-actions {
+  max-width: none;
+  justify-content: start;
+}
+.training-host .training-statistics {
+  margin-top: 28px;
+  padding: 20px 0 0;
+}
+.training-host .training-table-scroll {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.training-host .training-table thead th {
+  background: var(--surface-muted);
+}
+.training-host .training-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.training-host .training-history {
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 810px) and (max-width: 999px) {
+  .rd-heading {
+    flex-direction: row;
+    align-items: center;
+  }
+  .rd-heading > label {
+    min-width: 230px;
+  }
+  .rd-workspace .rd-reading-grid {
+    grid-template-columns: minmax(0, 1.07fr) minmax(0, 1fr);
+  }
+  .rd-workspace .rd-passage {
+    position: sticky;
+  }
+  .rd-question .rd-question-title {
+    flex-direction: column;
+    align-items: start;
+  }
+  .rd-question .rd-question-title > span {
+    max-width: none;
+  }
+  .study-writing-layout {
+    grid-template-columns: minmax(12rem, 1fr) minmax(0, 2.75fr);
+  }
+  .study-agenda .training-agenda > li {
+    grid-template-columns: 3rem 1fr;
+    row-gap: 10px;
+  }
+  .study-agenda .training-agenda li > button {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+@media (max-width: 809px) {
+  .study-writing-layout,
+  .study-schedule,
+  .study-review-workspace {
+    grid-template-columns: 1fr;
+  }
+  .study-writing-tools .training-tabs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .study-writing-tools .training-tabs button {
+    padding-inline: 12px;
+  }
+  .study-writing-tools .writing-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 5px;
+  }
+  .study-writing-tools .writing-steps li {
+    border: 0;
+    border-bottom: 2px solid transparent;
+  }
+  .study-writing-tools .writing-steps li[aria-current] {
+    border-color: var(--ink);
+  }
+  .rd-workspace .rd-passage {
+    position: static;
+    max-height: 67vh;
+  }
+  .study-planner .training-day-grid {
+    grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .rd-workspace,
+  .training-host {
+    padding-inline: 14px;
+  }
+  .rd-workspace .rd-toolbar {
+    gap: 5px 9px;
+  }
+  .rd-toolbar [data-rd-clock] {
+    font-size: 13px;
+  }
+  .rd-evidence-actions {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .study-agenda .training-agenda > li {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+  .study-agenda .training-agenda li > button {
+    grid-column: 2;
+  }
+  .study-review .training-tabs {
+    padding-inline: 12px;
+    gap: 5px;
+  }
+  .study-review .training-tabs select {
+    margin-inline-start: 0;
+  }
+}

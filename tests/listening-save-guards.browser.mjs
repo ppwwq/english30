@@ -80,6 +80,7 @@ try {
       await ready(page, 'listening');
       await submit(page);
       assert.equal(await page.locator('#session-save').isDisabled(), false);
+      await page.locator('#change-paper').click();
       await page.locator('#practice-task').selectOption('2');
       await page.waitForFunction(
         () =>

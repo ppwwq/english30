@@ -1,0 +1,330 @@
+/* Listening uses the original sheet, its answer sheet and the recording as three distinct surfaces. */
+body[data-view='listening'] {
+  --listening-gutter: clamp(18px, 3.4vw, 52px);
+  --listening-pad: clamp(14px, 1.7vw, 25px);
+  --listening-rule: color-mix(in srgb, var(--ink) 22%, var(--canvas-bg));
+}
+#listening-panel {
+  max-width: 88rem;
+  padding: clamp(20px, 2.1vw, 32px) var(--listening-gutter) 30px;
+}
+#listening-panel .session-heading {
+  gap: 18px;
+  margin: 0 0 14px;
+}
+#lesson-title {
+  font-size: clamp(28px, 3vw, 43px);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  margin: 0 0 5px;
+}
+.listening-year {
+  font: 500 1.13em/1 var(--reading);
+  letter-spacing: -0.045em;
+  margin-right: 0.12em;
+}
+#lesson-meta {
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+#listening-panel .phase-switch {
+  background: color-mix(in srgb, var(--ink) 10%, var(--canvas-bg));
+}
+#listening-panel .practice-picker {
+  align-items: center;
+  gap: 5px clamp(14px, 2.1vw, 32px);
+  padding: 5px 0;
+  border-block: 1px solid var(--listening-rule);
+  margin: 0;
+}
+#listening-panel .practice-picker label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 0 1 auto;
+  font-weight: 600;
+}
+#listening-panel .practice-picker select {
+  width: auto;
+  min-width: 5.1em;
+  border-color: transparent;
+  border-bottom-color: var(--ink-soft);
+  border-radius: 0;
+  background-color: transparent;
+  padding-inline: 4px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+}
+#practice-integrated {
+  margin-inline-start: auto;
+}
+#listening-panel .practice-picker select:hover {
+  background-color: var(--surface);
+}
+#listening-panel .status {
+  min-height: 0;
+  padding: 10px 0 12px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+#listening-panel .status:is(.is-error, .error) {
+  border-inline-start: 3px solid var(--error);
+  background: var(--surface);
+  color: var(--error);
+  padding-inline: 10px;
+  margin-block: 6px;
+}
+#listening-panel .study-grid:not(:has(.paper-writing-sheet)) {
+  gap: clamp(12px, 1.5vw, 22px);
+}
+#listening-panel .panel:not(.is-floating) {
+  border-color: var(--line);
+  box-shadow: none;
+}
+#listening-panel .panel:not(.is-floating) > .panel-header {
+  min-height: 56px;
+  padding: 5px var(--listening-pad);
+}
+#listening-panel .panel-header h2 {
+  font-size: clamp(18px, 1.5vw, 22px);
+  letter-spacing: -0.035em;
+}
+#listening-panel .question-panel > .panel-header {
+  background: color-mix(in srgb, var(--lilac) 17%, var(--surface));
+}
+#listening-panel .panel-header .quiet-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+#practice-sources > details {
+  min-width: 0;
+}
+#practice-sources > details > summary {
+  display: list-item;
+  min-height: 44px;
+  padding: 9px 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 650;
+}
+#review-paper-panel #practice-sources > details > summary {
+  font-size: 20px;
+}
+#practice-sources > details > .practice-document-tools {
+  align-items: center;
+  gap: 5px;
+  margin: 0 0 8px;
+}
+#practice-sources > details .practice-document-tools > :is(select, .practice-document-row) {
+  flex: 1 1 12rem;
+  width: auto;
+  min-width: 0;
+}
+#practice-sources > details .practice-document-tools :is(select, input) {
+  border-radius: 8px;
+  border-color: var(--ink-soft);
+  color: var(--ink);
+  background-color: var(--surface);
+  font-size: 15px;
+}
+#practice-sources > details .practice-document-tools input {
+  width: 3.5rem;
+  padding-inline: 7px;
+}
+#practice-sources > details .practice-document-tools > span {
+  color: var(--ink-soft);
+  font: 14px/1.3 var(--ui);
+  font-variant-numeric: tabular-nums;
+}
+#practice-sources > details .practice-document-tools .ink-icon-control {
+  border-color: transparent;
+}
+#practice-sources
+  > details
+  .practice-document-tools
+  .ink-icon-control:is(:hover, [aria-pressed='true']):not(:disabled) {
+  background: var(--pine-light);
+}
+#practice-sources > details .practice-page-wrap {
+  border: 1px solid var(--line);
+  background: var(--surface-muted);
+}
+#practice-sources > details > .fine-print {
+  margin: 6px 0;
+  font-size: 12px;
+}
+#listening-panel #questions {
+  padding-inline: var(--listening-pad);
+}
+#listening-panel .question-card .question-label {
+  line-height: 1.45;
+  font-size: 16px;
+  color: var(--ink);
+}
+.listening-question-number {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+#listening-panel :is(.question-input, .self-check, #subtitle-offset) {
+  border-color: var(--ink-soft);
+}
+#listening-panel .question-card :is(input, textarea):not([readonly]):not(:disabled) {
+  background: var(--surface);
+}
+#listening-panel .question-card :is(input, textarea)::placeholder {
+  color: var(--ink-soft);
+}
+#listening-panel .question-card select.error-reason {
+  border-color: var(--ink-soft);
+}
+#listening-panel #question-pages {
+  background: color-mix(in srgb, var(--lilac) 7%, var(--surface));
+  padding-inline: var(--listening-pad);
+}
+#question-page-range {
+  font-variant-numeric: tabular-nums;
+}
+#listening-panel .question-actions .fine-print {
+  font-size: 13px;
+}
+#listening-panel .review-navigation {
+  border-block: 1px solid var(--listening-rule);
+  gap: clamp(14px, 2vw, 30px);
+  margin: 0 0 14px;
+}
+#listening-panel .review-navigation a {
+  text-underline-offset: 0.23em;
+  text-decoration-color: var(--ink-soft);
+  font-size: 14px;
+}
+#listening-panel .question-feedback .reference-answer {
+  font: 500 clamp(19px, 1.65vw, 24px)/1.4 var(--reading);
+  margin: 5px 0 10px;
+  color: var(--ink);
+}
+#listening-panel #original-responses h2 {
+  margin: 14px 0 6px;
+  font-size: 18px;
+}
+#listening-panel .question-feedback .evidence-link {
+  font-size: 15px;
+}
+#listening-panel .transcript:has(.task-context) {
+  min-height: 0;
+  max-height: none;
+  padding: var(--listening-pad);
+}
+#listening-panel .transcript:has(.task-context) .empty-state {
+  align-items: flex-start;
+  text-align: start;
+  min-height: 0;
+  padding: 0 0 14px;
+}
+#listening-panel .empty-state h3 {
+  margin: 0 0 4px;
+}
+#listening-panel .empty-state p {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+#listening-panel .task-context {
+  border-block-start: 1px solid var(--line);
+  padding: 15px 0 0;
+  color: var(--ink);
+}
+#listening-panel .task-context p:not(.fine-print) {
+  font: 400 clamp(18px, 1.7vw, 24px)/1.5 var(--reading);
+}
+#listening-panel .task-context .fine-print {
+  font: 13px/1.55 var(--ui);
+  margin: 9px 0 0;
+}
+#listening-panel .transcript:has(.listening-paper-instructions) {
+  border-top: 1px solid var(--line);
+  padding: 0 var(--listening-pad);
+}
+.listening-paper-instructions > summary {
+  padding-block: 10px;
+  min-height: 44px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.listening-paper-instructions > p {
+  margin: 2px 0 12px;
+}
+.listening-paper-instructions .task-context {
+  margin-bottom: 12px;
+}
+#listening-panel .paper-writing-header {
+  background: var(--surface);
+}
+#listening-panel .paper-writing-sheet > .paper-read-only {
+  display: block;
+  margin: 0;
+  padding: 5px 10px;
+  color: var(--ink);
+  background: var(--pine-light);
+  font-size: 14px;
+}
+#listening-panel .paper-writing-sheet > .ink-tools {
+  background: color-mix(in srgb, var(--canvas-bg) 38%, var(--surface));
+}
+#listening-panel .ink-rack > button[aria-pressed='true'] {
+  background: var(--pine-light);
+  border-color: var(--lilac);
+}
+body[data-view='listening'] .player {
+  border-top: 1px solid var(--listening-rule);
+  background: var(--surface);
+  box-shadow: 0 -3px 15px color-mix(in srgb, var(--ink) 4%, transparent);
+}
+body[data-view='listening'] .player-inner {
+  max-width: calc(88rem - 2 * var(--listening-gutter));
+}
+body[data-view='listening'] .player .time {
+  min-width: 3em;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+body[data-view='listening'] .player select {
+  border-radius: 999px;
+  background-color: var(--surface);
+}
+body[data-view='listening'] .rate-control label {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+body[data-view='listening'] #mark-moment {
+  color: var(--ink);
+  border: 1px solid var(--lilac);
+  background: var(--pine-light);
+  font-weight: 600;
+}
+body[data-view='listening'] #mark-moment:not(:disabled):hover {
+  background: var(--lilac);
+}
+body[data-view='listening'] #seek {
+  accent-color: var(--ink);
+}
+body[data-view='listening'] :is(#listening-panel, .player) :focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+@media (min-width: 760px) and (max-width: 900px) {
+  #listening-panel .session-heading {
+    flex-direction: row;
+    align-items: center;
+  }
+  #listening-panel .phase-switch {
+    width: auto;
+  }
+}

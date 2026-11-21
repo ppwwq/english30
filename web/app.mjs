@@ -11,6 +11,9 @@ import {
   materialExposure,
   selfAssessAnswer,
 } from './core.mjs';
+import { bookFor, loadBooks } from './answer-books.mjs';
+import { paperSaveInfo } from './account-render.mjs';
+import { activeAccount, scopedKey } from './account-scope.mjs';
 import { mountPaperPractice } from './paper-practice.mjs';
 import { inkIcon } from './ink-icons.mjs';
 import { taskQuestionPages } from './paper-question-pages.mjs';
@@ -26,7 +29,7 @@ let catalogue = [
   { id: '2025-task1-intro', title: '入门选段 · 第 1–4 题', url: './lessons/2025-task1-intro.json' },
   { id: '2025-task1', title: '完整访谈 · 第 1–13 题', url: './lessons/2025-task1.json' },
 ];
-const storageKey = 'english30-records-v1';
+const storageKey = scopedKey('english30-records-v1');
 const listeningEvents = new EventTarget();
 let paperPractice,
   paperCatalogueError = null;
@@ -37,6 +40,10 @@ let navigateTo = () => {},
   glossary = [];
 let requestSave = () => status('保存入口正在准备，请稍候。');
 let focusedDrill;
+let cloudBook = null,
+  getWorkspace = () => null,
+  cloudContinuing = false,
+  touchedInk = new Set();
 let answerMode = 'type',
   inkPages = {},
   paperPage = null;
@@ -99,6 +106,8 @@ function checkpoint() {
     session,
     drafts,
     inkPages,
+    touchedInk: [...touchedInk],
+    cloudContinuing,
     answerMode,
     paperPage,
     hasStarted,
@@ -182,6 +191,9 @@ async function loadLesson(data) {
     objectURL = null;
   }
   lesson = data;
+  cloudBook = data.paper ? getWorkspace(data.paper) : null;
+  cloudContinuing = false;
+  touchedInk = new Set();
   priorExposure = exposureFor(data.id) !== 'fresh';
   session = createSession(lesson);
   drafts = {};
@@ -196,11 +208,23 @@ async function loadLesson(data) {
   revision = 0;
   saveRevision = null;
   savedRecord = null;
+  if (cloudBook && !recoveringPaper) {
+    const own = cloudBook.originals.filter((p) => p.part === data.paper.part);
+    inkPages = Object.fromEntries(
+      own.filter((p) => cloudBook.ink[p.key]).map((p) => [p.key, structuredClone(cloudBook.ink[p.key])]),
+    );
+    if (Object.keys(inkPages).length) {
+      answerMode = 'ink';
+      priorExposure = true;
+    }
+  }
   if (data.paper && recoveringPaper?.session.lessonId === data.id) {
     const draft = recoveringPaper;
     session = draft.session;
     drafts = draft.drafts || {};
     inkPages = draft.inkPages;
+    touchedInk = new Set(draft.touchedInk || []);
+    cloudContinuing = !!draft.cloudContinuing;
     answerMode = draft.answerMode === 'ink' ? 'ink' : 'type';
     paperPage = draft.paperPage;
     hasStarted = !!draft.hasStarted;
@@ -217,9 +241,9 @@ async function loadLesson(data) {
   audioReady = false;
   wordsById = new Map();
   for (const s of lesson.sentences) for (const w of s.words) wordsById.set(w.id, { word: w, sentence: s });
-  $('lesson-title').textContent = lesson.title;
+  renderLessonTitle(lesson.title);
   $('lesson-meta').textContent = lesson.paper
-    ? `${lesson.paper.year} · Part ${lesson.paper.part} · Task ${lesson.paper.task} · ${formatTime(lesson.duration)}${lesson.paper.sharedAudio ? ' · Part B 共用原音' : ' · Task 原音分段'}`
+    ? `Task ${lesson.paper.task}${lesson.paper.sharedAudio ? ' 使用 Part B 共用原音' : ' 原音分段'}　${formatTime(lesson.duration)}`
     : `第 ${lesson.questions[0].number}–${lesson.questions.at(-1).number} 题 · ${formatTime(lesson.duration)} · 原卷对话节选`;
   paperPractice?.setEntry(data.id);
   $('time-total').textContent = formatTime(lesson.duration);
@@ -257,7 +281,12 @@ async function loadLesson(data) {
 }
 
 function chooseLesson(entry) {
-  activeLessonLoad = performLessonChoice(entry);
+  const area = document.querySelector('.study-grid');
+  area.inert = true;
+  const guarded = performLessonChoice(entry).finally(() => {
+    if (activeLessonLoad === guarded) area.inert = false;
+  });
+  activeLessonLoad = guarded;
   return activeLessonLoad;
 }
 async function performLessonChoice(entry) {
@@ -273,6 +302,7 @@ async function performLessonChoice(entry) {
   if (session) renderControls();
   for (const id of ['play-pause', 'seek', 'mark-moment', 'submit-answers']) $(id).disabled = true;
   if (entry.missingAudio) {
+    document.body.dataset.listeningPhase = 'first';
     $('question-pages').hidden = true;
     $('transcript').before($('practice-sources'), $('original-responses'));
     $('review-paper-panel').hidden = true;
@@ -287,7 +317,7 @@ async function performLessonChoice(entry) {
     saveRevision = null;
     clearHighlights();
     paperPractice?.setEntry(entry.id);
-    $('lesson-title').textContent = entry.title;
+    renderLessonTitle(entry.title);
     $('lesson-meta').textContent =
       `${entry.year} · ${entry.variant} · Part ${entry.part} · Task ${entry.task} · 无匹配原音`;
     $('time-current').textContent = '0:00';
@@ -341,12 +371,14 @@ function render() {
   document.body.dataset.paperAnswer = lesson.paper ? mode : '';
   paperPractice?.renderSources(lesson, session.phase, {
     mode,
+    originals: cloudBook?.originals,
     ink: review() ? submittedInk : inkPages,
     readOnly: review(),
     page: paperPage,
     setMode(next) {
       if (next === answerMode) return;
       answerMode = next;
+      if (next === 'ink') loadBooks().catch(() => {});
       touch();
       render();
     },
@@ -359,7 +391,10 @@ function render() {
       if (previous !== questionPage) $('questions').scrollTop = 0;
       queueCheckpoint();
     },
-    changed: touch,
+    changed(key) {
+      if (key) touchedInk.add(key);
+      touch();
+    },
   });
   renderTranscript();
   renderQuestions();
@@ -371,6 +406,16 @@ function render() {
   queueCheckpoint();
   listeningEvents.dispatchEvent(new Event('change'));
 }
+function renderLessonTitle(title) {
+  const heading = $('lesson-title');
+  const match = /^(\d{4})\s+(.*)$/.exec(title);
+  if (!match) {
+    heading.textContent = title;
+    return;
+  }
+  heading.replaceChildren(el('span', 'listening-year', match[1]), document.createTextNode(' ' + match[2]));
+}
+
 function renderTranscript() {
   clearHighlights();
   wordElements = new Map();
@@ -379,13 +424,10 @@ function renderTranscript() {
   target.replaceChildren();
   $('review-help').hidden = !review();
   if (!review()) {
-    empty(
-      target,
-      session.phase === 'first' ? '先让耳朵走一遍' : '关上字幕，再听一次',
-      session.phase === 'first'
-        ? '读题、听原音，按你听到的内容作答。没听清时，留下时间标记；提交后再逐词回听。'
-        : '本轮重新作答，旧答案和卡词暂时收起。首听结果会保留，复测结果单独记录。',
-    );
+    const first = session.phase === 'first';
+    const guidance = first
+      ? '听原音后作答。没听清时，可以在播放器留下时间标记。'
+      : '本轮重新作答。首听结果会保留，复测结果单独记录。';
     const context = el('div', 'task-context');
     if (lesson.introduction || lesson.instructions)
       context.append(el('p', '', lesson.introduction || lesson.instructions));
@@ -399,7 +441,15 @@ function renderTranscript() {
           : '这是原卷对话节选练习；可暂停，不等同于完整考试模拟。',
       ),
     );
-    target.append(context);
+    if (lesson.paper) {
+      const instructions = el('details', 'listening-paper-instructions');
+      instructions.open = Boolean(lesson.paper.questionContainsAnswers);
+      instructions.append(el('summary', '', first ? '听前说明' : '复测说明'), el('p', '', guidance), context);
+      target.append(instructions);
+    } else {
+      empty(target, first ? '听前读题' : '无字幕复测', guidance);
+      target.append(context);
+    }
     return;
   }
   for (const sentence of lesson.sentences) {
@@ -472,7 +522,11 @@ function renderQuestions() {
     const card = el('article', 'question-card');
     card.dataset.questionId = q.id;
     card.dataset.questionNumber = q.number;
-    const label = el('label', 'question-label', `${q.label || q.number}. ${q.prompt}`);
+    const label = el('label', 'question-label');
+    label.append(
+      el('span', 'listening-question-number', `${q.label || q.number}.`),
+      document.createTextNode(' ' + q.prompt),
+    );
     label.htmlFor = `answer-${q.id}`;
     label.lang = 'en';
     card.append(label);
@@ -758,6 +812,8 @@ function syncQuestionPage() {
 
 function renderControls() {
   const isReview = review();
+  if (document.body.dataset.listeningPhase !== session.phase)
+    $('change-paper').setAttribute('aria-expanded', 'false');
   document.body.dataset.listeningPhase = session.phase;
   $('mode-label').textContent = phaseNames[session.phase];
   for (const phase of ['first', 'review', 'retest']) {
@@ -1474,7 +1530,18 @@ $('submit-answers').addEventListener('click', () => {
   audio.pause();
   const handwritten = lesson.paper && answerMode === 'ink';
   session = submitAnswers(lesson, session, handwritten ? {} : drafts, handwritten ? { ink: inkPages } : {});
-  Object.assign(session.attempts.at(-1), {
+  const attempt = session.attempts.at(-1);
+  if (lesson.paper) {
+    const originals = cloudBook?.originals || bookFor(lesson.paper)?.pages || [];
+    const written = Object.keys(attempt.ink || {});
+    attempt.sourceVersions = Object.fromEntries(
+      originals.filter((p) => written.includes(p.key)).map((p) => [p.key, p.originalHash]),
+    );
+    if (cloudContinuing && cloudBook?.records[lesson.id]?.attempts.at(-1)?.phase === 'retest')
+      attempt.phase = 'retest';
+  }
+  Object.assign(attempt, {
+    startedAt: new Date(attemptStart ?? Date.now()).toISOString(),
     elapsedSeconds: attemptStart == null ? 0 : Math.round((Date.now() - attemptStart) / 1000),
     navigationUsed,
     assisted: navigationUsed || (session.attempts.at(-1).phase === 'first' && priorExposure),
@@ -1494,6 +1561,11 @@ for (const phase of ['first', 'review', 'retest'])
     }
     try {
       session = switchPhase(session, phase);
+      if (phase === 'retest') {
+        cloudContinuing = false;
+        touchedInk.clear();
+        cloudBook = null;
+      }
       if (phase === 'retest') answerMode = session.attempts.at(-1)?.ink ? 'ink' : 'type';
       resetPlayer();
       audio.currentTime = 0;
@@ -1633,6 +1705,49 @@ function waitForAudio() {
   });
 }
 export const listeningBridge = {
+  setWorkspaceReader(fn) {
+    getWorkspace = fn;
+  },
+  async continuePaper(manifest, choice) {
+    await listeningReady;
+    if (hasUnsavedListening() && !confirm('打开这份答卷会替换当前听力草稿，继续吗？')) return false;
+    const entry = catalogue.find((e) => e.id === choice.lessonId);
+    if (!entry) throw Error('找不到这一版答卷的练习材料。');
+    await chooseLesson(entry);
+    if (lesson?.id !== entry.id) throw Error('未能打开这一份原卷。');
+    cloudBook = manifest;
+    cloudContinuing = true;
+    touchedInk = new Set();
+    const record = manifest.records[choice.lessonId],
+      attempt = record?.attempts.at(-1);
+    session = createSession(lesson);
+    session.marks = structuredClone(record?.marks || {});
+    session.moments = structuredClone(record?.moments || []);
+    session.timingOffset = record?.timingOffset || 0;
+    drafts = Object.fromEntries(
+      Object.entries(attempt?.results || {}).map(([id, result]) => [
+        id,
+        attempt.rawAnswers?.[id] ?? result.answer ?? '',
+      ]),
+    );
+    const own = manifest.originals.filter((p) => p.part === lesson.paper.part);
+    inkPages = Object.fromEntries(
+      own.filter((p) => manifest.ink[p.key]).map((p) => [p.key, structuredClone(manifest.ink[p.key])]),
+    );
+    answerMode = attempt ? (attempt.ink ? 'ink' : 'type') : Object.keys(inkPages).length ? 'ink' : 'type';
+    priorExposure = !!record || exposureFor(entry.id) !== 'fresh';
+    hasStarted = !!record;
+    attemptStart = null;
+    revision = 0;
+    saveRevision = null;
+    savedRecord = null;
+    const initial = lesson.paper.questionPage;
+    paperPage = { sourceId: lesson.paper.questionSourceId, page: initial, questionPage: initial };
+    render();
+    checkpoint();
+    status(record ? '已打开保存版本，修改后提交可保存为新版。' : '已打开同册的新 Task，播放原音后作答。');
+    return true;
+  },
   setSaveHandler(fn) {
     requestSave = fn;
   },
@@ -1655,6 +1770,9 @@ export const listeningBridge = {
     return {
       record,
       label: lesson.title,
+      paperInfo: activeAccount ? paperSaveInfo(lesson) : null,
+      touched: [...touchedInk],
+      continuing: cloudContinuing,
       acknowledge() {
         if (session === savingSession) {
           savedRecord = record;

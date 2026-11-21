@@ -78,10 +78,8 @@ try {
   await page.locator('#practice-task').selectOption('6');
   await page.locator('#practice-integrated').click();
   await page.locator('[data-rd-action="integrated-submit"]').waitFor();
-  assert.equal(
-    await page.locator('.main-navigation [data-view="listening"]').getAttribute('aria-pressed'),
-    'true',
-  );
+  assert.equal(await page.locator('body').getAttribute('data-view'), 'integrated');
+  assert.equal(await page.locator('#home-back').isVisible(), true);
   await page.locator('#session-review').click();
   await page.waitForFunction(() => document.body.dataset.view === 'review');
   assert.deepEqual(errors, []);

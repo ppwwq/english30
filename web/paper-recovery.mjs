@@ -1,7 +1,8 @@
+import { scopedKey } from './account-scope.mjs';
 import { validatePaperInk } from './core.mjs';
 
-const draftKey = 'english30-paper-tab-v1';
-const exposurePrefix = 'english30-seen:';
+const draftKey = scopedKey('english30-paper-tab-v1');
+const exposurePrefix = scopedKey('english30-seen:');
 
 export function readPaperDraft() {
   try {

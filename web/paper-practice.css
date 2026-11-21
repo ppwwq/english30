@@ -261,6 +261,46 @@ body[data-paper-answer='ink'] .question-actions #submission-note {
   background: var(--ink);
   color: var(--surface);
 }
+#paper-mode-slot:empty,
+#change-paper {
+  display: none;
+}
+#paper-mode-slot {
+  margin-inline-start: auto;
+}
+#paper-mode-slot .paper-answer-modes {
+  flex-wrap: nowrap;
+  margin: 0;
+  gap: 0;
+}
+#paper-mode-slot button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+}
+#paper-mode-slot button svg {
+  box-sizing: content-box;
+  width: 18px;
+  height: 18px;
+  padding: 7px;
+  border-radius: 9px;
+}
+#paper-mode-slot button[aria-pressed='true'] svg {
+  background: var(--ink);
+  color: var(--surface);
+}
+body[data-view='listening'][data-listening-mode='papers'][data-listening-phase='review'] {
+  & #change-paper {
+    display: block;
+  }
+  &:has(#change-paper[aria-expanded='false']) #practice-picker {
+    display: none;
+  }
+}
 @media (min-width: 760px) {
   body[data-paper-answer='type']:not([data-listening-phase='review']) .study-grid {
     align-items: stretch;
@@ -379,6 +419,7 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   container-type: inline-size;
 }
 .paper-writing-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -386,6 +427,77 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   gap: 2px 12px;
   padding: 0 7px 4px;
   border-bottom: 1px solid var(--line);
+}
+.paper-zoom-control {
+  display: flex;
+}
+.paper-zoom-panel {
+  position: absolute;
+  z-index: 8;
+  top: 100%;
+  right: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  max-width: calc(100% - 8px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 4px 14px #29231818;
+}
+.paper-zoom-panel[hidden] {
+  display: none;
+}
+.paper-zoom-panel input,
+.ink-preset-adjust input {
+  min-width: 0;
+  height: 44px;
+  accent-color: var(--ink);
+}
+.paper-zoom-panel input {
+  width: clamp(94px, 26vw, 190px);
+}
+.paper-zoom-panel output,
+.ink-preset-adjust output {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.paper-zoom-panel output {
+  min-width: 4ch;
+  text-align: right;
+}
+.paper-zoomable {
+  touch-action: none;
+  overflow-anchor: none;
+}
+.paper-zoomable .paper-page-stage {
+  margin-inline: auto;
+}
+.ink-tools #ink-menu-spec {
+  flex-wrap: wrap;
+  width: max-content;
+  max-width: min(275px, 100%);
+}
+.ink-preset-adjust {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  width: 100%;
+  padding: 5px 7px 0;
+  font-size: 13px;
+  border-top: 1px solid var(--line);
+}
+.ink-preset-adjust input {
+  width: 100%;
+  grid-column: 1/-1;
+}
+.ink-tools #ink-menu-tools {
+  flex-wrap: wrap;
+}
+.ink-menu-history {
+  border-inline-end: 1px solid var(--line);
+  padding-inline-end: 5px;
 }
 .paper-writing-header .practice-document-tools {
   flex: 1;
@@ -542,9 +654,6 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   .paper-writing-header {
     padding-inline: 0;
     gap: 0;
-  }
-  .paper-writing-header .paper-answer-modes button[aria-label='手写作答'] {
-    display: none;
   }
   .paper-writing-sheet .paper-writing-header :is(.practice-document-tools, .paper-answer-modes) {
     gap: 0;
@@ -754,6 +863,38 @@ body[data-paper-answer='ink'][data-listening-phase='review']
   .study-grid:has(#review-paper-panel:not([hidden])) {
   grid-template-columns: minmax(17rem, 1fr) minmax(0, 1.7fr);
   grid-template-areas: 'answers sheet' 'transcript transcript';
+}
+@media (min-width: 760px) {
+  .study-grid:has(#review-paper-panel:not([hidden])) {
+    & > :is(#review-paper-panel, .answer-column) {
+      align-self: stretch;
+    }
+    & #review-paper-panel {
+      display: flex;
+      flex-direction: column;
+    }
+    & .question-panel {
+      flex: 1;
+    }
+    & #original-responses {
+      flex: 1 0 auto;
+    }
+    & #questions {
+      flex: 1 1 0;
+      min-height: min(40svh, 24rem);
+      max-height: none;
+    }
+    & #questions:has(.question-card:not([hidden]) ~ .question-card:not([hidden])) {
+      display: flex;
+      flex-direction: column;
+      & > .question-card:not([hidden]) {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
 }
 .study-grid:has(#review-paper-panel:not([hidden])) {
   & #review-paper-panel {

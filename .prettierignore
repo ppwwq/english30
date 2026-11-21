@@ -1,5 +1,6 @@
 web/lessons/
 web/papers/practice/
+web/papers/answer-books.json
 web/vendor/perfect-freehand/
 package-lock.json
 .openai/

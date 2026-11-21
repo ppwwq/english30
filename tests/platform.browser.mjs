@@ -25,6 +25,7 @@ const check = async (name, fn) => {
   report.cases.push({ name, passed: true });
 };
 const nav = async (view) => {
+  await page.locator('#home-back').click();
   await page.locator(`.main-navigation [data-view="${view}"]`).tap();
   await page.waitForFunction((v) => document.body.dataset.view === v, view);
   if (view === 'listening') {
@@ -39,35 +40,20 @@ try {
   await page.goto(base + '/#today');
   await page.locator('#training-save').waitFor();
   await check(
-    'five-view navigation settles its highlight on the actual active item at tablet and phone widths',
+    'home opens all five modules and each module has a return link at tablet and phone widths',
     async () => {
       for (const width of [1080, 810, 390]) {
         await page.setViewportSize({ width, height: width === 810 ? 1080 : 810 });
         for (const view of ['library', 'listening', 'reading', 'writing', 'today']) {
           await nav(view);
           await page.waitForTimeout(1250);
-          const geometry = await page.locator('.main-navigation').evaluate((track) => {
-            const b = track.querySelector('button[aria-pressed=true]'),
-              t = track.querySelector('.rubber-thumb');
-            const values = getComputedStyle(t)
-              .clipPath.match(/inset\((.+?) round/)[1]
-              .split(' ')
-              .map(parseFloat);
-            return {
-              left: b.offsetLeft - 5,
-              clipLeft: values[3] ?? values[1] ?? values[0],
-              right: b.offsetLeft - 5 + b.offsetWidth,
-              clipRight: track.clientWidth - 10 - values[1],
-              scroll: document.documentElement.scrollWidth,
-              client: document.documentElement.clientWidth,
-            };
-          });
+          assert.equal(await page.locator('.main-navigation').isVisible(), false);
+          assert.equal(await page.locator('#home-back').isVisible(), true);
           assert.ok(
-            Math.abs(geometry.left - geometry.clipLeft) < 2 &&
-              Math.abs(geometry.right - geometry.clipRight) < 2,
-            JSON.stringify({ view, width, ...geometry }),
+            await page.evaluate(
+              () => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1,
+            ),
           );
-          assert.ok(geometry.scroll <= geometry.client + 1);
         }
       }
       await page.setViewportSize({ width: 1080, height: 810 });

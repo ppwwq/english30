@@ -3,14 +3,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const context = await browser.newContext({
   viewport: { width: 1080, height: 810 },
@@ -34,10 +32,12 @@ const ready = () =>
   );
 try {
   await page.goto(base + '/');
+  await page.locator('#home-panel').waitFor();
+  await page.locator('.main-navigation [data-view=library]').click();
   await page.locator('#paper-year').waitFor();
-  await check('library opens first and plan stays last without writing a study record', async () => {
+  await check('library opens from home and plan stays last without writing a study record', async () => {
     assert.equal(await page.locator('body').getAttribute('data-view'), 'library');
-    assert.equal(await page.locator('.main-navigation>button').last().getAttribute('data-view'), 'today');
+    assert.equal(await page.locator('.main-navigation a').last().getAttribute('data-view'), 'today');
     assert.equal(await page.evaluate(() => localStorage.getItem('english30-records-v1')), null);
   });
   await check('year, variant, part and task open their real question page', async () => {
@@ -148,10 +148,10 @@ try {
   await check('leaving during review-mark loading cannot restart hidden audio', async () => {
     await page.evaluate(() => {
       document.querySelector('[data-mark]').click();
-      document.querySelector('.main-navigation [data-view=writing]').click();
+      document.querySelector('#home-back').click();
     });
     await page.waitForTimeout(350);
-    assert.equal(await page.locator('body').getAttribute('data-view'), 'writing');
+    assert.equal(await page.locator('body').getAttribute('data-view'), 'home');
     assert.equal(await page.locator('#paper-audio').evaluate((a) => a.paused), true);
     await page.locator('.main-navigation [data-view=library]').tap();
     await ready();
@@ -174,6 +174,7 @@ try {
     assert.match(await page.locator('#paper-audio-status').textContent(), /片段|载入/);
     await page.locator('#paper-review').tap();
     assert.equal(await page.locator('#paper-transcript-panel').isVisible(), false);
+    await page.locator('#home-back').click();
     await page.locator('.main-navigation [data-view=writing]').tap();
     assert.equal(await page.locator('#paper-audio').evaluate((a) => a.paused), true);
   });
@@ -213,6 +214,7 @@ try {
     },
   );
   await check('rapid source changes settle on the last year and stop old playback', async () => {
+    await page.locator('#home-back').click();
     await page.locator('.main-navigation [data-view=library]').tap();
     await page.locator('#paper-year').selectOption('2014');
     await page.locator('#paper-year').selectOption('2013');
@@ -255,6 +257,7 @@ try {
   await check('tablet portrait and phone controls stay within the viewport', async () => {
     for (const width of [810, 390]) {
       await page.setViewportSize({ width, height: 1080 });
+      await page.locator('#home-back').click();
       await page.locator('.main-navigation [data-view=library]').tap();
       await page.waitForTimeout(100);
       assert.ok(

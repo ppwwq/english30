@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), 'web');
+let accounts;
 const mime = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css',
@@ -16,12 +17,25 @@ const mime = {
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
   '.webp': 'image/webp',
+  '.jpg': 'image/jpeg',
   '.webmanifest': 'application/manifest+json',
   '.pdf': 'application/pdf',
   '.woff2': 'font/woff2',
 };
 const server = http.createServer(async (req, res) => {
   try {
+    const route = new URL(req.url, 'http://localhost').pathname;
+    if (/^\/api\/(account|papers|learning|images|ink|books)(\/|$)/.test(route)) {
+      accounts ||= import('./scripts/local-accounts.mjs').then((m) =>
+        m.createLocalAccounts(
+          root,
+          process.env.ENGLISH30_ACCOUNT_DIR || path.join(root, '..', '.local', 'accounts'),
+        ),
+      );
+      return await (
+        await accounts
+      )(req, res);
+    }
     if (!['GET', 'HEAD'].includes(req.method)) {
       res.writeHead(405);
       return res.end();
@@ -71,4 +85,4 @@ const server = http.createServer(async (req, res) => {
 });
 const port = Number(process.env.PORT || 4173),
   host = process.env.HOST || '127.0.0.1';
-server.listen(port, host, () => console.log(`English30: http://${host}:${port}`));
+server.listen(port, host, () => console.log(`English30: http://${host}:${server.address().port}`));

@@ -3,18 +3,25 @@ import assert from 'node:assert/strict';
 const require = createRequire(
   process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
-const { chromium } = require('playwright');
-const browser = await chromium.launch({
+const { chromium, webkit } = require('playwright');
+const engine = process.env.TEST_ENGINE === 'webkit' ? webkit : chromium;
+const browser = await engine.launch({
   headless: true,
-  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: engine === chromium ? process.env.CHROMIUM_EXECUTABLE : undefined,
 });
 const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
 const page = await context.newPage();
 page.on('dialog', (d) => d.accept());
 try {
-  await page.goto(`${process.env.TEST_URL || 'http://127.0.0.1:4174'}/#listening`);
+  await page.goto(process.env.TEST_URL || 'http://127.0.0.1:4174');
+  await page.locator('#home-panel').waitFor();
+  await page.locator('.main-navigation [data-view=listening]').click();
   await page.waitForFunction(() => !document.querySelector('#play-pause').disabled);
   await page.locator('#practice-image').evaluate((img) => img.decode());
+  const header = await page.locator('.transcript-panel > .panel-header').boundingBox();
+  const modes = await page.locator('#paper-mode-slot button').last().boundingBox();
+  assert.ok(header.x + header.width - modes.x - modes.width < 32);
+  assert.ok(modes.y >= header.y && modes.y + modes.height <= header.y + header.height);
   for (const width of [390, 810, 1129, 1246, 1600]) {
     await page.setViewportSize({ width, height: 1198 });
     const paper = await page.locator('.transcript-panel').boundingBox();
@@ -52,6 +59,24 @@ try {
   await page.locator('.question-input').first().fill('7000');
   await page.locator('#play-pause').click();
   await page.locator('#submit-answers').click();
+  assert.equal(await page.locator('#practice-picker').isVisible(), false);
+  assert.equal(await page.locator('.main-navigation').isVisible(), false);
+  for (const width of [1150, 1080, 810, 390]) {
+    await page.setViewportSize({ width, height: 810 });
+    const paper = await page.locator('#review-paper-panel').boundingBox();
+    const answers = await page.locator('.question-panel').boundingBox();
+    if (width < 760) assert.ok(answers.y + answers.height <= paper.y);
+    else {
+      assert.ok(Math.abs(answers.y - paper.y) < 1);
+      assert.ok(Math.abs(answers.y + answers.height - paper.y - paper.height) < 1);
+    }
+  }
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.locator('#home-back').click();
+  await page.locator('#home-panel').waitFor();
+  await page.goBack();
+  await page.locator('#review-paper-panel').waitFor();
+  assert.equal(await page.locator('#practice-picker').isVisible(), false);
   assert.equal(await page.locator('#original-responses .question-input').count(), 13);
   assert.equal(await page.locator('#original-responses .question-input').first().inputValue(), '7000');
   assert.equal(await page.locator('#questions .question-input').count(), 0);

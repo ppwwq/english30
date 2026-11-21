@@ -24,12 +24,14 @@ async function scenario(name, reveal, wholePaper = false) {
     await page.goto(base + (wholePaper ? '/#listening' : '/#listening/practice'));
     await ready(page);
     await page.locator('.question-input').first().fill('my original draft');
-    await page.locator('.main-navigation > button[data-view="library"]').click();
+    await page.locator('#home-back').click();
+    await page.locator('.main-navigation [data-view="library"]').click();
     await page.locator('#paper-review').waitFor();
     await page.waitForFunction(() => !document.getElementById('paper-play').disabled);
     await reveal(page);
     if (wholePaper) {
-      await page.locator('.main-navigation > button[data-view="listening"]').click();
+      await page.locator('#home-back').click();
+      await page.locator('.main-navigation [data-view="listening"]').click();
     } else {
       await page.evaluate(() => {
         location.hash = 'listening/practice';

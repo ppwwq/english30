@@ -63,6 +63,10 @@ try {
     (await box('.reference-answer')).x < (await paper.boundingBox()).x,
     'handwriting review answers on left',
   );
+  const reviewPaper = await box('#review-paper-panel');
+  const reviewAnswers = await box('.question-panel');
+  assert.ok(Math.abs(reviewAnswers.y - reviewPaper.y) < 1);
+  assert.ok(Math.abs(reviewAnswers.y + reviewAnswers.height - reviewPaper.y - reviewPaper.height) < 1);
   const first = page.locator('#questions .question-card').first();
   assert.ok(await first.locator('.evidence-link').first().isVisible());
   await first.locator('.evidence-link').first().click();

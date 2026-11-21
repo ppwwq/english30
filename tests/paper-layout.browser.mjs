@@ -13,7 +13,7 @@ const browser = await chromium.launch({
   executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const base = new URL(process.env.TEST_URL || 'http://127.0.0.1:4174');
-base.hash = 'listening';
+base.hash = 'home';
 const report = { cases: [], errors: [], physicalDevice: false };
 const reportPath =
   process.argv.find((arg) => arg.startsWith('--report='))?.slice(9) ||
@@ -47,22 +47,20 @@ try {
         const page = await context.newPage();
         page.on('pageerror', (error) => report.errors.push(error.message));
         await page.goto(base.href);
-        await page.waitForFunction(
-          () => document.querySelector('#play-pause') && !document.querySelector('#play-pause').disabled,
-        );
+        await page.locator('#home-panel').waitFor();
         await page.evaluate(async () => {
           await document.fonts.ready;
           await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
         });
-        const labels = await page.locator('.main-navigation.phase-switch').evaluate((track) => {
-          const buttons = [...track.querySelectorAll(':scope > button')];
-          return [...track.querySelectorAll('.rubber-copy')].map((copy, index) => {
+        const labels = await page.locator('.main-navigation').evaluate((track) => {
+          return [...track.querySelectorAll('a')].map((link) => {
+            const title = link.querySelector('.home-link-title');
             const range = document.createRange();
-            range.selectNodeContents(copy);
+            range.selectNodeContents(title);
             const text = range.getBoundingClientRect(),
-              button = buttons[index].getBoundingClientRect();
+              button = link.getBoundingClientRect();
             return {
-              label: copy.textContent,
+              label: title.textContent,
               text: { left: text.left, right: text.right },
               button: { left: button.left, right: button.right },
             };
@@ -70,7 +68,10 @@ try {
         });
         result.viewports.push({ width, labels });
         await context.close();
-        assert.equal(labels.length, 5);
+        assert.deepEqual(
+          labels.map((item) => item.label),
+          ['听力练习', '阅读练习', '写句与复习', '我的原卷', '我的答卷', '训练计划'],
+        );
         for (const label of labels)
           assert.ok(
             label.text.left >= label.button.left - 1 && label.text.right <= label.button.right + 1,

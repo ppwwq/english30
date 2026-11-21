@@ -32,6 +32,7 @@ const check = async (name, fn) => {
 const saved = () => page.evaluate(() => JSON.parse(localStorage.getItem('english30-study-v1')));
 const state = () => page.evaluate(async () => (await import('/training-core.mjs')).studyStore.getState());
 const nav = async (view) => {
+  await page.locator('#home-back').click();
   await page.locator(`.main-navigation [data-view="${view}"]`).click();
   await page.waitForFunction((v) => document.body.dataset.view === v, view);
   if (view === 'listening')

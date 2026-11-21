@@ -141,6 +141,10 @@ export function submitAnswers(lesson, session, answers, { ink } = {}) {
     phase: session.phase,
     submittedAt: new Date().toISOString(),
     results,
+    ...(lesson.paper &&
+      !ink && {
+        rawAnswers: Object.fromEntries(lesson.questions.map((q) => [q.id, String(answers[q.id] ?? '')])),
+      }),
     ...(ink && { ink: structuredClone(validatePaperInk(ink)) }),
   };
   return { ...session, phase: 'review', attempts: [...session.attempts, attempt] };

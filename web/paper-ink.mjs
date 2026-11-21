@@ -14,11 +14,12 @@ const settings = {
   mode: 'pen',
   finger: 'pan',
   eraseMode: 'partial',
-  radius: 12,
+  eraseSizes: [6, 12, 22],
+  eraseSlot: 1,
   brushes: {
     pen: { size: 2, color: inkColors[0] },
     pencil: { size: 2, color: inkColors[0] },
-    marker: { size: 2, color: inkColors[4] },
+    marker: { size: 2, color: inkColors[4], widths: [10, 17, 25] },
     line: { size: 2, color: inkColors[0] },
   },
 };
@@ -27,7 +28,7 @@ function element(name, attrs = {}) {
   for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
   return node;
 }
-function renderStroke(value, aspect) {
+export function renderStroke(value, aspect) {
   const s = readStroke(value);
   let node;
   if (typeof value === 'string') {
@@ -113,7 +114,7 @@ export function mountPaperInk(stage, tools, writing) {
   function replace(values) {
     if (values.length) writing.ink[pageKey] = values;
     else delete writing.ink[pageKey];
-    writing.changed();
+    writing.changed(pageKey);
     paint();
     sync();
   }
@@ -200,7 +201,7 @@ export function mountPaperInk(stage, tools, writing) {
   }
   function erase(a, b) {
     const g = gesture;
-    const radius = (settings.radius * 1000) / g.box.width;
+    const radius = (settings.eraseSizes[settings.eraseSlot] * 1000) / g.box.width;
     const next = g.values.flatMap((s) =>
       eraseStroke(s, a, b, radius, aspect, settings.eraseMode === 'whole'),
     );
@@ -246,7 +247,7 @@ export function mountPaperInk(stage, tools, writing) {
         element('circle', {
           cx: g.last[0],
           cy: g.last[1] * aspect,
-          r: (settings.radius * 1000) / g.box.width,
+          r: (settings.eraseSizes[settings.eraseSlot] * 1000) / g.box.width,
           class: 'ink-eraser-tip',
         }),
       );
@@ -311,7 +312,7 @@ export function mountPaperInk(stage, tools, writing) {
       g.stroke = {
         tool: g.kind,
         color: brush.color,
-        width: (g.kind === 'marker' ? [10, 17, 25] : [1.8, 3.2, 5.5])[brush.size - 1],
+        width: (brush.widths || [1.8, 3.2, 5.5])[brush.size - 1],
         points: g.points,
       };
     sample(e);
@@ -364,6 +365,10 @@ export function mountPaperInk(stage, tools, writing) {
     if (finger?.id === e.pointerId) finger = null;
     if (gesture?.id === e.pointerId) cancel();
   };
+  svg.addEventListener('ink-cancel-touch', () => {
+    finger = null;
+    cancel();
+  });
   function keydown(e) {
     if (writing.readOnly || !pageKey || e.target.closest('select,input')) return;
     if ((e.metaKey || e.ctrlKey) && ['z', 'y'].includes(e.key.toLowerCase())) {

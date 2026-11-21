@@ -252,7 +252,6 @@ export async function mountTraining({ host, bridge }) {
     saveButton.id = 'training-save';
     saveButton.disabled = !unsaved;
     toolbar.append(saveButton);
-    host.append(toolbar);
     const status = create('p', 'status training-status', message);
     status.id = 'training-status';
     status.setAttribute('role', 'status');
@@ -268,6 +267,7 @@ export async function mountTraining({ host, bridge }) {
     if (view === 'today') renderToday();
     else if (view === 'review') renderReview();
     else renderWriting();
+    host.append(toolbar);
     bridge.onSessionChange?.();
   }
   function heading(title, description) {
@@ -322,7 +322,6 @@ export async function mountTraining({ host, bridge }) {
       ),
     );
     settings.append(settingsBody);
-    host.append(settings);
     const materials = listening().catalogue || [];
     const freshMaterial = materials.find(
       (item) => item.paperPractice && !item.missingAudio && item.exposure === 'fresh',
@@ -336,7 +335,8 @@ export async function mountTraining({ host, bridge }) {
     const task = (title, time, detail, button, fn) => {
       if (!time) return;
       const li = create('li');
-      const number = create('span', 'training-minutes', `${time} 分钟`);
+      const number = create('span', 'training-minutes', String(time));
+      number.append(create('small', '', ' 分钟'));
       const text = create('div');
       text.append(create('h2', '', title), create('p', '', detail));
       li.append(number, text, action(button, fn, 'button-primary'));
@@ -388,7 +388,6 @@ export async function mountTraining({ host, bridge }) {
       '查看复习',
       () => navigate('review'),
     );
-    host.append(tasks);
     const calendar = create('section', 'training-calendar');
     calendar.append(
       create('h2', '', '30 天安排'),
@@ -408,6 +407,7 @@ export async function mountTraining({ host, bridge }) {
         () => {
           selectedDate = date;
           render();
+          host.querySelector('.training-day[aria-pressed="true"]')?.focus({ preventScroll: true });
         },
         'training-day',
       );
@@ -417,7 +417,14 @@ export async function mountTraining({ host, bridge }) {
       days.append(b);
     }
     calendar.append(days);
-    host.append(calendar);
+    const schedule = create('div', 'study-schedule');
+    const daily = create('section', 'study-agenda');
+    daily.setAttribute('aria-label', '当天的练习');
+    daily.append(tasks);
+    const planner = create('div', 'study-planner');
+    planner.append(settings, calendar);
+    schedule.append(daily, planner);
+    host.append(schedule);
     renderStats();
   }
   function renderWriting() {
@@ -425,7 +432,12 @@ export async function mountTraining({ host, bridge }) {
       '写句与复习',
       '从自己的错误出发，先写出来，再看提示。自由表达由你按任务自核，不把逐字不同当成错误。',
     );
+    const layout = create('div', 'study-writing-layout');
+    const tools = create('div', 'study-writing-tools');
+    const work = create('div', 'study-writing-work');
     const modes = create('div', 'training-tabs');
+    modes.setAttribute('role', 'group');
+    modes.setAttribute('aria-label', '写作练习类型');
     for (const [id, title] of [
       ['sentence', '错句与换境'],
       ['dictation', '原句听写'],
@@ -437,22 +449,25 @@ export async function mountTraining({ host, bridge }) {
         setMode(id);
         if (!paragraphDraft) paragraphStarted = Date.now();
         render();
+        host.querySelector('[data-training-mode][aria-pressed="true"]')?.focus({ preventScroll: true });
       });
       b.setAttribute('aria-pressed', String(mode === id));
       b.dataset.trainingMode = id;
       modes.append(b);
     }
     modes.append(action('待复习与备份', () => navigate('review')));
-    host.append(modes);
-    if (mode === 'sentence') renderSentence();
-    else if (mode === 'dictation') renderDictation();
-    else renderParagraph();
+    tools.append(modes);
+    layout.append(tools, work);
+    host.append(layout);
+    if (mode === 'sentence') renderSentence(work, tools);
+    else if (mode === 'dictation') renderDictation(work);
+    else renderParagraph(work);
   }
-  function renderSentence() {
+  function renderSentence(work, tools) {
     const e = exercise();
     if (!e) {
-      host.append(create('p', '', '暂无写句材料。可在下面添加自己的错句。'));
-      renderPersonalForm();
+      work.append(create('p', '', '暂无写句材料。可在下面添加自己的错句。'));
+      renderPersonalForm(work);
       return;
     }
     const row = create('label', 'training-field');
@@ -463,14 +478,14 @@ export async function mountTraining({ host, bridge }) {
     select.value = e.id;
     select.addEventListener('change', () => resetExercise(select.value));
     row.append(select);
-    host.append(row);
+    tools.append(row);
     const progress = create('ol', 'writing-steps');
     ['自己修句', '可选跟打', '关提示复测', '换境检验'].forEach((title, i) => {
       const li = create('li', '', `${i + 1} ${title}`);
       if (i === step) li.setAttribute('aria-current', 'step');
       progress.append(li);
     });
-    host.append(progress);
+    tools.append(progress);
     const sheet = create('section', 'training-paper');
     sheet.append(create('h2', '', e.title || '个人错句'));
     sheet.append(
@@ -676,8 +691,8 @@ export async function mountTraining({ host, bridge }) {
       }
       sheet.append(feedback);
     }
-    host.append(sheet);
-    renderPersonalForm();
+    work.append(sheet);
+    renderPersonalForm(work);
   }
   function checkField(label, checked, onChange, id) {
     const wrap = create('label', 'training-checkbox');
@@ -707,7 +722,7 @@ export async function mountTraining({ host, bridge }) {
       );
     target.append(list);
   }
-  function renderPersonalForm() {
+  function renderPersonalForm(work) {
     const details = create('details', 'training-settings');
     details.append(create('summary', '', '加入自己的错句'));
     const form = create('form', 'training-personal-form');
@@ -743,7 +758,7 @@ export async function mountTraining({ host, bridge }) {
       }
     });
     details.append(form);
-    host.append(details);
+    work.append(details);
   }
   function dictationSentences() {
     const state = listening();
@@ -757,15 +772,12 @@ export async function mountTraining({ host, bridge }) {
         lessonId: state.lesson.id,
       }));
   }
-  function renderDictation() {
+  function renderDictation(work) {
     const sentences = dictationSentences();
     if (!sentences.length) {
-      host.append(
-        create(
-          'div',
-          'training-paper',
-          '这里还没有可听写的已复盘句子。先完成一组原题，提交后进入复盘；只想练一句，也可以打开原卷，选择听不清的片段做短句听写。',
-        ),
+      const empty = create('section', 'training-paper');
+      const options = create('div', 'training-actions');
+      options.append(
         action('完成一组原题', () => navigate('listening', { mode: 'papers' }), 'button-primary'),
         action(
           '打开原卷选一句听写',
@@ -773,6 +785,12 @@ export async function mountTraining({ host, bridge }) {
           'button-secondary',
         ),
       );
+      empty.append(
+        create('h2', '', '还没有可听写的原句'),
+        create('p', '', '做完一组原题并进入复盘后，就能在这里听写原句。也可以到原卷选一句开始。'),
+        options,
+      );
+      work.append(empty);
       return;
     }
     const chosen = sentences.find((s) => s.id === dictationId) || sentences[0];
@@ -891,7 +909,7 @@ export async function mountTraining({ host, bridge }) {
       finishActions(feedback);
       sheet.append(feedback);
     }
-    host.append(sheet);
+    work.append(sheet);
   }
   function speak(text) {
     if (!('speechSynthesis' in window)) {
@@ -912,7 +930,7 @@ export async function mountTraining({ host, bridge }) {
     utterance.onerror = () => notice('朗读未能开始，可按中文意思继续练习。', true);
     speechSynthesis.speak(utterance);
   }
-  function renderParagraph() {
+  function renderParagraph(work) {
     const paper = mode === 'paper2';
     const actualTask = content.paper2?.find((p) => p.id === paperId);
     const paperTaskId =
@@ -1139,7 +1157,7 @@ export async function mountTraining({ host, bridge }) {
       );
       finishActions(sheet);
     }
-    host.append(sheet);
+    work.append(sheet);
   }
   function reviewItems() {
     const state = studyStore.getState();
@@ -1247,11 +1265,14 @@ export async function mountTraining({ host, bridge }) {
       const b = action(title, () => {
         reviewFilter = id;
         render();
+        host.querySelector('.study-review [aria-pressed="true"]')?.focus({ preventScroll: true });
       });
       b.setAttribute('aria-pressed', String(reviewFilter === id));
       filters.append(b);
     }
-    host.append(filters);
+    const workspace = create('div', 'study-review-workspace');
+    const review = create('section', 'study-review');
+    review.setAttribute('aria-label', '复习项目');
     const type = create('select');
     type.setAttribute('aria-label', '复习类型');
     for (const [id, title] of [
@@ -1267,8 +1288,10 @@ export async function mountTraining({ host, bridge }) {
     type.addEventListener('change', () => {
       reviewType = type.value;
       render();
+      host.querySelector('.study-review select')?.focus({ preventScroll: true });
     });
-    host.append(type);
+    filters.append(type);
+    review.append(filters);
     const list = create('div', 'training-review-list');
     const items = reviewItems().filter(
       (i) =>
@@ -1379,9 +1402,11 @@ export async function mountTraining({ host, bridge }) {
       row.append(text, controls);
       list.append(row);
     }
-    host.append(list);
+    review.append(list);
+    workspace.append(review);
+    renderBackup(workspace);
+    host.append(workspace);
     renderStats();
-    renderBackup();
   }
   function renderStats() {
     const saved = studyStore.getSavedState(),
@@ -1460,7 +1485,7 @@ export async function mountTraining({ host, bridge }) {
     section.append(recent);
     host.append(section);
   }
-  function renderBackup() {
+  function renderBackup(workspace) {
     const section = create('section', 'training-backup');
     section.append(
       create('h2', '', '完整备份'),
@@ -1492,7 +1517,7 @@ export async function mountTraining({ host, bridge }) {
     exportButton.id = 'training-export';
     buttons.append(exportButton);
     section.append(buttons);
-    host.append(section);
+    workspace.append(section);
   }
   render();
   return {

@@ -4,10 +4,14 @@
   "compatibility_date": "2026-09-10",
   "workers_dev": true,
   "preview_urls": false,
+  "durable_objects": {"bindings":[{"name":"ENGLISH_ACCOUNTS","class_name":"EnglishAccounts"}]},
+  "build": {"command":"node scripts/ensure-answer-books.mjs"},
+  "migrations": [{"tag":"english-accounts-v1","new_sqlite_classes":["EnglishAccounts"]}],
+  "r2_buckets": [{"binding":"ANSWER_FILES","bucket_name":"english30-private-answers"}],
   "assets": {
     "directory": "./web",
     "binding": "ASSETS",
     "run_worker_first": ["/api/*", "/audio/*", "/papers/audio/*"],
   },
-  "vars": { "RELEASE": "2026.11.21.1" },
+  "vars": { "RELEASE": "2026.11.21.2" },
 }

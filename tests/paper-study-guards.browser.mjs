@@ -55,10 +55,10 @@ try {
     // Interrupt the actual seek promise through the two public controls.
     await page.evaluate(() => {
       document.querySelector('#paper-drill-play').click();
-      document.querySelector('.main-navigation > button[data-view=listening]').click();
+      document.querySelector('#home-back').click();
     });
-    await page.waitForTimeout(100);
-    await page.locator('.main-navigation > button[data-view=library]').click();
+    await page.locator('#home-panel').waitFor();
+    await page.locator('.main-navigation [data-view=library]').click();
     assert.equal(await page.locator('#paper-drill-play').isDisabled(), false);
     assert.equal(await page.locator('#paper-audio').evaluate((audio) => audio.paused), true);
     await page.locator('#paper-drill-play').click();

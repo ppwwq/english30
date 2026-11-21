@@ -1,7 +1,255 @@
-.main-navigation.phase-switch {
+/* Hallmark · English30 · redesign: full · scope: app · theme: brand · signature: original listening waveform */
+/* Critique: six equal rows hid the primary practice task; the study routes now follow practice priority. */
+body[data-view='home'] {
+  --home-width: 66rem;
+  --home-gutter: clamp(16px, 4vw, 52px);
+  --home-rule: color-mix(in srgb, var(--ink) 24%, var(--canvas-bg));
+}
+.home-panel,
+body[data-view='home'] .session-savebar {
+  width: min(var(--home-width), calc(100% - 2 * var(--home-gutter)));
+  margin-inline: auto;
+}
+body[data-view='home'] .brand small {
+  font-size: 12px;
+  letter-spacing: normal;
+}
+body[data-view='home'] :focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.home-panel {
+  padding-block: clamp(28px, 4.8vh, 50px) clamp(18px, 3vw, 32px);
+}
+.home-panel h1 {
+  margin: 0 0 clamp(18px, 2.5vw, 30px);
+  font-size: clamp(30px, 3.4vw, 49px);
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+  overflow-wrap: break-word;
+}
+.main-navigation a {
+  min-width: 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.main-navigation small {
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.home-link-title {
+  font-weight: 700;
+  line-height: 1.25;
+}
+.home-practice {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: clamp(12px, 2vw, 24px);
+}
+.home-listening {
+  display: grid;
+  align-content: space-between;
+  gap: 4px;
+  padding: clamp(20px, 2.8vw, 36px);
+  border-radius: var(--radius);
+  background: var(--lilac);
+}
+.home-listening .home-link-title {
+  font-size: clamp(32px, 3.3vw, 46px);
+  letter-spacing: -0.035em;
+}
+/* RMS envelope of 60–72s from the original 2025 Part A Task 1 recording. */
+.home-wave {
+  display: block;
+  height: clamp(60px, 7vw, 94px);
+  margin-block: clamp(12px, 1.8vw, 24px);
+  background: currentColor;
+  mask: url('./home-listening-wave.png') center / 100% 100% no-repeat;
+}
+.home-listening-foot {
   display: flex;
-  width: min(100%, 720px);
-  margin: 4px 0 28px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 36%, transparent);
+}
+.home-listening-foot [lang='en'] {
+  font: italic 20px/1.2 var(--reading);
+}
+.home-start {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--surface);
+  font-weight: 600;
+}
+.home-arrow {
+  font-size: 22px;
+  line-height: 1;
+}
+.home-other-practice {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.home-other-practice a {
+  display: grid;
+  align-content: center;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  padding: clamp(16px, 2.4vw, 30px);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.home-other-practice a + a {
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.home-subject-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.home-other-practice .home-link-title {
+  grid-column: 1;
+  font-size: clamp(21px, 2vw, 28px);
+}
+.home-other-practice small,
+.home-resources small {
+  grid-column: 1;
+  color: var(--ink-soft);
+}
+.home-other-practice .home-arrow {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  align-self: center;
+}
+.home-resources {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(22px, 3vw, 38px);
+  border-block: 1px solid var(--home-rule);
+}
+.home-resources a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: start;
+  column-gap: 12px;
+  margin-block: 20px;
+  padding-inline: clamp(16px, 2vw, 28px);
+}
+.home-resources a::after {
+  content: '';
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  width: 7px;
+  height: 7px;
+  margin-inline-end: 3px;
+  border: solid currentColor;
+  border-width: 1.5px 1.5px 0 0;
+  transform: rotate(45deg);
+}
+.home-resources a:first-child {
+  padding-inline-start: 0;
+}
+.home-resources a + a {
+  border-inline-start: 1px solid var(--home-rule);
+}
+.home-resources .home-link-title {
+  font-size: 20px;
+}
+.home-resources small {
+  grid-column: 1 / -1;
+  margin-top: 5px;
+}
+.main-navigation a:hover .home-link-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.17em;
+}
+@media (max-width: 700px) {
+  .home-practice {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .home-other-practice a {
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    gap: 2px 12px;
+  }
+  .home-subject-icon {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-self: center;
+    margin: 0;
+  }
+  .home-other-practice :is(.home-link-title, small) {
+    grid-column: 2;
+  }
+  .home-other-practice .home-arrow {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+  .home-resources {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .home-resources a {
+    margin: 0;
+    padding: 12px 0;
+  }
+  .home-resources a + a {
+    border-inline-start: 0;
+    border-top: 1px solid var(--home-rule);
+  }
+  .home-resources small {
+    margin-top: 2px;
+  }
+}
+@media (max-width: 400px) {
+  body[data-view='home'] .session-actions button {
+    flex: 1 0 auto;
+    white-space: nowrap;
+  }
+}
+.home-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin-inline-start: auto;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+}
+.home-avatar:is(:hover, :focus-visible) {
+  background: var(--pine-light);
+}
+.home-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-inline-start: auto;
+  color: var(--ink);
+  font-size: 14px;
+  text-decoration: none;
 }
 .session-savebar {
   display: flex;
@@ -79,11 +327,6 @@ body[data-listening-phase]:not([data-listening-phase='review']) .player {
     max-height: none;
   }
 }
-.main-navigation.phase-switch > button {
-  flex: 1;
-  min-height: 48px;
-  white-space: nowrap;
-}
 .training-host,
 .reading-host {
   padding-bottom: 28px;
@@ -156,14 +399,30 @@ body[data-view]:not([data-view='listening']) .app-shell {
   padding-left: 12px;
   border-left: 2px solid #c4bbfe;
 }
-@media (max-width: 600px) {
-  .main-navigation.phase-switch {
-    margin-bottom: 20px;
-    gap: 0;
-    padding: 5px;
-  }
-  .main-navigation.phase-switch > button {
-    padding: 10px 4px;
-    font-size: 12px;
-  }
+.account-save-dialog {
+  width: min(30rem, calc(100% - 2rem));
+  max-height: 85vh;
+  overflow: auto;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(20px, 4vw, 32px);
+  box-shadow: 0 12px 46px #18304524;
+}
+.account-save-dialog::backdrop {
+  background: #24344855;
+}
+.account-save-dialog h2 {
+  margin: 0;
+}
+.account-save-dialog label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+}
+.account-save-dialog [hidden],
+.session-savebar[hidden] {
+  display: none;
 }

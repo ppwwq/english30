@@ -1,0 +1,140 @@
+/* Hallmark · English30 · scope: app · shared study header and explicit-save controls */
+.session-state {
+  min-width: 0;
+}
+.session-state summary {
+  cursor: pointer;
+}
+body[data-view='home'] .session-state summary {
+  width: fit-content;
+}
+.app-header:has(.session-savebar:not([hidden])) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px clamp(12px, 1.75vw, 28px);
+  padding-block: 10px;
+  border-bottom-color: var(--line);
+}
+.app-header:has(.session-savebar) .brand small {
+  font-size: 12px;
+  letter-spacing: normal;
+}
+.app-header:has(.session-savebar) :is(.home-back, .lesson-picker) {
+  margin-inline-start: 0;
+}
+.app-header .session-savebar {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px clamp(10px, 1.5vw, 22px);
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 0 auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+}
+.app-header .session-actions {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 7px;
+  width: auto;
+}
+.app-header .session-actions button {
+  flex: none;
+  width: auto;
+  min-height: 44px;
+  white-space: nowrap;
+  padding: 8px clamp(10px, 1.2vw, 17px);
+}
+.app-header #session-review {
+  background: transparent;
+  border-color: transparent;
+}
+.app-header #session-review:is(:hover, [aria-pressed='true']) {
+  background: var(--surface);
+  border-color: var(--line);
+}
+.app-header .session-state {
+  position: relative;
+}
+.app-header .session-state summary {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding-inline: 4px;
+  color: var(--ink);
+  font-size: 14px;
+  list-style: none;
+}
+.app-header .session-state summary::-webkit-details-marker {
+  display: none;
+}
+.app-header .session-state summary::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border: solid currentColor;
+  border-width: 0 1.5px 1.5px 0;
+  transform: translateY(-2px) rotate(45deg);
+}
+.app-header .session-state[open] summary::after {
+  transform: translateY(2px) rotate(225deg);
+}
+.app-header .session-state #session-save-detail {
+  position: absolute;
+  z-index: 30;
+  top: 100%;
+  right: 0;
+  width: min(22rem, 80vw);
+  margin: 2px 0 0;
+  padding: 14px 16px;
+  border: 1px solid var(--ink-soft);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--ink) 10%, transparent);
+  font-size: 14px;
+}
+body:not([data-view='home'], [data-view='account']) :focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+body:not([data-view='home'], [data-view='account']) .fine-print {
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+:is(.rd-workspace, .training-host, .player, .lesson-picker, #practice-sources)
+  :is(select, textarea, input:not([type]), input[type='text'], input[type='number'], input[type='date']) {
+  border-color: var(--ink-soft);
+}
+@media (min-width: 760px) and (max-width: 1100px) {
+  .app-header:has(.session-savebar) {
+    column-gap: 12px;
+    padding-inline: 20px;
+  }
+  .app-header:has(.session-savebar) .lesson-picker select {
+    max-width: 13rem;
+  }
+  .app-header .session-savebar {
+    gap: 8px;
+  }
+}
+@media (max-width: 759px) {
+  .app-header .session-savebar {
+    margin-inline-start: 0;
+  }
+  .app-header .session-state #session-save-detail {
+    right: auto;
+    left: 0;
+  }
+}
+@media print {
+  body .app-header:has(.session-savebar) {
+    display: none;
+  }
+}

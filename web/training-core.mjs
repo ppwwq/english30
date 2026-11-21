@@ -1,7 +1,8 @@
+import { scopedKey } from './account-scope.mjs';
 import { validateAnswerResult, validatePaperInk } from './core.mjs';
 
-export const STUDY_KEY = 'english30-study-v1';
-export const LISTENING_KEY = 'english30-records-v1';
+export const STUDY_KEY = scopedKey('english30-study-v1');
+export const LISTENING_KEY = scopedKey('english30-records-v1');
 const modules = new Set(['writing', 'reading', 'integrated', 'dictation']);
 const phases = new Set(['first', 'review', 'retest']);
 const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -179,6 +180,16 @@ export function validateListeningRecords(records) {
       throw new Error('听力记录缺少材料、作答或时间信息。');
     for (const a of r.attempts) {
       if (a?.ink !== undefined) validatePaperInk(a.ink);
+      if (
+        a?.rawAnswers !== undefined &&
+        (!a.rawAnswers ||
+          typeof a.rawAnswers !== 'object' ||
+          Array.isArray(a.rawAnswers) ||
+          Object.entries(a.rawAnswers).some(
+            ([id, text]) => !safeId(id) || typeof text !== 'string' || text.length > 20000,
+          ))
+      )
+        throw new Error('原样作答文本格式无效。');
       if (!a || !a.results || typeof a.results !== 'object' || Array.isArray(a.results))
         throw new Error('听力作答格式不正确。');
       for (const [id, result] of Object.entries(a.results)) {

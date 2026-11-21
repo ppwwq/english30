@@ -30,7 +30,12 @@ try {
   const firstDraft = 'Dear students, please come to our meeting next Friday. Thank you.';
   await page.locator('#rd-draft').fill(firstDraft);
   await page.locator('[data-rd-action=integrated-submit]').click();
-  await page.locator('[data-rd-action=integrated-save]').click();
+  assert.equal(await page.evaluate(() => localStorage.getItem('english30-study-v1')), null);
+  const save = page.locator('#session-save');
+  await save.click();
+  await page.waitForFunction(
+    () => JSON.parse(localStorage.getItem('english30-study-v1'))?.records.length === 1,
+  );
   const firstRecords = await page.evaluate(
     () => JSON.parse(localStorage.getItem('english30-study-v1')).records,
   );
@@ -44,7 +49,14 @@ try {
   assert.equal(await page.locator('.rd-phase').textContent(), '关提示同题复测');
   await page.locator('#rd-draft').fill('Dear students, I invite you to our school event next Friday.');
   await page.locator('[data-rd-action=integrated-submit]').click();
-  await page.locator('[data-rd-action=integrated-save]').click();
+  assert.equal(
+    await page.evaluate(() => JSON.parse(localStorage.getItem('english30-study-v1')).records.length),
+    1,
+  );
+  await save.click();
+  await page.waitForFunction(
+    () => JSON.parse(localStorage.getItem('english30-study-v1'))?.records.length === 2,
+  );
   const records = await page.evaluate(() => JSON.parse(localStorage.getItem('english30-study-v1')).records);
   assert.equal(records.length, 2);
   assert.equal(records[0].id, firstId);

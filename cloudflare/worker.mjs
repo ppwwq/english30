@@ -1,8 +1,16 @@
-// Public Cloudflare deployment. Study records remain in the learner's browser.
+export { EnglishAccounts } from './account-object.mjs';
 export default {
   async fetch(request, env) {
     const path = new URL(request.url).pathname;
     if (path.startsWith('/api/')) {
+      if (/^\/api\/(account|papers|learning|images|ink|books)(\/|$)/.test(path)) {
+        if (!env.ENGLISH_ACCOUNTS || !env.ANSWER_FILES)
+          return Response.json(
+            { error: '账号服务尚未配置。' },
+            { status: 503, headers: { 'Cache-Control': 'no-store' } },
+          );
+        return env.ENGLISH_ACCOUNTS.get(env.ENGLISH_ACCOUNTS.idFromName('english30-v1')).fetch(request);
+      }
       if (path === '/api/health' && ['GET', 'HEAD'].includes(request.method)) {
         const response = Response.json(
           { ok: true, release: env.RELEASE },

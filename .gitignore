@@ -13,6 +13,8 @@ tests/artifacts/
 /web/**/*.wav
 /web/**/*.webp
 /web/**/*.png
+!/web/home-listening-wave.png
 /web/**/*.jpg
 /web/**/*.jpeg
 /web/**/*.pdf
+/.local/accounts/

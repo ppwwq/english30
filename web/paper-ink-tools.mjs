@@ -69,6 +69,10 @@ export function mountInkTools(host, options, actions) {
   });
   function addMode(parent, key, icon) {
     const b = button(parent, modeNames[key], icon, () => {
+      if ((key === 'erase' || key === 'marker') && options.mode === key && !b.closest('.ink-popup')) {
+        toggleMenu(spec.panel.hidden ? 'spec' : null);
+        return;
+      }
       const fromPopup = b.closest('.ink-popup');
       toggleMenu();
       actions.mode(key);
@@ -118,13 +122,29 @@ export function mountInkTools(host, options, actions) {
   const widthRow = group(spec.panel, 'ink-choices', '笔迹粗细');
   const eraseRow = group(spec.panel, 'ink-choices', '擦除方式');
   const radiusRow = group(spec.panel, 'ink-choices', '橡皮大小');
+  const adjust = document.createElement('label');
+  adjust.className = 'ink-preset-adjust';
+  const adjustLabel = document.createElement('span'),
+    value = document.createElement('output'),
+    range = document.createElement('input');
+  range.type = 'range';
+  range.step = '1';
+  adjust.append(adjustLabel, value, range);
+  spec.panel.append(adjust);
+  range.oninput = () => {
+    if (options.mode === 'erase') options.eraseSizes[options.eraseSlot] = Number(range.value);
+    else options.brushes.marker.widths[options.brushes.marker.size - 1] = Number(range.value);
+    refresh();
+  };
   const sizes = ['细', '中', '粗'].map((name, i) => {
     const b = button(widthRow, name + '笔迹', 'stroke-sample', () => {
       options.brushes[lastBrush].size = i + 1;
       if (options.mode !== lastBrush) actions.mode(lastBrush);
       else refresh();
-      toggleMenu();
-      spec.trigger.focus();
+      if (lastBrush !== 'marker') {
+        toggleMenu();
+        spec.trigger.focus();
+      }
     });
     b.style.setProperty('--sample-width', [1.6, 3.4, 5.5][i]);
     return b;
@@ -140,12 +160,10 @@ export function mountInkTools(host, options, actions) {
       spec.trigger.focus();
     }),
   );
-  const radii = [6, 12, 22].map((size, i) => {
+  const radii = options.eraseSizes.map((size, i) => {
     const b = button(radiusRow, ['小橡皮', '中橡皮', '大橡皮'][i], 'radius', () => {
-      options.radius = size;
+      options.eraseSlot = i;
       refresh();
-      toggleMenu();
-      spec.trigger.focus();
     });
     b.style.setProperty('--radius-scale', [0.48, 0.72, 1][i]);
     return b;
@@ -156,6 +174,10 @@ export function mountInkTools(host, options, actions) {
   const history = group(host, 'ink-history', '编辑操作');
   const undo = button(history, '撤销', 'undo', actions.undo),
     redo = button(history, '重做', 'redo', actions.redo);
+  const menuHistory = group(extra.panel, 'ink-choices ink-menu-history', '编辑操作');
+  const menuUndo = button(menuHistory, '撤销', 'undo', actions.undo);
+  const menuRedo = button(menuHistory, '重做', 'redo', actions.redo);
+  extra.panel.prepend(menuHistory);
   const prefs = menu(history, 'settings', '书写设置', 'settings');
   const finger = button(prefs.panel, '手指也可书写', 'write', () => {
     options.finger = options.finger === 'draw' ? 'pan' : 'draw';
@@ -192,11 +214,7 @@ export function mountInkTools(host, options, actions) {
       if (options.brushes[key]) b.style.setProperty('--nib', options.brushes[key].color);
     }
     const aux = ['line', 'lasso', 'pan'].includes(options.mode);
-    updateIcon(
-      extra.trigger,
-      aux ? options.mode : 'more',
-      aux ? modeNames[options.mode] + ' · 其他工具' : '其他工具',
-    );
+    updateIcon(extra.trigger, 'more', '其他工具');
     extra.trigger.dataset.active = String(aux);
     swatches.forEach((b, i) => mark(b, inkColors[i] === brush.color));
     palette.trigger.style.setProperty('--swatch', brush.color);
@@ -204,27 +222,63 @@ export function mountInkTools(host, options, actions) {
     palette.trigger.title = palette.trigger.ariaLabel = '选择笔色，当前' + colorName;
     widthRow.hidden = isErase;
     eraseRow.hidden = radiusRow.hidden = !isErase;
-    updateIcon(spec.trigger, isErase ? 'radius' : 'stroke-sample', isErase ? '橡皮设置' : '笔迹粗细');
+    updateIcon(
+      spec.trigger,
+      isErase ? 'radius' : 'stroke-sample',
+      isErase ? '橡皮设置' : lastBrush === 'marker' ? '荧光笔粗细' : '笔迹粗细',
+    );
     spec.trigger.style.setProperty('--sample-color', brush.color);
     spec.trigger.style.setProperty(
       '--sample-width',
-      (lastBrush === 'marker' ? [4, 6, 8] : [1.6, 3.4, 5.5])[brush.size - 1],
+      lastBrush === 'marker' ? brush.widths[brush.size - 1] / 4 + 1 : [1.6, 3.4, 5.5][brush.size - 1],
     );
     spec.trigger.style.setProperty(
       '--sample-opacity',
       lastBrush === 'marker' ? '0.48' : lastBrush === 'pencil' ? '0.72' : '1',
     );
-    spec.trigger.style.setProperty('--radius-scale', String((options.radius / 22) * 0.6 + 0.4));
+    const radiusScale = (r) => 0.28 + (r / 40) * 0.95;
+    spec.trigger.style.setProperty(
+      '--radius-scale',
+      String(radiusScale(options.eraseSizes[options.eraseSlot])),
+    );
     sizes.forEach((b, i) => {
       mark(b, i + 1 === brush.size);
       b.style.setProperty('--sample-color', brush.color);
+      b.style.setProperty(
+        '--sample-width',
+        lastBrush === 'marker' ? brush.widths[i] / 4 + 1 : [1.6, 3.4, 5.5][i],
+      );
+      b.style.setProperty('--sample-opacity', lastBrush === 'marker' ? '0.48' : '1');
+      b.setAttribute(
+        'aria-label',
+        lastBrush === 'marker' ? '荧光笔档位 ' + (i + 1) : ['细笔迹', '中笔迹', '粗笔迹'][i],
+      );
+      b.title = b.getAttribute('aria-label');
     });
     erasers.forEach((b, i) => mark(b, options.eraseMode === (i ? 'whole' : 'partial')));
-    radii.forEach((b, i) => mark(b, options.radius === [6, 12, 22][i]));
+    radii.forEach((b, i) => {
+      mark(b, options.eraseSlot === i);
+      b.setAttribute('aria-label', '橡皮档位 ' + (i + 1));
+      b.title = b.getAttribute('aria-label');
+      b.style.setProperty('--radius-scale', String(radiusScale(options.eraseSizes[i])));
+    });
+    adjust.hidden = !isErase && lastBrush !== 'marker';
+    if (!adjust.hidden) {
+      const slot = isErase ? options.eraseSlot : brush.size - 1;
+      adjustLabel.textContent = (isErase ? '橡皮半径' : '荧光笔宽') + ' · 档 ' + (slot + 1);
+      range.setAttribute('aria-label', adjustLabel.textContent);
+      range.min = isErase ? '2' : '3';
+      range.max = isErase ? '40' : '48';
+      range.value = String(isErase ? options.eraseSizes[slot] : brush.widths[slot]);
+      value.value = isErase ? range.value + ' px' : (Number(range.value) / 10).toFixed(1) + '%';
+      range.setAttribute('aria-valuetext', value.value);
+      if (!isErase) value.title = '占原卷宽度的比例';
+      else value.removeAttribute('title');
+    }
     mark(finger, options.finger === 'draw');
     selection.hidden = !state.selected;
-    undo.disabled = !state.canUndo;
-    redo.disabled = !state.canRedo;
+    undo.disabled = menuUndo.disabled = !state.canUndo;
+    redo.disabled = menuRedo.disabled = !state.canRedo;
     clear.disabled = !state.hasInk;
   }
   return refresh;

@@ -19,7 +19,6 @@ const page = await context.newPage();
 const errors = [],
   cases = [];
 page.on('pageerror', (e) => errors.push(e.message));
-page.on('dialog', (d) => d.accept());
 const base = process.env.TEST_URL || 'http://127.0.0.1:4173';
 const ready = () =>
   page.waitForFunction(
@@ -63,14 +62,36 @@ try {
   await page.locator('#paper-word-mark').tap();
   assert.equal((await records()).paperMarks.length, 1);
   assert.equal(await page.evaluate(() => localStorage.getItem('english30-study-v1')), null);
-  await page.locator('#paper-study-save').tap();
+  const save = page.getByRole('button', { name: '保存本次学习纪录', exact: true });
+  const confirmSave = async (accept) => {
+    const [dialog] = await Promise.all([
+      page.waitForEvent('dialog').then(async (dialog) => {
+        const prompt = dialog.message();
+        if (accept) await dialog.accept();
+        else await dialog.dismiss();
+        return prompt;
+      }),
+      save.tap(),
+    ]);
+    assert.match(dialog, /短句听写：2 条/);
+    assert.match(dialog, /复习标记/);
+  };
+  await confirmSave(false);
+  assert.equal(await page.evaluate(() => localStorage.getItem('english30-study-v1')), null);
+  assert.equal(await save.isEnabled(), true);
+  await confirmSave(true);
+  await page.waitForFunction(() =>
+    document.querySelector('#session-save-detail').textContent.includes('已完成回读验证'),
+  );
   await page.reload();
   await ready();
   assert.equal((await records()).paperMarks.length, 1);
   assert.equal((await records()).records.length, 2);
-  await page.locator('#paper-study-review').tap();
-  await page.getByRole('button', { name: '关提示再测', exact: true }).first().tap();
+  await page.getByRole('button', { name: '复习与备份', exact: true }).tap();
+  await page.locator('.training-review-row').getByRole('button', { name: '关提示再测', exact: true }).tap();
   await ready();
+  await page.locator('#paper-drill-answer').waitFor();
+  assert.equal(await page.locator('#paper-drill-sentence').inputValue(), first.details.paper.sentenceId);
   assert.equal(await page.locator('#paper-drill-answer').inputValue(), '');
   assert.equal(await page.locator('#paper-transcript-panel').isVisible(), false);
   assert.equal(await page.locator('#paper-drill-feedback').isVisible(), false);

@@ -1,5 +1,8 @@
+import { activeAccount } from './account-scope.mjs';
+import { bookFor, loadBooks } from './answer-books.mjs';
 import { mountPaperInk } from './paper-ink.mjs';
 import { inkIcon } from './ink-icons.mjs';
+import { mountPaperZoom } from './paper-zoom.mjs';
 
 export function mountPaperPractice({
   entries,
@@ -80,8 +83,10 @@ export function mountPaperPractice({
   const openMarking = document.getElementById('open-marking-page');
   function renderSources(lesson, phase, writing) {
     const target = document.getElementById('practice-sources');
+    const modeSlot = document.getElementById('paper-mode-slot');
     target.hidden = !lesson?.paper;
     if (!lesson?.paper) {
+      modeSlot.replaceChildren();
       openMarking.hidden = true;
       openMarking.onclick = null;
       openQuestionPage = null;
@@ -91,6 +96,7 @@ export function mountPaperPractice({
     }
     const key = `${lesson.id}:${phase}:${writing?.mode || ''}`;
     if (key === sourceKey && displayedInk === writing?.ink) return;
+    modeSlot.replaceChildren();
     openMarking.hidden = true;
     openMarking.onclick = null;
     openQuestionPage = null;
@@ -126,22 +132,23 @@ export function mountPaperPractice({
     details.append(summary);
     const notice = document.createElement('p');
     notice.className = 'fine-print';
-    notice.textContent =
-      original?.containsAnswers && phase !== 'review'
-        ? '这份扫描件混有答案，首答与复测期间收起；提交后可对照。'
-        : '原题保留原卷版面；页码为扫描文件页码。';
-    details.append(notice);
+    const mixedAnswers = original?.containsAnswers && phase !== 'review';
+    notice.textContent = mixedAnswers
+      ? '这份扫描件混有答案，首答与复测期间收起；提交后可对照。'
+      : '原题保留原卷版面；页码为扫描文件页码。';
+    if (mixedAnswers) details.append(notice);
     if (writing && phase !== 'review' && documents.includes(original)) {
       const modes = document.createElement('div');
       modes.className = 'paper-answer-modes';
+      modes.setAttribute('role', 'group');
+      modes.setAttribute('aria-label', '作答方式');
       for (const [mode, label] of [
         ['type', '打字作答'],
         ['ink', '手写作答'],
       ]) {
         const button = document.createElement('button');
         button.type = 'button';
-        button.textContent = label;
-        if (writingSheet) inkIcon(button, mode === 'type' ? 'keyboard' : 'write', label);
+        inkIcon(button, mode === 'type' ? 'keyboard' : 'write', label);
         button.setAttribute('aria-pressed', String(mode === writing.mode));
         button.onclick = () => writing.setMode(mode);
         modes.append(button);
@@ -158,7 +165,7 @@ export function mountPaperPractice({
         focus.onclick = () => syncFocus(document.body.dataset.paperFocus !== 'true');
         modes.append(focus);
       }
-      details.append(modes);
+      (writingSheet ? details : modeSlot).append(modes);
     }
     if (documents.length) {
       const toolbar = document.createElement('div');
@@ -176,18 +183,13 @@ export function mountPaperPractice({
       }
       const previous = document.createElement('button');
       previous.type = 'button';
-      previous.textContent = '上一页';
+      inkIcon(previous, 'prev', '上一页');
       const next = document.createElement('button');
       next.type = 'button';
-      next.textContent = '下一页';
+      inkIcon(next, 'next', '下一页');
       const zoom = document.createElement('button');
       zoom.type = 'button';
-      zoom.textContent = '放大题页';
-      if (writingSheet) {
-        inkIcon(previous, 'prev', '上一页');
-        inkIcon(next, 'next', '下一页');
-        inkIcon(zoom, 'zoom', '放大题页');
-      }
+      inkIcon(zoom, 'zoom', '放大题页');
       zoom.setAttribute('aria-pressed', 'false');
       const pageInput = document.createElement('input');
       pageInput.type = 'number';
@@ -210,8 +212,7 @@ export function mountPaperPractice({
       function setZoom(enlarged) {
         wrap.classList.toggle('is-zoomed', enlarged);
         const label = enlarged ? '适合宽度' : '放大题页';
-        if (writingSheet) inkIcon(zoom, enlarged ? 'fit' : 'zoom', label);
-        else zoom.textContent = label;
+        inkIcon(zoom, enlarged ? 'fit' : 'zoom', label);
         zoom.setAttribute('aria-pressed', String(enlarged));
       }
       zoom.onclick = () => setZoom(!wrap.classList.contains('is-zoomed'));
@@ -246,10 +247,32 @@ export function mountPaperPractice({
         const scan = source.pages[page - 1];
         image.width = scan.width;
         image.height = scan.height;
-        image.src = scan.src;
+        const frozen =
+          source === original && writing?.originals?.find((p) => p.key === source.id + ':' + page);
+        image.src = frozen ? '/api/books/master/' + frozen.master : scan.src;
         image.alt = `${source.name} 第 ${page} 页`;
         if (source.role === 'marking' && phase === 'review') onReference?.(paper);
-        ink?.show(source === original ? source.id + ':' + page : null);
+        const frozenBook = writing?.originals || bookFor(paper)?.pages;
+        const writable =
+          source === original &&
+          (!activeAccount ||
+            frozenBook?.some(
+              (p) => !p.attachment && p.key === source.id + ':' + page && p.part === paper.part,
+            ));
+        ink?.show(writable ? source.id + ':' + page : null);
+        if (writingSheet && activeAccount) {
+          const readOnlyPage = source === original && !writable;
+          notice.classList.toggle('paper-read-only', readOnlyPage);
+          notice.hidden = !readOnlyPage;
+          if (readOnlyPage) notice.textContent = '此页用于查阅。回到本 Part 的题页即可继续书写。';
+        }
+        if (activeAccount && !frozenBook && ink)
+          loadBooks()
+            .then(() => {
+              if (image.isConnected && shownSource === source) show(page);
+            })
+            .catch(() => {});
+
         writing?.setPage(source.id, page);
         error.hidden = true;
         if (view) setZoom(view.zoom);
@@ -388,10 +411,10 @@ export function mountPaperPractice({
         const modes = details.querySelector('.paper-answer-modes');
         header.append(toolbar);
         if (modes) {
-          modes.prepend(zoom);
+          modes.prepend(mountPaperZoom(wrap, stage, zoom));
           header.append(modes);
         }
-        details.append(header);
+        details.append(header, notice);
       } else details.append(toolbar);
       details.append(inkTools, wrap);
       const remembered = writing?.page;
@@ -400,6 +423,7 @@ export function mountPaperPractice({
         show(remembered.page);
       } else show(select.value === paper.questionSourceId ? paper.questionPage : 1);
     }
+    if (!writingSheet && !mixedAnswers) details.append(notice);
     if (phase === 'review') {
       const library = document.createElement('button');
       library.type = 'button';

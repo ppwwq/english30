@@ -2,7 +2,43 @@ import { listeningBridge } from './app.mjs';
 import { studyStore } from './training-core.mjs';
 import { createSessionSaver } from './session-save.mjs';
 
-const allowed = new Set(['library', 'today', 'listening', 'reading', 'writing', 'review', 'integrated']);
+import { createAccountController } from './account-controller.mjs';
+import { confirmAccountSave } from './account-confirm.mjs';
+import { mountAccountView } from './account-view.mjs';
+const accountHost = document.getElementById('account-host');
+let accountView;
+const account = createAccountController({
+  studyStore,
+  canSwitch: () =>
+    !saving &&
+    (!(hasUnsubmitted() || saver.prepare().changed) ||
+      confirm('切换账号将关闭当前练习，未保存的输入可能丢失。继续吗？')),
+  async enterPaper(manifest, choice) {
+    if (!(await listeningBridge.continuePaper(manifest, choice))) return false;
+    await navigate('listening', { lessonId: choice.lessonId });
+    return true;
+  },
+});
+listeningBridge.setWorkspaceReader((info) => account.workspaceFor(info));
+const homeAvatar = document.getElementById('home-avatar');
+const signedInUser = account.state().user;
+if (signedInUser) {
+  const label = `我的答卷（${signedInUser.name}）`;
+  homeAvatar.setAttribute('aria-label', label);
+  homeAvatar.title = label;
+  homeAvatar.textContent = Array.from(signedInUser.name)[0].toLocaleUpperCase();
+}
+const allowed = new Set([
+  'account',
+  'home',
+  'library',
+  'today',
+  'listening',
+  'reading',
+  'writing',
+  'review',
+  'integrated',
+]);
 let training,
   reading,
   papers,
@@ -24,12 +60,27 @@ const bridge = {
   onSessionChange: () => sessionChanged(),
 };
 let saving = false,
-  saveMessage = '';
+  saveMessage = '',
+  cloudStatus = '';
 const saver = createSessionSaver({
   studyStore,
   getListeningSnapshot: () => listeningBridge.getSaveSnapshot(),
 });
 const saveButton = document.getElementById('session-save');
+const saveBar = document.querySelector('.session-savebar');
+const saveState = saveBar.querySelector('.session-state');
+const appHeader = document.querySelector('.app-header');
+const homePanel = document.getElementById('home-panel');
+document.addEventListener('pointerdown', (event) => {
+  if (saveState.open && appHeader.contains(saveState) && !saveState.contains(event.target))
+    saveState.open = false;
+});
+saveState.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && saveState.open && appHeader.contains(saveState)) {
+    saveState.open = false;
+    saveState.querySelector('summary').focus();
+  }
+});
 function hasUnsubmitted() {
   return [
     listeningBridge.getSaveState(),
@@ -44,31 +95,41 @@ function refreshSessionBar() {
     const plan = saver.prepare();
     const pending = plan.changed;
     const unsubmitted = hasUnsubmitted();
+    const queued = account.state().pending;
     const saved = current === 'listening' ? listeningBridge.getSaveState().saved : !!saveMessage && !pending;
     saveButton.disabled = !pending;
     document.getElementById('session-save-status').textContent = pending
       ? '已提交，尚未保存'
-      : unsubmitted
-        ? '当前输入尚未提交'
-        : saved
-          ? '已保存到此浏览器'
-          : '尚未提交';
+      : queued
+        ? '已存本机，云端待完成'
+        : unsubmitted
+          ? '当前输入尚未提交'
+          : saved
+            ? cloudStatus || '已保存到此浏览器'
+            : '尚未提交';
     document.getElementById('session-save-detail').textContent =
       saveMessage ||
+      (queued ? '有 ' + queued + ' 次已确认的保存待上传，可从「我的答卷」重试。' : '') ||
       (unsubmitted
         ? '尚有未提交输入，保存只包含已提交的纪录和标记；请先提交要保留的作答。'
         : pending
           ? `${plan.listening ? `待保存听力：${plan.listening.label}。` : ''}点击保存核对全部暂存内容；当前浏览的资料不会替换这份作答。`
-          : '学习纪录只留在当前浏览器，可从「复习与备份」导出。');
+          : account.state().user
+            ? '确认保存后，可在「我的答卷」取回。'
+            : '学习纪录只留在当前浏览器，可从「复习与备份」导出。');
   } catch (error) {
     saveButton.disabled = true;
+    saveState.open = true;
     document.getElementById('session-save-status').textContent = '保存状态暂不可用';
     document.getElementById('session-save-detail').textContent = error.message;
   }
 }
 async function requestSave() {
   if (saving) return false;
-  let plan;
+  let plan,
+    job,
+    staged = false,
+    localSaved = false;
   try {
     plan = saver.prepare();
     if (!plan.changed) {
@@ -92,24 +153,59 @@ async function requestSave() {
       if (!changed.length || plan.study.state.paperMarks.length)
         items.push('其他已暂存的复习标记、手动复习状态及设置');
     }
-    if (
+    saving = true;
+    const { user } = account.state();
+    if (user) {
+      job = account.capture(plan);
+      const decision = await confirmAccountSave({
+        name: user.name,
+        items,
+        job,
+        combinedAvailable: !!job.paper && job.paper.base === 0,
+      });
+      if (!decision) return false;
+      if (decision.combined && job.paper)
+        job.paper.book = job.paper.info.sessionId + '-A+' + job.paper.info.sessionId + '-B1';
+      if (job.paper) job.paper.includeData = decision.includeData;
+      await account.stage(job);
+      staged = true;
+    } else if (
       !confirm(
         `准备保存本次学习纪录：\n${items.join('\n')}\n\n未提交的输入不包含。仅写入当前浏览器，不上传云端；保存后回读验证。`,
       )
     )
       return false;
-    saving = true;
     saveButton.disabled = true;
     document.getElementById('session-save-status').textContent = '正在保存并回读…';
     await saver.save(plan);
+    localSaved = true;
+    if (job) {
+      await account.localConfirmed(job);
+      cloudStatus = '已存本机，云端待完成';
+      document.getElementById('session-save-status').textContent = '已存本机，正在上传答卷…';
+      await account.retry();
+      cloudStatus = '已存云端';
+    }
     saveMessage = saver.prepare().changed
       ? '确认时的纪录已完成回读验证；保存期间的新修改尚未保存。'
       : hasUnsubmitted()
         ? '已完成回读验证。尚有未提交输入未保存，请提交后再保存。'
         : '已完成回读验证。可结束本次，或从「复习与备份」继续。';
+    if (job)
+      saveMessage =
+        '已存云端，已回读核对。可从「我的答卷」取回。' +
+        (saver.prepare().changed ? ' 之后的新修改尚未保存。' : '');
     return true;
   } catch (error) {
+    if (staged && !localSaved) await account.cancel(job);
+    if (localSaved && job) {
+      saveState.open = true;
+      cloudStatus = '已存本机，云端待完成';
+      saveMessage = error.message + ' 请到「我的答卷」重试上传。';
+      return false;
+    }
     saveMessage = `保存未完成：${error.message} 请保留当前页面，检查后重试。`;
+    saveState.open = true;
     return false;
   } finally {
     saving = false;
@@ -123,6 +219,13 @@ const sessionChanged = () => {
   saveMessage = '';
   refreshSessionBar();
 };
+window.addEventListener('english30-account-change', () => {
+  if (cloudStatus === '已存本机，云端待完成' && !account.state().pending) {
+    cloudStatus = '已存云端';
+    saveMessage = '已存云端，已回读核对。';
+  }
+  refreshSessionBar();
+});
 studyStore.subscribe(sessionChanged);
 listeningBridge.onChange(sessionChanged);
 window.addEventListener('beforeunload', (event) => {
@@ -138,7 +241,8 @@ async function navigate(view, options = {}) {
     view = 'listening';
     options = { ...options, mode: 'practice' };
   }
-  if (!allowed.has(view)) view = 'library';
+  if (view === 'papers') view = 'library';
+  if (!allowed.has(view)) view = 'home';
   // Existing original-page marks retain their reader deep links.
   if (view === 'listening' && options.paper) view = 'library';
   if (view === 'listening') {
@@ -153,11 +257,25 @@ async function navigate(view, options = {}) {
     practice = listening && listeningMode === 'practice',
     paperView = view === 'library',
     readingView = ['reading', 'integrated'].includes(view);
+  const home = view === 'home',
+    accountPage = view === 'account';
+  accountHost.hidden = !accountPage;
+  saveBar.hidden = accountPage;
+  if (!home && !accountPage) {
+    if (saveBar.parentElement !== appHeader) appHeader.append(saveBar);
+  } else if (saveBar.parentElement === appHeader) homePanel.after(saveBar);
+  if (view !== previousView) saveState.open = home;
+  homePanel.hidden = !home;
+  homeAvatar.hidden = !home;
+  document.getElementById('home-back').hidden = home;
+  document.getElementById('change-paper').setAttribute('aria-expanded', 'false');
   document.getElementById('practice-picker').hidden = !listening || practice;
-  document.getElementById('listening-panel').hidden = !listening;
+  const listeningPanel = document.getElementById('listening-panel');
+  listeningPanel.hidden = !listening;
+  listeningPanel.inert = listening;
   document.querySelector('.player').hidden = !listening;
   document.querySelector('.lesson-picker').hidden = !practice;
-  trainingHost.hidden = listening || readingView || view === 'library';
+  trainingHost.hidden = accountPage || home || listening || readingView || paperView;
   readingHost.hidden = !readingView;
   paperHost.hidden = !paperView;
   listeningBridge.pauseListening();
@@ -165,20 +283,34 @@ async function navigate(view, options = {}) {
   reading?.show('hidden');
   papers?.show('hidden');
   window.speechSynthesis?.cancel();
-  const primary = view === 'integrated' ? 'listening' : view;
   document.getElementById('session-review').setAttribute('aria-pressed', String(view === 'review'));
-  for (const button of document.querySelectorAll('.main-navigation>button'))
-    button.setAttribute('aria-pressed', String(button.dataset.view === primary));
   const hash = practice ? '#listening/practice' : `#${view}`;
-  if (location.hash !== hash) history.replaceState(null, '', hash);
+  if (location.hash !== hash) {
+    if (!previousView || options.replace) history.replaceState(null, '', hash);
+    else history.pushState(null, '', hash);
+  }
+  if (previousView && previousView !== view) {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.getElementById(home ? 'home-title' : 'home-back').focus({ preventScroll: true });
+  }
   try {
+    if (accountPage) {
+      if (!accountView) accountView = mountAccountView(accountHost, account);
+      else await accountView.refresh();
+      if (previousView === 'home' && request === generation) accountView.focusLogin();
+      return;
+    }
+    if (home) {
+      refreshSessionBar();
+      return;
+    }
     if (listening) {
       const changed = options.lessonId
         ? await listeningBridge.openLesson(options.lessonId)
         : await listeningBridge.showMode(listeningMode);
       if (request !== generation) return;
       if (changed === false) {
-        await navigate(previousView || 'listening', { mode: previousMode });
+        await navigate(previousView || 'home', { mode: previousMode, replace: true });
         return;
       }
       listeningBridge.refreshSaved();
@@ -231,20 +363,30 @@ async function navigate(view, options = {}) {
     retry.addEventListener('click', () => navigate(view, options));
     notice.append(document.createElement('br'), retry);
     host.append(notice);
+  } finally {
+    if (request === generation) listeningPanel.inert = false;
   }
 }
-for (const button of document.querySelectorAll('.main-navigation>button'))
-  button.addEventListener('click', () => navigate(button.dataset.view, { mode: 'papers' }));
+const changePaper = document.getElementById('change-paper');
+changePaper.addEventListener('click', () => {
+  const expanded = changePaper.getAttribute('aria-expanded') !== 'true';
+  changePaper.setAttribute('aria-expanded', String(expanded));
+  if (expanded) document.getElementById('practice-year')?.focus();
+});
 document.querySelector('.skip-link').addEventListener('click', (event) => {
   event.preventDefault();
   const target =
-    document.body.dataset.view === 'listening'
-      ? document.getElementById('questions')
-      : !paperHost.hidden
-        ? paperHost
-        : readingHost.hidden
-          ? trainingHost
-          : readingHost;
+    current === 'account'
+      ? accountHost
+      : current === 'home'
+        ? document.getElementById('home-title')
+        : current === 'listening'
+          ? document.getElementById('questions')
+          : !paperHost.hidden
+            ? paperHost
+            : readingHost.hidden
+              ? trainingHost
+              : readingHost;
   target.tabIndex = -1;
   target.focus();
   target.scrollIntoView({ block: 'start' });
@@ -253,4 +395,8 @@ window.addEventListener('hashchange', () =>
   navigate(location.hash.slice(1), location.hash === '#listening' ? { mode: 'papers' } : {}),
 );
 listeningBridge.setNavigator(navigate);
-navigate(location.hash.slice(1) || 'library');
+account
+  .init()
+  .catch(() => {})
+  .finally(refreshSessionBar);
+navigate(location.hash.slice(1) || 'home');

@@ -114,13 +114,17 @@ try {
       const title = await page.locator('#lesson-title').textContent();
       await page.locator('.question-input').first().fill('focused draft kept');
       dialogs.accept = false;
-      await page.locator('.main-navigation [data-view=listening]').tap();
+      await page.evaluate(() => {
+        location.hash = 'listening';
+      });
       await page.waitForFunction(() => document.body.dataset.listeningMode === 'practice');
       assert.equal(await page.locator('#lesson-title').textContent(), title);
       assert.equal(await page.locator('.question-input').first().inputValue(), 'focused draft kept');
       assert.equal(await page.locator('#practice-picker').isVisible(), false);
+      await page.locator('#home-back').click();
       await page.locator('.main-navigation [data-view=library]').tap();
       await page.locator('#paper-year').waitFor({ state: 'visible' });
+      await page.locator('#home-back').click();
       await page.locator('.main-navigation [data-view=listening]').tap();
       assert.equal(await page.locator('.question-input').first().inputValue(), 'focused draft kept');
     },
@@ -131,14 +135,17 @@ try {
     async (page) => {
       await page.locator('#practice-year').selectOption('2013');
       await ready(page, '2013');
+      await page.locator('#home-back').click();
       await page.locator('.main-navigation [data-view=library]').tap();
       await page.locator('#paper-year').waitFor({ state: 'visible' });
       await page.locator('#paper-paper').selectOption('1');
       await page.waitForFunction(() => document.querySelector('#paper-audio-panel').hidden);
+      await page.locator('#home-back').click();
       await page.locator('.main-navigation [data-view=listening]').tap();
       await ready(page, '2013');
       assert.equal(await page.locator('#practice-year').inputValue(), '2013');
       assert.equal(await page.locator('#paper-host').isVisible(), false);
+      await page.locator('#home-back').click();
       await page.locator('.main-navigation [data-view=library]').tap();
       assert.equal(await page.locator('#paper-paper').inputValue(), '1');
       assert.equal(await page.locator('#paper-paper').isVisible(), true);
@@ -184,6 +191,7 @@ try {
         await waiting;
         await route.continue().catch(() => {});
       });
+      await page.locator('#home-back').click();
       await page.locator('.main-navigation [data-view=listening]').tap();
       await requested;
       await page.evaluate(() => {
@@ -242,6 +250,7 @@ try {
         await page.setViewportSize({ width, height });
         for (const mode of ['papers', 'practice']) {
           if (mode === 'papers') {
+            await page.locator('#home-back').click();
             await page.locator('.main-navigation [data-view=listening]').tap();
           } else {
             await page.evaluate(() => {

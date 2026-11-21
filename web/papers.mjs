@@ -48,23 +48,25 @@ export async function mountPapers({ host, bridge }) {
     selectionInterrupted = false;
   host.innerHTML = `
     <section class="paper-heading"><div><h1>原卷资料库</h1><p>浏览题页、Data File 和评分参考；作答请选「开始精练」。</p></div><span class="paper-count">2012—2025 · Sample / Practice</span></section>
+    <div class="library-desk"><section class="library-selection" aria-label="选择试卷与资料">
     <form class="paper-filters" aria-label="选择原卷">
       <label>年份<select id="paper-year"></select></label><label>版本<select id="paper-variant"></select></label>
       <label>卷别<select id="paper-paper"><option value="3">Paper 3 · 听力</option><option value="1">Paper 1 · 阅读</option><option value="2">Paper 2 · 写作</option><option value="4">Paper 4 · 说话</option></select></label>
       <label>Part<select id="paper-part"></select></label><label>Task<select id="paper-task"></select></label>
     </form>
     <div id="paper-notice" class="paper-notice" role="status"></div>
+    <div class="library-destinations"><button id="paper-practise-task" type="button" class="button-primary">用此 Task 开始练习</button><button id="library-open-references" type="button" class="button-secondary">同年资料</button></div>
+    </section><div class="library-documents">
     <section id="paper-audio-panel" class="paper-audio-panel" aria-label="原卷录音">
       <div class="paper-transport"><button id="paper-play" type="button" class="button-primary">播放</button><button id="paper-back" type="button" aria-label="后退十秒">−10 秒</button><button id="paper-forward" type="button" aria-label="前进十秒">＋10 秒</button>
       <label class="paper-rate">速度<select id="paper-rate"><option value="0.75">0.75×</option><option value="0.85">0.85×</option><option value="1" selected>1.0×</option><option value="1.25">1.25×</option></select></label>
       <button id="paper-task-play" type="button" class="button-secondary">听这个 Task</button><button id="paper-task-loop" type="button" aria-pressed="false">循环 Task</button>
-      <button id="paper-review" type="button" class="button-secondary">开始复盘，显示字幕</button><button id="paper-practise-task" type="button" class="button-secondary">用此 Task 开始练习</button></div>
+      <button id="paper-review" type="button" class="button-secondary">开始复盘，显示字幕</button></div>
       <div class="paper-progress"><span id="paper-position">0:00</span><input id="paper-seek" type="range" min="0" max="1" step="0.05" value="0" aria-label="原卷录音进度"/><span id="paper-duration">0:00</span></div>
       <div class="paper-audio-status"><span id="paper-audio-status" role="status">选择 Task 后可播放对应原音。</span><button id="paper-clear-range" type="button" hidden>退出片段 / 循环</button></div>
       <audio id="paper-audio" preload="none" playsinline></audio>
     </section>
     <section id="paper-study-host" aria-label="原卷短句训练"></section>
-    <div class="paper-study-savebar"><p id="paper-study-status" role="status"></p><button id="paper-study-save" type="button" class="button-secondary">保存本次学习纪录</button><button id="paper-study-review" type="button">复习与备份</button></div>
     <div class="paper-workspace">
       <section id="paper-transcript-panel" class="paper-transcript-panel panel" hidden>
         <div class="panel-header"><h2>听力字幕</h2><button id="paper-follow" type="button" aria-pressed="true">跟随播放</button></div>
@@ -79,10 +81,15 @@ export async function mountPapers({ host, bridge }) {
         <div id="paper-image-wrap" class="paper-image-wrap"><div id="paper-image-stage"><img id="paper-image" alt="" decoding="async" hidden/></div><p id="paper-image-error" hidden>此页未能载入。<button id="paper-image-retry" type="button">重新载入</button></p></div>
       </section>
     </div>
-    <section class="paper-references"><h2>同年资料</h2><p>Data File、原稿、评分参考与合订本保留原文件名称。参考内容由你主动打开。</p><div id="paper-references"></div></section>
-    <p id="paper-source-summary" class="paper-fine"></p>`;
+    <section class="paper-references"><h2 id="paper-references-title" tabindex="-1">同年资料</h2><p>Data File、原稿、评分参考与合订本保留原文件名称。参考内容由你主动打开。</p><div id="paper-references"></div></section>
+    <div class="paper-study-savebar"><p id="paper-study-status" role="status"></p><button id="paper-study-save" type="button" class="button-secondary">保存本次学习纪录</button><button id="paper-study-review" type="button">复习与备份</button></div>
+    <p id="paper-source-summary" class="paper-fine"></p></div></div>`;
   const $ = (id) => host.querySelector(`#${id}`);
   host.querySelector('form').onsubmit = (event) => event.preventDefault();
+  $('library-open-references').onclick = () => {
+    $('paper-references-title').focus({ preventScroll: true });
+    $('paper-references-title').scrollIntoView({ block: 'start' });
+  };
   const player = new PaperPlayer($('paper-audio'), updatePlayer);
   paperStudy = mountPaperStudy({
     host: $('paper-study-host'),
@@ -120,7 +127,7 @@ export async function mountPapers({ host, bridge }) {
     $('paper-study-status').textContent = studyStore.loadError
       ? `已有记录未能载入：${studyStore.loadError}`
       : studyStore.hasUnsaved()
-        ? '本次修改尚未保存。保存只写入当前浏览器。'
+        ? '本次修改尚未保存。点「保存本次学习纪录」核对并确认。'
         : '已保存的原卷标记会在这里恢复；完整备份可带到其他设备。';
   }
   studyStore.subscribe(() => {
@@ -506,6 +513,7 @@ export async function mountPapers({ host, bridge }) {
     $(id).value = String(value);
   }
   function renderReferences(sources) {
+    $('library-open-references').textContent = `同年资料（${sources.length}）`;
     $('paper-references').innerHTML =
       sources
         .map(
@@ -604,6 +612,7 @@ export async function mountPapers({ host, bridge }) {
           ? `${selection.year} · ${variants[selection.variant]} · Paper ${selection.paper}${selection.part ? ` · Part ${selection.part}` : ''}${selection.task ? ` · Task ${selection.task}` : ''}`
           : '你保存的材料中没有此项独立题卷；同年合订本保留在下方。';
     $('paper-audio-panel').hidden = selection.paper !== 3;
+    $('paper-practise-task').hidden = selection.paper !== 3;
     $('paper-study-host').hidden = selection.paper !== 3;
     const key = `${selection.year}-${selection.variant}`;
     if (selection.paper === 3 && key !== session?.id) {
@@ -782,7 +791,7 @@ export async function mountPapers({ host, bridge }) {
     showSelectedSource(next, true);
   };
   $('paper-source-summary').textContent =
-    `已整理 ${catalogue.sources.length} 份原件。页面按原 PDF 页码保留；重复版本按原文件名称区分。个人练习纪录只保存在当前浏览器。`;
+    `已整理 ${catalogue.sources.length} 份原件。页面沿用原 PDF 页码，重复版本按原文件名称区分。`;
   await applySelection();
   return {
     getSaveState: () => paperStudy.getSaveState(),
