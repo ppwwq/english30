@@ -1,4 +1,5 @@
 import { mountPaperInk } from './paper-ink.mjs';
+import { inkIcon } from './ink-icons.mjs';
 
 export function mountPaperPractice({
   entries,
@@ -140,6 +141,7 @@ export function mountPaperPractice({
         const button = document.createElement('button');
         button.type = 'button';
         button.textContent = label;
+        if (writingSheet) inkIcon(button, mode === 'type' ? 'keyboard' : 'write', label);
         button.setAttribute('aria-pressed', String(mode === writing.mode));
         button.onclick = () => writing.setMode(mode);
         modes.append(button);
@@ -149,7 +151,7 @@ export function mountPaperPractice({
         focus.type = 'button';
         const syncFocus = (expanded) => {
           document.body.dataset.paperFocus = String(expanded);
-          focus.textContent = expanded ? '收起书写区' : '展开书写区';
+          inkIcon(focus, expanded ? 'collapse' : 'expand', expanded ? '收起书写区' : '展开书写区');
           focus.setAttribute('aria-expanded', String(expanded));
         };
         syncFocus(true);
@@ -181,6 +183,11 @@ export function mountPaperPractice({
       const zoom = document.createElement('button');
       zoom.type = 'button';
       zoom.textContent = '放大题页';
+      if (writingSheet) {
+        inkIcon(previous, 'prev', '上一页');
+        inkIcon(next, 'next', '下一页');
+        inkIcon(zoom, 'zoom', '放大题页');
+      }
       zoom.setAttribute('aria-pressed', 'false');
       const pageInput = document.createElement('input');
       pageInput.type = 'number';
@@ -202,7 +209,9 @@ export function mountPaperPractice({
       wrap.append(stage, error);
       function setZoom(enlarged) {
         wrap.classList.toggle('is-zoomed', enlarged);
-        zoom.textContent = enlarged ? '适合宽度' : '放大题页';
+        const label = enlarged ? '适合宽度' : '放大题页';
+        if (writingSheet) inkIcon(zoom, enlarged ? 'fit' : 'zoom', label);
+        else zoom.textContent = label;
         zoom.setAttribute('aria-pressed', String(enlarged));
       }
       zoom.onclick = () => setZoom(!wrap.classList.contains('is-zoomed'));
@@ -354,6 +363,10 @@ export function mountPaperPractice({
         const questionButton = document.createElement('button');
         questionButton.type = 'button';
         questionButton.textContent = '回到原题';
+        if (writingSheet) {
+          inkIcon(dataButton, 'data', 'Data File');
+          inkIcon(questionButton, 'paper', '回到原题');
+        }
         questionButton.onclick = () => {
           select.value = paper.questionSourceId;
           show(paper.questionPage);
@@ -369,7 +382,18 @@ export function mountPaperPractice({
         toggle.onclick = () => transcriptWindow.toggle();
         toolbar.append(toggle);
       }
-      details.append(toolbar, inkTools, wrap);
+      if (writingSheet) {
+        const header = document.createElement('div');
+        header.className = 'paper-writing-header';
+        const modes = details.querySelector('.paper-answer-modes');
+        header.append(toolbar);
+        if (modes) {
+          modes.prepend(zoom);
+          header.append(modes);
+        }
+        details.append(header);
+      } else details.append(toolbar);
+      details.append(inkTools, wrap);
       const remembered = writing?.page;
       if (remembered && documents.some((s) => s.id === remembered.sourceId)) {
         select.value = remembered.sourceId;

@@ -49,14 +49,14 @@ try {
     clientY: bounds.y + 48,
     button: 0,
   });
-  assert.equal(await ink.locator('polyline').count(), 1);
+  assert.equal(await ink.locator('.ink-stroke').count(), 1);
   await page.reload();
   await ready();
-  assert.equal(await ink.locator('polyline').count(), 1, 'ink draft survives refresh');
+  assert.equal(await ink.locator('.ink-stroke').count(), 1, 'ink draft survives refresh');
   await page.getByRole('button', { name: '下一页', exact: true }).first().click();
-  assert.equal(await ink.locator('polyline').count(), 0);
+  assert.equal(await ink.locator('.ink-stroke').count(), 0);
   await page.getByRole('button', { name: '上一页', exact: true }).first().click();
-  assert.equal(await ink.locator('polyline').count(), 1);
+  assert.equal(await ink.locator('.ink-stroke').count(), 1);
   await page.locator('#play-pause').click();
   await page.locator('#submit-answers').click();
   assert.ok(
@@ -140,7 +140,7 @@ try {
   assert.ok(
     await first.locator('.reference-answer').evaluate((n) => parseFloat(getComputedStyle(n).fontSize) >= 18),
   );
-  assert.equal(await ink.locator('polyline').count(), 1);
+  assert.equal(await ink.locator('.ink-stroke').count(), 1);
   console.log('PASS tablet columns, original-page ink, page changes and handwritten review');
   await page.locator('#session-save').click();
   await page.waitForFunction(() =>
@@ -148,16 +148,16 @@ try {
   );
   await page.locator('#phase-retest').click();
   assert.equal(await panel.count(), 0);
-  assert.equal(await ink.locator('polyline').count(), 0);
+  assert.equal(await ink.locator('.ink-stroke').count(), 0);
   assert.equal(await page.locator('.reference-answer').count(), 0);
   await page.reload();
   await ready();
   assert.equal(await page.locator('body').getAttribute('data-listening-phase'), 'retest');
-  assert.equal(await ink.locator('polyline').count(), 0);
+  assert.equal(await ink.locator('.ink-stroke').count(), 0);
   await page.getByRole('button', { name: '收起书写区' }).click();
   await page.locator('.review-drawer > summary').click();
   await page.getByRole('button', { name: '恢复这份纪录，继续复盘' }).click();
-  assert.equal(await ink.locator('polyline').count(), 1);
+  assert.equal(await ink.locator('.ink-stroke').count(), 1);
   console.log('PASS explicit save, concealed retest and original stroke restoration');
 } finally {
   await browser.close();

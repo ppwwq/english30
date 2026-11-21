@@ -1749,6 +1749,9 @@ h1 {
 .sentence-text {
   margin: 0 0 4px;
 }
+.transcript .sentence {
+  cursor: pointer;
+}
 .word:hover {
   background: #ece5ff !important;
 }

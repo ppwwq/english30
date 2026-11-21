@@ -1,5 +1,6 @@
 web/lessons/
 web/papers/practice/
+web/vendor/perfect-freehand/
 package-lock.json
 .openai/
 node_modules/

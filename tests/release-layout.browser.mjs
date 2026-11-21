@@ -14,6 +14,39 @@ page.on('dialog', (d) => d.accept());
 try {
   await page.goto(`${process.env.TEST_URL || 'http://127.0.0.1:4174'}/#listening`);
   await page.waitForFunction(() => !document.querySelector('#play-pause').disabled);
+  await page.locator('#practice-image').evaluate((img) => img.decode());
+  for (const width of [390, 810, 1129, 1246, 1600]) {
+    await page.setViewportSize({ width, height: 1198 });
+    const paper = await page.locator('.transcript-panel').boundingBox();
+    const answers = await page.locator('.question-panel').boundingBox();
+    if (width < 760) {
+      assert.ok(answers.y + answers.height <= paper.y, 'phone stacks answers above the paper');
+    } else {
+      assert.ok(paper.x + paper.width <= answers.x);
+      assert.equal(answers.y, paper.y, 'top edges align');
+      assert.equal(answers.y + answers.height, paper.y + paper.height, 'bottom edges align');
+    }
+    if (width === 1246) {
+      const cards = page.locator('#questions > .question-card:visible');
+      assert.equal(await cards.count(), 4);
+      const gaps = [];
+      let lastInputBottom;
+      for (const card of await cards.all()) {
+        const label = await card.locator('label').boundingBox();
+        const input = await card.locator('.question-input').boundingBox();
+        if (lastInputBottom !== undefined) gaps.push(label.y - lastInputBottom);
+        assert.ok(input.y - (label.y + label.height) < 16, 'each prompt stays with its input');
+        lastInputBottom = input.y + input.height;
+      }
+      const footer = await page.locator('.question-actions:visible').boundingBox();
+      const tail = footer.y - lastInputBottom;
+      assert.ok(Math.min(...gaps) > 40, 'spare height goes between the four answer groups');
+      assert.ok(Math.max(...gaps) - Math.min(...gaps) <= 2, 'spacing is balanced across prompts');
+      assert.ok(tail > 0 && tail < Math.min(...gaps), 'no large empty area after Q4');
+      console.log('Q1–Q4 gaps / space below Q4 (px)', gaps.map(Math.round), Math.round(tail));
+    }
+  }
+  await page.setViewportSize({ width: 1280, height: 900 });
   const marking = page.getByRole('button', { name: '看评分原页', exact: true });
   assert.equal(await marking.count(), 0);
   await page.locator('.question-input').first().fill('7000');

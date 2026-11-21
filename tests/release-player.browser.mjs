@@ -43,6 +43,18 @@ try {
   await check('subtitle navigation retains pause and play, never acquires a sentence stop', async (page) => {
     await review(page);
     await page.locator('.sentence-time').nth(5).click();
+    const sentenceStart = (await state(page)).time;
+    assert.ok(sentenceStart > 0);
+    await page
+      .locator('.sentence')
+      .nth(2)
+      .click({ position: { x: 3, y: 3 } });
+    assert.ok((await state(page)).time < sentenceStart);
+    await page
+      .locator('.sentence')
+      .nth(5)
+      .click({ position: { x: 3, y: 3 } });
+    assert.equal((await state(page)).time, sentenceStart, 'sentence background seeks to its timestamp');
     await page.waitForTimeout(150);
     assert.equal((await state(page)).paused, true, 'time click must keep paused');
     await page.locator('#next-sentence').click();

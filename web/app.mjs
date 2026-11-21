@@ -12,6 +12,7 @@ import {
   selfAssessAnswer,
 } from './core.mjs';
 import { mountPaperPractice } from './paper-practice.mjs';
+import { inkIcon } from './ink-icons.mjs';
 import { taskQuestionPages } from './paper-question-pages.mjs';
 import { mountTranscriptWindow } from './transcript-window.mjs';
 import { mountFocusedDrill } from './focused-drill.mjs';
@@ -405,14 +406,13 @@ function renderTranscript() {
     const row = el('div', 'sentence');
     row.dataset.sentenceId = sentence.id;
     const heading = el('div', 'sentence-meta');
-    heading.append(
-      button(
-        formatTime(sentence.start),
-        () => seekPosition(sentence.start + (session.timingOffset || 0)),
-        'sentence-time',
-      ),
-      el('span', 'speaker', sentence.speaker || ''),
-    );
+    const seekSentence = () => seekPosition(sentence.start + (session.timingOffset || 0));
+    const time = button(formatTime(sentence.start), seekSentence, 'sentence-time');
+    time.setAttribute('aria-label', `跳到句首 ${formatTime(sentence.start)}`);
+    heading.append(time, el('span', 'speaker', sentence.speaker || ''));
+    row.addEventListener('click', (event) => {
+      if (!event.target.closest('button')) seekSentence();
+    });
     row.append(heading);
     const text = el('p', 'sentence-text');
     text.lang = 'en';
@@ -769,8 +769,15 @@ function renderControls() {
   $('submit-answers').hidden = isReview;
   $('submission-note').hidden = isReview;
   $('submit-answers').disabled = !audioReady || !hasStarted;
-  $('submit-answers').title = hasStarted ? '' : '先播放原音；播放后可留空交卷。';
-  $('submit-answers').textContent = session.phase === 'retest' ? '提交复测答案' : '提交作答';
+  const submit = $('submit-answers');
+  const submitLabel = session.phase === 'retest' ? '提交复测答案' : '提交作答';
+  if (lesson.paper && answerMode === 'ink' && !isReview) inkIcon(submit, 'submit', submitLabel);
+  else {
+    submit.classList.remove('ink-icon-control');
+    submit.removeAttribute('aria-label');
+    submit.textContent = submitLabel;
+  }
+  submit.title = hasStarted ? submitLabel : '先播放原音；播放后可留空交卷。';
   $('listening-next-actions').hidden = !isReview;
   const fresh = catalogueWithStatus().some(
     (entry) =>

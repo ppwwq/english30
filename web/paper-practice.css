@@ -187,6 +187,51 @@ button:disabled {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.ink-selection,
+.ink-eraser-tip {
+  fill: #ad95ef22;
+  stroke: var(--ink);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.ink-selection {
+  stroke-dasharray: 5 4;
+}
+.practice-sources :is(button, summary).ink-icon-control,
+.question-actions #submit-answers.ink-icon-control {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0;
+}
+.ink-icon-control svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.practice-sources summary.ink-icon-control::-webkit-details-marker {
+  display: none;
+}
+.practice-sources .ink-icon-control[hidden],
+.question-actions #submit-answers.ink-icon-control[hidden] {
+  display: none;
+}
+body[data-paper-answer='ink']:not([data-listening-phase='review']) .question-actions:has(#submit-answers) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+body[data-paper-answer='ink'] .question-actions #submission-note {
+  order: -1;
+}
 .paper-ink.can-pan,
 .paper-ink.read-only {
   pointer-events: none;
@@ -217,6 +262,26 @@ button:disabled {
   color: var(--surface);
 }
 @media (min-width: 760px) {
+  body[data-paper-answer='type']:not([data-listening-phase='review']) .study-grid {
+    align-items: stretch;
+    & .question-panel {
+      flex: 1;
+    }
+    & #questions {
+      flex: 1 1 auto;
+      max-height: none;
+    }
+    & #questions:has(> .question-card:not([hidden]) ~ .question-card:not([hidden])) {
+      display: flex;
+      flex-direction: column;
+      & > .question-card:not([hidden]) {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
   body[data-listening-mode='papers']:not([data-listening-phase='review']) .study-grid .answer-column {
     order: 0;
   }
@@ -309,6 +374,204 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   margin: 0;
   font-size: 14px;
   color: var(--ink);
+}
+.paper-writing-sheet {
+  container-type: inline-size;
+}
+.paper-writing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  padding: 0 7px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.paper-writing-header .practice-document-tools {
+  flex: 1;
+  min-width: 0;
+}
+.paper-writing-header .paper-answer-modes {
+  flex-wrap: nowrap;
+}
+.paper-writing-header :is(.practice-document-tools, .paper-answer-modes) button.ink-icon-control {
+  border-color: transparent;
+  background: transparent;
+}
+.paper-writing-header .paper-answer-modes [aria-pressed='true'].ink-icon-control {
+  color: var(--ink);
+  background: var(--line);
+}
+.paper-writing-sheet > .ink-tools {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--line);
+  column-gap: 12px !important;
+  row-gap: 2px;
+}
+.ink-tools :is(.ink-rack, .ink-paint, .ink-palette, .ink-choices, .ink-selection-actions, .ink-history) {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+.ink-rack,
+.ink-paint,
+.ink-history {
+  min-height: 44px;
+}
+.ink-paint {
+  padding-inline-start: 12px;
+  border-inline-start: 1px solid var(--line);
+}
+.ink-history {
+  margin-inline-start: auto;
+}
+.ink-tools button.ink-icon-control {
+  position: relative;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid transparent;
+  border-radius: 9px;
+}
+.ink-tools button.ink-icon-control:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ink) 6%, var(--surface));
+}
+.ink-tools button.ink-icon-control:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+.ink-tools button[aria-pressed='true']:not(.ink-swatch),
+.ink-tools button[data-active='true'],
+.ink-tools button[aria-expanded='true'] {
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--line) 45%, var(--surface));
+  color: var(--ink);
+}
+.ink-rack > button:nth-child(-n + 4) svg {
+  width: 31px;
+  height: 35px;
+}
+.ink-rack > button[aria-pressed='true']::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  width: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+.ink-tools button.ink-swatch svg,
+.ink-palette-trigger svg {
+  width: 28px;
+  height: 28px;
+}
+.ink-tools button.ink-swatch[aria-pressed='true']::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+.ink-tools button.ink-palette-trigger {
+  display: none;
+}
+.ink-tools .ink-popup,
+.ink-palette[data-open='true'] {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 12px;
+}
+.ink-tools .ink-popup {
+  position: absolute;
+  top: calc(100% + 2px);
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 5px;
+  max-width: 100%;
+  box-shadow: 0 4px 14px #29231818;
+}
+.ink-rack > .ink-popup {
+  left: 8px;
+}
+.ink-history > .ink-popup {
+  right: 8px;
+}
+.ink-choices + .ink-choices:not([hidden]) {
+  border-inline-start: 1px solid var(--line);
+  padding-inline-start: 4px;
+}
+.ink-choices[hidden] + .ink-choices {
+  border: 0;
+  padding: 0;
+}
+.ink-icon-control:has(use[href$='#radius']) svg {
+  transform: scale(var(--radius-scale, 1));
+}
+.ink-tools [hidden],
+.paper-writing-sheet > .ink-tools[hidden] {
+  display: none !important;
+}
+@container (max-width: 860px) {
+  .ink-tools button.ink-palette-trigger {
+    display: inline-grid;
+  }
+  .ink-tools .ink-palette {
+    display: none;
+  }
+  .ink-tools .ink-palette[data-open='true'] {
+    display: flex;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 8px;
+    z-index: 5;
+    padding: 5px;
+    box-shadow: 0 4px 14px #29231818;
+  }
+  .ink-paint > .ink-popup {
+    left: 8px;
+  }
+}
+@container (max-width: 540px) {
+  .paper-writing-header {
+    padding-inline: 0;
+    gap: 0;
+  }
+  .paper-writing-header .paper-answer-modes button[aria-label='手写作答'] {
+    display: none;
+  }
+  .paper-writing-sheet .paper-writing-header :is(.practice-document-tools, .paper-answer-modes) {
+    gap: 0;
+  }
+  .paper-writing-header .practice-document-tools select {
+    min-width: 44px;
+    max-width: 8rem;
+    flex: 1 1 54px !important;
+  }
+  .paper-writing-header #practice-page {
+    width: 44px;
+    padding: 2px;
+  }
+  .paper-writing-sheet > .ink-tools {
+    padding-inline: 0;
+    column-gap: 0 !important;
+  }
+  .ink-tools :is(.ink-rack, .ink-paint, .ink-history) {
+    gap: 0;
+  }
+  .ink-paint {
+    padding: 0;
+    border: 0;
+  }
+  .ink-tools .ink-history {
+    margin-inline-start: 0;
+  }
 }
 .question-review-tools {
   font-size: 14px;

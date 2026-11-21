@@ -1,3 +1,5 @@
+import { isPaperStroke } from './paper-ink-geometry.mjs';
+
 export function createSession(lesson) {
   return { lessonId: lesson.id, phase: 'first', attempts: [], marks: {}, moments: [], timingOffset: 0 };
 }
@@ -88,7 +90,7 @@ export function validatePaperInk(ink) {
     if (
       !/^[\w-]+:[1-9]\d*$/.test(page) ||
       !Array.isArray(strokes) ||
-      strokes.some((s) => typeof s !== 'string' || !/^(?:\d{1,4},\d{1,4})(?: \d{1,4},\d{1,4})*$/.test(s))
+      strokes.some((s) => !isPaperStroke(s))
     ) {
       throw new Error('手写笔迹格式无效。');
     }

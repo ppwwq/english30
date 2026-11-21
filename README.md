@@ -91,3 +91,5 @@ npm run deploy:cloudflare
 页面保留试卷、原音、原稿及评分材料的来源说明。媒体和试题的权利属于各自权利人，代码仓库公开不代表额外授予这些材料的再分发许可。
 
 弹性导航的 RubberSegment 适配保留 [MIT + Commons Clause 原许可](web/licenses/rubber-segment.txt)。本项目没有将全部源码和第三方材料统一声明为 MIT；使用相关部分时应分别核对其许可和来源。
+
+手写笔迹使用 [perfect-freehand 1.2.3](https://github.com/steveruizok/perfect-freehand)，随项目附带[原始 MIT 许可证](web/vendor/perfect-freehand/LICENSE)。
