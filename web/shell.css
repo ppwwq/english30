@@ -50,34 +50,55 @@ body[data-view='home'] :focus-visible {
 }
 .home-listening {
   display: grid;
-  align-content: space-between;
+  align-content: center;
   gap: 4px;
   padding: clamp(20px, 2.8vw, 36px);
   border-radius: var(--radius);
   background: var(--lilac);
+}
+.home-listening-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+.home-listening-heading [lang='en'] {
+  font: italic clamp(16px, 1.6vw, 21px)/1.2 var(--reading);
 }
 .home-listening .home-link-title {
   font-size: clamp(32px, 3.3vw, 46px);
   letter-spacing: -0.035em;
 }
 /* RMS envelope of 60–72s from the original 2025 Part A Task 1 recording. */
+.home-recording {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0 8px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--lilac);
+}
+.home-recording-caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 10px;
+  color: var(--surface);
+  font-size: 12px;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
 .home-wave {
   display: block;
-  height: clamp(60px, 7vw, 94px);
-  margin-block: clamp(12px, 1.8vw, 24px);
+  height: clamp(40px, 5vw, 64px);
   background: currentColor;
   mask: url('./home-listening-wave.png') center / 100% 100% no-repeat;
 }
 .home-listening-foot {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-top: 12px;
-  border-top: 1px solid color-mix(in srgb, var(--ink) 36%, transparent);
-}
-.home-listening-foot [lang='en'] {
-  font: italic 20px/1.2 var(--reading);
+  justify-content: flex-end;
 }
 .home-start {
   display: inline-flex;
@@ -93,6 +114,19 @@ body[data-view='home'] :focus-visible {
   font-size: 22px;
   line-height: 1;
 }
+@media (prefers-reduced-motion: no-preference) {
+  .home-start .home-arrow {
+    transition: transform 160ms ease-out;
+  }
+  .home-listening:focus-visible .home-arrow {
+    transform: translateX(3px);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .home-listening:hover .home-arrow {
+      transform: translateX(3px);
+    }
+  }
+}
 .home-other-practice {
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -103,7 +137,7 @@ body[data-view='home'] :focus-visible {
 .home-other-practice a {
   display: grid;
   align-content: center;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 4px 12px;
   padding: clamp(16px, 2.4vw, 30px);
   border-radius: var(--radius) var(--radius) 0 0;
@@ -115,7 +149,13 @@ body[data-view='home'] :focus-visible {
 .home-subject-icon {
   width: 24px;
   height: 24px;
-  margin-bottom: 4px;
+  box-sizing: content-box;
+  padding: 8px;
+  border-radius: 10px;
+  background: var(--pine-light);
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.6;
@@ -123,17 +163,19 @@ body[data-view='home'] :focus-visible {
   stroke-linejoin: round;
 }
 .home-other-practice .home-link-title {
-  grid-column: 1;
+  grid-column: 2;
   font-size: clamp(21px, 2vw, 28px);
 }
 .home-other-practice small,
 .home-resources small {
-  grid-column: 1;
   color: var(--ink-soft);
 }
-.home-other-practice .home-arrow {
+.home-other-practice small {
   grid-column: 2;
-  grid-row: 1 / 4;
+}
+.home-other-practice .home-arrow {
+  grid-column: 3;
+  grid-row: 1 / 3;
   align-self: center;
 }
 .home-resources {
@@ -185,21 +227,7 @@ body[data-view='home'] :focus-visible {
     grid-template-columns: minmax(0, 1fr);
   }
   .home-other-practice a {
-    grid-template-columns: 24px minmax(0, 1fr) auto;
     gap: 2px 12px;
-  }
-  .home-subject-icon {
-    grid-column: 1;
-    grid-row: 1 / 3;
-    align-self: center;
-    margin: 0;
-  }
-  .home-other-practice :is(.home-link-title, small) {
-    grid-column: 2;
-  }
-  .home-other-practice .home-arrow {
-    grid-column: 3;
-    grid-row: 1 / 3;
   }
   .home-resources {
     grid-template-columns: minmax(0, 1fr);
