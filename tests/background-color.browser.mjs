@@ -5,14 +5,13 @@ await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
-const { chromium } = require('playwright');
-const browser = await chromium.launch({
+const { chromium, webkit } = require('playwright');
+const isWebKit = process.env.TEST_ENGINE === 'webkit';
+const browser = await (isWebKit ? webkit : chromium).launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: isWebKit ? process.env.WEBKIT_EXECUTABLE : process.env.CHROMIUM_EXECUTABLE,
 });
 const url = new URL(process.env.TEST_URL || 'http://127.0.0.1:4174');
 url.hash = 'listening';
@@ -28,6 +27,26 @@ try {
   ]) {
     const page = await browser.newPage({ viewport: { width, height } });
     await page.goto(url.href);
+    if (width === 390) {
+      const manifestUrl = await page.locator('link[rel=manifest]').evaluate((link) => link.href);
+      const manifest = await (await page.request.get(manifestUrl)).json();
+      assert.equal(manifest.theme_color, '#E8EFF6');
+      const icon = await page.locator('link[rel=apple-touch-icon]').evaluate(async (link) => {
+        const image = new Image();
+        image.src = link.href;
+        await image.decode();
+        return { href: link.href, width: image.naturalWidth, height: image.naturalHeight };
+      });
+      assert.deepEqual([icon.width, icon.height], [180, 180]);
+      assert.ok(
+        manifest.icons.some(
+          (entry) =>
+            entry.type === 'image/png' &&
+            entry.sizes === '180x180' &&
+            new URL(entry.src, manifestUrl).href === icon.href,
+        ),
+      );
+    }
     const colors = await page.evaluate(() => {
       const root = getComputedStyle(document.documentElement);
       return {

@@ -137,9 +137,293 @@
           "page": 6
         }
       ],
-      "reviewNotes": [],
+      "reviewNotes": [
+        "2025 Task 1 开场指示与原稿扫描第 2 张左页及本段录音的独立识别对照，修订 Task 1 并移除两个无对应原稿、无逐词时间的重复词。"
+      ],
       "anyOrderGroups": [[11, 12, 13]],
-      "reviewRules": []
+      "reviewRules": [],
+      "sentences": [
+        {
+          "id": "s00051",
+          "start": 0,
+          "end": 7.88,
+          "text": "Task 1. Stella Poon and Adrian Timpson host a podcast about health and fitness in Hong Kong.",
+          "words": [
+            {
+              "text": "Task",
+              "start": 0,
+              "end": 0.28,
+              "probability": 0.37647247314453125,
+              "id": "w000670",
+              "sourceMatched": true
+            },
+            {
+              "text": "1.",
+              "start": 0.38,
+              "end": 0.7,
+              "probability": 0.9175,
+              "id": "w000671",
+              "sourceMatched": true
+            },
+            {
+              "text": "Stella",
+              "start": 1.66,
+              "end": 2.06,
+              "probability": 0.7465,
+              "id": "w000672",
+              "sourceMatched": true
+            },
+            {
+              "text": "Poon",
+              "start": 2.06,
+              "end": 2.5,
+              "probability": 0.7999,
+              "id": "w000673",
+              "sourceMatched": true
+            },
+            {
+              "text": "and",
+              "start": 2.5,
+              "end": 3.04,
+              "probability": 0.9578,
+              "id": "w000674",
+              "sourceMatched": true
+            },
+            {
+              "text": "Adrian",
+              "start": 3.04,
+              "end": 3.48,
+              "probability": 0.6256,
+              "id": "w000675",
+              "sourceMatched": true
+            },
+            {
+              "text": "Timpson",
+              "start": 3.48,
+              "end": 4.12,
+              "probability": 0.5836,
+              "id": "w000676",
+              "sourceMatched": true
+            },
+            {
+              "text": "host",
+              "start": 4.12,
+              "end": 4.9,
+              "probability": 0.9636,
+              "id": "w000677",
+              "sourceMatched": true
+            },
+            {
+              "text": "a",
+              "start": 4.9,
+              "end": 5.1,
+              "probability": 0.9848,
+              "id": "w000678",
+              "sourceMatched": true
+            },
+            {
+              "text": "podcast",
+              "start": 5.1,
+              "end": 5.44,
+              "probability": 0.9917,
+              "id": "w000679",
+              "sourceMatched": true
+            },
+            {
+              "text": "about",
+              "start": 5.62,
+              "end": 5.98,
+              "probability": 0.981,
+              "id": "w000681",
+              "sourceMatched": true
+            },
+            {
+              "text": "health",
+              "start": 5.98,
+              "end": 6.3,
+              "probability": 0.9312,
+              "id": "w000682",
+              "sourceMatched": true
+            },
+            {
+              "text": "and",
+              "start": 6.3,
+              "end": 6.66,
+              "probability": 0.9929,
+              "id": "w000683",
+              "sourceMatched": true
+            },
+            {
+              "text": "fitness",
+              "start": 6.66,
+              "end": 6.86,
+              "probability": 0.9985,
+              "id": "w000684",
+              "sourceMatched": true
+            },
+            {
+              "text": "in",
+              "start": 6.86,
+              "end": 7.38,
+              "probability": 0.992,
+              "id": "w000685",
+              "sourceMatched": true
+            },
+            {
+              "text": "Hong",
+              "start": 7.38,
+              "end": 7.54,
+              "probability": 0.9809,
+              "id": "w000686",
+              "sourceMatched": true
+            },
+            {
+              "text": "Kong.",
+              "start": 7.54,
+              "end": 7.88,
+              "probability": 0.9979,
+              "id": "w000687",
+              "sourceMatched": true
+            }
+          ]
+        },
+        {
+          "id": "s00056",
+          "start": 31.94,
+          "end": 35.96,
+          "text": "At the end of the task, you will have one minute to tidy up your answers.",
+          "words": [
+            {
+              "text": "At",
+              "start": 31.94,
+              "end": 32.2,
+              "probability": 0.9972,
+              "id": "w000737",
+              "sourceMatched": true
+            },
+            {
+              "text": "the",
+              "start": 32.2,
+              "end": 32.34,
+              "probability": 0.9992,
+              "id": "w000738",
+              "sourceMatched": true
+            },
+            {
+              "text": "end",
+              "start": 32.34,
+              "end": 32.52,
+              "probability": 0.9995,
+              "id": "w000739",
+              "sourceMatched": true
+            },
+            {
+              "text": "of",
+              "start": 32.52,
+              "end": 32.66,
+              "probability": 0.9986,
+              "id": "w000740",
+              "sourceMatched": true
+            },
+            {
+              "text": "the",
+              "start": 32.66,
+              "end": 32.78,
+              "probability": 0.997,
+              "id": "w000741",
+              "sourceMatched": true
+            },
+            {
+              "text": "task,",
+              "start": 32.78,
+              "end": 33.06,
+              "probability": 0.9985,
+              "id": "w000742",
+              "sourceMatched": true
+            },
+            {
+              "text": "you",
+              "start": 33.46,
+              "end": 33.7,
+              "probability": 0.9603,
+              "id": "w000744",
+              "sourceMatched": true
+            },
+            {
+              "text": "will",
+              "start": 33.7,
+              "end": 33.8,
+              "probability": 0.9304,
+              "id": "w000745",
+              "sourceMatched": true
+            },
+            {
+              "text": "have",
+              "start": 33.8,
+              "end": 33.98,
+              "probability": 0.9924,
+              "id": "w000746",
+              "sourceMatched": true
+            },
+            {
+              "text": "one",
+              "start": 33.98,
+              "end": 34.16,
+              "probability": 0.8354,
+              "id": "w000747",
+              "sourceMatched": true
+            },
+            {
+              "text": "minute",
+              "start": 34.16,
+              "end": 34.44,
+              "probability": 0.9915,
+              "id": "w000748",
+              "sourceMatched": true
+            },
+            {
+              "text": "to",
+              "start": 34.44,
+              "end": 34.98,
+              "probability": 0.8729,
+              "id": "w000749",
+              "sourceMatched": true
+            },
+            {
+              "text": "tidy",
+              "start": 34.98,
+              "end": 35.22,
+              "probability": 0.9966,
+              "id": "w000750",
+              "sourceMatched": true
+            },
+            {
+              "text": "up",
+              "start": 35.22,
+              "end": 35.46,
+              "probability": 0.99,
+              "id": "w000751",
+              "sourceMatched": true
+            },
+            {
+              "text": "your",
+              "start": 35.46,
+              "end": 35.62,
+              "probability": 0.9945,
+              "id": "w000752",
+              "sourceMatched": true
+            },
+            {
+              "text": "answers.",
+              "start": 35.62,
+              "end": 35.96,
+              "probability": 0.9928,
+              "id": "w000753",
+              "sourceMatched": true
+            }
+          ]
+        }
+      ]
     },
     "A-2": {
       "reference": {

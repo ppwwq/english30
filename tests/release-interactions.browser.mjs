@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation, confirmIncompleteTask } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -12,7 +13,7 @@ const browser = await chromium.launch({
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
-page.on('dialog', (d) => d.accept());
+allowBeforeUnload(page);
 const ready = () => page.waitForFunction(() => !document.querySelector('#play-pause').disabled);
 const audioState = () =>
   page
@@ -62,6 +63,8 @@ try {
   });
   assert.equal((await audioState()).seeks, beforeCancel.seeks, 'cancel does not commit');
   await page.locator('#submit-answers').click();
+  await confirmIncompleteTask(page);
+  await page.locator('.sentence-time').nth(40).waitFor();
   await page.evaluate(() => document.querySelectorAll('.sentence-time')[40].click());
   await page.waitForTimeout(200);
   const visible = () =>
@@ -107,10 +110,12 @@ try {
   await page.locator('#audio').evaluate((a) => a.pause());
   await page.locator('#change-paper').click();
   await page.locator('#practice-task').selectOption('3');
+  await answerConfirmation(page, '切换材料');
   await ready();
   await page.locator('.question-input').first().fill('my Task 3 answer');
   await page.locator('#play-pause').click();
   await page.locator('#submit-answers').click();
+  await confirmIncompleteTask(page);
   assert.equal(await page.locator('#questions .reference-answer').count(), 14);
   assert.equal(
     await page.locator('#original-responses .question-input').first().inputValue(),
@@ -120,6 +125,7 @@ try {
   await page.waitForSelector('#paper-task');
   await page.locator('#paper-task').selectOption('2');
   await page.locator('[data-source-ref="p-9f8236cfe333"]').click();
+  await answerConfirmation(page, '打开资料');
   try {
     await page.waitForFunction(
       () =>

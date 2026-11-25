@@ -14,7 +14,13 @@ tests/artifacts/
 /web/**/*.webp
 /web/**/*.png
 !/web/home-listening-wave.png
+!/web/apple-touch-icon.png
 /web/**/*.jpg
 /web/**/*.jpeg
 /web/**/*.pdf
 /.local/accounts/
+
+.projectmem/events.jsonl
+.projectmem/watch.pid
+.projectmem/watch.log
+.projectmem/structure.json

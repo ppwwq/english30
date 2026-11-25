@@ -10,7 +10,9 @@
     <meta name="description" content="用自己的音频逐句精听，对照题目找出卡点，再关掉字幕重新听。" />
     <title>English30 · 英文训练台</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
     <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="modulepreload" href="./app-shell.mjs" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./shell.css" />
     <link rel="stylesheet" href="./account.css" />
@@ -23,7 +25,7 @@
     <link rel="stylesheet" href="./study-screens.css" />
     <link rel="stylesheet" href="./study-shell.css" />
   </head>
-  <body>
+  <body data-view="home">
     <a class="skip-link" href="#home-panel">跳到主要内容</a>
     <div id="app-shell" class="app-shell">
       <header class="app-header">
@@ -66,7 +68,7 @@
         </div>
       </header>
 
-      <main id="home-panel" class="home-panel" aria-labelledby="home-title" hidden>
+      <main id="home-panel" class="home-panel" aria-labelledby="home-title">
         <h1 id="home-title" tabindex="-1">学习主页</h1>
         <nav class="main-navigation" aria-label="训练模块">
           <div class="home-practice">
@@ -119,7 +121,8 @@
           </div>
         </nav>
       </main>
-      <section class="session-savebar" aria-label="本次学习与保存">
+      <p id="view-loading" class="shell-error" role="status" hidden></p>
+      <section class="session-savebar" aria-label="本次学习与保存" hidden>
         <details class="session-state" open>
           <summary>
             <strong id="session-save-status" role="status" aria-live="polite">尚未提交</strong>
@@ -128,7 +131,15 @@
         </details>
         <div class="session-actions">
           <button id="session-review" type="button" class="button-secondary">复习与备份</button
-          ><button id="session-save" type="button" class="button-primary" disabled>保存本次学习纪录</button>
+          ><button
+            id="session-save"
+            type="button"
+            class="button-primary"
+            aria-label="保存本次学习纪录"
+            disabled
+          >
+            保存<span class="save-label-detail">本次学习纪录</span>
+          </button>
         </div>
       </section>
       <main id="account-host" hidden></main>
@@ -159,6 +170,7 @@
         <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">
           先读右侧题目，准备好后开始播放。
         </div>
+        <button id="audio-retry" class="button-secondary" type="button" hidden>重试载入原音</button>
 
         <nav id="review-navigation" class="review-navigation" aria-label="复盘内容定位" hidden>
           <a href="#practice-sources" data-review-target="practice-sources">原题与作答</a>
@@ -208,6 +220,7 @@
               id="original-responses"
               class="original-responses questions"
               aria-label="原题与本轮作答"
+              tabindex="0"
               hidden
             ></section>
             <div id="transcript" class="transcript" tabindex="0" aria-label="音频字幕">
@@ -267,7 +280,7 @@
             </section>
             <section class="question-panel panel" aria-labelledby="question-heading">
               <div class="panel-header">
-                <h2 id="question-heading">题目</h2>
+                <h2 id="question-heading" tabindex="-1">题目</h2>
                 <span class="quiet-label">原速 · 独立作答</span>
                 <button
                   id="open-marking-page"
@@ -285,8 +298,19 @@
                 <button id="next-question-page" type="button" aria-label="下一组题目">下一页</button>
                 <button id="return-question-page" type="button" hidden>回到本 Task 题页</button>
               </nav>
-              <div id="questions" class="questions"><p class="empty-copy">题目即将显示在这里。</p></div>
+              <div
+                id="questions"
+                class="questions"
+                role="region"
+                aria-labelledby="question-heading"
+                tabindex="0"
+              >
+                <p class="empty-copy">题目即将显示在这里。</p>
+              </div>
               <div class="question-actions">
+                <button id="continue-question-group" class="button-primary" type="button" hidden>
+                  继续下一组题目
+                </button>
                 <button id="submit-answers" disabled class="button-primary" type="button">
                   提交答案，开始复盘 <span aria-hidden="true">→</span>
                 </button>
@@ -314,16 +338,14 @@
             <div class="record-actions">
               <p class="fine-print">点击保存才会留下正式学习纪录；导出可备份到自己的文件。</p>
               <div>
-                <button id="save-record" disabled class="button-secondary" type="button">
-                  保存本次学习纪录</button
-                ><button id="export-record" disabled class="button-quiet" type="button">导出记录</button>
+                <button id="export-record" disabled class="button-quiet" type="button">导出记录</button>
               </div>
             </div>
           </div>
         </details>
       </main>
 
-      <footer class="player" aria-label="音频播放控制">
+      <footer class="player" aria-label="音频播放控制" hidden>
         <div class="player-inner">
           <div class="player-top">
             <div class="transport">
@@ -386,6 +408,16 @@
           <p id="player-feedback" class="player-feedback" role="status" aria-live="polite" hidden></p>
           <div class="player-bottom">
             <button id="repeat-sentence" disabled class="button-quiet" type="button">重听当前句</button>
+            <button
+              id="paper-float-transcript"
+              class="button-quiet"
+              type="button"
+              aria-controls="transcript"
+              aria-expanded="false"
+              hidden
+            >
+              打开字幕
+            </button>
             <details id="loop-more" class="loop-more">
               <summary>更多播放控制</summary>
               <div class="loop-controls" role="group" aria-label="片段循环">

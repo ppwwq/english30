@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -21,7 +22,7 @@ try {
   const context = await browser.newContext({ viewport: { width: 1080, height: 810 }, hasTouch: true });
   const page = await context.newPage();
   page.on('pageerror', (error) => report.errors.push(error.message));
-  page.on('dialog', (dialog) => dialog.accept());
+  allowBeforeUnload(page);
   const url = new URL(process.env.TEST_URL || 'http://127.0.0.1:4173/');
   url.hash = 'integrated';
   await page.goto(url.href);
@@ -29,10 +30,26 @@ try {
   assert.equal(await page.locator('.rd-phase').textContent(), '有支架练习');
   const firstDraft = 'Dear students, please come to our meeting next Friday. Thank you.';
   await page.locator('#rd-draft').fill(firstDraft);
+  await page.locator('#home-back').click();
+  await page.locator('#home-avatar').click();
+  await page.locator('#session-save-status').filter({ hasText: '当前输入尚未提交' }).waitFor();
+  assert.equal(await page.locator('#session-save').isDisabled(), true);
+  await page.goBack();
+  await page.goBack();
+  await page.locator('#rd-draft').waitFor();
+  assert.equal(await page.locator('#rd-draft').inputValue(), firstDraft);
   await page.locator('[data-rd-action=integrated-submit]').click();
+  assert.equal(
+    await page.locator('[data-rd-action="integrated-save"], [data-rd-action="open-review"]').count(),
+    0,
+  );
   assert.equal(await page.evaluate(() => localStorage.getItem('english30-study-v1')), null);
+  await page.locator('#home-back').click();
+  await page.locator('#home-avatar').click();
+  await page.locator('#session-save-status').filter({ hasText: '已提交，尚未保存' }).waitFor();
   const save = page.locator('#session-save');
   await save.click();
+  await answerConfirmation(page, '确认保存');
   await page.waitForFunction(
     () => JSON.parse(localStorage.getItem('english30-study-v1'))?.records.length === 1,
   );
@@ -42,7 +59,9 @@ try {
   assert.equal(firstRecords.length, 1);
   assert.equal(firstRecords[0].phase, 'first');
   const firstId = firstRecords[0].id;
-
+  await page.locator('#session-save-status').filter({ hasText: '已保存到此浏览器' }).waitFor();
+  assert.equal(await save.isDisabled(), true);
+  await page.goto(url.href);
   await page.reload();
   await page.locator('#rd-draft').waitFor();
   assert.equal(await page.locator('#rd-draft').inputValue(), '');
@@ -54,6 +73,7 @@ try {
     1,
   );
   await save.click();
+  await answerConfirmation(page, '确认保存');
   await page.waitForFunction(
     () => JSON.parse(localStorage.getItem('english30-study-v1'))?.records.length === 2,
   );

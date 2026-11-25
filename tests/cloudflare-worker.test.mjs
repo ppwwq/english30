@@ -7,7 +7,9 @@ function fixture() {
     RELEASE: 'test-release',
     ASSETS: {
       async fetch(request) {
-        const audio = new URL(request.url).pathname === '/papers/audio/test.mp3';
+        const audio = ['/papers/audio/test.mp3', '/audio/paper-2025-exam-a-task-1.mp3'].includes(
+          new URL(request.url).pathname,
+        );
         return new Response(request.method === 'HEAD' ? null : audio ? '0123456789' : 'public library', {
           headers: {
             'Content-Type': audio ? 'audio/mpeg' : 'text/html',
@@ -73,4 +75,19 @@ test('HEAD, unsatisfiable ranges and stale If-Range preserve HTTP semantics', as
   });
   assert.equal(fresh.status, 206);
   assert.equal(await fresh.text(), '345');
+});
+
+test('duration verification returns the actual clip digest and size without downloading its body', async () => {
+  const call = fixture();
+  const path = '/audio/paper-2025-exam-a-task-1.mp3';
+  const response = await call(path, { method: 'HEAD', headers: { 'X-English30-Verify-Audio': '1' } });
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get('Content-Length'), '10');
+  assert.equal(response.headers.get('ETag'), '"audio-v1"');
+  assert.equal(
+    response.headers.get('X-English30-Audio-SHA256'),
+    '84d89877f0d4041efb6bf91a16f0248f2fd573e6af05c19f96bedb9f882f7882',
+  );
+  assert.equal(await response.text(), '');
+  assert.equal((await call(path, { method: 'HEAD' })).headers.has('X-English30-Audio-SHA256'), false);
 });

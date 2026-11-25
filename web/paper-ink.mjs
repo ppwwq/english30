@@ -10,7 +10,7 @@ import {
 import { mountInkTools } from './paper-ink-tools.mjs';
 
 const NS = 'http://www.w3.org/2000/svg';
-const settings = {
+const answerSettings = {
   mode: 'pen',
   finger: 'pan',
   eraseMode: 'partial',
@@ -23,6 +23,8 @@ const settings = {
     line: { size: 2, color: inkColors[0] },
   },
 };
+const reviewSettings = structuredClone(answerSettings);
+reviewSettings.brushes.pen.color = inkColors[2];
 function element(name, attrs = {}) {
   const node = document.createElementNS(NS, name);
   for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
@@ -56,11 +58,18 @@ export function renderStroke(value, aspect) {
   node.classList.add('ink-stroke');
   return node;
 }
-export function mountPaperInk(stage, tools, writing) {
-  const svg = element('svg', { preserveAspectRatio: 'none', 'aria-label': '原卷手写笔迹' });
+export function mountPaperInk(stage, tools, writing, reviewing = false) {
+  const settings = reviewing ? reviewSettings : answerSettings;
+  let pages = writing.ink || {};
+  const svg = element('svg', {
+    preserveAspectRatio: 'none',
+    'aria-label': reviewing ? '原卷批注' : '原卷手写笔迹',
+    tabindex: '0',
+  });
   svg.classList.add('paper-ink');
-  if (!writing.readOnly) svg.setAttribute('tabindex', '0');
   stage.append(svg);
+  const submitted = element('g', { class: 'submitted-ink', 'pointer-events': 'none' });
+  if (reviewing) svg.append(submitted);
   const layer = element('g'),
     overlay = element('g', { 'pointer-events': 'none' });
   svg.append(layer, overlay);
@@ -72,7 +81,7 @@ export function mountPaperInk(stage, tools, writing) {
     paintFrame = 0;
   const histories = new Map();
   const rendered = new WeakMap();
-  const entries = () => writing.ink[pageKey] || [];
+  const entries = () => pages[pageKey] || [];
   const history = () => histories.get(pageKey);
   function paint(values = entries()) {
     const nodes = values.map((s) => {
@@ -101,10 +110,10 @@ export function mountPaperInk(stage, tools, writing) {
     );
   }
   function sync() {
-    tools.hidden = !pageKey || writing.readOnly;
-    svg.classList.toggle('read-only', writing.readOnly);
+    tools.hidden = !pageKey;
     svg.classList.toggle('can-pan', settings.mode === 'pan');
     updateTools?.({
+      pageKey,
       hasInk: entries().length > 0,
       canUndo: !!history()?.before.length || !!entries().length,
       canRedo: !!history()?.after.length,
@@ -112,9 +121,10 @@ export function mountPaperInk(stage, tools, writing) {
     });
   }
   function replace(values) {
-    if (values.length) writing.ink[pageKey] = values;
-    else delete writing.ink[pageKey];
-    writing.changed(pageKey);
+    if (reviewing) pages = { ...pages };
+    if (values.length) pages[pageKey] = values;
+    else delete pages[pageKey];
+    writing.changed(pageKey, pages);
     paint();
     sync();
   }
@@ -141,32 +151,35 @@ export function mountPaperInk(stage, tools, writing) {
     selected = [];
     replace(h.after.pop());
   }
-  const updateTools = writing.readOnly
-    ? null
-    : mountInkTools(tools, settings, {
-        mode: (key) => {
-          cancel();
-          settings.mode = key;
-          selected = [];
-          showSelection();
-          sync();
-        },
-        undo,
-        redo,
-        clear: () => {
-          selected = [];
-          commit([]);
-        },
-        remove: () => {
-          const keep = entries().filter((s) => !selected.includes(s));
-          selected = [];
-          commit(keep);
-        },
-        copy: () => {
-          selected = moveSelection(selected, 12, 12);
-          commit([...entries(), ...selected]);
-        },
-      });
+  const updateTools = mountInkTools(
+    tools,
+    settings,
+    {
+      mode: (key) => {
+        cancel();
+        settings.mode = key;
+        selected = [];
+        showSelection();
+        sync();
+      },
+      undo,
+      redo,
+      clear: () => {
+        selected = [];
+        commit([]);
+      },
+      remove: () => {
+        const keep = entries().filter((s) => !selected.includes(s));
+        selected = [];
+        commit(keep);
+      },
+      copy: () => {
+        selected = moveSelection(selected, 12, 12);
+        commit([...entries(), ...selected]);
+      },
+    },
+    reviewing,
+  );
   function show(key) {
     cancel();
     pageKey = key;
@@ -175,6 +188,8 @@ export function mountPaperInk(stage, tools, writing) {
     aspect = Number(img.getAttribute('height')) / Number(img.getAttribute('width')) || 1;
     svg.setAttribute('viewBox', '0 0 1000 ' + 1000 * aspect);
     svg.style.display = key ? '' : 'none';
+    if (reviewing)
+      submitted.replaceChildren(...(writing.submittedInk?.[key] || []).map((s) => renderStroke(s, aspect)));
     if (key && !histories.has(key)) histories.set(key, { before: [], after: [] });
     paint();
     sync();
@@ -271,10 +286,10 @@ export function mountPaperInk(stage, tools, writing) {
   }
   let finger = null;
   svg.onpointerdown = (e) => {
-    if (!pageKey || writing.readOnly || settings.mode === 'pan' || e.button !== 0) return;
+    if (!pageKey || settings.mode === 'pan' || e.button !== 0) return;
     if (e.pointerType === 'touch' && settings.finger === 'pan') {
       if (!gesture && !finger) {
-        finger = { id: e.pointerId, x: e.clientX, y: e.clientY, left: wrap.scrollLeft, top: wrap.scrollTop };
+        finger = { id: e.pointerId, x: e.clientX, y: e.clientY, left: wrap.scrollLeft };
         capture(e);
       }
       return;
@@ -327,7 +342,11 @@ export function mountPaperInk(stage, tools, writing) {
   }
   svg.onpointermove = (e) => {
     if (finger?.id === e.pointerId) {
-      wrap.scrollTo(finger.left + finger.x - e.clientX, finger.top + finger.y - e.clientY);
+      const top = wrap.scrollTop;
+      const dy = finger.y - e.clientY;
+      wrap.scrollTo(finger.left + finger.x - e.clientX, top + dy);
+      if (reviewing) window.scrollBy(0, dy - (wrap.scrollTop - top));
+      finger.y = e.clientY;
       return;
     }
     if (gesture?.id !== e.pointerId) return;
@@ -370,7 +389,7 @@ export function mountPaperInk(stage, tools, writing) {
     cancel();
   });
   function keydown(e) {
-    if (writing.readOnly || !pageKey || e.target.closest('select,input')) return;
+    if (!pageKey || e.target.closest('select,input')) return;
     if ((e.metaKey || e.ctrlKey) && ['z', 'y'].includes(e.key.toLowerCase())) {
       e.preventDefault();
       if (e.key.toLowerCase() === 'y' || e.shiftKey) redo();

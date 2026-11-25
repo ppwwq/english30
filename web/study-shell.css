@@ -20,7 +20,7 @@ body[data-view='home'] .session-state summary {
   font-size: 12px;
   letter-spacing: normal;
 }
-.app-header:has(.session-savebar) :is(.home-back, .lesson-picker) {
+.app-header:has(.session-savebar:not([hidden])) :is(.home-back, .lesson-picker) {
   margin-inline-start: 0;
 }
 .app-header .session-savebar {
@@ -113,6 +113,10 @@ body:not([data-view='home'], [data-view='account']) .fine-print {
   border-color: var(--ink-soft);
 }
 @media (min-width: 760px) and (max-width: 1100px) {
+  .app-header:has(.session-savebar) .brand small,
+  .app-header .save-label-detail {
+    display: none;
+  }
   .app-header:has(.session-savebar) {
     column-gap: 12px;
     padding-inline: 20px;
@@ -122,6 +126,9 @@ body:not([data-view='home'], [data-view='account']) .fine-print {
   }
   .app-header .session-savebar {
     gap: 8px;
+  }
+  body[data-view='listening'][data-listening-mode='papers'] :is(.app-header, .app-header .session-savebar) {
+    flex-wrap: nowrap;
   }
 }
 @media (max-width: 759px) {
@@ -136,5 +143,46 @@ body:not([data-view='home'], [data-view='account']) .fine-print {
 @media print {
   body .app-header:has(.session-savebar) {
     display: none;
+  }
+}
+
+.app-header {
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+}
+.brand {
+  min-height: 44px;
+}
+.player {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+  padding-bottom: max(9px, env(safe-area-inset-bottom));
+}
+@media (max-width: 820px) {
+  .transport-button {
+    width: 44px;
+    height: 44px;
+  }
+  .loop-button,
+  .moment-button {
+    min-height: 44px;
+  }
+  .loop-label {
+    font-size: 13px;
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  :is(.transport-button, .loop-button, .moment-button, .play-button) {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .is-floating .caption-resize {
+    width: 44px;
+    height: 44px;
+  }
+  .is-floating .panel-header :is(button, .caption-maximize, .caption-dock) {
+    min-width: 44px;
+    min-height: 44px;
+    height: 44px;
   }
 }

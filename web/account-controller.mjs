@@ -1,22 +1,28 @@
 import { activeAccount, scopedKey } from './account-scope.mjs';
+import {
+  accountOpened,
+  accountClosed,
+  allowLogin,
+  logoutLocally,
+  pageHasAccount,
+  withIdentityLock,
+} from './account-session.mjs';
 import { emptyBackup, learningDelta, applyLearningDelta } from './account-learning.mjs';
 import { validateBackup, LISTENING_KEY, STUDY_KEY } from './training-core.mjs';
 import { handwrittenImage, typedImages, paperSaveInfo } from './account-render.mjs';
-import { putJob, jobsFor, removeJob } from './account-queue.mjs';
+import { putJob, putJobs, jobsFor, removeJob } from './account-queue.mjs';
 
 const user = activeAccount,
   changed = () => window.dispatchEvent(new Event('english30-account-change'));
 const UUID = () => crypto.randomUUID();
 const versionPath = (id, v) => '/api/papers/' + id + '/versions/' + v;
-import { loadBooks, bookFor } from './answer-books.mjs';
+import { loadBooks, bookFor, bookPageEdits } from './answer-books.mjs';
 export function createAccountController({ studyStore, enterPaper, canSwitch }) {
   let pending = 0,
     conflict = null,
     uploading,
     offline = !!globalThis.english30Identity?.offline,
     workspace = null;
-  const channel = typeof BroadcastChannel === 'function' ? new BroadcastChannel('english30-login') : null;
-  channel?.addEventListener('message', () => location.reload());
   function tab(key) {
     try {
       return JSON.parse(sessionStorage.getItem(scopedKey(key)));
@@ -29,9 +35,11 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     else sessionStorage.setItem(scopedKey(key), JSON.stringify(value));
   }
   let binding = tab('answer-book');
-  async function api(path, { method = 'GET', data, raw } = {}) {
+  async function api(path, { method = 'GET', data, raw, paper } = {}) {
+    if (user && !pageHasAccount()) throw Error('本机账号已切换。');
     const headers = {};
     if (user) headers['X-English30-Owner'] = user.id;
+    if (paper) headers['X-English30-Paper'] = paper;
     if (data !== undefined) headers['Content-Type'] = 'application/json';
     let r;
     try {
@@ -46,6 +54,7 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       throw Error('暂时无法连接账号服务。');
     }
     offline = false;
+    if (user && !pageHasAccount()) throw Error('本机账号已切换。');
     const out = await r.json().catch(() => ({}));
     if (!r.ok)
       throw Object.assign(Error(out.error || '账号服务未能完成请求。'), {
@@ -56,18 +65,19 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     return out;
   }
   async function authenticate(route, data) {
-    if (!canSwitch()) throw Error('已保留当前练习。');
-    const result = await api('/api/account/' + route, { method: 'POST', data });
-    if (result.recoveryCode)
-      sessionStorage.setItem(
-        'english30-recovery-once',
-        JSON.stringify({ id: result.user.id, code: result.recoveryCode }),
-      );
-    if (result.user) sessionStorage.setItem('english30-tab-account', JSON.stringify(result.user));
-    else sessionStorage.removeItem('english30-tab-account');
-    channel?.postMessage('changed');
-    location.reload();
-    return result;
+    if (!(await canSwitch())) throw Error('已保留当前练习。');
+    return withIdentityLock(async () => {
+      await allowLogin();
+      const result = await api('/api/account/' + route, { method: 'POST', data });
+      accountOpened(result.user);
+      if (result.recoveryCode)
+        sessionStorage.setItem(
+          'english30-recovery-once',
+          JSON.stringify({ id: result.user.id, code: result.recoveryCode }),
+        );
+      location.reload();
+      return result;
+    });
   }
   async function counts() {
     if (!user) return;
@@ -81,34 +91,38 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))]
       .map((b) => b.toString(16).padStart(2, '0'))
       .join('');
-  async function uploadBlob(blob, route) {
+  async function uploadBlob(blob, route, paper) {
     const hash = await hashBytes(await blob.arrayBuffer());
     const url = '/api/' + route + '/' + hash,
-      r = await fetch(url, { method: 'HEAD', cache: 'no-store', headers: { 'X-English30-Owner': user.id } });
-    if (r.status === 404) await api(url, { method: 'PUT', raw: blob });
+      r = await fetch(url, {
+        method: 'HEAD',
+        cache: 'no-store',
+        headers: { 'X-English30-Owner': user.id, ...(paper ? { 'X-English30-Paper': paper } : {}) },
+      });
+    if (r.status === 404) await api(url, { method: 'PUT', raw: blob, paper });
     else if (!r.ok) throw Error('页图状态未能核实，请重新登录后再试。');
     return hash;
   }
-  const uploadImage = (blob) => uploadBlob(blob, 'images');
-  async function packRecord(record, files) {
+  async function packRecord(record, files, paper) {
     const attempts = [];
     for (const a of record.attempts) {
-      if (!a.ink) {
-        attempts.push(a);
-        continue;
-      }
-      const { ink, ...rest } = a,
-        inkFiles = {};
-      for (const [key, strokes] of Object.entries(ink)) {
-        const blob = new Blob([JSON.stringify({ [key]: strokes })], { type: 'application/json' });
-        const hash = await hashBytes(await blob.arrayBuffer());
-        if (!files.has(hash)) {
-          await uploadBlob(blob, 'ink');
-          files.add(hash);
+      const packed = { ...a };
+      for (const field of ['ink', 'reviewInk']) {
+        if (!a[field]) continue;
+        delete packed[field];
+        const refs = {};
+        for (const [key, strokes] of Object.entries(a[field])) {
+          const blob = new Blob([JSON.stringify({ [key]: strokes })], { type: 'application/json' });
+          const hash = await hashBytes(await blob.arrayBuffer());
+          if (!files.has(hash)) {
+            await uploadBlob(blob, 'ink', paper);
+            files.add(hash);
+          }
+          refs[key] = hash;
         }
-        inkFiles[key] = hash;
+        packed[field + 'Files'] = refs;
       }
-      attempts.push({ ...rest, inkFiles });
+      attempts.push(packed);
     }
     return { ...record, attempts };
   }
@@ -217,128 +231,181 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     };
     setTab('answer-book', binding);
   }
+  async function shipPaper(job, files) {
+    const p = job.paper;
+    const source = p.fork?.id || p.id;
+    const uploadImage = (blob) => uploadBlob(blob, 'images', source);
+    let prior;
+    if (p.base || p.fork) {
+      const baseId = p.fork?.id || p.id,
+        baseVersion = p.fork?.version || p.base;
+      try {
+        prior = await api(versionPath(baseId, baseVersion));
+      } catch (error) {
+        // A queued copy may have lost its source before its first version was created.
+        if (error.status === 404 && !error.code && p.copySource)
+          await api('/api/papers/' + p.copySource + '/versions');
+        throw error;
+      }
+    } else await api('/api/papers/' + p.id + '/versions');
+    const books = await loadBooks();
+    const originals =
+      prior?.originals ||
+      p.book.split('+').flatMap((k) => [...books[k].pages, ...(p.includeData ? books[k].data || [] : [])]);
+    const missing = new Set();
+    for (const key of p.book.split('+')) {
+      const pages = [...books[key].pages, ...(p.includeData || prior ? books[key].data || [] : [])];
+      const hashes = prior
+        ? prior.pages
+            .filter((page) => page.missing && page.master && pages.some((q) => q.master === page.master))
+            .map((page) => page.master)
+        : pages.map((page) => page.master);
+      for (let i = 0; i < hashes.length; i += 8) {
+        const r = await api('/api/books/freeze', {
+          method: 'POST',
+          data: { book: key, hashes: hashes.slice(i, i + 8) },
+        });
+        for (const h of r.missing || []) missing.add(h);
+      }
+    }
+    const pages = new Map(originals.map((page) => [page.key, page]));
+    const attempt = p.record.attempts.at(-1),
+      images = {};
+    for (const { key, page, strokes, reusable } of bookPageEdits(prior, p.record, p.touched, originals)) {
+      if (missing.has(page.master)) continue;
+      if (!strokes?.length) continue;
+      if (reusable) {
+        images[key] = prior.pictures[key];
+        continue;
+      }
+      images[key] = await uploadImage(
+        await handwrittenImage(page, strokes, '/api/books/master/' + page.master),
+      );
+    }
+    const appendices = [];
+    await typedImages(p.info, attempt, async (blob, after) =>
+      appendices.push({ hash: await uploadImage(blob), after: pages.has(after) ? after : null }),
+    );
+    const result = await api('/api/papers', {
+      method: 'POST',
+      data: { ...p, record: await packRecord(p.record, files, source), info: undefined, images, appendices },
+    });
+    const verified = await api(versionPath(result.id, result.version));
+    if (
+      verified.pages.length !== result.pages ||
+      verified.records[p.lessonId]?.attempts.at(-1)?.id !== attempt.id
+    )
+      throw Error('云端答卷回读不一致。');
+    if (!job.imported && (!binding || binding.id === p.id || binding.id === p.fork?.id)) {
+      if (!binding || binding.version <= result.version || binding.id !== p.id) bind(p, result.version);
+      workspace = verified;
+    }
+  }
   async function ship(job) {
     if (!job.localReady && !job.imported) {
-      // A crash after the confirmed intent was queued may precede the local write.
-      // Replay only its changes, then verify local persistence before any upload.
       if (job.delta) storeBackup(applyLearningDelta(studyStore.exportBackup(), job.delta));
       job.localReady = true;
       await putJob(job);
     }
     const files = new Set();
-    if (job.paper) {
-      const p = job.paper,
-        books = await loadBooks();
-      let prior;
-      if (p.base || p.fork) {
-        const baseId = p.fork?.id || p.id,
-          baseVersion = p.fork?.version || p.base;
-        prior = await api(versionPath(baseId, baseVersion));
-      }
-      const originals =
-        prior?.originals ||
-        p.book.split('+').flatMap((k) => [...books[k].pages, ...(p.includeData ? books[k].data || [] : [])]);
-      const missing = new Set();
-      for (const key of p.book.split('+')) {
-        const pages = [...books[key].pages, ...(p.includeData || prior ? books[key].data || [] : [])];
-        const hashes = prior
-          ? prior.pages
-              .filter((page) => page.missing && page.master && pages.some((q) => q.master === page.master))
-              .map((page) => page.master)
-          : pages.map((page) => page.master);
-        for (let i = 0; i < hashes.length; i += 8) {
-          const r = await api('/api/books/freeze', {
-            method: 'POST',
-            data: { book: key, hashes: hashes.slice(i, i + 8) },
-          });
-          for (const h of r.missing || []) missing.add(h);
+    let skipped = false;
+    const p = job.paper;
+    if (p) {
+      try {
+        await shipPaper(job, files);
+      } catch (error) {
+        if (error.code !== 'PAPER_DELETED') throw error;
+        skipped = true;
+        if (binding?.id === p.id || binding?.id === p.fork?.id) {
+          binding = null;
+          workspace = null;
+          setTab('answer-book', null);
         }
-      }
-      const pages = new Map(originals.map((page) => [page.key, page]));
-      const attempt = p.record.attempts.at(-1),
-        images = {};
-      for (const key of p.touched) {
-        const page = pages.get(key);
-        if (!page) throw Error('笔迹里有不属于当前题册的原页；本机记录已保留。');
-        if (missing.has(page.master)) continue;
-        const strokes = attempt.ink?.[key];
-        if (!strokes?.length) continue;
-        if (prior?.pictures[key] && JSON.stringify(prior.ink[key]) === JSON.stringify(strokes)) {
-          images[key] = prior.pictures[key];
-          continue;
-        }
-        images[key] = await uploadImage(
-          await handwrittenImage(page, strokes, '/api/books/master/' + page.master),
-        );
-      }
-      const appendices = [];
-      await typedImages(p.info, attempt, async (blob, after) =>
-        appendices.push({ hash: await uploadImage(blob), after: pages.has(after) ? after : null }),
-      );
-      const result = await api('/api/papers', {
-        method: 'POST',
-        data: { ...p, record: await packRecord(p.record, files), info: undefined, images, appendices },
-      });
-      const verified = await api(versionPath(result.id, result.version));
-      if (
-        verified.pages.length !== result.pages ||
-        verified.records[p.lessonId]?.attempts.at(-1)?.id !== attempt.id
-      )
-        throw Error('云端答卷回读不一致。');
-      if (!job.imported && (!binding || binding.id === p.id || binding.id === p.fork?.id)) {
-        if (!binding || binding.version <= result.version || binding.id !== p.id) bind(p, result.version);
-        workspace = verified;
       }
     }
     if (job.delta) {
       const delta = structuredClone(job.delta);
+      const paper = p && { id: p.id, source: p.fork?.id, lesson: p.lessonId, stamp: p.record.savedAt };
+      if (skipped)
+        delta.sets.listening = delta.sets.listening.filter(
+          (r) => r.lessonId !== paper.lesson || r.savedAt !== paper.stamp,
+        );
       for (const group of [delta.sets, delta.removed])
         for (const [i, record] of group.listening.entries())
           group.listening[i] = await packRecord(record, files);
-      const r = await api('/api/learning', { method: 'POST', data: { saveId: job.saveId, delta } });
+      const r = await api('/api/learning', { method: 'POST', data: { saveId: job.saveId, delta, paper } });
       const verified = await api('/api/learning/receipts/' + job.saveId);
       if (r.hash !== verified.hash) throw Error('云端学习记录回读不一致。');
+      skipped ||= !!r.omitted;
     }
     await removeJob(job.saveId);
+    return skipped;
   }
   async function flush(options = {}) {
-    if (uploading) return uploading;
+    if (uploading) {
+      const current = await uploading;
+      if (!options.saveId) return current;
+      return flush(options);
+    }
     const operation = async () => {
       let copy = options.asCopy === true;
+      let skipped = 0;
+      let processed = 0;
+      let checked = false;
+      let paperError;
+      const blocked = new Set();
       const jobs = await jobsFor(user.id);
       for (const job of jobs) {
+        if (job.paper && blocked.has(job.paper.id)) continue;
         if (job.conflict && copy) {
           const previous = job.paper,
             newId = UUID();
           job.paper = { ...previous, id: newId, base: 0, fork: { id: previous.id, version: previous.base } };
+          const moved = [job];
           for (const later of jobs) {
             if (later !== job && later.paper?.id === previous.id && later.paper.base > previous.base) {
               later.paper.id = newId;
+              later.paper.copySource = previous.id;
               later.paper.base -= previous.base;
-              await putJob(later);
+              moved.push(later);
             }
           }
           job.conflict = false;
           copy = false;
-          await putJob(job);
+          await putJobs(moved);
         }
         try {
-          await ship(job);
+          if (await ship(job)) skipped++;
+          processed++;
+          if (job.saveId === options.saveId) checked = true;
         } catch (e) {
           if (e.code === 'VERSION_CONFLICT') {
             job.conflict = true;
             await putJob(job);
           }
+          if (job.paper && (e.code === 'VERSION_CONFLICT' || e.status === 404)) {
+            blocked.add(job.paper.id);
+            paperError ||= e;
+            continue;
+          }
           throw e;
         }
       }
+      if (paperError) throw paperError;
+      return { skipped, processed, ...(options.saveId ? { checked } : {}) };
     };
     const drain = () =>
       navigator.locks ? navigator.locks.request('english30-upload-' + user.id, operation) : operation();
-    uploading = drain().finally(async () => {
-      uploading = null;
-      await counts();
-    });
+    uploading = drain()
+      .then((result) => {
+        if (result.processed)
+          window.dispatchEvent(new CustomEvent('english30-account-synced', { detail: result }));
+        return result;
+      })
+      .finally(async () => {
+        uploading = null;
+        await counts();
+      });
     return uploading;
   }
   async function importBackup(input, guest = false) {
@@ -360,8 +427,8 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       const id = await deterministic('paper/' + key),
         saveId = await deterministic('save/' + key);
       const pages = (await loadBooks())[info.sessionId + '-' + info.part].pages;
-      const written = Object.keys(last.ink || {}),
-        verified = written.filter((k) =>
+      const written = new Set([...Object.keys(last.ink || {}), ...Object.keys(last.reviewInk || {})]),
+        verified = [...written].filter((k) =>
           pages.some((p) => p.key === k && p.originalHash === last.sourceVersions?.[k]),
         );
       await stage({
@@ -378,8 +445,8 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
           lessonId: record.lessonId,
           task: info.task,
           info,
-          touched: verified,
-          legacyInk: verified.length < written.length,
+          touched: verified.filter((key) => last.ink?.[key]),
+          legacyInk: verified.length < written.size,
         },
       });
     }
@@ -429,7 +496,10 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     login: (name, password) => authenticate('login', { name, password }),
     register: (name, password) => authenticate('register', { name, password }),
     recover: (name, code, password) => authenticate('recover', { name, code, password }),
-    logout: () => authenticate('logout', {}),
+    async logout() {
+      if (!(await canSwitch())) throw Error('已保留当前练习。');
+      logoutLocally(user.id);
+    },
     takeRecoveryCode() {
       const s = sessionStorage.getItem('english30-recovery-once');
       sessionStorage.removeItem('english30-recovery-once');
@@ -481,13 +551,12 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       }
     },
     async deleteAccount(password) {
-      if (!canSwitch()) throw Error('已保留当前练习。');
+      if (!(await canSwitch())) throw Error('已保留当前练习。');
       await api('/api/account/delete', { method: 'POST', data: { password } });
       for (const job of await jobsFor(user.id)) await removeJob(job.saveId);
       for (const storage of [sessionStorage, localStorage])
         for (const k of Object.keys(storage)) if (k.startsWith(scopedKey(''))) storage.removeItem(k);
-      sessionStorage.removeItem('english30-tab-account');
-      channel?.postMessage('changed');
+      accountClosed();
       location.reload();
     },
   };

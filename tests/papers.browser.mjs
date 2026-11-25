@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -19,8 +20,7 @@ const page = await context.newPage(),
   base = (process.env.TEST_URL || 'http://127.0.0.1:4173').replace(/\/#.*$/, '').replace(/\/$/, '');
 const report = { cases: [], errors: [], physicalDevice: false };
 page.on('pageerror', (e) => report.errors.push(e.message));
-let dismissAnswer = false;
-page.on('dialog', (d) => (dismissAnswer ? d.dismiss() : d.accept()));
+allowBeforeUnload(page);
 async function check(name, fn) {
   await fn();
   report.cases.push(name);
@@ -233,6 +233,7 @@ try {
     assert.equal(await page.locator('#paper-page').inputValue(), '9');
     assert.equal(await page.locator('#paper-audio-panel').isVisible(), false);
     await page.locator('[data-source-ref]').first().tap();
+    if (await page.getByRole('dialog').isVisible()) await answerConfirmation(page, '打开资料');
     await page.waitForFunction(() => {
       const y = document.querySelector('.paper-reader-heading').getBoundingClientRect().y;
       return y >= 0 && y < innerHeight;
@@ -247,11 +248,11 @@ try {
     assert.equal(await page.locator('#paper-part').inputValue(), 'A');
     assert.equal(await page.locator('#paper-part').isDisabled(), true);
     assert.equal(await page.locator('#paper-page').inputValue(), '1');
-    dismissAnswer = true;
     await page.locator('#paper-next').tap();
+    await answerConfirmation(page, '取消');
     assert.equal(await page.locator('#paper-page').inputValue(), '1');
-    dismissAnswer = false;
     await page.locator('#paper-next').tap();
+    await answerConfirmation(page, '查看参考页');
     assert.equal(await page.locator('#paper-page').inputValue(), '2');
   });
   await check('tablet portrait and phone controls stay within the viewport', async () => {

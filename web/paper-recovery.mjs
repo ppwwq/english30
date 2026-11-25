@@ -16,6 +16,9 @@ export function readPaperDraft() {
     )
       return null;
     validatePaperInk(draft.inkPages);
+    for (const attempt of draft.session.attempts) {
+      if (attempt.reviewInk !== undefined) validatePaperInk(attempt.reviewInk);
+    }
     return draft;
   } catch {
     return null;

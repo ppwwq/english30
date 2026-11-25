@@ -10,7 +10,9 @@ import {
   summariseRecords,
   validateBackup,
   listeningAttempts,
+  listeningQuestionReviews,
 } from '../web/training-core.mjs';
+import { listeningRecordThrough } from '../web/core.mjs';
 
 test('dictation treats standard thousands separators as the same number without discarding decimals', () => {
   assert.equal(compareSentence('About 7,000 people.', 'About 7000 people').correct, true);
@@ -328,4 +330,38 @@ test('manual listening attempts remain in history but do not lower automatic acc
   assert.equal(stats.first.total, 1);
   assert.equal(stats.retest.attempts, 1);
   assert.equal(stats.retest.total, 0);
+});
+
+test('saved listening questions retain explicit retry and error-only flags across snapshots and blank retests', () => {
+  const title = '2025 正式卷 · Part A · Task 1';
+  const first = { results: { q1: { answer: '200', correct: false }, q2: { answer: '', correct: null } } };
+  const annotated = structuredClone(first);
+  annotated.results.q1.selfCheck = 'retry';
+  annotated.results.q2.selfAssessment = 'incorrect';
+  annotated.results.q3 = { answer: 'A', correct: false, errorType: 'form' };
+  first.results.q3 = { answer: 'A', correct: false };
+  const next = {
+    id: 'second',
+    phase: 'retest',
+    results: { q1: { answer: '', correct: false }, q2: { selfAssessment: 'correct', correct: null } },
+  };
+  const record = {
+    lessonId: 'p1',
+    lessonTitle: title,
+    savedAt: '2026-10-03T10:00:00Z',
+    attempts: [annotated, next],
+  };
+  const attempts = listeningAttempts([
+    { ...record, savedAt: '2026-10-02T10:00:00Z', attempts: [first] },
+    record,
+  ]);
+  assert.equal(attempts.length, 2);
+  assert.equal(attempts[0].createdAt, '2026-10-02T10:00:00Z');
+  assert.equal(attempts[0].title, title);
+  assert.deepEqual(
+    listeningQuestionReviews(attempts).map((q) => q.questionId),
+    ['q1', 'q3'],
+  );
+  assert.deepEqual(listeningRecordThrough(record, attempts[0].attemptKey).attempts, [annotated]);
+  assert.equal(listeningRecordThrough(record, 'gone'), null);
 });

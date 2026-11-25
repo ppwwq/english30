@@ -62,7 +62,8 @@ export function mountPaperZoom(wrap, stage, trigger) {
     if (e.relatedTarget && !control.contains(e.relatedTarget)) toggle(false);
   });
   control.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && !panel.hidden) {
+      e.stopPropagation();
       toggle(false);
       trigger.focus();
     }

@@ -1,5 +1,5 @@
 import { scopedKey } from './account-scope.mjs';
-import { validateAnswerResult, validatePaperInk } from './core.mjs';
+import { listeningAttemptKey, validateAnswerResult, validatePaperInk } from './core.mjs';
 
 export const STUDY_KEY = scopedKey('english30-study-v1');
 export const LISTENING_KEY = scopedKey('english30-records-v1');
@@ -180,6 +180,7 @@ export function validateListeningRecords(records) {
       throw new Error('听力记录缺少材料、作答或时间信息。');
     for (const a of r.attempts) {
       if (a?.ink !== undefined) validatePaperInk(a.ink);
+      if (a?.reviewInk !== undefined) validatePaperInk(a.reviewInk);
       if (
         a?.rawAnswers !== undefined &&
         (!a.rawAnswers ||
@@ -312,10 +313,20 @@ export function listeningAttempts(records) {
       const scored = results.filter(
         (result) => result.grading !== 'self' && typeof result.correct === 'boolean',
       );
-      const identity = attempt.id || attempt.submittedAt || attempt.createdAt || `legacy-${i}`;
-      attempts.set(`${record.lessonId}:${identity}`, {
+      const attemptKey = listeningAttemptKey(attempt, i);
+      const key = `${record.lessonId}:${attemptKey}`;
+      attempts.set(key, {
         module: 'listening',
         taskId: record.lessonId,
+        title: record.lessonTitle,
+        attemptKey,
+        createdAt: [
+          attempt.submittedAt,
+          attempt.createdAt,
+          attempts.get(key)?.createdAt,
+          record.savedAt,
+        ].find((date) => typeof date === 'string' && Number.isFinite(Date.parse(date))),
+        results: attempt.results,
         phase: attempt.phase || (i === 0 ? 'first' : 'retest'),
         assisted: !!(
           attempt.assisted ||
@@ -336,7 +347,25 @@ export function listeningAttempts(records) {
         ),
       });
     }
-  return [...attempts.values()];
+  return [...attempts.values()].sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt));
+}
+
+export function listeningQuestionReviews(attempts) {
+  const questions = new Map();
+  for (const attempt of attempts) {
+    for (const [questionId, result] of Object.entries(attempt.results || {})) {
+      if (!result) continue;
+      const id = `question:${attempt.taskId}:${questionId}`;
+      const confirmed = result.selfCheck === 'correct' || result.selfAssessment === 'correct';
+      const retry = result.selfCheck === 'retry' || result.selfAssessment === 'incorrect';
+      if (!confirmed && (retry || result.errorType)) {
+        questions.set(id, { id, questionId, attempt, errorType: result.errorType });
+      } else if (confirmed || result.correct === true) {
+        questions.delete(id);
+      }
+    }
+  }
+  return [...questions.values()];
 }
 export function isTargetedStructureAttempt(record) {
   return (
@@ -475,9 +504,8 @@ export function createStudyStore({ storage = storageDefault(), now = () => new D
       emit();
       return clone(saved);
     },
-    save() {
+    save(snapshot = api.prepareSave()) {
       if (!storage) throw new Error('当前浏览器无法保存，请使用导出备份。');
-      const snapshot = api.prepareSave();
       storage.setItem(STUDY_KEY, snapshot.text);
       if (storage.getItem(STUDY_KEY) !== snapshot.text) throw new Error('保存回读不一致。');
       return api.ackSave(snapshot);

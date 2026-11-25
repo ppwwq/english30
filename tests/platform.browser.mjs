@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -19,7 +20,7 @@ const page = await context.newPage();
 const base = (process.env.TEST_URL || 'http://127.0.0.1:4173').replace(/\/#.*$/, '').replace(/\/$/, '');
 const report = { cases: [], errors: [], physicalDevice: false };
 page.on('pageerror', (e) => report.errors.push(e.message));
-page.on('dialog', (d) => d.accept());
+allowBeforeUnload(page);
 const check = async (name, fn) => {
   await fn();
   report.cases.push({ name, passed: true });
@@ -38,7 +39,7 @@ const nav = async (view) => {
 const ready = () => page.waitForFunction(() => !document.getElementById('play-pause').disabled);
 try {
   await page.goto(base + '/#today');
-  await page.locator('#training-save').waitFor();
+  await page.locator('.training-heading').waitFor();
   await check(
     'home opens all five modules and each module has a return link at tablet and phone widths',
     async () => {
@@ -80,7 +81,8 @@ try {
       await page.locator('#subtitle-offset').fill('0.4');
       await page.locator('#apply-subtitle-offset').tap();
       await page.locator('#audio').evaluate((a) => a.pause());
-      await page.locator('#save-record').tap();
+      await page.locator('#session-save').tap();
+      await answerConfirmation(page, '确认保存');
       record = await page.evaluate(() => JSON.parse(localStorage.getItem('english30-records-v1')).at(-1));
       assert.equal(record.timingOffset, 0.4);
       assert.equal(record.moments[0].start, 8);

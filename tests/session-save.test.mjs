@@ -14,6 +14,20 @@ function memoryStorage() {
 function stage(store, id = 'reading-1') {
   store.addAttempt({ id, module: 'reading', taskId: id, answers: { answer: 'a submitted answer' } });
 }
+test('standalone save keeps later submissions pending while its confirmation is open', () => {
+  const storage = memoryStorage();
+  const store = createStudyStore({ storage });
+  stage(store, 'first');
+  const snapshot = store.prepareSave();
+  stage(store, 'later');
+  store.save(snapshot);
+  assert.deepEqual(
+    JSON.parse(storage.getItem(STUDY_KEY)).records.map((record) => record.id),
+    ['first'],
+  );
+  assert.equal(store.getState().records.length, 2);
+  assert.equal(store.hasUnsaved(), true);
+});
 function listeningRecord() {
   return {
     schemaVersion: 1,

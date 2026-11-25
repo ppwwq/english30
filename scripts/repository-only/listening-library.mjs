@@ -47,6 +47,7 @@ export function parseListeningRecord(input) {
     throw new Error('字幕偏移必须在正负 5 秒内。');
   for (const a of r.attempts) {
     if (a?.ink !== undefined) validatePaperInk(a.ink);
+    if (a?.reviewInk !== undefined) validatePaperInk(a.reviewInk);
     if (
       !object(a) ||
       !phases.has(a.phase) ||

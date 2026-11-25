@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation, confirmIncompleteTask } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -18,7 +19,7 @@ const page = await browser.newPage({
 const base = process.env.TEST_URL || 'http://127.0.0.1:4174';
 const report = { cases: [], errors: [], physicalDevice: false };
 page.on('pageerror', (e) => report.errors.push(e.message));
-page.on('dialog', (d) => d.accept());
+allowBeforeUnload(page);
 async function check(name, fn) {
   await fn();
   report.cases.push(name);
@@ -49,13 +50,15 @@ try {
       await page.locator('#play-pause').tap();
       await page.waitForFunction(() => !document.getElementById('audio').paused);
       await page.locator('#submit-answers').tap();
+      await confirmIncompleteTask(page);
       await page.locator('#transcript .word').first().waitFor();
       assert.match(await page.locator('.result-summary').textContent(), /待自核/);
       assert.ok((await page.locator('#practice-document option[data-reference]').count()) > 0);
       await page.locator('.question-review-tools > summary').first().click();
       await page.locator('.self-check').first().selectOption('correct');
       await page.locator('.review-drawer > summary').tap();
-      await page.locator('#save-record').tap();
+      await page.locator('#session-save').tap();
+      await answerConfirmation(page, '确认保存');
       const result = await page.evaluate(
         () =>
           Object.values(

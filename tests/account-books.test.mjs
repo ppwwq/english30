@@ -182,5 +182,12 @@ test('a confirmed save survives a verified missing original, preserves ordered D
       .digest('hex'),
     book.pages[1].master,
   );
+  const deleted = await call('/api/papers/' + paper.id, 'DELETE');
+  assert.equal(deleted.status, 200);
+  assert.deepEqual(await (await call('/api/papers')).json(), []);
+  assert.equal((await (await call(route)).json()).code, 'PAPER_DELETED');
+  assert.deepEqual(Object.keys(db.one('SELECT * FROM deleted_papers')), ['owner', 'paper']);
+  assert.deepEqual(Object.keys(db.one('SELECT * FROM deleted_members')), ['owner', 'lesson', 'stamp']);
+  assert.equal(db.one('SELECT count(*) AS n FROM versions').n, 0);
   raw.close();
 });

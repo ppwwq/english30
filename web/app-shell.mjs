@@ -1,6 +1,9 @@
+import { confirmAction, dismissConfirmation } from './confirmation.mjs';
 import { listeningBridge } from './app.mjs';
 import { studyStore } from './training-core.mjs';
 import { createSessionSaver } from './session-save.mjs';
+import { showViewLoading } from './view-loading.mjs';
+import { loadPaperCatalogue } from './paper-catalogue.mjs';
 
 import { createAccountController } from './account-controller.mjs';
 import { confirmAccountSave } from './account-confirm.mjs';
@@ -12,7 +15,7 @@ const account = createAccountController({
   canSwitch: () =>
     !saving &&
     (!(hasUnsubmitted() || saver.prepare().changed) ||
-      confirm('切换账号将关闭当前练习，未保存的输入可能丢失。继续吗？')),
+      confirmAction('切换账号', '切换账号将关闭当前练习，未保存的输入可能丢失。', '切换账号')),
   async enterPaper(manifest, choice) {
     if (!(await listeningBridge.continuePaper(manifest, choice))) return false;
     await navigate('listening', { lessonId: choice.lessonId });
@@ -21,13 +24,15 @@ const account = createAccountController({
 });
 listeningBridge.setWorkspaceReader((info) => account.workspaceFor(info));
 const homeAvatar = document.getElementById('home-avatar');
-const signedInUser = account.state().user;
-if (signedInUser) {
-  const label = `我的答卷（${signedInUser.name}）`;
+const guestIcon = homeAvatar.querySelector('svg');
+function refreshHomeAvatar() {
+  const { user } = account.state();
+  const label = user ? `我的答卷（${user.name}）` : '登录账号';
   homeAvatar.setAttribute('aria-label', label);
   homeAvatar.title = label;
-  homeAvatar.textContent = Array.from(signedInUser.name)[0].toLocaleUpperCase();
+  homeAvatar.replaceChildren(user ? Array.from(user.name)[0].toLocaleUpperCase() : guestIcon);
 }
+refreshHomeAvatar();
 const allowed = new Set([
   'account',
   'home',
@@ -96,6 +101,7 @@ function refreshSessionBar() {
     const pending = plan.changed;
     const unsubmitted = hasUnsubmitted();
     const queued = account.state().pending;
+    saveBar.hidden = current === 'account' && !pending && !unsubmitted && !queued && !saveMessage;
     const saved = current === 'listening' ? listeningBridge.getSaveState().saved : !!saveMessage && !pending;
     saveButton.disabled = !pending;
     document.getElementById('session-save-status').textContent = pending
@@ -118,6 +124,7 @@ function refreshSessionBar() {
             ? '确认保存后，可在「我的答卷」取回。'
             : '学习纪录只留在当前浏览器，可从「复习与备份」导出。');
   } catch (error) {
+    saveBar.hidden = false;
     saveButton.disabled = true;
     saveState.open = true;
     document.getElementById('session-save-status').textContent = '保存状态暂不可用';
@@ -170,9 +177,11 @@ async function requestSave() {
       await account.stage(job);
       staged = true;
     } else if (
-      !confirm(
-        `准备保存本次学习纪录：\n${items.join('\n')}\n\n未提交的输入不包含。仅写入当前浏览器，不上传云端；保存后回读验证。`,
-      )
+      !(await confirmAction(
+        '保存本次学习纪录',
+        `${items.join('\n')}\n\n仅保存已提交的内容到当前浏览器，保存后回读验证。未提交的输入仍留在草稿中。`,
+        '确认保存',
+      ))
     )
       return false;
     saveButton.disabled = true;
@@ -183,8 +192,12 @@ async function requestSave() {
       await account.localConfirmed(job);
       cloudStatus = '已存本机，云端待完成';
       document.getElementById('session-save-status').textContent = '已存本机，正在上传答卷…';
-      await account.retry();
-      cloudStatus = '已存云端';
+      const result = await account.retry({ saveId: job.saveId });
+      cloudStatus = result.skipped
+        ? '已存本机，原云端答卷已删除'
+        : result.checked === false
+          ? '已在其他标签处理'
+          : '已存云端';
     }
     saveMessage = saver.prepare().changed
       ? '确认时的纪录已完成回读验证；保存期间的新修改尚未保存。'
@@ -193,7 +206,11 @@ async function requestSave() {
         : '已完成回读验证。可结束本次，或从「复习与备份」继续。';
     if (job)
       saveMessage =
-        '已存云端，已回读核对。可从「我的答卷」取回。' +
+        (cloudStatus === '已存云端'
+          ? '已存云端，已回读核对。可从「我的答卷」取回。'
+          : cloudStatus === '已在其他标签处理'
+            ? '这次保存已在其他标签处理，可到「我的答卷」核对。'
+            : '其他设备已删除待传答卷，已保留本机记录，其余保存已处理。') +
         (saver.prepare().changed ? ' 之后的新修改尚未保存。' : '');
     return true;
   } catch (error) {
@@ -214,13 +231,20 @@ async function requestSave() {
 }
 saveButton.addEventListener('click', requestSave);
 document.getElementById('session-review').addEventListener('click', () => navigate('review'));
-listeningBridge.setSaveHandler(requestSave);
 const sessionChanged = () => {
   saveMessage = '';
   refreshSessionBar();
 };
-window.addEventListener('english30-account-change', () => {
-  if (cloudStatus === '已存本机，云端待完成' && !account.state().pending) {
+function refreshAccountState() {
+  refreshHomeAvatar();
+  refreshSessionBar();
+}
+window.addEventListener('english30-account-change', refreshAccountState);
+window.addEventListener('english30-account-synced', ({ detail }) => {
+  if (detail.skipped) {
+    cloudStatus = '已存本机，原云端答卷已删除';
+    saveMessage = '其他设备已删除待传答卷，其余保存已处理。';
+  } else {
     cloudStatus = '已存云端';
     saveMessage = '已存云端，已回读核对。';
   }
@@ -235,6 +259,7 @@ window.addEventListener('beforeunload', (event) => {
   }
 });
 async function navigate(view, options = {}) {
+  dismissConfirmation();
   const previousView = current,
     previousMode = listeningMode;
   if (view === 'listening/practice') {
@@ -250,6 +275,7 @@ async function navigate(view, options = {}) {
     else if (['papers', 'practice'].includes(options.mode)) listeningMode = options.mode;
   }
   const request = ++generation;
+  showViewLoading(view);
   current = view;
   document.body.dataset.view = view;
   document.body.dataset.listeningMode = listeningMode;
@@ -260,8 +286,7 @@ async function navigate(view, options = {}) {
   const home = view === 'home',
     accountPage = view === 'account';
   accountHost.hidden = !accountPage;
-  saveBar.hidden = accountPage;
-  if (!home && !accountPage) {
+  if (!home) {
     if (saveBar.parentElement !== appHeader) appHeader.append(saveBar);
   } else if (saveBar.parentElement === appHeader) homePanel.after(saveBar);
   if (view !== previousView) saveState.open = home;
@@ -295,6 +320,7 @@ async function navigate(view, options = {}) {
   }
   try {
     if (accountPage) {
+      refreshSessionBar();
       if (!accountView) accountView = mountAccountView(accountHost, account);
       else await accountView.refresh();
       if (previousView === 'home' && request === generation) accountView.focusLogin();
@@ -318,8 +344,8 @@ async function navigate(view, options = {}) {
       return;
     }
     if (paperView) {
-      papers ||= await (papersPromise ||= import('./papers.mjs')
-        .then((m) => m.mountPapers({ host: paperHost, bridge }))
+      papers ||= await (papersPromise ||= Promise.all([import('./papers.mjs'), loadPaperCatalogue()])
+        .then(([m, catalogue]) => m.mountPapers({ host: paperHost, bridge, catalogue }))
         .catch((error) => {
           papersPromise = null;
           throw error;
@@ -335,6 +361,7 @@ async function navigate(view, options = {}) {
         }));
       if (request === generation) await reading.show(view, options);
     } else {
+      if (view === 'review' || view === 'today') void listeningBridge.prepareCatalogue();
       training ||= await (trainingPromise ||= import('./training.mjs')
         .then((m) => m.mountTraining({ host: trainingHost, bridge }))
         .catch((error) => {
@@ -347,7 +374,13 @@ async function navigate(view, options = {}) {
   } catch (error) {
     if (request !== generation) return;
     if (listening) {
-      document.getElementById('status').textContent = error.message;
+      const status = document.getElementById('status');
+      const retry = document.createElement('button');
+      retry.type = 'button';
+      retry.className = 'button-secondary';
+      retry.textContent = '重新载入';
+      retry.addEventListener('click', () => navigate(view, options));
+      status.replaceChildren(error.message, ' ', retry);
       return;
     }
     const host = paperView ? paperHost : readingView ? readingHost : trainingHost;
@@ -364,7 +397,10 @@ async function navigate(view, options = {}) {
     notice.append(document.createElement('br'), retry);
     host.append(notice);
   } finally {
-    if (request === generation) listeningPanel.inert = false;
+    if (request === generation) {
+      listeningPanel.inert = false;
+      showViewLoading(null);
+    }
   }
 }
 const changePaper = document.getElementById('change-paper');
@@ -375,7 +411,7 @@ changePaper.addEventListener('click', () => {
 });
 document.querySelector('.skip-link').addEventListener('click', (event) => {
   event.preventDefault();
-  const target =
+  let target =
     current === 'account'
       ? accountHost
       : current === 'home'
@@ -387,16 +423,37 @@ document.querySelector('.skip-link').addEventListener('click', (event) => {
             : readingHost.hidden
               ? trainingHost
               : readingHost;
-  target.tabIndex = -1;
+  if (current === 'listening' && !target.getClientRects().length)
+    target =
+      document.querySelector('#practice-sources .practice-page-wrap') ||
+      document.getElementById('listening-panel');
+  if (!target.hasAttribute('tabindex')) target.tabIndex = -1;
   target.focus();
   target.scrollIntoView({ block: 'start' });
 });
 window.addEventListener('hashchange', () =>
   navigate(location.hash.slice(1), location.hash === '#listening' ? { mode: 'papers' } : {}),
 );
+// Handle ordinary home links in the same click, including touch and keyboard.
+// Modified clicks keep the browser's native open-in-new-tab behavior.
+homePanel.querySelector('.main-navigation').addEventListener('click', (event) => {
+  const link = event.target.closest('a[data-view]');
+  if (
+    !link ||
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.ctrlKey ||
+    event.metaKey ||
+    event.shiftKey ||
+    event.altKey
+  )
+    return;
+  event.preventDefault();
+  navigate(link.dataset.view, link.dataset.view === 'listening' ? { mode: 'papers' } : {});
+});
 listeningBridge.setNavigator(navigate);
 account
   .init()
   .catch(() => {})
-  .finally(refreshSessionBar);
+  .finally(refreshAccountState);
 navigate(location.hash.slice(1) || 'home');

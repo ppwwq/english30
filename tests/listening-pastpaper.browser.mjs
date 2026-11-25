@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation, confirmIncompleteTask } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -34,14 +35,13 @@ async function check(name, run, hash = 'listening') {
     reducedMotion: 'reduce',
   });
   const page = await context.newPage();
-  const dialogs = { accept: true };
   page.on('pageerror', (error) => report.errors.push({ name, message: error.message }));
-  page.on('dialog', (dialog) => (dialogs.accept ? dialog.accept() : dialog.dismiss()));
+  allowBeforeUnload(page);
   try {
     base.hash = hash;
     await page.goto(base.href);
     await ready(page);
-    await run(page, result, dialogs);
+    await run(page, result);
     result.passed = true;
     console.log('PASS', name);
   } catch (error) {
@@ -82,14 +82,14 @@ try {
   );
   await check(
     'cancelling an original-to-excerpt mode change preserves the original draft and selectors',
-    async (page, result, dialogs) => {
+    async (page) => {
       await page.locator('.question-input').first().fill('original draft kept');
       await page.locator('#play-pause').tap();
       await page.waitForFunction(() => !document.querySelector('#audio').paused);
-      dialogs.accept = false;
       await page.evaluate(() => {
         location.hash = 'listening/practice';
       });
+      await answerConfirmation(page, '取消');
       await page.waitForFunction(
         () => location.hash === '#listening' && document.body.dataset.listeningMode === 'papers',
       );
@@ -98,10 +98,10 @@ try {
       assert.equal(await page.locator('#practice-picker').isVisible(), true);
       assert.equal(new URL(page.url()).hash, '#listening');
       assert.equal(await page.locator('#audio').evaluate((audio) => audio.paused), true);
-      dialogs.accept = true;
       await page.evaluate(() => {
         location.hash = 'listening/practice';
       });
+      await answerConfirmation(page, '切换材料');
       await page.waitForFunction(() => document.body.dataset.listeningMode === 'practice');
       await ready(page);
       assert.equal(await page.locator('#lesson-select').isVisible(), true);
@@ -110,13 +110,13 @@ try {
   );
   await check(
     'cancelling an excerpt-to-original change preserves the excerpt draft, and other navigation keeps it',
-    async (page, result, dialogs) => {
+    async (page) => {
       const title = await page.locator('#lesson-title').textContent();
       await page.locator('.question-input').first().fill('focused draft kept');
-      dialogs.accept = false;
       await page.evaluate(() => {
         location.hash = 'listening';
       });
+      await answerConfirmation(page, '取消');
       await page.waitForFunction(() => document.body.dataset.listeningMode === 'practice');
       assert.equal(await page.locator('#lesson-title').textContent(), title);
       assert.equal(await page.locator('.question-input').first().inputValue(), 'focused draft kept');
@@ -126,6 +126,7 @@ try {
       await page.locator('#paper-year').waitFor({ state: 'visible' });
       await page.locator('#home-back').click();
       await page.locator('.main-navigation [data-view=listening]').tap();
+      await answerConfirmation(page, '取消');
       assert.equal(await page.locator('.question-input').first().inputValue(), 'focused draft kept');
     },
     'listening/practice',
@@ -230,8 +231,9 @@ try {
       await page.locator('#play-pause').tap();
       await page.waitForFunction(() => !document.querySelector('#audio').paused);
       await page.locator('#submit-answers').tap();
+      await confirmIncompleteTask(page);
       await page.locator('.word').first().waitFor({ state: 'visible' });
-      for (const id of ['phase-retest', 'repeat-sentence', 'loop-start', 'playback-rate', 'save-record'])
+      for (const id of ['phase-retest', 'repeat-sentence', 'loop-start', 'playback-rate', 'session-save'])
         assert.equal(
           await page.locator(`#${id}`).isDisabled(),
           false,
@@ -257,6 +259,7 @@ try {
               location.hash = 'listening/practice';
             });
           }
+          if (result.viewports.length) await answerConfirmation(page, '切换材料');
           await page.waitForFunction((expected) => document.body.dataset.listeningMode === expected, mode);
           await ready(page);
           for (const phase of ['first', 'review']) {
@@ -264,6 +267,7 @@ try {
               await page.locator('#play-pause').tap();
               await page.waitForFunction(() => !document.querySelector('#audio').paused);
               await page.locator('#submit-answers').tap();
+              await confirmIncompleteTask(page);
               await page.locator('.word').first().waitFor({ state: 'visible' });
             }
             const sizes = await page.evaluate(() => ({

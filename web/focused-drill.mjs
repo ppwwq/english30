@@ -84,7 +84,9 @@ export function mountFocusedDrill({ play, cancel, onChange }) {
       (original?.getClientRects().length ? original : target.closest('.question-card')).append(dialog);
       dialog.hidden = false;
       study.open(sentenceId, { retest: false });
-      dialog.querySelector('#focused-drill-return').focus({ preventScroll: true });
+      const back = dialog.querySelector('#focused-drill-return');
+      back.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+      back.focus({ preventScroll: true });
       return true;
     },
     getSaveState: () => study.getSaveState(),

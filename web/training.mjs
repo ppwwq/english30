@@ -1,3 +1,4 @@
+import { confirmAction } from './confirmation.mjs';
 import {
   studyStore,
   compareSentence,
@@ -6,8 +7,10 @@ import {
   summariseRecords,
   isTargetedStructureAttempt,
   listeningAttempts,
+  listeningQuestionReviews,
   validateStudyState,
 } from './training-core.mjs';
+import { listeningErrorLabels } from './core.mjs';
 
 const create = (tag, className, text) => {
   const n = document.createElement(tag);
@@ -43,7 +46,13 @@ const field = (
 const countWords = (text) => (String(text).match(/[A-Za-z]+(?:['’][A-Za-z]+)?|\d+/g) || []).length;
 const dayAfter = (date, n) =>
   new Date(Date.parse(date + 'T00:00:00Z') + n * 86400000).toISOString().slice(0, 10);
-const moduleLabel = { writing: '写句', dictation: '听写', reading: '阅读', integrated: 'B1 综合' };
+const moduleLabel = {
+  listening: '听力',
+  writing: '写句',
+  dictation: '听写',
+  reading: '阅读',
+  integrated: 'B1 综合',
+};
 const phaseLabel = { first: '独立首答', review: '辅助练习', retest: '同题复测' };
 
 export async function mountTraining({ host, bridge }) {
@@ -219,22 +228,18 @@ export async function mountTraining({ host, bridge }) {
     checks = {};
     render();
   }
-  function save() {
+  async function save() {
     if (bridge.requestSave) return bridge.requestSave();
-    const state = studyStore.getState();
-    const saved = studyStore.getSavedState();
     if (!studyStore.hasUnsaved()) {
       notice('当前学习纪录已经保存。');
       return;
     }
-    if (
-      !confirm(
-        `准备保存本次学习纪录：${state.records.length - saved.records.length} 条新增练习，以及当前原卷标记、错句、复习结果和训练安排。\n仅写入当前浏览器；包含阅读等模块已提交但未保存的记录。保存后会回读验证。`,
-      )
-    )
-      return;
     try {
-      studyStore.save();
+      const snapshot = studyStore.prepareSave();
+      const count = snapshot.state.records.length - studyStore.getSavedState().records.length;
+      const summary = `${count} 条新增练习，以及当前原卷标记、错句、复习结果和训练安排。\n仅写入当前浏览器，包含阅读等模块已提交但未保存的记录。保存后会回读验证。`;
+      if (!(await confirmAction('保存本次学习纪录', summary, '确认保存'))) return;
+      studyStore.save(snapshot);
       notice('学习纪录已写入当前浏览器，并回读验证成功。');
     } catch (e) {
       notice(`保存未完成：${e.message}`, true);
@@ -243,15 +248,6 @@ export async function mountTraining({ host, bridge }) {
   function render() {
     host.replaceChildren();
     host.classList.add('training-host');
-    const toolbar = create('div', 'training-savebar');
-    const unsaved = studyStore.hasUnsaved();
-    toolbar.append(
-      create('p', 'fine-print', unsaved ? '本次修改尚未保存。' : '学习记录只在你明确保存后保留。'),
-    );
-    const saveButton = action('保存本次学习纪录', save, 'button-secondary');
-    saveButton.id = 'training-save';
-    saveButton.disabled = !unsaved;
-    toolbar.append(saveButton);
     const status = create('p', 'status training-status', message);
     status.id = 'training-status';
     status.setAttribute('role', 'status');
@@ -267,7 +263,18 @@ export async function mountTraining({ host, bridge }) {
     if (view === 'today') renderToday();
     else if (view === 'review') renderReview();
     else renderWriting();
-    host.append(toolbar);
+    if (!bridge.requestSave) {
+      const toolbar = create('div', 'training-savebar');
+      const unsaved = studyStore.hasUnsaved();
+      const saveButton = action('保存本次学习纪录', save, 'button-secondary');
+      saveButton.id = 'training-save';
+      saveButton.disabled = !unsaved;
+      toolbar.append(
+        create('p', 'fine-print', unsaved ? '本次修改尚未保存。' : '学习记录只在你明确保存后保留。'),
+        saveButton,
+      );
+      host.append(toolbar);
+    }
     bridge.onSessionChange?.();
   }
   function heading(title, description) {
@@ -949,10 +956,14 @@ export async function mountTraining({ host, bridge }) {
       for (const task of content.paper2 || []) taskSelect.append(new Option(task.title, task.id));
       taskSelect.append(new Option('粘贴其他原题', 'custom'));
       taskSelect.value = actualTask ? paperId : 'custom';
-      taskSelect.addEventListener('change', () => {
+      taskSelect.addEventListener('change', async () => {
         if (
           (paragraphDraft || paragraphRevision) &&
-          !confirm('切换题目将清空当前输入，已提交的学习纪录仍保留。继续？')
+          !(await confirmAction(
+            '切换写作题目？',
+            '切换题目将清空当前输入，已提交的学习纪录仍保留。',
+            '切换题目',
+          ))
         ) {
           taskSelect.value = paperId;
           return;
@@ -1159,7 +1170,7 @@ export async function mountTraining({ host, bridge }) {
     }
     work.append(sheet);
   }
-  function reviewItems() {
+  function reviewItems(current = listening(), attempts = listeningAttempts(current.savedRecords)) {
     const state = studyStore.getState();
     const items = [];
     for (const m of state.paperMarks)
@@ -1172,14 +1183,20 @@ export async function mountTraining({ host, bridge }) {
         paper: m,
         paperReplay: true,
       });
-    const current = listening();
+    const questionReviews = listeningQuestionReviews(attempts);
+    const questionLessons = new Set(questionReviews.map(({ attempt }) => attempt.taskId));
     if (current.lesson?.sentences?.length) reviewLessons.set(current.lesson.id, current.lesson);
     const latest = new Map();
     for (const r of current.savedRecords || []) latest.set(r.lessonId, r);
     for (const r of latest.values()) {
       const lesson = reviewLessons.get(r.lessonId);
       const descriptor = (current.catalogue || []).find((x) => x.id === r.lessonId);
-      if (!lesson && descriptor?.url && !requestedReviewLessons.has(r.lessonId)) {
+      if (
+        !lesson &&
+        descriptor?.url &&
+        !requestedReviewLessons.has(r.lessonId) &&
+        (questionLessons.has(r.lessonId) || Object.keys(r.marks || {}).length)
+      ) {
         requestedReviewLessons.add(r.lessonId);
         fetch(descriptor.url)
           .then((response) => (response.ok ? response.json() : null))
@@ -1209,6 +1226,24 @@ export async function mountTraining({ host, bridge }) {
           createdAt: r.savedAt,
           play: { lessonId: r.lessonId, start: Math.max(0, m.time - 4), end: m.time + 2 },
         });
+    }
+    for (const { id, questionId, attempt, errorType } of questionReviews) {
+      const descriptor = current.catalogue?.find((entry) => entry.id === attempt.taskId);
+      const question = reviewLessons.get(attempt.taskId)?.questions?.find((q) => q.id === questionId);
+      const label =
+        question?.label ||
+        (question?.number ? `Q${question.number}` : questionId.replace(/^q(\d+)$/i, 'Q$1'));
+      const title = attempt.title || descriptor?.title || attempt.taskId;
+      items.push({
+        id,
+        type: 'listening',
+        title: title.endsWith(label) ? title : `${title} · ${label}`,
+        detail: question?.prompt || '已标记这道题需要巩固。',
+        focus: listeningErrorLabels.get(errorType) || errorType,
+        focusLabel: '错因',
+        createdAt: attempt.createdAt,
+        savedQuestion: { lessonId: attempt.taskId, attemptKey: attempt.attemptKey, questionId },
+      });
     }
     const taskRecords = new Map(),
       taskErrors = new Map();
@@ -1293,7 +1328,9 @@ export async function mountTraining({ host, bridge }) {
     filters.append(type);
     review.append(filters);
     const list = create('div', 'training-review-list');
-    const items = reviewItems().filter(
+    const current = listening();
+    const attempts = listeningAttempts(current.savedRecords);
+    const items = reviewItems(current, attempts).filter(
       (i) =>
         (reviewFilter !== 'due' || i.dueDate <= dateKey()) && (reviewType === 'all' || i.type === reviewType),
     );
@@ -1317,7 +1354,9 @@ export async function mountTraining({ host, bridge }) {
       const controls = create('div', 'training-actions');
       const openItem = async (concealed = true) => {
         try {
-          if (item.paper)
+          if (item.savedQuestion)
+            await bridge.openSavedListening({ ...item.savedQuestion, retest: concealed });
+          else if (item.paper)
             await bridge.navigate('listening', { paper: item.paper, paperReplay: !!item.paperReplay });
           else if (item.play) await bridge.playListening(item.play);
           else if (item.type === 'writing') {
@@ -1383,6 +1422,8 @@ export async function mountTraining({ host, bridge }) {
           'button-primary',
         ),
       );
+      if (item.savedQuestion)
+        controls.append(action('回原题复盘', () => openItem(false), 'button-secondary'));
       if (item.type === 'writing' && ['paragraph', 'paper2'].includes(item.record?.details?.kind))
         controls.append(action('查看上次作答', () => openItem(false), 'button-secondary'));
       const manual = create('details', 'training-manual-review');
@@ -1406,12 +1447,10 @@ export async function mountTraining({ host, bridge }) {
     workspace.append(review);
     renderBackup(workspace);
     host.append(workspace);
-    renderStats();
+    renderStats(current, attempts);
   }
-  function renderStats() {
-    const saved = studyStore.getSavedState(),
-      listeningRecords = listening().savedRecords || [];
-    const uniqueAttempts = listeningAttempts(listeningRecords);
+  function renderStats(current = listening(), uniqueAttempts = listeningAttempts(current.savedRecords)) {
+    const saved = studyStore.getSavedState();
     const section = create('section', 'training-statistics');
     section.append(
       create('h2', '', '已保存的练习记录'),
@@ -1466,22 +1505,47 @@ export async function mountTraining({ host, bridge }) {
         '已记录错因：' +
         Object.entries(errors)
           .sort((a, b) => b[1] - a[1])
-          .map(([k, v]) => `${k} ${v} 次`)
+          .map(([k, v]) => `${listeningErrorLabels.get(k) || k} ${v} 次`)
           .join(' · ');
       section.append(p);
     }
     const recent = create('details', 'training-history');
-    recent.append(create('summary', '', `查看最近已保存纪录（${saved.records.length} 条）`));
+    const history = [...saved.records, ...uniqueAttempts].sort(
+      (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt),
+    );
+    recent.append(create('summary', '', `查看最近已保存纪录（${history.length} 条）`));
     const ol = create('ol');
-    for (const r of saved.records.slice(-12).reverse())
-      ol.append(
-        create(
+    const more = action('查看更早纪录', appendHistory);
+    function appendHistory() {
+      const start = ol.children.length;
+      for (const r of history.slice(start, start + 12)) {
+        const title =
+          r.title ||
+          r.details?.title ||
+          (r.module === 'listening' && current.catalogue?.find((entry) => entry.id === r.taskId)?.title) ||
+          r.taskId;
+        const row = create(
           'li',
           '',
-          `${dateKey(new Date(r.createdAt))} · ${moduleLabel[r.module]} · ${r.assisted ? '辅助练习' : r.phase === 'first' && isTargetedStructureAttempt(r) ? '指定结构首答' : phaseLabel[r.phase]} · ${r.taskId}${r.selfCheck ? ' · ' + ({ correct: '自核已检查', retry: '需重练', pending: '待自核' }[r.selfCheck] || r.selfCheck) : ''}`,
-        ),
-      );
-    recent.append(ol);
+          `${dateKey(new Date(r.createdAt))} · ${moduleLabel[r.module]} · ${r.assisted ? '辅助练习' : r.phase === 'first' && isTargetedStructureAttempt(r) ? '指定结构首答' : phaseLabel[r.phase]} · ${title}${r.selfCheck ? ' · ' + ({ correct: '自核已检查', retry: '需重练', pending: '待自核' }[r.selfCheck] || r.selfCheck) : ''}`,
+        );
+        if (r.module === 'listening')
+          row.append(
+            ' ',
+            action('查看这轮作答', async () => {
+              try {
+                await bridge.openSavedListening({ lessonId: r.taskId, attemptKey: r.attemptKey });
+              } catch (error) {
+                notice(error.message, true);
+              }
+            }),
+          );
+        ol.append(row);
+      }
+      more.hidden = ol.children.length >= history.length;
+    }
+    appendHistory();
+    recent.append(ol, more);
     section.append(recent);
     host.append(section);
   }

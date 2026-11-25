@@ -1,4 +1,5 @@
 export { EnglishAccounts } from './account-object.mjs';
+import { audioDigestHeaders, wantsAudioDigest } from './audio-identity.mjs';
 export default {
   async fetch(request, env) {
     const path = new URL(request.url).pathname;
@@ -29,11 +30,24 @@ export default {
     const sourceHeaders = new Headers(request.headers);
     sourceHeaders.delete('Range');
     sourceHeaders.delete('If-Range');
+    const verifyAudio = wantsAudioDigest(request.method, path, sourceHeaders.get('X-English30-Verify-Audio'));
+    sourceHeaders.delete('X-English30-Verify-Audio');
+    if (verifyAudio) {
+      sourceHeaders.delete('If-None-Match');
+      sourceHeaders.delete('If-Modified-Since');
+    }
     const source = await env.ASSETS.fetch(new Request(request, { method: 'GET', headers: sourceHeaders }));
     if (source.status !== 200) return source;
     const headers = new Headers(source.headers);
     headers.set('Accept-Ranges', 'bytes');
     if (request.method === 'HEAD') {
+      if (verifyAudio) {
+        const identity = await audioDigestHeaders(await source.arrayBuffer());
+        const assetTag = headers.get('ETag');
+        if (assetTag && !assetTag.startsWith('W/')) identity.ETag = assetTag;
+        for (const [key, value] of Object.entries(identity)) headers.set(key, value);
+        return new Response(null, { status: 200, headers });
+      }
       // Assets HEAD drops Content-Length; its GET metadata has the real size.
       if (!headers.has('Content-Length'))
         headers.set('Content-Length', String((await source.arrayBuffer()).byteLength));

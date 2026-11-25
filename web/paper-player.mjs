@@ -1,10 +1,10 @@
 import { locateChunk } from './paper-core.mjs';
+import { RecordingSource } from './recording-source.mjs';
 
-// Each short MP3 is fetched completely before using a Blob URL. This also works
-// on hosts that return 200 to Range requests, without keeping an hour in memory.
 export class PaperPlayer {
   constructor(audio, notify = () => {}) {
     this.audio = audio;
+    this.recording = new RecordingSource(audio);
     this.notify = notify;
     this.generation = 0;
     this.index = -1;
@@ -51,6 +51,7 @@ export class PaperPlayer {
     });
   }
   fail(error) {
+    this.index = -1;
     this.loading = false;
     this.playing = false;
     this.emit(error);
@@ -65,10 +66,7 @@ export class PaperPlayer {
   }
   setSource(source) {
     this.cancel();
-    this.audio.removeAttribute('src');
-    this.audio.load();
-    if (this.blob) URL.revokeObjectURL(this.blob);
-    this.blob = null;
+    this.recording.clear();
     this.index = -1;
     this.source = source;
     this.time = 0;
@@ -88,27 +86,14 @@ export class PaperPlayer {
     this.time = position.time;
     this.emit();
     try {
-      if (position.index !== this.index || !this.audio.src) {
-        const response = await fetch(this.source.chunks[position.index].src, { signal: controller.signal });
-        if (!response.ok) throw new Error(`录音载入失败（${response.status}）`);
-        const data = await response.blob();
-        if (request !== this.generation) return;
-        const blob = URL.createObjectURL(data);
-        if (this.blob) URL.revokeObjectURL(this.blob);
-        this.blob = blob;
-        const ready = this.waitFor('loadedmetadata', controller.signal);
-        this.audio.src = blob;
-        this.audio.load();
-        await ready;
+      if (position.index !== this.index || !this.audio.src || this.audio.error) {
+        this.index = -1;
+        await this.recording.ready(this.source.chunks[position.index].src, controller.signal);
         if (request !== this.generation) return;
         this.index = position.index;
       }
       const offset = Math.min(position.offset, this.audio.duration || position.offset);
-      if (Math.abs(this.audio.currentTime - offset) > 0.03) {
-        const settled = this.waitFor('seeked', controller.signal);
-        this.audio.currentTime = offset;
-        await settled;
-      }
+      await this.recording.seek(offset, controller.signal);
       if (request !== this.generation) return;
       this.loading = false;
       if (resume) await this.audio.play();
@@ -118,24 +103,6 @@ export class PaperPlayer {
       if (request !== this.generation || error.name === 'AbortError') return;
       this.fail(error.name === 'NotAllowedError' ? '录音已就绪，请再点播放。' : error.message);
     }
-  }
-  waitFor(event, signal) {
-    return new Promise((resolve, reject) => {
-      const done = (error) => {
-        clearTimeout(timer);
-        this.audio.removeEventListener(event, ok);
-        this.audio.removeEventListener('error', bad);
-        signal.removeEventListener('abort', abort);
-        error ? reject(error) : resolve();
-      };
-      const ok = () => done(),
-        bad = () => done(new Error('录音载入失败，请重试。')),
-        abort = () => done(new DOMException('Aborted', 'AbortError'));
-      const timer = setTimeout(() => done(new Error('录音载入超时，请重试。')), 20000);
-      this.audio.addEventListener(event, ok, { once: true });
-      this.audio.addEventListener('error', bad, { once: true });
-      signal.addEventListener('abort', abort, { once: true });
-    });
   }
   toggle() {
     if (this.playing || this.loading) {

@@ -1,3 +1,4 @@
+import { allowBeforeUnload, confirmIncompleteTask } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -17,7 +18,7 @@ const state = (page) =>
 async function check(name, run) {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
   const page = await context.newPage();
-  page.on('dialog', (d) => d.accept());
+  allowBeforeUnload(page);
   page.on('pageerror', (e) => report.errors.push(e.message));
   try {
     await page.goto(`${base}/#listening`);
@@ -37,6 +38,7 @@ async function review(page) {
   await page.locator('#play-pause').click();
   await page.waitForFunction(() => !document.querySelector('#audio').paused);
   await page.locator('#submit-answers').click();
+  await confirmIncompleteTask(page);
   await page.locator('.sentence-time').first().waitFor();
 }
 try {

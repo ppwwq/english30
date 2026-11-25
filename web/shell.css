@@ -127,6 +127,14 @@ body[data-view='home'] :focus-visible {
     }
   }
 }
+@media (hover: none) and (pointer: coarse) {
+  .main-navigation a:active {
+    transform: scale(0.985);
+  }
+  .home-listening:active .home-arrow {
+    transform: translateX(3px);
+  }
+}
 .home-other-practice {
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -431,6 +439,7 @@ body[data-view]:not([data-view='listening']) .app-shell {
   width: min(30rem, calc(100% - 2rem));
   max-height: 85vh;
   overflow: auto;
+  overflow-wrap: anywhere;
   color: var(--ink);
   background: var(--surface);
   border: 1px solid var(--line);
@@ -443,6 +452,9 @@ body[data-view]:not([data-view='listening']) .app-shell {
 }
 .account-save-dialog h2 {
   margin: 0;
+}
+#confirmation-message {
+  white-space: pre-line;
 }
 .account-save-dialog label {
   display: flex;

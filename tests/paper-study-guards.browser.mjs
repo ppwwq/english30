@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -26,7 +27,7 @@ async function scenario(name, run) {
   try {
     const page = await context.newPage();
     page.on('pageerror', (error) => report.errors.push(error.message));
-    page.on('dialog', (dialog) => dialog.accept());
+    allowBeforeUnload(page);
     const url = new URL(process.env.TEST_URL || 'http://127.0.0.1:4173/');
     url.hash = 'library';
     await page.goto(url.href);
@@ -105,6 +106,7 @@ try {
       await word.click();
       await page.locator('#paper-word-mark').click();
       await page.locator('#session-save').click();
+      await answerConfirmation(page, '确认保存');
       const backup = await page.evaluate(async () =>
         (await import('/training-core.mjs')).studyStore.exportBackup(),
       );

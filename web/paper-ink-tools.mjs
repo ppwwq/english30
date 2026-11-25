@@ -1,3 +1,4 @@
+import { confirmAction } from './confirmation.mjs';
 import { inkColors } from './paper-ink-geometry.mjs';
 import { inkIcon } from './ink-icons.mjs';
 
@@ -11,9 +12,9 @@ const modeNames = {
   pan: '移动纸面',
 };
 const colorNames = ['墨黑', '蓝', '红', '绿', '黄', '紫'];
-export function mountInkTools(host, options, actions) {
+export function mountInkTools(host, options, actions, reviewing = false) {
   host.setAttribute('role', 'group');
-  host.setAttribute('aria-label', '原卷手写工具');
+  host.setAttribute('aria-label', reviewing ? '原卷批改工具' : '原卷手写工具');
   const modes = new Map();
   let lastBrush = options.brushes[options.mode] ? options.mode : 'pen',
     state = {};
@@ -55,7 +56,8 @@ export function mountInkTools(host, options, actions) {
     return { trigger, panel };
   }
   host.addEventListener('focusout', (e) => {
-    if (e.relatedTarget && !host.contains(e.relatedTarget)) toggleMenu();
+    if (e.relatedTarget && !host.contains(e.relatedTarget) && !e.relatedTarget.closest?.('dialog'))
+      toggleMenu();
   });
   host.addEventListener('ink-dismiss', () => toggleMenu());
   host.addEventListener('keydown', (e) => {
@@ -97,7 +99,7 @@ export function mountInkTools(host, options, actions) {
       for (const key of ['pen', 'pencil', 'marker']) rack.insertBefore(modes.get(key), modes.get('erase'));
   }
   new ResizeObserver(([entry]) => {
-    const next = entry.contentRect.width > 0 && entry.contentRect.width < 540;
+    const next = entry.contentRect.width > 0 && entry.contentRect.width < (reviewing ? 450 : 540);
     if (next !== compact) {
       compact = next;
       arrangePens();
@@ -183,10 +185,17 @@ export function mountInkTools(host, options, actions) {
     options.finger = options.finger === 'draw' ? 'pan' : 'draw';
     refresh();
   });
-  const clear = button(prefs.panel, '清空本页', 'clear', () => {
-    if (window.confirm('清空这一页的全部笔迹？可以撤销。')) {
+  const clear = button(prefs.panel, reviewing ? '清空本页批注' : '清空本页', 'clear', async () => {
+    const { pageKey } = state;
+    const target = reviewing ? '批注' : '笔迹';
+    clear.focus({ preventScroll: true });
+    if (
+      await confirmAction('清空本页' + target + '？', '仅清空当前页的' + target + '，可以撤销。', '清空本页')
+    ) {
+      if (!host.isConnected || pageKey !== state.pageKey) return;
       actions.clear();
       toggleMenu();
+      prefs.trigger.focus();
     }
   });
   function mark(b, on) {

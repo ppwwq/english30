@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation, confirmIncompleteTask } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -19,7 +20,7 @@ async function scenario(name, reveal, wholePaper = false) {
   const context = await browser.newContext({ viewport: { width: 810, height: 1080 }, hasTouch: true });
   const page = await context.newPage();
   page.on('pageerror', (error) => report.errors.push(error.message));
-  page.on('dialog', (dialog) => dialog.accept());
+  allowBeforeUnload(page);
   try {
     await page.goto(base + (wholePaper ? '/#listening' : '/#listening/practice'));
     await ready(page);
@@ -52,6 +53,7 @@ async function scenario(name, reveal, wholePaper = false) {
     await page.locator('#play-pause').click();
     await page.waitForFunction(() => document.getElementById('audio').currentTime > 0.05);
     await page.locator('#submit-answers').click();
+    await confirmIncompleteTask(page);
     const state = await page.evaluate(async () =>
       (await import('/app.mjs')).listeningBridge.getListeningState(),
     );
@@ -89,6 +91,7 @@ try {
         .filter({ hasText: '评分参考' })
         .first()
         .click();
+      await answerConfirmation(page, '打开资料');
     },
     true,
   );

@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation, confirmIncompleteTask } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 
@@ -38,36 +39,27 @@ async function submit(page) {
   await page.locator('#play-pause').click();
   await page.waitForFunction(() => !document.getElementById('audio').paused);
   await page.locator('#submit-answers').click();
+  await confirmIncompleteTask(page);
 }
 
 try {
   await scenario(
     'saving a first attempt does not acknowledge or silently discard the current retest draft',
     async (page) => {
-      const dialogs = [];
-      page.on('dialog', async (dialog) => {
-        dialogs.push(dialog.message());
-        if (dialog.message().includes('切换材料')) await dialog.dismiss();
-        else await dialog.accept();
-      });
+      allowBeforeUnload(page);
       await ready(page, 'listening');
       await page.locator('#answer-q1').fill('my first answer');
       await submit(page);
       await page.locator('#phase-retest').click();
       await page.locator('#answer-q1').fill('keep my unsubmitted retest');
       await page.locator('#session-save').click();
+      await answerConfirmation(page, '确认保存');
       await page.waitForFunction(() => !!localStorage.getItem('english30-records-v1'));
       const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('english30-records-v1')));
       assert.equal(saved.at(-1).attempts[0].results.q1.answer, 'my first answer');
       assert.equal(saved.at(-1).attempts.length, 1);
       await page.locator('#practice-task').selectOption('2');
-      // The selector's async event handler must settle its confirmation and reset selection.
-      await page.waitForTimeout(200);
-      assert.equal(
-        dialogs.filter((message) => message.includes('切换材料')).length,
-        1,
-        'switching must warn about the retest draft excluded from the saved snapshot',
-      );
+      assert.match(await answerConfirmation(page, '取消'), /切换材料/);
       assert.equal(await page.locator('#practice-task').inputValue(), '1');
       assert.equal(await page.locator('#answer-q1').inputValue(), 'keep my unsubmitted retest');
     },
@@ -76,12 +68,13 @@ try {
   await scenario(
     'discarding a submitted task resets the global save indicator for the fresh task',
     async (page) => {
-      page.on('dialog', async (dialog) => dialog.accept());
+      allowBeforeUnload(page);
       await ready(page, 'listening');
       await submit(page);
       assert.equal(await page.locator('#session-save').isDisabled(), false);
       await page.locator('#change-paper').click();
       await page.locator('#practice-task').selectOption('2');
+      await answerConfirmation(page, '切换材料');
       await page.waitForFunction(
         () =>
           document.getElementById('lesson-meta').textContent.includes('Task 2') &&

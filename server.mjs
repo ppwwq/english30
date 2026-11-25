@@ -1,6 +1,7 @@
 import http from 'node:http';
 import { createReadStream } from 'node:fs';
-import { stat } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
+import { audioDigestHeaders, wantsAudioDigest } from './cloudflare/audio-identity.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -54,6 +55,10 @@ const server = http.createServer(async (req, res) => {
       'Cache-Control': 'no-cache',
       'X-Content-Type-Options': 'nosniff',
     };
+    if (wantsAudioDigest(req.method, pathname, req.headers['x-english30-verify-audio'])) {
+      res.writeHead(200, { ...headers, ...(await audioDigestHeaders(await readFile(file))) });
+      return res.end();
+    }
     let start = 0,
       end = info.size - 1,
       status = 200;

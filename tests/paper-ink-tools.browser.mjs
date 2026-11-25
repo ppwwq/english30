@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 const require = createRequire(
@@ -13,7 +14,7 @@ try {
   page.setDefaultTimeout(9000);
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
-  page.on('dialog', (d) => d.accept());
+  allowBeforeUnload(page);
   await page.goto((process.env.TEST_URL || 'http://127.0.0.1:4174') + '/#listening');
   const btn = (name) => page.getByRole('button', { name, exact: true });
   await btn('手写作答').click();
@@ -25,7 +26,10 @@ try {
     '.paper-writing-sheet button:visible, .paper-writing-sheet summary:visible, #submit-answers',
   );
   for (const control of await iconButtons.all()) {
-    assert.equal((await control.innerText()).trim(), '', 'handwriting actions use icons');
+    const text = (await control.innerText()).trim();
+    if (await control.locator('.paper-control-label').count()) {
+      assert.ok(['打字', '手写', '退出全屏', 'Data File', '回到原题'].includes(text));
+    } else assert.equal(text, '', 'pen tools stay icon-only');
     assert.ok(await control.getAttribute('aria-label'), 'each icon has an accessible name');
     assert.equal(await control.locator('svg use').count(), 1);
     const box = await control.boundingBox();
@@ -56,6 +60,14 @@ try {
     }
   }
   const zoom = btn('调整纸面缩放');
+  assert.match(await page.locator('.paper-focus-context').innerText(), /2025 Part A · Task 1/);
+  await zoom.click();
+  await page.keyboard.press('Escape');
+  assert.equal(await zoom.getAttribute('aria-expanded'), 'false');
+  assert.equal(await btn('退出全屏').isVisible(), true);
+  await page.keyboard.press('Escape');
+  assert.equal(await btn('全屏书写').isVisible(), true);
+  await btn('全屏书写').click();
   const zoomSlider = page.getByRole('slider', { name: '纸面缩放比例' });
   const changeRange = (slider, value) =>
     slider.evaluate((node, v) => {
@@ -227,6 +239,17 @@ try {
   assert.equal(await strokes.last().getAttribute('fill'), '#254c8b');
   await btn('书写设置').click();
   await btn('清空本页').click();
+  const dialog = page.getByRole('dialog', { name: '清空本页笔迹？' });
+  assert.equal(
+    await dialog.getByRole('button', { name: '取消' }).evaluate((n) => n === document.activeElement),
+    true,
+  );
+  await page.keyboard.press('Escape');
+  assert.equal(await strokes.count(), 5);
+  assert.equal(await btn('退出全屏').isVisible(), true);
+  assert.equal(await btn('清空本页').evaluate((n) => n === document.activeElement), true);
+  await btn('清空本页').click();
+  await answerConfirmation(page, '清空本页');
   assert.equal(await strokes.count(), 0);
   await btn('撤销').click();
   assert.equal(await strokes.count(), 5);

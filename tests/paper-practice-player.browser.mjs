@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation, confirmIncompleteTask } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -75,6 +76,7 @@ async function review(page) {
   if ((await media(page)).paused) await page.locator('#play-pause').tap();
   await page.waitForFunction(() => !document.querySelector('#audio').paused);
   await page.locator('#submit-answers').tap();
+  await confirmIncompleteTask(page);
   await page.locator('.word').first().waitFor({ state: 'visible' });
 }
 async function check(name, run) {
@@ -88,7 +90,7 @@ async function check(name, run) {
   });
   const page = await context.newPage();
   page.on('pageerror', (error) => report.errors.push({ name, message: error.message }));
-  page.on('dialog', (dialog) => dialog.accept());
+  allowBeforeUnload(page);
   try {
     await page.goto(base.href);
     await ready(page, '2025');
@@ -231,7 +233,8 @@ try {
       await page.locator('.word').first().tap();
       await page.locator('#mark-unknown').tap();
       await page.locator('.review-drawer > summary').tap();
-      await page.locator('#save-record').tap();
+      await page.locator('#session-save').tap();
+      await answerConfirmation(page, '确认保存');
       await page.waitForFunction(() => document.querySelector('#status').textContent.includes('回读验证'));
       const records = await page.evaluate(() => JSON.parse(localStorage.getItem('english30-records-v1')));
       const saved = records.at(-1);
@@ -247,6 +250,7 @@ try {
       await page.getByRole('button', { name: '恢复这份纪录，继续复盘', exact: true }).tap();
       assert.equal(await page.locator('.question-input').first().inputValue(), 'my original paper answer');
       assert.equal(await page.locator('.self-check').first().inputValue(), 'correct');
+      await page.locator('#transcript:not([aria-busy]) .word').first().waitFor({ state: 'attached' });
       assert.equal(await page.locator('.word.is-unknown').count(), 1);
       assert.match(await page.locator('.result-summary').textContent(), /1 题已自核/);
     },
@@ -259,6 +263,7 @@ try {
         document.querySelector('[data-question-id=q1] .evidence-link').click();
         location.hash = 'listening/practice';
       });
+      await answerConfirmation(page, '切换材料');
       await ready(page);
       await page.waitForTimeout(600);
       assert.equal(await page.locator('body').getAttribute('data-listening-mode'), 'practice');

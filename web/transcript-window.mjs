@@ -1,6 +1,7 @@
 // Move the live transcript so scrolling, word marks and the audio clock stay shared.
 export function mountTranscriptWindow() {
   const panel = document.querySelector('.transcript-panel');
+  const toggle = document.querySelector('#paper-float-transcript');
   const home = document.createComment('transcript');
   panel.before(home);
   const inspector = document.querySelector('#word-inspector');
@@ -43,9 +44,7 @@ export function mountTranscriptWindow() {
     open = value && available;
     panel.classList.toggle('is-floating', open);
     if (open) {
-      const parent =
-        document.querySelector('.practice-page-dialog[open]') || document.querySelector('#listening-panel');
-      parent.append(panel);
+      document.querySelector('#listening-panel').append(panel);
       panel.insertBefore(inspector, resize);
       layout();
       panel.dispatchEvent(new Event('transcript-layout'));
@@ -57,13 +56,13 @@ export function mountTranscriptWindow() {
       panel.style.removeProperty('left');
       panel.style.removeProperty('top');
     }
-    const toggle = document.querySelector('#paper-float-transcript');
-    toggle?.setAttribute('aria-pressed', String(open));
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = open ? '收起字幕' : '打开字幕';
   }
   function dock() {
     docked = true;
     setOpen(false);
-    document.querySelector('#paper-float-transcript')?.focus({ preventScroll: true });
+    toggle.focus({ preventScroll: true });
   }
   panel.querySelector('.caption-dock').onclick = dock;
   maximize.onclick = () => {
@@ -114,26 +113,24 @@ export function mountTranscriptWindow() {
   adjust(grip, false);
   adjust(resize, true);
   window.addEventListener('resize', layout);
+  toggle.onclick = () => {
+    if (open) dock();
+    else {
+      docked = false;
+      setOpen(true);
+    }
+  };
   return {
     enable(value) {
       available = value;
+      toggle.hidden = !available;
       if (!value) {
         if (open) setOpen(false);
         docked = false;
       }
     },
-    toggle() {
-      if (open) dock();
-      else {
-        docked = false;
-        setOpen(true);
-      }
-    },
     showForPlayback() {
       if (available && !docked && !open) setOpen(true);
-    },
-    paperDialogChanged() {
-      if (open) setOpen(true);
     },
     get open() {
       return open;

@@ -1,3 +1,4 @@
+import { answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -64,15 +65,8 @@ try {
   assert.equal(await page.evaluate(() => localStorage.getItem('english30-study-v1')), null);
   const save = page.getByRole('button', { name: '保存本次学习纪录', exact: true });
   const confirmSave = async (accept) => {
-    const [dialog] = await Promise.all([
-      page.waitForEvent('dialog').then(async (dialog) => {
-        const prompt = dialog.message();
-        if (accept) await dialog.accept();
-        else await dialog.dismiss();
-        return prompt;
-      }),
-      save.tap(),
-    ]);
+    await save.tap();
+    const dialog = await answerConfirmation(page, accept ? '确认保存' : '取消');
     assert.match(dialog, /短句听写：2 条/);
     assert.match(dialog, /复习标记/);
   };

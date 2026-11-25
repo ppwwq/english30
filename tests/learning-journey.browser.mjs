@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation, confirmIncompleteTask } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -11,13 +12,9 @@ const browser = await chromium.launch({
 });
 const page = await browser.newPage({ viewport: { width: 820, height: 1180 }, hasTouch: true });
 const base = process.env.TEST_URL || 'http://127.0.0.1:4173';
-const errors = [],
-  dialogs = [];
+const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
-page.on('dialog', async (d) => {
-  dialogs.push(d.message());
-  await d.accept();
-});
+allowBeforeUnload(page);
 try {
   await page.goto(base + '/#listening');
   await page.locator('#session-save').waitFor({ timeout: 5000 });
@@ -29,6 +26,7 @@ try {
   await page.locator('#play-pause').click();
   await page.waitForFunction(() => !document.querySelector('#audio').paused);
   await page.locator('#submit-answers').click();
+  await confirmIncompleteTask(page);
   await page.locator('[data-question-id="q1"] .question-review-tools > summary').click();
   await page.locator('[data-question-id="q1"] [data-practice-drill]').click();
   await page.locator('#focused-drill-dialog').waitFor();
@@ -36,10 +34,13 @@ try {
   assert.equal(await page.locator('#focused-drill-dialog').evaluate((n) => n.tagName), 'SECTION');
   assert.equal(await page.locator('#focus-paper-drill-pause').isVisible(), true);
   assert.equal(await page.locator('#focus-paper-drill-reference').textContent(), '');
+  const playbackConfirmed = page.getByText('听完后写下你听到的内容，再提交对照。', { exact: true });
   await page.locator('#focus-paper-drill-play').click();
+  await playbackConfirmed.waitFor();
   await page.locator('#focus-paper-drill-pause').click();
   assert.equal(await page.locator('#audio').evaluate((a) => a.paused), true);
   await page.locator('#focus-paper-drill-play').click();
+  await playbackConfirmed.waitFor();
   await page.locator('#focus-paper-drill-answer').fill('About 7000.');
   await page.locator('#focus-paper-drill-submit').click();
   await page.locator('#focus-paper-drill-feedback').waitFor();
@@ -59,10 +60,13 @@ try {
   await page.locator('#focused-drill-return').click();
   assert.equal(await page.locator('#answer-q1').inputValue(), '100');
   await page.locator('#session-save').click();
+  const summary = await answerConfirmation(page, '确认保存');
   await page.waitForFunction(
     () => localStorage.getItem('english30-study-v1') && localStorage.getItem('english30-records-v1'),
   );
-  assert.equal(dialogs.filter((t) => t.includes('准备保存')).length, 1);
+  assert.match(summary, /听力：/);
+  assert.match(summary, /短句听写：/);
+  assert.equal(await page.getByRole('dialog').count(), 0);
   const data = await page.evaluate(() => ({
     study: JSON.parse(localStorage.getItem('english30-study-v1')),
     listening: JSON.parse(localStorage.getItem('english30-records-v1')),
@@ -74,9 +78,8 @@ try {
   await page.locator('#phase-retest').click();
   assert.equal(await page.locator('#transcript .word').count(), 0);
   assert.equal(await page.locator('[data-practice-drill]').count(), 0);
-  await page.locator('#practice-part').selectOption('B1');
-  await page.locator('#practice-task').selectOption('6');
-  await page.locator('#practice-integrated').click();
+  assert.equal(await page.locator('#practice-part').inputValue(), 'A');
+  await page.getByRole('button', { name: 'B1 综合训练 · 2025 Task 6' }).click();
   await page.locator('[data-rd-action="integrated-submit"]').waitFor();
   assert.equal(await page.locator('body').getAttribute('data-view'), 'integrated');
   assert.equal(await page.locator('#home-back').isVisible(), true);

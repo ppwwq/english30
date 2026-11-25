@@ -1,3 +1,4 @@
+import { confirmAction } from './confirmation.mjs';
 const phases = {
   first: '首次作答',
   independent: '首次作答',
@@ -290,10 +291,16 @@ export function mountAccountView(root, controller) {
     const block = node('section', 'account-callout');
     const again = (asCopy) =>
       perform('正在上传已确认的保存…', async () => {
-        if (asCopy) await controller.retry({ asCopy: true });
-        else await controller.retry();
+        const result = await controller.retry({ asCopy });
         conflict = null;
         await refresh();
+        say(
+          result?.skipped
+            ? '原云端答卷已删除，本机作答已保留。其余保存已处理。'
+            : result?.processed
+              ? '已存云端，已回读核对。'
+              : '待上传队列已清空，可在我的答卷核对。',
+        );
       });
     if (clash) {
       const controls = actions(button('另存为独立答卷', () => again(true)));
@@ -327,9 +334,13 @@ export function mountAccountView(root, controller) {
       section.append(
         heading('本机游客记录', 'h3'),
         note('这台设备有 ' + guestTotal + ' 条游客记录可导入。'),
-        button('导入到我的账号', () => {
-          if (!confirm('确认这 ' + guestTotal + ' 条游客记录属于你，并上传至账号「' + user.name + '」？'))
-            return;
+        button('导入到我的账号', async () => {
+          const accepted = await confirmAction(
+            '导入游客记录？',
+            `请确认这 ${guestTotal} 条游客记录属于你。确认后将上传至账号「${user.name}」。`,
+            '确认导入',
+          );
+          if (!accepted) return;
           void perform('正在导入游客记录…', async () => {
             await controller.importGuest();
             await refresh();
@@ -354,12 +365,12 @@ export function mountAccountView(root, controller) {
             const { validateBackup } = await import('./training-core.mjs');
             const backup = validateBackup(data);
             const count = backup.listening.length + backup.study.records.length;
-            if (
-              !confirm(
-                '将「' + file.name + '」中的 ' + count + ' 条作答及其复习记录导入账号「' + user.name + '」？',
-              )
-            )
-              return;
+            const accepted = await confirmAction(
+              '导入学习备份？',
+              `将「${file.name}」中的 ${count} 条作答及其复习记录导入账号「${user.name}」？`,
+              '确认导入',
+            );
+            if (!accepted) return;
             await controller.importBackup(backup);
             await refresh();
             say('已导入完整学习备份。');
@@ -382,13 +393,7 @@ export function mountAccountView(root, controller) {
     );
     records.append(importFile);
     body.append(records);
-    const exit = button('退出登录', () =>
-      perform('正在退出…', async () => {
-        await controller.logout();
-        await refresh();
-        focus(title);
-      }),
-    );
+    const exit = button('退出登录', () => perform('正在退出…', () => controller.logout()));
     const remove = node('details', 'account-delete');
     const deletion = node('form');
     const password = input('password', 'password', 'current-password');
@@ -399,9 +404,14 @@ export function mountAccountView(root, controller) {
       field('输入密码确认身份', password),
       submit,
     );
-    deletion.addEventListener('submit', (event) => {
+    deletion.addEventListener('submit', async (event) => {
       event.preventDefault();
-      if (!confirm('永久删除「' + user.name + '」及其云端记录？')) return;
+      const accepted = await confirmAction(
+        '永久删除账号？',
+        `将删除「${user.name}」及其云端记录。此操作无法撤销。`,
+        '永久删除账号',
+      );
+      if (!accepted) return;
       void perform('正在删除账号…', async () => {
         await controller.deleteAccount(password.value);
         await refresh();
@@ -553,6 +563,22 @@ export function mountAccountView(root, controller) {
       );
       const download = link('下载整卷 PDF', controller.pdfUrl(id, v), 'button-secondary');
       download.download = '';
+      download.addEventListener('click', (event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        void perform('正在生成并下载整卷 PDF…', async () => {
+          const response = await fetch(download.href, { cache: 'no-store' });
+          if (!response.ok) throw Error('这份 PDF 暂未下载，请重新打开答卷再试。');
+          const blob = await response.blob();
+          if (!root.isConnected || !valid(seq, identity)) return;
+          const url = URL.createObjectURL(blob);
+          const file = link('', url);
+          file.download = 'English30-' + id + '-v' + v + '.pdf';
+          file.click();
+          setTimeout(() => URL.revokeObjectURL(url), 60000);
+          say('PDF 已准备好，请在浏览器下载列表查看。');
+        });
+      });
       const nextActions = actions();
       if (choices.length > 1) {
         const choose = selector(
@@ -672,8 +698,13 @@ export function mountAccountView(root, controller) {
       viewer.append(toolbar, figure);
       const remove = button(
         '删除这份答卷',
-        () => {
-          if (!confirm('删除「' + paper.title + '」及其所有云端版本？此操作无法撤销。')) return;
+        async () => {
+          const accepted = await confirmAction(
+            '删除这份答卷？',
+            `将删除「${paper.title}」及其所有云端版本。此操作无法撤销。`,
+            '删除答卷',
+          );
+          if (!accepted) return;
           void perform('正在删除答卷…', async () => {
             await controller.deletePaper(id);
             active = null;

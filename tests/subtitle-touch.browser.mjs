@@ -1,3 +1,4 @@
+import { allowBeforeUnload } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import { listeningPracticeURL } from './listening-test-url.mjs';
 import fs from 'node:fs/promises';
@@ -38,7 +39,7 @@ try {
     const page = await context.newPage();
     const cdp = await context.newCDPSession(page);
     page.on('pageerror', (e) => result.errors.push(e.message));
-    page.on('dialog', (d) => d.accept());
+    allowBeforeUnload(page);
     await page.goto(listeningPracticeURL());
     await page.waitForFunction(() => !document.getElementById('play-pause').disabled);
     async function snapshot() {

@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -15,7 +16,7 @@ try {
   const context = await browser.newContext({ viewport: { width: 1024, height: 768 }, hasTouch: true });
   const page = await context.newPage();
   page.on('pageerror', (e) => report.errors.push(e.message));
-  page.on('dialog', (d) => d.accept());
+  allowBeforeUnload(page);
   await page.route('**/__reading-test.html', (route) =>
     route.fulfill({
       contentType: 'text/html',
@@ -56,6 +57,7 @@ try {
     needsPractice: 1,
   });
   await page.locator('[data-rd-action="save"]').tap();
+  await answerConfirmation(page, '确认保存');
   assert.equal(
     await page.evaluate(() => JSON.parse(localStorage.getItem('english30-study-v1')).records.length),
     1,
@@ -67,14 +69,16 @@ try {
   assert.equal(await page.locator('.rd-feedback').count(), 0);
   assert.equal(await page.locator('[data-rd-answer="b-q22"]').count(), 4);
   await page.locator('[data-rd-answer="b-q23i"]').fill('Videos');
+  await page.route('**/*.mp3', (route) => route.abort());
   await page.evaluate(() => window.reader.show('integrated'));
+  await page.locator('[data-rd-action="audio-retry"]').waitFor();
+  await page.unroute('**/*.mp3');
+  await page.locator('[data-rd-action="audio-retry"]').click();
   await page.waitForFunction(() => document.querySelector('audio')?.readyState >= 1);
   assert.equal(await page.locator('.rd-source-result').count(), 0);
   assert.equal(await page.locator('.rd-transcript').count(), 0);
-  const audio = await page
-    .locator('audio')
-    .evaluate((a) => ({ duration: a.duration, blob: a.src.startsWith('blob:') }));
-  assert.equal(audio.blob, true);
+  const audio = await page.locator('audio').evaluate((a) => ({ duration: a.duration, src: a.currentSrc }));
+  assert.equal(new URL(audio.src).origin, new URL(page.url()).origin);
   assert.ok(Math.abs(audio.duration - 522) < 1);
   await page.locator('[data-rd-speed]').selectOption('1.25');
   await page.locator('[data-rd-loop]').check();
@@ -114,6 +118,7 @@ try {
   await page.locator('[data-rd-language="reader"]').check();
   await page.locator('[data-rd-confirmed="guest"]').check();
   await page.locator('[data-rd-action="integrated-save"]').tap();
+  await answerConfirmation(page, '确认保存');
   const record = await page.evaluate(() =>
     JSON.parse(localStorage.getItem('english30-study-v1')).records.at(-1),
   );

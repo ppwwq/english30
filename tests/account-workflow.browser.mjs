@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation, confirmIncompleteTask } from './confirmation-helpers.mjs';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
@@ -44,7 +45,7 @@ try {
     const page = await ctx.newPage();
     page.setDefaultTimeout(15000);
     page.on('pageerror', (err) => errors.push(err.message));
-    page.on('dialog', (d) => d.accept());
+    allowBeforeUnload(page);
     page.on('response', async (r) => {
       if (r.status() >= 400 && r.url().includes('/api/') && r.request().method() !== 'HEAD')
         console.log(r.status(), new URL(r.url()).pathname, (await r.text()).slice(0, 240));
@@ -65,7 +66,19 @@ try {
   }
   const first = await device(true),
     p = first.page;
+  assert.equal(await p.locator('.session-savebar').isVisible(), false);
+  for (const width of [390, 820, 1194]) {
+    await p.setViewportSize({ width, height: 834 });
+    const gap = await p.locator('#home-back').evaluate((link) => {
+      const header = link.closest('header');
+      const edge = header.getBoundingClientRect().right - parseFloat(getComputedStyle(header).paddingRight);
+      return edge - link.getBoundingClientRect().right;
+    });
+    assert.ok(Math.abs(gap) < 2, `clean account at ${width}px: Home link is ${gap}px from the header edge`);
+  }
   await p.locator('#home-back').click();
+  const avatar = p.getByRole('link', { name: `我的答卷（${user}）`, exact: true });
+  assert.equal(await avatar.textContent(), 'S');
   await p.locator('[data-view=listening]').click();
   await p.locator('#practice-part').selectOption('B1');
   await p.locator('#practice-task').selectOption('6');
@@ -101,6 +114,13 @@ try {
   assert.equal(await p.locator('.ink-stroke').count(), 1);
   await p.locator('#play-pause').click();
   await p.locator('#submit-answers').click();
+  await confirmIncompleteTask(p);
+  await draw(p, [
+    [0.63, 0.48],
+    [0.67, 0.52],
+    [0.76, 0.43],
+  ]);
+  assert.equal(await p.locator('.ink-stroke').count(), 2);
   const submit = async (page, combined = false) => {
     await page.locator('#session-save').click();
     if (combined) await page.locator('.account-save-dialog input[type=checkbox]:visible').check();
@@ -115,7 +135,13 @@ try {
         throw Error((await page.locator('.session-savebar').innerText()) + ' ' + e.message);
       });
   };
+  await p.locator('#home-back').click();
+  await avatar.click();
   await submit(p);
+  assert.equal(await p.locator('#session-save-status').isVisible(), true);
+  assert.equal(await p.locator('#session-save').isDisabled(), true);
+  await p.locator('.session-state summary').click();
+  await p.locator('#session-save-detail').filter({ hasText: '已存云端，已回读核对' }).waitFor();
   const papers = await (await p.request.get(base + '/api/papers?year=2025&part=B1')).json();
   assert.equal(papers.length, 1);
   const url = base + '/api/papers/' + papers[0].id + '/versions/';
@@ -130,14 +156,41 @@ try {
   const detail = await (await q.request.get(url + '1')).json();
   assert.equal(detail.pages.length, 14);
   assert.equal(detail.ink[detail.pages[11].key].length, 1);
+  const reviewed =
+    detail.records[detail.taskChoices.find((choice) => choice.task === 6).lessonId].attempts.at(-1);
+  assert.equal(reviewed.reviewInk[detail.pages[11].key].length, 1);
+  assert.equal(reviewed.reviewInk[detail.pages[11].key][0].color, '#a53540');
   const original = await q.request.get(base + '/api/books/master/' + detail.pages[11].master);
   const ink = await q.request.get(url + '1/pages/12/image');
   assert.equal(ink.status(), 200);
   assert.notDeepEqual(await ink.body(), await original.body());
+  const hasRedMark = await q.locator('.account-page img').evaluate((image) => {
+    const canvas = document.createElement('canvas');
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(image, 0, 0);
+    const pixels = ctx.getImageData(
+      canvas.width * 0.6,
+      canvas.height * 0.4,
+      canvas.width * 0.2,
+      canvas.height * 0.15,
+    ).data;
+    for (let i = 0; i < pixels.length; i += 4) {
+      if (pixels[i] > pixels[i + 1] + 65 && pixels[i] > pixels[i + 2] + 55) return true;
+    }
+    return false;
+  });
+  assert.ok(hasRedMark, 'the saved answer page shows the red correction');
   const pdf = await q.request.get(url + '1/pdf');
   assert.equal(pdf.status(), 200);
   const pdfBytes = await pdf.body();
+  assert.ok(pdfBytes.includes(await ink.body()), 'the PDF contains the annotated page');
   assert.match(pdfBytes.toString('latin1'), /\/Type \/Pages \/Count 14 /);
+  const downloaded = q.waitForEvent('download');
+  await q.getByRole('link', { name: '下载整卷 PDF' }).click();
+  assert.match((await downloaded).suggestedFilename(), /-v1\.pdf$/);
+  await q.getByText('PDF 已准备好，请在浏览器下载列表查看。').waitFor();
   if (process.env.ACCOUNT_EVIDENCE) {
     await writeFile(path.join(process.env.ACCOUNT_EVIDENCE, 'b1-v1.pdf'), pdfBytes);
     await writeFile(path.join(process.env.ACCOUNT_EVIDENCE, 'b1-page12.jpg'), await ink.body());
@@ -164,6 +217,7 @@ try {
     [0.63, 0.46],
   ]);
   await q.locator('#submit-answers').click();
+  await confirmIncompleteTask(q);
   await submit(q);
   const v2 = await (await q.request.get(url + '2')).json();
   assert.equal(v2.pages.length, 14);
@@ -188,6 +242,11 @@ try {
     [0.55, 0.67],
   ]);
   await q.locator('#submit-answers').click();
+  await confirmIncompleteTask(q);
+  // On the fork, erase the inherited review mark while keeping both answer strokes.
+  const reviewTools = q.getByRole('group', { name: '原卷批改工具' });
+  await reviewTools.getByRole('button', { name: '撤销', exact: true }).click();
+  assert.equal(await q.locator('.paper-ink .ink-stroke').count(), 2);
   await q.locator('#session-save').click();
   await q.getByRole('button', { name: '确认保存', exact: true }).click();
   await q.locator('#session-save-status').filter({ hasText: '已存本机，云端待完成' }).waitFor();
@@ -216,6 +275,11 @@ try {
   await q.locator('.question-input:visible').first().fill(essay);
   await q.locator('#play-pause').click();
   await q.locator('#submit-answers').click();
+  await confirmIncompleteTask(q);
+  await draw(q, [
+    [0.7, 0.2],
+    [0.75, 0.23],
+  ]);
   await q.route('**/api/**', (r) => r.abort('internetdisconnected'));
   await q.locator('#session-save').click();
   await q.locator('.account-save-dialog input[type=checkbox]:visible').check();
@@ -224,7 +288,10 @@ try {
   await q.unroute('**/api/**');
   await q.reload();
   await accountPage();
+  await q.locator('#session-save-status').filter({ hasText: '已存本机，云端待完成' }).waitFor();
+  assert.equal(await q.locator('#session-save').isDisabled(), true);
   await q.getByRole('button', { name: '重试上传', exact: true }).click();
+  await q.locator('#session-save-status').filter({ hasText: '已存云端' }).waitFor();
   await paperCount(q, 3);
   const last = (await (await q.request.get(base + '/api/papers')).json()).find((r) => r.part === 'A+B1');
   assert.ok(last);
@@ -238,6 +305,11 @@ try {
     essay,
   );
   assert.deepEqual(result.ink, {});
+  assert.ok(
+    result.pages.find((p) => p.key === detail.pages[11].key).hash,
+    'typed review is included in the saved page image',
+  );
+  assert.ok(result.records['paper-2025-exam-b1-task-6'].attempts.at(-1).reviewInk[detail.pages[11].key]);
   // A different Task of the same booklet edits the same page, including an explicit erase.
   const third = await device(false),
     t = third.page;
@@ -262,6 +334,7 @@ try {
   assert.equal(await t.locator('.paper-ink .ink-stroke').count(), 0);
   await t.locator('#play-pause').click();
   await t.locator('#submit-answers').click();
+  await confirmIncompleteTask(t);
   await submit(t);
   const cleared = await (await t.request.get(base + '/api/papers/' + copy.id + '/versions/2')).json();
   assert.deepEqual(cleared.tasks, [6, 7]);
@@ -275,7 +348,7 @@ try {
   // Confirm ownership of legacy guest data before its first upload.
   const guest = await browser.newContext(),
     g = await guest.newPage();
-  g.on('dialog', (d) => d.accept());
+  allowBeforeUnload(g);
   await g.goto(base + '/#account');
   const legacy = structuredClone(detail.records['paper-2025-exam-b1-task-6']);
   delete legacy.attempts.at(-1).sourceVersions;
@@ -295,6 +368,7 @@ try {
   assert.deepEqual(await (await g.request.get(base + '/api/papers')).json(), []);
   await g.locator('.account-settings > summary').click();
   await g.getByRole('button', { name: '导入到我的账号' }).click();
+  await answerConfirmation(g, '确认导入');
   await g.locator('.account-paper').waitFor();
   const imported = (await (await g.request.get(base + '/api/papers')).json())[0];
   assert.equal(imported.legacyInk, true);
@@ -309,9 +383,19 @@ try {
   assert.notEqual(recovered.recoveryCode, code);
   assert.equal((await (await g.request.get(base + '/api/account/me')).json()).user, null);
   assert.equal((await (await recoverContext.request.get(base + '/api/papers')).json()).length, 1);
-  const remove = await recoverContext.request.delete(base + '/api/papers/' + imported.id, {
-    headers: { 'X-English30-Owner': recovered.user.id },
-  });
+  const recoveredPage = await recoverContext.newPage();
+  await recoveredPage.goto(base + '/#account');
+  await recoveredPage.locator('.account-paper').click();
+  const deletePaper = recoveredPage.getByRole('button', { name: '删除这份答卷' });
+  await deletePaper.click();
+  assert.match(await answerConfirmation(recoveredPage, '取消'), /所有云端版本/);
+  assert.equal((await (await recoveredPage.request.get(base + '/api/papers')).json()).length, 1);
+  await deletePaper.click();
+  const paperRemoved = recoveredPage.waitForResponse(
+    (r) => r.url() === base + '/api/papers/' + imported.id && r.request().method() === 'DELETE',
+  );
+  await answerConfirmation(recoveredPage, '删除答卷');
+  const remove = await paperRemoved;
   assert.equal(remove.status(), 200);
   assert.equal(
     (await (await recoverContext.request.get(base + '/api/learning')).json()).backup.listening.length,
@@ -321,17 +405,40 @@ try {
     (await recoverContext.request.get(base + '/api/papers/' + imported.id + '/versions/1/pdf')).status(),
     404,
   );
+  await recoveredPage.locator('.account-settings > summary').click();
+  await recoveredPage.locator('.account-delete > summary').click();
+  await recoveredPage.getByLabel('输入密码确认身份').fill(password + '2');
+  const deleteAccount = recoveredPage.locator('.account-delete button[type=submit]');
+  await deleteAccount.click();
+  assert.ok((await answerConfirmation(recoveredPage, '取消')).includes(guestUser));
   assert.equal(
-    (
-      await recoverContext.request.post(base + '/api/account/delete', {
-        headers: { 'X-English30-Owner': recovered.user.id },
-        data: { password: password + '2' },
-      })
-    ).status(),
-    200,
+    (await (await recoveredPage.request.get(base + '/api/account/me')).json()).user.id,
+    recovered.user.id,
   );
+  await deleteAccount.click();
+  const accountRemoved = recoveredPage.waitForResponse(
+    (r) => r.url() === base + '/api/account/delete' && r.request().method() === 'POST',
+  );
+  await answerConfirmation(recoveredPage, '永久删除账号');
+  assert.equal((await accountRemoved).status(), 200);
   await guest.close();
   await recoverContext.close();
+  await accountPage();
+  const otherTab = await second.ctx.newPage();
+  await otherTab.goto(base + '/#account');
+  await otherTab.locator('.account-paper').first().waitFor();
+  await q.locator('.account-settings > summary').click();
+  await second.ctx.setOffline(true);
+  await q.getByRole('button', { name: '退出登录' }).click();
+  await q.getByRole('heading', { name: '账号已在本机关闭' }).waitFor();
+  await otherTab.getByRole('heading', { name: '账号已在本机关闭' }).waitFor();
+  assert.equal(await q.locator('.account-paper, #session-review').count(), 0);
+  await second.ctx.setOffline(false);
+  await q.getByLabel('用户名', { exact: true }).waitFor();
+  assert.equal((await (await q.request.get(base + '/api/account/me')).json()).user, null);
+  await q.locator('#home-back').click();
+  await q.getByRole('link', { name: '登录账号', exact: true }).locator('svg').waitFor();
+  await second.ctx.close();
   assert.deepEqual(errors, []);
   console.log(
     'Two independent browser profiles: full 14-page B1 PDF, page 12 ink, account isolation, editable restore, immutable versions verified.',

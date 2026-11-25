@@ -232,8 +232,7 @@ body[data-paper-answer='ink']:not([data-listening-phase='review']) .question-act
 body[data-paper-answer='ink'] .question-actions #submission-note {
   order: -1;
 }
-.paper-ink.can-pan,
-.paper-ink.read-only {
+.paper-ink.can-pan {
   pointer-events: none;
 }
 .paper-answer-modes,
@@ -309,7 +308,7 @@ body[data-view='listening'][data-listening-mode='papers'][data-listening-phase='
     }
     & #questions {
       flex: 1 1 auto;
-      max-height: none;
+      max-height: 72svh;
     }
     & #questions:has(> .question-card:not([hidden]) ~ .question-card:not([hidden])) {
       display: flex;
@@ -381,8 +380,15 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
     min-height: 0;
     height: 100%;
   }
-  & .paper-writing-sheet > :is(h2, .fine-print) {
+  & .paper-writing-sheet > .fine-print {
     display: none;
+  }
+  & .paper-focus-context {
+    display: block;
+    flex-basis: 100%;
+    margin: 0;
+    padding: 2px 0;
+    font: 650 15px/1.3 var(--ui);
   }
   & .practice-sources .practice-page-wrap {
     flex: 1;
@@ -415,8 +421,50 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   font-size: 14px;
   color: var(--ink);
 }
-.paper-writing-sheet {
+:is(.paper-writing-sheet, .paper-review-sheet) {
   container-type: inline-size;
+}
+.paper-focus-context,
+.paper-control-label {
+  display: none;
+}
+.paper-control-label {
+  font: 600 12px/1.1 var(--ui);
+  white-space: nowrap;
+}
+.paper-writing-header .paper-focus-toggle .paper-control-label {
+  display: inline;
+}
+.paper-writing-header button.paper-focus-toggle {
+  width: auto;
+  padding-inline: 4px;
+  align-content: center;
+}
+@media (min-width: 640px) {
+  #paper-mode-slot .paper-control-label {
+    display: inline;
+  }
+  #paper-mode-slot button svg {
+    padding: 3px;
+  }
+}
+@container (min-width: 640px) {
+  .paper-writing-header .practice-document-tools {
+    flex-wrap: nowrap;
+  }
+  .paper-writing-header .practice-document-tools select {
+    min-width: 44px;
+    flex: 1 1 auto;
+  }
+  .paper-writing-header button:has(.paper-control-label) {
+    width: auto;
+    padding-inline: 4px;
+    gap: 1px;
+    align-content: center;
+  }
+  .paper-writing-header .paper-control-label {
+    display: inline;
+  }
 }
 .paper-writing-header {
   position: relative;
@@ -514,7 +562,7 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   color: var(--ink);
   background: var(--line);
 }
-.paper-writing-sheet > .ink-tools {
+:is(.paper-writing-sheet, .paper-review-sheet) > .ink-tools {
   position: relative;
   display: flex;
   align-items: center;
@@ -627,7 +675,7 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   transform: scale(var(--radius-scale, 1));
 }
 .ink-tools [hidden],
-.paper-writing-sheet > .ink-tools[hidden] {
+.ink-tools[hidden] {
   display: none !important;
 }
 @container (max-width: 860px) {
@@ -652,8 +700,21 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
 }
 @container (max-width: 540px) {
   .paper-writing-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: 'context modes' 'documents documents';
     padding-inline: 0;
     gap: 0;
+  }
+  .paper-focus-context {
+    grid-area: context;
+  }
+  .paper-writing-header .paper-answer-modes {
+    grid-area: modes;
+  }
+  .paper-writing-header .practice-document-tools {
+    grid-area: documents;
+    flex-wrap: nowrap;
   }
   .paper-writing-sheet .paper-writing-header :is(.practice-document-tools, .paper-answer-modes) {
     gap: 0;
@@ -667,7 +728,7 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
     width: 44px;
     padding: 2px;
   }
-  .paper-writing-sheet > .ink-tools {
+  :is(.paper-writing-sheet, .paper-review-sheet) > .ink-tools {
     padding-inline: 0;
     column-gap: 0 !important;
   }
@@ -724,6 +785,18 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
 }
 .player-bottom {
   justify-content: flex-start;
+  flex-wrap: wrap;
+  column-gap: clamp(4px, 2vw, 18px);
+  row-gap: 0;
+}
+#paper-float-transcript {
+  margin-inline-start: auto;
+}
+#paper-float-transcript[aria-expanded='true'] {
+  background: var(--pine-light);
+}
+#paper-float-transcript:not([hidden]) + .loop-more {
+  margin-inline-start: 0;
 }
 .loop-more {
   position: relative;
@@ -828,7 +901,8 @@ body[data-listening-mode='papers'][data-listening-phase='review'] .question-revi
 @media (min-width: 760px) and (max-width: 900px) {
   body[data-listening-mode='papers'] .study-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    /* iPad portrait is about 760–900px wide: give the scanned page the wider column. */
+    grid-template-columns: minmax(0, 1.65fr) minmax(15rem, 1fr);
     gap: 12px;
   }
   body[data-listening-mode='papers'] .panel-header {
@@ -866,22 +940,56 @@ body[data-paper-answer='ink'][data-listening-phase='review']
 }
 @media (min-width: 760px) {
   .study-grid:has(#review-paper-panel:not([hidden])) {
+    grid-template-rows: max(27rem, calc(100svh - var(--player-space) - 10rem)) auto;
     & > :is(#review-paper-panel, .answer-column) {
       align-self: stretch;
+      min-height: 0;
     }
     & #review-paper-panel {
       display: flex;
       flex-direction: column;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+    & #practice-sources,
+    & #practice-sources > details {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      min-height: 0;
+    }
+    & #practice-sources > details[open]::details-content {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      min-height: 0;
     }
     & .question-panel {
-      flex: 1;
+      flex: 1 1 auto;
+      min-height: 0;
     }
     & #original-responses {
-      flex: 1 0 auto;
+      flex: 0 0 auto;
+      max-height: 28%;
+    }
+    &:has(#original-responses #focused-drill-dialog:not([hidden])) {
+      & #practice-sources {
+        display: none;
+      }
+      & #original-responses {
+        flex: 1 1 auto;
+        max-height: none;
+      }
     }
     & #questions {
-      flex: 1 1 0;
-      min-height: min(40svh, 24rem);
+      flex: 1 1 auto;
+      min-height: 0;
+      max-height: none;
+    }
+    & #practice-sources .practice-page-wrap {
+      flex: 1 1 auto;
+      min-height: 8rem;
       max-height: none;
     }
     & #questions:has(.question-card:not([hidden]) ~ .question-card:not([hidden])) {
@@ -987,22 +1095,9 @@ body[data-view='listening'][data-listening-mode='papers'] .player {
     min-width: 3ch;
     font-variant-numeric: tabular-nums;
   }
-  & :is(.rate-control select, #mark-moment, #repeat-sentence, .loop-more > summary) {
+  & :is(.rate-control select, #mark-moment, #repeat-sentence, #paper-float-transcript, .loop-more > summary) {
     font-size: 15px;
   }
-}
-.practice-page-dialog {
-  width: min(1160px, 97vw);
-  max-width: 97vw;
-  max-height: 94svh;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 12px;
-  background: var(--surface);
-  color: var(--ink);
-}
-.practice-page-dialog::backdrop {
-  background: rgb(25 32 36 / 46%);
 }
 .caption-grip,
 .caption-resize,
@@ -1144,12 +1239,6 @@ body .transcript-panel.is-floating > #transcript {
 }
 body[data-focused-drill='true'] .transcript-panel.is-floating {
   display: none;
-}
-.practice-page-dialog > details > :is(summary, .fine-print, .button-text) {
-  display: none;
-}
-.practice-sources .practice-page-dialog[open] .practice-page-wrap {
-  max-height: 70svh;
 }
 @media (max-width: 759px) {
   body[data-listening-mode='papers'][data-listening-phase='review']

@@ -5933,17 +5933,17 @@
     },
     {
       "id": "s00051",
-      "start": 4019.786,
+      "start": 4019.686,
       "end": 4027.566,
-      "text": "Ask 1. Stella Poon and Adrian Timpson host a podcast cast about health and fitness in Hong Kong.",
+      "text": "Task 1. Stella Poon and Adrian Timpson host a podcast about health and fitness in Hong Kong.",
       "words": [
         {
-          "text": "Ask",
-          "start": 4019.786,
-          "end": 4020.066,
-          "probability": 0.7401,
+          "text": "Task",
+          "start": 4019.686,
+          "end": 4019.966,
+          "probability": 0.37647247314453125,
           "id": "w000670",
-          "sourceMatched": false
+          "sourceMatched": true
         },
         {
           "text": "1.",
@@ -6016,14 +6016,6 @@
           "probability": 0.9917,
           "id": "w000679",
           "sourceMatched": true
-        },
-        {
-          "text": "cast",
-          "start": null,
-          "end": null,
-          "probability": 0.1398,
-          "id": "w000680",
-          "sourceMatched": false
         },
         {
           "text": "about",
@@ -6511,7 +6503,7 @@
       "id": "s00056",
       "start": 4051.626,
       "end": 4055.646,
-      "text": "At the end of the task, ask, you will have one minute to tidy up your answers.",
+      "text": "At the end of the task, you will have one minute to tidy up your answers.",
       "words": [
         {
           "text": "At",
@@ -6560,14 +6552,6 @@
           "probability": 0.9985,
           "id": "w000742",
           "sourceMatched": true
-        },
-        {
-          "text": "ask,",
-          "start": null,
-          "end": null,
-          "probability": 0.0552,
-          "id": "w000743",
-          "sourceMatched": false
         },
         {
           "text": "you",

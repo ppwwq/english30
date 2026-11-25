@@ -1,3 +1,4 @@
+import { allowBeforeUnload } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 const require = createRequire(
@@ -10,7 +11,7 @@ const browser = await chromium.launch({
 });
 const context = await browser.newContext();
 const page = await context.newPage();
-page.on('dialog', (d) => d.accept());
+allowBeforeUnload(page);
 try {
   await page.goto(`${process.env.TEST_URL || 'http://127.0.0.1:4174'}/#listening`);
   await page.waitForFunction(() => !document.querySelector('#play-pause').disabled);

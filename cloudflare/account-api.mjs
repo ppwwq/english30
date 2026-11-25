@@ -1,6 +1,7 @@
 import { accountAuth, body, day, json, need, readBytes, sha } from './account-auth.mjs';
 import { paperPdf, jpegSize } from './paper-pdf.mjs';
 import { validatePaperInk } from '../web/core.mjs';
+import { bookPageEdits } from '../web/answer-books.mjs';
 import { validateListeningRecords } from '../web/training-core.mjs';
 import { applyLearningDelta, emptyBackup } from '../web/account-learning.mjs';
 
@@ -11,6 +12,9 @@ const schema = [
   'CREATE TABLE IF NOT EXISTS versions(owner TEXT,paper TEXT,v INTEGER,saved TEXT,summary TEXT,manifest TEXT,PRIMARY KEY(owner,paper,v))',
   'CREATE TABLE IF NOT EXISTS receipts(owner TEXT,kind TEXT,id TEXT,result TEXT,PRIMARY KEY(owner,kind,id))',
   'CREATE TABLE IF NOT EXISTS members(owner TEXT,paper TEXT,lesson TEXT,stamp TEXT,PRIMARY KEY(owner,paper,lesson,stamp))',
+  'CREATE INDEX IF NOT EXISTS members_record ON members(owner,lesson,stamp)',
+  'CREATE TABLE IF NOT EXISTS deleted_papers(owner TEXT,paper TEXT,PRIMARY KEY(owner,paper))',
+  'CREATE TABLE IF NOT EXISTS deleted_members(owner TEXT,lesson TEXT,stamp TEXT,PRIMARY KEY(owner,lesson,stamp))',
   'CREATE TABLE IF NOT EXISTS learning(owner TEXT PRIMARY KEY,hash TEXT)',
   'CREATE TABLE IF NOT EXISTS objects(path TEXT PRIMARY KEY,owner TEXT,bytes INTEGER,created INTEGER,width INTEGER,height INTEGER)',
   'CREATE INDEX IF NOT EXISTS object_owner ON objects(owner)',
@@ -52,7 +56,13 @@ export function createAccountApi(db, bucket, assets) {
     run('INSERT INTO receipts VALUES (?,?,?,?)', owner, kind, id, JSON.stringify(result));
   const head = (owner, id) =>
     one('SELECT * FROM versions WHERE owner=? AND paper=? ORDER BY v DESC LIMIT 1', owner, id);
+  const deleted = (owner, id) =>
+    id && one('SELECT 1 FROM deleted_papers WHERE owner=? AND paper=?', owner, id);
+  function requireLivePaper(owner, id) {
+    need(!deleted(owner, id), '这份云端答卷已经删除。', 404, { code: 'PAPER_DELETED', paperId: id });
+  }
   function version(owner, id, v) {
+    requireLivePaper(owner, id);
     const row = one('SELECT * FROM versions WHERE owner=? AND paper=? AND v=?', owner, id, Number(v));
     need(row, '找不到这份答卷或版本。', 404);
     return row;
@@ -153,21 +163,26 @@ export function createAccountApi(db, bucket, assets) {
   async function unpackRecord(owner, record) {
     need(Array.isArray(record?.attempts), '听力作答格式无效。');
     for (const a of record.attempts) {
-      if (!a.inkFiles) continue;
-      a.ink = {};
-      for (const [key, h] of Object.entries(a.inkFiles)) {
-        need(/^[\w-]+:[1-9]\d*$/.test(key) && digest.test(h), '笔迹页引用无效。');
-        const data = await loadJson(owner, h);
-        need(Array.isArray(data[key]), '笔迹与页表不符。');
-        a.ink[key] = data[key];
+      for (const field of ['ink', 'reviewInk']) {
+        const refs = a[field + 'Files'];
+        if (!refs) continue;
+        a[field] = {};
+        for (const [key, h] of Object.entries(refs)) {
+          need(/^[\w-]+:[1-9]\d*$/.test(key) && digest.test(h), '笔迹页引用无效。');
+          const data = await loadJson(owner, h);
+          need(Array.isArray(data[key]), '笔迹与页表不符。');
+          a[field][key] = data[key];
+        }
+        delete a[field + 'Files'];
       }
-      delete a.inkFiles;
     }
     return record;
   }
   async function savePaper(owner, input) {
     const { id, base, saveId, book, lessonId, task } = input;
     need(uuid.test(id) && uuid.test(saveId) && Number.isInteger(base) && base >= 0, '答卷版本无效。');
+    requireLivePaper(owner, id);
+    if (input.fork) requireLivePaper(owner, input.fork.id);
     const done = receipt(owner, 'paper', saveId);
     if (done) return done;
     const old = head(owner, id);
@@ -204,7 +219,14 @@ export function createAccountApi(db, bucket, assets) {
       choices.some((c) => c.task === task && c.lessonId === lessonId),
       'Task 与题册不符。',
     );
-    const inkFiles = [...new Set(input.record.attempts.flatMap((a) => Object.values(a.inkFiles || {})))];
+    const inkFiles = [
+      ...new Set(
+        input.record.attempts.flatMap((a) => [
+          ...Object.values(a.inkFiles || {}),
+          ...Object.values(a.reviewInkFiles || {}),
+        ]),
+      ),
+    ];
     const [record] = validateListeningRecords([await unpackRecord(owner, input.record)]);
     need(record.lessonId === lessonId, '作答材料不符。');
     const attempt = record.attempts.at(-1);
@@ -219,24 +241,23 @@ export function createAccountApi(db, bucket, assets) {
       need(size?.width > 0 && size.height > 0, '整页图尚未完整上传。', 409);
       return size;
     };
-    for (const key of input.touched || []) {
-      const p = originalMap.get(key);
-      need(p && p.part === currentPart && attempt.ink, '笔迹页不属于本次提交。');
-      const strokes = attempt.ink[key];
+    for (const key of input.touched || [])
+      need(attempt.ink && originalMap.get(key)?.part === currentPart, '笔迹页不属于本次提交。');
+    for (const { key, page: p, answer, strokes } of bookPageEdits(prior, record, input.touched, originals)) {
+      need(p.part === currentPart, '笔迹页不属于本次提交。');
+      if (answer.length) ink[key] = answer;
+      else delete ink[key];
       if (!strokes?.length) {
-        delete ink[key];
         delete pictures[key];
         continue;
       }
       if (!one('SELECT hash FROM masters WHERE hash=?', p.master)) {
-        ink[key] = strokes;
         delete pictures[key];
         continue;
       }
       const hash = input.images?.[key],
         size = pageImage(hash);
       need(size.width === p.width && size.height === p.height, '整页图尺寸与原卷不符。');
-      ink[key] = strokes;
       pictures[key] = hash;
     }
     const appendices = { ...prior?.appendices };
@@ -302,6 +323,8 @@ export function createAccountApi(db, bucket, assets) {
     const hash = await putJson(owner, manifest);
     const result = { id, version: v, pages: pages.length, savedAt };
     return transaction(() => {
+      requireLivePaper(owner, id);
+      if (input.fork) requireLivePaper(owner, input.fork.id);
       if (receipt(owner, 'paper', saveId)) return receipt(owner, 'paper', saveId);
       conflict();
       need(one('SELECT id FROM users WHERE id=?', owner), '账号已退出。', 401);
@@ -327,14 +350,41 @@ export function createAccountApi(db, bucket, assets) {
   async function learning(owner, input) {
     need(uuid.test(input.saveId), '无效的保存编号。');
     if (receipt(owner, 'learning', input.saveId)) return receipt(owner, 'learning', input.saveId);
-    for (const group of [input.delta.sets, input.delta.removed])
-      for (const record of group.listening) await unpackRecord(owner, record);
+    const sets = input.delta.sets.listening;
+    const paper = input.paper;
+    if (paper)
+      need(
+        uuid.test(paper.id) && typeof paper.lesson === 'string' && typeof paper.stamp === 'string',
+        '答卷来源无效。',
+      );
+    const excluded = () => {
+      if (!sets.length) return [];
+      const paperGone = paper && (deleted(owner, paper.id) || deleted(owner, paper.source));
+      const erased = new Set(
+        all(
+          'SELECT d.lesson,d.stamp FROM deleted_members d WHERE d.owner=? AND NOT EXISTS (SELECT 1 FROM members m WHERE m.owner=d.owner AND m.lesson=d.lesson AND m.stamp=d.stamp)',
+          owner,
+        ).map((r) => r.lesson + ':' + r.stamp),
+      );
+      return sets.filter(
+        (r) =>
+          (paperGone && r.lessonId === paper.lesson && r.savedAt === paper.stamp) ||
+          erased.has(r.lessonId + ':' + r.savedAt),
+      );
+    };
     for (let i = 0; i < 4; i++) {
       const done = receipt(owner, 'learning', input.saveId);
       if (done) return done;
       const old = one('SELECT hash FROM learning WHERE owner=?', owner)?.hash;
       const previous = old ? await loadJson(owner, old) : emptyBackup();
-      const next = applyLearningDelta(previous, input.delta);
+      const omitted = new Set(excluded());
+      const delta = {
+        ...input.delta,
+        sets: { ...input.delta.sets, listening: sets.filter((r) => !omitted.has(r)) },
+      };
+      for (const group of [delta.sets, delta.removed])
+        for (const record of group.listening) await unpackRecord(owner, record);
+      const next = applyLearningDelta(previous, delta);
       const hash = await putJson(owner, next);
       const readback = await bytesToRead(await bucket.get(privatePath(owner, hash)));
       need((await sha(readback)) === hash, '云端学习记录回读不一致。', 503);
@@ -342,11 +392,13 @@ export function createAccountApi(db, bucket, assets) {
         const replay = receipt(owner, 'learning', input.saveId);
         if (replay) return replay;
         if (one('SELECT hash FROM learning WHERE owner=?', owner)?.hash !== old) return null;
+        const latest = excluded();
+        if (latest.length !== omitted.size || latest.some((r) => !omitted.has(r))) return null;
         need(one('SELECT id FROM users WHERE id=?', owner), '账号已退出。', 401);
         run('INSERT OR REPLACE INTO learning VALUES (?,?)', owner, hash);
         run("DELETE FROM refs WHERE owner=? AND paper='learning'", owner);
         addRef(owner, 'learning', 0, privatePath(owner, hash));
-        const result = { ok: true, hash };
+        const result = { ok: true, hash, ...(omitted.size ? { omitted: omitted.size } : {}) };
         acknowledge(owner, 'learning', input.saveId, result);
         return result;
       });
@@ -387,6 +439,8 @@ export function createAccountApi(db, bucket, assets) {
     }
     if (route === 'books' && id === 'freeze' && method === 'POST') return freeze(await body(req, 8192));
     if (['images', 'ink'].includes(route) && digest.test(id)) {
+      const paper = req.headers.get('X-English30-Paper');
+      if (paper) requireLivePaper(owner, paper);
       const path = privatePath(owner, id);
       if (method === 'HEAD')
         return new Response(null, {
@@ -413,7 +467,17 @@ export function createAccountApi(db, bucket, assets) {
           need(Object.keys(ink).length === 1, '每次上传一页笔迹。');
         }
         need((await sha(bytes)) === id, '页图摘要不符。');
+        if (paper) requireLivePaper(owner, paper);
         await put(owner, bytes, id, size);
+        if (paper && deleted(owner, paper)) {
+          run(
+            'UPDATE objects SET created=0 WHERE path=? AND NOT EXISTS (SELECT 1 FROM refs WHERE path=?)',
+            path,
+            path,
+          );
+          maintenanceRequested = true;
+          requireLivePaper(owner, paper);
+        }
         return json({ ok: true });
       }
     }
@@ -446,6 +510,7 @@ export function createAccountApi(db, bucket, assets) {
         );
       }
       if (uuid.test(id) && sub === 'versions' && method === 'GET') {
+        requireLivePaper(owner, id);
         if (!v)
           return json(
             all(
@@ -490,6 +555,7 @@ export function createAccountApi(db, bucket, assets) {
         }
       }
       if (uuid.test(id) && !sub && method === 'DELETE') {
+        if (deleted(owner, id)) return json({ ok: true });
         need(head(owner, id), '找不到这份答卷。', 404);
         await remove(owner, id);
         return json({ ok: true });
@@ -505,16 +571,18 @@ export function createAccountApi(db, bucket, assets) {
     return json({ error: '找不到此入口。' }, 404);
   }
   async function remove(owner, paper) {
-    let previousHash, nextHash;
+    let previousHash, nextHash, exclusive;
+    const exclusiveMembers = () =>
+      all(
+        'SELECT m.lesson,m.stamp FROM members m WHERE m.owner=? AND m.paper=? AND NOT EXISTS (SELECT 1 FROM members other WHERE other.owner=m.owner AND other.paper<>m.paper AND other.lesson=m.lesson AND other.stamp=m.stamp) ORDER BY m.lesson,m.stamp',
+        owner,
+        paper,
+      );
     if (paper) {
+      exclusive = exclusiveMembers();
       previousHash = one('SELECT hash FROM learning WHERE owner=?', owner)?.hash;
       if (previousHash) {
         const backup = await loadJson(owner, previousHash);
-        const exclusive = all(
-          'SELECT m.lesson,m.stamp FROM members m WHERE m.owner=? AND m.paper=? AND NOT EXISTS (SELECT 1 FROM members other WHERE other.owner=m.owner AND other.paper<>m.paper AND other.lesson=m.lesson AND other.stamp=m.stamp)',
-          owner,
-          paper,
-        );
         const keys = new Set(exclusive.map((r) => r.lesson + ':' + r.stamp));
         backup.listening = backup.listening.filter((r) => !keys.has(r.lessonId + ':' + r.savedAt));
         nextHash = await putJson(owner, backup);
@@ -522,8 +590,11 @@ export function createAccountApi(db, bucket, assets) {
     }
     transaction(() => {
       if (paper) {
+        if (deleted(owner, paper)) return;
+        need(one('SELECT id FROM users WHERE id=?', owner), '账号已退出。', 401);
         need(
-          one('SELECT hash FROM learning WHERE owner=?', owner)?.hash === previousHash,
+          one('SELECT hash FROM learning WHERE owner=?', owner)?.hash === previousHash &&
+            JSON.stringify(exclusiveMembers()) === JSON.stringify(exclusive),
           '另一台设备正在保存，请重试删除。',
           409,
         );
@@ -532,6 +603,9 @@ export function createAccountApi(db, bucket, assets) {
           run("DELETE FROM refs WHERE owner=? AND paper='learning'", owner);
           addRef(owner, 'learning', 0, privatePath(owner, nextHash));
         }
+        run('INSERT INTO deleted_papers VALUES (?,?)', owner, paper);
+        for (const row of exclusive)
+          run('INSERT OR IGNORE INTO deleted_members VALUES (?,?,?)', owner, row.lesson, row.stamp);
         run('DELETE FROM members WHERE owner=? AND paper=?', owner, paper);
         run('DELETE FROM versions WHERE owner=? AND paper=?', owner, paper);
         run('DELETE FROM refs WHERE owner=? AND paper=?', owner, paper);
@@ -541,7 +615,16 @@ export function createAccountApi(db, bucket, assets) {
           paper,
         );
       } else {
-        for (const table of ['versions', 'refs', 'learning', 'receipts', 'sessions', 'members'])
+        for (const table of [
+          'versions',
+          'refs',
+          'learning',
+          'receipts',
+          'sessions',
+          'members',
+          'deleted_papers',
+          'deleted_members',
+        ])
           run('DELETE FROM ' + table + ' WHERE owner=?', owner);
         run('DELETE FROM users WHERE id=?', owner);
       }

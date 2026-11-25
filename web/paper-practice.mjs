@@ -4,15 +4,7 @@ import { mountPaperInk } from './paper-ink.mjs';
 import { inkIcon } from './ink-icons.mjs';
 import { mountPaperZoom } from './paper-zoom.mjs';
 
-export function mountPaperPractice({
-  entries,
-  sources,
-  onSelect,
-  onLibrary,
-  onIntegrated,
-  onReference,
-  transcriptWindow,
-}) {
+export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIntegrated, onReference }) {
   const host = document.getElementById('practice-picker');
   const fields = ['year', 'variant', 'part', 'task'];
   const labels = { year: '年份', variant: '卷别', part: 'Part', task: 'Task' };
@@ -60,27 +52,34 @@ export function mountPaperPractice({
       );
       selects[field].value = String(selected[field]);
     });
-    const action = document.getElementById('practice-integrated');
-    if (action)
-      action.hidden = !(
-        selected.year === 2025 &&
-        selected.variant === 'exam' &&
-        selected.part === 'B1' &&
-        selected.task === 6
-      );
   }
   const integrated = document.createElement('button');
   integrated.type = 'button';
   integrated.id = 'practice-integrated';
   integrated.className = 'button-secondary';
-  integrated.textContent = '做这题的 B1 综合训练';
+  integrated.textContent = 'B1 综合训练 · 2025 Task 6';
   integrated.onclick = () => onIntegrated?.();
   host.append(integrated);
   sync();
   let sourceKey = '',
     displayedInk,
+    displayedSubmission,
     openQuestionPage;
   const openMarking = document.getElementById('open-marking-page');
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || event.defaultPrevented || document.body.dataset.view !== 'listening')
+      return;
+    const exit = document.querySelector('.paper-writing-sheet .paper-focus-toggle[aria-expanded="true"]');
+    if (!exit?.getClientRects().length) return;
+    // Touching a menu on iPad may leave keyboard focus outside its controls.
+    const menu = exit
+      .closest('.paper-writing-sheet')
+      .querySelector('button[aria-controls][aria-expanded="true"]');
+    const control = menu || exit;
+    event.preventDefault();
+    control.click();
+    control.focus();
+  });
   function renderSources(lesson, phase, writing) {
     const target = document.getElementById('practice-sources');
     const modeSlot = document.getElementById('paper-mode-slot');
@@ -95,13 +94,16 @@ export function mountPaperPractice({
       return;
     }
     const key = `${lesson.id}:${phase}:${writing?.mode || ''}`;
-    if (key === sourceKey && displayedInk === writing?.ink) return;
+    if (key === sourceKey && displayedInk === writing?.ink && displayedSubmission === writing?.submittedInk)
+      return;
     modeSlot.replaceChildren();
     openMarking.hidden = true;
     openMarking.onclick = null;
     openQuestionPage = null;
+    const sameWorkspace = sourceKey === key;
     sourceKey = key;
     displayedInk = writing?.ink;
+    displayedSubmission = writing?.submittedInk;
     const paper = lesson.paper;
     const related = sources.filter(
       (s) => s.year === paper.year && s.variant === paper.variant && (s.paper === 3 || s.paper === null),
@@ -124,11 +126,17 @@ export function mountPaperPractice({
     const writingSheet = writing?.mode === 'ink' && phase !== 'review';
     const details = document.createElement(writingSheet ? 'section' : 'details');
     if (writingSheet) details.className = 'paper-writing-sheet';
+    const reviewing = !!writing && phase === 'review';
+    if (reviewing) details.className = 'paper-review-sheet';
     // The question is the default work area; full diagrams/Data File stay one action away.
     details.open = true;
     const summary = document.createElement(writingSheet ? 'h2' : 'summary');
-    if (writingSheet) summary.className = 'sr-only';
     summary.textContent = phase === 'review' ? '原卷与评分参考' : '原卷题页与 Data File';
+    if (writingSheet) {
+      summary.className = 'paper-focus-context';
+      const variant = paper.variant === 'exam' ? '' : ' ' + names[paper.variant];
+      summary.textContent = `${paper.year}${variant} Part ${paper.part} · Task ${paper.task}`;
+    }
     details.append(summary);
     const notice = document.createElement('p');
     notice.className = 'fine-print';
@@ -148,7 +156,7 @@ export function mountPaperPractice({
       ]) {
         const button = document.createElement('button');
         button.type = 'button';
-        inkIcon(button, mode === 'type' ? 'keyboard' : 'write', label);
+        inkIcon(button, mode === 'type' ? 'keyboard' : 'write', label, mode === 'type' ? '打字' : '手写');
         button.setAttribute('aria-pressed', String(mode === writing.mode));
         button.onclick = () => writing.setMode(mode);
         modes.append(button);
@@ -156,12 +164,14 @@ export function mountPaperPractice({
       if (writing.mode === 'ink') {
         const focus = document.createElement('button');
         focus.type = 'button';
+        focus.className = 'paper-focus-toggle';
         const syncFocus = (expanded) => {
           document.body.dataset.paperFocus = String(expanded);
-          inkIcon(focus, expanded ? 'collapse' : 'expand', expanded ? '收起书写区' : '展开书写区');
+          const label = expanded ? '退出全屏' : '全屏书写';
+          inkIcon(focus, expanded ? 'collapse' : 'expand', label, label);
           focus.setAttribute('aria-expanded', String(expanded));
         };
-        syncFocus(true);
+        syncFocus(!sameWorkspace || document.body.dataset.paperFocus === 'true');
         focus.onclick = () => syncFocus(document.body.dataset.paperFocus !== 'true');
         modes.append(focus);
       }
@@ -199,6 +209,9 @@ export function mountPaperPractice({
       const count = document.createElement('span');
       const wrap = document.createElement('div');
       wrap.className = 'practice-page-wrap';
+      wrap.tabIndex = 0;
+      wrap.setAttribute('role', 'region');
+      wrap.setAttribute('aria-label', '原卷页图');
       const image = document.createElement('img');
       image.id = 'practice-image';
       image.decoding = 'async';
@@ -224,7 +237,17 @@ export function mountPaperPractice({
       back.textContent = '返回题页';
       const inkTools = document.createElement('div');
       inkTools.className = 'ink-tools';
-      const ink = writing?.mode === 'ink' ? mountPaperInk(stage, inkTools, writing) : null;
+      const editor = reviewing
+        ? {
+            ...writing,
+            changed(key, pages) {
+              displayedInk = pages;
+              writing.changed(key, pages);
+            },
+          }
+        : writing;
+      const ink =
+        reviewing || writing?.mode === 'ink' ? mountPaperInk(stage, inkTools, editor, reviewing) : null;
       function show(number, view) {
         const source = documents.find((s) => s.id === select.value);
         if (source.role === 'marking' && shownSource && shownSource.role !== 'marking') {
@@ -266,10 +289,10 @@ export function mountPaperPractice({
           notice.hidden = !readOnlyPage;
           if (readOnlyPage) notice.textContent = '此页用于查阅。回到本 Part 的题页即可继续书写。';
         }
-        if (activeAccount && !frozenBook && ink)
+        if ((activeAccount || reviewing) && !frozenBook && ink && original)
           loadBooks()
             .then(() => {
-              if (image.isConnected && shownSource === source) show(page);
+              if (activeAccount && bookFor(paper) && image.isConnected && shownSource === source) show(page);
             })
             .catch(() => {});
 
@@ -310,14 +333,9 @@ export function mountPaperPractice({
       back.onclick = () => {
         select.value = returnView?.sourceId || paper.questionSourceId;
         show(returnView?.page || writing?.page?.questionPage || paper.questionPage, returnView);
-        if (
-          matchMedia('(max-width: 759px)').matches &&
-          !target.querySelector('dialog[open]') &&
-          !openMarking.hidden
-        )
+        if (matchMedia('(max-width: 759px)').matches && !openMarking.hidden)
           openMarking.scrollIntoView({ block: 'center', behavior: 'instant' });
-        if (!target.querySelector('dialog[open]') && !openMarking.hidden)
-          openMarking.focus({ preventScroll: true });
+        if (!openMarking.hidden) openMarking.focus({ preventScroll: true });
       };
       if (phase === 'review' && writing) {
         const references = paper.referencePages?.filter((ref) =>
@@ -350,31 +368,6 @@ export function mountPaperPractice({
           };
         }
       }
-      if (phase === 'review') {
-        const expand = document.createElement('button');
-        expand.type = 'button';
-        expand.textContent = '展开原卷';
-        const dialog = document.createElement('dialog');
-        dialog.className = 'practice-page-dialog';
-        dialog.setAttribute('aria-label', '原卷大图');
-        target.append(dialog);
-        expand.onclick = () => {
-          if (dialog.open) return dialog.close();
-          dialog.append(details);
-          details.open = true;
-          expand.textContent = '返回核对';
-          dialog.showModal();
-          transcriptWindow.paperDialogChanged();
-          expand.focus();
-        };
-        dialog.onclose = () => {
-          target.append(details);
-          transcriptWindow.paperDialogChanged();
-          expand.textContent = '展开原卷';
-          expand.focus();
-        };
-        toolbar.append(expand);
-      }
       if (paper.dataFile && documents.some((s) => s.id === paper.dataFile.sourceId)) {
         const dataButton = document.createElement('button');
         dataButton.type = 'button';
@@ -387,8 +380,8 @@ export function mountPaperPractice({
         questionButton.type = 'button';
         questionButton.textContent = '回到原题';
         if (writingSheet) {
-          inkIcon(dataButton, 'data', 'Data File');
-          inkIcon(questionButton, 'paper', '回到原题');
+          inkIcon(dataButton, 'data', 'Data File', 'Data File');
+          inkIcon(questionButton, 'paper', '回到原题', '回到原题');
         }
         questionButton.onclick = () => {
           select.value = paper.questionSourceId;
@@ -396,20 +389,11 @@ export function mountPaperPractice({
         };
         toolbar.append(dataButton, questionButton);
       }
-      if (phase === 'review' && lesson.sentences?.length) {
-        const toggle = document.createElement('button');
-        toggle.type = 'button';
-        toggle.id = 'paper-float-transcript';
-        toggle.textContent = '浮动字幕';
-        toggle.setAttribute('aria-pressed', String(transcriptWindow.open));
-        toggle.onclick = () => transcriptWindow.toggle();
-        toolbar.append(toggle);
-      }
       if (writingSheet) {
         const header = document.createElement('div');
         header.className = 'paper-writing-header';
         const modes = details.querySelector('.paper-answer-modes');
-        header.append(toolbar);
+        header.append(summary, toolbar);
         if (modes) {
           modes.prepend(mountPaperZoom(wrap, stage, zoom));
           header.append(modes);

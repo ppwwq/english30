@@ -1,3 +1,4 @@
+import { allowBeforeUnload } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import { listeningPracticeURL } from './listening-test-url.mjs';
 import assert from 'node:assert/strict';
@@ -16,7 +17,7 @@ const base = listeningPracticeURL();
 async function scenario(name, fn) {
   const context = await browser.newContext();
   const page = await context.newPage();
-  page.on('dialog', (d) => d.accept());
+  allowBeforeUnload(page);
   page.on('pageerror', (e) => report.errors.push(e.message));
   const item = { name };
   report.cases.push(item);

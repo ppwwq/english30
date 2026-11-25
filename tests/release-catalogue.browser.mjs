@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -13,7 +14,7 @@ const browser = await chromium.launch({
 const page = await browser.newPage();
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
-page.on('dialog', (d) => d.accept());
+allowBeforeUnload(page);
 const report = [];
 try {
   await page.goto(`${process.env.TEST_URL || 'http://127.0.0.1:4175'}/#listening`);
@@ -24,11 +25,15 @@ try {
     ),
   );
   let confirmedPages = 0;
+  let edited = false;
   for (const entry of entries) {
-    await page.evaluate(async (id) => {
+    const loading = page.evaluate(async (id) => {
       const { listeningBridge } = await import('/app.mjs');
       await listeningBridge.openLesson(id);
     }, entry.id);
+    if (edited) await answerConfirmation(page, '切换材料');
+    await loading;
+    edited = false;
     if (!entry.missingAudio)
       await page.waitForFunction(() => !document.querySelector('#play-pause').disabled);
     const state = await page.evaluate(() => ({
@@ -95,6 +100,7 @@ try {
         );
         assert.equal(await response.inputValue(), 'test response', entry.id);
         await response.fill('');
+        edited = true;
       }
     }
     report.push({ id: entry.id, ...state });

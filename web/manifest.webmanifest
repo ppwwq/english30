@@ -8,8 +8,14 @@
   "display": "standalone",
   "orientation": "any",
   "background_color": "#E8EFF6",
-  "theme_color": "#242522",
+  "theme_color": "#E8EFF6",
   "icons": [
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "./icon.svg",
       "sizes": "any",

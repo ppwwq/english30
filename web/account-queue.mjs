@@ -18,7 +18,7 @@ async function action(mode, run) {
   return new Promise((resolve, reject) => {
     const tx = d.transaction('jobs', mode),
       r = run(tx.objectStore('jobs'));
-    tx.oncomplete = () => resolve(r.result);
+    tx.oncomplete = () => resolve(r?.result);
     tx.onerror = tx.onabort = () => reject(tx.error || Error('待上传记录未能保存。'));
   });
 }
@@ -27,4 +27,8 @@ export const jobsFor = (owner) =>
     rows.sort((a, b) => a.created - b.created || a.saveId.localeCompare(b.saveId)),
   );
 export const putJob = (job) => action('readwrite', (s) => s.put(job));
+export const putJobs = (jobs) =>
+  action('readwrite', (s) => {
+    for (const job of jobs) s.put(job);
+  });
 export const removeJob = (id) => action('readwrite', (s) => s.delete(id));

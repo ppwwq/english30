@@ -1,5 +1,32 @@
 import { isPaperStroke } from './paper-ink-geometry.mjs';
 
+export const listeningErrorLabels = new Map([
+  ['sound', '认识但听不出'],
+  ['meaning', '不懂词义'],
+  ['information', '漏听／选错信息'],
+  ['form', '拼写／词形'],
+  ['sentence', '听到词但跟不上句意'],
+]);
+
+export function listeningAttemptKey(attempt, index) {
+  if (attempt.id || attempt.submittedAt || attempt.createdAt)
+    return String(attempt.id || attempt.submittedAt || attempt.createdAt);
+  // Older exports lacked IDs. Keep distinct original responses, ignoring later annotations.
+  const answers = Object.entries(attempt.results || {})
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([id, result]) => [id, result?.answer ?? result?.correct]);
+  return `legacy-${index}:${JSON.stringify(answers)}`;
+}
+
+export function listeningRecordThrough(record, attemptKey) {
+  if (!record?.attempts?.length) return null;
+  const index =
+    attemptKey == null
+      ? record.attempts.length - 1
+      : record.attempts.findIndex((attempt, i) => listeningAttemptKey(attempt, i) === attemptKey);
+  return index < 0 ? null : { ...record, attempts: record.attempts.slice(0, index + 1) };
+}
+
 export function createSession(lesson) {
   return { lessonId: lesson.id, phase: 'first', attempts: [], marks: {}, moments: [], timingOffset: 0 };
 }

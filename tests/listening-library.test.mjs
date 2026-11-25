@@ -141,6 +141,7 @@ test(
     const routes = new Map([
       ['/listening-library.mjs', ['../scripts/repository-only/listening-library.mjs', 'text/javascript']],
       ['/web/core.mjs', ['core.mjs', 'text/javascript']],
+      ['/web/paper-ink-geometry.mjs', ['paper-ink-geometry.mjs', 'text/javascript']],
       ['/lesson.json', ['lessons/2024-task2-intro.json', 'application/json']],
       ['/audio.mp3', ['audio/2024-task2-intro.mp3', 'audio/mpeg']],
     ]);

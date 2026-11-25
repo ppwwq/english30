@@ -1,5 +1,5 @@
 const ns = 'http://www.w3.org/2000/svg';
-export function inkIcon(control, name, label) {
+export function inkIcon(control, name, label, shortLabel) {
   control.classList.add('ink-icon-control');
   control.setAttribute('aria-label', label);
   control.title = label;
@@ -10,4 +10,10 @@ export function inkIcon(control, name, label) {
   use.setAttribute('href', new URL('./ink-icons.svg#' + name, import.meta.url).href);
   svg.append(use);
   control.replaceChildren(svg);
+  if (shortLabel) {
+    const text = document.createElement('span');
+    text.className = 'paper-control-label';
+    text.textContent = shortLabel;
+    control.append(text);
+  }
 }

@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -20,7 +21,7 @@ try {
   const context = await browser.newContext({ viewport: { width: 820, height: 1180 }, hasTouch: true });
   const page = await context.newPage();
   page.on('pageerror', (error) => report.errors.push(error.message));
-  page.on('dialog', (dialog) => dialog.accept());
+  allowBeforeUnload(page);
   // Serve the actual module and its assets in an isolated browser without a shared local server.
   await page.route('http://reading.test/**', async (route) => {
     const pathname = new URL(route.request().url()).pathname;
@@ -104,6 +105,7 @@ try {
     await page.locator('[data-rd-paraphrase]').fill('这段复述还没有提交。');
     assert.equal(await page.evaluate(() => window.reader.getSaveState().hasUnsubmittedChanges), true);
     await page.locator('[data-rd-action="save"]').click();
+    await answerConfirmation(page, '确认保存');
     assert.equal(
       await page.evaluate(
         () => JSON.parse(localStorage.getItem('english30-study-v1')).records.at(-1).details.paraphrase,
@@ -113,6 +115,7 @@ try {
     );
     await page.locator('[data-rd-action="submit-paraphrase"]').click();
     await page.locator('[data-rd-action="save"]').click();
+    await answerConfirmation(page, '确认保存');
     assert.equal(
       await page.evaluate(
         () => JSON.parse(localStorage.getItem('english30-study-v1')).records.at(-1).details.paraphrase,
@@ -130,6 +133,7 @@ try {
     await page.locator('#rd-draft').fill('This revision has not been submitted yet.');
     assert.equal(await page.evaluate(() => window.reader.getSaveState().hasUnsubmittedChanges), true);
     await page.locator('[data-rd-action="integrated-save"]').click();
+    await answerConfirmation(page, '确认保存');
     const records = await page.evaluate(() => JSON.parse(localStorage.getItem('english30-study-v1')).records);
     assert.equal(
       records.filter((r) => r.module === 'integrated').length,
@@ -183,6 +187,7 @@ try {
     );
     await page.screenshot({ path: 'tests/artifacts/b1-item-review.png' });
     await page.locator('[data-rd-action="integrated-reset"]').first().click();
+    await answerConfirmation(page, '开始复测');
     assert.equal(await page.locator('.rd-source-result').count(), 0);
     assert.equal(await page.locator('#rd-draft').inputValue(), '');
     report.cases.push(

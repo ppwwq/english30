@@ -1,3 +1,4 @@
+import { allowBeforeUnload } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import { listeningPracticeURL } from './listening-test-url.mjs';
 import fs from 'node:fs/promises';
@@ -18,7 +19,7 @@ try {
   const context = await browser.newContext({ viewport: { width: 1080, height: 810 } });
   const page = await context.newPage();
   page.on('pageerror', (error) => report.errors.push(error.message));
-  page.on('dialog', (dialog) => dialog.accept());
+  allowBeforeUnload(page);
   await page.goto(listeningPracticeURL());
   await page.waitForFunction(() => !document.getElementById('play-pause').disabled);
 

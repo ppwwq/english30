@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -85,19 +86,14 @@ try {
   await scenario(
     'cancelling same-material review preserves the unfinished retest answers',
     async (page, item) => {
-      let restorePrompt = false;
-      page.on('dialog', async (dialog) => {
-        if (dialog.message().includes('回听会结束')) {
-          restorePrompt = true;
-          await dialog.dismiss();
-        } else await dialog.accept();
-      });
+      allowBeforeUnload(page);
       await ready(page);
       await submitFirstAttempt(page);
       await page.locator('[data-word-id="w0001"]').click();
       await page.locator('#mark-heard').click();
       await openRecordDrawer(page);
-      await page.locator('#save-record').click();
+      await page.locator('#session-save').click();
+      await answerConfirmation(page, '确认保存');
       await page.waitForFunction(
         () => JSON.parse(localStorage.getItem('english30-records-v1') || '[]').length === 1,
       );
@@ -107,7 +103,7 @@ try {
         location.hash = 'review';
       });
       await page.locator('button').filter({ hasText: '回原音复习' }).first().click();
-      await page.waitForTimeout(200);
+      const restorePrompt = (await answerConfirmation(page, '取消')).includes('回听会结束');
       item.state = await page.evaluate(async () => {
         const { listeningBridge } = await import('./app.mjs');
         return {
@@ -127,26 +123,17 @@ try {
   );
 
   await scenario('edits made during save confirmation remain visibly unsaved', async (page, item) => {
-    let dialogs = 0;
-    page.on('dialog', async (dialog) => {
-      dialogs++;
-      await dialog.accept();
-    });
+    allowBeforeUnload(page);
     await ready(page);
     await submitFirstAttempt(page);
     await page.locator('[data-word-id="w0001"]').click();
     await page.locator('#mark-heard').click();
-    // The save plan is captured before the confirmation callback runs.
-    await page.evaluate(() => {
-      const confirm = window.confirm;
-      window.confirm = () => {
-        window.confirm = confirm;
-        document.querySelector('#mark-unknown').click();
-        return true;
-      };
-    });
     await openRecordDrawer(page);
-    await page.locator('#save-record').click();
+    await page.locator('#session-save').click();
+    await page.getByRole('dialog').waitFor();
+    // Simulate a change arriving while the confirmation summary is already open.
+    await page.evaluate(() => document.querySelector('#mark-unknown').click());
+    await answerConfirmation(page, '确认保存');
     await page.waitForFunction(
       () => JSON.parse(localStorage.getItem('english30-records-v1') || '[]').length === 1,
     );
@@ -159,18 +146,13 @@ try {
         status: document.getElementById('status').textContent,
       };
     });
-    const before = dialogs;
     await page.locator('#lesson-select').selectOption('2025-task1');
-    await page.waitForTimeout(100);
-    item.unsavedWarningDialogs = dialogs - before;
+    const warning = await answerConfirmation(page, '取消');
+    assert.match(warning, /清空未保存/);
     assert.equal(item.state.current, 'unknown');
     assert.equal(item.state.saved, 'heard', 'saving must retain the snapshot the user confirmed');
     assert.match(item.state.status, /新修改尚未保存/);
-    assert.equal(
-      item.unsavedWarningDialogs,
-      1,
-      'switching materials must warn about edits made during the save',
-    );
+    assert.equal(await page.getByRole('dialog').count(), 0);
   });
 
   assert.deepEqual(report.errors, []);

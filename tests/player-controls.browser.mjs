@@ -1,3 +1,4 @@
+import { allowBeforeUnload } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import { listeningPracticeURL } from './listening-test-url.mjs';
 import fs from 'node:fs/promises';
@@ -18,7 +19,7 @@ const browser = await chromium.launch({
 const context = await browser.newContext({ viewport: { width: 1080, height: 810 } });
 const page = await context.newPage();
 page.on('pageerror', (e) => report.errors.push(e.message));
-page.on('dialog', (d) => d.accept());
+allowBeforeUnload(page);
 const media = () =>
   page.locator('#audio').evaluate((a) => ({
     time: a.currentTime,

@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
@@ -24,7 +25,7 @@ const reportFile =
 const artifactDirectory = new URL('./artifacts/', import.meta.url);
 await fs.mkdir(artifactDirectory, { recursive: true });
 page.on('pageerror', (e) => report.errors.push(e.message));
-page.on('dialog', (d) => d.accept());
+allowBeforeUnload(page);
 const check = async (name, fn) => {
   await fn();
   report.checks.push(name);
@@ -85,6 +86,7 @@ try {
         ],
       );
       await page.locator('#session-save').click();
+      await answerConfirmation(page, '确认保存');
       assert.equal((await saved()).records.length, 4);
     },
   );
@@ -146,6 +148,7 @@ try {
       await page.locator('#submit-answers').click();
       await page.locator('.review-drawer > summary').click();
       await page.locator('#session-save').click();
+      await answerConfirmation(page, '确认保存');
       await nav('writing');
       await page.locator('[data-training-mode=dictation]').click();
       await page.locator('#dictation-sentence').waitFor();
@@ -171,6 +174,7 @@ try {
   await check('backup export uses the real saved record store', async () => {
     await page.getByRole('button', { name: '待复习与备份', exact: true }).click();
     await page.locator('#session-save').click();
+    await answerConfirmation(page, '确认保存');
     const downloadEvent = page.waitForEvent('download');
     await page.locator('#training-export').click();
     const download = await downloadEvent;

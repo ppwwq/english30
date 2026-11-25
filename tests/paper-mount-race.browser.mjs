@@ -1,3 +1,4 @@
+import { allowBeforeUnload, answerConfirmation } from './confirmation-helpers.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -10,7 +11,7 @@ const browser = await chromium.launch({
   executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const page = await browser.newPage();
-page.on('dialog', (d) => d.accept());
+allowBeforeUnload(page);
 const held = [],
   errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
@@ -23,6 +24,7 @@ try {
   await page.locator('#paper-task option[value="2"]').waitFor({ state: 'attached' });
   await page.locator('#paper-task').selectOption('2');
   await page.locator('[data-source-ref="p-9f8236cfe333"]').click();
+  await answerConfirmation(page, '打开资料');
   await page.waitForFunction(() => document.querySelector('#paper-source-title').textContent.includes('MS'));
   assert.equal(held.length, 2);
   await held[0].fulfill({ status: 200, contentType: 'application/json', body });

@@ -4,6 +4,32 @@ import fs from 'node:fs/promises';
 import { createSession, submitAnswers, visibleLesson } from '../web/core.mjs';
 const lesson = async (id) =>
   JSON.parse(await fs.readFile(new URL(`../web/papers/practice/${id}.json`, import.meta.url)));
+test('2025 Task 1 opening instructions keep the reviewed words and replay positions in both players', async () => {
+  const task = await lesson('paper-2025-exam-a-task-1');
+  const full = JSON.parse(
+    await fs.readFile(new URL('../web/papers/sessions/2025-exam.json', import.meta.url)),
+  );
+  for (const [id, expected] of [
+    [
+      's00051',
+      'Task 1. Stella Poon and Adrian Timpson host a podcast about health and fitness in Hong Kong.',
+    ],
+    ['s00056', 'At the end of the task, you will have one minute to tidy up your answers.'],
+  ]) {
+    const clipped = task.sentences.find((s) => s.id === id);
+    const original = full.sentences.find((s) => s.id === id);
+    assert.equal(clipped.text, expected);
+    assert.equal(original.text, expected);
+    assert.equal(clipped.words.map((w) => w.text).join(' '), expected);
+    assert.deepEqual(
+      original.words.map((w) => w.id),
+      clipped.words.map((w) => w.id),
+    );
+    for (const [i, w] of clipped.words.entries()) {
+      assert.ok(Math.abs(original.words[i].start - task.paper.originalAudioRange.start - w.start) < 0.001);
+    }
+  }
+});
 test('2025 Task 2 shows marking-scheme alternatives without converting reference text to automatic grades', async () => {
   const l = await lesson('paper-2025-exam-a-task-2');
   assert.equal(l.questions.length, 13);
