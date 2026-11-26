@@ -146,7 +146,6 @@ try {
       await page.locator('#play-pause').click();
       await page.waitForFunction(() => document.getElementById('audio').currentTime > 0.03);
       await page.locator('#submit-answers').click();
-      await page.locator('.review-drawer > summary').click();
       await page.locator('#session-save').click();
       await answerConfirmation(page, '确认保存');
       await nav('writing');

@@ -1,0 +1,100 @@
+.paper-preview-resize {
+  display: grid;
+  flex: none;
+  min-block-size: 44px;
+  place-items: center;
+  border-radius: 6px;
+  cursor: ns-resize;
+  touch-action: none;
+  user-select: none;
+}
+.paper-preview-resize::before {
+  width: 28px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--ink-soft);
+  content: '';
+}
+.paper-preview-resize:is(:hover, :focus-visible, :active) {
+  background: var(--surface-muted);
+}
+
+#practice-sources[data-preview-resized] > details .practice-page-wrap {
+  --paper-preview-limit: max(160px, min(640px, calc(var(--visible-height, 100svh) * 0.75)));
+  flex: none;
+  block-size: clamp(160px, var(--paper-preview-height), var(--paper-preview-limit));
+  min-block-size: 0;
+  max-block-size: none;
+}
+
+/* A user-sized viewport can extend below the fold, with the player still docked. */
+@media (max-height: 1080px) {
+  html:not(.keyboard-open)
+    body[data-view='listening']:not([data-listening-phase='review']):has(
+      #practice-sources[data-preview-resized] > details[open]
+    ) {
+    overflow-y: auto;
+
+    & .app-shell {
+      height: auto;
+      min-height: 100svh;
+      overflow: visible;
+      padding-bottom: var(--player-space);
+    }
+    & #listening-panel {
+      overflow: visible;
+      padding-bottom: 30px;
+    }
+  }
+}
+
+/* On phones the paper follows the answers, so reaching the handle requires page scrolling. */
+@media (max-width: 759px) and (max-height: 1080px) {
+  html:not(.keyboard-open)
+    body[data-view='listening']:not([data-listening-phase='review']):has(
+      #practice-sources:not([hidden]) .paper-preview-resize
+    ) {
+    overflow-y: auto;
+
+    & .app-shell {
+      height: auto;
+      min-height: 100svh;
+      overflow: visible;
+      padding-bottom: var(--player-space);
+    }
+    & #listening-panel {
+      overflow: visible;
+      padding-bottom: 30px;
+    }
+    & :is(.transcript-panel, .answer-column, .question-panel) {
+      height: auto;
+    }
+    & .practice-page-wrap:not(#practice-sources[data-preview-resized] .practice-page-wrap) {
+      max-height: 52svh;
+    }
+  }
+}
+
+@media (min-width: 760px) {
+  #listening-panel
+    .study-grid:has(#practice-sources[data-preview-resized] > details[open]):not(
+      :has(#focused-drill-dialog:not([hidden]))
+    ) {
+    flex: none;
+    block-size: auto;
+    grid-template-rows: minmax(19rem, auto) auto;
+    align-items: stretch;
+
+    & > .answer-column {
+      contain: size;
+      min-block-size: 0;
+    }
+    & #questions {
+      min-block-size: 0;
+      max-block-size: none;
+    }
+    & #original-responses {
+      max-block-size: 8rem;
+    }
+  }
+}

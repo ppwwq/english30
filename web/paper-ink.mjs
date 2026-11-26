@@ -74,6 +74,13 @@ export function mountPaperInk(stage, tools, writing, reviewing = false) {
     overlay = element('g', { 'pointer-events': 'none' });
   svg.append(layer, overlay);
   const wrap = stage.parentElement;
+  stage.querySelector('img').draggable = false;
+  for (const type of ['selectstart', 'contextmenu']) {
+    wrap.addEventListener(type, (e) => e.preventDefault());
+  }
+  wrap.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'a') e.preventDefault();
+  });
   let pageKey = null,
     aspect = 1,
     gesture = null,
@@ -287,6 +294,7 @@ export function mountPaperInk(stage, tools, writing, reviewing = false) {
   let finger = null;
   svg.onpointerdown = (e) => {
     if (!pageKey || settings.mode === 'pan' || e.button !== 0) return;
+    e.preventDefault();
     if (e.pointerType === 'touch' && settings.finger === 'pan') {
       if (!gesture && !finger) {
         finger = { id: e.pointerId, x: e.clientX, y: e.clientY, left: wrap.scrollLeft };
@@ -298,10 +306,9 @@ export function mountPaperInk(stage, tools, writing, reviewing = false) {
     finger = null;
     const box = svg.getBoundingClientRect();
     if (!box.width || !box.height) return;
-    e.preventDefault();
     capture(e);
     tools.dispatchEvent(new Event('ink-dismiss'));
-    if (e.pointerType === 'mouse') svg.focus({ preventScroll: true });
+    if (e.pointerType !== 'touch') svg.focus({ preventScroll: true });
     const g = (gesture = {
       id: e.pointerId,
       kind: settings.mode,

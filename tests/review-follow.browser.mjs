@@ -4,14 +4,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 await fs.mkdir(new URL('./artifacts/', import.meta.url), { recursive: true });
 const require = createRequire(
-  process.env.PLAYWRIGHT_PACKAGE ||
-    new URL('../package.json', import.meta.url).href,
+  process.env.PLAYWRIGHT_PACKAGE || new URL('../package.json', import.meta.url).href,
 );
 const { chromium } = require('playwright');
 const browser = await chromium.launch({
   headless: true,
-  executablePath:
-    process.env.CHROMIUM_EXECUTABLE || undefined,
+  executablePath: process.env.CHROMIUM_EXECUTABLE || undefined,
 });
 const report = { cases: [], errors: [] };
 try {
@@ -29,10 +27,11 @@ try {
   await page.locator('[data-word-id="w0005"]').click();
   await page.locator('#mark-heard').click();
   await page.locator('#audio').evaluate((a) => a.pause());
-  await page.locator('summary').filter({ hasText: '本次复习标记' }).click();
   for (const label of ['word bookmark', 'time bookmark']) {
     if ((await page.locator('#follow-toggle').getAttribute('aria-pressed')) === 'true')
       await page.locator('#follow-toggle').click();
+    await page.locator('#loop-more > summary').click();
+    await page.locator('#open-review-marks').click();
     const row =
       label === 'word bookmark'
         ? page.locator('#marks-list .marked-word').first()

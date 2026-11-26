@@ -39,6 +39,11 @@ async function ready(review = true) {
     await page.locator('#loop-more > summary').click();
   }
 }
+async function playerControl(id) {
+  const more = page.locator('#loop-more');
+  if ((await more.getAttribute('open')) === null) await more.locator('summary').click();
+  return more.locator(`#${id}`);
+}
 async function pause() {
   if (!(await media()).paused) await page.locator('#play-pause').click();
 }
@@ -109,7 +114,7 @@ try {
     await page.waitForFunction(() => !document.getElementById('audio').paused);
     await pause();
     await seek(70);
-    await page.locator('#repeat-sentence').click();
+    await (await playerControl('repeat-sentence')).click();
     await page.waitForTimeout(200);
     const state = await media();
     assert.ok(
@@ -121,7 +126,7 @@ try {
     'evidence AB repeats at least three times and switching it off continues beyond B',
     async (item) => {
       await evidence();
-      await page.locator('#loop-toggle').click();
+      await (await playerControl('loop-toggle')).click();
       item.loop = await sampleLoop(6400);
       assert.ok(item.loop.wraps >= 3, `expected 3 real wraps, got ${item.loop.wraps}`);
       assert.ok(item.loop.min >= 38.69 && item.loop.max <= 40.94);
@@ -136,7 +141,7 @@ try {
   );
   await attempt('AB pause and resume retains bounds and returns to A', async (item) => {
     await evidence();
-    await page.locator('#loop-toggle').click();
+    await (await playerControl('loop-toggle')).click();
     await page.waitForTimeout(400);
     await pause();
     const stopped = await media();
@@ -157,7 +162,7 @@ try {
     await page.keyboard.press('End');
     await page.waitForFunction(() => !document.getElementById('audio').seeking);
     assert.ok(Math.abs((await media()).time - 87.91) < 0.03);
-    await page.locator('#loop-end').click();
+    await (await playerControl('loop-end')).click();
     await page.locator('#loop-toggle').click();
     item.loop = await sampleLoop(6900);
     assert.ok(item.loop.wraps >= 3, `expected 3 real ending wraps, got ${item.loop.wraps}`);
@@ -190,11 +195,11 @@ try {
   await attempt('repeat at a sentence endpoint repeats the just-heard sentence', async () => {
     await page.locator('[data-sentence-id="s010"] .sentence-time').click();
     assert.equal((await media()).paused, true, 'time navigation stays paused');
-    await page.locator('#repeat-sentence').click();
+    await (await playerControl('repeat-sentence')).click();
     await page.waitForFunction(
       () => document.getElementById('audio').paused && document.getElementById('audio').currentTime > 41.8,
     );
-    await page.locator('#repeat-sentence').click();
+    await (await playerControl('repeat-sentence')).click();
     await page.waitForTimeout(150);
     assert.ok((await media()).time >= 40.89 && (await media()).time < 41.6);
   });
@@ -221,14 +226,14 @@ try {
   });
   await attempt('repeat from a gap replays the just-heard sentence', async () => {
     await seek(42.23);
-    await page.locator('#repeat-sentence').click();
+    await (await playerControl('repeat-sentence')).click();
     await page.waitForTimeout(100);
     const state = await media();
     assert.ok(state.time >= 40.89 && state.time < 41.6, `repeat from gap must start41.04, got ${state.time}`);
   });
   await attempt('a new evidence selection replaces the old AB interval', async () => {
     await evidence();
-    await page.locator('#loop-toggle').click();
+    await (await playerControl('loop-toggle')).click();
     await evidence(4);
     await page.waitForTimeout(1500);
     const state = await media();
@@ -293,7 +298,7 @@ try {
     assert.equal((await media()).paused, true);
   });
   await attempt('slow evidence playback stops at the same endpoint', async () => {
-    await page.locator('#playback-rate').selectOption('0.75');
+    await (await playerControl('playback-rate')).selectOption('0.75');
     await evidence(4);
     await page.waitForTimeout(1900);
     const state = await media();

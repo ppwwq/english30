@@ -48,6 +48,7 @@ const lesson = {
 test('subtitle adjustment keeps source times intact and clips playback to the recording', () => {
   assert.deepEqual(shiftedRange({ start: 2, end: 7 }, 0.4, 20), { start: 2.4, end: 7.4 });
   assert.deepEqual(shiftedRange({ start: 0, end: 7 }, -0.4, 20), { start: 0, end: 6.6 });
+  assert.deepEqual(shiftedRange({ start: 6.8, end: 7 }, 0, 20), { start: 6.8, end: 7 });
   assert.throws(() => shiftedRange({ start: 2, end: 7 }, 12, 20), /偏移/);
   const state = createSession(lesson);
   state.timingOffset = 0.4;

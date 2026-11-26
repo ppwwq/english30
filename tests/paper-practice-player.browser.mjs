@@ -181,6 +181,30 @@ try {
     },
   );
   await check(
+    'a word tap plays from its start to the sentence end, including a short last word',
+    async (page) => {
+      await review(page);
+      for (const id of ['w000677', 'w000736']) {
+        const sentence = source.sentences.find((item) => item.words.some((word) => word.id === id));
+        const word = sentence.words.find((item) => item.id === id);
+        const audio = page.locator('#audio');
+        await audio.evaluate((node) => {
+          delete node.dataset.replayStart;
+          node.addEventListener('seeked', () => (node.dataset.replayStart = String(node.currentTime)), {
+            once: true,
+          });
+        });
+        await page.locator(`[data-word-id="${id}"]`).tap();
+        await page.waitForFunction(() => document.querySelector('#audio').dataset.replayStart !== undefined);
+        assert.ok(Math.abs(Number(await audio.getAttribute('data-replay-start')) - word.start) < 0.1);
+        await page.waitForFunction((end) => {
+          const node = document.querySelector('#audio');
+          return node.paused && Math.abs(node.currentTime - end) < 0.15;
+        }, sentence.end);
+      }
+    },
+  );
+  await check(
     'original evidence AB loops repeatedly and real dragging exits its bounds while retaining playback',
     async (page, result) => {
       await review(page);
@@ -232,7 +256,6 @@ try {
       await page.locator('.self-check').first().selectOption('correct');
       await page.locator('.word').first().tap();
       await page.locator('#mark-unknown').tap();
-      await page.locator('.review-drawer > summary').tap();
       await page.locator('#session-save').tap();
       await answerConfirmation(page, '确认保存');
       await page.waitForFunction(() => document.querySelector('#status').textContent.includes('回读验证'));
@@ -246,7 +269,8 @@ try {
       assert.equal(Object.keys(saved.marks).length, 1);
       await page.reload();
       await ready(page, '2013');
-      await page.locator('.review-drawer > summary').tap();
+      await page.locator('#loop-more > summary').tap();
+      await page.locator('#open-review-marks').tap();
       await page.getByRole('button', { name: '恢复这份纪录，继续复盘', exact: true }).tap();
       assert.equal(await page.locator('.question-input').first().inputValue(), 'my original paper answer');
       assert.equal(await page.locator('.self-check').first().inputValue(), 'correct');

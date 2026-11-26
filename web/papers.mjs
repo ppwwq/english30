@@ -64,7 +64,7 @@ export async function mountPapers({ host, bridge, catalogue }) {
       <button id="paper-task-play" type="button" class="button-secondary">听这个 Task</button><button id="paper-task-loop" type="button" aria-pressed="false">循环 Task</button>
       <button id="paper-review" type="button" class="button-secondary">开始复盘，显示字幕</button></div>
       <div class="paper-progress"><span id="paper-position">0:00</span><input id="paper-seek" type="range" min="0" max="1" step="0.05" value="0" aria-label="原卷录音进度"/><span id="paper-duration">0:00</span></div>
-      <div class="paper-audio-status"><span id="paper-audio-status" role="status">选择 Task 后可播放对应原音。</span><button id="paper-audio-retry" type="button" hidden>重试原音</button><button id="paper-clear-range" type="button" hidden>退出片段 / 循环</button></div>
+      <div class="paper-audio-status"><span id="paper-audio-status" role="status">选择 Task 后可播放对应原音。</span><button id="paper-audio-retry" class="button-secondary" type="button" hidden>重试原音</button><button id="paper-clear-range" class="button-secondary" type="button" hidden>退出片段 / 循环</button></div>
       <audio id="paper-audio" preload="none" playsinline></audio>
     </section>
     <section id="paper-study-host" aria-label="原卷短句训练"></section>
@@ -72,7 +72,7 @@ export async function mountPapers({ host, bridge, catalogue }) {
       <section id="paper-transcript-panel" class="paper-transcript-panel panel" hidden>
         <div class="panel-header"><h2>听力字幕</h2><button id="paper-follow" type="button" aria-pressed="true">跟随播放</button></div>
         <p id="paper-timing-note" class="paper-fine"></p><div id="paper-transcript" class="paper-transcript" tabindex="0" aria-label="逐词字幕"></div>
-        <div id="paper-word-detail" class="paper-word-detail" hidden><strong id="paper-word-text"></strong><button id="paper-word-replay" type="button">听原句</button><button id="paper-word-loop" type="button">循环原句</button><button id="paper-word-mark" type="button">加入复习标记</button></div>
+        <div id="paper-word-detail" class="paper-word-detail" hidden><strong id="paper-word-text"></strong><button id="paper-word-replay" class="button-secondary" type="button">听原句</button><button id="paper-word-loop" class="button-secondary" type="button">循环原句</button><button id="paper-word-mark" class="button-secondary" type="button">加入复习标记</button></div>
         <details class="paper-evidence"><summary>题目重点与原音证据</summary><div id="paper-evidence-list"></div></details>
         <details class="paper-marks"><summary>本次复习标记 <span id="paper-mark-count">0</span></summary><div id="paper-marks-list"></div><button id="paper-save-marks" class="button-secondary" type="button">导出本次复习标记</button></details>
       </section>

@@ -56,7 +56,6 @@ try {
       assert.ok((await page.locator('#practice-document option[data-reference]').count()) > 0);
       await page.locator('.question-review-tools > summary').first().click();
       await page.locator('.self-check').first().selectOption('correct');
-      await page.locator('.review-drawer > summary').tap();
       await page.locator('#session-save').tap();
       await answerConfirmation(page, '确认保存');
       const result = await page.evaluate(

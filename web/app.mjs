@@ -7,6 +7,7 @@ import {
   wordAtTime,
   validateLesson,
   validateLoop,
+  validatePlaybackRange,
   buildRecord,
   shiftedRange,
   materialExposure,
@@ -30,6 +31,9 @@ import { RecordingSource, matchesPackagedRecording } from './recording-source.mj
 
 const $ = (id) => document.getElementById(id);
 const audio = $('audio');
+const playerMenu = $('loop-more');
+const playerMenuSummary = playerMenu.querySelector('summary');
+const reviewMarksDialog = $('review-marks-dialog');
 const recording = new RecordingSource(audio);
 const transcriptWindow = mountTranscriptWindow();
 let catalogue = [
@@ -71,6 +75,7 @@ let activeWord = null,
   raf = null;
 let loop = { start: null, end: null, enabled: false },
   stopAt = null,
+  resumeAfterWord = false,
   audioReady = false,
   loadGeneration = 0;
 let pendingSeek = null,
@@ -97,6 +102,11 @@ function el(tag, className, text) {
 function status(message, error = false) {
   $('status').textContent = message;
   $('status').classList.toggle('is-error', error);
+  if (reviewMarksDialog.open) {
+    const feedback = $('review-marks-status');
+    feedback.textContent = message;
+    feedback.classList.toggle('is-error', error);
+  }
 }
 function touch() {
   revision++;
@@ -168,7 +178,8 @@ function resetPlayer() {
   stopAt = null;
   seekPreview = null;
   seekGesturePaused = null;
-  $('loop-more').open = false;
+  playerMenu.open = false;
+  reviewMarksDialog.close();
   $('player-feedback').hidden = true;
   selectedWord = null;
   audio.playbackRate = 1;
@@ -463,12 +474,12 @@ function renderTranscript() {
       const row = el('div', 'sentence');
       row.dataset.sentenceId = sentence.id;
       const heading = el('div', 'sentence-meta');
-      const seekSentence = () => seekPosition(sentence.start + (session.timingOffset || 0));
-      const time = button(formatTime(sentence.start), seekSentence, 'sentence-time');
+      const sentenceTime = () => sentence.start + (session.timingOffset || 0);
+      const time = button(formatTime(sentence.start), () => seekPosition(sentenceTime()), 'sentence-time');
       time.setAttribute('aria-label', `跳到句首 ${formatTime(sentence.start)}`);
       heading.append(time, el('span', 'speaker', sentence.speaker || ''));
       row.addEventListener('click', (event) => {
-        if (!event.target.closest('button')) seekSentence();
+        if (!event.target.closest('button')) seekPosition(sentenceTime(), !audio.paused || resumeAfterWord);
       });
       row.append(heading);
       const text = el('p', 'sentence-text');
@@ -648,7 +659,11 @@ function renderQuestions() {
       }
       const sourcePage = paperPractice?.sourcePage(q.reference);
       if (sourcePage) {
-        const link = el('a', 'reference-source', `${sourcePage.name} · PDF 第 ${q.reference.page} 页`);
+        const link = el(
+          'a',
+          'button-secondary reference-source',
+          `${sourcePage.name} · PDF 第 ${q.reference.page} 页`,
+        );
         link.href = sourcePage.src;
         link.target = '_blank';
         link.rel = 'noopener';
@@ -665,7 +680,11 @@ function renderQuestions() {
           for (const ref of point.dataReferences || []) {
             const page = paperPractice?.sourcePage(ref);
             if (!page) continue;
-            const link = el('a', 'reference-source', `查看 Data File 第 ${ref.printedPage} 页`);
+            const link = el(
+              'a',
+              'button-secondary reference-source',
+              `查看 Data File 第 ${ref.printedPage} 页`,
+            );
             link.href = page.src;
             link.target = '_blank';
             link.rel = 'noopener';
@@ -697,7 +716,7 @@ function renderQuestions() {
         for (const ref of q.rubricReferences) {
           const page = paperPractice?.sourcePage(ref);
           if (!page) continue;
-          const link = el('a', 'reference-source', `评分参考 · PDF 第 ${ref.page} 页`);
+          const link = el('a', 'button-secondary reference-source', `评分参考 · PDF 第 ${ref.page} 页`);
           link.href = page.src;
           link.target = '_blank';
           link.rel = 'noopener';
@@ -936,8 +955,8 @@ function renderControls() {
   $('follow-toggle').hidden = !isReview;
   $('prev-sentence').hidden = !isReview;
   $('next-sentence').hidden = !isReview;
-  document.querySelector('.rate-control').hidden = !isReview;
-  document.querySelector('.player-bottom').hidden = !isReview;
+  $('review-playback-controls').hidden = !isReview;
+  $('open-review-marks').disabled = false;
   $('subtitle-offset').value = String(session.timingOffset || 0);
   const quiet = document.querySelector('.quiet-label');
   if (quiet)
@@ -951,12 +970,7 @@ function renderControls() {
 }
 
 function renderSaved() {
-  let target = $('saved-records');
-  if (!target) {
-    target = el('div', 'saved-records');
-    target.id = 'saved-records';
-    document.querySelector('.review-drawer-content').append(target);
-  }
+  const target = $('saved-records');
   target.replaceChildren();
   try {
     const records = JSON.parse(localStorage.getItem(storageKey) || '[]');
@@ -1020,12 +1034,9 @@ function selectWord(id) {
   selectedWord = id;
   wordElements.get(id)?.classList.add('is-selected');
   renderInspector();
-  const s = wordsById.get(id).sentence;
-  const w = wordsById.get(id).word;
-  return playSubtitle(
-    Math.max(s.start, Number.isFinite(w.start) ? w.start - 0.55 : s.start),
-    Math.min(s.end, Number.isFinite(w.end) ? w.end + 0.7 : s.end),
-  );
+  const { sentence, word } = wordsById.get(id);
+  const start = Number.isFinite(word.start) && word.start < sentence.end ? word.start : sentence.start;
+  return playSubtitle(Math.max(sentence.start, start), sentence.end, { wordReplay: true });
 }
 function renderInspector() {
   const inspector = $('word-inspector');
@@ -1093,7 +1104,14 @@ function renderMarks() {
     if (!found) continue;
     const item = el('div', 'mark-item');
     item.append(
-      button(found.word.text, () => selectWord(id), 'marked-word'),
+      button(
+        found.word.text,
+        () => {
+          reviewMarksDialog.close();
+          selectWord(id);
+        },
+        'marked-word',
+      ),
       el('span', '', type === 'heard' ? '认识，但听不出' : '不认识'),
       button(
         '清除',
@@ -1114,7 +1132,10 @@ function renderMarks() {
     const start = Number.isFinite(moment.start) ? moment.start : Math.max(0, moment.time - 4);
     const end = Number.isFinite(moment.end) ? moment.end : Math.min(lesson.duration, moment.time + 2);
     item.append(
-      button(`${formatTime(moment.time)} · 没听清`, () => playRange(start, end)),
+      button(`${formatTime(moment.time)} · 没听清`, () => {
+        reviewMarksDialog.close();
+        playRange(start, end);
+      }),
       button(
         '清除',
         () => {
@@ -1153,6 +1174,7 @@ function renderMarks() {
             Object.assign(moment, range);
             touch();
             renderMarks();
+            reviewMarksDialog.close();
             playRange(range.start, range.end);
             status('片段已调整；保存本次学习纪录后，隔天仍可回听此范围。');
           } catch (error) {
@@ -1169,10 +1191,10 @@ function renderMarks() {
     target.append(el('p', 'empty-copy', '还没有标记。点字幕中的词，或播放时按「刚才没听清」。'));
 }
 
-function playSubtitle(start, end) {
+function playSubtitle(start, end, options) {
   try {
     const range = shiftedRange({ start, end }, session.timingOffset || 0, lesson.duration);
-    return playRange(range.start, range.end);
+    return playRange(range.start, range.end, options);
   } catch (error) {
     status(error.message, true);
     return Promise.resolve();
@@ -1243,14 +1265,16 @@ async function play() {
 function cancelPendingSeek() {
   pendingSeek?.abort();
   pendingSeek = null;
+  resumeAfterWord = false;
 }
-async function playRange(start, end, repeat = false) {
+async function playRange(start, end, { repeat = false, wordReplay = false } = {}) {
   if (!guardReview() || !audioReady) return;
   cancelPendingSeek();
   const controller = new AbortController();
   pendingSeek = controller;
   try {
-    const range = validateLoop(start, end, Math.min(lesson.duration, audio.duration));
+    const validate = repeat ? validateLoop : validatePlaybackRange;
+    const range = validate(start, end, Math.min(lesson.duration, audio.duration));
     audio.pause();
     follow = true;
     clearHighlights();
@@ -1268,7 +1292,7 @@ async function playRange(start, end, repeat = false) {
       $('transcript').scrollIntoView({ block: 'center', behavior: 'instant' });
     }
     loop.enabled = repeat;
-    stopAt = repeat ? null : range.end;
+    stopAt = repeat ? null : { time: range.end, wordReplay };
     updateLoop();
     await play();
   } catch (e) {
@@ -1303,9 +1327,10 @@ function updatePlayback() {
   if (review() && loop.enabled && Number.isFinite(loop.end) && time >= loop.end - 0.025) {
     audio.currentTime = loop.start;
     time = loop.start;
-  } else if (Number.isFinite(stopAt) && time >= stopAt - 0.025) {
-    audio.pause();
+  } else if (stopAt && time >= stopAt.time - 0.025) {
+    resumeAfterWord = stopAt.wordReplay && (!audio.paused || audio.ended);
     stopAt = null;
+    audio.pause();
   }
   const shownTime = formatTime(seekPreview ?? time);
   if ($('time-current').textContent !== shownTime) $('time-current').textContent = shownTime;
@@ -1485,15 +1510,15 @@ $('seek').addEventListener('pointercancel', () => {
   updatePlayback();
 });
 $('review-navigation').addEventListener('click', (event) => {
-  const link = event.target.closest('[data-review-target]');
-  if (!link) return;
-  event.preventDefault();
-  if (link.dataset.reviewTarget === 'transcript' && !$('paper-float-transcript').hidden) {
+  const control = event.target.closest('button[data-review-target]');
+  if (!control) return;
+  const target = control.dataset.reviewTarget;
+  if (target === 'transcript' && !$('paper-float-transcript').hidden) {
     if (!transcriptWindow.open) $('paper-float-transcript').click();
     $('transcript').focus({ preventScroll: true });
     return;
   }
-  $(link.dataset.reviewTarget).scrollIntoView({ block: 'start', behavior: 'instant' });
+  $(target).scrollIntoView({ block: 'start', behavior: 'instant' });
 });
 $('playback-rate').addEventListener('change', () => {
   audio.playbackRate = review() ? Number($('playback-rate').value) : 1;
@@ -1739,6 +1764,18 @@ $('listening-fresh').addEventListener('click', () => {
   const next = fresh.find((entry) => entry.part === lesson.paper?.part) || fresh[0];
   if (next) navigateTo('listening', { lessonId: next.id });
 });
+$('open-review-marks').addEventListener('click', () => {
+  playerMenu.open = false;
+  $('review-marks-status').textContent = '';
+  reviewMarksDialog.showModal();
+});
+reviewMarksDialog.addEventListener('close', () => playerMenuSummary.focus());
+reviewMarksDialog.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') event.stopPropagation();
+});
+document.addEventListener('pointerdown', (event) => {
+  if (playerMenu.open && !playerMenu.closest('.player').contains(event.target)) playerMenu.open = false;
+});
 $('export-record').addEventListener('click', () => {
   if (!savedRecord) return;
   const blob = new Blob([JSON.stringify(savedRecord, null, 2)], { type: 'application/json' });
@@ -1753,6 +1790,12 @@ $('export-record').addEventListener('click', () => {
   );
 });
 document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && playerMenu.open) {
+    event.preventDefault();
+    playerMenu.open = false;
+    playerMenuSummary.focus();
+    return;
+  }
   if (
     document.body.dataset.view !== 'listening' ||
     event.code !== 'Space' ||
@@ -1973,6 +2016,8 @@ export const listeningBridge = {
   },
   pauseListening() {
     focusedDrill?.suspend();
+    playerMenu.open = false;
+    reviewMarksDialog.close();
     ++playbackRequest;
     cancelPendingSeek();
     audio.pause();

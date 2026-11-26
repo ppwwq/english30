@@ -204,6 +204,8 @@
   font-size: 15px;
   min-height: 44px;
   padding: 9px 14px;
+}
+.study-writing-tools .training-tabs button[aria-pressed] {
   border-radius: 8px;
   border: 0;
 }
@@ -212,10 +214,9 @@
   color: var(--ink);
   font-weight: 700;
 }
-.study-writing-tools .training-tabs button:last-child:not([aria-pressed]) {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  margin-left: 0;
+.study-writing-tools .training-tabs .button-secondary {
+  justify-self: start;
+  margin: 4px 0 0;
 }
 .study-writing-tools .training-field {
   margin: 6px 0;

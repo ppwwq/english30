@@ -64,7 +64,69 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
   let sourceKey = '',
     displayedInk,
     displayedSubmission,
-    openQuestionPage;
+    openQuestionPage,
+    previewHeight,
+    previewObserver;
+  function previewResize(target, wrap) {
+    const grip = document.createElement('div');
+    grip.className = 'paper-preview-resize';
+    grip.tabIndex = 0;
+    grip.setAttribute('role', 'separator');
+    grip.setAttribute('aria-label', '调整原卷预览高度');
+    grip.setAttribute('aria-orientation', 'horizontal');
+    grip.setAttribute('aria-controls', wrap.id);
+    const minimum = 160;
+    const maximum = () =>
+      Math.max(minimum, Math.min(640, Math.floor((window.visualViewport?.height || innerHeight) * 0.75)));
+    const height = () => wrap.getBoundingClientRect().height;
+    const limit = (value) => Math.round(Math.max(minimum, Math.min(maximum(), value)));
+    const updateRange = () => {
+      grip.setAttribute('aria-valuemin', String(minimum));
+      grip.setAttribute('aria-valuemax', String(maximum()));
+      grip.setAttribute('aria-valuenow', String(limit(height())));
+    };
+    const apply = () => {
+      target.dataset.previewResized = '';
+      target.style.setProperty('--paper-preview-height', `${previewHeight}px`);
+      updateRange();
+    };
+    const resize = (value) => {
+      previewHeight = limit(value);
+      apply();
+    };
+    if (previewHeight !== undefined) apply();
+    previewObserver = new ResizeObserver(updateRange);
+    previewObserver.observe(wrap);
+    previewObserver.observe(document.documentElement);
+
+    let drag;
+    grip.addEventListener('pointerdown', (event) => {
+      if (!event.isPrimary || event.button !== 0) return;
+      event.preventDefault();
+      grip.focus({ preventScroll: true });
+      grip.setPointerCapture(event.pointerId);
+      drag = { pointer: event.pointerId, y: event.clientY, height: height() };
+    });
+    grip.addEventListener('pointermove', (event) => {
+      if (drag?.pointer !== event.pointerId) return;
+      resize(drag.height + event.clientY - drag.y);
+    });
+    grip.addEventListener('lostpointercapture', () => {
+      drag = undefined;
+    });
+    grip.addEventListener('keydown', (event) => {
+      const heights = {
+        ArrowUp: height() - 16,
+        ArrowDown: height() + 16,
+        Home: minimum,
+        End: maximum(),
+      };
+      if (!Object.hasOwn(heights, event.key)) return;
+      event.preventDefault();
+      resize(heights[event.key]);
+    });
+    return grip;
+  }
   const openMarking = document.getElementById('open-marking-page');
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape' || event.defaultPrevented || document.body.dataset.view !== 'listening')
@@ -78,13 +140,15 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
     const control = menu || exit;
     event.preventDefault();
     control.click();
-    control.focus();
+    control.focus({ preventScroll: true });
   });
   function renderSources(lesson, phase, writing) {
     const target = document.getElementById('practice-sources');
     const modeSlot = document.getElementById('paper-mode-slot');
     target.hidden = !lesson?.paper;
     if (!lesson?.paper) {
+      previewObserver?.disconnect();
+      delete target.dataset.previewResized;
       modeSlot.replaceChildren();
       openMarking.hidden = true;
       openMarking.onclick = null;
@@ -96,6 +160,8 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
     const key = `${lesson.id}:${phase}:${writing?.mode || ''}`;
     if (key === sourceKey && displayedInk === writing?.ink && displayedSubmission === writing?.submittedInk)
       return;
+    previewObserver?.disconnect();
+    delete target.dataset.previewResized;
     modeSlot.replaceChildren();
     openMarking.hidden = true;
     openMarking.onclick = null;
@@ -172,7 +238,20 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
           focus.setAttribute('aria-expanded', String(expanded));
         };
         syncFocus(!sameWorkspace || document.body.dataset.paperFocus === 'true');
-        focus.onclick = () => syncFocus(document.body.dataset.paperFocus !== 'true');
+        focus.onclick = () => {
+          const viewport = details.querySelector('.practice-page-wrap');
+          const stage = viewport.firstElementChild;
+          const left = viewport.scrollLeft / (stage.offsetWidth || 1);
+          const top = viewport.scrollTop / (stage.offsetHeight || 1);
+          const expanded = document.body.dataset.paperFocus !== 'true';
+          syncFocus(expanded);
+          viewport.scrollTo({
+            left: left * stage.offsetWidth,
+            top: top * stage.offsetHeight,
+            behavior: 'instant',
+          });
+          if (!expanded) focus.focus({ preventScroll: true });
+        };
         modes.append(focus);
       }
       (writingSheet ? details : modeSlot).append(modes);
@@ -209,6 +288,7 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
       const count = document.createElement('span');
       const wrap = document.createElement('div');
       wrap.className = 'practice-page-wrap';
+      wrap.id = 'paper-preview';
       wrap.tabIndex = 0;
       wrap.setAttribute('role', 'region');
       wrap.setAttribute('aria-label', '原卷页图');
@@ -401,6 +481,7 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
         details.append(header, notice);
       } else details.append(toolbar);
       details.append(inkTools, wrap);
+      if (!writingSheet) details.append(previewResize(target, wrap));
       const remembered = writing?.page;
       if (remembered && documents.some((s) => s.id === remembered.sourceId)) {
         select.value = remembered.sourceId;

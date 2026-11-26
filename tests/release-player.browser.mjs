@@ -73,6 +73,35 @@ try {
     });
     assert.equal(visible, true, 'current subtitle must be visible');
   });
+  await check('sentence background starts playback after a word finishes', async (page) => {
+    await review(page);
+    const row = page.locator('.sentence[data-sentence-id="s00055"]');
+    const word = row.locator('[data-word-id="w000736"]');
+    const timestamp = row.locator('.sentence-time');
+    const blank = () => row.click({ position: { x: 3, y: 3 } });
+    const finishWord = async () => {
+      await word.click();
+      await page.waitForFunction(() => {
+        const audio = document.querySelector('#audio');
+        return audio.paused && Math.abs(audio.currentTime - 30.86) < 0.12;
+      });
+    };
+
+    await finishWord();
+    await blank();
+    await page.waitForFunction(() => !document.querySelector('#audio').paused, null, { timeout: 2000 });
+    const restarted = await state(page);
+    assert.ok(Math.abs(restarted.time - 28.16) < 0.3);
+    await page.waitForFunction(() => document.querySelector('#audio').currentTime > 30.96);
+    await page.locator('#play-pause').click();
+    await blank();
+    assert.equal((await state(page)).paused, true, 'a deliberate pause is preserved');
+
+    await finishWord();
+    await timestamp.click();
+    assert.equal((await state(page)).paused, true, 'the timestamp only positions after a word replay');
+    assert.ok(Math.abs((await state(page)).time - 28.16) < 0.1);
+  });
   await check('native drag previews without media seeks until release', async (page) => {
     const seek = page.locator('#seek');
     const box = await seek.boundingBox();

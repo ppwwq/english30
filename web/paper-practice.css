@@ -180,6 +180,11 @@ button:disabled {
   touch-action: none;
   cursor: crosshair;
 }
+.practice-page-wrap:has(.paper-ink) {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
 .paper-ink polyline {
   fill: none;
   stroke: var(--ink);
@@ -329,7 +334,15 @@ body[data-view='listening'][data-listening-mode='papers'][data-listening-phase='
   }
 }
 body[data-paper-answer='ink']:not([data-listening-phase='review']) .study-grid {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+
+  & > .answer-column {
+    order: 0;
+    flex: none;
+  }
 }
 body[data-paper-answer='ink']:not([data-listening-phase='review'])
   .question-panel
@@ -342,6 +355,31 @@ body[data-paper-answer='ink'] #original-responses {
 }
 body[data-paper-answer='ink'] .practice-sources .practice-page-wrap {
   max-height: 80svh;
+}
+@media (max-height: 1080px) {
+  html:not(.keyboard-open)
+    body[data-view='listening'][data-paper-answer='ink']:not([data-paper-focus='true']):not(
+      [data-listening-phase='review']
+    )
+    .study-grid {
+    & > .transcript-panel,
+    & #practice-sources,
+    & .paper-writing-sheet {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      min-height: 0;
+    }
+    & .paper-writing-sheet > :not(.practice-page-wrap) {
+      flex: none;
+    }
+    & .paper-writing-sheet > .practice-page-wrap {
+      flex: 1 1 auto;
+      min-height: 0;
+      max-height: none;
+      overscroll-behavior: contain;
+    }
+  }
 }
 /* Keep the sheet, submit action and the existing audio transport in one writing view. */
 body[data-view='listening'][data-paper-answer='ink'][data-paper-focus='true']:not(
@@ -411,9 +449,6 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   }
   & .question-actions p {
     margin: 2px 0;
-  }
-  & .answer-column {
-    order: 0;
   }
 }
 .player-feedback {
@@ -550,6 +585,9 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
 .paper-writing-header .practice-document-tools {
   flex: 1;
   min-width: 0;
+}
+.paper-writing-header .practice-document-tools > span {
+  white-space: nowrap;
 }
 .paper-writing-header .paper-answer-modes {
   flex-wrap: nowrap;
@@ -799,7 +837,6 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   margin-inline-start: 0;
 }
 .loop-more {
-  position: relative;
   margin-left: auto;
 }
 .loop-more > summary {
@@ -807,19 +844,6 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   padding: 10px 0;
   cursor: pointer;
   font-size: 13px;
-}
-.loop-more[open] .loop-controls {
-  position: absolute;
-  right: 0;
-  bottom: 100%;
-  width: min(390px, 88vw);
-  padding: 12px;
-  background: var(--paper, #fffdf8);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: 0 6px 24px #24374720;
-  flex-wrap: wrap;
-  overflow: visible;
 }
 .scoring-point {
   padding: 12px 0;
@@ -836,8 +860,15 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   margin: 4px 0;
 }
 .scoring-point .reference-source {
-  display: inline-block;
   margin-right: 12px;
+}
+.reference-source {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+#practice-sources > details > .button-text {
+  align-self: center;
 }
 .scoring-rubric img {
   display: block;
@@ -847,18 +878,6 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
 }
 .scoring-rubric {
   margin-block: 12px;
-}
-.review-navigation {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  margin-block: 8px;
-}
-.review-navigation a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--ink);
 }
 .task-scoring-rules > summary,
 .scoring-rubric > summary {

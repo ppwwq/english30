@@ -31,7 +31,7 @@ try {
   );
   assert.equal(await page.getByRole('button', { name: 'DSE 选段' }).count(), 0);
   assert.equal(await page.locator('.transcript-panel.is-floating').count(), 0);
-  const captions = page.locator('.player-bottom #paper-float-transcript');
+  const captions = page.locator('#paper-float-transcript');
   assert.equal(await captions.isVisible(), false);
   assert.equal(await page.locator('input[type=file]').count(), 0, 'study site offers bundled DSE materials');
   await page.locator('#practice-task').selectOption('2');
@@ -75,6 +75,85 @@ try {
     button: 0,
   });
   assert.equal(await ink.locator('.ink-stroke').count(), 1);
+
+  const focusToggle = page.locator('.paper-focus-toggle');
+  const position = () => sheet.evaluate((node) => node.scrollTop / node.firstElementChild.offsetHeight);
+  const zoom = () => sheet.locator('.paper-page-stage').evaluate((node) => node.style.width);
+  const sourcePage = page.locator('#practice-page');
+  const audio = page.locator('#audio');
+  await page.setViewportSize({ width: 1337, height: 1013 });
+  await page.locator('#play-pause').click();
+  await page.waitForFunction(() => !document.querySelector('#audio').paused);
+  await sheet.evaluate((node) => (node.scrollTop = 160));
+  const previous = { position: await position(), zoom: await zoom(), page: await sourcePage.inputValue() };
+
+  async function assertOrdinaryLayout() {
+    const [paperBox, actions, player] = await Promise.all([
+      sheet.boundingBox(),
+      box('.question-actions'),
+      box('.player'),
+    ]);
+    assert.ok(paperBox.height > 100, 'ordinary handwriting leaves room to view the paper');
+    assert.ok(paperBox.y + paperBox.height <= actions.y + 1);
+    assert.ok(actions.y + actions.height <= player.y + 1, 'actions stay above the player');
+    assert.equal(await ink.locator('.ink-stroke').count(), 1);
+    assert.equal(await sourcePage.inputValue(), previous.page);
+    assert.equal(await zoom(), previous.zoom);
+    assert.equal(await audio.evaluate((node) => node.paused), false);
+  }
+
+  await focusToggle.click();
+  assert.ok(await focusToggle.evaluate((node) => node === document.activeElement));
+  await assertOrdinaryLayout();
+  assert.ok(
+    Math.abs((await position()) - previous.position) < 0.005,
+    'the same paper position stays visible',
+  );
+
+  await page.setViewportSize({ width: 1180, height: 820 });
+  await focusToggle.click();
+  await sheet.focus();
+  await page.keyboard.press('Control+a');
+  assert.ok(await page.evaluate(() => window.getSelection().isCollapsed));
+  for (const type of ['selectstart', 'contextmenu']) {
+    assert.equal(
+      await ink.evaluate(
+        (node, type) => node.dispatchEvent(new Event(type, { bubbles: true, cancelable: true })),
+        type,
+      ),
+      false,
+    );
+    assert.equal(
+      await page
+        .locator('#lesson-title')
+        .evaluate(
+          (node, type) => node.dispatchEvent(new Event(type, { bubbles: true, cancelable: true })),
+          type,
+        ),
+      true,
+    );
+  }
+  assert.equal(await paper.evaluate((node) => node.draggable), false);
+  const handTouch = await page.context().newCDPSession(page);
+  const touchTarget = await sheet.boundingBox();
+  const touchPoint = { x: touchTarget.x + touchTarget.width / 2, y: touchTarget.y + 60 };
+  await handTouch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [touchPoint] });
+  await page.waitForTimeout(650);
+  await handTouch.send('Input.dispatchTouchEvent', {
+    type: 'touchMove',
+    touchPoints: [{ ...touchPoint, y: 30 }],
+  });
+  await handTouch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await handTouch.detach();
+  assert.ok(await page.evaluate(() => window.getSelection().isCollapsed));
+  await page.keyboard.press('Escape');
+  assert.equal(await focusToggle.getAttribute('aria-expanded'), 'false');
+  assert.ok(await focusToggle.evaluate((node) => node === document.activeElement));
+  await assertOrdinaryLayout();
+  await page.locator('#play-pause').click();
+  await page.setViewportSize({ width: 820, height: 1100 });
+  await focusToggle.click();
+
   await page.reload();
   await ready();
   assert.equal(await ink.locator('.ink-stroke').count(), 1, 'ink draft survives refresh');
@@ -218,7 +297,8 @@ try {
   assert.equal(await page.locator('body').getAttribute('data-listening-phase'), 'retest');
   assert.equal(await ink.locator('.ink-stroke').count(), 0);
   await page.getByRole('button', { name: '退出全屏' }).click();
-  await page.locator('.review-drawer > summary').click();
+  await page.locator('#loop-more > summary').click();
+  await page.locator('#open-review-marks').click();
   await page.getByRole('button', { name: '恢复这份纪录，继续复盘' }).click();
   assert.equal(await ink.locator('.ink-stroke').count(), 2);
   assert.equal(await ink.locator('.submitted-ink .ink-stroke').count(), 1);

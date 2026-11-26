@@ -1,0 +1,141 @@
+body[data-view='listening'] .player {
+  padding-block: 6px max(6px, env(safe-area-inset-bottom));
+}
+.player .player-inner {
+  position: relative;
+}
+.player .player-top {
+  display: flex;
+  gap: clamp(6px, 1.15vw, 14px);
+}
+.player .transport {
+  gap: 2px;
+}
+.player .play-button {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  padding: 11px;
+}
+.player .seek-group {
+  min-width: 0;
+  gap: clamp(4px, 0.85vw, 12px);
+}
+.player .player-bottom {
+  flex: none;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: 6px;
+  margin: 0;
+}
+.player .player-bottom :is(#mark-moment, #paper-float-transcript, .loop-more > summary) {
+  min-height: 44px;
+  padding-inline: 8px;
+  white-space: nowrap;
+}
+.player #paper-float-transcript,
+.player .loop-more {
+  margin: 0;
+}
+.player .loop-more > summary {
+  padding-block: 12px;
+  line-height: 20px;
+  border-radius: 22px;
+}
+.player .loop-more[open] > summary,
+.player .loop-more > summary:hover {
+  background: var(--pine-light);
+}
+.player-menu {
+  position: absolute;
+  inset-inline-end: 0;
+  bottom: calc(100% + 8px);
+  z-index: 1;
+  width: max-content;
+  max-width: min(22rem, calc(100vw - 2rem));
+  max-height: calc(var(--visible-height, 100svh) - var(--player-space));
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 6px 24px #24374720;
+}
+.player-menu-actions,
+.player-loop-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.player-menu-actions {
+  justify-content: space-between;
+}
+.player-menu :is(.loop-label, #open-review-marks) {
+  font-size: 13px;
+}
+#open-review-marks {
+  width: 100%;
+  min-height: 44px;
+  text-align: start;
+}
+#review-playback-controls:not([hidden]) + #open-review-marks {
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+}
+.review-marks-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.review-marks-heading h2 {
+  font-size: 20px;
+}
+.review-marks-dialog :is(.mark-item, .record-actions) {
+  flex-wrap: wrap;
+}
+.review-marks-dialog .saved-records:not(:empty) {
+  margin-top: 12px;
+}
+#review-marks-status:empty {
+  display: none;
+}
+#review-marks-status.is-error {
+  color: var(--error);
+}
+@media (max-width: 600px), (max-width: 840px) and (orientation: portrait) {
+  .player .player-top {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 2px 6px;
+  }
+  .player .player-top > :is(.transport, .seek-group) {
+    grid-row: 1;
+    grid-column: auto;
+  }
+  .player .player-bottom {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+  body[data-view='listening']
+    .player
+    .player-bottom
+    :is(#mark-moment, #paper-float-transcript, .loop-more > summary) {
+    padding-inline: 6px;
+    font-size: 13px;
+  }
+}
+.keyboard-open .player .player-top {
+  display: flex;
+  justify-content: space-between;
+}
+.keyboard-open .player .player-bottom {
+  display: flex;
+}
+.keyboard-open .player .player-bottom > :not(#mark-moment) {
+  display: none;
+}

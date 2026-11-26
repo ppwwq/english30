@@ -462,7 +462,7 @@ export async function mountTraining({ host, bridge }) {
       b.dataset.trainingMode = id;
       modes.append(b);
     }
-    modes.append(action('待复习与备份', () => navigate('review')));
+    modes.append(action('待复习与备份', () => navigate('review'), 'button-secondary'));
     tools.append(modes);
     layout.append(tools, work);
     host.append(layout);

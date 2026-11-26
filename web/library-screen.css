@@ -208,9 +208,8 @@ body[data-view='library'] .paper-reference strong {
   font-size: 16px;
   font-weight: 600;
 }
-body[data-view='library'] .paper-reference:is(:hover, :focus-visible) strong {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+body[data-view='library'] .paper-reference:is(:hover, :focus-visible) {
+  background: var(--surface-muted);
 }
 body[data-view='library'] .paper-study-savebar {
   margin: 12px 0 0;

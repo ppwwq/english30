@@ -70,7 +70,8 @@ try {
       await page.waitForFunction(() => document.getElementById('audio').currentTime > 0.1);
       await page.locator('#mark-moment').tap();
       await page.locator('#submit-answers').tap();
-      await page.locator('.review-drawer>summary').tap();
+      await page.locator('#loop-more > summary').tap();
+      await page.locator('#open-review-marks').tap();
       await page.locator('.moment-adjustment>summary').tap();
       await page.getByLabel('标记1起点（秒）').fill('8');
       await page.getByLabel('标记1终点（秒）').fill('10');
@@ -89,10 +90,13 @@ try {
       assert.equal(record.moments[0].end, 10);
       await page.reload();
       await ready();
-      await page.locator('.review-drawer>summary').tap();
+      await page.locator('#loop-more > summary').tap();
+      await page.locator('#open-review-marks').tap();
       await page.getByRole('button', { name: '恢复这份纪录，继续复盘' }).tap();
       assert.equal(await page.locator('#subtitle-offset').inputValue(), '0.4');
       await page.locator('#follow-toggle').tap();
+      await page.locator('#loop-more > summary').tap();
+      await page.locator('#open-review-marks').tap();
       await page.locator('#marks-list button').filter({ hasText: '没听清' }).tap();
       await page.waitForFunction(
         () =>

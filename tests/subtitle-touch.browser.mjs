@@ -192,7 +192,9 @@ try {
       assert.deepEqual(a.words, b.words);
     });
     await attempt('0.75 rate and backward touch seek keep word timing aligned', async (item) => {
+      await page.locator('#loop-more > summary').tap();
       await page.locator('#playback-rate').selectOption('0.75');
+      await page.locator('#loop-more > summary').tap();
       await dragTo(0.035);
       await page.locator('#play-pause').tap();
       item.samples = await sampleSync(3100);
@@ -213,7 +215,9 @@ try {
     });
     await attempt('sentence-only words are never given fabricated word highlights', async (item) => {
       const fallback = lesson.sentences.flatMap((s) => s.words).find((w) => w.start === null);
+      await page.locator('#loop-more > summary').tap();
       await page.locator('#playback-rate').selectOption('1');
+      await page.locator('#loop-more > summary').tap();
       const word = page.locator(`[data-word-id="${fallback.id}"]`);
       await word.scrollIntoViewIfNeeded();
       await word.tap();

@@ -40,6 +40,7 @@ function hideAccount(message) {
   status.setAttribute('role', 'status');
   status.textContent = message;
   const home = document.createElement('a');
+  home.className = 'button-secondary';
   home.href = location.pathname;
   home.textContent = '返回主页';
   main.append(heading, status, home);

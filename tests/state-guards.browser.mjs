@@ -32,11 +32,6 @@ async function submitFirstAttempt(page) {
   );
 }
 
-async function openRecordDrawer(page) {
-  const summary = page.locator('summary').filter({ hasText: '本次复习标记' });
-  if (!(await summary.evaluate((node) => node.parentElement.open))) await summary.click();
-}
-
 async function scenario(name, run) {
   const context = await browser.newContext({ viewport: { width: 1080, height: 810 }, hasTouch: true });
   const page = await context.newPage();
@@ -91,7 +86,6 @@ try {
       await submitFirstAttempt(page);
       await page.locator('[data-word-id="w0001"]').click();
       await page.locator('#mark-heard').click();
-      await openRecordDrawer(page);
       await page.locator('#session-save').click();
       await answerConfirmation(page, '确认保存');
       await page.waitForFunction(
@@ -128,7 +122,6 @@ try {
     await submitFirstAttempt(page);
     await page.locator('[data-word-id="w0001"]').click();
     await page.locator('#mark-heard').click();
-    await openRecordDrawer(page);
     await page.locator('#session-save').click();
     await page.getByRole('dialog').waitFor();
     // Simulate a change arriving while the confirmation summary is already open.

@@ -215,9 +215,6 @@ body[data-view='library'] .app-shell {
   min-height: 28px;
   color: var(--ink-soft);
 }
-.paper-audio-status button {
-  text-decoration: underline;
-}
 .paper-workspace {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -388,7 +385,6 @@ body[data-view='library'] .app-shell {
 }
 .paper-word-detail button {
   font-size: 13px;
-  text-decoration: underline;
 }
 .paper-evidence,
 .paper-marks {

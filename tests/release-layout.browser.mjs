@@ -99,6 +99,13 @@ async function assertIndependentScroll(pane, other, input) {
 try {
   await page.goto(process.env.TEST_URL || 'http://127.0.0.1:4174');
   await page.locator('#home-panel').waitFor();
+  assert.deepEqual(
+    await page.locator('.home-resources').evaluate((node) => {
+      const css = getComputedStyle(node);
+      return [css.borderTopWidth, css.borderBottomWidth];
+    }),
+    ['0px', '0px'],
+  );
   await page.locator('.main-navigation [data-view=listening]').click();
   await page.waitForFunction(() => !document.querySelector('#play-pause').disabled);
   await page.locator('#practice-image').evaluate((img) => img.decode());
@@ -286,8 +293,99 @@ try {
   const longAnswer = b1Questions.locator('textarea.question-input');
   await longAnswer.fill('This line belongs to the same written answer.\n'.repeat(60));
   await assertIndependentScroll(longAnswer, b1Questions, 'wheel');
+
+  const resizePage = await browser.newPage({ viewport: { width: 1337, height: 1013 }, hasTouch: true });
+  allowBeforeUnload(resizePage);
+  await resizePage.goto(b1Url.href);
+  await resizePage.waitForFunction(() => !document.getElementById('play-pause').disabled);
+  const player = resizePage.locator('.player');
+  assert.ok((await player.boundingBox()).height <= 64, 'first listen uses the compact player');
+  assert.equal(
+    await resizePage.locator('#lesson-title').evaluate((node) => getComputedStyle(node).fontSize),
+    '32px',
+  );
+  const grip = resizePage.getByRole('separator', { name: '调整原卷预览高度' });
+  const preview = resizePage.locator('#paper-preview');
+  const state = () =>
+    preview.evaluate((element) => ({
+      height: Math.round(element.getBoundingClientRect().height),
+      zoomed: element.classList.contains('is-zoomed'),
+      page: document.getElementById('practice-page').value,
+    }));
+  await resizePage.getByRole('button', { name: '放大题页', exact: true }).click();
+  const beforeDrag = await state();
+  const handle = await grip.boundingBox();
+  const handleX = handle.x + handle.width / 2;
+  const handleY = handle.y + handle.height / 2;
+  await resizePage.mouse.move(handleX, handleY);
+  await resizePage.mouse.down();
+  await resizePage.mouse.move(handleX, handleY - 48, { steps: 4 });
+  await resizePage.mouse.up();
+  assert.deepEqual(await state(), { ...beforeDrag, height: beforeDrag.height - 48 });
+  await grip.press('ArrowDown');
+  assert.deepEqual(await state(), { ...beforeDrag, height: beforeDrag.height - 32 });
+  await grip.press('End');
+  assert.deepEqual(await state(), { ...beforeDrag, height: 640 });
+  assert.equal(await grip.getAttribute('aria-valuenow'), '640');
+  await resizePage.setViewportSize({ width: 1180, height: 820 });
+  await resizePage.waitForFunction(() => document.getElementById('paper-preview').offsetHeight === 615);
+  const resizedPaper = await resizePage.locator('.transcript-panel').boundingBox();
+  const resizedAnswers = await resizePage.locator('.question-panel').boundingBox();
+  assert.ok(Math.abs(resizedPaper.y - resizedAnswers.y) < 1);
+  assert.ok(Math.abs(resizedPaper.height - resizedAnswers.height) < 1);
+  await grip.press('Home');
+  assert.equal((await state()).height, 160);
+  const resizeAnswer = resizePage.locator('.question-input:visible').first();
+  await resizeAnswer.fill('7000');
+  await resizePage.locator('#play-pause').click();
+  const resizeSubmit = resizePage.locator('#submit-answers');
+  await resizeSubmit.evaluate((node) => node.scrollIntoView({ block: 'center', behavior: 'instant' }));
+  const submitBox = await resizeSubmit.boundingBox();
+  const resizedPlayer = await resizePage.locator('.player').boundingBox();
+  assert.ok(submitBox.y >= 0 && submitBox.y + submitBox.height <= resizedPlayer.y);
+  await resizeSubmit.click();
+  await confirmIncompleteTask(resizePage);
+  assert.ok((await player.boundingBox()).height <= 64, 'review uses the compact player');
+  const more = resizePage.locator('#loop-more > summary');
+  await more.click();
+  const menu = await resizePage.locator('.player-menu').boundingBox();
+  assert.ok(menu.y + menu.height <= (await player.boundingBox()).y + 1);
+  await resizePage.locator('#open-review-marks').click();
+  const marks = resizePage.getByRole('dialog', { name: '本次复习标记' });
+  await marks.waitFor();
+  await resizePage.keyboard.press('Escape');
+  await marks.waitFor({ state: 'hidden' });
+  await resizePage.waitForFunction(
+    () => document.activeElement === document.querySelector('#loop-more > summary'),
+  );
+  assert.equal((await state()).height, 160, 'review remembers the adjusted viewport');
+  assert.equal(await resizePage.locator('#original-responses .question-input').first().inputValue(), '7000');
+  await resizePage.locator('#phase-retest').click();
+  assert.equal((await state()).height, 160, 'retest remembers the adjusted viewport');
+
+  await resizePage.setViewportSize({ width: 390, height: 844 });
+  await resizePage.reload();
+  await grip.scrollIntoViewIfNeeded();
+  assert.equal(await resizePage.locator('[data-preview-resized]').count(), 0, 'reload restores default size');
+  await grip.press('Home');
+  assert.equal((await state()).height, 160, 'phone keeps the preview resize control');
+  if (engine === chromium) {
+    await grip.evaluate((node) => node.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    const touch = await resizePage.context().newCDPSession(resizePage);
+    const box = await grip.boundingBox();
+    const center = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+    await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [center] });
+    await touch.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ ...center, y: center.y + 64 }],
+    });
+    await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    assert.equal((await state()).height, 224, 'touch drag changes only the preview height');
+    await touch.detach();
+  }
+  await resizePage.close();
   console.log(
-    'PASS paired pane alignment, independent wheel and keyboard scroll, split review and concealed retest',
+    'PASS pane alignment and scrolling, concealed retest, and paper preview resizing by pointer and keyboard',
   );
 } finally {
   await browser.close();

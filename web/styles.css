@@ -103,6 +103,7 @@ a {
   background: var(--pine);
   color: #fff;
   border-radius: 10px;
+  text-decoration: none;
 }
 .skip-link:focus {
   top: 12px;
@@ -186,8 +187,7 @@ select {
   gap: 12px;
   font-size: 13px;
 }
-.import-menu summary::-webkit-details-marker,
-.review-drawer summary::-webkit-details-marker {
+.import-menu summary::-webkit-details-marker {
   display: none;
 }
 .import-menu summary > span {
@@ -367,6 +367,7 @@ h2 {
 }
 .button-quiet,
 .button-secondary,
+.button-text,
 .loop-button {
   border-radius: 8px;
   padding: 9px 12px;
@@ -385,10 +386,28 @@ h2 {
   color: var(--pine);
   background: var(--pine-light);
 }
-.button-secondary {
+.button-secondary,
+.button-text {
   border-color: #bfc9bc;
   background: var(--surface);
   color: var(--pine);
+}
+a.button-secondary,
+.button-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-style: solid;
+  border-width: 1px;
+  text-decoration: none;
+}
+.button-text {
+  white-space: normal;
+}
+a.button-secondary:hover,
+.button-text:not(:disabled):hover {
+  background: var(--surface-muted);
 }
 .button-primary {
   display: flex;
@@ -411,14 +430,6 @@ h2 {
 .button-primary > span {
   font-size: 20px;
   font-weight: 400;
-}
-.button-text {
-  font-size: 12px;
-  padding: 7px 0;
-  min-height: 44px;
-  color: var(--ink-soft);
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 .quiet-label {
   font-size: 10px;
@@ -792,43 +803,6 @@ h2 {
   background: #e8eee5;
   border-color: #668575;
 }
-.review-drawer {
-  margin-top: 22px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.review-drawer summary {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  list-style: none;
-  cursor: pointer;
-  min-height: 60px;
-  padding: 12px 4px;
-  font-size: 13px;
-}
-.drawer-icon {
-  font-size: 21px;
-  color: #758573;
-  vertical-align: -1px;
-  margin-right: 5px;
-}
-.summary-note {
-  margin-left: auto;
-  color: var(--ink-soft);
-  font-size: 11px;
-}
-.details-chevron {
-  font-size: 18px;
-  color: #73836f;
-  transition: transform 0.15s;
-}
-.review-drawer[open] .details-chevron {
-  transform: rotate(180deg);
-}
-.review-drawer-content {
-  padding: 3px 4px 20px;
-}
 .marks-list {
   display: flex;
   flex-direction: column;
@@ -1014,12 +988,6 @@ input[type='range'] {
   align-items: center;
   gap: 18px;
   margin-top: 6px;
-}
-.loop-controls {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  flex-wrap: wrap;
 }
 .loop-button {
   padding: 7px 10px;
@@ -1215,9 +1183,6 @@ input[type='range'] {
   .status {
     margin-bottom: 16px;
   }
-  .summary-note {
-    font-size: 10px;
-  }
   .player {
     position: sticky;
     padding: 12px 20px max(9px, env(safe-area-inset-bottom));
@@ -1250,13 +1215,6 @@ input[type='range'] {
   }
   .transport-button {
     width: 42px;
-  }
-  .loop-controls {
-    gap: 5px;
-  }
-  .loop-controls > .button-quiet {
-    padding-left: 0;
-    padding-right: 8px;
   }
   .loop-label {
     font-size: 9px;
@@ -1338,9 +1296,6 @@ input[type='range'] {
   .time {
     font-size: 10px;
   }
-  .loop-controls {
-    column-gap: 3px;
-  }
   .loop-button {
     padding: 6px 7px;
     font-size: 10px;
@@ -1351,12 +1306,6 @@ input[type='range'] {
   }
   .control-divider {
     margin: 0 3px;
-  }
-  .summary-note {
-    display: none;
-  }
-  .details-chevron {
-    margin-left: auto;
   }
   .review-help {
     padding: 12px 15px;
@@ -1412,7 +1361,7 @@ input[type='range'] {
   .player,
   .phase-switch,
   .question-actions,
-  .review-drawer,
+  .review-marks-dialog,
   .word-inspector,
   .status {
     display: none;
@@ -1582,7 +1531,8 @@ h1 {
 .play-button:not(:disabled):hover {
   background: #3c3b32;
 }
-.button-secondary {
+.button-secondary,
+.button-text {
   border-color: #c8c0b0;
   border-radius: 22px;
 }
@@ -1940,14 +1890,6 @@ h1 {
   min-height: 44px;
   font-size: 11px;
 }
-.review-drawer {
-  margin-top: 23px;
-  border-color: #dcd4c6;
-}
-.drawer-icon,
-.details-chevron {
-  color: #746a5b;
-}
 .mark-item,
 .mark-row {
   background: #fffaf1;
@@ -2181,21 +2123,8 @@ h1 {
   .player-bottom {
     margin-top: 4px;
   }
-  .loop-controls {
-    flex-wrap: nowrap;
-    gap: 4px;
-    width: 100%;
-    overflow-x: auto;
-  }
-  .loop-controls .loop-label {
-    font-size: 10px;
-    flex-shrink: 0;
-  }
   .control-divider {
     margin: 0 2px;
-  }
-  .review-drawer {
-    margin-top: 20px;
   }
   .question-actions .fine-print {
     font-size: 10px;
@@ -2272,11 +2201,6 @@ h1 {
     font-size: 11px;
     padding: 7px 8px;
     flex-shrink: 0;
-  }
-  .loop-controls > .button-quiet {
-    font-size: 11px;
-    flex-shrink: 0;
-    padding-right: 7px;
   }
   .phase-switch > button,
   .rubber-copy {

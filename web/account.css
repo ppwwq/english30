@@ -56,17 +56,6 @@ body[data-view='account'] :focus-visible {
   font-size: 14px;
   white-space: normal;
 }
-.account-host a.button-secondary,
-.account-host a.button-text {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.account-host a.button-secondary {
-  text-decoration: none;
-  border-style: solid;
-  border-width: 1px;
-}
 .account-host a.button-secondary:hover {
   background: var(--pine-light);
 }

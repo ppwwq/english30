@@ -21,9 +21,11 @@
     <link rel="stylesheet" href="./papers.css" />
     <link rel="stylesheet" href="./paper-practice.css" />
     <link rel="stylesheet" href="./listening-screen.css" />
+    <link rel="stylesheet" href="./paper-preview-resize.css" />
     <link rel="stylesheet" href="./library-screen.css" />
     <link rel="stylesheet" href="./study-screens.css" />
     <link rel="stylesheet" href="./study-shell.css" />
+    <link rel="stylesheet" href="./listening-controls.css" />
   </head>
   <body data-view="home">
     <a class="skip-link" href="#home-panel">跳到主要内容</a>
@@ -173,9 +175,30 @@
         <button id="audio-retry" class="button-secondary" type="button" hidden>重试载入原音</button>
 
         <nav id="review-navigation" class="review-navigation" aria-label="复盘内容定位" hidden>
-          <a href="#practice-sources" data-review-target="practice-sources">原题与作答</a>
-          <a href="#questions" data-review-target="questions">答案与证据</a>
-          <a href="#transcript" data-review-target="transcript">字幕</a>
+          <button
+            class="button-secondary"
+            type="button"
+            data-review-target="practice-sources"
+            aria-controls="practice-sources"
+          >
+            原题与作答
+          </button>
+          <button
+            class="button-secondary"
+            type="button"
+            data-review-target="questions"
+            aria-controls="questions"
+          >
+            答案与证据
+          </button>
+          <button
+            class="button-secondary"
+            type="button"
+            data-review-target="transcript"
+            aria-controls="transcript"
+          >
+            字幕
+          </button>
         </nav>
         <div class="study-grid">
           <section id="review-paper-panel" class="panel" aria-label="原卷与作答" hidden></section>
@@ -324,25 +347,6 @@
             </section>
           </aside>
         </div>
-
-        <details class="review-drawer">
-          <summary>
-            <span><span class="drawer-icon" aria-hidden="true">↺</span> 本次复习标记</span
-            ><span class="summary-note">把时间留给卡住的地方</span
-            ><span class="details-chevron" aria-hidden="true">⌄</span>
-          </summary>
-          <div class="review-drawer-content">
-            <div id="marks-list" class="marks-list">
-              <p class="empty-copy">还没有标记。播放时可记下没听清的位置，复盘时可点词标记。</p>
-            </div>
-            <div class="record-actions">
-              <p class="fine-print">点击保存才会留下正式学习纪录；导出可备份到自己的文件。</p>
-              <div>
-                <button id="export-record" disabled class="button-quiet" type="button">导出记录</button>
-              </div>
-            </div>
-          </div>
-        </details>
       </main>
 
       <footer class="player" aria-label="音频播放控制" hidden>
@@ -392,61 +396,104 @@
                 aria-label="播放进度"
               /><span id="time-total" class="time">0:00</span>
             </div>
-            <div class="rate-control">
-              <label for="playback-rate">速度</label
-              ><select id="playback-rate" disabled aria-label="播放速度">
-                <option value="0.75">0.75×</option>
-                <option value="0.85">0.85×</option>
-                <option value="1" selected>1.0×</option>
-                <option value="1.25">1.25×</option>
-              </select>
+            <div class="player-bottom">
+              <button id="mark-moment" disabled class="button-quiet" type="button">
+                <span aria-hidden="true">＋</span>刚才没听清
+              </button>
+              <button
+                id="paper-float-transcript"
+                class="button-quiet"
+                type="button"
+                aria-controls="transcript"
+                aria-expanded="false"
+                hidden
+              >
+                打开字幕
+              </button>
+              <details id="loop-more" class="loop-more">
+                <summary>更多播放控制</summary>
+                <div class="player-menu">
+                  <div id="review-playback-controls" hidden>
+                    <div class="player-menu-actions">
+                      <div class="rate-control">
+                        <label for="playback-rate">速度</label>
+                        <select id="playback-rate" disabled aria-label="播放速度">
+                          <option value="0.75">0.75×</option>
+                          <option value="0.85">0.85×</option>
+                          <option value="1" selected>1.0×</option>
+                          <option value="1.25">1.25×</option>
+                        </select>
+                      </div>
+                      <button id="repeat-sentence" disabled class="button-quiet" type="button">
+                        重听当前句
+                      </button>
+                    </div>
+                    <div class="player-loop-controls" role="group" aria-label="片段循环">
+                      <button
+                        id="loop-start"
+                        disabled
+                        class="loop-button"
+                        type="button"
+                        title="将当前播放位置设为循环起点"
+                      >
+                        设 A 点</button
+                      ><button
+                        id="loop-end"
+                        disabled
+                        class="loop-button"
+                        type="button"
+                        title="将当前播放位置设为循环终点"
+                      >
+                        设 B 点</button
+                      ><button
+                        id="loop-toggle"
+                        disabled
+                        class="loop-button"
+                        type="button"
+                        aria-pressed="false"
+                      >
+                        AB 循环</button
+                      ><span id="loop-label" class="loop-label">未设置循环</span>
+                    </div>
+                  </div>
+                  <button
+                    id="open-review-marks"
+                    class="button-quiet"
+                    type="button"
+                    aria-haspopup="dialog"
+                    aria-controls="review-marks-dialog"
+                    disabled
+                  >
+                    本次复习标记
+                  </button>
+                </div>
+              </details>
             </div>
-            <button id="mark-moment" disabled class="button-quiet" type="button">
-              <span aria-hidden="true">＋</span>刚才没听清
-            </button>
           </div>
           <p id="player-feedback" class="player-feedback" role="status" aria-live="polite" hidden></p>
-          <div class="player-bottom">
-            <button id="repeat-sentence" disabled class="button-quiet" type="button">重听当前句</button>
-            <button
-              id="paper-float-transcript"
-              class="button-quiet"
-              type="button"
-              aria-controls="transcript"
-              aria-expanded="false"
-              hidden
-            >
-              打开字幕
-            </button>
-            <details id="loop-more" class="loop-more">
-              <summary>更多播放控制</summary>
-              <div class="loop-controls" role="group" aria-label="片段循环">
-                <button
-                  id="loop-start"
-                  disabled
-                  class="loop-button"
-                  type="button"
-                  title="将当前播放位置设为循环起点"
-                >
-                  设 A 点</button
-                ><button
-                  id="loop-end"
-                  disabled
-                  class="loop-button"
-                  type="button"
-                  title="将当前播放位置设为循环终点"
-                >
-                  设 B 点</button
-                ><button id="loop-toggle" disabled class="loop-button" type="button" aria-pressed="false">
-                  AB 循环</button
-                ><span id="loop-label" class="loop-label">未设置循环</span>
-              </div>
-            </details>
-          </div>
         </div>
       </footer>
       <audio id="audio" preload="metadata" playsinline></audio>
     </div>
+    <dialog
+      id="review-marks-dialog"
+      class="account-save-dialog review-marks-dialog"
+      aria-labelledby="review-marks-title"
+    >
+      <header class="review-marks-heading">
+        <h2 id="review-marks-title">本次复习标记</h2>
+        <form method="dialog">
+          <button class="button-quiet" type="submit" autofocus>关闭</button>
+        </form>
+      </header>
+      <div id="marks-list" class="marks-list"></div>
+      <div class="record-actions">
+        <p class="fine-print">保存学习纪录后，可以导出备份。</p>
+        <button id="export-record" disabled class="button-quiet" type="button">导出记录</button>
+      </div>
+      <div id="saved-records" class="saved-records"></div>
+      <p id="review-marks-status" class="fine-print" role="status"></p>
+    </dialog>
     <script type="module" src="./bootstrap.mjs"></script>
     <script type="module" src="./ui-motion.mjs"></script>
   </body>

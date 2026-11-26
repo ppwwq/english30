@@ -33,7 +33,11 @@ export function createSession(lesson) {
 
 export function shiftedRange(range, offset = 0, duration) {
   if (!Number.isFinite(offset) || Math.abs(offset) > 5) throw new Error('字幕偏移须在 −5 至 5 秒之间。');
-  return validateLoop(Math.max(0, range.start + offset), Math.min(duration, range.end + offset), duration);
+  return validatePlaybackRange(
+    Math.max(0, range.start + offset),
+    Math.min(duration, range.end + offset),
+    duration,
+  );
 }
 
 export function materialExposure(entry, entries, seenIds) {
@@ -230,12 +234,17 @@ export function wordAtTime(lesson, time) {
   return null;
 }
 
-export function validateLoop(start, end, duration) {
+export function validatePlaybackRange(start, end, duration) {
   if (![start, end, duration].every(Number.isFinite) || start < 0 || end > duration)
     throw new Error('循环范围必须在录音内。');
   if (end <= start) throw new Error('请把 B 点设在 A 点之后。');
-  if (end - start < 0.3) throw new Error('循环至少需要 0.3 秒。');
   return { start, end };
+}
+
+export function validateLoop(start, end, duration) {
+  const range = validatePlaybackRange(start, end, duration);
+  if (end - start < 0.3) throw new Error('循环至少需要 0.3 秒。');
+  return range;
 }
 
 export function validateLesson(data) {
