@@ -120,6 +120,21 @@ export function validateStudyState(value) {
         r.taskId !== `paper:${r.details.paper.sessionId}:${r.details.paper.sentenceId}`)
     )
       throw new Error('原卷练习缺少匹配的材料或时间。');
+    if (r.details?.readingPaper) {
+      if (
+        r.module !== 'reading' ||
+        !/^reading-paper:\d{4}-(exam|sample|practice):(A|B1)$/.test(r.taskId) ||
+        !r.answers ||
+        typeof r.answers !== 'object' ||
+        Array.isArray(r.answers) ||
+        Object.entries(r.answers).some(
+          ([number, answer]) => !/^[1-9]\d{0,2}$/.test(number) || typeof answer !== 'string' || answer.length > 4000,
+        )
+      )
+        throw new Error('阅读原卷作答格式无效。');
+      validatePaperInk(r.details.readingPaper.ink);
+      validatePaperInk(r.details.readingPaper.reviewInk);
+    }
     if (
       r.correct != null &&
       (!Number.isFinite(r.correct) || r.correct < 0 || !Number.isFinite(r.total) || r.correct > r.total)

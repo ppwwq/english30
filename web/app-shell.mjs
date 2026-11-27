@@ -39,6 +39,7 @@ const allowed = new Set([
   'library',
   'today',
   'listening',
+  'reading-paper',
   'reading',
   'writing',
   'review',
@@ -46,15 +47,18 @@ const allowed = new Set([
 ]);
 let training,
   reading,
+  readingPaper,
   papers,
   papersPromise,
   trainingPromise,
   readingPromise,
+  readingPaperPromise,
   current = null,
   listeningMode = 'papers',
   generation = 0;
 const trainingHost = document.getElementById('training-host'),
   readingHost = document.getElementById('reading-host'),
+  readingPaperHost = document.getElementById('reading-paper-host'),
   paperHost = document.getElementById('paper-host');
 const bridge = {
   ...listeningBridge,
@@ -87,12 +91,15 @@ saveState.addEventListener('keydown', (event) => {
   }
 });
 function hasUnsubmitted() {
-  return [
-    listeningBridge.getSaveState(),
-    reading?.getSaveState?.(),
-    training?.getSaveState?.(),
-    papers?.getSaveState?.(),
-  ].some((state) => state?.hasUnsubmittedChanges ?? state?.hasDraft);
+  return (
+    readingPaper?.hasUnsubmitted() ||
+    [
+      listeningBridge.getSaveState(),
+      reading?.getSaveState?.(),
+      training?.getSaveState?.(),
+      papers?.getSaveState?.(),
+    ].some((state) => state?.hasUnsubmittedChanges ?? state?.hasDraft)
+  );
 }
 function refreshSessionBar() {
   if (saving) return;
@@ -258,6 +265,9 @@ window.addEventListener('beforeunload', (event) => {
     event.returnValue = '';
   }
 });
+window.addEventListener('pagehide', (event) => {
+  if (!event.persisted) readingPaper?.clear();
+});
 async function navigate(view, options = {}) {
   dismissConfirmation();
   const previousView = current,
@@ -282,6 +292,7 @@ async function navigate(view, options = {}) {
   const listening = view === 'listening',
     practice = listening && listeningMode === 'practice',
     paperView = view === 'library',
+    readingPaperView = view === 'reading-paper',
     readingView = ['reading', 'integrated'].includes(view);
   const home = view === 'home',
     accountPage = view === 'account';
@@ -300,12 +311,14 @@ async function navigate(view, options = {}) {
   listeningPanel.inert = listening;
   document.querySelector('.player').hidden = !listening;
   document.querySelector('.lesson-picker').hidden = !practice;
-  trainingHost.hidden = accountPage || home || listening || readingView || paperView;
+  trainingHost.hidden = accountPage || home || listening || readingView || readingPaperView || paperView;
   readingHost.hidden = !readingView;
+  readingPaperHost.hidden = !readingPaperView;
   paperHost.hidden = !paperView;
   listeningBridge.pauseListening();
   for (const audio of document.querySelectorAll('audio')) audio.pause();
   reading?.show('hidden');
+  if (!readingPaperView) readingPaper?.hide();
   papers?.show('hidden');
   window.speechSynthesis?.cancel();
   document.getElementById('session-review').setAttribute('aria-pressed', String(view === 'review'));
@@ -352,6 +365,18 @@ async function navigate(view, options = {}) {
         }));
       if (request === generation) await papers.show(view, options);
       else if (paperHost.hidden) papers.show('hidden');
+    } else if (readingPaperView) {
+      readingPaper ||= await (readingPaperPromise ||= Promise.all([
+        import('./reading-paper.mjs'),
+        loadPaperCatalogue(),
+      ])
+        .then(([m, catalogue]) => m.mountReadingPaper({ host: readingPaperHost, bridge, catalogue }))
+        .catch((error) => {
+          readingPaperPromise = null;
+          throw error;
+        }));
+      if (request === generation) await readingPaper.show(options);
+      else if (readingPaperHost.hidden) readingPaper.hide();
     } else if (readingView) {
       reading ||= await (readingPromise ||= import('./reading.mjs')
         .then((m) => m.mountReading({ host: readingHost, bridge }))
@@ -383,7 +408,13 @@ async function navigate(view, options = {}) {
       status.replaceChildren(error.message, ' ', retry);
       return;
     }
-    const host = paperView ? paperHost : readingView ? readingHost : trainingHost;
+    const host = readingPaperView
+      ? readingPaperHost
+      : paperView
+        ? paperHost
+        : readingView
+          ? readingHost
+          : trainingHost;
     host.replaceChildren();
     const notice = document.createElement('div');
     notice.className = 'shell-error';
@@ -423,6 +454,12 @@ document.querySelector('.skip-link').addEventListener('click', (event) => {
             : readingHost.hidden
               ? trainingHost
               : readingHost;
+  if (current === 'reading-paper') {
+    target =
+      [...readingPaperHost.querySelectorAll('[data-reading-paper-skip]')].find(
+        (pane) => pane.getClientRects().length,
+      ) || readingPaperHost;
+  }
   if (current === 'listening' && !target.getClientRects().length)
     target =
       document.querySelector('#practice-sources .practice-page-wrap') ||

@@ -557,7 +557,7 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
 .paper-zoomable .paper-page-stage {
   margin-inline: auto;
 }
-.ink-tools #ink-menu-spec {
+.ink-tools [data-ink-menu='spec'] {
   flex-wrap: wrap;
   width: max-content;
   max-width: min(275px, 100%);
@@ -575,7 +575,7 @@ body[data-paper-focus='true'][data-paper-answer='ink']:not([data-listening-phase
   width: 100%;
   grid-column: 1/-1;
 }
-.ink-tools #ink-menu-tools {
+.ink-tools [data-ink-menu='tools'] {
   flex-wrap: wrap;
 }
 .ink-menu-history {

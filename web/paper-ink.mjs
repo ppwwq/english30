@@ -58,7 +58,7 @@ export function renderStroke(value, aspect) {
   node.classList.add('ink-stroke');
   return node;
 }
-export function mountPaperInk(stage, tools, writing, reviewing = false) {
+export function mountPaperInk(stage, tools, writing, reviewing = false, idPrefix = '') {
   const settings = reviewing ? reviewSettings : answerSettings;
   let pages = writing.ink || {};
   const svg = element('svg', {
@@ -119,7 +119,7 @@ export function mountPaperInk(stage, tools, writing, reviewing = false) {
   function sync() {
     tools.hidden = !pageKey;
     svg.classList.toggle('can-pan', settings.mode === 'pan');
-    updateTools?.({
+    controls?.refresh({
       pageKey,
       hasInk: entries().length > 0,
       canUndo: !!history()?.before.length || !!entries().length,
@@ -158,7 +158,7 @@ export function mountPaperInk(stage, tools, writing, reviewing = false) {
     selected = [];
     replace(h.after.pop());
   }
-  const updateTools = mountInkTools(
+  const controls = mountInkTools(
     tools,
     settings,
     {
@@ -186,6 +186,7 @@ export function mountPaperInk(stage, tools, writing, reviewing = false) {
       },
     },
     reviewing,
+    idPrefix,
   );
   function show(key) {
     cancel();
@@ -415,5 +416,11 @@ export function mountPaperInk(stage, tools, writing, reviewing = false) {
   }
   svg.addEventListener('keydown', keydown);
   tools.addEventListener('keydown', keydown);
-  return { show };
+  return {
+    show,
+    destroy() {
+      cancel();
+      controls.destroy();
+    },
+  };
 }

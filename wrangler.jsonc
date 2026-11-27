@@ -12,5 +12,5 @@
     "binding": "ASSETS",
     "run_worker_first": ["/api/*", "/audio/*", "/papers/audio/*"],
   },
-  "vars": { "RELEASE": "2026.11.27.1" },
+  "vars": { "RELEASE": "2026.11.27.2" },
 }

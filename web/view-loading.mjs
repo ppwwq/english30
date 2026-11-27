@@ -4,6 +4,7 @@ const labels = {
   library: '正在载入原卷…',
   papers: '正在载入原卷…',
   reading: '正在载入阅读练习…',
+  'reading-paper': '正在载入阅读原卷…',
   integrated: '正在载入 B1 综合练习…',
   writing: '正在载入写句练习…',
   account: '正在载入我的答卷…',

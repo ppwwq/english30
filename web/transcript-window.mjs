@@ -1,3 +1,5 @@
+import { bindWindowGrip } from './window-grip.mjs';
+
 // Move the live transcript so scrolling, word marks and the audio clock stay shared.
 export function mountTranscriptWindow() {
   const panel = document.querySelector('.transcript-panel');
@@ -75,40 +77,21 @@ export function mountTranscriptWindow() {
     panel.dispatchEvent(new Event('transcript-layout'));
   };
   function adjust(handle, sizing) {
-    let start;
-    function change(box, dx, dy) {
-      geometry = sizing
-        ? {
-            x: box.x,
-            y: box.y,
-            width: Math.min(innerWidth - box.x - 6, box.width + dx),
-            height: Math.min(innerHeight - box.y - 6, box.height + dy),
-          }
-        : { x: box.x + dx, y: box.y + dy, width: box.width, height: box.height };
-      layout();
-    }
-    handle.onpointerdown = (event) => {
-      if (!open || maximized || !event.isPrimary || event.button !== 0) return;
-      event.preventDefault();
-      handle.focus({ preventScroll: true });
-      start = { id: event.pointerId, x: event.clientX, y: event.clientY, box: panel.getBoundingClientRect() };
-      handle.setPointerCapture(event.pointerId);
-    };
-    handle.onpointermove = (event) => {
-      if (event.pointerId === start?.id) change(start.box, event.clientX - start.x, event.clientY - start.y);
-    };
-    handle.onlostpointercapture = () => {
-      start = null;
-    };
-    handle.onkeydown = (event) => {
-      const step = { ArrowLeft: [-16, 0], ArrowRight: [16, 0], ArrowUp: [0, -16], ArrowDown: [0, 16] }[
-        event.key
-      ];
-      if (!step || !open || maximized) return;
-      event.preventDefault();
-      event.stopPropagation();
-      change(panel.getBoundingClientRect(), ...step);
-    };
+    bindWindowGrip(handle, {
+      active: () => open && !maximized,
+      read: () => panel.getBoundingClientRect(),
+      change(box, dx, dy) {
+        geometry = sizing
+          ? {
+              x: box.x,
+              y: box.y,
+              width: Math.min(innerWidth - box.x - 6, box.width + dx),
+              height: Math.min(innerHeight - box.y - 6, box.height + dy),
+            }
+          : { x: box.x + dx, y: box.y + dy, width: box.width, height: box.height };
+        layout();
+      },
+    });
   }
   adjust(grip, false);
   adjust(resize, true);

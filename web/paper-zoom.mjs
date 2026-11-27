@@ -2,13 +2,13 @@ import { inkIcon } from './ink-icons.mjs';
 let lastPaperZoom;
 
 // Scale the scan and the ink as one page, preserving the paper point beneath the gesture.
-export function mountPaperZoom(wrap, stage, trigger) {
+export function mountPaperZoom(wrap, stage, trigger, panelId = 'paper-zoom-panel') {
   const control = document.createElement('div');
   control.className = 'paper-zoom-control';
   const panel = document.createElement('div');
   panel.className = 'paper-zoom-panel';
   panel.hidden = true;
-  panel.id = 'paper-zoom-panel';
+  panel.id = panelId;
   trigger.setAttribute('aria-controls', panel.id);
   trigger.removeAttribute('aria-pressed');
   inkIcon(trigger, 'zoom', '调整纸面缩放');

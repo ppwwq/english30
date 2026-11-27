@@ -15,8 +15,8 @@ const base = process.env.TEST_URL || 'http://127.0.0.1:4174';
 const ready = (page) => page.waitForFunction(() => !document.querySelector('#play-pause').disabled);
 const state = (page) =>
   page.locator('#audio').evaluate((a) => ({ time: a.currentTime, paused: a.paused, duration: a.duration }));
-async function check(name, run) {
-  const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+async function check(name, run, options = {}) {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, ...options });
   const page = await context.newPage();
   allowBeforeUnload(page);
   page.on('pageerror', (e) => report.errors.push(e.message));
@@ -42,29 +42,25 @@ async function review(page) {
   await page.locator('.sentence-time').first().waitFor();
 }
 try {
-  await check('subtitle navigation retains pause and play, never acquires a sentence stop', async (page) => {
+  await check('timestamp and sentence shortcuts retain pause and continuous play', async (page) => {
     await review(page);
-    await page.locator('.sentence-time').nth(5).click();
-    const sentenceStart = (await state(page)).time;
-    assert.ok(sentenceStart > 0);
-    await page
-      .locator('.sentence')
-      .nth(2)
-      .click({ position: { x: 3, y: 3 } });
-    assert.ok((await state(page)).time < sentenceStart);
-    await page
-      .locator('.sentence')
-      .nth(5)
-      .click({ position: { x: 3, y: 3 } });
-    assert.equal((await state(page)).time, sentenceStart, 'sentence background seeks to its timestamp');
-    await page.waitForTimeout(150);
-    assert.equal((await state(page)).paused, true, 'time click must keep paused');
+    const timestamp = page.locator('.sentence[data-sentence-id="s00055"] .sentence-time');
+    await timestamp.click();
+    assert.ok(Math.abs((await state(page)).time - 28.16) < 0.1);
+    assert.equal((await state(page)).paused, true, 'timestamp must keep paused');
     await page.locator('#next-sentence').click();
-    await page.waitForTimeout(150);
+    const next = await state(page);
+    assert.ok(next.time > 28.16, 'next moves forward');
     assert.equal((await state(page)).paused, true, 'next must keep paused');
+    await page.locator('#prev-sentence').click();
+    assert.ok((await state(page)).time < next.time, 'previous moves back');
+    assert.equal((await state(page)).paused, true, 'previous must keep paused');
     await page.locator('#play-pause').click();
-    await page.locator('.sentence-time').nth(4).click();
-    await page.waitForTimeout(5000);
+    await page.waitForFunction(() => !document.querySelector('#audio').paused);
+    await timestamp.click();
+    await page.waitForFunction(() => document.querySelector('#audio').currentTime > 31.05, null, {
+      timeout: 6000,
+    });
     assert.equal((await state(page)).paused, false, 'navigation during playback must cross the sentence end');
     const visible = await page.locator('.sentence.is-current').evaluate((n) => {
       const t = document.querySelector('#transcript').getBoundingClientRect(),
@@ -73,35 +69,93 @@ try {
     });
     assert.equal(visible, true, 'current subtitle must be visible');
   });
-  await check('sentence background starts playback after a word finishes', async (page) => {
-    await review(page);
-    const row = page.locator('.sentence[data-sentence-id="s00055"]');
-    const word = row.locator('[data-word-id="w000736"]');
-    const timestamp = row.locator('.sentence-time');
-    const blank = () => row.click({ position: { x: 3, y: 3 } });
-    const finishWord = async () => {
-      await word.click();
-      await page.waitForFunction(() => {
-        const audio = document.querySelector('#audio');
-        return audio.paused && Math.abs(audio.currentTime - 30.86) < 0.12;
-      });
-    };
+  await check(
+    'sentence blank replays to the sentence end after a pause or a word replay',
+    async (page) => {
+      await review(page);
+      const row = page.locator('.sentence[data-sentence-id="s00055"]');
+      const word = row.locator('[data-word-id="w000736"]');
+      const timestamp = row.locator('.sentence-time');
+      const floating = page.locator('.transcript-panel.is-floating');
+      const atSentenceEnd = () =>
+        page.waitForFunction(
+          () => {
+            const audio = document.querySelector('#audio');
+            return audio.paused && !audio.seeking && Math.abs(audio.currentTime - 30.86) < 0.12;
+          },
+          null,
+          { timeout: 6000 },
+        );
+      async function replayFromBlank(transcriptMode) {
+        const heading = row.locator('.sentence-meta');
+        await heading.scrollIntoViewIfNeeded();
+        const position = await heading.evaluate((element) => {
+          const box = element.getBoundingClientRect();
+          const y = Math.floor(box.height / 2);
+          for (const fraction of [0.9, 0.8, 0.7, 0.6]) {
+            const x = Math.floor(box.width * fraction);
+            if (document.elementFromPoint(box.left + x, box.top + y) === element) return { x, y };
+          }
+          return null;
+        });
+        assert.ok(position, `${transcriptMode}: tap must hit the sentence blank area`);
+        await page.locator('#audio').evaluate((audio) => {
+          delete audio.dataset.sentenceSeek;
+          delete audio.dataset.sentencePlayed;
+          audio.addEventListener('seeked', () => (audio.dataset.sentenceSeek = String(audio.currentTime)), {
+            once: true,
+          });
+          audio.addEventListener('play', () => (audio.dataset.sentencePlayed = 'true'), { once: true });
+        });
+        await heading.tap({ position });
+        await page.waitForFunction(
+          () => {
+            const { dataset } = document.querySelector('#audio');
+            return dataset.sentencePlayed === 'true' && dataset.sentenceSeek !== undefined;
+          },
+          null,
+          { timeout: 2500 },
+        );
+        assert.ok(
+          Math.abs(Number(await page.locator('#audio').getAttribute('data-sentence-seek')) - 28.16) < 0.12,
+          `${transcriptMode}: blank playback begins at the sentence start`,
+        );
+        await atSentenceEnd();
+      }
+      const finishWord = async () => {
+        await page.locator('#audio').evaluate((audio) => {
+          delete audio.dataset.wordSeek;
+          audio.addEventListener('seeked', () => (audio.dataset.wordSeek = String(audio.currentTime)), {
+            once: true,
+          });
+        });
+        await word.tap();
+        await page.waitForFunction(() => {
+          const audio = document.querySelector('#audio');
+          return Number(audio.dataset.wordSeek) > 28.56 && Number(audio.dataset.wordSeek) < 30.86;
+        });
+        await atSentenceEnd();
+      };
 
-    await finishWord();
-    await blank();
-    await page.waitForFunction(() => !document.querySelector('#audio').paused, null, { timeout: 2000 });
-    const restarted = await state(page);
-    assert.ok(Math.abs(restarted.time - 28.16) < 0.3);
-    await page.waitForFunction(() => document.querySelector('#audio').currentTime > 30.96);
-    await page.locator('#play-pause').click();
-    await blank();
-    assert.equal((await state(page)).paused, true, 'a deliberate pause is preserved');
+      await page.locator('#play-pause').tap();
+      await page.waitForFunction(() => !document.querySelector('#audio').paused);
+      await page.locator('#play-pause').tap();
+      assert.equal((await state(page)).paused, true, 'start with a deliberate pause');
+      await floating.locator('.caption-dock').tap();
+      assert.equal(await floating.count(), 0, 'test the ordinary docked transcript');
+      await replayFromBlank('docked');
 
-    await finishWord();
-    await timestamp.click();
-    assert.equal((await state(page)).paused, true, 'the timestamp only positions after a word replay');
-    assert.ok(Math.abs((await state(page)).time - 28.16) < 0.1);
-  });
+      await page.locator('#paper-float-transcript').tap();
+      await floating.waitFor();
+      await finishWord();
+      await replayFromBlank('floating');
+      await finishWord();
+      await timestamp.tap();
+      assert.equal((await state(page)).paused, true, 'the timestamp only positions after a word replay');
+      assert.ok(Math.abs((await state(page)).time - 28.16) < 0.1);
+    },
+    { hasTouch: true },
+  );
   await check('native drag previews without media seeks until release', async (page) => {
     const seek = page.locator('#seek');
     const box = await seek.boundingBox();

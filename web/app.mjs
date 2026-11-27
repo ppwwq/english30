@@ -75,7 +75,6 @@ let activeWord = null,
   raf = null;
 let loop = { start: null, end: null, enabled: false },
   stopAt = null,
-  resumeAfterWord = false,
   audioReady = false,
   loadGeneration = 0;
 let pendingSeek = null,
@@ -479,7 +478,7 @@ function renderTranscript() {
       time.setAttribute('aria-label', `跳到句首 ${formatTime(sentence.start)}`);
       heading.append(time, el('span', 'speaker', sentence.speaker || ''));
       row.addEventListener('click', (event) => {
-        if (!event.target.closest('button')) seekPosition(sentenceTime(), !audio.paused || resumeAfterWord);
+        if (!event.target.closest('button')) playSubtitle(sentence.start, sentence.end);
       });
       row.append(heading);
       const text = el('p', 'sentence-text');
@@ -1036,7 +1035,7 @@ function selectWord(id) {
   renderInspector();
   const { sentence, word } = wordsById.get(id);
   const start = Number.isFinite(word.start) && word.start < sentence.end ? word.start : sentence.start;
-  return playSubtitle(Math.max(sentence.start, start), sentence.end, { wordReplay: true });
+  return playSubtitle(Math.max(sentence.start, start), sentence.end);
 }
 function renderInspector() {
   const inspector = $('word-inspector');
@@ -1191,10 +1190,10 @@ function renderMarks() {
     target.append(el('p', 'empty-copy', '还没有标记。点字幕中的词，或播放时按「刚才没听清」。'));
 }
 
-function playSubtitle(start, end, options) {
+function playSubtitle(start, end) {
   try {
     const range = shiftedRange({ start, end }, session.timingOffset || 0, lesson.duration);
-    return playRange(range.start, range.end, options);
+    return playRange(range.start, range.end);
   } catch (error) {
     status(error.message, true);
     return Promise.resolve();
@@ -1265,9 +1264,8 @@ async function play() {
 function cancelPendingSeek() {
   pendingSeek?.abort();
   pendingSeek = null;
-  resumeAfterWord = false;
 }
-async function playRange(start, end, { repeat = false, wordReplay = false } = {}) {
+async function playRange(start, end, { repeat = false } = {}) {
   if (!guardReview() || !audioReady) return;
   cancelPendingSeek();
   const controller = new AbortController();
@@ -1292,7 +1290,7 @@ async function playRange(start, end, { repeat = false, wordReplay = false } = {}
       $('transcript').scrollIntoView({ block: 'center', behavior: 'instant' });
     }
     loop.enabled = repeat;
-    stopAt = repeat ? null : { time: range.end, wordReplay };
+    stopAt = repeat ? null : range.end;
     updateLoop();
     await play();
   } catch (e) {
@@ -1327,8 +1325,7 @@ function updatePlayback() {
   if (review() && loop.enabled && Number.isFinite(loop.end) && time >= loop.end - 0.025) {
     audio.currentTime = loop.start;
     time = loop.start;
-  } else if (stopAt && time >= stopAt.time - 0.025) {
-    resumeAfterWord = stopAt.wordReplay && (!audio.paused || audio.ended);
+  } else if (stopAt != null && time >= stopAt - 0.025) {
     stopAt = null;
     audio.pause();
   }

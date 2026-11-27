@@ -2,12 +2,30 @@
 body[data-view='listening'] {
   --listening-gutter: clamp(18px, 3.4vw, 52px);
   --listening-pad: clamp(14px, 1.7vw, 25px);
-  --listening-rule: color-mix(in srgb, var(--ink) 22%, var(--canvas-bg));
 }
 #listening-panel {
   width: 100%;
   max-width: 88rem;
   padding: 12px var(--listening-gutter) 30px;
+}
+body[data-view='listening'] .app-header,
+#listening-panel
+  :is(
+    .panel-header,
+    #question-pages,
+    .question-card,
+    .original-responses,
+    .paper-writing-header,
+    .ink-tools,
+    .scoring-point
+  ) {
+  border-block-end: 0;
+}
+#listening-panel
+  :is(.question-actions, .original-responses, .review-help, .ink-preset-adjust, .is-floating #word-inspector),
+body[data-view='listening'] :is(.player, .focused-drill-footer),
+body[data-view='listening'] #review-playback-controls:not([hidden]) + #open-review-marks {
+  border-block-start: 0;
 }
 #listening-panel .session-heading {
   gap: 10px;
@@ -38,7 +56,6 @@ body[data-view='listening'] {
   align-items: end;
   gap: 8px clamp(8px, 1.4vw, 18px);
   padding: 6px 0;
-  border-block: 1px solid var(--listening-rule);
   margin: 0;
 }
 #listening-panel .practice-picker label {
@@ -304,7 +321,6 @@ body[data-paper-answer='ink']:not([data-paper-focus='true']):not([data-listening
   color: var(--ink-soft);
 }
 #listening-panel .task-context {
-  border-block-start: 1px solid var(--line);
   padding: 15px 0 0;
   color: var(--ink);
 }
@@ -316,7 +332,6 @@ body[data-paper-answer='ink']:not([data-paper-focus='true']):not([data-listening
   margin: 9px 0 0;
 }
 #listening-panel .transcript:has(.listening-paper-instructions) {
-  border-top: 1px solid var(--line);
   padding: 0 var(--listening-pad);
 }
 .listening-paper-instructions > summary {
@@ -351,7 +366,6 @@ body[data-paper-answer='ink']:not([data-paper-focus='true']):not([data-listening
   border-color: var(--lilac);
 }
 body[data-view='listening'] .player {
-  border-top: 1px solid var(--listening-rule);
   background: var(--surface);
   box-shadow: 0 -3px 15px color-mix(in srgb, var(--ink) 4%, transparent);
 }

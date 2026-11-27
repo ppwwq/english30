@@ -12,7 +12,7 @@ const modeNames = {
   pan: '移动纸面',
 };
 const colorNames = ['墨黑', '蓝', '红', '绿', '黄', '紫'];
-export function mountInkTools(host, options, actions, reviewing = false) {
+export function mountInkTools(host, options, actions, reviewing = false, idPrefix = '') {
   host.setAttribute('role', 'group');
   host.setAttribute('aria-label', reviewing ? '原卷批改工具' : '原卷手写工具');
   const modes = new Map();
@@ -49,7 +49,8 @@ export function mountInkTools(host, options, actions, reviewing = false) {
     );
     trigger.setAttribute('aria-expanded', 'false');
     const panel = group(parent, cls, label);
-    panel.id = 'ink-menu-' + key;
+    panel.id = idPrefix + 'ink-menu-' + key;
+    panel.dataset.inkMenu = key;
     trigger.setAttribute('aria-controls', panel.id);
     panel.hidden = key !== 'colors';
     menus.push({ key, trigger, panel });
@@ -98,13 +99,17 @@ export function mountInkTools(host, options, actions, reviewing = false) {
     if (!compact)
       for (const key of ['pen', 'pencil', 'marker']) rack.insertBefore(modes.get(key), modes.get('erase'));
   }
-  new ResizeObserver(([entry]) => {
+  let layoutFrame = 0;
+  const observer = new ResizeObserver(([entry]) => {
     const next = entry.contentRect.width > 0 && entry.contentRect.width < (reviewing ? 450 : 540);
-    if (next !== compact) {
+    cancelAnimationFrame(layoutFrame);
+    if (next === compact) return;
+    layoutFrame = requestAnimationFrame(() => {
       compact = next;
       arrangePens();
-    }
-  }).observe(host);
+    });
+  });
+  observer.observe(host);
   const paint = group(host, 'ink-paint', '笔色和规格');
   const palette = menu(paint, 'colors', '选择笔色', 'swatch', 'ink-palette');
   palette.trigger.classList.add('ink-palette-trigger');
@@ -290,5 +295,11 @@ export function mountInkTools(host, options, actions, reviewing = false) {
     redo.disabled = menuRedo.disabled = !state.canRedo;
     clear.disabled = !state.hasInk;
   }
-  return refresh;
+  return {
+    refresh,
+    destroy() {
+      observer.disconnect();
+      cancelAnimationFrame(layoutFrame);
+    },
+  };
 }

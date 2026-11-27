@@ -255,6 +255,36 @@ try {
     await answerConfirmation(page, '查看参考页');
     assert.equal(await page.locator('#paper-page').inputValue(), '2');
   });
+  await check('home and library open Paper 1 practice while preserving the evidence exercises', async () => {
+    await page.locator('#home-back').click();
+    await page.locator('.main-navigation [data-view=reading-paper]').tap();
+    await page.locator('#reading-paper-title').waitFor();
+    await page.getByRole('link', { name: '证据专项练习' }).tap();
+    await page.locator('.rd-workspace').waitFor();
+    await page.locator('#home-back').click();
+    await page.locator('.main-navigation [data-view=library]').tap();
+    await page.locator('#paper-year').selectOption('2025');
+    await page.locator('#paper-paper').selectOption('1');
+    await page.locator('#paper-part').selectOption('B2');
+    const practice = page.locator('#paper-practise-reading');
+    assert.equal(await practice.isVisible(), false);
+    await page.locator('#paper-part').selectOption('B1');
+    const marking = page.getByRole('button', { name: /2025 MS/ });
+    const exposure = () => page.evaluate(() => localStorage.getItem('english30-seen:reading-paper:2025-exam'));
+    await marking.tap();
+    await answerConfirmation(page, '取消');
+    assert.equal(await exposure(), null);
+    await marking.tap();
+    await answerConfirmation(page, '打开资料');
+    assert.equal(await exposure(), '1');
+    await practice.tap();
+    await page.locator('#reading-paper-title').waitFor();
+    assert.equal(await page.locator('[data-choice=year]').inputValue(), '2025');
+    assert.equal(await page.locator('[data-choice=variant]').inputValue(), 'exam');
+    assert.equal(await page.locator('[data-choice=part]').inputValue(), 'B1');
+    await page.locator('#home-back').click();
+    await page.locator('.main-navigation [data-view=library]').tap();
+  });
   await check('tablet portrait and phone controls stay within the viewport', async () => {
     for (const width of [810, 390]) {
       await page.setViewportSize({ width, height: 1080 });

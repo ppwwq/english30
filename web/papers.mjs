@@ -4,11 +4,12 @@ import { PaperPlayer } from './paper-player.mjs';
 import { loadPaperCatalogue } from './paper-catalogue.mjs';
 import { studyStore } from './training-core.mjs';
 import { mountPaperStudy } from './paper-study.mjs';
+import { markSeen, seenMaterials } from './paper-recovery.mjs';
 
 const timeText = (seconds) =>
   `${Math.floor((seconds || 0) / 60)}:${String(Math.floor((seconds || 0) % 60)).padStart(2, '0')}`;
 const variants = { exam: '正式试卷', sample: 'Sample Paper', practice: 'Practice Paper' };
-const libraryIntro = '查阅题页、对照 Data File 和评分参考。听力作答请点「用此 Task 开始练习」。';
+const libraryIntro = '查阅题页、Data File 与评分参考，也可开始听力或阅读原卷练习。';
 const roles = {
   question: '题卷',
   data: 'Data File',
@@ -56,7 +57,7 @@ export async function mountPapers({ host, bridge, catalogue }) {
       <label>Part<select id="paper-part"></select></label><label>Task<select id="paper-task"></select></label>
     </form>
     <div id="paper-notice" class="paper-notice" role="status"></div>
-    <div class="library-destinations"><button id="paper-practise-task" type="button" class="button-primary">用此 Task 开始练习</button><button id="library-open-references" type="button" class="button-secondary">同年资料</button></div>
+    <div class="library-destinations"><button id="paper-practise-task" type="button" class="button-primary">用此 Task 开始练习</button><button id="paper-practise-reading" type="button" class="button-primary" hidden>练习此阅读卷</button><button id="library-open-references" type="button" class="button-secondary">同年资料</button></div>
     </section><div class="library-documents">
     <section id="paper-audio-panel" class="paper-audio-panel" aria-label="原卷录音">
       <div class="paper-transport"><button id="paper-play" type="button" class="button-primary">播放</button><button id="paper-back" type="button" aria-label="后退十秒">−10 秒</button><button id="paper-forward" type="button" aria-label="前进十秒">＋10 秒</button>
@@ -123,6 +124,10 @@ export async function mountPapers({ host, bridge, catalogue }) {
     bridge.navigate('listening', {
       lessonId: `paper-${selection.year}-${selection.variant}-${selection.part.toLowerCase()}-task-${selection.task}`,
     });
+  $('paper-practise-reading').onclick = () => {
+    const { year, variant, part } = selection;
+    bridge.navigate('reading-paper', { year, variant, part });
+  };
   function updateStudySavebar() {
     $('paper-study-save').disabled = !studyStore.hasUnsaved();
     $('paper-study-status').textContent = studyStore.loadError
@@ -617,6 +622,8 @@ export async function mountPapers({ host, bridge, catalogue }) {
           : '你保存的材料中没有此项独立题卷；同年合订本保留在下方。';
     $('paper-audio-panel').hidden = selection.paper !== 3;
     $('paper-practise-task').hidden = selection.paper !== 3;
+    $('paper-practise-reading').hidden =
+      selection.paper !== 1 || !['A', 'B1'].includes(selection.part) || !selected.questions.length;
     $('paper-study-host').hidden = selection.paper !== 3;
     const key = `${selection.year}-${selection.variant}`;
     if (selection.paper === 3 && key !== session?.id) {
@@ -686,6 +693,11 @@ export async function mountPapers({ host, bridge, catalogue }) {
       paperStudy?.expose('session');
       if (next.paper === 3 || next.paper == null)
         bridge.exposePaper?.({ year: next.year, variant: next.variant, part: null, task: null });
+      if (
+        (next.role === 'marking' || answersPage) &&
+        (next.paper === 1 || (next.paper == null && selection.paper === 1))
+      )
+        markSeen(seenMaterials(), `reading-paper:${next.year}-${next.variant}`);
     }
     source = next;
     pageNumber = Math.min(next?.pages.length || 1, Math.max(1, Number(number) || 1));

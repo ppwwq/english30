@@ -63,7 +63,7 @@ try {
       // the race where navigation pauses audio that has not started playing yet.
       await page.evaluate(() => {
         document.querySelector('.evidence-link').click();
-        document.querySelector('[data-view="reading"]').click();
+        document.querySelector('[data-view="reading-paper"]').click();
       });
       await page.waitForTimeout(700);
       item.state = await page.evaluate(() => ({
@@ -72,7 +72,7 @@ try {
         currentTime: document.getElementById('audio').currentTime,
         playerHidden: document.querySelector('.player').hidden,
       }));
-      assert.equal(item.state.view, 'reading');
+      assert.equal(item.state.view, 'reading-paper');
       assert.equal(item.state.playerHidden, true);
       assert.equal(item.state.paused, true, 'a delayed seek must not resume playback after navigation');
     },
