@@ -440,10 +440,9 @@ export function createAccountApi(db, bucket, assets) {
         input.delta.sets.records.filter(readingRecord).map(async (record) => {
           const [r] = validateStudyState({ ...emptyStudyState(), records: [record] }).records;
           const details = r.details.readingPaper;
-          for (const [key] of readingFiles(r)) {
-            for (const field of ['ink', 'reviewInk'])
-              if (details[field + 'Files']?.[key]) await readingInk(owner, details, field, key);
-          }
+          for (const field of ['ink', 'reviewInk'])
+            for (const key of Object.keys(details[field + 'Files'] || {}))
+              await readingInk(owner, details, field, key);
           return [record, await recordDigest(r)];
         }),
       ),

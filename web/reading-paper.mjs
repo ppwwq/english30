@@ -689,7 +689,11 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
       papers[0];
     const nextPart =
       nextPaper?.parts.find(({ id }) => id === (options.part ?? cached?.part ?? 'A')) ?? nextPaper?.parts[0];
-    if (!nextPaper || !nextPart || (nextPaper === paper && nextPart === part && !options.kind)) return;
+    if (!nextPaper || !nextPart) return;
+    if (nextPaper === paper && nextPart === part && !options.kind) {
+      await refreshFromStore();
+      return;
+    }
     if (
       options.kind &&
       (nextPaper.year !== requestedYear ||

@@ -27,7 +27,13 @@ const check = async (name, fn) => {
 };
 const nav = async (view) => {
   await page.locator('#home-back').click();
-  await page.locator(`.main-navigation [data-view="${view}"]`).tap();
+  if (view === 'reading') {
+    await page.locator('.main-navigation [data-view="reading-paper"]').tap();
+    await page.waitForFunction(() => document.body.dataset.view === 'reading-paper');
+    await page.locator('.reading-paper-training[data-view="reading"]').tap();
+  } else {
+    await page.locator(`.main-navigation [data-view="${view}"]`).tap();
+  }
   await page.waitForFunction((v) => document.body.dataset.view === v, view);
   if (view === 'listening') {
     await page.evaluate(() => {
@@ -45,7 +51,7 @@ try {
     async () => {
       for (const width of [1080, 810, 390]) {
         await page.setViewportSize({ width, height: width === 810 ? 1080 : 810 });
-        for (const view of ['library', 'listening', 'reading', 'writing', 'today']) {
+        for (const view of ['library', 'listening', 'reading-paper', 'writing', 'today']) {
           await nav(view);
           await page.waitForTimeout(1250);
           assert.equal(await page.locator('.main-navigation').isVisible(), false);

@@ -48,6 +48,25 @@ export async function writeReadingDraft(value) {
   if (key) await access('draft', 'readwrite', (store) => (value ? store.put(value, key) : store.delete(key)));
 }
 
+export async function clearReadingStorage(owner = activeAccount?.id) {
+  if (!owner) return;
+  const prefix = scopedKey('', owner);
+  const db = await database();
+  await new Promise((resolve, reject) => {
+    const tx = db.transaction(['draft', 'ink'], 'readwrite');
+    for (const name of ['draft', 'ink']) {
+      const store = tx.objectStore(name);
+      const keys = store.getAllKeys();
+      keys.onsuccess = () => {
+        for (const key of keys.result)
+          if (typeof key === 'string' && key.startsWith(prefix)) store.delete(key);
+      };
+    }
+    tx.oncomplete = () => resolve();
+    tx.onabort = tx.onerror = () => reject(tx.error || new Error('未能清理本机阅读缓存。'));
+  });
+}
+
 const hashPattern = /^[a-f0-9]{64}$/;
 const hashBlob = async (blob) =>
   [...new Uint8Array(await crypto.subtle.digest('SHA-256', await blob.arrayBuffer()))]
@@ -64,6 +83,10 @@ export async function readReadingInkFile(hash, owner = activeAccount?.id) {
     cache: 'no-store',
     headers: { 'X-English30-Owner': owner },
   });
+  if (result.status === 401) {
+    window.dispatchEvent(new Event('english30-account-expired'));
+    throw new Error('账号会话已过期，请在「我的答卷」重新登录后重试。');
+  }
   if (!result.ok) throw new Error('云端阅读笔迹未能取回，请联网后重试。');
   const blob = await result.blob();
   if ((await hashBlob(blob)) !== hash) throw new Error('阅读笔迹校验不一致。');

@@ -154,7 +154,8 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
     openQuestionPage,
     previewHeight,
     writingHeight,
-    previewObserver;
+    previewObserver,
+    mountedInk;
   function previewResize(target, wrap, writingSheet) {
     const grip = document.createElement('div');
     grip.className = 'paper-preview-resize';
@@ -212,6 +213,8 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
       showWorkspaceResize(false, true);
       delete document.body.dataset.paperFocus;
       previewObserver?.disconnect();
+      mountedInk?.destroy();
+      mountedInk = null;
       delete target.dataset.previewResized;
       modeSlot.replaceChildren();
       openMarking.hidden = true;
@@ -225,6 +228,8 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
     if (key === sourceKey && displayedInk === writing?.ink && displayedSubmission === writing?.submittedInk)
       return;
     previewObserver?.disconnect();
+    mountedInk?.destroy();
+    mountedInk = null;
     delete target.dataset.previewResized;
     modeSlot.replaceChildren();
     openMarking.hidden = true;
@@ -393,8 +398,8 @@ export function mountPaperPractice({ entries, sources, onSelect, onLibrary, onIn
             },
           }
         : writing;
-      const ink =
-        reviewing || writing?.mode === 'ink' ? mountPaperInk(stage, inkTools, editor, reviewing) : null;
+      const ink = (mountedInk =
+        reviewing || writing?.mode === 'ink' ? mountPaperInk(stage, inkTools, editor, reviewing) : null);
       function show(number, view) {
         const source = documents.find((s) => s.id === select.value);
         if (source.role === 'marking' && shownSource && shownSource.role !== 'marking') {

@@ -11,7 +11,12 @@ import { emptyBackup, learningDelta, applyLearningDelta } from './account-learni
 import { validateBackup, LISTENING_KEY, STUDY_KEY } from './training-core.mjs';
 import { handwrittenImage, typedImages, paperSaveInfo } from './account-render.mjs';
 import { putJob, putJobs, jobsFor, removeJob } from './account-queue.mjs';
-import { packReadingPaperInk, readReadingInkFile, unpackReadingPaperInk } from './reading-paper-storage.mjs';
+import {
+  clearReadingStorage,
+  packReadingPaperInk,
+  readReadingInkFile,
+  unpackReadingPaperInk,
+} from './reading-paper-storage.mjs';
 
 const user = activeAccount,
   changed = () => window.dispatchEvent(new Event('english30-account-change'));
@@ -714,6 +719,7 @@ export function createAccountController({ studyStore, enterPaper, enterReading, 
       };
       window.addEventListener('focus', sync);
       window.addEventListener('online', sync);
+      window.addEventListener('english30-account-expired', markExpired);
       document.addEventListener('visibilitychange', sync);
       setInterval(sync, 60_000);
       await counts();
@@ -811,6 +817,7 @@ export function createAccountController({ studyStore, enterPaper, enterReading, 
       for (const job of await jobsFor(user.id)) await removeJob(job.saveId);
       for (const storage of [sessionStorage, localStorage])
         for (const k of Object.keys(storage)) if (k.startsWith(scopedKey(''))) storage.removeItem(k);
+      await clearReadingStorage(user.id).catch(() => {});
       accountClosed();
       location.reload();
     },
