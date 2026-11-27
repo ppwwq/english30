@@ -150,6 +150,11 @@ body:not([data-view='home'], [data-view='account']) .fine-print {
   padding-left: max(20px, env(safe-area-inset-left));
   padding-right: max(20px, env(safe-area-inset-right));
 }
+body[data-view='listening'] .app-header {
+  width: 100%;
+  margin-block: 0;
+  flex-shrink: 0;
+}
 .brand {
   min-height: 44px;
 }

@@ -20,8 +20,8 @@ function rememberTab(user, epoch) {
   sessionStorage.setItem(tabKey, JSON.stringify(user));
   sessionStorage.setItem(epochKey, epoch || '');
 }
-function changeDevice(owner, pending = false) {
-  const state = { owner, pending, epoch: crypto.randomUUID() };
+function changeDevice(owner, pending = false, name) {
+  const state = { owner, pending, epoch: crypto.randomUUID(), ...(name ? { name } : {}) };
   localStorage.setItem(deviceKey, JSON.stringify(state));
   return state;
 }
@@ -83,7 +83,7 @@ export async function allowLogin() {
   if (!(await finishLogout())) throw Error('本机已退出。请联网完成上次退出，再登录账号。');
 }
 export function accountOpened(user) {
-  const state = changeDevice(user.id);
+  const state = changeDevice(user.id, false, user.name);
   rememberTab(user, state.epoch);
 }
 export function accountClosed() {
@@ -143,7 +143,10 @@ export async function resolveAccountIdentity() {
     if (!response.ok) throw Error('offline');
     ({ user } = await response.json());
     if (device().epoch !== pageEpoch) return { user: null, offline: true };
-    if ((state.owner || null) !== (user?.id || null)) pageEpoch = changeDevice(user?.id || null).epoch;
+    if ((state.owner || null) !== (user?.id || null))
+      pageEpoch = changeDevice(user?.id || null, false, user?.name).epoch;
+    else if (user && state.name !== user.name)
+      localStorage.setItem(deviceKey, JSON.stringify({ ...state, name: user.name }));
     if (user) rememberTab(user, pageEpoch);
     else forgetTab();
     return { user, offline: false };
@@ -157,6 +160,10 @@ export async function resolveAccountIdentity() {
         (!state.epoch || state.owner === previous?.id)
       )
         user = previous;
+      if (!user && !state.pending && state.owner && state.name && pageEpoch === state.epoch) {
+        user = { id: state.owner, name: state.name };
+        rememberTab(user, pageEpoch);
+      }
     } catch {}
     return { user, offline: true };
   }

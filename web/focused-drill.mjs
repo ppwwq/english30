@@ -19,6 +19,25 @@ export function mountFocusedDrill({ play, cancel, onChange }) {
     offset = 0,
     lessonId = null,
     returnTarget = null;
+  const concealed = new Map();
+  function concealHints() {
+    const hints = document.querySelectorAll(
+      '.transcript-panel, #word-inspector, #practice-sources, #review-navigation, #open-marking-page, #paper-float-transcript, #open-review-marks',
+    );
+    const hide = (node) => {
+      if (!concealed.has(node)) concealed.set(node, node.hidden);
+      node.hidden = true;
+    };
+    for (const node of hints) hide(node);
+    for (const id of ['questions', 'original-responses']) {
+      const region = document.getElementById(id);
+      if (region.contains(dialog)) {
+        for (let child = dialog; child !== region; child = child.parentElement) {
+          for (const sibling of child.parentElement.children) if (sibling !== child) hide(sibling);
+        }
+      } else hide(region);
+    }
+  }
   const study = mountPaperStudy({
     host: dialog.querySelector('#focused-drill-host'),
     idPrefix: 'focus-',
@@ -29,7 +48,7 @@ export function mountFocusedDrill({ play, cancel, onChange }) {
     },
     cancel,
     isExposed: () => true,
-    conceal: () => cancel(),
+    conceal: concealHints,
     onChange,
     onSentenceChange: (sentence) => {
       dialog.querySelector('#focused-drill-title').textContent = sentence
@@ -40,28 +59,33 @@ export function mountFocusedDrill({ play, cancel, onChange }) {
         labels.join('、') + (sentence?.id === openingSentenceId ? ' · ' + questionText : '');
     },
   });
-  function close() {
+  function close(restoreFocus) {
     dialog.hidden = true;
-    cancel();
     study.suspend();
+    cancel();
+    document.body.append(dialog);
+    for (const [node, wasHidden] of concealed) node.hidden = wasHidden;
+    concealed.clear();
     delete document.body.dataset.focusedDrill;
-    if (returnTarget?.isConnected) {
+    if (restoreFocus && returnTarget?.isConnected) {
       returnTarget.scrollIntoView({ block: 'center' });
       returnTarget.focus({ preventScroll: true });
     }
+    returnTarget = null;
     onChange();
   }
-  dialog.querySelector('#focused-drill-return').onclick = close;
+  dialog.querySelector('#focused-drill-return').onclick = () => close(true);
   dialog.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       event.stopPropagation();
-      close();
+      close(true);
     }
   });
   return {
     open(lesson, question, target) {
       const sentenceId = questionDrillSentence(lesson, question);
       if (!sentenceId) return false;
+      if (!dialog.hidden) close(false);
       const context = practiceDrillContext(lesson);
       offset = context.offset;
       openingSentenceId = sentenceId;
@@ -91,7 +115,7 @@ export function mountFocusedDrill({ play, cancel, onChange }) {
     },
     getSaveState: () => study.getSaveState(),
     suspend() {
-      if (!dialog.hidden) close();
+      if (!dialog.hidden) close(false);
     },
   };
 }

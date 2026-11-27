@@ -264,6 +264,28 @@ body[data-view='reading-paper'] .app-header {
   min-width: 5.5rem;
 }
 
+.reading-paper-checks {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 4px 12px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.reading-paper-checks select {
+  min-height: 44px;
+}
+
+.reading-paper-status {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
 @media (min-width: 980px) and (orientation: landscape) {
   .reading-paper-host:not([data-focused='true'])
     .reading-paper-documents:has(> .reading-paper-document + .reading-paper-document) {

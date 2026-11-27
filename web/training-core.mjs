@@ -128,12 +128,43 @@ export function validateStudyState(value) {
         typeof r.answers !== 'object' ||
         Array.isArray(r.answers) ||
         Object.entries(r.answers).some(
-          ([number, answer]) => !/^[1-9]\d{0,2}$/.test(number) || typeof answer !== 'string' || answer.length > 4000,
+          ([number, answer]) =>
+            !/^[1-9]\d{0,2}$/.test(number) || typeof answer !== 'string' || answer.length > 4000,
         )
       )
         throw new Error('阅读原卷作答格式无效。');
-      validatePaperInk(r.details.readingPaper.ink);
-      validatePaperInk(r.details.readingPaper.reviewInk);
+      const { ink, reviewInk, inkFiles, reviewInkFiles, checks } = r.details.readingPaper;
+      for (const [pages, files] of [
+        [ink, inkFiles],
+        [reviewInk, reviewInkFiles],
+      ]) {
+        if (pages !== undefined) validatePaperInk(pages);
+        if (
+          files !== undefined &&
+          (!files ||
+            typeof files !== 'object' ||
+            Array.isArray(files) ||
+            Object.entries(files).some(
+              ([page, hash]) =>
+                !/^[\w-]+:[1-9]\d*$/.test(page) || typeof hash !== 'string' || !/^[a-f0-9]{64}$/.test(hash),
+            ))
+        )
+          throw new Error('阅读笔迹索引无效。');
+      }
+      if (
+        checks !== undefined &&
+        (!checks ||
+          typeof checks !== 'object' ||
+          Array.isArray(checks) ||
+          Object.entries(checks).some(
+            ([number, check]) =>
+              !/^[1-9]\d{0,2}$/.test(number) ||
+              !['correct', 'retry'].includes(check?.status) ||
+              (check.error !== undefined &&
+                (check.status !== 'retry' || typeof check.error !== 'string' || check.error.length > 100)),
+          ))
+      )
+        throw new Error('阅读自核格式无效。');
     }
     if (
       r.correct != null &&

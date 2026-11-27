@@ -147,11 +147,13 @@ export function mountAccountView(root, controller) {
     focus(content.querySelector('.account-auth h1'));
   }
   function renderAuth(name = '') {
+    const expired = controller.state().expired;
     root.dataset.screen = 'access';
     mast.hidden = true;
     const form = node('form', 'account-auth');
     const user = input('username', 'text', 'username');
     user.value = name;
+    user.readOnly = !!expired;
     const password = input('password', 'password', mode === 'login' ? 'current-password' : 'new-password');
     const code = input('recoveryCode', 'text', 'off');
     const userField = field('用户名', user);
@@ -162,7 +164,14 @@ export function mountAccountView(root, controller) {
       userField.append(rules);
     }
     const intro = node('div', 'account-auth-intro');
-    intro.append(heading(authLabels[mode], 'h1'), note('登录后，可在其他设备取回已保存的答卷和笔迹。'));
+    intro.append(
+      heading(expired && mode === 'login' ? '重新登录' : authLabels[mode], 'h1'),
+      note(
+        expired
+          ? '账号会话已过期。重新登录同一账号即可继续保存与同步。'
+          : '登录后，可在其他设备取回已保存的答卷和笔迹。',
+      ),
+    );
     form.append(intro, userField);
     if (mode === 'recover') form.append(field('恢复码', code));
     const passwordField = field(mode === 'recover' ? '新密码' : '密码', password);
@@ -180,7 +189,7 @@ export function mountAccountView(root, controller) {
     submit.type = 'submit';
     const alternatives = actions(
       ...Object.keys(authLabels)
-        .filter((item) => item !== mode)
+        .filter((item) => item !== mode && !(expired && item === 'register'))
         .map((item) =>
           button(item === 'login' ? '返回登录' : authLabels[item], () => changeMode(item), 'button-text'),
         ),
@@ -497,7 +506,8 @@ export function mountAccountView(root, controller) {
       noMatch.append(
         icon('paper'),
         heading('还没有云端答卷'),
-        note('做完一个 Task 后，提交作答并确认保存，答卷就会出现在这里。'),
+        note('交卷并确认保存后，可以在这里查阅阅读和听力答卷。'),
+        link('去做一份阅读原卷', '#reading-paper', 'button-secondary'),
         link('去做一份听力原卷', '#listening', 'button-secondary'),
       );
     }
@@ -616,7 +626,7 @@ export function mountAccountView(root, controller) {
             i + 1,
             [
               i + 1 + ' / ' + pages.length,
-              p.kind === 'original' && p.number
+              p.kind === 'original' && p.number && paper.paper !== 1
                 ? (paper.part.includes('+') ? p.part + ' ' : '') + '原页 ' + p.number
                 : p.label,
               p.kind === 'original' && p.hash ? '手写' : '',
@@ -661,7 +671,7 @@ export function mountAccountView(root, controller) {
           pageSelect.value = String(n);
           position.textContent = n + ' / ' + pages.length;
           source.textContent =
-            page.kind === 'original' && page.number
+            page.kind === 'original' && page.number && paper.paper !== 1
               ? [
                   (paper.part.includes('+') ? page.part + ' ' : '') + '原页 ' + page.number,
                   page.hash && '手写',
@@ -751,6 +761,17 @@ export function mountAccountView(root, controller) {
     }
     renderNotices();
     identity.textContent = user ? '当前账号 · ' + user.name : '';
+    if (user && controller.state().expired) {
+      ++request;
+      settings.replaceChildren();
+      if (!content.querySelector('form')) {
+        mode = 'login';
+        renderAuth(user.name);
+        focus(content.querySelector('input[name="password"]'));
+      }
+      notices.replaceChildren();
+      return;
+    }
     if (controller.state().offline) {
       if (user) identity.textContent += ' · 暂未连接账号服务';
       else if (!status.textContent) say('暂未连接账号服务。');
@@ -802,9 +823,13 @@ export function mountAccountView(root, controller) {
   return {
     refresh,
     focusLogin() {
-      if (busy || controller.state().user) return;
+      if (busy || (controller.state().user && !controller.state().expired)) return;
       if (mode !== 'login') changeMode('login');
-      focus(content.querySelector('input[name="username"]'));
+      focus(
+        content.querySelector(
+          controller.state().expired ? 'input[name="password"]' : 'input[name="username"]',
+        ),
+      );
     },
     destroy() {
       destroyed = true;

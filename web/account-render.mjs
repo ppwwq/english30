@@ -81,12 +81,14 @@ export async function handwrittenImage(page, strokes, src) {
 }
 
 export async function typedImages(info, attempt, onPage) {
-  if (attempt.ink) return;
+  if (info.paper !== 1 && attempt.ink) return;
   const groups = new Map();
-  for (const [id, result] of Object.entries(attempt.results)) {
-    const answer = attempt.rawAnswers?.[id] ?? result.answer;
+  const reading = info.paper === 1;
+  const answers = reading ? attempt.answers : attempt.results;
+  for (const [id, result] of Object.entries(answers)) {
+    const answer = reading ? result : (attempt.rawAnswers?.[id] ?? result.answer);
     if (!answer?.trim()) continue;
-    const { label, page } = info.labels[id] || { label: id, page: null };
+    const { label, page } = info.labels?.[id] || { label: reading ? 'Q' + id : id, page: null };
     const after = page ? info.source + ':' + page : null;
     if (!groups.has(after)) groups.set(after, []);
     groups.get(after).push({ label, text: answer });
@@ -105,7 +107,10 @@ export async function typedImages(info, attempt, onPage) {
         ctx.fillRect(0, 0, width, height);
         ctx.fillStyle = '#24241f';
         ctx.font = 'bold 39px sans-serif';
-        ctx.fillText('Paper 3 · Part ' + info.part + ' · Task ' + info.task, margin, 104);
+        const title = reading
+          ? 'Paper 1 · Part ' + info.part
+          : 'Paper 3 · Part ' + info.part + ' · Task ' + info.task;
+        ctx.fillText(title, margin, 104);
         ctx.font = '27px sans-serif';
         ctx.fillText('打字答案', margin, 160);
         y = 243;

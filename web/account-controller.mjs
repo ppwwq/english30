@@ -11,17 +11,24 @@ import { emptyBackup, learningDelta, applyLearningDelta } from './account-learni
 import { validateBackup, LISTENING_KEY, STUDY_KEY } from './training-core.mjs';
 import { handwrittenImage, typedImages, paperSaveInfo } from './account-render.mjs';
 import { putJob, putJobs, jobsFor, removeJob } from './account-queue.mjs';
+import { packReadingPaperInk, readReadingInkFile, unpackReadingPaperInk } from './reading-paper-storage.mjs';
 
 const user = activeAccount,
   changed = () => window.dispatchEvent(new Event('english30-account-change'));
 const UUID = () => crypto.randomUUID();
 const versionPath = (id, v) => '/api/papers/' + id + '/versions/' + v;
+const isReading = (record) => record.module === 'reading' && !!record.details?.readingPaper;
+const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 import { loadBooks, bookFor, bookPageEdits } from './answer-books.mjs';
-export function createAccountController({ studyStore, enterPaper, canSwitch }) {
+export function createAccountController({ studyStore, enterPaper, enterReading, canSwitch }) {
   let pending = 0,
     conflict = null,
     uploading,
     offline = !!globalThis.english30Identity?.offline,
+    expired = false,
+    initialized = false,
+    latestCloud,
+    restoring,
     workspace = null;
   function tab(key) {
     try {
@@ -35,6 +42,19 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     else sessionStorage.setItem(scopedKey(key), JSON.stringify(value));
   }
   let binding = tab('answer-book');
+  const readingOpened = new Map(Object.entries(tab('reading-book-resume') || {}));
+  function rememberReading(recordId, version) {
+    readingOpened.delete(recordId);
+    if (version) readingOpened.set(recordId, { version });
+    setTab('reading-book-resume', Object.fromEntries([...readingOpened].slice(-8)));
+  }
+  const duringUpload = (action) =>
+    navigator.locks ? navigator.locks.request('english30-upload-' + user.id, action) : action();
+  function markExpired() {
+    if (expired) return;
+    expired = true;
+    changed();
+  }
   async function api(path, { method = 'GET', data, raw, paper } = {}) {
     if (user && !pageHasAccount()) throw Error('本机账号已切换。');
     const headers = {};
@@ -55,6 +75,10 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     }
     offline = false;
     if (user && !pageHasAccount()) throw Error('本机账号已切换。');
+    if (user && r.status === 401 && !/^\/api\/account\/(login|register|recover)$/.test(path)) {
+      markExpired();
+      throw Object.assign(Error('账号会话已过期，请在「我的答卷」重新登录。'), { status: 401 });
+    }
     const out = await r.json().catch(() => ({}));
     if (!r.ok)
       throw Object.assign(Error(out.error || '账号服务未能完成请求。'), {
@@ -65,10 +89,16 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     return out;
   }
   async function authenticate(route, data) {
-    if (!(await canSwitch())) throw Error('已保留当前练习。');
+    if (!expired && !(await canSwitch())) throw Error('已保留当前练习。');
     return withIdentityLock(async () => {
       await allowLogin();
       const result = await api('/api/account/' + route, { method: 'POST', data });
+      if (expired && user?.id === result.user.id) {
+        expired = false;
+        changed();
+        void restoreLearning(false).catch(() => {});
+        return result;
+      }
       accountOpened(result.user);
       if (result.recoveryCode)
         sessionStorage.setItem(
@@ -83,8 +113,8 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     if (!user) return;
     const jobs = await jobsFor(user.id);
     pending = jobs.length;
-    const failed = jobs.find((j) => j.conflict);
-    conflict = failed ? { paperId: failed.paper.id } : null;
+    const failed = jobs.find((j) => j.conflict || j.readingConflict);
+    conflict = failed ? { paperId: failed.readingConflict || failed.paper.id } : null;
     changed();
   }
   const hashBytes = async (bytes) =>
@@ -100,7 +130,10 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
         headers: { 'X-English30-Owner': user.id, ...(paper ? { 'X-English30-Paper': paper } : {}) },
       });
     if (r.status === 404) await api(url, { method: 'PUT', raw: blob, paper });
-    else if (!r.ok) throw Error('页图状态未能核实，请重新登录后再试。');
+    else if (!r.ok) {
+      if (r.status === 401) markExpired();
+      throw Error('页图状态未能核实，请重新登录后再试。');
+    }
     return hash;
   }
   async function packRecord(record, files, paper) {
@@ -143,12 +176,24 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       Object.keys(b.study.reviews).length
     );
   }
-  function storeBackup(value) {
+  function storeBackup(value, protectReadingEdits = false) {
     const b = validateBackup(value),
       previous = studyStore.exportBackup();
     // Preserve newer unsaved UI changes while acknowledging the restored baseline.
     const live = studyStore.getState(),
       draftDelta = learningDelta(previous, { ...previous, study: live });
+    let protectedReading = false;
+    if (protectReadingEdits) {
+      const edited = new Set(draftDelta.sets.records.filter(isReading).map(({ id }) => id));
+      const incoming = new Map(b.study.records.map((r) => [r.id, r]));
+      for (const record of previous.study.records) {
+        if (edited.has(record.id) && !same(record, incoming.get(record.id))) {
+          incoming.set(record.id, record);
+          protectedReading = true;
+        }
+      }
+      if (protectedReading) b.study.records = [...incoming.values()];
+    }
     const entries = [
       [STUDY_KEY, JSON.stringify(b.study)],
       [LISTENING_KEY, JSON.stringify(b.listening)],
@@ -166,16 +211,37 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       }
       throw error;
     }
-    studyStore.replaceState(applyLearningDelta(b, draftDelta).study);
-    studyStore.ackSave({ state: b.study });
+    const merged = applyLearningDelta(b, draftDelta).study;
+    if (!same(live, merged)) studyStore.replaceState(merged);
+    if (!same(previous.study, b.study)) studyStore.ackSave({ state: b.study });
+    return protectedReading;
   }
-  async function restoreLearning() {
-    const cloud = (await api('/api/learning')).backup;
-    if (!cloud) return false;
-    let b = validateBackup(cloud);
-    for (const job of await jobsFor(user.id)) if (job.delta) b = applyLearningDelta(b, job.delta);
-    storeBackup(b);
-    return true;
+  async function restoreLearning(force = true) {
+    if (restoring) return restoring;
+    const operation = async () => {
+      if (uploading) await uploading.catch(() => {});
+      return duringUpload(async () => {
+        const { backup, hash } = await api('/api/learning');
+        if (!backup) return false;
+        if (!force && latestCloud === hash) return true;
+        let b = validateBackup(backup);
+        for (const job of await jobsFor(user.id))
+          if (job.delta && job.localReady) b = applyLearningDelta(b, job.delta);
+        latestCloud = storeBackup(b, true) ? undefined : hash;
+        return true;
+      });
+    };
+    restoring = operation().finally(() => (restoring = null));
+    return restoring;
+  }
+  async function readingId(id) {
+    const direct = id.slice(2);
+    if (/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(direct) && id.startsWith('a-')) return direct;
+    const h = await hashBytes(new TextEncoder().encode(user.id + '/reading/' + id));
+    return [h.slice(0, 8), h.slice(8, 12), h.slice(12, 16), h.slice(16, 20), h.slice(20, 32)].join('-');
+  }
+  function readingJob(record, previous) {
+    return { record, previous, saveId: UUID(), opened: readingOpened.get(record.id) };
   }
   function capture(plan, combined = false) {
     if (!user) return null;
@@ -184,6 +250,13 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     if (plan.study.changed) next.study = plan.study.state;
     if (plan.listening) next.listening.push(plan.listening.record);
     const job = { saveId: UUID(), created: Date.now(), owner: user.id, delta: learningDelta(previous, next) };
+    const readingPapers = job.delta.sets.records.filter(isReading).map((r) =>
+      readingJob(
+        r,
+        previous.study.records.find(({ id }) => id === r.id),
+      ),
+    );
+    if (readingPapers.length) job.readingPapers = readingPapers;
     const info = plan.listening?.paperInfo;
     if (info) {
       const record = plan.listening.record,
@@ -231,23 +304,7 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     };
     setTab('answer-book', binding);
   }
-  async function shipPaper(job, files) {
-    const p = job.paper;
-    const source = p.fork?.id || p.id;
-    const uploadImage = (blob) => uploadBlob(blob, 'images', source);
-    let prior;
-    if (p.base || p.fork) {
-      const baseId = p.fork?.id || p.id,
-        baseVersion = p.fork?.version || p.base;
-      try {
-        prior = await api(versionPath(baseId, baseVersion));
-      } catch (error) {
-        // A queued copy may have lost its source before its first version was created.
-        if (error.status === 404 && !error.code && p.copySource)
-          await api('/api/papers/' + p.copySource + '/versions');
-        throw error;
-      }
-    } else await api('/api/papers/' + p.id + '/versions');
+  async function prepareOriginals(p, prior) {
     const books = await loadBooks();
     const originals =
       prior?.originals ||
@@ -268,6 +325,26 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
         for (const h of r.missing || []) missing.add(h);
       }
     }
+    return { originals, missing };
+  }
+  async function shipPaper(job, files) {
+    const p = job.paper;
+    const source = p.fork?.id || p.id;
+    const uploadImage = (blob) => uploadBlob(blob, 'images', source);
+    let prior;
+    if (p.base || p.fork) {
+      const baseId = p.fork?.id || p.id,
+        baseVersion = p.fork?.version || p.base;
+      try {
+        prior = await api(versionPath(baseId, baseVersion));
+      } catch (error) {
+        // A queued copy may have lost its source before its first version was created.
+        if (error.status === 404 && !error.code && p.copySource)
+          await api('/api/papers/' + p.copySource + '/versions');
+        throw error;
+      }
+    } else await api('/api/papers/' + p.id + '/versions');
+    const { originals, missing } = await prepareOriginals(p, prior);
     const pages = new Map(originals.map((page) => [page.key, page]));
     const attempt = p.record.attempts.at(-1),
       images = {};
@@ -301,6 +378,80 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       workspace = verified;
     }
   }
+  async function shipReading(p, files) {
+    const { record } = p;
+    const lessonId = record.taskId;
+    const [, edition, part] = lessonId.split(':');
+    const book = `reading-${edition}-${part}`;
+    const id = await readingId(record.id);
+    const [current] = await api('/api/papers/' + id + '/versions');
+    const prior = current ? await api(versionPath(id, current.version)) : null;
+    const latest = prior?.records[lessonId];
+    const opened = p.opened?.version;
+    if (same(latest, record)) {
+      rememberReading(record.id);
+      return;
+    }
+    if (current && (p.previous ? !same(latest, p.previous) : opened !== current.version))
+      throw Object.assign(Error('另一台设备已保存新版。'), { code: 'VERSION_CONFLICT', paperId: id });
+    if (current && opened && opened !== current.version)
+      throw Object.assign(Error('当前打开的是旧版答卷。'), { code: 'VERSION_CONFLICT', paperId: id });
+    const { originals, missing } = await prepareOriginals({ book }, prior);
+    const details = record.details.readingPaper;
+    const images = {},
+      appendices = [],
+      ink = {};
+    for (const field of ['inkFiles', 'reviewInkFiles']) {
+      for (const [key, hash] of Object.entries(details[field] || {})) {
+        const blob = await readReadingInkFile(hash);
+        const data = JSON.parse(await blob.text());
+        if (!Array.isArray(data[key])) throw Error('阅读笔迹与页表不符。');
+        (ink[key] ||= []).push(...data[key]);
+        if (!files.has(hash)) {
+          if (hash !== (await uploadBlob(blob, 'ink', id))) throw Error('阅读笔迹摘要不符。');
+          files.add(hash);
+        }
+      }
+    }
+    for (const page of originals) {
+      const strokes = ink[page.key];
+      if (!strokes?.length || missing.has(page.master)) continue;
+      if (
+        prior?.pictures[page.key] &&
+        ['inkFiles', 'reviewInkFiles'].every(
+          (field) => latest.details.readingPaper[field]?.[page.key] === details[field]?.[page.key],
+        )
+      )
+        images[page.key] = prior.pictures[page.key];
+      else
+        images[page.key] = await uploadBlob(
+          await handwrittenImage(page, strokes, '/api/books/master/' + page.master),
+          'images',
+          id,
+        );
+    }
+    await typedImages({ paper: 1, part }, record, async (blob, after) =>
+      appendices.push({ hash: await uploadBlob(blob, 'images', id), after }),
+    );
+    const result = await api('/api/papers', {
+      method: 'POST',
+      data: {
+        id,
+        base: current?.version || 0,
+        saveId: p.saveId,
+        book,
+        task: 0,
+        lessonId,
+        record,
+        images,
+        appendices,
+      },
+    });
+    const verified = await api(versionPath(id, result.version));
+    if (verified.pages.length !== result.pages || !same(verified.records[lessonId], record))
+      throw Error('云端阅读答卷回读不一致。');
+    rememberReading(record.id);
+  }
   async function ship(job) {
     if (!job.localReady && !job.imported) {
       if (job.delta) storeBackup(applyLearningDelta(studyStore.exportBackup(), job.delta));
@@ -330,6 +481,21 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
         delta.sets.listening = delta.sets.listening.filter(
           (r) => r.lessonId !== paper.lesson || r.savedAt !== paper.stamp,
         );
+      for (const reading of job.readingPapers || []) {
+        if (reading.uploaded) continue;
+        try {
+          await shipReading(reading, files);
+          reading.uploaded = true;
+          await putJob(job);
+        } catch (error) {
+          if (error.code !== 'PAPER_DELETED') {
+            error.readingRecordId = reading.record.id;
+            throw error;
+          }
+          delta.sets.records = delta.sets.records.filter(({ id }) => id !== reading.record.id);
+          skipped = true;
+        }
+      }
       for (const group of [delta.sets, delta.removed])
         for (const [i, record] of group.listening.entries())
           group.listening[i] = await packRecord(record, files);
@@ -354,9 +520,14 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       let checked = false;
       let paperError;
       const blocked = new Set();
+      const blockedRead = new Set();
       const jobs = await jobsFor(user.id);
       for (const job of jobs) {
-        if (job.paper && blocked.has(job.paper.id)) continue;
+        if (
+          (job.paper && blocked.has(job.paper.id)) ||
+          job.readingPapers?.some((p) => blockedRead.has(p.record.id))
+        )
+          continue;
         if (job.conflict && copy) {
           const previous = job.paper,
             newId = UUID();
@@ -374,14 +545,53 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
           copy = false;
           await putJobs(moved);
         }
+        if (job.readingConflict && copy) {
+          const reading = job.readingPapers.find((p) => p.conflict);
+          const oldId = reading.record.id,
+            nextId = 'a-' + UUID();
+          const asCopy = (r) => ({
+            ...r,
+            id: nextId,
+            details: {
+              ...r.details,
+              readingPaper: { ...r.details.readingPaper, copyOf: r.details.readingPaper.copyOf || oldId },
+            },
+          });
+          for (const other of jobs) {
+            if (other.created < job.created) continue;
+            for (const p of other.readingPapers || [])
+              if (p.record.id === oldId) {
+                other.delta.sets.records = other.delta.sets.records.map((r) =>
+                  r.id === oldId ? asCopy(r) : r,
+                );
+                p.record = asCopy(p.record);
+                p.previous = p === reading || !p.previous ? undefined : asCopy(p.previous);
+                p.opened = undefined;
+                p.conflict = false;
+              }
+          }
+          rememberReading(oldId);
+          delete job.readingConflict;
+          copy = false;
+          await putJobs(jobs.filter((j) => j.readingPapers?.some((p) => p.record.id === nextId)));
+        }
         try {
           if (await ship(job)) skipped++;
           processed++;
           if (job.saveId === options.saveId) checked = true;
         } catch (e) {
           if (e.code === 'VERSION_CONFLICT') {
-            job.conflict = true;
+            const reading = job.readingPapers?.find((p) => p.record.id === e.readingRecordId);
+            if (reading) {
+              job.readingConflict = e.paperId;
+              reading.conflict = true;
+            } else job.conflict = true;
             await putJob(job);
+          }
+          if (job.readingConflict) {
+            blockedRead.add(e.readingRecordId);
+            paperError ||= e;
+            continue;
           }
           if (job.paper && (e.code === 'VERSION_CONFLICT' || e.status === 404)) {
             blocked.add(job.paper.id);
@@ -394,12 +604,12 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       if (paperError) throw paperError;
       return { skipped, processed, ...(options.saveId ? { checked } : {}) };
     };
-    const drain = () =>
-      navigator.locks ? navigator.locks.request('english30-upload-' + user.id, operation) : operation();
-    uploading = drain()
+    uploading = duringUpload(operation)
       .then((result) => {
-        if (result.processed)
+        if (result.processed) {
           window.dispatchEvent(new CustomEvent('english30-account-synced', { detail: result }));
+          setTimeout(() => void restoreLearning(false).catch(() => {}), 0);
+        }
         return result;
       })
       .finally(async () => {
@@ -413,6 +623,26 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       fingerprint = await hashBytes(new TextEncoder().encode(JSON.stringify([g.study, g.listening])));
     const marker = scopedKey(guest ? 'imported-guest' : 'imported-backup');
     if (localStorage.getItem(marker) === fingerprint) return;
+    await restoreLearning(false);
+    const existing = new Set(studyStore.getSavedState().records.map(({ id }) => id));
+    const readingPapers = [];
+    const records = [];
+    for (const r of g.study.records) {
+      if (!isReading(r)) {
+        records.push(r);
+        continue;
+      }
+      if (existing.has(r.id)) continue;
+      const { ink, reviewInk, inkFiles, reviewInkFiles, ...details } = r.details.readingPaper;
+      const pages = await unpackReadingPaperInk(
+        { ink, reviewInk, inkFiles, reviewInkFiles },
+        guest ? null : user.id,
+      );
+      const files = await packReadingPaperInk(pages);
+      const record = { ...r, details: { ...r.details, readingPaper: { ...details, ...files } } };
+      records.push(record);
+      readingPapers.push(readingJob(record));
+    }
     const deterministic = async (key) => {
       const h = await hashBytes(new TextEncoder().encode(user.id + '/' + key));
       return [h.slice(0, 8), h.slice(8, 12), h.slice(12, 16), h.slice(16, 20), h.slice(20, 32)].join('-');
@@ -454,7 +684,8 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
       saveId: await deterministic('guest/' + fingerprint),
       owner: user.id,
       created: Date.now(),
-      delta: learningDelta(emptyBackup(), g),
+      delta: learningDelta(emptyBackup(), { ...g, study: { ...g.study, records } }),
+      readingPapers,
       imported: true,
     });
     await flush();
@@ -462,7 +693,7 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     localStorage.setItem(marker, fingerprint);
   }
   return {
-    state: () => ({ user, pending, conflict, offline }),
+    state: () => ({ user, pending, conflict, offline, expired }),
     capture,
     stage,
     async localConfirmed(job) {
@@ -476,8 +707,17 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     },
     retry: flush,
     async init() {
-      if (!user) return;
+      if (!user || initialized) return;
+      initialized = true;
+      const sync = () => {
+        if (!document.hidden && !expired && pageHasAccount()) void restoreLearning(false).catch(() => {});
+      };
+      window.addEventListener('focus', sync);
+      window.addEventListener('online', sync);
+      document.addEventListener('visibilitychange', sync);
+      setInterval(sync, 60_000);
       await counts();
+      void restoreLearning(false).catch(() => {});
       if (binding?.version && !pending) {
         try {
           const m = await api(versionPath(binding.id, binding.version));
@@ -485,8 +725,6 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
         } catch {}
       }
       await loadBooks().catch(() => {});
-      if (!localStorage.getItem(STUDY_KEY) && !localStorage.getItem(LISTENING_KEY))
-        await restoreLearning().catch(() => {});
     },
     list: () => api('/api/papers'),
     versions: (id) => api('/api/papers/' + id + '/versions'),
@@ -519,8 +757,20 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
     importBackup,
     restoreLearning,
     async resume(id, v, task) {
-      const m = await api(versionPath(id, v)),
-        choice = m.taskChoices.find((c) => c.task === Number(task || m.lastTask));
+      const m = await api(versionPath(id, v));
+      if (m.paper === 1) {
+        const record = Object.values(m.records)[0];
+        const entered = await enterReading({
+          year: m.year,
+          variant: m.variant,
+          part: m.part,
+          recordId: record.id,
+          record,
+        });
+        if (entered !== false) rememberReading(record.id, Number(v));
+        return;
+      }
+      const choice = m.taskChoices.find((c) => c.task === Number(task || m.lastTask));
       if (!choice) throw Error('这个 Task 暂时不能继续。');
       if (!(await enterPaper(m, choice))) return;
       workspace = m;
@@ -541,7 +791,11 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
         : null;
     },
     deletePaper: async (id) => {
-      if ((await jobsFor(user.id)).some((j) => j.paper?.id === id))
+      const jobs = await jobsFor(user.id);
+      const reading = await Promise.all(
+        jobs.flatMap((j) => (j.readingPapers || []).map((p) => readingId(p.record.id))),
+      );
+      if (jobs.some((j) => j.paper?.id === id) || reading.includes(id))
         throw Error('请先完成这份卷的待上传保存。');
       await api('/api/papers/' + id, { method: 'DELETE' });
       if (binding?.id === id) {
@@ -549,6 +803,7 @@ export function createAccountController({ studyStore, enterPaper, canSwitch }) {
         workspace = null;
         setTab('answer-book', null);
       }
+      await restoreLearning().catch(() => {});
     },
     async deleteAccount(password) {
       if (!(await canSwitch())) throw Error('已保留当前练习。');

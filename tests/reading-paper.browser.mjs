@@ -94,7 +94,19 @@ try {
   await focus.press('Escape');
   assert.equal(await app.getAttribute('data-focused'), 'false');
   assert.equal(await focus.evaluate((node) => node === document.activeElement), true);
+  await page.reload();
+  await sheet.locator('.ink-stroke').first().waitFor();
+  assert.equal(await sheet.locator('img').getAttribute('src'), paperPage);
+  assert.equal(await page.evaluate(() => localStorage.getItem('english30-study-v1')), null);
+  await sheet.getByRole('button', { name: '打字', exact: true }).tap();
+  assert.equal(await textarea.inputValue(), 'My first answer.');
   await submit.tap();
+  await compare.waitFor().catch(async (error) => {
+    throw Error(
+      `${error.message}\n${await app.locator('.reading-paper-status').textContent()}\n${errors.join('\n')}`,
+    );
+  });
+  await sheet.getByRole('button', { name: '卷面', exact: true }).tap();
   assert.equal(await page.evaluate(() => localStorage.getItem('english30-study-v1')), null);
   assert.equal(await sheet.locator('.submitted-ink .ink-stroke').count(), 1);
   await compare.tap();
@@ -195,6 +207,9 @@ try {
     await page.mouse.up();
   }
 
+  await app.locator('[data-check-question]').selectOption('1');
+  await app.locator('[data-check-result]').selectOption('retry');
+  await app.locator('[data-check-error]').selectOption('答案不完整');
   await page.locator('#session-save').click();
   await answerConfirmation(page, '确认保存');
   await page.waitForFunction(() => !!localStorage.getItem('english30-study-v1'));
@@ -202,25 +217,43 @@ try {
   assert.equal(record.taskId, 'reading-paper:2025-exam:A');
   assert.equal(record.phase, 'first');
   assert.equal(record.assisted, false);
-  assert.equal(record.correct, undefined);
+  assert.equal(record.correct, null);
   assert.deepEqual(record.answers, { 1: 'My first answer.', 2: 'My second answer.' });
-  assert.equal(Object.values(record.details.readingPaper.ink).flat().length, 1);
+  assert.equal(record.details.readingPaper.ink, undefined);
+  assert.match(Object.values(record.details.readingPaper.inkFiles)[0], /^[0-9a-f]{64}$/);
+  assert.deepEqual(record.details.readingPaper.checks, { 1: { status: 'retry', error: '答案不完整' } });
   await page.reload();
   await compare.waitFor();
   await page.setViewportSize({ width: 834, height: 1194 });
   await app.getByRole('button', { name: '题答卷', exact: true }).tap();
   await sheet.getByRole('button', { name: '打字答案', exact: true }).tap();
   assert.equal(await textarea.inputValue(), 'My first answer.');
-  await compare.tap();
-  await referenceWindow.waitFor();
-  await app.getByRole('button', { name: '关提示，再测一次' }).tap();
+  await page.locator('#session-review').click();
+  const reviewItem = page
+    .locator('.training-review-row')
+    .filter({ hasText: '2025 Paper 1 · 正式卷 · Part A' });
+  await reviewItem.getByRole('button', { name: '关提示再测' }).click();
+  await app.getByText('无提示复测', { exact: true }).waitFor();
+  assert.equal(new URL(page.url()).hash, '#reading-paper');
   assert.equal(await app.locator('.reading-paper-phase').textContent(), '无提示复测');
   assert.equal(await textarea.inputValue(), '');
   assert.equal(await sheet.locator('.ink-stroke').count(), 0);
   assert.equal(await compare.count(), 0);
   assert.equal(await windows.count(), 0);
   assert.equal(await submit.isDisabled(), true);
+  await sheet.getByRole('button', { name: '打字', exact: true }).tap();
+  await textarea.fill('Unsubmitted retest draft.');
+  await page.locator('#session-review').click();
+  await page.reload();
+  await reviewItem.getByRole('button', { name: '关提示再测' }).click();
+  await answerConfirmation(page, '取消');
+  await reviewItem.waitFor();
+  await page.locator('#home-back').click();
+  await page.locator('a[data-view="reading-paper"]').click();
+  await textarea.waitFor();
+  assert.equal(await textarea.inputValue(), 'Unsubmitted retest draft.');
   await app.locator('[data-choice="year"]').selectOption('2022');
+  await answerConfirmation(page, '切换试卷');
   await part.selectOption('B1');
   await app.getByRole('button', { name: '题答卷', exact: true }).tap();
   assert.match(await sheet.locator('img').getAttribute('src'), /p-956807ac5e5a\/0010\.webp$/);
@@ -228,7 +261,7 @@ try {
   assert.match(await sheet.locator('img').getAttribute('src'), /p-956807ac5e5a\/0014\.webp$/);
   assert.deepEqual(errors, []);
   console.log(
-    `PASS ${engine}: Paper 1 landscape/portrait, page navigation, typed answers, ink, three-window comparison with drag, resize, close and reopen, explicit save, retest, and 2022 clean pages.`,
+    `PASS ${engine}: Paper 1 landscape/portrait, draft reload, typed answers and ink, three-window comparison, explicit save, manual checks, concealed review routing, and 2022 clean pages.`,
   );
 } finally {
   await browser.close();

@@ -152,57 +152,73 @@
       <main id="paper-host" class="paper-host" hidden></main>
 
       <main id="listening-panel" class="workspace" hidden>
-        <section class="session-heading" aria-labelledby="lesson-title">
-          <div class="session-title">
-            <h1 id="lesson-title">准备你的第一段精听</h1>
-            <p id="lesson-meta" class="lesson-meta">正在载入练习材料…</p>
-          </div>
-          <div class="phase-switch" role="group" aria-label="练习阶段">
-            <button id="phase-first" disabled type="button" aria-pressed="true">
-              <span class="phase-number">01</span>首听
-            </button>
-            <button id="phase-review" disabled type="button" aria-pressed="false">
-              <span class="phase-number">02</span>复盘
-            </button>
-            <button id="phase-retest" disabled type="button" aria-pressed="false">
-              <span class="phase-number">03</span>复测
-            </button>
-          </div>
-        </section>
-
-        <div id="practice-picker" class="practice-picker" hidden></div>
-        <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">
-          先读右侧题目，准备好后开始播放。
+        <div id="paper-title-space" class="paper-context-space">
+          <section class="session-heading" aria-labelledby="lesson-title">
+            <div class="session-title">
+              <h1 id="lesson-title">准备你的第一段精听</h1>
+              <p id="lesson-meta" class="lesson-meta">正在载入练习材料…</p>
+            </div>
+            <div class="phase-switch" role="group" aria-label="练习阶段">
+              <button id="phase-first" disabled type="button" aria-pressed="true">
+                <span class="phase-number">01</span>首听
+              </button>
+              <button id="phase-review" disabled type="button" aria-pressed="false">
+                <span class="phase-number">02</span>复盘
+              </button>
+              <button id="phase-retest" disabled type="button" aria-pressed="false">
+                <span class="phase-number">03</span>复测
+              </button>
+            </div>
+          </section>
         </div>
-        <button id="audio-retry" class="button-secondary" type="button" hidden>重试载入原音</button>
 
-        <nav id="review-navigation" class="review-navigation" aria-label="复盘内容定位" hidden>
-          <button
-            class="button-secondary"
-            type="button"
-            data-review-target="practice-sources"
-            aria-controls="practice-sources"
-          >
-            原题与作答
-          </button>
-          <button
-            class="button-secondary"
-            type="button"
-            data-review-target="questions"
-            aria-controls="questions"
-          >
-            答案与证据
-          </button>
-          <button
-            class="button-secondary"
-            type="button"
-            data-review-target="transcript"
-            aria-controls="transcript"
-          >
-            字幕
-          </button>
-        </nav>
+        <div id="paper-controls-space" class="paper-context-space">
+          <div class="paper-context-content">
+            <div id="practice-picker" class="practice-picker" hidden></div>
+            <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">
+              先读右侧题目，准备好后开始播放。
+            </div>
+            <button id="audio-retry" class="button-secondary" type="button" hidden>重试载入原音</button>
+
+            <nav id="review-navigation" class="review-navigation" aria-label="复盘内容定位" hidden>
+              <button
+                class="button-secondary"
+                type="button"
+                data-review-target="practice-sources"
+                aria-controls="practice-sources"
+              >
+                原题与作答
+              </button>
+              <button
+                class="button-secondary"
+                type="button"
+                data-review-target="questions"
+                aria-controls="questions"
+              >
+                答案与证据
+              </button>
+              <button
+                class="button-secondary"
+                type="button"
+                data-review-target="transcript"
+                aria-controls="transcript"
+              >
+                字幕
+              </button>
+            </nav>
+          </div>
+        </div>
         <div class="study-grid">
+          <div
+            id="paper-workspace-resize"
+            class="paper-preview-resize"
+            role="separator"
+            aria-label="调整手写原卷上沿"
+            aria-orientation="horizontal"
+            aria-controls="practice-sources"
+            tabindex="0"
+            hidden
+          ></div>
           <section id="review-paper-panel" class="panel" aria-label="原卷与作答" hidden></section>
           <section class="transcript-panel panel" aria-labelledby="transcript-heading">
             <div class="panel-header">

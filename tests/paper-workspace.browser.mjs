@@ -109,6 +109,56 @@ try {
     Math.abs((await position()) - previous.position) < 0.005,
     'the same paper position stays visible',
   );
+  const upper = page.getByRole('separator', { name: '调整手写原卷上沿' });
+  const titleSpace = page.locator('#paper-title-space');
+  const controlsSpace = page.locator('#paper-controls-space');
+  const normalHeight = (await sheet.boundingBox()).height;
+  const headingHeight = (await titleSpace.boundingBox()).height;
+  const upperBounds = await upper.boundingBox();
+  const upperPoint = { x: upperBounds.x + upperBounds.width / 2, y: upperBounds.y + upperBounds.height / 2 };
+  await page.mouse.move(upperPoint.x, upperPoint.y);
+  await page.mouse.down();
+  await page.mouse.move(upperPoint.x, upperPoint.y - 1);
+  await page.mouse.up();
+  assert.equal(await titleSpace.getAttribute('data-compressed'), '');
+  assert.equal(
+    await titleSpace.getAttribute('inert'),
+    null,
+    'a one-pixel drag leaves the title controls active',
+  );
+  assert.equal(await controlsSpace.getAttribute('inert'), null);
+  await upper.press('Home');
+  await page.mouse.move(upperPoint.x, upperPoint.y);
+  await page.mouse.down();
+  await page.mouse.move(upperPoint.x, upperPoint.y - 24, { steps: 4 });
+  await page.mouse.up();
+  assert.ok((await titleSpace.boundingBox()).height < headingHeight);
+  assert.equal(await controlsSpace.getAttribute('data-compressed'), null, 'the title gives up space first');
+  assert.ok((await sheet.boundingBox()).height > normalHeight + 20);
+  await upper.press('End');
+  assert.equal(await titleSpace.getAttribute('inert'), '');
+  assert.equal(await controlsSpace.getAttribute('inert'), '');
+  await assertOrdinaryLayout();
+  const raisedBounds = await upper.boundingBox();
+  const raisedPoint = {
+    x: raisedBounds.x + raisedBounds.width / 2,
+    y: raisedBounds.y + raisedBounds.height / 2,
+  };
+  const resizeTouch = await page.context().newCDPSession(page);
+  await resizeTouch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [raisedPoint] });
+  await resizeTouch.send('Input.dispatchTouchEvent', {
+    type: 'touchMove',
+    touchPoints: [{ ...raisedPoint, y: raisedPoint.y + 24 }],
+  });
+  await resizeTouch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await resizeTouch.detach();
+  assert.ok((await controlsSpace.boundingBox()).height >= 22, 'touch drag restores space in reverse order');
+  assert.equal(await titleSpace.getAttribute('inert'), '');
+  await upper.press('Home');
+  assert.equal(await titleSpace.getAttribute('inert'), null);
+  assert.equal(await controlsSpace.getAttribute('inert'), null);
+  assert.equal((await sheet.boundingBox()).height, normalHeight);
+  assert.ok(Math.abs((await position()) - previous.position) < 0.005);
 
   await page.setViewportSize({ width: 1180, height: 820 });
   await focusToggle.click();
@@ -296,7 +346,22 @@ try {
   await ready();
   assert.equal(await page.locator('body').getAttribute('data-listening-phase'), 'retest');
   assert.equal(await ink.locator('.ink-stroke').count(), 0);
+  const lower = page.getByRole('separator', { name: '调整手写原卷下沿' });
+  assert.equal(await lower.count(), 0, 'the lower grip is hidden in full-screen writing');
   await page.getByRole('button', { name: '退出全屏' }).click();
+  const beforeResize = (await sheet.boundingBox()).height;
+  await lower.scrollIntoViewIfNeeded();
+  await drag(lower, 0, -70);
+  const smaller = (await sheet.boundingBox()).height;
+  assert.ok(smaller < beforeResize - 55, 'dragging the lower edge up shortens the sheet');
+  await lower.scrollIntoViewIfNeeded();
+  await drag(lower, 0, 50);
+  const taller = (await sheet.boundingBox()).height;
+  assert.ok(taller > smaller + 35, 'dragging the lower edge down extends the sheet');
+  await lower.press('ArrowDown');
+  assert.ok((await sheet.boundingBox()).height > taller + 12, 'keyboard resizing changes the same edge');
+  assert.equal(await ink.locator('.ink-stroke').count(), 0);
+  console.log('PASS handwriting frame upper and lower edges resize in both directions');
   await page.locator('#loop-more > summary').click();
   await page.locator('#open-review-marks').click();
   await page.getByRole('button', { name: '恢复这份纪录，继续复盘' }).click();

@@ -1,6 +1,7 @@
 """Build full-size, content-addressed JPEG print masters from the verified paper scans."""
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 from io import BytesIO
 from PIL import Image
@@ -77,5 +78,29 @@ for path in sorted((web/'papers/practice').glob('*.json')):
                         page['label']=f'B1 Data File · 原卷第 {n} 页'
         books[key] = dict(year=p['year'],variant=p['variant'],part=part,pages=pages,data=data,taskChoices=[])
     books[key]['taskChoices'].append(dict(task=p['task'],lessonId=lesson['id'],page=p['questionPage']))
+
+# Use the same verified, spoiler-free source pages as the reading workspace.
+reading = json.loads(subprocess.check_output(['node', '--input-type=module', '-e', '''
+import { readFileSync } from 'node:fs';
+import { buildReadingPaperCatalogue } from './web/reading-paper-catalogue.mjs';
+const catalogue = JSON.parse(readFileSync('web/papers/catalogue.json', 'utf8'));
+process.stdout.write(JSON.stringify(buildReadingPaperCatalogue(catalogue.sources)));
+'''], cwd=root, encoding='utf-8'))
+for paper in reading:
+    year, variant = paper['year'], paper['variant']
+    for part in paper['parts']:
+        section = part['id']
+        task_id = f'reading-paper:{year}-{variant}:{section}'
+        pages = []
+        for original in part['pages']:
+            page, = master_pages(sources[original['sourceId']], section, original['page'], original['page'])
+            page['label'] = original['label']
+            page['writable'] = original['kind'] != 'text'
+            pages.append(page)
+        books[f'reading-{year}-{variant}-{section}'] = dict(
+            paper=1, year=year, variant=variant, part=section, pages=pages, data=[],
+            questions=[q['number'] for q in part['questions']],
+            taskChoices=[dict(task=0, lessonId=task_id)],
+        )
 (web/'papers/answer-books.json').write_text(json.dumps(books,ensure_ascii=False,separators=(',',':'))+'\n','utf-8')
 print(len(books),'books;',sum(len(b['pages']) for b in books.values()),'original pages')

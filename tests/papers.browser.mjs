@@ -167,6 +167,15 @@ try {
     await page.locator('#paper-play').tap();
     await page.locator('#paper-task').selectOption('1');
     await ready();
+    assert.equal(await page.locator('#paper-transcript-panel').isVisible(), false);
+    await page.locator('#paper-review').tap();
+    await page.locator('#paper-task').selectOption('2');
+    await ready();
+    assert.equal(await page.locator('#paper-transcript-panel').isVisible(), false);
+    assert.equal(await page.locator('#paper-transcript .paper-word').count(), 0);
+    await page.locator('#paper-task').selectOption('1');
+    await ready();
+    await page.locator('#paper-review').tap();
     await page.locator('.paper-evidence>summary').tap();
     const clip = page.locator('[data-evidence]').first();
     assert.ok(await clip.count());
@@ -270,7 +279,9 @@ try {
     assert.equal(await practice.isVisible(), false);
     await page.locator('#paper-part').selectOption('B1');
     const marking = page.getByRole('button', { name: /2025 MS/ });
-    const exposure = () => page.evaluate(() => localStorage.getItem('english30-seen:reading-paper:2025-exam'));
+    const key = 'english30-seen:reading-paper:2025-exam';
+    await page.evaluate((item) => localStorage.removeItem(item), key);
+    const exposure = () => page.evaluate((item) => localStorage.getItem(item), key);
     await marking.tap();
     await answerConfirmation(page, '取消');
     assert.equal(await exposure(), null);
@@ -296,6 +307,24 @@ try {
           () => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1,
         ),
       );
+    }
+  });
+  await check('all-paper references mark reading exposure and B2 remains browse only', async () => {
+    await page.setViewportSize({ width: 1080, height: 810 });
+    await page.locator('#paper-year').selectOption('2025');
+    await page.locator('#paper-paper').selectOption('3');
+    await page.locator('#paper-part').selectOption('B2');
+    await ready();
+    assert.equal(await page.locator('#paper-practise-task').isVisible(), false);
+    await page.locator('#paper-part').selectOption('A');
+    await ready();
+    assert.equal(await page.locator('#paper-practise-task').isVisible(), true);
+    const key = 'english30-seen:reading-paper:2025-exam';
+    for (const name of [/2025 MS/, /2025 CP/, /2025\.pdf/]) {
+      await page.evaluate((item) => localStorage.removeItem(item), key);
+      await page.getByRole('button', { name }).tap();
+      await answerConfirmation(page, '打开资料');
+      await page.waitForFunction((item) => localStorage.getItem(item) === '1', key);
     }
   });
   assert.deepEqual(report.errors, []);

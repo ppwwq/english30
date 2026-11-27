@@ -1,7 +1,9 @@
 .paper-preview-resize {
   display: grid;
   flex: none;
+  inline-size: 64px;
   min-block-size: 44px;
+  margin-inline: auto;
   place-items: center;
   border-radius: 6px;
   cursor: ns-resize;
@@ -9,22 +11,110 @@
   user-select: none;
 }
 .paper-preview-resize::before {
-  width: 28px;
-  height: 3px;
+  width: 18px;
+  height: 2px;
   border-radius: 999px;
   background: var(--ink-soft);
   content: '';
 }
-.paper-preview-resize:is(:hover, :focus-visible, :active) {
-  background: var(--surface-muted);
+.paper-preview-resize:is(:hover, :active)::before {
+  background: var(--ink);
+}
+body[data-view='listening'] #listening-panel .paper-preview-resize:focus-visible {
+  outline: none;
+}
+.paper-preview-resize:focus-visible::before {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
 }
 
-#practice-sources[data-preview-resized] > details .practice-page-wrap {
+#paper-workspace-resize {
+  position: relative;
+  z-index: 1;
+  margin-block: -10px;
+}
+.paper-context-space,
+.paper-context-content {
+  display: flow-root;
+}
+.paper-context-space {
+  flex: none;
+}
+.paper-context-space[data-compressed] {
+  overflow: clip;
+}
+#listening-panel:has(#paper-workspace-resize:not([hidden])) {
+  overflow-anchor: none;
+}
+
+@media (min-width: 744px) and (min-height: 1081px) {
+  html:not(.keyboard-open) body[data-view='listening']:has(#paper-workspace-resize:not([hidden])) {
+    overflow: hidden;
+
+    & .app-shell {
+      display: flex;
+      flex-direction: column;
+      height: var(--visible-height, 100svh);
+      min-height: 0;
+      overflow: hidden;
+      padding-bottom: 0;
+    }
+    & #listening-panel {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+      padding-bottom: var(--player-space);
+    }
+    & .study-grid {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+  }
+}
+
+body:not([data-paper-focus='true']) #practice-sources[data-preview-resized] .practice-page-wrap {
   --paper-preview-limit: max(160px, min(640px, calc(var(--visible-height, 100svh) * 0.75)));
   flex: none;
   block-size: clamp(160px, var(--paper-preview-height), var(--paper-preview-limit));
   min-block-size: 0;
   max-block-size: none;
+}
+
+body:not([data-paper-focus='true'])
+  #practice-sources[data-preview-resized]
+  .paper-writing-sheet
+  .practice-page-wrap {
+  --paper-preview-limit: max(160px, calc(var(--visible-height, 100svh) * 0.95));
+}
+
+body[data-paper-focus='true'] .paper-writing-sheet > .paper-preview-resize {
+  display: none;
+}
+
+html:not(.keyboard-open)
+  body[data-view='listening'][data-paper-answer='ink']:not([data-paper-focus='true']):has(
+    #practice-sources[data-preview-resized] > .paper-writing-sheet
+  ) {
+  overflow-y: auto;
+
+  & .app-shell {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+    padding-bottom: var(--player-space);
+  }
+  & #listening-panel,
+  & #practice-sources {
+    overflow: visible;
+  }
+  & #listening-panel {
+    padding-bottom: 0;
+  }
+  & .study-grid {
+    flex: none;
+  }
 }
 
 /* A user-sized viewport can extend below the fold, with the player still docked. */

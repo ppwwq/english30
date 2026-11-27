@@ -2,7 +2,7 @@ import { accountAuth, body, day, json, need, readBytes, sha } from './account-au
 import { paperPdf, jpegSize } from './paper-pdf.mjs';
 import { validatePaperInk } from '../web/core.mjs';
 import { bookPageEdits } from '../web/answer-books.mjs';
-import { validateListeningRecords } from '../web/training-core.mjs';
+import { validateListeningRecords, validateStudyState, emptyStudyState } from '../web/training-core.mjs';
 import { applyLearningDelta, emptyBackup } from '../web/account-learning.mjs';
 
 const schema = [
@@ -27,6 +27,12 @@ const uuid = /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/i;
 const digest = /^[a-f0-9]{64}$/;
 const privatePath = (owner, hash) => 'users/' + owner + '/' + hash;
 const masterPath = (hash) => 'originals/' + hash;
+const readingRecord = (r) => r?.module === 'reading' && !!r.details?.readingPaper;
+function readingFiles(record) {
+  const { inkFiles = {}, reviewInkFiles = {} } = record.details.readingPaper;
+  return [...Object.entries(inkFiles), ...Object.entries(reviewInkFiles)];
+}
+const recordDigest = (record) => sha(new TextEncoder().encode(JSON.stringify(record)));
 const bytesToRead = async (o) => {
   need(o, '已保存文件暂时无法读取，请重试。', 503);
   return o.arrayBuffer();
@@ -71,11 +77,22 @@ export function createAccountApi(db, bucket, assets) {
     const bytes = await bytesToRead(await bucket.get(privatePath(owner, hash)));
     return JSON.parse(new TextDecoder().decode(bytes));
   }
-  async function put(owner, data, hash, size = {}) {
+  async function put(owner, data, hash, size = {}, replaces) {
     const path = privatePath(owner, hash);
     if (!one('SELECT path FROM objects WHERE path=?', path)) {
       const used = one('SELECT COALESCE(SUM(bytes),0) AS n FROM objects WHERE owner=?', owner).n;
-      need(used + data.byteLength <= 256 * 1024 * 1024, '账号文件空间已满，请清理不需要的答卷。', 413);
+      const reclaimed = replaces
+        ? one(
+            `SELECT bytes FROM objects WHERE path=? AND NOT EXISTS (
+        SELECT 1 FROM refs WHERE path=objects.path AND paper<>'learning')`,
+            privatePath(owner, replaces),
+          )?.bytes || 0
+        : 0;
+      need(
+        used - reclaimed + data.byteLength <= 256 * 1024 * 1024,
+        '账号文件空间已满，请清理不需要的答卷。',
+        413,
+      );
       await bucket.put(path, data);
       run(
         'INSERT OR IGNORE INTO objects VALUES (?,?,?,?,?,?)',
@@ -89,17 +106,32 @@ export function createAccountApi(db, bucket, assets) {
     }
     return hash;
   }
-  async function putJson(owner, value) {
+  async function putJson(owner, value, replaces) {
     const bytes = new TextEncoder().encode(JSON.stringify(value));
-    return put(owner, bytes, await sha(bytes));
+    return put(owner, bytes, await sha(bytes), {}, replaces);
   }
   const addRef = (owner, paper, v, path) =>
     run('INSERT OR IGNORE INTO refs VALUES (?,?,?,?)', owner, paper, v, path);
+  function replaceLearning(owner, old, hash, backup) {
+    run('INSERT OR REPLACE INTO learning VALUES (?,?)', owner, hash);
+    run("DELETE FROM refs WHERE owner=? AND paper='learning'", owner);
+    addRef(owner, 'learning', 0, privatePath(owner, hash));
+    for (const record of backup.study.records.filter(readingRecord))
+      for (const [, h] of readingFiles(record)) addRef(owner, 'learning', 0, privatePath(owner, h));
+    if (old && old !== hash) {
+      run(
+        'UPDATE objects SET created=0 WHERE path=? AND NOT EXISTS (SELECT 1 FROM refs WHERE path=?)',
+        privatePath(owner, old),
+        privatePath(owner, old),
+      );
+      maintenanceRequested = true;
+    }
+  }
   async function cleanup(limit = 128) {
     run('DELETE FROM limits WHERE expires<?', Date.now());
     run('DELETE FROM sessions WHERE expires<?', Date.now());
     const garbage = all(
-      'SELECT path,owner FROM objects WHERE created<? AND NOT EXISTS (SELECT 1 FROM refs WHERE refs.path=objects.path) LIMIT ?',
+      'SELECT * FROM objects WHERE created<? AND NOT EXISTS (SELECT 1 FROM refs WHERE refs.path=objects.path) ORDER BY created LIMIT ?',
       Date.now() - day,
       limit,
     );
@@ -111,7 +143,15 @@ export function createAccountApi(db, bucket, assets) {
         await bucket.delete(garbage.map((item) => item.path));
       } catch (error) {
         for (const item of garbage)
-          run('INSERT OR IGNORE INTO objects VALUES (?,?,?,?,?,?)', item.path, item.owner, 0, 0, 0, 0);
+          run(
+            'INSERT OR IGNORE INTO objects VALUES (?,?,?,?,?,?)',
+            item.path,
+            item.owner,
+            item.bytes,
+            item.created,
+            item.width,
+            item.height,
+          );
         throw error;
       }
     }
@@ -178,6 +218,13 @@ export function createAccountApi(db, bucket, assets) {
     }
     return record;
   }
+  async function readingInk(owner, details, field, key) {
+    const hash = details[field + 'Files']?.[key];
+    if (!hash) return details[field]?.[key] || [];
+    const data = await loadJson(owner, hash);
+    need(Array.isArray(data[key]), '笔迹与页表不符。');
+    return data[key];
+  }
   async function savePaper(owner, input) {
     const { id, base, saveId, book, lessonId, task } = input;
     need(uuid.test(id) && uuid.test(saveId) && Number.isInteger(base) && base >= 0, '答卷版本无效。');
@@ -210,6 +257,8 @@ export function createAccountApi(db, bucket, assets) {
       '答题册来源不符。',
     );
     const selected = keys.map((k) => catalogue[k]);
+    const reading = selected[0].paper === 1;
+    need(!reading || keys.length === 1, '阅读原卷每个分部单独保存。');
     const originals = prior?.originals || [
       ...selected.flatMap((b) => b.pages),
       ...(input.includeData ? selected.flatMap((b) => b.data || []) : []),
@@ -219,18 +268,32 @@ export function createAccountApi(db, bucket, assets) {
       choices.some((c) => c.task === task && c.lessonId === lessonId),
       'Task 与题册不符。',
     );
-    const inkFiles = [
-      ...new Set(
-        input.record.attempts.flatMap((a) => [
-          ...Object.values(a.inkFiles || {}),
-          ...Object.values(a.reviewInkFiles || {}),
-        ]),
-      ),
-    ];
-    const [record] = validateListeningRecords([await unpackRecord(owner, input.record)]);
-    need(record.lessonId === lessonId, '作答材料不符。');
-    const attempt = record.attempts.at(-1);
-    const currentPart = (/-([ab]1?)-task-/i.exec(lessonId)?.[1] || '').toUpperCase();
+    let record, attempt, inkFiles;
+    if (reading) {
+      [record] = validateStudyState({ ...emptyStudyState(), records: [input.record] }).records;
+      need(readingRecord(record) && record.taskId === lessonId, '阅读原卷作答材料不符。');
+      const details = record.details.readingPaper;
+      need(!details.ink && !details.reviewInk, '请上传独立的阅读笔迹页。');
+      const questions = new Set(selected[0].questions.map(String));
+      need(
+        [...Object.keys(record.answers), ...Object.keys(details.checks || {})].every((q) => questions.has(q)),
+        '题号不在这份阅读卷中。',
+      );
+      if (prior && !input.fork) need(prior.records[lessonId]?.id === record.id, '阅读答卷来源不符。');
+      inkFiles = readingFiles(record).map(([, hash]) => hash);
+      attempt = record;
+    } else {
+      inkFiles = input.record.attempts.flatMap((a) => [
+        ...Object.values(a.inkFiles || {}),
+        ...Object.values(a.reviewInkFiles || {}),
+      ]);
+      [record] = validateListeningRecords([await unpackRecord(owner, input.record)]);
+      need(record.lessonId === lessonId, '作答材料不符。');
+      attempt = record.attempts.at(-1);
+    }
+    const currentPart = reading
+      ? selected[0].part
+      : (/-([ab]1?)-task-/i.exec(lessonId)?.[1] || '').toUpperCase();
     const records = { ...prior?.records, [lessonId]: record };
     const ink = { ...prior?.ink },
       pictures = { ...prior?.pictures };
@@ -241,24 +304,37 @@ export function createAccountApi(db, bucket, assets) {
       need(size?.width > 0 && size.height > 0, '整页图尚未完整上传。', 409);
       return size;
     };
-    for (const key of input.touched || [])
-      need(attempt.ink && originalMap.get(key)?.part === currentPart, '笔迹页不属于本次提交。');
-    for (const { key, page: p, answer, strokes } of bookPageEdits(prior, record, input.touched, originals)) {
+    function saveImage(key, p, answer, strokes) {
       need(p.part === currentPart, '笔迹页不属于本次提交。');
       if (answer.length) ink[key] = answer;
       else delete ink[key];
       if (!strokes?.length) {
         delete pictures[key];
-        continue;
+        return;
       }
       if (!one('SELECT hash FROM masters WHERE hash=?', p.master)) {
         delete pictures[key];
-        continue;
+        return;
       }
       const hash = input.images?.[key],
         size = pageImage(hash);
       need(size.width === p.width && size.height === p.height, '整页图尺寸与原卷不符。');
       pictures[key] = hash;
+    }
+    if (reading) {
+      const details = record.details.readingPaper;
+      for (const [key] of readingFiles(record))
+        need(originalMap.get(key)?.writable, '笔迹页不属于本次提交。');
+      for (const p of originals.filter((page) => page.writable)) {
+        const answer = await readingInk(owner, details, 'ink', p.key);
+        const marks = await readingInk(owner, details, 'reviewInk', p.key);
+        saveImage(p.key, p, [], [...answer, ...marks]);
+      }
+    } else {
+      for (const key of input.touched || [])
+        need(attempt.ink && originalMap.get(key)?.part === currentPart, '笔迹页不属于本次提交。');
+      for (const { key, page, answer, strokes } of bookPageEdits(prior, record, input.touched, originals))
+        saveImage(key, page, answer, strokes);
     }
     const appendices = { ...prior?.appendices };
     need(Array.isArray(input.appendices) && input.appendices.length <= 120, '打字附页无效。');
@@ -270,7 +346,7 @@ export function createAccountApi(db, bucket, assets) {
         after: p.after,
         hash: p.hash,
         task,
-        label: 'Task ' + task + ' · 打字答案 ' + (i + 1),
+        label: (reading ? 'Part ' + currentPart : 'Task ' + task) + ' · 打字答案 ' + (i + 1),
         ...size,
       };
     });
@@ -293,6 +369,7 @@ export function createAccountApi(db, bucket, assets) {
     const summary = {
       id,
       year: selected[0].year,
+      paper: reading ? 1 : 3,
       variant: selected[0].variant,
       part,
       version: v,
@@ -300,13 +377,14 @@ export function createAccountApi(db, bucket, assets) {
       title:
         selected[0].year +
         ' ' +
-        ({ exam: '正式卷', practice: '练习卷' }[selected[0].variant] || '') +
-        ' · Paper 3 · ' +
+        ({ exam: '正式卷', practice: '练习卷', sample: '样卷' }[selected[0].variant] || '') +
+        (reading ? ' · Paper 1 · ' : ' · Paper 3 · ') +
         part,
-      tasks: choices.filter((c) => records[c.lessonId]).map((c) => c.task),
+      tasks: reading ? [] : choices.filter((c) => records[c.lessonId]).map((c) => c.task),
       phase: attempt.phase === 'retest' ? 'retest' : attempt.assisted ? 'assisted' : 'first',
       missing: pages.some((p) => p.missing),
       legacyInk: !!input.legacyInk || !!prior?.legacyInk,
+      ...(reading ? { recordHash: await recordDigest(record) } : {}),
     };
     const manifest = {
       ...summary,
@@ -340,7 +418,13 @@ export function createAccountApi(db, bucket, assets) {
           else addRef(owner, id, v, masterPath(p.master));
         }
       for (const r of Object.values(records))
-        run('INSERT OR IGNORE INTO members VALUES (?,?,?,?)', owner, id, r.lessonId, r.savedAt);
+        run(
+          'INSERT OR IGNORE INTO members VALUES (?,?,?,?)',
+          owner,
+          id,
+          reading ? r.taskId : r.lessonId,
+          reading ? r.id : r.savedAt,
+        );
       for (const h of new Set([hash, ...inkFiles, ...Object.values(pictures), ...added.map((p) => p.hash)]))
         addRef(owner, id, v, privatePath(owner, h));
       acknowledge(owner, 'paper', saveId, result);
@@ -351,6 +435,39 @@ export function createAccountApi(db, bucket, assets) {
     need(uuid.test(input.saveId), '无效的保存编号。');
     if (receipt(owner, 'learning', input.saveId)) return receipt(owner, 'learning', input.saveId);
     const sets = input.delta.sets.listening;
+    const readHashes = new Map(
+      await Promise.all(
+        input.delta.sets.records.filter(readingRecord).map(async (record) => {
+          const [r] = validateStudyState({ ...emptyStudyState(), records: [record] }).records;
+          const details = r.details.readingPaper;
+          for (const [key] of readingFiles(r)) {
+            for (const field of ['ink', 'reviewInk'])
+              if (details[field + 'Files']?.[key]) await readingInk(owner, details, field, key);
+          }
+          return [record, await recordDigest(r)];
+        }),
+      ),
+    );
+    const omittedReading = () =>
+      [...readHashes]
+        .filter(([record, hash]) => {
+          const latest = one(
+            `SELECT v.summary FROM members m JOIN versions v ON v.owner=m.owner AND v.paper=m.paper
+        WHERE m.owner=? AND m.lesson=? AND m.stamp=? ORDER BY v.saved DESC, v.v DESC LIMIT 1`,
+            owner,
+            record.taskId,
+            record.id,
+          );
+          return latest
+            ? JSON.parse(latest.summary).recordHash !== hash
+            : !!one(
+                'SELECT 1 FROM deleted_members WHERE owner=? AND lesson=? AND stamp=?',
+                owner,
+                record.taskId,
+                record.id,
+              );
+        })
+        .map(([record]) => record);
     const paper = input.paper;
     if (paper)
       need(
@@ -378,14 +495,19 @@ export function createAccountApi(db, bucket, assets) {
       const old = one('SELECT hash FROM learning WHERE owner=?', owner)?.hash;
       const previous = old ? await loadJson(owner, old) : emptyBackup();
       const omitted = new Set(excluded());
+      const omittedRead = new Set(omittedReading());
       const delta = {
         ...input.delta,
-        sets: { ...input.delta.sets, listening: sets.filter((r) => !omitted.has(r)) },
+        sets: {
+          ...input.delta.sets,
+          listening: sets.filter((r) => !omitted.has(r)),
+          records: input.delta.sets.records.filter((r) => !omittedRead.has(r)),
+        },
       };
       for (const group of [delta.sets, delta.removed])
         for (const record of group.listening) await unpackRecord(owner, record);
       const next = applyLearningDelta(previous, delta);
-      const hash = await putJson(owner, next);
+      const hash = await putJson(owner, next, old);
       const readback = await bytesToRead(await bucket.get(privatePath(owner, hash)));
       need((await sha(readback)) === hash, '云端学习记录回读不一致。', 503);
       const result = transaction(() => {
@@ -394,15 +516,23 @@ export function createAccountApi(db, bucket, assets) {
         if (one('SELECT hash FROM learning WHERE owner=?', owner)?.hash !== old) return null;
         const latest = excluded();
         if (latest.length !== omitted.size || latest.some((r) => !omitted.has(r))) return null;
+        const latestRead = omittedReading();
+        if (latestRead.length !== omittedRead.size || latestRead.some((r) => !omittedRead.has(r)))
+          return null;
         need(one('SELECT id FROM users WHERE id=?', owner), '账号已退出。', 401);
-        run('INSERT OR REPLACE INTO learning VALUES (?,?)', owner, hash);
-        run("DELETE FROM refs WHERE owner=? AND paper='learning'", owner);
-        addRef(owner, 'learning', 0, privatePath(owner, hash));
-        const result = { ok: true, hash, ...(omitted.size ? { omitted: omitted.size } : {}) };
+        replaceLearning(owner, old, hash, next);
+        const omittedCount = omitted.size + omittedRead.size;
+        const result = { ok: true, hash, ...(omittedCount ? { omitted: omittedCount } : {}) };
         acknowledge(owner, 'learning', input.saveId, result);
         return result;
       });
       if (result) return result;
+      run(
+        'UPDATE objects SET created=0 WHERE path=? AND NOT EXISTS (SELECT 1 FROM refs WHERE path=?)',
+        privatePath(owner, hash),
+        privatePath(owner, hash),
+      );
+      maintenanceRequested = true;
     }
     need(false, '其他设备正在保存，请重试。', 409);
   }
@@ -442,6 +572,17 @@ export function createAccountApi(db, bucket, assets) {
       const paper = req.headers.get('X-English30-Paper');
       if (paper) requireLivePaper(owner, paper);
       const path = privatePath(owner, id);
+      if (route === 'ink' && method === 'GET') {
+        need(
+          one('SELECT 1 FROM objects WHERE path=? AND width=0', path) &&
+            one('SELECT 1 FROM refs WHERE path=?', path),
+          '找不到已保存的笔迹。',
+          404,
+        );
+        const file = await bucket.get(path);
+        need(file, '暂时无法读取笔迹。', 503);
+        return new Response(file.body, { headers: { ...secure, 'Content-Type': 'application/json' } });
+      }
       if (method === 'HEAD')
         return new Response(null, {
           status: one('SELECT path FROM objects WHERE path=?', path) ? 200 : 404,
@@ -504,7 +645,9 @@ export function createAccountApi(db, bucket, assets) {
         return json(
           entries.filter((p) =>
             ['year', 'part', 'paper'].every(
-              (k) => !url.searchParams.has(k) || String(k === 'paper' ? 3 : p[k]) === url.searchParams.get(k),
+              (k) =>
+                !url.searchParams.has(k) ||
+                String(k === 'paper' ? (p.paper ?? 3) : p[k]) === url.searchParams.get(k),
             ),
           ),
         );
@@ -538,12 +681,18 @@ export function createAccountApi(db, bucket, assets) {
         if (!item) return json(manifest);
         if (item === 'pages' && action === 'ink') {
           const p = manifest.pages[Number(n) - 1];
-          need(p?.kind === 'original', '此页没有可编辑笔迹。', 404);
+          need(p?.kind === 'original' && p.writable !== false, '此页没有可编辑笔迹。', 404);
+          const reading = manifest.paper === 1 ? Object.values(manifest.records)[0] : null;
           return json({
             schemaVersion: 1,
             renderer: 'perfect-freehand-1',
             key: p.key,
-            strokes: manifest.ink[p.key] || [],
+            strokes: reading
+              ? await readingInk(owner, reading.details.readingPaper, 'ink', p.key)
+              : manifest.ink[p.key] || [],
+            ...(reading
+              ? { reviewStrokes: await readingInk(owner, reading.details.readingPaper, 'reviewInk', p.key) }
+              : {}),
           });
         }
         if (item === 'pages' && action === 'image') {
@@ -571,7 +720,7 @@ export function createAccountApi(db, bucket, assets) {
     return json({ error: '找不到此入口。' }, 404);
   }
   async function remove(owner, paper) {
-    let previousHash, nextHash, exclusive;
+    let previousHash, nextHash, exclusive, backup;
     const exclusiveMembers = () =>
       all(
         'SELECT m.lesson,m.stamp FROM members m WHERE m.owner=? AND m.paper=? AND NOT EXISTS (SELECT 1 FROM members other WHERE other.owner=m.owner AND other.paper<>m.paper AND other.lesson=m.lesson AND other.stamp=m.stamp) ORDER BY m.lesson,m.stamp',
@@ -582,10 +731,13 @@ export function createAccountApi(db, bucket, assets) {
       exclusive = exclusiveMembers();
       previousHash = one('SELECT hash FROM learning WHERE owner=?', owner)?.hash;
       if (previousHash) {
-        const backup = await loadJson(owner, previousHash);
+        backup = await loadJson(owner, previousHash);
         const keys = new Set(exclusive.map((r) => r.lesson + ':' + r.stamp));
         backup.listening = backup.listening.filter((r) => !keys.has(r.lessonId + ':' + r.savedAt));
-        nextHash = await putJson(owner, backup);
+        backup.study.records = backup.study.records.filter(
+          (r) => !readingRecord(r) || !keys.has(r.taskId + ':' + r.id),
+        );
+        nextHash = await putJson(owner, backup, previousHash);
       }
     }
     transaction(() => {
@@ -598,16 +750,20 @@ export function createAccountApi(db, bucket, assets) {
           '另一台设备正在保存，请重试删除。',
           409,
         );
-        if (nextHash) {
-          run('UPDATE learning SET hash=? WHERE owner=?', nextHash, owner);
-          run("DELETE FROM refs WHERE owner=? AND paper='learning'", owner);
-          addRef(owner, 'learning', 0, privatePath(owner, nextHash));
-        }
+        if (nextHash) replaceLearning(owner, previousHash, nextHash, backup);
         run('INSERT INTO deleted_papers VALUES (?,?)', owner, paper);
         for (const row of exclusive)
           run('INSERT OR IGNORE INTO deleted_members VALUES (?,?,?)', owner, row.lesson, row.stamp);
         run('DELETE FROM members WHERE owner=? AND paper=?', owner, paper);
         run('DELETE FROM versions WHERE owner=? AND paper=?', owner, paper);
+        run(
+          `UPDATE objects SET created=0 WHERE owner=? AND EXISTS (
+          SELECT 1 FROM refs WHERE refs.path=objects.path AND paper=?) AND NOT EXISTS (
+          SELECT 1 FROM refs WHERE refs.path=objects.path AND paper<>?)`,
+          owner,
+          paper,
+          paper,
+        );
         run('DELETE FROM refs WHERE owner=? AND paper=?', owner, paper);
         run(
           "DELETE FROM receipts WHERE owner=? AND kind='paper' AND json_extract(result,'$.id')=?",
@@ -627,11 +783,8 @@ export function createAccountApi(db, bucket, assets) {
         ])
           run('DELETE FROM ' + table + ' WHERE owner=?', owner);
         run('DELETE FROM users WHERE id=?', owner);
+        run('UPDATE objects SET created=0 WHERE owner=?', owner);
       }
-      run(
-        'UPDATE objects SET created=0 WHERE owner=? AND NOT EXISTS (SELECT 1 FROM refs WHERE refs.path=objects.path)',
-        owner,
-      );
     });
     maintenanceRequested = true;
   }
@@ -670,7 +823,8 @@ export function createAccountApi(db, bucket, assets) {
         );
       } finally {
         active--;
-        if (maintenanceRequested && !active) await scheduleCleanup();
+        if (maintenanceRequested && !active)
+          await scheduleCleanup().catch(() => console.error('Account cleanup deferred'));
       }
     },
     cleanup: scheduleCleanup,

@@ -11,6 +11,8 @@ import {
   validateStudyState,
 } from './training-core.mjs';
 import { listeningErrorLabels } from './core.mjs';
+import { readingPaperSelection, readingPaperTitle } from './reading-paper-catalogue.mjs';
+import { portableReadingBackup } from './reading-paper-storage.mjs';
 
 const create = (tag, className, text) => {
   const n = document.createElement(tag);
@@ -1256,6 +1258,7 @@ export async function mountTraining({ host, bridge }) {
       const e = allExercises().find((x) => x.id === r.taskId);
       const paragraph = content.paragraphs.find((p) => `paragraph-${p.id}` === r.taskId);
       const paper = content.paper2?.find((p) => p.id === r.taskId);
+      const readingPaper = r.module === 'reading' && readingPaperSelection(r.taskId);
       items.push({
         id,
         type: r.module,
@@ -1263,6 +1266,7 @@ export async function mountTraining({ host, bridge }) {
           e?.title ||
           paragraph?.title ||
           paper?.title ||
+          (readingPaper && readingPaperTitle(readingPaper)) ||
           r.details?.title ||
           (r.module === 'dictation'
             ? `原音听写 · ${Number(r.details?.start || 0).toFixed(1)} 秒`
@@ -1278,6 +1282,7 @@ export async function mountTraining({ host, bridge }) {
         createdAt: r.createdAt,
         record: r,
         paper: r.details?.paper,
+        readingPaper,
         focus: taskErrors.get(id)?.join('、') || (e ? e.meaning : ''),
         focusLabel: taskErrors.has(id) ? '待巩固卡点' : '练习重点',
       });
@@ -1406,7 +1411,13 @@ export async function mountTraining({ host, bridge }) {
             dictationMode = 'retest';
             dictationCaptured = null;
             navigate('writing');
-          } else
+          } else if (item.readingPaper)
+            await bridge.navigate('reading-paper', {
+              ...item.readingPaper,
+              kind: concealed ? 'retest' : 'review',
+              recordId: item.record.id,
+            });
+          else
             navigate(item.type === 'integrated' ? 'integrated' : 'reading', {
               taskId: item.record.taskId,
               kind: 'retest',
@@ -1424,6 +1435,8 @@ export async function mountTraining({ host, bridge }) {
       );
       if (item.savedQuestion)
         controls.append(action('回原题复盘', () => openItem(false), 'button-secondary'));
+      if (item.readingPaper)
+        controls.append(action('查看上次作答', () => openItem(false), 'button-secondary'));
       if (item.type === 'writing' && ['paragraph', 'paper2'].includes(item.record?.details?.kind))
         controls.append(action('查看上次作答', () => openItem(false), 'button-secondary'));
       const manual = create('details', 'training-manual-review');
@@ -1462,7 +1475,12 @@ export async function mountTraining({ host, bridge }) {
     );
     const groups = [
       ['听力', summariseRecords(uniqueAttempts)],
-      ['阅读', summariseRecords(saved.records.filter((r) => r.module === 'reading'))],
+      [
+        '阅读',
+        summariseRecords(
+          saved.records.filter((r) => r.module === 'reading' && !r.details?.readingPaper?.copyOf),
+        ),
+      ],
       ['B1 综合', summariseRecords(saved.records.filter((r) => r.module === 'integrated'))],
       [
         '写句与听写',
@@ -1519,9 +1537,11 @@ export async function mountTraining({ host, bridge }) {
     function appendHistory() {
       const start = ol.children.length;
       for (const r of history.slice(start, start + 12)) {
+        const readingPaper = r.module === 'reading' && readingPaperSelection(r.taskId);
         const title =
           r.title ||
           r.details?.title ||
+          (readingPaper && readingPaperTitle(readingPaper)) ||
           (r.module === 'listening' && current.catalogue?.find((entry) => entry.id === r.taskId)?.title) ||
           r.taskId;
         const row = create(
@@ -1558,9 +1578,9 @@ export async function mountTraining({ host, bridge }) {
     const buttons = create('div', 'training-actions');
     const exportButton = action(
       '导出已保存的完整备份',
-      () => {
+      async () => {
         try {
-          const data = studyStore.exportBackup();
+          const data = await portableReadingBackup(studyStore.exportBackup());
           const url = URL.createObjectURL(
             new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }),
           );

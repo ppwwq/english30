@@ -10,12 +10,21 @@ export async function confirmAccountSave({ name, items, job, combinedAvailable }
     list.append(li);
   }
   const size = document.createElement('p');
-  const strokes = job.paper?.touched.length || 0;
-  const typed = Object.values(job.paper?.record.attempts.at(-1)?.results || {}).some((r) => r.answer?.trim());
+  const reading = job.readingPapers || [];
+  const strokes =
+    (job.paper?.touched.length || 0) +
+    reading.reduce((total, { record }) => {
+      const { inkFiles, reviewInkFiles } = record.details.readingPaper;
+      return total + new Set([...Object.keys(inkFiles || {}), ...Object.keys(reviewInkFiles || {})]).size;
+    }, 0);
+  const typed =
+    Object.values(job.paper?.record.attempts.at(-1)?.results || {}).some((r) => r.answer?.trim()) ||
+    reading.some(({ record }) => Object.values(record.answers).some((answer) => answer.trim()));
   const metadata = new Blob([JSON.stringify(job.delta)]).size;
-  size.textContent = job.paper
-    ? '本次涉及 ' + strokes + ' 个手写页' + (typed ? '及打字答案附页' : '') + '。整页按原图尺寸保存。'
-    : '本次保存已提交的学习记录。';
+  size.textContent =
+    job.paper || reading.length
+      ? '本次涉及 ' + strokes + ' 个手写页' + (typed ? '及打字答案附页' : '') + '。整页按原图尺寸保存。'
+      : '本次保存已提交的学习记录。';
   const bytes = metadata + (strokes + (typed ? 1 : 0)) * 450000;
   const estimate =
     bytes < 1024 * 1024

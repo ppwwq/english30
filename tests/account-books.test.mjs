@@ -5,6 +5,8 @@ import { createHash } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
 import { createAccountApi } from '../cloudflare/account-api.mjs';
 import { createPrivateFiles } from '../cloudflare/private-files.mjs';
+import { buildReadingPaperCatalogue } from '../web/reading-paper-catalogue.mjs';
+import { emptyBackup, learningDelta } from '../web/account-learning.mjs';
 
 const read = (name) => readFileSync(new URL('../' + name, import.meta.url));
 const books = JSON.parse(read('web/papers/answer-books.json'));
@@ -13,10 +15,11 @@ const sources = new Map(catalogue.sources.map((s) => [s.id, s]));
 const approved = new Map(JSON.parse(read('assets-manifest.json')).files.map((f) => [f.path, f.sha256]));
 
 test('all 30 A/B1 books keep safe distinct original pages, full Task coverage and separate Data Files', () => {
-  assert.equal(Object.keys(books).length, 30);
+  const listening = Object.values(books).filter((book) => book.paper !== 1);
+  assert.equal(listening.length, 30);
   let pages = 0,
     data = 0;
-  for (const b of Object.values(books)) {
+  for (const b of listening) {
     assert.deepEqual(b.taskChoices.map((c) => c.task).sort(), b.part === 'A' ? [1, 2, 3, 4] : [5, 6, 7]);
     const seen = new Set();
     for (const p of [...b.pages, ...b.data]) {
@@ -43,6 +46,31 @@ test('all 30 A/B1 books keep safe distinct original pages, full Task coverage an
   );
 });
 
+test('all 32 Paper 1 books preserve only the verified reading and answer pages in order', () => {
+  let count = 0;
+  for (const paper of buildReadingPaperCatalogue(catalogue.sources)) {
+    for (const part of paper.parts) {
+      count++;
+      const book = books[`reading-${paper.year}-${paper.variant}-${part.id}`];
+      assert.equal(book.paper, 1);
+      assert.equal(book.taskChoices[0].lessonId, `reading-paper:${paper.year}-${paper.variant}:${part.id}`);
+      assert.deepEqual(
+        book.questions,
+        part.questions.map((q) => q.number),
+      );
+      assert.equal(book.pages.length, part.pages.length);
+      for (const [i, page] of book.pages.entries()) {
+        const original = part.pages[i];
+        assert.equal(page.key, original.id);
+        assert.equal(page.originalHash, approved.get(page.src));
+        assert.equal(page.writable, original.kind !== 'text');
+        assert.notEqual(original.kind, 'reference');
+      }
+    }
+  }
+  assert.equal(count, 32);
+});
+
 function database(raw) {
   return {
     one: (q, ...v) => raw.prepare(q).get(...v),
@@ -61,6 +89,57 @@ function database(raw) {
     },
   };
 }
+
+test('a learning snapshot can replace the current one at quota and immediately releases the old object', async (t) => {
+  const raw = new DatabaseSync(':memory:');
+  t.after(() => raw.close());
+  const db = database(raw);
+  const files = createPrivateFiles(db);
+  const api = createAccountApi(db, files, async () => new Response(null, { status: 404 }));
+  const origin = 'https://english30.test';
+  const register = await api.fetch(
+    new Request(origin + '/api/account/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: 'quota-reader', password: 'quota-test-password' }),
+    }),
+  );
+  assert.equal(register.status, 200);
+  const { user } = await register.json();
+  const cookie = register.headers.get('Set-Cookie').split(';')[0];
+  const post = async (previous, next) => {
+    const response = await api.fetch(
+      new Request(origin + '/api/learning', {
+        method: 'POST',
+        headers: { cookie, 'Content-Type': 'application/json', 'X-English30-Owner': user.id },
+        body: JSON.stringify({ saveId: crypto.randomUUID(), delta: learningDelta(previous, next) }),
+      }),
+    );
+    assert.equal(response.status, 200, await response.clone().text());
+    return response.json();
+  };
+  const previous = emptyBackup();
+  const first = structuredClone(previous);
+  first.study.settings.startDate = '2026-11-26';
+  const old = await post(previous, first);
+  const oldPath = `users/${user.id}/${old.hash}`;
+  const oldBytes = db.one('SELECT bytes FROM objects WHERE path=?', oldPath).bytes;
+  db.run(
+    'INSERT INTO objects VALUES (?,?,?,?,?,?)',
+    `users/${user.id}/quota-fixture`,
+    user.id,
+    256 * 1024 * 1024 - oldBytes,
+    Date.now(),
+    0,
+    0,
+  );
+  const second = structuredClone(first);
+  second.study.settings.startDate = '2026-11-27';
+  const current = await post(first, second);
+  assert.notEqual(current.hash, old.hash);
+  assert.equal(files.get(oldPath), null);
+  assert.equal(db.one('SELECT hash FROM learning WHERE owner=?', user.id).hash, current.hash);
+});
 
 test('private SQLite files round-trip over 2 MiB and an interrupted replacement preserves every old part', async (t) => {
   const raw = new DatabaseSync(':memory:');

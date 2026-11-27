@@ -101,8 +101,7 @@ export async function mountPapers({ host, bridge, catalogue }) {
       exposedSentences.has(`${session?.id}:reference`) ||
       [...marks.values()].some((m) => m.sessionId === session?.id && m.sentenceId === id),
     conceal: () => {
-      review = false;
-      $('paper-review').textContent = '开始复盘，显示字幕';
+      setReview(false);
       $('paper-rate').value = '1';
       $('paper-audio').playbackRate = 1;
       const target = chooseTask(catalogue.sources, selection, selection.task);
@@ -208,6 +207,7 @@ export async function mountPapers({ host, bridge, catalogue }) {
         (t.part === 'A' || t.part === (selection.part === 'B2' ? 'B2' : 'B1')),
     );
     if (!next || (next.number === Number(selection.task) && next.part === selection.part)) return;
+    setReview(false);
     selection.part = next.part;
     selection.task = next.number;
     $('paper-part').value = next.part;
@@ -218,6 +218,7 @@ export async function mountPapers({ host, bridge, catalogue }) {
     );
     const selected = selectPapers(catalogue.sources, selection),
       target = chooseTask(catalogue.sources, selection, next.number);
+    updatePracticeTask(target);
     options(
       'paper-source',
       selected.questions.map((s) => [s.id, s.name]),
@@ -290,9 +291,13 @@ export async function mountPapers({ host, bridge, catalogue }) {
       player.emit();
     } else if (r) player.playRange(r.start, r.end, true);
   };
+  function setReview(value) {
+    review = value;
+    $('paper-review').textContent = value ? '隐藏字幕，重新听' : '开始复盘，显示字幕';
+  }
   $('paper-review').onclick = () => {
-    review = !review;
-    $('paper-review').textContent = review ? '隐藏字幕，重新听' : '开始复盘，显示字幕';
+    if (selectionBusy) return;
+    setReview(!review);
     renderTranscript();
   };
   $('paper-follow').onclick = () => {
@@ -311,23 +316,27 @@ export async function mountPapers({ host, bridge, catalogue }) {
     return (session?.sentences || []).filter((s) => !r || (s.end > r.start && s.start < r.end));
   }
   function renderTranscript() {
-    $('paper-transcript-panel').hidden = !review || selection.paper !== 3;
-    host.classList.toggle('paper-with-transcript', review && selection.paper === 3);
+    const visible = review && !!session && selection.paper === 3;
+    $('paper-transcript-panel').hidden = !visible;
+    host.classList.toggle('paper-with-transcript', visible);
     $('paper-word-detail').hidden = true;
     selectedWord = null;
     currentSentence = null;
     currentWord = null;
-    const sentences = visibleSentences();
-    if (review && session && selection.paper === 3) {
-      for (const s of sentences) exposedSentences.add(`${session.id}:${s.id}`);
-      paperStudy?.expose();
-      bridge.exposePaper?.({
-        year: selection.year,
-        variant: selection.variant,
-        part: selection.part,
-        task: selection.task,
-      });
+    if (!visible) {
+      $('paper-transcript').replaceChildren();
+      $('paper-evidence-list').replaceChildren();
+      return;
     }
+    const sentences = visibleSentences();
+    for (const s of sentences) exposedSentences.add(`${session.id}:${s.id}`);
+    paperStudy?.expose();
+    bridge.exposePaper?.({
+      year: selection.year,
+      variant: selection.variant,
+      part: selection.part,
+      task: selection.task,
+    });
     $('paper-timing-note').textContent =
       session?.timingNote || '字幕按原音生成；无法可靠定位的词按整句重听。原稿可在同年资料中对照。';
     $('paper-transcript').innerHTML = sentences.length
@@ -440,11 +449,11 @@ export async function mountPapers({ host, bridge, catalogue }) {
     const m = marks.get(event.target.closest('[data-mark]')?.dataset.mark);
     if (!m) return;
     selection = { year: m.year, variant: m.variant, paper: 3, part: m.part, task: m.task };
-    review = true;
     setFollow(true);
     const applied = await applySelection();
     if (applied && session?.id === m.sessionId) {
-      $('paper-review').textContent = '隐藏字幕，重新听';
+      setReview(true);
+      renderTranscript();
       player.playRange(m.start, m.end);
     }
   };
@@ -530,16 +539,17 @@ export async function mountPapers({ host, bridge, catalogue }) {
         )
         .join('') || '<p class="paper-fine">这个年份尚无单独参考文件，可查阅其他 Part 或合订本。</p>';
   }
+  function updatePracticeTask(target) {
+    $('paper-practise-task').hidden = selection.paper !== 3 || selection.part === 'B2' || !target;
+  }
   async function applySelection(changed) {
     const request = ++loadingGeneration;
     selectionInterrupted = false;
     selectionBusy = true;
     paperStudy?.setContext(null, selection);
     player.range = null;
-    selectedWord = null;
-    $('paper-word-detail').hidden = true;
-    $('paper-transcript').replaceChildren();
-    $('paper-evidence-list').replaceChildren();
+    setReview(false);
+    renderTranscript();
     for (const id of [
       'paper-play',
       'paper-seek',
@@ -548,6 +558,7 @@ export async function mountPapers({ host, bridge, catalogue }) {
       'paper-rate',
       'paper-task-play',
       'paper-task-loop',
+      'paper-review',
     ])
       $(id).disabled = true;
     player.cancel();
@@ -621,7 +632,7 @@ export async function mountPapers({ host, bridge, catalogue }) {
           ? `${selection.year} · ${variants[selection.variant]} · Paper ${selection.paper}${selection.part ? ` · Part ${selection.part}` : ''}${selection.task ? ` · Task ${selection.task}` : ''}`
           : '你保存的材料中没有此项独立题卷；同年合订本保留在下方。';
     $('paper-audio-panel').hidden = selection.paper !== 3;
-    $('paper-practise-task').hidden = selection.paper !== 3;
+    updatePracticeTask(target);
     $('paper-practise-reading').hidden =
       selection.paper !== 1 || !['A', 'B1'].includes(selection.part) || !selected.questions.length;
     $('paper-study-host').hidden = selection.paper !== 3;
@@ -660,6 +671,7 @@ export async function mountPapers({ host, bridge, catalogue }) {
     for (const id of ['paper-play', 'paper-seek', 'paper-back', 'paper-forward', 'paper-rate'])
       $(id).disabled = !session?.audio;
     for (const id of ['paper-task-play', 'paper-task-loop']) $(id).disabled = !r;
+    $('paper-review').disabled = !session;
     paperStudy?.setContext(selection.paper === 3 ? session : null, selection);
     renderTranscript();
     renderMarks();
@@ -689,15 +701,17 @@ export async function mountPapers({ host, bridge, catalogue }) {
       revealedSources.add(next.id);
     }
     if (next && (['marking', 'script', 'commentary', 'full'].includes(next.role) || answersPage)) {
-      exposedSentences.add(`${selection.year}-${selection.variant}:reference`);
-      paperStudy?.expose('session');
-      if (next.paper === 3 || next.paper == null)
+      const yearKey = `${next.year}-${next.variant}`;
+      if (next.paper === 3 || next.paper == null) {
+        exposedSentences.add(`${yearKey}:reference`);
+        if (session?.id === yearKey) paperStudy?.expose('session');
         bridge.exposePaper?.({ year: next.year, variant: next.variant, part: null, task: null });
+      }
       if (
-        (next.role === 'marking' || answersPage) &&
-        (next.paper === 1 || (next.paper == null && selection.paper === 1))
+        (['marking', 'commentary', 'full'].includes(next.role) || answersPage) &&
+        (next.paper === 1 || next.paper == null)
       )
-        markSeen(seenMaterials(), `reading-paper:${next.year}-${next.variant}`);
+        markSeen(seenMaterials(), `reading-paper:${yearKey}`);
     }
     source = next;
     pageNumber = Math.min(next?.pages.length || 1, Math.max(1, Number(number) || 1));
@@ -847,15 +861,12 @@ export async function mountPapers({ host, bridge, catalogue }) {
           part: p.part,
           task: Number(p.task),
         };
-        review = false;
-        $('paper-review').textContent = '开始复盘，显示字幕';
         const applied = await applySelection();
         if (applied && session?.id === p.sessionId) {
           if (options.paperReplay) {
             const sentence = session.sentences.find((s) => s.id === p.sentenceId);
             if (sentence) {
-              review = true;
-              $('paper-review').textContent = '隐藏字幕，重新听';
+              setReview(true);
               renderTranscript();
               setFollow(true);
               await player.playRange(sentence.start, sentence.end);

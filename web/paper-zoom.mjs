@@ -24,12 +24,16 @@ export function mountPaperZoom(wrap, stage, trigger, panelId = 'paper-zoom-panel
   inkIcon(fit, 'fit', '恢复适合宽度');
   panel.append(slider, output, fit);
   control.append(trigger, panel);
-  wrap.classList.add('paper-zoomable');
   let percent =
     lastPaperZoom ?? (matchMedia('(min-width: 1000px) and (orientation: landscape)').matches ? 80 : 100);
+  function dismissOutside(e) {
+    if (!control.contains(e.target)) toggle(false);
+  }
   function toggle(open) {
     panel.hidden = !open;
     trigger.setAttribute('aria-expanded', String(open));
+    if (open) control.ownerDocument.addEventListener('pointerdown', dismissOutside, true);
+    else control.ownerDocument.removeEventListener('pointerdown', dismissOutside, true);
   }
   function pointOnPage(x, y) {
     const r = stage.getBoundingClientRect();
@@ -68,16 +72,22 @@ export function mountPaperZoom(wrap, stage, trigger, panelId = 'paper-zoom-panel
       trigger.focus();
     }
   });
+  const penDown = mountPaperGestures(wrap, stage, { percent: () => percent, pointOnPage, set });
   wrap.addEventListener(
     'wheel',
     (e) => {
       if (!e.ctrlKey) return;
       e.preventDefault();
-      if (pen !== null) return;
+      if (penDown()) return;
       set(percent * Math.exp(-e.deltaY * (e.deltaMode === 1 ? 16 : 1) * 0.008), e.clientX, e.clientY);
     },
     { passive: false },
   );
+  return control;
+}
+
+export function mountPaperGestures(wrap, stage, zoom) {
+  wrap.classList.add('paper-zoomable');
   const fingers = new Map();
   let pinch = null,
     consume = false,
@@ -98,38 +108,49 @@ export function mountPaperZoom(wrap, stage, trigger, panelId = 'paper-zoom-panel
     e.preventDefault();
     e.stopPropagation();
   }
+  function startPan(e) {
+    pan = { id: e.pointerId, x: e.clientX, y: e.clientY, left: wrap.scrollLeft, top: wrap.scrollTop };
+    take(e.pointerId);
+    block(e);
+  }
   wrap.addEventListener(
     'pointerdown',
     (e) => {
-      toggle(false);
+      if (e.button !== 0 || e.target.closest('button')) return;
+      const onInk = e.target.closest('.paper-ink:not(.can-pan)');
       if (e.pointerType === 'pen') {
-        if (pinch || consume) {
+        if (pinch || pen !== null) {
           block(e);
           return;
         }
         pen = e.pointerId;
         if (fingers.size) {
           pan = null;
+          if (!consume) stage.querySelector('.paper-ink')?.dispatchEvent(new Event('ink-cancel-touch'));
           consume = true;
         }
+        if (!onInk) startPan(e);
         return;
       }
-      if (e.pointerType !== 'touch') return;
-      if (pen !== null) {
+      if (e.pointerType !== 'touch') {
+        if (e.pointerType === 'mouse' && !pan && pen === null && stage.querySelector('.paper-ink.can-pan'))
+          startPan(e);
+        return;
+      }
+      if (pen !== null || (pan && !fingers.size)) {
         block(e);
         return;
       }
       fingers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      if (fingers.size === 2) {
+      if (fingers.size === 2 && !consume && zoom) {
         const a = pair();
-        pinch = { distance: a.d, percent, anchor: pointOnPage(a.x, a.y) };
+        pinch = { distance: a.d, percent: zoom.percent(), anchor: zoom.pointOnPage(a.x, a.y) };
         consume = true;
         pan = null;
         stage.querySelector('.paper-ink')?.dispatchEvent(new Event('ink-cancel-touch'));
         for (const id of fingers.keys()) take(id);
-      } else if (fingers.size === 1 && !consume && !e.target.closest('.paper-ink')) {
-        pan = { x: e.clientX, y: e.clientY, left: wrap.scrollLeft, top: wrap.scrollTop };
-        take(e.pointerId);
+      } else if (fingers.size === 1 && !consume && !onInk) {
+        startPan(e);
       }
       if (consume || pan) block(e);
     },
@@ -138,36 +159,40 @@ export function mountPaperZoom(wrap, stage, trigger, panelId = 'paper-zoom-panel
   wrap.addEventListener(
     'pointermove',
     (e) => {
+      if (pan?.id === e.pointerId) {
+        wrap.scrollTo(pan.left + pan.x - e.clientX, pan.top + pan.y - e.clientY);
+        block(e);
+        return;
+      }
       if (!fingers.has(e.pointerId)) return;
       fingers.set(e.pointerId, { x: e.clientX, y: e.clientY });
       if (pinch && fingers.size === 2) {
         const p = pair();
-        set((pinch.percent * p.d) / pinch.distance, p.x, p.y, pinch.anchor);
-      } else if (pan) wrap.scrollTo(pan.left + pan.x - e.clientX, pan.top + pan.y - e.clientY);
-      if (consume || pan) block(e);
+        zoom.set((pinch.percent * p.d) / pinch.distance, p.x, p.y, pinch.anchor);
+      }
+      if (consume) block(e);
     },
     true,
   );
   function end(e) {
-    if (e.pointerId === pen) {
-      pen = null;
-      return;
+    if (e.pointerId === pen) pen = null;
+    if (pan?.id === e.pointerId) {
+      pan = null;
+      block(e);
     }
     if (!fingers.delete(e.pointerId)) return;
-    if (consume || pan) block(e);
+    if (consume) block(e);
     if (fingers.size < 2) pinch = null;
-    if (!fingers.size) {
-      consume = false;
-      pan = null;
-    }
+    if (!fingers.size) consume = false;
   }
   for (const name of ['pointerup', 'pointercancel']) wrap.addEventListener(name, end, true);
   wrap.addEventListener(
     'lostpointercapture',
     (e) => {
-      if (e.pointerId === pen) pen = null;
+      // Taking over from the ink layer during a pinch also fires lostpointercapture.
+      if (e.target === wrap || !wrap.hasPointerCapture(e.pointerId)) end(e);
     },
     true,
   );
-  return control;
+  return () => pen !== null;
 }

@@ -5,12 +5,19 @@ import { mountPaperInk } from './paper-ink.mjs';
 import { markSeen, seenMaterials } from './paper-recovery.mjs';
 import { mountPaperZoom } from './paper-zoom.mjs';
 import { buildReadingPaperCatalogue } from './reading-paper-catalogue.mjs';
+import {
+  packReadingPaperInk,
+  readReadingDraft,
+  unpackReadingPaperInk,
+  writeReadingDraft,
+} from './reading-paper-storage.mjs';
 import { mountReadingPaperWindows } from './reading-paper-windows.mjs';
 import { studyStore } from './training-core.mjs';
 
 const variants = { exam: '正式卷', practice: 'Practice Paper', sample: 'Sample Paper' };
 const titles = { text: '阅读原文', question: '题答卷', mixed: '阅读原卷', reference: '评分参考' };
 const taskKey = (paper, part) => `reading-paper:${paper.year}-${paper.variant}:${part.id}`;
+const readingErrors = ['定位不到依据', '理解有误', '答案不完整', '用词或拼写', '其他'];
 
 function button(text, action, className = 'button-secondary') {
   const node = document.createElement('button');
@@ -115,43 +122,174 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
   let positions = {},
     mode = 'ink',
     focused = false;
+  let recordWrites = Promise.resolve(),
+    recordVersion = '',
+    loadVersion = 0,
+    reviewTimer;
+  let visible = false,
+    draftLoading,
+    cachedDraft,
+    pinnedRecord = false,
+    selectedRecordId,
+    notice = '';
   const seen = seenMaterials();
   const appHeader = document.querySelector('.app-header');
   const skipLink = document.querySelector('.skip-link');
-  const pending = () =>
-    !!attempt &&
-    !attempt.recordId &&
-    (Object.keys(attempt.ink).length > 0 || Object.values(attempt.answers).some((answer) => answer.trim()));
+  const hasDraftAnswers = (value) =>
+    !!value &&
+    !value.recordId &&
+    (Object.keys(value.ink).length > 0 || Object.values(value.answers).some((answer) => answer.trim()));
+  const pending = () => hasDraftAnswers(attempt);
   const updateSession = () => bridge.onSessionChange?.();
-  const fresh = (phase = 'first') => ({ phase, answers: {}, ink: {}, reviewInk: {}, recordId: null });
-
-  function loadAttempt() {
-    const record = studyStore
+  const fresh = (phase = 'first') => ({
+    phase,
+    answers: {},
+    ink: {},
+    reviewInk: {},
+    checks: {},
+    recordId: null,
+  });
+  const findRecord = (selectedPaper, selectedPart, recordId) =>
+    studyStore
       .getState()
-      .records.findLast(({ module, taskId }) => module === 'reading' && taskId === taskKey(paper, part));
-    attempt = record
-      ? {
-          ...fresh(record.phase),
-          answers: record.answers || {},
-          ink: record.details?.readingPaper?.ink || {},
-          reviewInk: record.details?.readingPaper?.reviewInk || {},
-          recordId: record.id,
-          assisted: record.assisted,
-        }
-      : fresh();
+      .records.filter(
+        ({ id, module, taskId }) =>
+          module === 'reading' &&
+          taskId === taskKey(selectedPaper, selectedPart) &&
+          (!recordId || id === recordId),
+      )
+      .reduce((latest, record) => (!latest || record.createdAt >= latest.createdAt ? record : latest), null);
+  async function loadAttempt(record) {
+    if (!record) return fresh();
+    const details = record.details?.readingPaper;
+    return {
+      ...fresh(record.phase),
+      answers: record.answers || {},
+      ...(await unpackReadingPaperInk(details)),
+      checks: details?.checks || {},
+      copyOf: details?.copyOf,
+      recordId: record.id,
+      createdAt: record.createdAt,
+      assisted: record.assisted,
+    };
   }
 
-  function recordData() {
+  function setNotice(message) {
+    notice = message;
+    const status = host.querySelector('.reading-paper-status');
+    if (status) {
+      status.textContent = notice;
+      status.hidden = !notice;
+    }
+  }
+
+  function checkpoint() {
+    if (!attempt) return;
+    const saved =
+      attempt.recordId && studyStore.getSavedState().records.find(({ id }) => id === attempt.recordId);
+    const draft = structuredClone({
+      year: paper.year,
+      variant: paper.variant,
+      part: part.id,
+      attempt,
+      positions,
+      mode,
+      activeKind,
+      dirty:
+        !!attempt.recordId &&
+        !pinnedRecord &&
+        (attempt.needsWrite || recordVersion !== JSON.stringify(saved)),
+      savedVersion: JSON.stringify(saved || null),
+    });
+    void writeReadingDraft(draft).catch(() => setNotice('浏览器未能暂存阅读草稿，请保留页面。'));
+  }
+
+  function recordData(state, selectedPaper, selectedPart, files) {
+    const checks = Object.values(state.checks);
     return {
       module: 'reading',
-      taskId: taskKey(paper, part),
-      phase: attempt.phase,
-      assisted: attempt.assisted,
-      answers: attempt.answers,
-      source: `${paper.year} HKDSE English Language Paper 1 · ${variants[paper.variant]} · Part ${part.id}`,
+      taskId: taskKey(selectedPaper, selectedPart),
+      phase: state.phase,
+      assisted: !!state.assisted,
+      answers: state.answers,
+      source: `${selectedPaper.year} HKDSE English Language Paper 1 · ${variants[selectedPaper.variant]} · Part ${selectedPart.id}`,
+      correct: null,
+      selfCheck: checks.some(({ status }) => status === 'retry')
+        ? 'retry'
+        : checks.length === selectedPart.questions.length
+          ? 'correct'
+          : 'pending',
+      errorTypes: [...new Set(checks.map(({ error }) => error).filter(Boolean))],
       details: {
-        readingPaper: { ink: validatePaperInk(attempt.ink), reviewInk: validatePaperInk(attempt.reviewInk) },
+        readingPaper: { ...files, checks: state.checks, ...(state.copyOf ? { copyOf: state.copyOf } : {}) },
       },
+    };
+  }
+
+  function storeAttempt({
+    inkChanged = true,
+    working = attempt,
+    selectedPaper = paper,
+    selectedPart = part,
+  } = {}) {
+    working.createdAt ||= new Date().toISOString();
+    const changes = structuredClone(working);
+    const id = working.recordId || `a-${crypto.randomUUID()}`;
+    const revision = (working.revision = (working.revision || 0) + 1);
+    working.needsWrite = true;
+    if (working === attempt) checkpoint();
+    recordWrites = recordWrites
+      .catch(() => {})
+      .then(async () => {
+        const old = findRecord(selectedPaper, selectedPart, id);
+        const oldFiles = old?.details?.readingPaper;
+        const files =
+          !inkChanged && oldFiles?.inkFiles && oldFiles?.reviewInkFiles
+            ? { inkFiles: oldFiles.inkFiles, reviewInkFiles: oldFiles.reviewInkFiles }
+            : await packReadingPaperInk(changes);
+        const record = {
+          ...old,
+          ...recordData(changes, selectedPaper, selectedPart, files),
+          id,
+          createdAt: old?.createdAt || changes.createdAt,
+        };
+        working.recordId = id;
+        if (working.revision === revision) working.needsWrite = false;
+        if (working === attempt) {
+          pinnedRecord = false;
+          recordVersion = JSON.stringify(record);
+          setNotice('');
+        }
+        if (old) {
+          const state = studyStore.getState();
+          state.records = state.records.map((item) => (item.id === id ? record : item));
+          studyStore.replaceState(state);
+        } else studyStore.addAttempt(record);
+        if (working === attempt) checkpoint();
+      });
+    void recordWrites.catch((error) => setNotice(`${error.message} 请保留当前页面后重试暂存。`));
+    return recordWrites;
+  }
+
+  function flushReviewInk() {
+    if (!reviewTimer) return false;
+    clearTimeout(reviewTimer);
+    reviewTimer = undefined;
+    void storeAttempt();
+    return true;
+  }
+
+  function recoveredAttempt(draft, record) {
+    const changed = draft.savedVersion !== JSON.stringify(record || null);
+    if (!changed) return { value: draft.attempt, copied: false };
+    return {
+      value: {
+        ...draft.attempt,
+        copyOf: draft.attempt.recordId,
+        recordId: `a-${crypto.randomUUID()}`,
+        createdAt: new Date().toISOString(),
+      },
+      copied: true,
     };
   }
 
@@ -185,8 +323,10 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
       </div>
       <nav class="reading-paper-tabs" aria-label="阅读卷面"></nav>
       <div class="reading-paper-documents"></div>
+      <p class="reading-paper-status" role="status" hidden></p>
       <footer class="reading-paper-actions"></footer>
     </section>`;
+    setNotice(notice);
     syncSelectors();
     for (const select of host.querySelectorAll('[data-choice]')) {
       select.onchange = () => {
@@ -217,6 +357,7 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
           positions[kind],
           (_page, position) => {
             positions[kind] = position;
+            checkpoint();
           },
         );
     }
@@ -229,16 +370,21 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
       } else actions.append('本卷暂无评分参考');
       actions.append(
         button('关提示，再测一次', () => {
+          flushReviewInk();
           attempt = fresh('retest');
+          recordVersion = '';
+          pinnedRecord = false;
+          selectedRecordId = undefined;
           render();
           updateSession();
           revealAnswer();
         }),
       );
+      if (part.questions.length) actions.append(mountChecks());
     } else {
       const submit = button(
         '交卷',
-        () => {
+        async () => {
           if (!pending()) return;
           if (attempt.phase === 'first') {
             const currentSeen = seenMaterials();
@@ -246,7 +392,18 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
               (id) => seen.has(id) || currentSeen.has(id),
             );
           }
-          attempt.recordId = studyStore.addAttempt(recordData());
+          const working = attempt;
+          const workspace = host.firstElementChild;
+          workspace.inert = true;
+          try {
+            await storeAttempt();
+          } catch {
+            if (!working.recordId) recordWrites = Promise.resolve();
+            return;
+          } finally {
+            workspace.inert = false;
+          }
+          if (working !== attempt) return;
           render();
           updateSession();
           host.querySelector('.reading-paper-actions button')?.focus({ preventScroll: true });
@@ -257,6 +414,49 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
       submit.disabled = !pending();
       actions.append(submit);
     }
+  }
+
+  function mountChecks() {
+    const fieldset = document.createElement('fieldset');
+    fieldset.className = 'reading-paper-checks';
+    fieldset.innerHTML = `<legend>逐题自核</legend>
+      <label>题号 <select data-check-question></select></label>
+      <label>结果 <select data-check-result><option value="">待自核</option>
+        <option value="correct">已核对</option><option value="retry">需重练</option></select></label>
+      <label data-error-label hidden>错因 <select data-check-error></select></label>`;
+    const question = fieldset.querySelector('[data-check-question]');
+    const result = fieldset.querySelector('[data-check-result]');
+    const error = fieldset.querySelector('[data-check-error]');
+    setOptions(
+      question,
+      part.questions.map(({ number }) => [number, `第 ${number} 题`]),
+      String(positions.checkNumber ?? positions.questionNumber ?? part.questions[0].number),
+    );
+    setOptions(error, [['', '选择错因'], ...readingErrors.map((value) => [value, value])], '');
+    function sync() {
+      const check = attempt.checks[question.value];
+      positions.checkNumber = question.value;
+      result.value = check?.status || '';
+      error.value = check?.error || '';
+      error.parentElement.hidden = result.value !== 'retry';
+    }
+    function changed() {
+      if (result.value)
+        attempt.checks[question.value] = {
+          status: result.value,
+          ...(result.value === 'retry' && error.value ? { error: error.value } : {}),
+        };
+      else delete attempt.checks[question.value];
+      sync();
+      if (!flushReviewInk()) void storeAttempt({ inkChanged: false });
+    }
+    question.onchange = () => {
+      sync();
+      checkpoint();
+    };
+    result.onchange = error.onchange = changed;
+    sync();
+    return fieldset;
   }
 
   function syncSelectors() {
@@ -305,13 +505,17 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
       field.value = attempt.answers[question.value] || '';
       field.setAttribute('aria-label', `第 ${question.value} 题打字作答`);
     };
-    question.onchange = showAnswer;
+    question.onchange = () => {
+      showAnswer();
+      checkpoint();
+    };
     showAnswer();
     field.oninput = () => {
       const wasPending = pending();
       if (field.value.trim()) attempt.answers[question.value] = field.value;
       else delete attempt.answers[question.value];
       refreshSubmission(wasPending);
+      checkpoint();
     };
     view.section.append(answer);
     const rack = document.createElement('div');
@@ -330,14 +534,16 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
       changed(_id, pages) {
         if (submitted) {
           attempt.reviewInk = pages;
-          const state = studyStore.getState();
-          state.records = state.records.map((record) =>
-            record.id === attempt.recordId ? { ...record, ...recordData() } : record,
-          );
-          studyStore.replaceState(state);
+          attempt.revision = (attempt.revision || 0) + 1;
+          attempt.needsWrite = true;
+          checkpoint();
+          updateSession();
+          clearTimeout(reviewTimer);
+          reviewTimer = setTimeout(flushReviewInk, 700);
         } else {
           attempt.ink = pages;
           refreshSubmission();
+          checkpoint();
         }
       },
     };
@@ -349,6 +555,7 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
         pageId = page.id;
         positions[answerKind] = position;
         ink.show(mode === 'ink' ? pageId : null);
+        checkpoint();
       },
     );
     useMode(part.questions.length ? mode : 'ink');
@@ -359,6 +566,7 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
       type.setAttribute('aria-pressed', String(mode === 'typed'));
       answer.hidden = mode !== 'typed';
       ink.show(mode === 'ink' ? pageId : null);
+      checkpoint();
     }
   }
 
@@ -385,6 +593,7 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
       reader.section.title = reference.label;
       reader.setPages(reference.pages, start, (_page, position) => {
         positions.reference = position;
+        checkpoint();
       });
       markSeen(seen, taskKey(paper, part));
       if (reference.mixed) markSeen(seen, `reading-paper:${paper.year}-${paper.variant}`);
@@ -441,6 +650,7 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
     if (kind) host.dataset.activeDocument = kind;
     for (const tab of host.querySelectorAll('.reading-paper-tabs button'))
       tab.setAttribute('aria-pressed', String(tab.dataset.kind === kind));
+    checkpoint();
   }
 
   function renderFocus(next) {
@@ -469,54 +679,191 @@ export function mountReadingPaper({ host, bridge = {}, catalogue }) {
       ?.focus({ preventScroll: true });
   }
 
-  async function change(options, field) {
-    const requestedYear = Number(options.year ?? paper?.year ?? years[0]);
+  async function change(options, field, cached) {
+    const requestedYear = Number(options.year ?? cached?.year ?? paper?.year ?? years[0]);
     const candidates = papers.filter(({ year }) => year === requestedYear);
     const nextPaper =
-      candidates.find(({ variant }) => variant === (options.variant ?? 'exam')) ??
+      candidates.find(({ variant }) => variant === (options.variant ?? cached?.variant ?? 'exam')) ??
       candidates[0] ??
       paper ??
       papers[0];
-    const nextPart = nextPaper?.parts.find(({ id }) => id === (options.part ?? 'A')) ?? nextPaper?.parts[0];
-    if (!nextPaper || !nextPart || (nextPaper === paper && nextPart === part)) return;
+    const nextPart =
+      nextPaper?.parts.find(({ id }) => id === (options.part ?? cached?.part ?? 'A')) ?? nextPaper?.parts[0];
+    if (!nextPaper || !nextPart || (nextPaper === paper && nextPart === part && !options.kind)) return;
     if (
-      pending() &&
+      options.kind &&
+      (nextPaper.year !== requestedYear ||
+        nextPaper.variant !== options.variant ||
+        nextPart.id !== options.part)
+    )
+      throw new Error('此阅读原卷暂不可用。');
+    const restore =
+      !options.kind &&
+      cached?.year === nextPaper.year &&
+      cached.variant === nextPaper.variant &&
+      cached.part === nextPart.id
+        ? cached
+        : null;
+    if (
+      (pending() || (!restore && hasDraftAnswers(cached?.attempt))) &&
       !(await confirmAction('切换阅读卷', '当前作答还未交卷。切换会清除这份草稿。', '切换试卷'))
     ) {
-      syncSelectors();
+      if (host.querySelector('[data-choice=year]')) syncSelectors();
+      return false;
+    }
+    if (!visible) return false;
+    flushReviewInk();
+    const version = ++loadVersion;
+    const workspace = host.querySelector('.reading-paper-workspace');
+    if (workspace) workspace.inert = true;
+    try {
+      let copied = false;
+      if (!restore && cached?.dirty && cached.attempt.recordId) {
+        const savedPaper = papers.find(
+          (item) => item.year === cached.year && item.variant === cached.variant,
+        );
+        const savedPart = savedPaper?.parts.find((item) => item.id === cached.part);
+        if (savedPart) {
+          const old = findRecord(savedPaper, savedPart, cached.attempt.recordId);
+          const recovered = recoveredAttempt(cached, old);
+          copied = recovered.copied;
+          await storeAttempt({
+            working: recovered.value,
+            selectedPaper: savedPaper,
+            selectedPart: savedPart,
+          });
+        }
+      }
+      const localRecord = findRecord(nextPaper, nextPart, options.recordId || restore?.attempt?.recordId);
+      const versionRecord = options.record;
+      if (
+        versionRecord &&
+        (versionRecord.id !== options.recordId || versionRecord.taskId !== taskKey(nextPaper, nextPart))
+      )
+        throw new Error('答卷版本与所选阅读卷不符。');
+      const record = versionRecord || localRecord;
+      const recovered = restore?.dirty && restore.attempt.recordId ? recoveredAttempt(restore, record) : null;
+      copied ||= !!recovered?.copied;
+      if (options.kind === 'review' && options.recordId && !record) throw new Error('未找到这轮阅读作答。');
+      const restored =
+        options.kind === 'retest'
+          ? fresh('retest')
+          : recovered?.value ||
+            (restore?.attempt && !restore.attempt.recordId ? restore.attempt : await loadAttempt(record));
+      if (version !== loadVersion) return;
+      paper = nextPaper;
+      part = nextPart;
+      positions = restore?.positions || {};
+      activeKind = restore?.activeKind || null;
+      mode = restore?.mode === 'typed' ? 'typed' : mode;
+      attempt = restored;
+      recordVersion = JSON.stringify(record || null);
+      pinnedRecord = !!versionRecord && recordVersion !== JSON.stringify(localRecord || null);
+      selectedRecordId = options.kind === 'review' ? options.recordId : undefined;
+      if (recovered) await storeAttempt();
+      if (version !== loadVersion) return;
+      cachedDraft = null;
+      if (copied) setNotice('原答卷已有新版，本机草稿保留为待保存副本。');
+      render();
+      updateSession();
+      if (options.kind === 'retest') revealAnswer();
+      if (field) host.querySelector(`[data-choice=${field}]`)?.focus({ preventScroll: true });
+      return true;
+    } finally {
+      if (workspace) workspace.inert = false;
+    }
+  }
+
+  async function refreshFromStore() {
+    if (
+      !paper ||
+      !attempt ||
+      pinnedRecord ||
+      pending() ||
+      attempt.needsWrite ||
+      (!attempt.recordId && attempt.phase === 'retest')
+    )
+      return;
+    const current = attempt,
+      version = loadVersion;
+    const currentRecord = current.recordId && findRecord(paper, part, current.recordId);
+    const savedRecord =
+      current.recordId && studyStore.getSavedState().records.find(({ id }) => id === current.recordId);
+    const recordId =
+      selectedRecordId || (JSON.stringify(currentRecord) !== JSON.stringify(savedRecord) && current.recordId);
+    const record = findRecord(paper, part, recordId);
+    const signature = JSON.stringify(record || null);
+    if (signature === recordVersion) {
+      checkpoint();
       return;
     }
-    paper = nextPaper;
-    part = nextPart;
-    positions = {};
-    activeKind = null;
-    loadAttempt();
+    if (!visible || (current.recordId && !record)) return;
+    const loaded = await loadAttempt(record);
+    if (
+      !visible ||
+      version !== loadVersion ||
+      current !== attempt ||
+      pending() ||
+      current.needsWrite ||
+      signature !== JSON.stringify(findRecord(paper, part, recordId) || null)
+    )
+      return;
+    attempt = loaded;
+    recordVersion = signature;
     render();
-    updateSession();
-    if (field) host.querySelector(`[data-choice=${field}]`)?.focus({ preventScroll: true });
   }
+
+  studyStore.subscribe(() =>
+    queueMicrotask(() => {
+      void refreshFromStore().catch((error) => setNotice(error.message));
+    }),
+  );
 
   return {
     async show(options = {}) {
+      visible = true;
       if (!papers.length) render();
-      else if (!paper || options.year || options.variant || options.part) await change(options);
+      else if (!paper || options.year || options.variant || options.part || options.kind) {
+        await (draftLoading ||= readReadingDraft()
+          .then((draft) => {
+            if (draft?.attempt) {
+              validatePaperInk(draft.attempt.ink);
+              validatePaperInk(draft.attempt.reviewInk);
+              cachedDraft = draft;
+            }
+          })
+          .catch(() => setNotice('暂存的阅读草稿未能载入。')));
+        if (!visible) return false;
+        return change(options, undefined, cachedDraft);
+      } else await refreshFromStore();
     },
     hide() {
+      visible = false;
+      loadVersion++;
+      flushReviewInk();
       endComparison(true);
       renderFocus(false);
     },
+    checkpoint,
+    async readyToSave() {
+      flushReviewInk();
+      try {
+        await recordWrites;
+      } catch (error) {
+        if (!attempt?.recordId || !attempt.needsWrite) throw error;
+        await storeAttempt();
+      }
+    },
+    hasPendingRecord: () => !!attempt?.recordId && !!attempt.needsWrite,
     hasUnsubmitted: pending,
     discardUnsubmitted() {
       if (!pending()) return;
       attempt = fresh(attempt.phase);
+      recordVersion = '';
+      pinnedRecord = false;
+      selectedRecordId = undefined;
       render();
       updateSession();
-    },
-    clear() {
-      this.hide();
-      ink?.destroy();
-      host.replaceChildren();
-      paper = part = attempt = ink = null;
     },
   };
 }

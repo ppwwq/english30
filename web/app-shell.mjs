@@ -14,12 +14,15 @@ const account = createAccountController({
   studyStore,
   canSwitch: () =>
     !saving &&
-    (!(hasUnsubmitted() || saver.prepare().changed) ||
+    (!(hasUnsubmitted() || readingPaper?.hasPendingRecord() || saver.prepare().changed) ||
       confirmAction('切换账号', '切换账号将关闭当前练习，未保存的输入可能丢失。', '切换账号')),
   async enterPaper(manifest, choice) {
     if (!(await listeningBridge.continuePaper(manifest, choice))) return false;
     await navigate('listening', { lessonId: choice.lessonId });
     return true;
+  },
+  async enterReading(options) {
+    return (await navigate('reading-paper', { ...options, kind: 'review' })) !== false;
   },
 });
 listeningBridge.setWorkspaceReader((info) => account.workspaceFor(info));
@@ -105,7 +108,7 @@ function refreshSessionBar() {
   if (saving) return;
   try {
     const plan = saver.prepare();
-    const pending = plan.changed;
+    const pending = plan.changed || readingPaper?.hasPendingRecord();
     const unsubmitted = hasUnsubmitted();
     const queued = account.state().pending;
     saveBar.hidden = current === 'account' && !pending && !unsubmitted && !queued && !saveMessage;
@@ -140,11 +143,13 @@ function refreshSessionBar() {
 }
 async function requestSave() {
   if (saving) return false;
+  saving = true;
   let plan,
     job,
     staged = false,
     localSaved = false;
   try {
+    await readingPaper?.readyToSave();
     plan = saver.prepare();
     if (!plan.changed) {
       saveMessage = '没有新的已提交纪录需要保存。未提交输入不会自动保存。';
@@ -167,7 +172,6 @@ async function requestSave() {
       if (!changed.length || plan.study.state.paperMarks.length)
         items.push('其他已暂存的复习标记、手动复习状态及设置');
     }
-    saving = true;
     const { user } = account.state();
     if (user) {
       job = account.capture(plan);
@@ -201,7 +205,7 @@ async function requestSave() {
       document.getElementById('session-save-status').textContent = '已存本机，正在上传答卷…';
       const result = await account.retry({ saveId: job.saveId });
       cloudStatus = result.skipped
-        ? '已存本机，原云端答卷已删除'
+        ? '已存本机，云端答卷已变更'
         : result.checked === false
           ? '已在其他标签处理'
           : '已存云端';
@@ -217,7 +221,7 @@ async function requestSave() {
           ? '已存云端，已回读核对。可从「我的答卷」取回。'
           : cloudStatus === '已在其他标签处理'
             ? '这次保存已在其他标签处理，可到「我的答卷」核对。'
-            : '其他设备已删除待传答卷，已保留本机记录，其余保存已处理。') +
+            : '其他设备更新或删除了相关答卷，本机记录已保留。') +
         (saver.prepare().changed ? ' 之后的新修改尚未保存。' : '');
     return true;
   } catch (error) {
@@ -249,8 +253,8 @@ function refreshAccountState() {
 window.addEventListener('english30-account-change', refreshAccountState);
 window.addEventListener('english30-account-synced', ({ detail }) => {
   if (detail.skipped) {
-    cloudStatus = '已存本机，原云端答卷已删除';
-    saveMessage = '其他设备已删除待传答卷，其余保存已处理。';
+    cloudStatus = '已存本机，云端答卷已变更';
+    saveMessage = '其他设备更新或删除了相关答卷，本机记录已保留。';
   } else {
     cloudStatus = '已存云端';
     saveMessage = '已存云端，已回读核对。';
@@ -260,13 +264,14 @@ window.addEventListener('english30-account-synced', ({ detail }) => {
 studyStore.subscribe(sessionChanged);
 listeningBridge.onChange(sessionChanged);
 window.addEventListener('beforeunload', (event) => {
-  if (hasUnsubmitted() || saver.prepare().changed) {
+  if (hasUnsubmitted() || readingPaper?.hasPendingRecord() || saver.prepare().changed) {
     event.preventDefault();
     event.returnValue = '';
   }
 });
-window.addEventListener('pagehide', (event) => {
-  if (!event.persisted) readingPaper?.clear();
+window.addEventListener('pagehide', () => readingPaper?.checkpoint());
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) readingPaper?.checkpoint();
 });
 async function navigate(view, options = {}) {
   dismissConfirmation();
@@ -375,8 +380,13 @@ async function navigate(view, options = {}) {
           readingPaperPromise = null;
           throw error;
         }));
-      if (request === generation) await readingPaper.show(options);
-      else if (readingPaperHost.hidden) readingPaper.hide();
+      if (request === generation) {
+        if ((await readingPaper.show(options)) === false) {
+          if (request !== generation) return false;
+          if (previousView && previousView !== view) await navigate(previousView, { replace: true });
+          return false;
+        }
+      } else if (readingPaperHost.hidden) readingPaper.hide();
     } else if (readingView) {
       reading ||= await (readingPromise ||= import('./reading.mjs')
         .then((m) => m.mountReading({ host: readingHost, bridge }))
@@ -427,6 +437,7 @@ async function navigate(view, options = {}) {
     retry.addEventListener('click', () => navigate(view, options));
     notice.append(document.createElement('br'), retry);
     host.append(notice);
+    return false;
   } finally {
     if (request === generation) {
       listeningPanel.inert = false;

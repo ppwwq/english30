@@ -35,6 +35,16 @@ export function mountInkTools(host, options, actions, reviewing = false, idPrefi
     return b;
   }
   const menus = [];
+  function dismissOutside(e) {
+    const open = menus.find(({ trigger }) => trigger.getAttribute('aria-expanded') === 'true');
+    if (
+      open &&
+      !open.trigger.contains(e.target) &&
+      !open.panel.contains(e.target) &&
+      !e.target.closest?.('dialog')
+    )
+      toggleMenu();
+  }
   function toggleMenu(active = null) {
     for (const { key, trigger, panel } of menus) {
       const open = key === active;
@@ -42,6 +52,8 @@ export function mountInkTools(host, options, actions, reviewing = false, idPrefi
       panel.dataset.open = String(open);
       if (key !== 'colors') panel.hidden = !open;
     }
+    if (active) host.ownerDocument.addEventListener('pointerdown', dismissOutside, true);
+    else host.ownerDocument.removeEventListener('pointerdown', dismissOutside, true);
   }
   function menu(parent, key, label, icon, cls = 'ink-popup') {
     const trigger = button(parent, label, icon, () =>
@@ -298,6 +310,7 @@ export function mountInkTools(host, options, actions, reviewing = false, idPrefi
   return {
     refresh,
     destroy() {
+      toggleMenu();
       observer.disconnect();
       cancelAnimationFrame(layoutFrame);
     },

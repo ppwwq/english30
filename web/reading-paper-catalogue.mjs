@@ -1,4 +1,16 @@
 const parts = ['A', 'B1'];
+const variantLabels = { exam: '正式卷', practice: 'Practice Paper', sample: 'Sample Paper' };
+
+export function readingPaperSelection(taskId) {
+  const match = /^reading-paper:(20\d{2})-(exam|sample|practice):(A|B1)$/.exec(taskId);
+  if (!match) return null;
+  const [, year, variant, part] = match;
+  return { year: Number(year), variant, part };
+}
+
+export function readingPaperTitle({ year, variant, part }) {
+  return `${year} Paper 1 · ${variantLabels[variant]} · Part ${part}`;
+}
 const pageLabels = {
   text: '阅读文章',
   question: '答题册',

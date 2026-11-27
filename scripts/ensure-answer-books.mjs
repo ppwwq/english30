@@ -7,6 +7,7 @@ try {
   const books = JSON.parse(
     await readFile(new URL('../web/papers/answer-books.json', import.meta.url), 'utf8'),
   );
+  if (!books['reading-2025-exam-A']) throw Error('阅读原卷的答题册页表未生成。');
   await Promise.all(
     Object.values(books).flatMap((b) =>
       [...b.pages, ...(b.data || [])].map((p) =>

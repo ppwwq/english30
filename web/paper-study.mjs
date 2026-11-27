@@ -67,16 +67,17 @@ export function mountPaperStudy({
       recordId: null,
       error: '',
       revealed: false,
+      retest,
     };
   }
   const key = (id) => `${session.id}:${selection.part}:${selection.task}:${id}`;
-  function choose(id, retest = false, cancelPlayback = true) {
+  function choose(id, retest = false, activeChoice = true) {
     generation++;
-    if (cancelPlayback) cancel();
+    if (activeChoice) cancel();
     if (!sentences.some((s) => s.id === id)) id = sentences[0]?.id;
     active = id ? (retest ? make(id, true) : drafts.get(key(id)) || make(id)) : null;
     if (active) drafts.set(key(id), active);
-    if (retest) conceal();
+    if (activeChoice && active?.retest && !active.outcome) conceal();
     render();
     onSentenceChange(active?.drill.sentence);
     onChange();
@@ -210,7 +211,10 @@ export function mountPaperStudy({
         : '卡点已暂存，保存后保留。',
     );
   };
-  $('paper-drill-retest').onclick = () => choose(active.drill.sentence.id, true);
+  $('paper-drill-retest').onclick = () => {
+    choose(active.drill.sentence.id, true);
+    $('paper-drill-answer').focus();
+  };
   return {
     setContext(nextSession, nextSelection) {
       generation++;

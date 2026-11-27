@@ -356,7 +356,7 @@ body[data-paper-answer='ink'] #original-responses {
 body[data-paper-answer='ink'] .practice-sources .practice-page-wrap {
   max-height: 80svh;
 }
-@media (max-height: 1080px) {
+@media (max-height: 1080px), (min-width: 744px) {
   html:not(.keyboard-open)
     body[data-view='listening'][data-paper-answer='ink']:not([data-paper-focus='true']):not(
       [data-listening-phase='review']
@@ -1171,8 +1171,8 @@ body[data-view='listening'][data-listening-mode='papers'] .player {
 }
 .caption-grip::before {
   content: '';
-  width: 8px;
-  height: 15px;
+  width: 7px;
+  height: 11px;
   background: radial-gradient(circle, currentColor 1px, transparent 1.4px) 0 0 / 4px 5px;
   opacity: 0.65;
 }
@@ -1223,8 +1223,8 @@ body .transcript-panel.is-floating > #transcript {
   content: '';
   position: absolute;
   inset: auto 6px 6px auto;
-  width: 12px;
-  height: 12px;
+  width: 9px;
+  height: 9px;
   background: repeating-linear-gradient(135deg, transparent 0 3px, currentColor 3px 4px);
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }

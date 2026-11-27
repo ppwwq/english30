@@ -90,9 +90,10 @@ try {
       await page.locator('#paper-year').selectOption('2013');
       await ready(page);
       await page.locator('#paper-review').click();
-      await page.locator('#paper-review').click();
       await page.locator('#paper-year').selectOption('2025');
       await ready(page);
+      assert.equal(await page.locator('#paper-transcript-panel').isVisible(), false);
+      assert.equal(await page.locator('#paper-transcript .paper-word').count(), 0);
       const first = await submitDrill(page);
       assert.equal(first.phase, 'first');
       assert.equal(first.assisted, false);

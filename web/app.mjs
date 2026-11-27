@@ -268,6 +268,7 @@ function loadLesson(data) {
 }
 
 function chooseLesson(entry) {
+  focusedDrill?.suspend();
   const area = document.querySelector('.study-grid');
   area.inert = true;
   const guarded = performLessonChoice(entry).finally(() => {
@@ -357,6 +358,7 @@ async function performLessonChoice(entry) {
 
 function render() {
   if (!lesson) return;
+  focusedDrill?.suspend();
   transcriptWindow.enable(review() && !!lesson.paper && !!lesson.sentences.length);
   const submitted = session.attempts.at(-1);
   const submittedInk = submitted?.ink;
@@ -376,6 +378,7 @@ function render() {
       render();
     },
     setPage(sourceId, page) {
+      if (paperPage?.sourceId !== sourceId || paperPage?.page !== page) focusedDrill?.suspend();
       const previous = paperPage?.questionPage;
       const questionPage =
         sourceId === lesson.paper.questionSourceId ? page : (previous ?? lesson.paper.questionPage);
@@ -521,6 +524,7 @@ function renderTranscript() {
 }
 
 function renderQuestions() {
+  focusedDrill?.suspend();
   const target = $('questions');
   target.replaceChildren();
   const responses = $('original-responses');
@@ -802,11 +806,7 @@ function renderQuestions() {
           '练这一处',
           () => {
             focusedDrill ||= mountFocusedDrill({
-              cancel: () => {
-                resetPlayer();
-                audio.playbackRate = 1;
-                $('playback-rate').value = '1';
-              },
+              cancel: resetPlayer,
               play: async (start, end) => {
                 await playSubtitle(start, end);
                 return { ok: !audio.paused, rate: audio.playbackRate };

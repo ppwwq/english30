@@ -60,7 +60,16 @@ try {
     }
   }
   const zoom = btn('调整纸面缩放');
-  assert.match(await page.locator('.paper-focus-context').innerText(), /2025 Part A · Task 1/);
+  const title = page.locator('.paper-focus-context');
+  assert.match(await title.innerText(), /2025 Part A · Task 1/);
+  async function outsideTap(trigger) {
+    await trigger.click();
+    assert.equal(await trigger.getAttribute('aria-expanded'), 'true');
+    await title.dispatchEvent('pointerdown', { pointerType: 'touch' });
+    assert.equal(await trigger.getAttribute('aria-expanded'), 'false');
+  }
+  await outsideTap(zoom);
+  await outsideTap(btn('其他工具'));
   await zoom.click();
   await page.keyboard.press('Escape');
   assert.equal(await zoom.getAttribute('aria-expanded'), 'false');
@@ -85,14 +94,15 @@ try {
   }
   await btn('恢复适合宽度').click();
   await zoom.click();
-  const viewport = await page.locator('.practice-page-wrap').boundingBox();
-  const touchPoint = (kind, id, x) =>
-    svg.dispatchEvent('pointer' + kind, {
+  const wrap = page.locator('.practice-page-wrap');
+  const viewport = await wrap.boundingBox();
+  const touchPoint = (kind, id, x, y = 130, target = svg) =>
+    target.dispatchEvent('pointer' + kind, {
       pointerType: 'touch',
       pointerId: id,
       button: 0,
       clientX: viewport.x + x,
-      clientY: viewport.y + 130,
+      clientY: viewport.y + y,
     });
   if (useWebKit) {
     await touchPoint('down', 20, 220);
@@ -127,6 +137,97 @@ try {
     'touch',
   );
   assert.equal(await strokes.count(), 0, 'finger pans by default');
+  const top = () => wrap.evaluate((node) => node.scrollTop);
+  const beforePalm = await top();
+  await touchPoint('down', 22, 260);
+  await draw([
+    [50, 90],
+    [100, 95],
+  ]);
+  await touchPoint('move', 22, 260, 45);
+  assert.equal(await top(), beforePalm, 'resting palm stays suppressed after a stroke');
+  await draw([
+    [55, 110],
+    [105, 115],
+  ]);
+  assert.equal(await strokes.count(), 2, 'the same resting palm does not block later pen strokes');
+  await touchPoint('up', 22, 260, 45);
+  await btn('撤销').click();
+  await btn('撤销').click();
+
+  await btn('其他工具').click();
+  await btn('移动纸面').click();
+  const x = Math.round(viewport.x + viewport.width / 2);
+  const y = Math.round(viewport.y + 185);
+  const resetPan = () => wrap.evaluate((node) => node.scrollTo(0, 0));
+  await resetPan();
+  if (useWebKit) {
+    // WebKit's test driver has no native stylus input. Verify the capture request
+    // before simulating loss of capture from a contact released off the page.
+    const captureRequested = await img.evaluate(
+      (node, { x, y }) => {
+        const surface = node.closest('.practice-page-wrap');
+        const capture = surface.setPointerCapture;
+        let requested = false;
+        surface.setPointerCapture = (id) => {
+          requested = id === 30;
+        };
+        try {
+          node.dispatchEvent(
+            new PointerEvent('pointerdown', {
+              bubbles: true,
+              cancelable: true,
+              pointerType: 'pen',
+              pointerId: 30,
+              clientX: x,
+              clientY: y,
+            }),
+          );
+          node.dispatchEvent(
+            new PointerEvent('pointermove', {
+              bubbles: true,
+              cancelable: true,
+              pointerType: 'pen',
+              pointerId: 30,
+              clientX: x,
+              clientY: y - 90,
+            }),
+          );
+          surface.dispatchEvent(
+            new PointerEvent('lostpointercapture', { pointerType: 'pen', pointerId: 30 }),
+          );
+          return requested;
+        } finally {
+          surface.setPointerCapture = capture;
+        }
+      },
+      { x, y },
+    );
+    assert.equal(captureRequested, true);
+  } else {
+    const cdp = await page.context().newCDPSession(page);
+    const pen = (type, y, buttons) =>
+      cdp.send('Input.dispatchMouseEvent', { type, x, y, pointerType: 'pen', button: 'left', buttons });
+    await pen('mousePressed', y, 1);
+    await pen('mouseMoved', y - 90, 1);
+    await pen('mouseReleased', Math.floor(viewport.y - 5), 0);
+    await cdp.detach();
+  }
+  assert.ok((await top()) > 50, 'pen drags the paper in pan mode');
+  await resetPan();
+  await touchPoint('down', 31, 260, 185, img);
+  await touchPoint('move', 31, 260, 85, img);
+  await touchPoint('up', 31, 260, 85, img);
+  assert.ok((await top()) > 50, 'touch pans after releasing the pen outside the paper');
+  await resetPan();
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x, y - 90);
+  await page.mouse.up();
+  assert.ok((await top()) > 50, 'mouse drags the paper in pan mode');
+  assert.equal(await strokes.count(), 0, 'pan never writes ink');
+  await resetPan();
+  await btn('钢笔').click();
   await draw([
     [40, 90, 0.08],
     [120, 90, 0.8],
@@ -265,6 +366,7 @@ try {
   await page.setViewportSize({ width: 390, height: 844 });
   const color = page.getByRole('button', { name: /选择笔色/ });
   await color.waitFor();
+  await menu.locator('button[aria-label="铅笔"]').waitFor({ state: 'attached' });
   const paperBefore = await svg.boundingBox();
   await color.click();
   assert.ok(await btn('紫色笔迹').isVisible());
